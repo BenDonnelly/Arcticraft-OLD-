@@ -109,6 +109,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class MainRegistry 
 {
+	//i wanna change this class too
 	@Instance("AC")
 	public static MainRegistry instance = new MainRegistry();
 	private AC_GuiHandler guiHandler = new AC_GuiHandler();
