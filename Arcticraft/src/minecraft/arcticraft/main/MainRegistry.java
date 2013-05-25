@@ -109,9 +109,6 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class MainRegistry 
 {
-
-	//this change will be visible in github in a moment
-	
 	@Instance("AC")
 	public static MainRegistry instance = new MainRegistry();
 	private AC_GuiHandler guiHandler = new AC_GuiHandler();
