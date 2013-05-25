@@ -44,6 +44,7 @@ import arcticraft.main.MainRegistry;
 public class AC_ChunkProvider implements IChunkProvider
 {
 
+	//useless change here
 	/** RNG. */
 	private Random rand;
 
