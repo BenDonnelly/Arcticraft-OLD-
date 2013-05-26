@@ -12,10 +12,11 @@
 /Arcticraft/runtime/
 /Arcticraft/temp/
 /Arcticraft/CHANGELOG
+/Arcticraft/LICENSE.txt
+
 
 *.bat
 *.sh
-*.txt
 *.zip
 *.cfg
 

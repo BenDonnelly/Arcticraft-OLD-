@@ -1,0 +1,5 @@
+Lantern needs to remember its durability when placed
+Freeze Effect needs to scale correctly
+Lantern stacksize dosent decrease when at max damage
+Main menu title texture issue
+Main menu panorama shots need redoing
