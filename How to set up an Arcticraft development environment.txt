@@ -9,7 +9,7 @@
       ->conf
       ->docs
       ->eclipse
-      ->... (MCP here) it's not as complicated as you may think. let me show you sth
+      ->... (MCP here) 
     ->.gitignore
 
 3. You also have to change the project path of Eclipse. By default it is C:\Users\<yourname>\Documents\GitHub\Arcticraft\Arcticraft\eclipse
