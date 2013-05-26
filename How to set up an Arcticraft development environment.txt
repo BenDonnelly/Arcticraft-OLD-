@@ -19,6 +19,8 @@
 
 NOTE: Ask Ben to add you to the Arcticraft repo!
 
+Project Link: https://github.com/BenDonnelly/Arcticraft
+
 Definitions:
 
 Commit - Uploaded change to the code
