@@ -59,7 +59,7 @@ public class AC_ClientProxy extends AC_CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityFrostZombieBoss.class, new AC_RenderFrostZombieBoss());
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityBoar.class, new AC_RenderBoar(new ModelPig(), new ModelPig(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityHusky.class, new AC_RenderHusky(new AC_ModelHusky(), new AC_ModelHusky(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(AC_EntityBomb.class, new AC_RenderBomb(3));
+		RenderingRegistry.registerEntityRenderingHandler(AC_EntityBomb.class, new AC_RenderBomb(MainRegistry.bomb, 0));
 	
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityStatue.class, new AC_TileEntityStatueRenderer());
 		MinecraftForgeClient.registerItemRenderer(MainRegistry.statue.blockID, new AC_ItemStatueRenderer());
