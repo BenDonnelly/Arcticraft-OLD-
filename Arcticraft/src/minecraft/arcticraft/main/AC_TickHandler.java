@@ -30,7 +30,7 @@ public class AC_TickHandler implements ITickHandler
 	public AC_TickHandler()
 	{
 		this.mc = Minecraft.getMinecraft();
-		this.value = 15;
+		this.value = 60;
 		this.maxValue = 100;
 
 	}
