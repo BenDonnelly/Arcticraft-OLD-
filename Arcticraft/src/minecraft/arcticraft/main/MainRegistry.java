@@ -230,6 +230,8 @@ public class MainRegistry
 	public static Item FrostWoodHoe;
 	public static Item FrostWoodShovel;
 	public static Item FrostWoodSword;
+	
+	public static Item pirateHat;
 	//Tools and armour
 	
 	//Land Generation
@@ -302,6 +304,8 @@ public class MainRegistry
 		
 		EnumToolMaterial GlacianTool = EnumHelper.addToolMaterial("Glacian Tool", 4, 900, 10.0F, 5, 18);
 		EnumArmorMaterial GlacianArmor = EnumHelper.addArmorMaterial("Glacian Armor", 35, new int[] {5, 10, 8, 5}, 18);
+		
+		EnumArmorMaterial PirateArmour = EnumHelper.addArmorMaterial("Pirate Armor", 33, new int[] {1, 3, 2, 1}, 15);
 			
 		frostDoorPlace = new AC_FrostDoorPlace(2000, Material.wood).setUnlocalizedName("AC:icedoor").setCreativeTab(tabMisc); 
 		frostDoor = new AC_FrostDoor(1541, Material.wood).setHardness(3.0F).setUnlocalizedName("AC:???").setCreativeTab(tabBlocks);
@@ -353,6 +357,7 @@ public class MainRegistry
 		GlacierFruit = (new AC_ItemFruits(6203, 0, false).setCreativeTab(tabFood).setUnlocalizedName("AC:glacier_fruit"));
 		IceShard = new Item(6204).setCreativeTab(tabCombat).setUnlocalizedName("AC:ice_shard");
 	
+		pirateHat = new AC_ItemArmour(2001, PirateArmour, proxy.addArmor("Pirate"), 0).setCreativeTab(tabCombat).setUnlocalizedName("AC:piratehaticon");
 		
 		TekkitePickaxe = new AC_ItemPickaxe(6205, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("Tekkite Pickaxe");
 		TekkiteAxe = new AC_ItemAxe(6206, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("articcraft:tekkiteAxe");
@@ -494,6 +499,7 @@ public class MainRegistry
 		//lantern, feel free to move if needed
 		GameRegistry.registerTileEntity(AC_TileEntityLantern.class, "tileEntityLantern");
 		
+		LanguageRegistry.addName(pirateHat, "Pirate Hat");
 		LanguageRegistry.addName(frostDoorPlace, "Frost Door");
 		LanguageRegistry.addName(frostDoor, "Frost Door");
 		LanguageRegistry.addName(frostChest, "Frost Chest");

@@ -51,6 +51,10 @@ public class AC_ItemArmour extends ItemArmor implements IArmorTextureProvider{
 			return "/mods/AC/textures/armour/glacians_2.png";
 		}
 		
+		if(itemstack.itemID == MainRegistry.pirateHat.itemID){
+			return "/mods/AC/textures/armour/piratehat.png";
+		}
+		
 		else return null;
 	}
 	
@@ -122,6 +126,10 @@ public class AC_ItemArmour extends ItemArmor implements IArmorTextureProvider{
 		
 		if(this == MainRegistry.GlacianBoots){
 			iconIndex = iconRegister.registerIcon("AC:glaciansBoots");
+		}
+		
+		if(this == MainRegistry.pirateHat){
+			iconIndex = iconRegister.registerIcon("AC:piratehaticon");
 		}
 	}
 }
