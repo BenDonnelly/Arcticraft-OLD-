@@ -18,6 +18,7 @@ import arcticraft.models.AC_ModelHusky;
 import arcticraft.models.AC_ModelMage;
 import arcticraft.models.AC_ModelPenguin;
 import arcticraft.models.AC_ModelPolarBear;
+import arcticraft.renderers.AC_FrostChestItemRenderHelper;
 import arcticraft.renderers.AC_RenderBoar;
 import arcticraft.renderers.AC_RenderFrostZombieBoss;
 import arcticraft.renderers.AC_RenderHusky;
@@ -26,8 +27,10 @@ import arcticraft.renderers.AC_RenderIceShards;
 import arcticraft.renderers.AC_RenderMage;
 import arcticraft.renderers.AC_RenderPenguin;
 import arcticraft.renderers.AC_RenderPolarBear;
+import arcticraft.renderers.TileEntityFrostChestRender;
 import arcticraft.tile_entities.AC_TileEntityStatue;
 import arcticraft.tile_entities.AC_TileEntityStatueRenderer;
+import arcticraft.tile_entities.TileEntityFrostChest;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
@@ -35,7 +38,6 @@ import cpw.mods.fml.relauncher.Side;
 
 public class AC_ClientProxy extends AC_CommonProxy
 {
-	//hi this is a test for git hub
 
 	@Override
 	public void registerTickHandler()
@@ -58,6 +60,8 @@ public class AC_ClientProxy extends AC_CommonProxy
 	
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityStatue.class, new AC_TileEntityStatueRenderer());
 		MinecraftForgeClient.registerItemRenderer(MainRegistry.statue.blockID, new AC_ItemStatueRenderer());
-
+		
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFrostChest.class, new TileEntityFrostChestRender());
+		MinecraftForgeClient.registerItemRenderer(MainRegistry.frostChest.blockID, new AC_FrostChestItemRenderHelper());
 	}
 }

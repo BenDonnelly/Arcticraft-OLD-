@@ -55,6 +55,7 @@ import arcticraft.blocks.AC_BlockSnowTrapdoor;
 import arcticraft.blocks.AC_BlockStatue;
 import arcticraft.blocks.AC_BlockThickSnow;
 import arcticraft.blocks.AC_BlockUnbreakableIce;
+import arcticraft.blocks.AC_FrostChest;
 import arcticraft.creative_tabs.AC_TabBlocks;
 import arcticraft.creative_tabs.AC_TabCombat;
 import arcticraft.creative_tabs.AC_TabFood;
@@ -85,6 +86,7 @@ import arcticraft.items.AC_ItemShovel;
 import arcticraft.items.AC_ItemSword;
 import arcticraft.tile_entities.AC_TileEntityArcticFurnace;
 import arcticraft.tile_entities.AC_TileEntityFreezer;
+import arcticraft.tile_entities.TileEntityFrostChest;
 import arcticraft.world.AC_WorldGenerator;
 import arcticraft.world.AC_WorldProvider;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
@@ -146,6 +148,8 @@ public class MainRegistry
 	public static Block frostFence;
 	public static Item frostSticks;
 	public static Block frostLadders; 
+	
+	public static Block frostChest;
 	
 	//Items
 	public static Item MystFruit;
@@ -276,8 +280,8 @@ public class MainRegistry
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		
-		statue = new AC_BlockStatue(1539, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:plain_statue");
+		frostChest = new AC_FrostChest(1539, 0).setHardness(2.0F).setResistance(3.5F).setUnlocalizedName("AC:frost_chest").setCreativeTab(tabBlocks);
+		statue = new AC_BlockStatue(3000, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:plain_statue");
 		proxy.reigsterRenderThings();
 		proxy.registerTickHandler();
 	    KeyBindingRegistry.registerKeyBinding(new AC_KeyBindHandler());
@@ -334,6 +338,8 @@ public class MainRegistry
 		frostFlower = new AC_BlockFlower(1536, Material.plants).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frost_flower");
 		frostWoodDoubleSlab = (BlockHalfSlab) (new AC_BlockFrostSlab(1537, true)).setHardness(2.0F).setResistance(5.0F).setUnlocalizedName("frost_wood_double_slab");
 		frostWoodSingleSlab = (BlockHalfSlab) (new AC_BlockFrostSlab(1538, false)).setHardness(2.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("frost_wood_single_slab");
+		
+		
 		
 		//Items
 		bucketIcyWater = new AC_ItemBucket(6200, acWaterFlowing.blockID).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyWater");
@@ -474,7 +480,12 @@ public class MainRegistry
 		GameRegistry.registerBlock(freezerBurning, "Freezer_Buring");
 		GameRegistry.registerTileEntity(AC_TileEntityFreezer.class, "tileEntityFreezer");
 
+		//Frost Chest
+		GameRegistry.registerBlock(frostChest, "AC_FrostChest");
+		GameRegistry.registerTileEntity(TileEntityFrostChest.class, "tileEntityFrostChest");
 		
+		
+		LanguageRegistry.addName(frostChest, "Frost Chest");
 		LanguageRegistry.addName(frostGrass, "Frost Grass");
 		LanguageRegistry.addName(frostDirt, "Frost Dirt");
 		LanguageRegistry.addName(frostStone, "Frost Stone");
