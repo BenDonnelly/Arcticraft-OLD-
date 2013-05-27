@@ -5,11 +5,13 @@ import static net.minecraftforge.common.ForgeDirection.NORTH;
 import static net.minecraftforge.common.ForgeDirection.SOUTH;
 import static net.minecraftforge.common.ForgeDirection.WEST;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import arcticraft.main.MainRegistry;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,7 +24,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import arcticraft.tile_entities.*;
 
-public class AC_BlockLantern extends Block
+public class AC_BlockLantern extends Block implements ITileEntityProvider
 {
 
 	private TileEntity tileEntity;
@@ -33,6 +35,19 @@ public class AC_BlockLantern extends Block
 		this.setTickRandomly(true);
 	}
 	
+	public void retrieveDurability(int durability, int x, int y, int z) {
+		//TODO save to nbt
+		System.out.println("retrieved durability: " + durability);
+		
+		//there? yep
+		
+	}
+	
+	@Override
+	public TileEntity createNewTileEntity(World world)
+	{
+		return new AC_TileEntityLantern();
+	}
 	
 	/**
 	 * Returns a bounding box from the pool of bounding boxes (this means this
@@ -46,8 +61,16 @@ public class AC_BlockLantern extends Block
 	public int idDropped(int par1, Random par2Random, int par3)
 	{
 		
-		return MainRegistry.itemLantern.itemID;
+		return MainRegistry.itemLantern.itemID; //couldnt you use this? 
 	}
+
+	@Override
+	public ArrayList <ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata, int fortune)
+	{
+		return super.getBlockDropped(world, x, y, z, metadata, fortune);
+		//Right, so do you want me to pop up to you on skype tomorrow or?
+		//ye, shout at me tomorrow when i'm online and i'll do it. Okay cheers, cya :)
+		}
 
 	/**
 	 * Is this block (a) opaque and (b) a full 1m cube? This determines whether
@@ -345,6 +368,8 @@ public class AC_BlockLantern extends Block
 			par1World.spawnParticle("flame", d0, d1, d2, 0.0D, 0.0D, 0.0D);
 		}
 	}
+
+
 	
 	/**
      * Returns a new instance of a block's tile entity class. Called on placing the block.

@@ -6,10 +6,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import arcticraft.blocks.AC_BlockLantern;
 import arcticraft.main.AC_TickHandler;
 import arcticraft.main.MainRegistry;
+import arcticraft.tile_entities.AC_TileEntityLantern;
 
 public class AC_ItemLantern extends Item
 {
@@ -40,7 +42,7 @@ public class AC_ItemLantern extends Item
 
 			if (hand.getItem() == MainRegistry.itemLantern)
 			{
-				System.out.println("Fuel Counter " + fuelCounter);
+			//	System.out.println("Fuel Counter " + fuelCounter);
 				fuelCounter++;
 
 				if (hand.getItem() == MainRegistry.itemLantern && fuelCounter == 300)
@@ -52,8 +54,8 @@ public class AC_ItemLantern extends Item
 				{
 					instance.value += 1;
 					hand.damageItem(1, entityPlayer);
-					System.out.println("Value " + instance.value);
-					System.out.println("Item damage " + Minecraft.getMinecraft().thePlayer.getCurrentItemOrArmor(0).getItemDamage());
+				//	System.out.println("Value " + instance.value);
+				//	System.out.println("Item damage " + Minecraft.getMinecraft().thePlayer.getCurrentItemOrArmor(0).getItemDamage());
 				}
 			}
 		}
@@ -120,8 +122,11 @@ public class AC_ItemLantern extends Item
 				{
 					if (par3World.getBlockId(par4, par5, par6) == this.spawnID)
 					{
+						//dunno if this will work, hopefully it does, ye, worth a shot
 						Block.blocksList [this.spawnID].onBlockPlacedBy(par3World, par4, par5, par6, par2EntityPlayer, par1ItemStack);
 						Block.blocksList [this.spawnID].onPostBlockPlaced(par3World, par4, par5, par6, j1);
+						AC_TileEntityLantern lantern = (AC_TileEntityLantern)par3World.getBlockTileEntity(par4, par5, par6);
+						lantern.setDurability(par1ItemStack.getItemDamage());
 					}
 
 					par3World.playSoundEffect((double) ((float) par4 + 0.5F), (double) ((float) par5 + 0.5F), (double) ((float) par6 + 0.5F), block.stepSound.getPlaceSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
