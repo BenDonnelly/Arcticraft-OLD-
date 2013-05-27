@@ -24,7 +24,6 @@ public class AC_TickHandler implements ITickHandler
 
 	private AC_ItemLantern itemLantern;
 	private Minecraft mc;
-	public static ScaledResolution sr;
 	int tickCounter;
 	int tempIncrementCounter;
 
@@ -33,13 +32,25 @@ public class AC_TickHandler implements ITickHandler
 		this.mc = Minecraft.getMinecraft();
 		this.value = 15;
 		this.maxValue = 100;
-		this.sr = new ScaledResolution(mc.gameSettings, mc.displayHeight, mc.displayWidth);
-	
+
+	}
+
+	//Util Methods
+	public static Minecraft getMinecraft()
+	{
+		return Minecraft.getMinecraft();
+	}
+
+	public static ScaledResolution getScaledResolution()
+	{
+		Minecraft mc = getMinecraft();
+		return new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
 	}
 
 	@Override
 	public void tickStart(EnumSet <TickType> type, Object... tickData)
 	{
+
 		if (mc.thePlayer != null)
 		{
 
@@ -59,12 +70,10 @@ public class AC_TickHandler implements ITickHandler
 	public void tickEnd(EnumSet <TickType> type, Object... tickData)
 	{
 		mc.entityRenderer.setupOverlayRendering();
-		int width = sr.getScaledWidth();
-		int height = sr.getScaledHeight();
-
+		ScaledResolution scaledresolution = getScaledResolution();
 		if (type.equals(EnumSet.of(TickType.RENDER)))
 		{
-		//	renderFreezeEffect(height, width);
+			renderFreezeEffect(scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight());
 			onRenderTick();
 		}
 	}
@@ -88,7 +97,7 @@ public class AC_TickHandler implements ITickHandler
 
 	public void onRenderTick()
 	{
-		ScaledResolution scaledresolution = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
+		ScaledResolution scaledresolution = getScaledResolution();
 		GuiIngame gui = this.mc.ingameGUI;
 
 		if (mc.currentScreen == null && mc.thePlayer.dimension != -1 && mc.thePlayer.dimension != 0 || mc.currentScreen instanceof GuiIngameMenu)
@@ -218,7 +227,7 @@ public class AC_TickHandler implements ITickHandler
 
 	public void renderFreezeEffect(int par1, int par2)
 	{
-		
+
 		if (mc.thePlayer != null && mc.theWorld != null && mc.currentScreen == null && mc.thePlayer.dimension == MainRegistry.dimension && this.value <= 35)
 		{
 
