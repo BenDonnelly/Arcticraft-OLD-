@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraftforge.client.MinecraftForgeClient;
 import arcticraft.entities.AC_EntityBoar;
 import arcticraft.entities.AC_EntityBomb;
+import arcticraft.entities.AC_EntityCaptain;
 import arcticraft.entities.AC_EntityFrostZombieBoss;
 import arcticraft.entities.AC_EntityHusky;
 import arcticraft.entities.AC_EntityIceCreeper;
@@ -22,6 +23,7 @@ import arcticraft.models.AC_ModelPolarBear;
 import arcticraft.renderers.AC_FrostChestItemRenderHelper;
 import arcticraft.renderers.AC_RenderBoar;
 import arcticraft.renderers.AC_RenderBomb;
+import arcticraft.renderers.AC_RenderCaptain;
 import arcticraft.renderers.AC_RenderFrostZombieBoss;
 import arcticraft.renderers.AC_RenderHusky;
 import arcticraft.renderers.AC_RenderIceCreeper;
@@ -60,7 +62,8 @@ public class AC_ClientProxy extends AC_CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityBoar.class, new AC_RenderBoar(new ModelPig(), new ModelPig(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityHusky.class, new AC_RenderHusky(new AC_ModelHusky(), new AC_ModelHusky(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityBomb.class, new AC_RenderBomb(MainRegistry.bomb, 0));
-	
+		RenderingRegistry.registerEntityRenderingHandler(AC_EntityCaptain.class, new AC_RenderCaptain());
+		
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityStatue.class, new AC_TileEntityStatueRenderer());
 		MinecraftForgeClient.registerItemRenderer(MainRegistry.statue.blockID, new AC_ItemStatueRenderer());
 		

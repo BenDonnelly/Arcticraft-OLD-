@@ -65,6 +65,7 @@ import arcticraft.creative_tabs.AC_TabMisc;
 import arcticraft.creative_tabs.AC_TabTools;
 import arcticraft.entities.AC_EntityBoar;
 import arcticraft.entities.AC_EntityBomb;
+import arcticraft.entities.AC_EntityCaptain;
 import arcticraft.entities.AC_EntityFrostZombie;
 import arcticraft.entities.AC_EntityFrostZombieBoss;
 import arcticraft.entities.AC_EntityHusky;
@@ -281,6 +282,8 @@ public class MainRegistry
 	public static Block frostDoor;
 	public static Item frostDoorPlace;
 	
+	public static Item pirateSword;
+	
 	//Blocks with a Techne Model
 	public static Block statue; 
 	
@@ -358,6 +361,7 @@ public class MainRegistry
 		IceShard = new Item(6204).setCreativeTab(tabCombat).setUnlocalizedName("AC:ice_shard");
 	
 		pirateHat = new AC_ItemArmour(2001, PirateArmour, proxy.addArmor("Pirate"), 0).setCreativeTab(tabCombat).setUnlocalizedName("AC:piratehaticon");
+		pirateSword = new AC_ItemSword(2002, EnumToolMaterial.EMERALD).setCreativeTab(tabTools).setUnlocalizedName("AC:pirateSword");
 		
 		TekkitePickaxe = new AC_ItemPickaxe(6205, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("Tekkite Pickaxe");
 		TekkiteAxe = new AC_ItemAxe(6206, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("articcraft:tekkiteAxe");
@@ -499,6 +503,7 @@ public class MainRegistry
 		//lantern, feel free to move if needed
 		GameRegistry.registerTileEntity(AC_TileEntityLantern.class, "tileEntityLantern");
 		
+		LanguageRegistry.addName(pirateSword, "Pirate Sword");
 		LanguageRegistry.addName(pirateHat, "Pirate Hat");
 		LanguageRegistry.addName(frostDoorPlace, "Frost Door");
 		LanguageRegistry.addName(frostDoor, "Frost Door");
@@ -641,6 +646,10 @@ public class MainRegistry
 		EntityRegistry.registerGlobalEntityID(AC_EntityPirate.class, "Pirate", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Pirate.name", "Pirate");
 		registerEntityEgg(AC_EntityPirate.class, 0x3CDECE, 0x1BE056);
+		
+		EntityRegistry.registerGlobalEntityID(AC_EntityCaptain.class, "Captain", EntityRegistry.findGlobalUniqueEntityId());
+		LanguageRegistry.instance().addStringLocalization("entity.Captain.name", "Pirate Captain");
+		registerEntityEgg(AC_EntityCaptain.class, 0x3CDECE, 0x1BE056);
 		
 		EntityRegistry.registerGlobalEntityID(AC_EntityPenguin.class, "Penguin", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Penguin.name", "Penguin");

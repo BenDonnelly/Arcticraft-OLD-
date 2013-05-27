@@ -2,6 +2,8 @@ package arcticraft.entities;
 
 import java.util.Random;
 
+import arcticraft.main.MainRegistry;
+
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -112,7 +114,7 @@ public class AC_EntityPirate extends EntityMob
 	
 	public ItemStack getHeldItem()
 	{
-		return new ItemStack(Item.swordStone, 1);
+		return new ItemStack(MainRegistry.pirateSword, 1);
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()

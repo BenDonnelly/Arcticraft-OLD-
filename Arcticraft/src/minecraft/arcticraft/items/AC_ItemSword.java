@@ -38,6 +38,10 @@ public class AC_ItemSword extends ItemSword{
 		  if(this == MainRegistry.FrostWoodSword){
 		        this.iconIndex = par1IconRegister.registerIcon("AC:frostWoodSword");
 		    } 
+		  
+		  if(this == MainRegistry.pirateSword){
+		        this.iconIndex = par1IconRegister.registerIcon("AC:pirateSword");
+		    } 
 	    }
 	  
 }
