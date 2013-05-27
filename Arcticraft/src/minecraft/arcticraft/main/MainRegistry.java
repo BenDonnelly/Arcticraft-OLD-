@@ -56,6 +56,7 @@ import arcticraft.blocks.AC_BlockStatue;
 import arcticraft.blocks.AC_BlockThickSnow;
 import arcticraft.blocks.AC_BlockUnbreakableIce;
 import arcticraft.blocks.AC_FrostChest;
+import arcticraft.blocks.AC_FrostDoor;
 import arcticraft.creative_tabs.AC_TabBlocks;
 import arcticraft.creative_tabs.AC_TabCombat;
 import arcticraft.creative_tabs.AC_TabFood;
@@ -74,6 +75,7 @@ import arcticraft.entities.AC_EntityPenguin;
 import arcticraft.entities.AC_EntityPirate;
 import arcticraft.entities.AC_EntityPolarBear;
 import arcticraft.gui.AC_GuiHandler;
+import arcticraft.items.AC_FrostDoorPlace;
 import arcticraft.items.AC_ItemArmour;
 import arcticraft.items.AC_ItemAxe;
 import arcticraft.items.AC_ItemBomb;
@@ -274,6 +276,9 @@ public class MainRegistry
 	public static Block freezerIdle;
 	public static Block freezerBurning;
 	
+	public static Block frostDoor;
+	public static Item frostDoorPlace;
+	
 	//Blocks with a Techne Model
 	public static Block statue; 
 	
@@ -297,7 +302,9 @@ public class MainRegistry
 		
 		EnumToolMaterial GlacianTool = EnumHelper.addToolMaterial("Glacian Tool", 4, 900, 10.0F, 5, 18);
 		EnumArmorMaterial GlacianArmor = EnumHelper.addArmorMaterial("Glacian Armor", 35, new int[] {5, 10, 8, 5}, 18);
-				
+			
+		frostDoorPlace = new AC_FrostDoorPlace(2000, Material.wood).setUnlocalizedName("AC:icedoor").setCreativeTab(tabMisc); 
+		frostDoor = new AC_FrostDoor(1541, Material.wood).setHardness(3.0F).setUnlocalizedName("AC:???").setCreativeTab(tabBlocks);
 		frostGrass = new AC_BlockFrostGrass(230).setHardness(0.6F).setCreativeTab(tabBlocks).setUnlocalizedName("frostgrass").setStepSound(Block.soundGrassFootstep);
 		frostDirt = new AC_BlockFrostDirt(231).setHardness(0.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frost_dirt").setStepSound(Block.soundGrassFootstep);
 		frostStone = new AC_BlockFrostStone(232).setHardness(1.5F).setResistance(2.0F).setUnlocalizedName("AC:frost_stone").setCreativeTab(tabBlocks);
@@ -433,6 +440,7 @@ public class MainRegistry
 		
 		GameRegistry.registerWorldGenerator(new AC_WorldGenerator());
 		
+		GameRegistry.registerBlock(frostDoor, "Frost_Door");
 		GameRegistry.registerBlock(frostGrass, "Frost_Grass");
 		GameRegistry.registerBlock(frostDirt, "Frost_Dirt");
 		GameRegistry.registerBlock(frostStone, "Frost_Stone");
@@ -486,6 +494,8 @@ public class MainRegistry
 		//lantern, feel free to move if needed
 		GameRegistry.registerTileEntity(AC_TileEntityLantern.class, "tileEntityLantern");
 		
+		LanguageRegistry.addName(frostDoorPlace, "Frost Door");
+		LanguageRegistry.addName(frostDoor, "Frost Door");
 		LanguageRegistry.addName(frostChest, "Frost Chest");
 		LanguageRegistry.addName(frostGrass, "Frost Grass");
 		LanguageRegistry.addName(frostDirt, "Frost Dirt");
