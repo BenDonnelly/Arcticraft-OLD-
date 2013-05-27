@@ -35,6 +35,7 @@ import cpw.mods.fml.relauncher.Side;
 
 public class AC_ClientProxy extends AC_CommonProxy
 {
+	//hi this is a test for git hub
 
 	@Override
 	public void registerTickHandler()
