@@ -25,7 +25,7 @@ public class AC_ItemTeaDrinks extends ItemFood
 	@SideOnly(Side.CLIENT)
 	private Icon [] teaField;
 	
-	public static AC_TickHandler instance = new AC_TickHandler();
+
 
 
 	public AC_ItemTeaDrinks(int par1, int par2, float par3, boolean par4)
@@ -63,7 +63,7 @@ public class AC_ItemTeaDrinks extends ItemFood
 			}
 			else if(par1ItemStack.getItemDamage() == 1)
 			{
-				instance.value += 30;
+				AC_TickHandler.value += 30;
 				System.out.println("value");
 			}
 		}

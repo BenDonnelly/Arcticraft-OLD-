@@ -6,6 +6,10 @@ import cpw.mods.fml.relauncher.Side;
 public class AC_CommonProxy
 {
 
+public void registerKeyHandler(){
+	
+}
+	
 	public void registerTickHandler()
 	{
 

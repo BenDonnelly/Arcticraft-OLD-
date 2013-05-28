@@ -1,5 +1,6 @@
 package arcticraft.main;
 
+import net.aetherteam.mainmenu_api.MainMenuAPI;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelPig;
 import net.minecraft.client.renderer.entity.RenderBiped;
@@ -36,6 +37,7 @@ import arcticraft.tile_entities.AC_TileEntityStatue;
 import arcticraft.tile_entities.AC_TileEntityStatueRenderer;
 import arcticraft.tile_entities.TileEntityFrostChest;
 import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -43,6 +45,13 @@ import cpw.mods.fml.relauncher.Side;
 public class AC_ClientProxy extends AC_CommonProxy
 {
 
+	@Override
+	public void registerKeyHandler()
+	{
+		 KeyBindingRegistry.registerKeyBinding(new AC_KeyBindHandler());
+	}
+
+	
 	@Override
 	public void registerTickHandler()
 	{
@@ -69,5 +78,7 @@ public class AC_ClientProxy extends AC_CommonProxy
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFrostChest.class, new TileEntityFrostChestRender());
 		MinecraftForgeClient.registerItemRenderer(MainRegistry.frostChest.blockID, new AC_FrostChestItemRenderHelper());
+	
+		 MainMenuAPI.registerMenu("Arcticraft", AC_MenuBase.class);
 	}
 }

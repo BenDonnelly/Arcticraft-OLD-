@@ -19,7 +19,6 @@ public class AC_ItemLantern extends Item
 	private int spawnID;
 	static int fuelCounter;
 
-	public static AC_TickHandler instance = new AC_TickHandler();
 
 	public AC_ItemLantern(int par1, Block par2Block)
 	{
@@ -50,9 +49,9 @@ public class AC_ItemLantern extends Item
 					fuelCounter = 0;
 				}
 
-				if (hand.getItem() == MainRegistry.itemLantern && fuelCounter == 299 && instance.value < 100)
+				if (hand.getItem() == MainRegistry.itemLantern && fuelCounter == 299 && AC_TickHandler.value < 100)
 				{
-					instance.value += 1;
+					AC_TickHandler.value += 1;
 					hand.damageItem(1, entityPlayer);
 				//	System.out.println("Value " + instance.value);
 				//	System.out.println("Item damage " + Minecraft.getMinecraft().thePlayer.getCurrentItemOrArmor(0).getItemDamage());

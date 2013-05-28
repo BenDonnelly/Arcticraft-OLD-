@@ -9,7 +9,6 @@ import net.minecraft.world.World;
 public class AC_ItemHeatPack extends Item
 {
 
-	public static AC_TickHandler instance = new AC_TickHandler();
 
 	public AC_ItemHeatPack(int par1)
 	{
@@ -19,18 +18,18 @@ public class AC_ItemHeatPack extends Item
 
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (par3EntityPlayer != null && instance.value != 100)
+		if (par3EntityPlayer != null && AC_TickHandler.value != 100)
 		{
-			if (instance.value > 86)
+			if (AC_TickHandler.value > 86)
 			{
-				instance.value = 100;
+				AC_TickHandler.value = 100;
 			}
 
-			else if (instance.value <= 85)
+			else if (AC_TickHandler.value <= 85)
 			{
-				instance.value += 7.5;
+				AC_TickHandler.value += 7.5;
 			}
-			System.out.println(instance.value);
+			System.out.println(AC_TickHandler.value);
 			--par1ItemStack.stackSize;
 		}
 		return par1ItemStack;
