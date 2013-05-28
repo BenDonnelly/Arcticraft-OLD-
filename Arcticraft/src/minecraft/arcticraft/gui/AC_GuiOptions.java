@@ -20,7 +20,7 @@ public class AC_GuiOptions extends GuiScreen
 	{
 		this.buttonList.clear();
 		this.buttonList.add(new AC_GuiOptionsButton(0, 0, this.height / 4 + 24 + -16,  "Back To Game"));
-		this.buttonList.add(new AC_GuiOptionsButton(1, 0, this.height / 4 + 144 + -16, "Example1"));
+		this.buttonList.add(new AC_GuiOptionsButton(1, 0, this.height / 4 + 144 + -16, "Temperature Bar Coordinates"));
 		this.buttonList.add(new AC_GuiOptionsButton(2, 0, this.height / 4 + 96 + -16, "Example2"));
 		this.buttonList.add(new AC_GuiOptionsButton(3, 0, this.height / 4 + 120 + -16, "Example3"));
 		this.buttonList.add(new AC_GuiOptionsButton(4, 0, this.height / 4 + 48 + -16, "Example4"));
@@ -32,6 +32,11 @@ public class AC_GuiOptions extends GuiScreen
 		if (button.id == 0)
 		{
 			mc.thePlayer.closeScreen();
+		}
+		else if(button.id == 1)
+		{
+			mc.displayGuiScreen(new AC_GuiCoordinates());
+			mc.thePlayer.sendChatToPlayer("Type your desired X coordinate in the left box and the Y coordinate in the right.");
 		}
 	}
 

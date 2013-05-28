@@ -16,6 +16,7 @@ import org.lwjgl.opengl.GL11;
 
 import arcticraft.blocks.AC_BlockFrostLeaves;
 import arcticraft.blocks.AC_BlockGlacierLeaves;
+import arcticraft.gui.AC_GuiCoordinates;
 import arcticraft.items.AC_ItemLantern;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
@@ -27,6 +28,7 @@ public class AC_TickHandler implements ITickHandler
 	private Minecraft mc;
 	int tickCounter;
 	int tempIncrementCounter;
+	public static AC_GuiCoordinates guiCoords = new AC_GuiCoordinates();
 
 	public AC_TickHandler()
 	{
@@ -94,22 +96,24 @@ public class AC_TickHandler implements ITickHandler
 	}
 	public static int value;
 	public static int maxValue = 100;
-	public static boolean dragging = false;
-	public static int x = 5, y = 5;
-
+//	public static boolean dragging = false;
+	public static int x; 
+	public static int y;
+	
 	public void onRenderTick()
 	{
 		ScaledResolution scaledresolution = getScaledResolution();
 		GuiIngame gui = this.mc.ingameGUI;
 
-		if (mc.currentScreen == null && mc.thePlayer.dimension != -1 && mc.thePlayer.dimension != 0 || mc.currentScreen instanceof GuiIngameMenu)
+		if (mc.currentScreen == null && mc.thePlayer.dimension != -1 && mc.thePlayer.dimension != 0 || mc.currentScreen instanceof GuiIngameMenu )
 		{
+		
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/mods/AC/textures/gui/tempbar.png"));
-
 			gui.drawTexturedModalRect(x, y, 0, 6, 80, 6);
 			gui.drawTexturedModalRect(x, y, 0, 0, value * 80 / maxValue, 6);
 		}
 
+	/*	
 		if (mc.currentScreen instanceof GuiIngameMenu)
 		{
 			int i = Mouse.getEventX() * mc.currentScreen.width / this.mc.displayWidth;
@@ -149,7 +153,7 @@ public class AC_TickHandler implements ITickHandler
 
 				}
 			}
-		}
+		} */
 	}
 
 	public void tickCounter()

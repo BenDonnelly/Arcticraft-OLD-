@@ -47,12 +47,11 @@ public class AC_KeyBindHandler extends KeyHandler
 			}*/
 			
 			if(kb.keyCode == acOptions.keyCode)
-			{
 				System.out.println("Open!");
 				mc.displayGuiScreen(new AC_GuiOptions());
 			}
 		}
-	}
+	
 
 	@Override
 	public void keyUp(EnumSet <TickType> types, KeyBinding kb, boolean tickEnd)
