@@ -9,6 +9,7 @@ import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.nbt.NBTTagCompound;
 
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -56,6 +57,7 @@ public class AC_TickHandler implements ITickHandler
 
 			if (type.equals(EnumSet.of(TickType.RENDER)))
 			{
+				
 				AC_ItemLantern.fuelCounter(mc.thePlayer, mc.thePlayer.getCurrentItemOrArmor(0));
 				AC_BlockFrostLeaves.setGraphicsLevel(!Minecraft.getMinecraft().gameSettings.fancyGraphics);
 				AC_BlockGlacierLeaves.setGraphicsLevel(!Minecraft.getMinecraft().gameSettings.fancyGraphics);
@@ -251,4 +253,8 @@ public class AC_TickHandler implements ITickHandler
 			mc.currentScreen = null;
 		}
 	}
+
+	 
+ 
+	    
 }

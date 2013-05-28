@@ -63,6 +63,7 @@ import arcticraft.creative_tabs.AC_TabMaterial;
 import arcticraft.creative_tabs.AC_TabMisc;
 import arcticraft.creative_tabs.AC_TabTools;
 import arcticraft.entities.AC_EntityBoar;
+import arcticraft.entities.AC_EntityBomb;
 import arcticraft.entities.AC_EntityFrostZombie;
 import arcticraft.entities.AC_EntityFrostZombieBoss;
 import arcticraft.entities.AC_EntityHusky;
@@ -75,6 +76,7 @@ import arcticraft.entities.AC_EntityPolarBear;
 import arcticraft.gui.AC_GuiHandler;
 import arcticraft.items.AC_ItemArmour;
 import arcticraft.items.AC_ItemAxe;
+import arcticraft.items.AC_ItemBomb;
 import arcticraft.items.AC_ItemBucket;
 import arcticraft.items.AC_ItemFruits;
 import arcticraft.items.AC_ItemHeatPack;
@@ -86,8 +88,8 @@ import arcticraft.items.AC_ItemShovel;
 import arcticraft.items.AC_ItemSword;
 import arcticraft.tile_entities.AC_TileEntityArcticFurnace;
 import arcticraft.tile_entities.AC_TileEntityFreezer;
-import arcticraft.tile_entities.TileEntityFrostChest;
 import arcticraft.tile_entities.AC_TileEntityLantern;
+import arcticraft.tile_entities.TileEntityFrostChest;
 import arcticraft.world.AC_WorldGenerator;
 import arcticraft.world.AC_WorldProvider;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
@@ -121,7 +123,7 @@ public class MainRegistry
 	public static int dimension = DimensionManager.getNextFreeDimId();
 	static int startEntityId = 327;
 	
-	
+	//Creative Tabs
 	public static CreativeTabs tabTools = new AC_TabTools(CreativeTabs.getNextID(),"Tabtools"); 
 	public static CreativeTabs tabBlocks = new AC_TabBlocks(CreativeTabs.getNextID(),"TabBlocks"); 
 	public static CreativeTabs tabCombat = new AC_TabCombat(CreativeTabs.getNextID(),"TabCombat");
@@ -129,7 +131,7 @@ public class MainRegistry
 	public static CreativeTabs tabMaterial = new AC_TabMaterial(CreativeTabs.getNextID(),"TabMaterial"); 
 	public static CreativeTabs tabMisc = new AC_TabMisc(CreativeTabs.getNextID(),"TabMisc"); 
 	
-	//core dimension
+	//Core dimension blocks & items
 	public static Block frostGrass;
 	public static Block frostDirt;
 	public static Block frostStone;
@@ -141,7 +143,7 @@ public class MainRegistry
 	public static Block thickSnow;
 	public static Block arcaneStone;
 	
-	//frost 
+	//Frost type things. 
 	public static Block frostPlanks;
 	public static Block frostStairs;
 	public static Block frostWoodDoubleSlab;
@@ -228,28 +230,28 @@ public class MainRegistry
 	public static Item FrostWoodSword;
 	//Tools and armour
 	
-	//land gen
+	//Land Generation
 	public static Block frostLog;
 	public static Block frostLeaves;
 	public static Block frostSapling;
-	
 	public static Block glacierLog;
 	public static Block glacierLeaves;
-
 	public static Block frostFlower;
 	
-	//Dungeon blocks
+	//Dungeon loot and blocks
 	public static Block mossyFrostCobble;
 	public static Block unbreakableIce;
+	public static Item iceCream;
+	public static Item bomb;
 
-	//deco blocks
+	//Decoration blocks
 	public static Block mysticalSnow;
 	
 	//snow blocks
 	public static Block snowPressurePlate;
 	public static Block snowTrapdoor;
 	
-	// Ores
+	//Ores
 	public static Block tekkiteOre;
 	public static Block escariaOre;
 	public static Block frigusOre;
@@ -257,7 +259,7 @@ public class MainRegistry
 	public static Block glacianOre;
 	public static Block eriumOre;
 
-	// Ore Drops
+	//Ore Drops
 	public static Item tekkiteGem;
 	public static Item escariaGem;
 	public static Item frigus;
@@ -272,19 +274,12 @@ public class MainRegistry
 	public static Block freezerIdle;
 	public static Block freezerBurning;
 	
-	//yeyeyeey IcE CREAMmammam YEAHh
-	public static Item iceCream;
-	
-	//custom model blocks
-	public static Block statue; //statue == null
+	//Blocks with a Techne Model
+	public static Block statue; 
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		frostChest = new AC_FrostChest(1539, 0).setHardness(2.0F).setResistance(3.5F).setUnlocalizedName("AC:frost_chest").setCreativeTab(tabBlocks);
-		statue = new AC_BlockStatue(3000, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:plain_statue");
-		proxy.reigsterRenderThings();
-		proxy.registerTickHandler();
 	    KeyBindingRegistry.registerKeyBinding(new AC_KeyBindHandler());
 	    MainMenuAPI.registerMenu("Arcticraft", AC_MenuBase.class);
 		
@@ -339,6 +334,8 @@ public class MainRegistry
 		frostFlower = new AC_BlockFlower(1536, Material.plants).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frost_flower");
 		frostWoodDoubleSlab = (BlockHalfSlab) (new AC_BlockFrostSlab(1537, true)).setHardness(2.0F).setResistance(5.0F).setUnlocalizedName("frost_wood_double_slab");
 		frostWoodSingleSlab = (BlockHalfSlab) (new AC_BlockFrostSlab(1538, false)).setHardness(2.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("frost_wood_single_slab");
+		frostChest = new AC_FrostChest(1539, 0).setHardness(2.0F).setResistance(3.5F).setUnlocalizedName("AC:frost_chest").setCreativeTab(tabBlocks);
+		statue = new AC_BlockStatue(1540, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:plain_statue");
 		
 		
 		
@@ -416,16 +413,17 @@ public class MainRegistry
 		glacianIngot = new Item(6258).setCreativeTab(tabMaterial).setUnlocalizedName("AC:glacian");
 		rigentemIngot = new Item(6259).setCreativeTab(tabMaterial).setUnlocalizedName("AC:rigentem");
 		eriumGem = new Item(6260).setCreativeTab(tabMaterial).setUnlocalizedName("AC:erium_gem");
-		iceCream = new AC_ItemIceCream(6261, 4, 1.3F, true).setAlwaysEdible().setCreativeTab(tabFood).setUnlocalizedName("icecream");
-		
+		iceCream = new AC_ItemIceCream(6261, 4, 1.3F, true).setAlwaysEdible().setCreativeTab(tabFood).setUnlocalizedName("icecream");	
 		itemLantern = new AC_ItemLantern(6262, this.Lantern).setCreativeTab(tabBlocks).setUnlocalizedName("AC:lantern");
 		arcaneDust = new Item(6263).setCreativeTab(tabMisc).setUnlocalizedName("AC:arcaneDust");
 		heatPack = new AC_ItemHeatPack(6264).setCreativeTab(tabMisc).setUnlocalizedName("AC:heatpack");
 		
+		bomb = new AC_ItemBomb(6265).setCreativeTab(tabCombat).setUnlocalizedName("AC:bomb");
 		
 		
 		AC_Recipes.initializeRecipes();
-		
+		proxy.reigsterRenderThings();
+		proxy.registerTickHandler();
 
 	}
 	
@@ -538,6 +536,7 @@ public class MainRegistry
 		LanguageRegistry.addName(frostWoodDoubleSlab,"Frost Wood Double Slab");
 		LanguageRegistry.addName(frostWoodSingleSlab, "Frost Wood Slab");
 		LanguageRegistry.addName(statue, "Statue");
+		LanguageRegistry.addName(bomb, "Bomb");
 		
 		LanguageRegistry.addName(frostSticks, "Frost Sticks");
 		LanguageRegistry.addName(frostStairs, "Frost Stairs");
@@ -650,6 +649,8 @@ public class MainRegistry
 		EntityRegistry.registerGlobalEntityID(AC_EntityHusky.class, "Husky", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Husky.name", "Husky");
 		registerEntityEgg(AC_EntityHusky.class, 0x3CDECE, 0x1BE056);
+		
+		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 342, this, 64, 10, true);
 		
 		
 	
