@@ -276,9 +276,7 @@ public class MainRegistry
 	public static Item iceCream;
 	
 	//custom model blocks
-	public static Block statue;
-	
-	public static Block blockLantern;
+	public static Block statue; //statue == null
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
@@ -319,6 +317,7 @@ public class MainRegistry
 		glacierLog = new AC_BlockGlacierLog(1512).setHardness(2.0F).setCreativeTab(tabBlocks).setUnlocalizedName("glacier_log").setStepSound(Block.soundWoodFootstep);
 		thickSnow = new AC_BlockThickSnow(1514).setHardness(0.1F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:thick_snow").setStepSound(Block.soundSnowFootstep);
 		arcaneStone = new AC_BlockArcaneStone(240).setHardness(1.5F).setResistance(2.3F).setCreativeTab(tabBlocks).setLightValue(1.0F).setUnlocalizedName("AC:arcane_stone").setStepSound(Block.soundGlassFootstep);
+		Lantern = new AC_BlockLantern(1516).setLightValue(1.0F).setUnlocalizedName("AC:lantern").setStepSound(Block.soundWoodFootstep);
 		frostPlanks = new AC_BlockFrostPlanks(1517).setHardness(2.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frostplanks").setStepSound(Block.soundWoodFootstep);
 		frostStairs = new AC_BlockFrostStairs(1518, frostPlanks, 0).setCreativeTab(tabBlocks).setUnlocalizedName("froststairs").setStepSound(Block.soundWoodFootstep);
 		frostFence = new BlockFence(1520, "AC:frostplanks", Material.wood).setHardness(2.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("frostfence").setStepSound(Block.soundWoodFootstep);
@@ -419,11 +418,11 @@ public class MainRegistry
 		eriumGem = new Item(6260).setCreativeTab(tabMaterial).setUnlocalizedName("AC:erium_gem");
 		iceCream = new AC_ItemIceCream(6261, 4, 1.3F, true).setAlwaysEdible().setCreativeTab(tabFood).setUnlocalizedName("icecream");
 		
+		itemLantern = new AC_ItemLantern(6262, this.Lantern).setCreativeTab(tabBlocks).setUnlocalizedName("AC:lantern");
 		arcaneDust = new Item(6263).setCreativeTab(tabMisc).setUnlocalizedName("AC:arcaneDust");
 		heatPack = new AC_ItemHeatPack(6264).setCreativeTab(tabMisc).setUnlocalizedName("AC:heatpack");
 		
-		blockLantern = new AC_BlockLantern(1516).setLightValue(1.0F).setUnlocalizedName("AC:lantern").setStepSound(Block.soundWoodFootstep);
-		Item.itemsList[1516] = new AC_ItemLantern(1260).setUnlocalizedName("AC:lantern");
+		
 		
 		AC_Recipes.initializeRecipes();
 		
@@ -702,15 +701,5 @@ public class MainRegistry
 			}
 		}
 
-	}
-	
-	public static void dropItemStackInWorld(World world, int x, int y, int z, ItemStack stack)
-	{        
-	  	double plusX = (double)(world.rand.nextFloat() * 0.7F) + (double)(0.3F) * 0.5D;
-        	double plusY = (double)(world.rand.nextFloat() * 0.7F) + (double)(0.3F) * 0.5D;
-        	double plusZ = (double)(world.rand.nextFloat() * 0.7F) + (double)(0.3F) * 0.5D;
-        	EntityItem itemBuilder = new EntityItem(world, (double)x + plusX, (double)y + plusY, (double)z + plusZ, stack);
-        	itemBuilder.delayBeforeCanPickup = 10;
-        	world.spawnEntityInWorld(itemBuilder);
 	}
 }
