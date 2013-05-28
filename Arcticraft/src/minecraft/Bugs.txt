@@ -1,4 +1,5 @@
 Lantern needs to remember its durability when placed
 Lantern stacksize dosent decrease when at max damage
+Need to remember Temperature value
 Main menu title texture issue
 Main menu panorama shots need redoing
