@@ -7,15 +7,15 @@ import net.minecraft.client.gui.GuiMainMenu;
 
 import org.lwjgl.opengl.GL11;
 
-public class AC_GuiACButton extends GuiButton
+public class AC_GuiOptionsButton extends GuiButton
 {
 
-    public AC_GuiACButton(int i, int j, int k, String s)
+    public AC_GuiOptionsButton(int i, int j, int k, String s)
     {
         super(i, j, k, s);
     }
 
-    public AC_GuiACButton(int i, int j, int k, int l, int i1, String s)
+    public AC_GuiOptionsButton(int i, int j, int k, int l, int i1, String s)
     {
 	super(i, j, k, l, i1, s);
         this.enabled = true;
@@ -66,7 +66,7 @@ public class AC_GuiACButton extends GuiButton
         }
         
         FontRenderer fontrenderer = minecraft.fontRenderer;
-        GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/, minecraft.renderEngine.getTexture("/gui/gui.png"));
+        GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/, minecraft.renderEngine.getTexture("/mods/AC/textures/gui/options_buttons.png"));
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         boolean flag = i >= xPosition && j >= yPosition && i < xPosition + width && j < yPosition + height;
         int k = getHoverState(flag);
@@ -82,7 +82,7 @@ public class AC_GuiACButton extends GuiButton
         } else
         if(flag)
         {
-        	drawString(fontrenderer, displayString, xPosition + width / 10 + scrollHeight - 80, yPosition + (height - 8) / 2, 0x77cccc);
+        	drawString(fontrenderer, displayString, xPosition + width / 10 + scrollHeight - 80, yPosition + (height - 8) / 2, 0xffffff);
         } else
         {
          drawString(fontrenderer, displayString, xPosition + width / 10 + scrollHeight - 80, yPosition + (height - 8) / 2, 14737632);
