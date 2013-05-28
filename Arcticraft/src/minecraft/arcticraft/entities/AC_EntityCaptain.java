@@ -38,8 +38,6 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 		this.setEntityHealth(this.getMaxHealth());
 		this.texture = "/mods/AC/textures/mobs/captain.png";
 		this.moveSpeed = 0.6F;
-		this.setSize(2.0F, 2.0F);
-		this.boundingBox.setBounds(0.0F, 0.0F, 0.0F, 2.0F, 2.0F, 2.0F);
 		this.getNavigator().setCanSwim(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(5, new EntityAIWander(this, this.moveSpeed));

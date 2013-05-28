@@ -1,7 +1,7 @@
 package arcticraft.renderers;
 
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.boss.BossStatus;
@@ -9,12 +9,11 @@ import net.minecraft.entity.boss.BossStatus;
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.entities.AC_EntityCaptain;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class AC_RenderCaptain extends RenderLiving
+public class AC_RenderCaptain extends RenderBiped
 {
 
     public AC_RenderCaptain()
@@ -42,7 +41,7 @@ public class AC_RenderCaptain extends RenderLiving
         }
         else
         {
-            GL11.glScalef(1.5F, 1.5F, 1.5F);
+            GL11.glScalef(1.25F, 1.25F, 1.25F);
         }
     }
 
