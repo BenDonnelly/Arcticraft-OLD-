@@ -123,10 +123,14 @@ public class AC_ItemLantern extends Item
 					if (par3World.getBlockId(par4, par5, par6) == this.spawnID)
 					{
 						//dunno if this will work, hopefully it does, ye, worth a shot
+
 						Block.blocksList [this.spawnID].onBlockPlacedBy(par3World, par4, par5, par6, par2EntityPlayer, par1ItemStack);
 						Block.blocksList [this.spawnID].onPostBlockPlaced(par3World, par4, par5, par6, j1);
+						if(!par3World.isRemote) {
 						AC_TileEntityLantern lantern = (AC_TileEntityLantern)par3World.getBlockTileEntity(par4, par5, par6);
 						lantern.setDurability(par1ItemStack.getItemDamage());
+						System.out.println(lantern.getDurability() + ":" + par1ItemStack.getItemDamage());
+						}
 					}
 
 					par3World.playSoundEffect((double) ((float) par4 + 0.5F), (double) ((float) par5 + 0.5F), (double) ((float) par6 + 0.5F), block.stepSound.getPlaceSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);

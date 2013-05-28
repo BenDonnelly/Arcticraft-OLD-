@@ -6,6 +6,7 @@ import static net.minecraftforge.common.ForgeDirection.SOUTH;
 import static net.minecraftforge.common.ForgeDirection.WEST;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import arcticraft.main.MainRegistry;
@@ -13,6 +14,8 @@ import arcticraft.main.MainRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -28,27 +31,29 @@ public class AC_BlockLantern extends Block implements ITileEntityProvider
 {
 
 	private TileEntity tileEntity;
-	
+
 	public AC_BlockLantern(int par1)
 	{
 		super(par1, Material.circuits);
 		this.setTickRandomly(true);
 	}
-	
+
 	public void retrieveDurability(int durability, int x, int y, int z) {
 		//TODO save to nbt
 		System.out.println("retrieved durability: " + durability);
-		
-		//there? yep
-		
+
+		//don't know why it doesn't get the correct durability, this may be completely wrong but, wont the idDropped method just cancel the harvest method out. 
+		//the thing is that that there says that the durability is 0 when you break it. Again, this might be wrong but isnt it because the lanternblock drops the itemlantern with no damage.
 	}
-	
+
 	@Override
 	public TileEntity createNewTileEntity(World world)
 	{
+
+		System.out.println("created tileentity");
 		return new AC_TileEntityLantern();
 	}
-	
+
 	/**
 	 * Returns a bounding box from the pool of bounding boxes (this means this
 	 * box can change after the pool has been cleared to be reused)
@@ -60,17 +65,28 @@ public class AC_BlockLantern extends Block implements ITileEntityProvider
 
 	public int idDropped(int par1, Random par2Random, int par3)
 	{
-		
+
 		return MainRegistry.itemLantern.itemID; //couldnt you use this? 
 	}
 
 	@Override
 	public ArrayList <ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata, int fortune)
 	{
-		return super.getBlockDropped(world, x, y, z, metadata, fortune);
-		//Right, so do you want me to pop up to you on skype tomorrow or?
-		//ye, shout at me tomorrow when i'm online and i'll do it. Okay cheers, cya :)
-		}
+		ArrayList<ItemStack> list = new ArrayList<ItemStack>();
+		return list;
+		//this makes it drop no items. Right. 
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void onBlockHarvested(World par1World, int par2, int par3, int par4, int par5, EntityPlayer par6EntityPlayer)
+	{
+		AC_TileEntityLantern lan = (AC_TileEntityLantern)par1World.getBlockTileEntity(par2, par3, par4);
+		ItemStack is = new ItemStack(MainRegistry.itemLantern);
+		is.setItemDamage(lan.getDurability());
+		System.out.println(lan.getDurability());
+		par1World.spawnEntityInWorld(new EntityItem(par1World, par2, par3, par4, is));
+	}
 
 	/**
 	 * Is this block (a) opaque and (b) a full 1m cube? This determines whether
@@ -100,13 +116,13 @@ public class AC_BlockLantern extends Block implements ITileEntityProvider
 	}
 
 	/**
-     * How many world ticks before ticking
-     */
-    public int tickRate(World par1World)
-    {
-        return 30;
-    }
-	
+	 * How many world ticks before ticking
+	 */
+	public int tickRate(World par1World)
+	{
+		return 30;
+	}
+
 	/**
 	 * Gets if we can place a torch on a block.
 	 */
@@ -370,9 +386,9 @@ public class AC_BlockLantern extends Block implements ITileEntityProvider
 	}
 
 
-	
+
 	/**
-     * Returns a new instance of a block's tile entity class. Called on placing the block.
-     */
-   
+	 * Returns a new instance of a block's tile entity class. Called on placing the block.
+	 */
+
 }

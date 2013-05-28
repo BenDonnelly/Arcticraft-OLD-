@@ -87,6 +87,7 @@ import arcticraft.items.AC_ItemSword;
 import arcticraft.tile_entities.AC_TileEntityArcticFurnace;
 import arcticraft.tile_entities.AC_TileEntityFreezer;
 import arcticraft.tile_entities.TileEntityFrostChest;
+import arcticraft.tile_entities.AC_TileEntityLantern;
 import arcticraft.world.AC_WorldGenerator;
 import arcticraft.world.AC_WorldProvider;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
@@ -484,6 +485,8 @@ public class MainRegistry
 		GameRegistry.registerBlock(frostChest, "AC_FrostChest");
 		GameRegistry.registerTileEntity(TileEntityFrostChest.class, "tileEntityFrostChest");
 		
+		//lantern, feel free to move if needed
+		GameRegistry.registerTileEntity(AC_TileEntityLantern.class, "tileEntityLantern");
 		
 		LanguageRegistry.addName(frostChest, "Frost Chest");
 		LanguageRegistry.addName(frostGrass, "Frost Grass");

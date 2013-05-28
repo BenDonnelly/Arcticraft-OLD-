@@ -24,5 +24,8 @@ public class AC_TileEntityLantern extends TileEntity
 	public void setDurability(int durability) {
 		this.durability = durability;
 	}
+	public int getDurability() {
+		return durability;
+	}
 	
 }
