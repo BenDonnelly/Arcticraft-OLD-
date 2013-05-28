@@ -295,6 +295,7 @@ public class MainRegistry
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		//test
 	    KeyBindingRegistry.registerKeyBinding(new AC_KeyBindHandler());
 	    MainMenuAPI.registerMenu("Arcticraft", AC_MenuBase.class);
 		
