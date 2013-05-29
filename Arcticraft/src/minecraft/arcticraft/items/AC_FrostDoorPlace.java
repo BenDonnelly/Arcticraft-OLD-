@@ -19,7 +19,6 @@ public class AC_FrostDoorPlace extends Item
         super(par1);
         this.doorMaterial = par2Material;
         this.maxStackSize = 1;
-        this.setCreativeTab(CreativeTabs.tabRedstone);
     }
 
     /**

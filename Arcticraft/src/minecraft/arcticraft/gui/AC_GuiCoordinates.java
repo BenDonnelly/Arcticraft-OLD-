@@ -90,16 +90,7 @@ public class AC_GuiCoordinates extends GuiScreen
 
 	
 
-	public void readFromNBT(NBTTagCompound par1nbtTagCompound)
-	{
-		super.readFromNBT(par1nbtTagCompound);
-	}
-
-	@Override
-	public void writeToNBT(NBTTagCompound par1nbtTagCompound)
-	{	
-		super.writeToNBT(par1nbtTagCompound);
-	}
+	
 	
 	public void drawScreen(int i, int j, float f)
 	{

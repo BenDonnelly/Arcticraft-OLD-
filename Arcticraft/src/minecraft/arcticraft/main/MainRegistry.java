@@ -89,6 +89,7 @@ import arcticraft.items.AC_ItemLantern;
 import arcticraft.items.AC_ItemPickaxe;
 import arcticraft.items.AC_ItemShovel;
 import arcticraft.items.AC_ItemSword;
+import arcticraft.items.AC_ItemTeaDrinks;
 import arcticraft.tile_entities.AC_TileEntityArcticFurnace;
 import arcticraft.tile_entities.AC_TileEntityFreezer;
 import arcticraft.tile_entities.AC_TileEntityLantern;
@@ -248,7 +249,11 @@ public class MainRegistry
 	public static Block unbreakableIce;
 	public static Item iceCream;
 	public static Item bomb;
-
+	
+	//Food
+	public static Item emptyCup;
+	public static Item teaDrinks;
+	
 	//Decoration blocks
 	public static Block mysticalSnow;
 	
@@ -429,12 +434,14 @@ public class MainRegistry
 		glacianIngot = new Item(6258).setCreativeTab(tabMaterial).setUnlocalizedName("AC:glacian");
 		rigentemIngot = new Item(6259).setCreativeTab(tabMaterial).setUnlocalizedName("AC:rigentem");
 		eriumGem = new Item(6260).setCreativeTab(tabMaterial).setUnlocalizedName("AC:erium_gem");
-		iceCream = new AC_ItemIceCream(6261, 4, 1.3F, true).setAlwaysEdible().setCreativeTab(tabFood).setUnlocalizedName("icecream");	
+		iceCream = new AC_ItemIceCream(6261, 10, 1.3F, true).setAlwaysEdible().setCreativeTab(tabFood).setUnlocalizedName("icecream");	
 		itemLantern = new AC_ItemLantern(6262, this.Lantern).setCreativeTab(tabBlocks).setUnlocalizedName("AC:lantern");
 		arcaneDust = new Item(6263).setCreativeTab(tabMisc).setUnlocalizedName("AC:arcaneDust");
 		heatPack = new AC_ItemHeatPack(6264).setCreativeTab(tabMisc).setUnlocalizedName("AC:heatpack");
 		bomb = new AC_ItemBomb(6265).setCreativeTab(tabCombat).setUnlocalizedName("AC:bomb");
+		emptyCup = new Item(6266).setCreativeTab(tabMisc).setUnlocalizedName("AC:empty_cup");
 		
+		teaDrinks = new AC_ItemTeaDrinks(6267, 4, 1.3F, false).setCreativeTab(tabFood).setUnlocalizedName("AC:hot_chocolate");
 		
 		AC_Recipes.initializeRecipes();
 		proxy.reigsterRenderThings();
@@ -557,6 +564,7 @@ public class MainRegistry
 		LanguageRegistry.addName(frostWoodSingleSlab, "Frost Wood Slab");
 		LanguageRegistry.addName(statue, "Statue");
 		LanguageRegistry.addName(bomb, "Bomb");
+		LanguageRegistry.addName(emptyCup, "Empty Cup");
 		
 		LanguageRegistry.addName(frostSticks, "Frost Sticks");
 		LanguageRegistry.addName(frostStairs, "Frost Stairs");

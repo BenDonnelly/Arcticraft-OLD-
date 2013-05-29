@@ -563,7 +563,7 @@ public class AC_ChunkProvider implements IChunkProvider
 		if ((biome instanceof AC_BiomeFrostMountains))
 		{
 
-			for (int x = 0; x < 1; x++)
+			for (int x = 0; x < 3; x++)
 			{
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
