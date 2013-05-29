@@ -14,6 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
+import arcticraft.blocks.AC_BlockFloranCrop;
 import arcticraft.blocks.AC_BlockFrostLeaves;
 import arcticraft.blocks.AC_BlockGlacierLeaves;
 import arcticraft.gui.AC_GuiCoordinates;
@@ -26,13 +27,15 @@ public class AC_TickHandler implements ITickHandler
 
 	private AC_ItemLantern itemLantern;
 	private Minecraft mc;
+	private AC_BlockFloranCrop floranCrop;
 	int tickCounter;
 	int tempIncrementCounter;
 	public static AC_GuiCoordinates guiCoords = new AC_GuiCoordinates();
-
+	
 	public AC_TickHandler()
 	{
 		this.mc = Minecraft.getMinecraft();
+		this.floranCrop = AC_BlockFloranCrop.getFloran();
 		this.value = 60;
 		this.maxValue = 100;
 
@@ -43,6 +46,8 @@ public class AC_TickHandler implements ITickHandler
 	{
 		return Minecraft.getMinecraft();
 	}
+	
+
 
 	public static ScaledResolution getScaledResolution()
 	{
@@ -63,6 +68,7 @@ public class AC_TickHandler implements ITickHandler
 				AC_ItemLantern.fuelCounter(mc.thePlayer, mc.thePlayer.getCurrentItemOrArmor(0));
 				AC_BlockFrostLeaves.setGraphicsLevel(!Minecraft.getMinecraft().gameSettings.fancyGraphics);
 				AC_BlockGlacierLeaves.setGraphicsLevel(!Minecraft.getMinecraft().gameSettings.fancyGraphics);
+				floranCrop.test(mc.theWorld, mc.thePlayer.chunkCoordX, mc.thePlayer.chunkCoordY, mc.thePlayer.chunkCoordZ);
 				tickCounter();
 				tempIncrementCounter();
 				canDecrementTemp();

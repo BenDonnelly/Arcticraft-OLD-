@@ -50,7 +50,6 @@ public class AC_BlockLantern extends Block implements ITileEntityProvider
 	public TileEntity createNewTileEntity(World world)
 	{
 
-		System.out.println("created tileentity");
 		return new AC_TileEntityLantern();
 	}
 

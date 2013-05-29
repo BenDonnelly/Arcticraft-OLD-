@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -13,11 +12,13 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.src.ModLoader;
 import net.minecraft.util.Icon;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
+import arcticraft.entities.AC_EntityBlueSparkle;
 import arcticraft.main.MainRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -112,6 +113,32 @@ public class AC_BlockGlacierLeaves extends AC_BlockLeavesBase implements ISheara
 			}
 		}
 	}
+	
+	@SideOnly(Side.CLIENT)
+	/**
+	 * A randomly called display update to be able to add particles or other items for display
+	 */
+	public void randomDisplayTick(World world, int i, int j, int k, Random random)
+	{
+		super.randomDisplayTick(world, i, j, k, random);
+
+		for (int l = 0; l < 4; l++)
+		{
+			double d = (double)(float)i + ((double)random.nextFloat() - 0.5D) * 10D;
+			double d1 = (double)(float)j + ((double)random.nextFloat() - 0.5D) * 10D;
+			double d2 = (double)(float)k + ((double)random.nextFloat() - 0.5D) * 10D;
+			double d3 = 0.0D;
+			double d4 = 0.0D;
+			double d5 = 0.0D;
+			d3 = ((double)random.nextFloat() - 0.5D) * 0.5D;
+			d4 = ((double)random.nextFloat() - 0.5D) * 0.5D;
+			d5 = ((double)random.nextFloat() - 0.5D) * 0.5D;
+			AC_EntityBlueSparkle entitybluesparkle = new AC_EntityBlueSparkle(world, d, d1, d2, d3, d4, d5);
+			Minecraft.getMinecraft().effectRenderer.addEffect(entitybluesparkle);
+		}
+
+	}
+
 
 	/**
 	 * Ticks the block if it's been scheduled
@@ -202,18 +229,7 @@ public class AC_BlockGlacierLeaves extends AC_BlockLeavesBase implements ISheara
 		}
 	}
 
-	@SideOnly(Side.CLIENT)
-	/**
-	 * A randomly called display update to be able to add particles or other items for display
-	 */
-	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
-		if (par1World.canLightningStrikeAt(par2, par3 + 1, par4) && !par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4) && par5Random.nextInt(15) == 1) {
-			double d0 = (double) ((float) par2 + par5Random.nextFloat());
-			double d1 = (double) par3 - 0.05D;
-			double d2 = (double) ((float) par4 + par5Random.nextFloat());
-			par1World.spawnParticle("dripWater", d0, d1, d2, 0.0D, 0.0D, 0.0D);
-		}
-	}
+
 
 	private void removeLeaves(World par1World, int par2, int par3, int par4) {
 		this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
@@ -263,7 +279,7 @@ public class AC_BlockGlacierLeaves extends AC_BlockLeavesBase implements ISheara
 			}
 
 			if ((par5 & 3) == 0 && par1World.rand.nextInt(j1) == 0) {
-				this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(Item.appleRed, 1, 0));
+				this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(MainRegistry.GlacierFruit, 1, 0));
 			}
 		}
 	}
