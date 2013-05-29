@@ -31,6 +31,7 @@ import arcticraft.blocks.AC_BlockACFurnace;
 import arcticraft.blocks.AC_BlockACWaterFlowing;
 import arcticraft.blocks.AC_BlockACWaterStill;
 import arcticraft.blocks.AC_BlockArcaneStone;
+import arcticraft.blocks.AC_BlockFloranCrop;
 import arcticraft.blocks.AC_BlockFlower;
 import arcticraft.blocks.AC_BlockFreezer;
 import arcticraft.blocks.AC_BlockFrostCobble;
@@ -87,6 +88,7 @@ import arcticraft.items.AC_ItemHoe;
 import arcticraft.items.AC_ItemIceCream;
 import arcticraft.items.AC_ItemLantern;
 import arcticraft.items.AC_ItemPickaxe;
+import arcticraft.items.AC_ItemSeed;
 import arcticraft.items.AC_ItemShovel;
 import arcticraft.items.AC_ItemSword;
 import arcticraft.items.AC_ItemTeaDrinks;
@@ -253,6 +255,9 @@ public class MainRegistry
 	//Food
 	public static Item emptyCup;
 	public static Item teaDrinks;
+	public static Block floranPlant;
+	public static Item floranSeed;
+	public static Item floranBerry;
 	
 	//Decoration blocks
 	public static Block mysticalSnow;
@@ -356,6 +361,15 @@ public class MainRegistry
 		frostDoor = new AC_FrostDoor(1542, Material.wood).setHardness(3.0F).setUnlocalizedName("AC:icedoor");
 		
 		
+
+		
+		
+		floranBerry = new ItemFood(6270, 6, false).setCreativeTab(tabFood).setUnlocalizedName("AC:floran_berry");
+		
+		floranPlant = new AC_BlockFloranCrop(1543, 230, 6270).setUnlocalizedName("floranPlant");
+		floranSeed = new AC_ItemSeed(6269, this.floranPlant.blockID, Block.tilledField.blockID ).setCreativeTab(tabMisc).setUnlocalizedName("AC:floran_seed");
+		
+		
 		//Items
 		bucketIcyWater = new AC_ItemBucket(6200, acWaterFlowing.blockID).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyWater");
 		bucketEmpty = new AC_ItemBucket(6201, 0).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyEmpty");
@@ -438,8 +452,8 @@ public class MainRegistry
 		heatPack = new AC_ItemHeatPack(6264).setCreativeTab(tabMisc).setUnlocalizedName("AC:heatpack");
 		bomb = new AC_ItemBomb(6265).setCreativeTab(tabCombat).setUnlocalizedName("AC:bomb");
 		emptyCup = new Item(6266).setCreativeTab(tabMisc).setUnlocalizedName("AC:empty_cup");
-		
 		teaDrinks = new AC_ItemTeaDrinks(6267, 4, 1.3F, false).setCreativeTab(tabFood).setUnlocalizedName("AC:hot_chocolate");
+		
 		
 		AC_Recipes.initializeRecipes();
 		proxy.reigsterRenderThings();
@@ -489,7 +503,8 @@ public class MainRegistry
 		GameRegistry.registerBlock(frostWoodSingleSlab, "Frost_SingleSlab");
 		GameRegistry.registerBlock(frostWoodDoubleSlab, "Frost_DoubleSlab");
 		GameRegistry.registerBlock(statue, "Statue");
-	
+		GameRegistry.registerBlock(floranPlant, "Floran_Plant");
+		
 		//furnace
 		GameRegistry.registerBlock(arcticFurnaceIdle, "AC_Furnace_Idle");
 		GameRegistry.registerBlock(arcticFurnaceBurning, "AC_Furnace_Buring");
@@ -564,6 +579,8 @@ public class MainRegistry
 		LanguageRegistry.addName(statue, "Statue");
 		LanguageRegistry.addName(bomb, "Bomb");
 		LanguageRegistry.addName(emptyCup, "Empty Cup");
+		LanguageRegistry.addName(floranSeed, "Floran Seed");
+		LanguageRegistry.addName(floranBerry, "Floran Berry");
 		
 		LanguageRegistry.addName(frostSticks, "Frost Sticks");
 		LanguageRegistry.addName(frostStairs, "Frost Stairs");
