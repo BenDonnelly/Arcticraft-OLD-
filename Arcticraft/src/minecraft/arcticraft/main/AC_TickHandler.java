@@ -1,6 +1,7 @@
 package arcticraft.main;
 
 import java.util.EnumSet;
+import java.util.Random;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -9,9 +10,7 @@ import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.nbt.NBTTagCompound;
 
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.blocks.AC_BlockFloranCrop;
@@ -27,7 +26,6 @@ public class AC_TickHandler implements ITickHandler
 
 	private AC_ItemLantern itemLantern;
 	private Minecraft mc;
-	private AC_BlockFloranCrop floranCrop;
 	int tickCounter;
 	int tempIncrementCounter;
 	public static AC_GuiCoordinates guiCoords = new AC_GuiCoordinates();
@@ -35,7 +33,6 @@ public class AC_TickHandler implements ITickHandler
 	public AC_TickHandler()
 	{
 		this.mc = Minecraft.getMinecraft();
-		this.floranCrop = AC_BlockFloranCrop.getFloran();
 		this.value = 60;
 		this.maxValue = 100;
 
@@ -68,7 +65,7 @@ public class AC_TickHandler implements ITickHandler
 				AC_ItemLantern.fuelCounter(mc.thePlayer, mc.thePlayer.getCurrentItemOrArmor(0));
 				AC_BlockFrostLeaves.setGraphicsLevel(!Minecraft.getMinecraft().gameSettings.fancyGraphics);
 				AC_BlockGlacierLeaves.setGraphicsLevel(!Minecraft.getMinecraft().gameSettings.fancyGraphics);
-				floranCrop.test(mc.theWorld, mc.thePlayer.chunkCoordX, mc.thePlayer.chunkCoordY, mc.thePlayer.chunkCoordZ);
+//				floranCrop.shouldGrow(mc.theWorld, mc.thePlayer.chunkCoordX, mc.thePlayer.chunkCoordY, mc.thePlayer.chunkCoordZ);
 				tickCounter();
 				tempIncrementCounter();
 				canDecrementTemp();

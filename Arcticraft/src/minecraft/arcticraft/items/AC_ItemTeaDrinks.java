@@ -21,7 +21,7 @@ public class AC_ItemTeaDrinks extends ItemFood
 {
 
 	private static final String [] teaFlavours =
-		{"AC:red_tea", "AC:hot_chocolate"};
+		{"AC:red_tea", "AC:hot_chocolate", "AC:floran_tea"};
 	@SideOnly(Side.CLIENT)
 	private Icon [] teaField;
 	

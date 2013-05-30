@@ -1,29 +1,21 @@
 package arcticraft.items;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.common.IPlantable;
 
-public class AC_ItemSeed extends Item implements IPlantable
+public class AC_ItemSeed extends Item
 {
-    /**
-     * The type of block this seed turns into (wheat or pumpkin stems for instance)
-     */
-    private int blockType;
+    /** The ID of the block the reed will spawn when used from inventory bar. */
+    private int spawnID;
 
-    /** BlockID of the block the seeds can be planted on. */
-    private int soilBlockID;
-
-    public AC_ItemSeed(int par1, int par2, int par3)
+    public AC_ItemSeed(int par1, Block par2Block)
     {
         super(par1);
-        this.blockType = par2;
-        this.soilBlockID = par3;
+        this.spawnID = par2Block.blockID;
     }
 
     /**
@@ -32,47 +24,74 @@ public class AC_ItemSeed extends Item implements IPlantable
      */
     public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
     {
-        if (par7 != 1)
+        int i1 = par3World.getBlockId(par4, par5, par6);
+
+        if (i1 == Block.snow.blockID && (par3World.getBlockMetadata(par4, par5, par6) & 7) < 1)
+        {
+            par7 = 1;
+        }
+        else if (i1 != Block.vine.blockID && i1 != Block.tallGrass.blockID && i1 != Block.deadBush.blockID)
+        {
+            if (par7 == 0)
+            {
+                --par5;
+            }
+
+            if (par7 == 1)
+            {
+                ++par5;
+            }
+
+            if (par7 == 2)
+            {
+                --par6;
+            }
+
+            if (par7 == 3)
+            {
+                ++par6;
+            }
+
+            if (par7 == 4)
+            {
+                --par4;
+            }
+
+            if (par7 == 5)
+            {
+                ++par4;
+            }
+        }
+
+        if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack))
         {
             return false;
         }
-        else if (par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack) && par2EntityPlayer.canPlayerEdit(par4, par5 + 1, par6, par7, par1ItemStack))
+        else if (par1ItemStack.stackSize == 0)
         {
-            int i1 = par3World.getBlockId(par4, par5, par6);
-            Block soil = Block.blocksList[i1];
-
-            if (soil != null && soil.canSustainPlant(par3World, par4, par5, par6, ForgeDirection.UP, this) && par3World.isAirBlock(par4, par5 + 1, par6))
-            {
-                par3World.setBlock(par4, par5 + 1, par6, this.blockType);
-                --par1ItemStack.stackSize;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
         }
         else
         {
-            return false;
+            if (par3World.canPlaceEntityOnSide(this.spawnID, par4, par5, par6, false, par7, (Entity)null, par1ItemStack))
+            {
+                Block block = Block.blocksList[this.spawnID];
+                int j1 = block.onBlockPlaced(par3World, par4, par5, par6, par7, par8, par9, par10, 0);
+
+                if (par3World.setBlock(par4, par5, par6, this.spawnID, j1, 3))
+                {
+                    if (par3World.getBlockId(par4, par5, par6) == this.spawnID)
+                    {
+                        Block.blocksList[this.spawnID].onBlockPlacedBy(par3World, par4, par5, par6, par2EntityPlayer, par1ItemStack);
+                        Block.blocksList[this.spawnID].onPostBlockPlaced(par3World, par4, par5, par6, j1);
+                    }
+
+                    par3World.playSoundEffect((double)((float)par4 + 0.5F), (double)((float)par5 + 0.5F), (double)((float)par6 + 0.5F), block.stepSound.getPlaceSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
+                    --par1ItemStack.stackSize;
+                }
+            }
+
+            return true;
         }
-    }
-
-    @Override
-    public EnumPlantType getPlantType(World world, int x, int y, int z)
-    {
-        return (blockType == Block.netherStalk.blockID ? EnumPlantType.Nether : EnumPlantType.Crop);
-    }
-
-    @Override
-    public int getPlantID(World world, int x, int y, int z)
-    {
-        return blockType;
-    }
-
-    @Override
-    public int getPlantMetadata(World world, int x, int y, int z)
-    {
-        return 0;
     }
 }

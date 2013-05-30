@@ -363,9 +363,10 @@ public class MainRegistry
 		frostDoorPlace = new AC_FrostDoorPlace(1541, Material.wood).setUnlocalizedName("AC:icedoor").setCreativeTab(tabBlocks); 
 		frostDoor = new AC_FrostDoor(1542, Material.wood).setHardness(3.0F).setUnlocalizedName("AC:icedoor");
 		
-
-		floranPlant = new AC_BlockFloranCrop(1543).setUnlocalizedName("floranPlant");
-		tilledFrostField = new AC_BlockTilledFrostField(1544).setUnlocalizedName("frostfarmland");
+		tilledFrostField = new AC_BlockTilledFrostField(1543).setUnlocalizedName("frostfarmland");
+		floranBerry = new ItemFood(6270, 6, false).setCreativeTab(tabFood).setUnlocalizedName("AC:floran_berry");
+		floranPlant = new AC_BlockFloranCrop(1544, Material.plants, this.tilledFrostField.blockID, this.floranBerry.itemID).setUnlocalizedName("floranPlant").setCreativeTab(tabBlocks);
+		
 		
 		//Items
 		bucketIcyWater = new AC_ItemBucket(6200, acWaterFlowing.blockID).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyWater");
@@ -451,8 +452,8 @@ public class MainRegistry
 		emptyCup = new Item(6266).setCreativeTab(tabMisc).setUnlocalizedName("AC:empty_cup");
 		teaDrinks = new AC_ItemTeaDrinks(6267, 4, 1.3F, false).setCreativeTab(tabFood).setUnlocalizedName("AC:hot_chocolate");
 		
-		floranSeed = new AC_ItemSeed(6269, this.floranPlant.blockID, this.tilledFrostField.blockID ).setCreativeTab(tabMisc).setUnlocalizedName("AC:floran_seed");
-		floranBerry = new ItemFood(6270, 6, false).setCreativeTab(tabFood).setUnlocalizedName("AC:floran_berry");
+		floranSeed = new AC_ItemSeed(6269, this.floranPlant).setCreativeTab(tabMisc).setUnlocalizedName("AC:floran_seed");
+	
 		
 		AC_Recipes.initializeRecipes();
 		proxy.reigsterRenderThings();
