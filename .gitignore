@@ -1,5 +1,6 @@
 #GITIGNORE for Arcticraft
 
+/Arcticraft/.metadata
 /Arcticraft/bin/
 /Arcticraft/conf/
 /Arcticraft/docs/
