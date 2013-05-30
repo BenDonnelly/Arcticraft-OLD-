@@ -22,6 +22,7 @@ import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.EnumHelper;
@@ -134,11 +135,14 @@ public class MainRegistry
 	public static CreativeTabs tabCombat = new AC_TabCombat(CreativeTabs.getNextID(),"TabCombat");
 	public static CreativeTabs tabFood = new AC_TabFood(CreativeTabs.getNextID(),"TabFood"); 
 	public static CreativeTabs tabMaterial = new AC_TabMaterial(CreativeTabs.getNextID(),"TabMaterial"); 
-	public static CreativeTabs tabMisc = new AC_TabMisc(CreativeTabs.getNextID(),"TabMisc"); 
+	public static CreativeTabs tabMisc = new AC_TabMisc(CreativeTabs.getNextID(),"TabMisc");
+	
+	//Damage Sources
+	public static DamageSource freezing = (new AC_DamageSource("freeze"));
 	
 	//Core dimension blocks & items
 	public static Block frostGrass;
-	public static Block frostDirt;
+	public static Block frostDirt; 
 	public static Block frostStone;
 	public static Block frostCobble;
 	public static Block acWaterStill;
@@ -362,8 +366,8 @@ public class MainRegistry
 		statue = new AC_BlockStatue(1540, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:plain_statue");
 		frostDoorPlace = new AC_FrostDoorPlace(1541, Material.wood).setUnlocalizedName("AC:icedoor").setCreativeTab(tabBlocks); 
 		frostDoor = new AC_FrostDoor(1542, Material.wood).setHardness(3.0F).setUnlocalizedName("AC:icedoor");
-		
 		tilledFrostField = new AC_BlockTilledFrostField(1543).setUnlocalizedName("frostfarmland");
+	    /* The berry has to be initialized before the plant to avoid NPE so thats why theres an item in the blocks section*/
 		floranBerry = new ItemFood(6270, 6, false).setCreativeTab(tabFood).setUnlocalizedName("AC:floran_berry");
 		floranPlant = new AC_BlockFloranCrop(1544, Material.plants, this.tilledFrostField.blockID, this.floranBerry.itemID).setUnlocalizedName("floranPlant").setCreativeTab(tabBlocks);
 		
@@ -450,8 +454,7 @@ public class MainRegistry
 		heatPack = new AC_ItemHeatPack(6264).setCreativeTab(tabMisc).setUnlocalizedName("AC:heatpack");
 		bomb = new AC_ItemBomb(6265).setCreativeTab(tabCombat).setUnlocalizedName("AC:bomb");
 		emptyCup = new Item(6266).setCreativeTab(tabMisc).setUnlocalizedName("AC:empty_cup");
-		teaDrinks = new AC_ItemTeaDrinks(6267, 4, 1.3F, false).setCreativeTab(tabFood).setUnlocalizedName("AC:hot_chocolate");
-		
+		teaDrinks = new AC_ItemTeaDrinks(6267, 4, 1.3F, false).setCreativeTab(tabFood).setUnlocalizedName("AC:hot_chocolate");	
 		floranSeed = new AC_ItemSeed(6269, this.floranPlant).setCreativeTab(tabMisc).setUnlocalizedName("AC:floran_seed");
 	
 		
@@ -711,6 +714,7 @@ public class MainRegistry
 		MinecraftForge.setBlockHarvestLevel(glacianOre, "pickaxe", 2);
 		
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
+		MinecraftForge.EVENT_BUS.register(new AC_LivingAttackEvent());
 		
 	}
 	

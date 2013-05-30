@@ -44,10 +44,10 @@ public class AC_ItemTeaDrinks extends ItemFood
 		return this.teaField [j];
 	}
 
-	public String getItemDisplayName(ItemStack par1ItemStack)//test
+	public String getItemDisplayName(ItemStack par1ItemStack)
 	{
 		String [] teaflavours = new String []
-			{"Red Tea", "Hot Chocolate"};
+			{"Red Tea", "Hot Chocolate", "Floran Tea"};
 
 		return teaflavours [par1ItemStack.getItemDamage()];
 	}
@@ -64,8 +64,12 @@ public class AC_ItemTeaDrinks extends ItemFood
 			else if(par1ItemStack.getItemDamage() == 1)
 			{
 				AC_TickHandler.value += 30;
-				System.out.println("value");
 			}
+			else if(par1ItemStack.getItemDamage() == 2)
+			{	
+				par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.jump.id, 600, 2));
+			}
+			
 		}
 		else
 		{
@@ -76,7 +80,7 @@ public class AC_ItemTeaDrinks extends ItemFood
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
 	{
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < 3; i++)
 		{
 			par3List.add(new ItemStack(par1, 1, i));
 		}
