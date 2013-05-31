@@ -34,7 +34,9 @@ public class AC_RenderCaptain extends RenderBiped
     {
         int i = par1EntityFrostZombieBoss.func_82212_n();
 
-        if (i > 0)
+        /* Temp removed when hes hit with posion the scale messes up teh rendering and shit*/
+        
+       /* if (i > 0)
         {
             float f1 = 2.0F - ((float)i - par2) / 220.0F * 0.5F;
             GL11.glScalef(f1, f1, f1);
@@ -42,7 +44,7 @@ public class AC_RenderCaptain extends RenderBiped
         else
         {
             GL11.glScalef(1.25F, 1.25F, 1.25F);
-        }
+        }*/
     }
 
     protected int func_82417_a(AC_EntityCaptain par1EntityFrostZombieBoss, int par2, float par3)

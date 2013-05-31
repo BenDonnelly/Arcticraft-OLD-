@@ -69,7 +69,6 @@ import arcticraft.entities.AC_EntityBoar;
 import arcticraft.entities.AC_EntityBomb;
 import arcticraft.entities.AC_EntityCaptain;
 import arcticraft.entities.AC_EntityFrostZombie;
-import arcticraft.entities.AC_EntityFrostZombieBoss;
 import arcticraft.entities.AC_EntityHusky;
 import arcticraft.entities.AC_EntityIceCreeper;
 import arcticraft.entities.AC_EntityIceShard;
@@ -83,6 +82,7 @@ import arcticraft.items.AC_ItemArmour;
 import arcticraft.items.AC_ItemAxe;
 import arcticraft.items.AC_ItemBomb;
 import arcticraft.items.AC_ItemBucket;
+import arcticraft.items.AC_ItemCaptainSword;
 import arcticraft.items.AC_ItemFruits;
 import arcticraft.items.AC_ItemHeatPack;
 import arcticraft.items.AC_ItemHoe;
@@ -379,8 +379,7 @@ public class MainRegistry
 		GlacierFruit = (new AC_ItemFruits(6203, 0, false).setCreativeTab(tabFood).setUnlocalizedName("AC:glacier_fruit"));
 		IceShard = new Item(6204).setCreativeTab(tabCombat).setUnlocalizedName("AC:ice_shard");
 	
-		pirateHat = new AC_ItemArmour(2001, PirateArmour, proxy.addArmor("Pirate"), 0).setCreativeTab(tabCombat).setUnlocalizedName("AC:piratehaticon");
-		pirateSword = new AC_ItemSword(2002, EnumToolMaterial.EMERALD).setCreativeTab(tabTools).setUnlocalizedName("AC:pirateSword");
+		
 		
 		TekkitePickaxe = new AC_ItemPickaxe(6205, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("Tekkite Pickaxe");
 		TekkiteAxe = new AC_ItemAxe(6206, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("articcraft:tekkiteAxe");
@@ -453,9 +452,11 @@ public class MainRegistry
 		arcaneDust = new Item(6263).setCreativeTab(tabMisc).setUnlocalizedName("AC:arcaneDust");
 		heatPack = new AC_ItemHeatPack(6264).setCreativeTab(tabMisc).setUnlocalizedName("AC:heatpack");
 		bomb = new AC_ItemBomb(6265).setCreativeTab(tabCombat).setUnlocalizedName("AC:bomb");
-		emptyCup = new Item(6266).setCreativeTab(tabMisc).setUnlocalizedName("AC:empty_cup");
-		teaDrinks = new AC_ItemTeaDrinks(6267, 4, 1.3F, false).setCreativeTab(tabFood).setUnlocalizedName("AC:hot_chocolate");	
+		emptyCup = new Item(6266).setMaxStackSize(8).setCreativeTab(tabMisc).setUnlocalizedName("AC:empty_cup");
+		teaDrinks = new AC_ItemTeaDrinks(6267, 4, 1.3F, true).setCreativeTab(tabFood).setUnlocalizedName("AC:hot_chocolate");	
 		floranSeed = new AC_ItemSeed(6269, this.floranPlant).setCreativeTab(tabMisc).setUnlocalizedName("AC:floran_seed");
+		pirateHat = new AC_ItemArmour(6270, PirateArmour, proxy.addArmor("Pirate"), 0).setCreativeTab(tabCombat).setUnlocalizedName("AC:piratehaticon");
+		pirateSword = new AC_ItemCaptainSword(6271, EnumToolMaterial.EMERALD).setCreativeTab(tabTools).setUnlocalizedName("AC:pirateSword");
 	
 		
 		AC_Recipes.initializeRecipes();
@@ -690,10 +691,7 @@ public class MainRegistry
 		EntityRegistry.registerModEntity(AC_EntityIceShard.class, "IceShard", 0, this, 128, 1, true);
 		 LanguageRegistry.instance().addStringLocalization("entity.articcraft.IceShard.name", "Ice Shard");
 
-		EntityRegistry.registerGlobalEntityID(AC_EntityFrostZombieBoss.class, "FrostZombieBoss", EntityRegistry.findGlobalUniqueEntityId());
-		LanguageRegistry.instance().addStringLocalization("entity.FrostZombieBoss.name", "Frost Zombie Boss");
-		registerEntityEgg(AC_EntityFrostZombieBoss.class, 0x3CDECE, 0x1BE056);
-		
+	
 		EntityRegistry.registerGlobalEntityID(AC_EntityBoar.class, "Boar", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Boar.name", "Boar");
 		registerEntityEgg(AC_EntityBoar.class, 0x3CDECE, 0x1BE056);
@@ -714,8 +712,6 @@ public class MainRegistry
 		MinecraftForge.setBlockHarvestLevel(glacianOre, "pickaxe", 2);
 		
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
-		MinecraftForge.EVENT_BUS.register(new AC_LivingAttackEvent());
-		
 	}
 	
 	@PostInit
@@ -724,6 +720,7 @@ public class MainRegistry
 
 	}
 
+	
 	public static void registerEntityEgg(Class <? extends Entity> entity, int primaryColor, int secondaryColor)
 	{
 		int id = getUniqueEntityId();

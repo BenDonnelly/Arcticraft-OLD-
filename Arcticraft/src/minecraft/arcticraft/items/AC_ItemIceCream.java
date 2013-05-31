@@ -2,6 +2,8 @@ package arcticraft.items;
 
 import java.util.List;
 
+import arcticraft.main.AC_TickHandler;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,58 +49,203 @@ public class AC_ItemIceCream extends ItemFood
 		return flavours [par1ItemStack.getItemDamage()] + " Ice Cream";
 	}
 
+	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
+	{
+		if (par1ItemStack.getItemDamage() == 0)
+		{
+			par3List.add("5 Minutes Of Regeneration 3 Potion!");
+			par3List.add("Decrease Temperature By 30°C");
+		}
+		else if (par1ItemStack.getItemDamage() == 1)
+		{
+			par3List.add("5 Minutes Of Speed 3 Potion!");
+			par3List.add("Decrease Temperature By 30°C");
+		}
+		else if (par1ItemStack.getItemDamage() == 2)
+		{
+			par3List.add("5 Minutes Of Haste 3 Potion!");
+			par3List.add("Decrease Temperature By 30°C");
+		}
+		else if (par1ItemStack.getItemDamage() == 3)
+		{
+			par3List.add("5 Minutes Of Mining Fatigue 3 Potion!");
+			par3List.add("Decrease Temperature By 30°C");
+		}
+		else if (par1ItemStack.getItemDamage() == 4)
+		{
+			par3List.add("5 Minutes Of Strenght 3 Potion!");
+			par3List.add("Decrease Temperature By 30°C");
+		}
+		else if (par1ItemStack.getItemDamage() == 5)
+		{
+			par3List.add("5 Minutes Of Jump Boost 3 Potion!");
+			par3List.add("Decrease Temperature By 30°C");
+		}
+		else if (par1ItemStack.getItemDamage() == 6)
+		{
+			par3List.add("5 Minutes Of Resistance 3 Potion!");
+			par3List.add("Decrease Temperature By 30°C");
+		}
+		else if (par1ItemStack.getItemDamage() == 7)
+		{
+			par3List.add("5 Minutes Of Invisibility 3 Potion!");
+			par3List.add("Decrease Temperature By 30°C");
+		}
+		else if (par1ItemStack.getItemDamage() == 8)
+		{
+			par3List.add("5 Minutes Of Night Vision 3 Potion!");
+			par3List.add("Decrease Temperature By 30°C");
+		}
+		else if(par1ItemStack.getItemDamage() == 9)
+		{
+			par3List.add("5 Minutes Of Water Breathing 3 Potion!");
+			par3List.add("Decrease Temperature By 30°C");
+		}
+
+	}
+
 	protected void onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (!par2World.isRemote)
 		{
 			if (par1ItemStack.getItemDamage() == 0)
 			{
-				par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.regeneration.id, 6000, 3));
-			
-			}
-			else if(par1ItemStack.getItemDamage() == 1)
-			{
-				par3EntityPlayer.addPotionEffect(new PotionEffect(1, 6000, 3));
+				par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.regeneration.id, 6000, 2));
+				if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 30)
+				{
+					AC_TickHandler.value -= 30;
+				}
+				else if (AC_TickHandler.value <= 29)
+				{
+					AC_TickHandler.value = 0;
+
+				}
 
 			}
-			else if(par1ItemStack.getItemDamage() == 2)
+			else if (par1ItemStack.getItemDamage() == 1)
 			{
-				par3EntityPlayer.addPotionEffect(new PotionEffect(3, 6000, 3));
+				par3EntityPlayer.addPotionEffect(new PotionEffect(1, 6000, 2));
+				if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 30)
+				{
+					AC_TickHandler.value -= 30;
+				}
+				else if (AC_TickHandler.value <= 29)
+				{
+					AC_TickHandler.value = 0;
+
+				}
 
 			}
-			else if(par1ItemStack.getItemDamage() == 3)
+			else if (par1ItemStack.getItemDamage() == 2)
 			{
-				par3EntityPlayer.addPotionEffect(new PotionEffect(4, 6000, 3));
+				par3EntityPlayer.addPotionEffect(new PotionEffect(3, 6000, 2));
+				if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 30)
+				{
+					AC_TickHandler.value -= 30;
+				}
+				else if (AC_TickHandler.value <= 29)
+				{
+					AC_TickHandler.value = 0;
+
+				}
 
 			}
-			else if(par1ItemStack.getItemDamage() == 4)
+			else if (par1ItemStack.getItemDamage() == 3)
 			{
-				par3EntityPlayer.addPotionEffect(new PotionEffect(5, 6000, 3));
+				par3EntityPlayer.addPotionEffect(new PotionEffect(4, 6000, 2));
+				if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 30)
+				{
+					AC_TickHandler.value -= 30;
+				}
+				else if (AC_TickHandler.value <= 29)
+				{
+					AC_TickHandler.value = 0;
+
+				}
 
 			}
-			else if(par1ItemStack.getItemDamage() == 5)
+			else if (par1ItemStack.getItemDamage() == 4)
 			{
-				par3EntityPlayer.addPotionEffect(new PotionEffect(8, 6000, 3));
+				par3EntityPlayer.addPotionEffect(new PotionEffect(5, 6000, 2));
+				if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 30)
+				{
+					AC_TickHandler.value -= 30;
+				}
+				else if (AC_TickHandler.value <= 29)
+				{
+					AC_TickHandler.value = 0;
+
+				}
 
 			}
-			else if(par1ItemStack.getItemDamage() == 6)
+			else if (par1ItemStack.getItemDamage() == 5)
 			{
-				par3EntityPlayer.addPotionEffect(new PotionEffect(11, 6000, 3));
+				par3EntityPlayer.addPotionEffect(new PotionEffect(8, 6000, 2));
+				if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 30)
+				{
+					AC_TickHandler.value -= 30;
+				}
+				else if (AC_TickHandler.value <= 29)
+				{
+					AC_TickHandler.value = 0;
+
+				}
 
 			}
-			else if(par1ItemStack.getItemDamage() == 7)
+			else if (par1ItemStack.getItemDamage() == 6)
 			{
-				par3EntityPlayer.addPotionEffect(new PotionEffect(14, 6000, 3));
+				par3EntityPlayer.addPotionEffect(new PotionEffect(11, 6000, 2));
+				if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 30)
+				{
+					AC_TickHandler.value -= 30;
+				}
+				else if (AC_TickHandler.value <= 29)
+				{
+					AC_TickHandler.value = 0;
+
+				}
 
 			}
-			else if(par1ItemStack.getItemDamage() == 8)
+			else if (par1ItemStack.getItemDamage() == 7)
 			{
-				par3EntityPlayer.addPotionEffect(new PotionEffect(16, 6000, 3));
+				par3EntityPlayer.addPotionEffect(new PotionEffect(14, 6000, 2));
+				if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 30)
+				{
+					AC_TickHandler.value -= 30;
+				}
+				else if (AC_TickHandler.value <= 29)
+				{
+					AC_TickHandler.value = 0;
+
+				}
 
 			}
-			else if(par1ItemStack.getItemDamage() == 9)
+			else if (par1ItemStack.getItemDamage() == 8)
 			{
-				par3EntityPlayer.addPotionEffect(new PotionEffect(13, 6000, 3));
+				par3EntityPlayer.addPotionEffect(new PotionEffect(16, 6000, 2));
+				if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 30)
+				{
+					AC_TickHandler.value -= 30;
+				}
+				else if (AC_TickHandler.value <= 29)
+				{
+					AC_TickHandler.value = 0;
+
+				}
+
+			}
+			else if (par1ItemStack.getItemDamage() == 9)
+			{
+				par3EntityPlayer.addPotionEffect(new PotionEffect(13, 6000, 2));
+				if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 30)
+				{
+					AC_TickHandler.value -= 30;
+				}
+				else if (AC_TickHandler.value <= 29)
+				{
+					AC_TickHandler.value = 0;
+
+				}
 
 			}
 		}

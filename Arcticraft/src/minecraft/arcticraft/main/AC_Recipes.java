@@ -3,7 +3,6 @@ package arcticraft.main;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class AC_Recipes
@@ -15,7 +14,7 @@ public class AC_Recipes
 		smelting();
 		frostWood();
 //		freezing();
-//		food();
+		food();
 	}
 
 	public static void frostWood()
@@ -68,18 +67,28 @@ public class AC_Recipes
 		AC_FurnaceRecipes.smelting().addSmelting(MainRegistry.escariaOre.blockID, new ItemStack(MainRegistry.escariaGem, 1), 0.8F);
 		AC_FurnaceRecipes.smelting().addSmelting(MainRegistry.rigentemOre.blockID, new ItemStack(MainRegistry.rigentemIngot, 1), 0.6F);
 		AC_FurnaceRecipes.smelting().addSmelting(MainRegistry.glacianOre.blockID, new ItemStack(MainRegistry.glacianIngot, 1), 0.7F);
+		AC_FurnaceRecipes.smelting().addSmelting(MainRegistry.teaDrinks.itemID, 3 , new ItemStack(MainRegistry.teaDrinks, 1, 1), 0.7F);
 	}
 
-//	public static void food()
-//	{
-//		
-//	}
+	public static void food()
+	{
+		MainRegistry.bucketIcyWater.setContainerItem(MainRegistry.bucketEmpty);
+	
+		GameRegistry.addRecipe(new ItemStack(MainRegistry.teaDrinks, 1, 0), new Object [] {		
+			 "X", "Y", "Z", Character.valueOf('X'), new ItemStack(Item.dyePowder, 1, 1), Character.valueOf('Z'), MainRegistry.emptyCup, Character.valueOf('Y'), MainRegistry.bucketIcyWater }); 
+		
+		GameRegistry.addRecipe(new ItemStack(MainRegistry.teaDrinks, 1, 3), new Object [] {		
+			 "X", "Y", "Z", Character.valueOf('X'), new ItemStack(Item.dyePowder, 1, 3), Character.valueOf('Z'), MainRegistry.emptyCup, Character.valueOf('Y'), MainRegistry.bucketIcyWater }); 
+		
+		GameRegistry.addRecipe(new ItemStack(MainRegistry.teaDrinks, 1, 2), new Object [] {		
+			 "X", "Y", "Z", Character.valueOf('X'), MainRegistry.floranBerry, Character.valueOf('Z'), MainRegistry.emptyCup, Character.valueOf('Y'), MainRegistry.bucketIcyWater }); 
+	}
 
 	public static void tools()
 	{
 		//Escaria
 		GameRegistry.addRecipe(new ItemStack(MainRegistry.EscariaPickaxe, 1), new Object [] {		
-			"%%%", " ? ", " ? ", '?', MainRegistry.frostSticks, '%', MainRegistry.escariaGem}); 
+			"%%%", " ? ", " ? ", Character.valueOf('?'), MainRegistry.frostSticks, '%', MainRegistry.escariaGem}); 
 
 		GameRegistry.addRecipe(new ItemStack(MainRegistry.EscariaShovel, 1), new Object [] { 
 			" % ", " ? ", " ? ", Character.valueOf('?'), MainRegistry.frostSticks, Character.valueOf('%'), MainRegistry.escariaGem}); 
@@ -107,7 +116,7 @@ public class AC_Recipes
 		
 		//Glacian 
 		GameRegistry.addRecipe(new ItemStack(MainRegistry.GlacianPickaxe, 1), new Object [] {		
-			"%%%", " ? ", " ? ", '?', MainRegistry.frostSticks, '%', MainRegistry.glacianIngot}); 
+			"%%%", " ? ", " ? ", Character.valueOf('?'), MainRegistry.frostSticks, '%', MainRegistry.glacianIngot}); 
 
 		GameRegistry.addRecipe(new ItemStack(MainRegistry.GlacianShovel, 1), new Object [] { 
 			" % ", " ? ", " ? ", Character.valueOf('?'), MainRegistry.frostSticks, Character.valueOf('%'), MainRegistry.glacianIngot}); 

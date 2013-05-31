@@ -1,6 +1,5 @@
 package arcticraft.entities;
 
-import arcticraft.main.MainRegistry;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -11,14 +10,14 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.boss.IBossDisplayData;
-import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import arcticraft.main.MainRegistry;
 
 public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 {
@@ -28,10 +27,6 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 	public int deathTicks = 0;
 	World theWorld;
 
-
-	public boolean isSwinging = false;
-	public int swingProgressInt = 0;
-	
 	public AC_EntityCaptain(World par1World)
 	{
 		super(par1World);
@@ -69,60 +64,11 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 		super.onLivingUpdate();
 
 	}
-	
-	public void swingItem()
-	{
-		if (!this.isSwinging || this.swingProgressInt >= this.getSwingSpeedModifier() / 2 || this.swingProgressInt < 0)
-		{
-			this.swingProgressInt = -1;
-			this.isSwinging = true;
-		}
-	}
-	
-	private int getSwingSpeedModifier()
-	{
-		return this.isPotionActive(Potion.digSpeed) ? 6 - (1 + this.getActivePotionEffect(Potion.digSpeed).getAmplifier()) * 1 : (this.isPotionActive(Potion.digSlowdown) ? 6 + (1 + this.getActivePotionEffect(Potion.digSlowdown).getAmplifier()) * 2 : 6);
-	}
-	
-	public void onCollideWithPlayer(EntityPlayer par1EntityPlayer)
-	{
-		/*THIS IS REMOVED FOR DEBUGGING if(!ModLoader.getMinecraftInstance().thePlayer.capabilities.isCreativeMode)
-		{*/
-			this.swingItem();
-		//}
-		super.onCollideWithPlayer(par1EntityPlayer);
-	}
-	
-	protected void updateEntityActionState()
-	{
-		int var1 = this.getSwingSpeedModifier();
 
-		if (this.isSwinging)
-		{
-			++this.swingProgressInt;
-
-			if (this.swingProgressInt >= var1)
-			{
-				this.swingProgressInt = 0;
-				this.isSwinging = false;
-			}
-		}
-		else
-		{
-			this.swingProgressInt = 0;
-		}
-
-		this.swingProgress = (float)this.swingProgressInt / (float)var1;
-		super.updateEntityActionState();
-	}
-
-	
 	public ItemStack getHeldItem()
 	{
 		return new ItemStack(MainRegistry.pirateSword, 1);
 	}
-
-	
 
 	public void func_82206_m()
 	{
@@ -130,6 +76,7 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 		this.setEntityHealth(this.getMaxHealth() / 3);
 	}
 
+	
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -177,9 +124,6 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 	{
 		return false;
 	}
-
-
-
 
 	@Override
 	public int getDragonHealth()
