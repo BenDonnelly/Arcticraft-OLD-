@@ -42,6 +42,22 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityLiving.class, 30.0F, 0, false, false, attackEntitySelector));
 		this.experienceValue = 50;
 	}
+	
+	public boolean attackEntityAsMob(Entity par1Entity)
+    {
+        if (super.attackEntityAsMob(par1Entity))
+        {
+           
+                ((EntityLiving)par1Entity).addPotionEffect(new PotionEffect(Potion.poison.id, 200));
+            
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 	public int func_82212_n()
 	{
