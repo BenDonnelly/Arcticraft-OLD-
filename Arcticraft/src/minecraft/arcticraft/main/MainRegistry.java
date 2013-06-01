@@ -7,6 +7,7 @@ import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockHalfSlab;
 import net.minecraft.block.EnumMobType;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityEggInfo;
@@ -20,8 +21,10 @@ import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemPickaxe;
+import net.minecraft.item.ItemSeedFood;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemSword;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
@@ -57,6 +60,7 @@ import arcticraft.blocks.AC_BlockStatue;
 import arcticraft.blocks.AC_BlockThickSnow;
 import arcticraft.blocks.AC_BlockTilledFrostField;
 import arcticraft.blocks.AC_BlockUnbreakableIce;
+import arcticraft.blocks.AC_BlockWhiteberry;
 import arcticraft.blocks.AC_FrostChest;
 import arcticraft.blocks.AC_FrostDoor;
 import arcticraft.creative_tabs.AC_TabBlocks;
@@ -93,9 +97,11 @@ import arcticraft.items.AC_ItemSeed;
 import arcticraft.items.AC_ItemShovel;
 import arcticraft.items.AC_ItemSword;
 import arcticraft.items.AC_ItemTeaDrinks;
+import arcticraft.items.AC_ItemWhiteberry;
 import arcticraft.tile_entities.AC_TileEntityArcticFurnace;
 import arcticraft.tile_entities.AC_TileEntityFreezer;
 import arcticraft.tile_entities.AC_TileEntityLantern;
+import arcticraft.tile_entities.AC_TileEntityStatue;
 import arcticraft.tile_entities.TileEntityFrostChest;
 import arcticraft.world.AC_WorldGenerator;
 import arcticraft.world.AC_WorldProvider;
@@ -123,11 +129,14 @@ public class MainRegistry
 	@Instance("AC")
 	public static MainRegistry instance = new MainRegistry();
 	private AC_GuiHandler guiHandler = new AC_GuiHandler();
-
+	Minecraft mc; 
+	
 	@SidedProxy(clientSide = "arcticraft.main.AC_ClientProxy", serverSide = "arcticraft.main.AC_CommonProxy")
 	public static AC_CommonProxy proxy;
 	public static int dimension = DimensionManager.getNextFreeDimId();
 	static int startEntityId = 327;
+
+	
 	
 	//Creative Tabs
 	public static CreativeTabs tabTools = new AC_TabTools(CreativeTabs.getNextID(),"Tabtools"); 
@@ -262,6 +271,11 @@ public class MainRegistry
 	public static Block floranPlant;
 	public static Item floranSeed;
 	public static Item floranBerry;
+	public static Block whiteberryBush;
+	public static Item whiteberry;
+	public static Item boarMeat;
+	public static Item uncookedBoarMeat;
+	
 	
 	//Decoration blocks
 	public static Block mysticalSnow;
@@ -304,10 +318,15 @@ public class MainRegistry
 	//Blocks with a Techne Model
 	public static Block statue; 
 	
+	
+	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
-	   
+
+		
+		
+		mc = mc.getMinecraft();
 		DimensionManager.registerProviderType(dimension, AC_WorldProvider.class, false);
 		DimensionManager.registerDimension(dimension, dimension);
 		
@@ -324,7 +343,8 @@ public class MainRegistry
 		EnumArmorMaterial GlacianArmor = EnumHelper.addArmorMaterial("Glacian Armor", 35, new int[] {5, 10, 8, 5}, 18);
 		
 		EnumArmorMaterial PirateArmour = EnumHelper.addArmorMaterial("Pirate Armor", 33, new int[] {1, 3, 2, 1}, 15);
-			
+
+		
 		
 		frostGrass = new AC_BlockFrostGrass(230).setHardness(0.6F).setCreativeTab(tabBlocks).setUnlocalizedName("frostgrass").setStepSound(Block.soundGrassFootstep);
 		frostDirt = new AC_BlockFrostDirt(231).setHardness(0.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frost_dirt").setStepSound(Block.soundGrassFootstep);
@@ -368,9 +388,12 @@ public class MainRegistry
 		frostDoor = new AC_FrostDoor(1542, Material.wood).setHardness(3.0F).setUnlocalizedName("AC:icedoor");
 		tilledFrostField = new AC_BlockTilledFrostField(1543).setUnlocalizedName("frostfarmland");
 	    /* The berry has to be initialized before the plant to avoid NPE so thats why theres an item in the blocks section*/
-		floranBerry = new ItemFood(6270, 6, false).setCreativeTab(tabFood).setUnlocalizedName("AC:floran_berry");
-		floranPlant = new AC_BlockFloranCrop(1544, Material.plants, this.tilledFrostField.blockID, this.floranBerry.itemID).setUnlocalizedName("floranPlant").setCreativeTab(tabBlocks);
-		
+		floranBerry = new ItemFood(6273, 6, false).setCreativeTab(tabFood).setUnlocalizedName("AC:floran_berry");
+		floranPlant = new AC_BlockFloranCrop(1544, Material.plants, this.tilledFrostField.blockID, this.floranBerry.itemID).setUnlocalizedName("floranPlant");
+		 
+		/* The berry has to be initialized before the plant to avoid NPE so thats why theres an item in the blocks section*/
+		whiteberry = new AC_ItemWhiteberry(6272,  2, 0.6F, 1545, 1545).setCreativeTab(tabMisc).setUnlocalizedName("AC:Whiteberry");
+		whiteberryBush = new AC_BlockWhiteberry(1545, Material.plants, this.tilledFrostField.blockID, this.whiteberry.itemID).setUnlocalizedName("whiteberry_bush");
 		
 		//Items
 		bucketIcyWater = new AC_ItemBucket(6200, acWaterFlowing.blockID).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyWater");
@@ -438,7 +461,7 @@ public class MainRegistry
 		FrostWoodShovel = new AC_ItemShovel(6250, EnumToolMaterial.WOOD).setCreativeTab(tabTools).setUnlocalizedName("Frost Wood Spade");
 		
 		frostSticks = new Item(6251).setCreativeTab(tabMaterial).setUnlocalizedName("AC:froststicks");
-		penguinMeat = new ItemFood(6252, 4, true).setCreativeTab(tabFood).setUnlocalizedName("AC:penguin_meat");
+		penguinMeat = new ItemFood(6252, 4, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(tabFood).setUnlocalizedName("AC:penguin_meat");
 		penguinMeatCooked = new ItemFood(6253, 8, true).setCreativeTab(tabFood).setUnlocalizedName("AC:penguin_meat_cooked");
 		penguinFeather = new Item(6254).setCreativeTab(tabMaterial).setUnlocalizedName("AC:penguin_feather");
 		tekkiteGem = new Item(6255).setCreativeTab(tabMaterial).setUnlocalizedName("AC:tektike_gem");
@@ -457,7 +480,8 @@ public class MainRegistry
 		floranSeed = new AC_ItemSeed(6269, this.floranPlant).setCreativeTab(tabMisc).setUnlocalizedName("AC:floran_seed");
 		pirateHat = new AC_ItemArmour(6270, PirateArmour, proxy.addArmor("Pirate"), 0).setCreativeTab(tabCombat).setUnlocalizedName("AC:piratehaticon");
 		pirateSword = new AC_ItemCaptainSword(6271, EnumToolMaterial.EMERALD).setCreativeTab(tabTools).setUnlocalizedName("AC:pirateSword");
-	
+		boarMeat = new ItemFood(6274, 4, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat");
+		uncookedBoarMeat = new ItemFood(6275, 10, true).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat_cooked");
 		
 		AC_Recipes.initializeRecipes();
 		proxy.reigsterRenderThings();
@@ -509,6 +533,7 @@ public class MainRegistry
 		GameRegistry.registerBlock(statue, "Statue");
 		GameRegistry.registerBlock(floranPlant, "Floran_Plant");
 		GameRegistry.registerBlock(tilledFrostField, "Tilled_Frost_Field");
+		GameRegistry.registerBlock(whiteberryBush, "Whiteberry_Bush");
 		
 		//furnace
 		GameRegistry.registerBlock(arcticFurnaceIdle, "AC_Furnace_Idle");
@@ -527,6 +552,8 @@ public class MainRegistry
 		
 		//lantern, feel free to move if needed
 		GameRegistry.registerTileEntity(AC_TileEntityLantern.class, "tileEntityLantern");
+		
+		GameRegistry.registerTileEntity(AC_TileEntityStatue.class, "tileEntityStatue");
 		
 		LanguageRegistry.addName(pirateSword, "Pirate Sword");
 		LanguageRegistry.addName(pirateHat, "Pirate Hat");
@@ -586,6 +613,9 @@ public class MainRegistry
 		LanguageRegistry.addName(emptyCup, "Empty Cup");
 		LanguageRegistry.addName(floranSeed, "Floran Seed");
 		LanguageRegistry.addName(floranBerry, "Floran Berry");
+		LanguageRegistry.addName(whiteberry, "Whiteberry");
+		LanguageRegistry.addName(uncookedBoarMeat, "Uncooked Boar Meat");
+		LanguageRegistry.addName(boarMeat, "Cooked Boar Meat");
 		
 		LanguageRegistry.addName(frostSticks, "Frost Sticks");
 		LanguageRegistry.addName(frostStairs, "Frost Stairs");
@@ -712,13 +742,23 @@ public class MainRegistry
 		MinecraftForge.setBlockHarvestLevel(glacianOre, "pickaxe", 2);
 		
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
+//		MinecraftForge.EVENT_BUS.register(new AC_EventWorldLoad());
+		
+		
 	}
 	
 	@PostInit
 	public void postInit(FMLPostInitializationEvent event)
 	{
-
+	/*	
+		if(mc.thePlayer != null && mc.theWorld != null)
+		{	
+		NBTTagCompound tg = mc.thePlayer.getEntityData();
+		tg.setInteger("temp", AC_TickHandler.value);*/
+		
 	}
+	
+
 
 	
 	public static void registerEntityEgg(Class <? extends Entity> entity, int primaryColor, int secondaryColor)
