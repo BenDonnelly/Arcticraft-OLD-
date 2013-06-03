@@ -9,12 +9,14 @@ import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.blocks.AC_BlockFrostLeaves;
 import arcticraft.blocks.AC_BlockGlacierLeaves;
+import arcticraft.blocks.AC_BlockThickSnow;
 import arcticraft.items.AC_ItemLantern;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
@@ -70,6 +72,7 @@ public class AC_TickHandler implements ITickHandler
 				tempIncrementCounter();
 				canDecrementTemp();
 				canIncrementTemp();
+				slowPlayer();
 
 			}
 		}
@@ -171,10 +174,10 @@ public class AC_TickHandler implements ITickHandler
 			else if (mc.theWorld != null && mc.thePlayer.dimension == MainRegistry.dimension && mc.theWorld.isRaining() == true && this.tickCounter == 300)
 			{
 				this.value -= 2;
-//				mc.thePlayer.getEntityData().setInteger("temp", mc.thePlayer.getEntityData().getInteger("temp") - 2);
+				//				mc.thePlayer.getEntityData().setInteger("temp", mc.thePlayer.getEntityData().getInteger("temp") - 2);
 				this.tickCounter = 0;
-//				System.out.println("nbt int: " + mc.thePlayer.getEntityData().getInteger("temp"));
-//				System.out.println("Value: " + value);
+				//				System.out.println("nbt int: " + mc.thePlayer.getEntityData().getInteger("temp"));
+				//				System.out.println("Value: " + value);
 			}
 			else if (this.tickCounter == 1500)
 			{
@@ -209,6 +212,23 @@ public class AC_TickHandler implements ITickHandler
 					}
 				}
 			}
+		}
+	}
+
+	public void slowPlayer()
+	{
+
+		ItemStack boots = mc.thePlayer.getCurrentItemOrArmor(1);
+
+		if ( mc.thePlayer.getCurrentItemOrArmor(1) != null && boots.getItem() == MainRegistry.hikingBoots )
+		{
+			AC_BlockThickSnow.shouldSlowPlayer = false;
+			System.out.println("Should slow player = " + AC_BlockThickSnow.shouldSlowPlayer);
+		}
+		else
+		{
+			AC_BlockThickSnow.shouldSlowPlayer = true;
+			System.out.println("Should slow player = " + AC_BlockThickSnow.shouldSlowPlayer);
 		}
 	}
 

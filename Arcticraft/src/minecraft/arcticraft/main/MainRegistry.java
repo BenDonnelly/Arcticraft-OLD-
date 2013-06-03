@@ -249,6 +249,8 @@ public class MainRegistry
 	
 	public static Item pirateHat;
 	public static Item pirateSword;
+	
+	public static Item hikingBoots;
 	//Tools and armour
 	
 	//Land Generation
@@ -343,6 +345,8 @@ public class MainRegistry
 		EnumArmorMaterial GlacianArmor = EnumHelper.addArmorMaterial("Glacian Armor", 35, new int[] {5, 10, 8, 5}, 18);
 		
 		EnumArmorMaterial PirateArmour = EnumHelper.addArmorMaterial("Pirate Armor", 33, new int[] {1, 3, 2, 1}, 15);
+		
+		EnumArmorMaterial hikingAmrour = EnumHelper.addArmorMaterial("Hiking Armoru" , 33, new int[]{1, 3, 2, 1}, 20);
 
 		
 		
@@ -480,8 +484,10 @@ public class MainRegistry
 		floranSeed = new AC_ItemSeed(6269, this.floranPlant).setCreativeTab(tabMisc).setUnlocalizedName("AC:floran_seed");
 		pirateHat = new AC_ItemArmour(6270, PirateArmour, proxy.addArmor("Pirate"), 0).setCreativeTab(tabCombat).setUnlocalizedName("AC:piratehaticon");
 		pirateSword = new AC_ItemCaptainSword(6271, EnumToolMaterial.EMERALD).setCreativeTab(tabTools).setUnlocalizedName("AC:pirateSword");
-		boarMeat = new ItemFood(6274, 4, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat");
-		uncookedBoarMeat = new ItemFood(6275, 10, true).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat_cooked");
+		boarMeat = new ItemFood(6274, 4, true).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat");
+		uncookedBoarMeat = new ItemFood(6275, 10, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat_cooked");
+		
+		hikingBoots = new AC_ItemArmour(6276, hikingAmrour, proxy.addArmor("Hiking"), 3).setCreativeTab(tabCombat).setUnlocalizedName("Hiking Boots");
 		
 		AC_Recipes.initializeRecipes();
 		proxy.reigsterRenderThings();
@@ -616,6 +622,7 @@ public class MainRegistry
 		LanguageRegistry.addName(whiteberry, "Whiteberry");
 		LanguageRegistry.addName(uncookedBoarMeat, "Uncooked Boar Meat");
 		LanguageRegistry.addName(boarMeat, "Cooked Boar Meat");
+		LanguageRegistry.addName(hikingBoots, "Hiking Boots");
 		
 		LanguageRegistry.addName(frostSticks, "Frost Sticks");
 		LanguageRegistry.addName(frostStairs, "Frost Stairs");
