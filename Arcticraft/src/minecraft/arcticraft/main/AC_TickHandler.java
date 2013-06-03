@@ -223,12 +223,10 @@ public class AC_TickHandler implements ITickHandler
 		if ( mc.thePlayer.getCurrentItemOrArmor(1) != null && boots.getItem() == MainRegistry.hikingBoots )
 		{
 			AC_BlockThickSnow.shouldSlowPlayer = false;
-			System.out.println("Should slow player = " + AC_BlockThickSnow.shouldSlowPlayer);
 		}
 		else
 		{
 			AC_BlockThickSnow.shouldSlowPlayer = true;
-			System.out.println("Should slow player = " + AC_BlockThickSnow.shouldSlowPlayer);
 		}
 	}
 
