@@ -130,14 +130,14 @@ public class MainRegistry
 	public static MainRegistry instance = new MainRegistry();
 	private AC_GuiHandler guiHandler = new AC_GuiHandler();
 	Minecraft mc; 
-	
+
 	@SidedProxy(clientSide = "arcticraft.main.AC_ClientProxy", serverSide = "arcticraft.main.AC_CommonProxy")
 	public static AC_CommonProxy proxy;
 	public static int dimension = DimensionManager.getNextFreeDimId();
 	static int startEntityId = 327;
 
-	
-	
+
+
 	//Creative Tabs
 	public static CreativeTabs tabTools = new AC_TabTools(CreativeTabs.getNextID(),"Tabtools"); 
 	public static CreativeTabs tabBlocks = new AC_TabBlocks(CreativeTabs.getNextID(),"TabBlocks"); 
@@ -145,10 +145,10 @@ public class MainRegistry
 	public static CreativeTabs tabFood = new AC_TabFood(CreativeTabs.getNextID(),"TabFood"); 
 	public static CreativeTabs tabMaterial = new AC_TabMaterial(CreativeTabs.getNextID(),"TabMaterial"); 
 	public static CreativeTabs tabMisc = new AC_TabMisc(CreativeTabs.getNextID(),"TabMisc");
-	
+
 	//Damage Sources
 	public static DamageSource freezing = (new AC_DamageSource("freeze"));
-	
+
 	//Core dimension blocks & items
 	public static Block frostGrass;
 	public static Block frostDirt; 
@@ -160,7 +160,7 @@ public class MainRegistry
 	public static Item bucketIcyWater;
 	public static Block thickSnow;
 	public static Block arcaneStone;
-	
+
 	//Frost type things. 
 	public static Block frostPlanks;
 	public static Block frostStairs;
@@ -169,9 +169,9 @@ public class MainRegistry
 	public static Block frostFence;
 	public static Item frostSticks;
 	public static Block frostLadders; 
-	
+
 	public static Block frostChest;
-	
+
 	//Items
 	public static Item MystFruit;
 	public static Item GlacierFruit;
@@ -183,7 +183,7 @@ public class MainRegistry
 	public static Item itemLantern;
 	public static Item arcaneDust;
 	public static Item heatPack;
-	
+
 	//Tools and Armour
 	private static ItemAxe axe;
 	private static ItemPickaxe pickaxe;
@@ -212,47 +212,47 @@ public class MainRegistry
 	public static Item EscariaPlate;
 	public static Item EscariaLegs;
 	public static Item EscariaBoots;
-	
+
 	public static Item RigentemPickaxe;
 	public static Item RigentemAxe;
 	public static Item RigentemHoe;
 	public static Item RigentemShovel;
 	public static Item RigentemSword;
-	
+
 	public static Item RigentemHelmet;
 	public static Item RigentemPlate;
 	public static Item RigentemLegs;
 	public static Item RigentemBoots;
-	
+
 	public static Item GlacianPickaxe;
 	public static Item GlacianAxe;
 	public static Item GlacianHoe;
 	public static Item GlacianShovel;
 	public static Item GlacianSword;
-	
+
 	public static Item GlacianHelmet;
 	public static Item GlacianPlate;
 	public static Item GlacianLegs;
 	public static Item GlacianBoots;
-	
+
 	public static Item ArcticStonePickaxe;
 	public static Item ArcticStoneAxe;
 	public static Item ArcticStoneHoe;
 	public static Item ArcticStoneShovel;
 	public static Item ArcticStoneSword;
-	
+
 	public static Item FrostWoodPickaxe;
 	public static Item FrostWoodAxe;
 	public static Item FrostWoodHoe;
 	public static Item FrostWoodShovel;
 	public static Item FrostWoodSword;
-	
+
 	public static Item pirateHat;
 	public static Item pirateSword;
-	
+
 	public static Item hikingBoots;
 	//Tools and armour
-	
+
 	//Land Generation
 	public static Block frostLog;
 	public static Block frostLeaves;
@@ -260,13 +260,13 @@ public class MainRegistry
 	public static Block glacierLog;
 	public static Block glacierLeaves;
 	public static Block frostFlower;
-	
+
 	//Dungeon loot and blocks
 	public static Block mossyFrostCobble;
 	public static Block unbreakableIce;
 	public static Item iceCream;
 	public static Item bomb;
-	
+
 	//Food
 	public static Item emptyCup;
 	public static Item teaDrinks;
@@ -277,15 +277,15 @@ public class MainRegistry
 	public static Item whiteberry;
 	public static Item boarMeat;
 	public static Item uncookedBoarMeat;
-	
-	
+
+
 	//Decoration blocks
 	public static Block mysticalSnow;
-	
+
 	//snow blocks
 	public static Block snowPressurePlate;
 	public static Block snowTrapdoor;
-	
+
 	//Ores
 	public static Block tekkiteOre;
 	public static Block escariaOre;
@@ -305,50 +305,50 @@ public class MainRegistry
 	//GUIs
 	public static Block arcticFurnaceIdle;
 	public static Block arcticFurnaceBurning;
-	
+
 	public static Block freezerIdle;
 	public static Block freezerBurning;
-	
+
 	public static Block frostDoor;
 	public static Item frostDoorPlace;
-	
-	
-	
+
+
+
 	//Other Blocks
 	public static Block tilledFrostField;
-	
+
 	//Blocks with a Techne Model
 	public static Block statue; 
-	
-	
-	
+
+
+
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{	
 		mc = mc.getMinecraft();
 		DimensionManager.registerProviderType(dimension, AC_WorldProvider.class, false);
 		DimensionManager.registerDimension(dimension, dimension);
-		
+
 		EnumToolMaterial TekkiteTool = EnumHelper.addToolMaterial("Tekkite Tool", 2, 250, 5.1F, 2, 22);
 		EnumArmorMaterial TekkiteArmor = EnumHelper.addArmorMaterial("Tekkite Armor", 15, new int[] { 2, 6, 5, 2 }, 22);
 
 		EnumToolMaterial EscariaTool = EnumHelper.addToolMaterial("Escaria Tool", 2, 310, 5.1F, 2, 22);
 		EnumArmorMaterial EscariaArmor = EnumHelper.addArmorMaterial("Escaria Armor", 17, new int[] {2, 6, 5, 2}, 22);
-		
+
 		EnumToolMaterial RigentemTool = EnumHelper.addToolMaterial("Rigentem Tool", 2, 350, 6.0F, 2, 15);
 		EnumArmorMaterial RigentemArmor = EnumHelper.addArmorMaterial("Rigentem Armor", 19, new int[] {3, 7, 6, 3}, 15);
-		
+
 		EnumToolMaterial GlacianTool = EnumHelper.addToolMaterial("Glacian Tool", 4, 900, 10.0F, 5, 18);
 		EnumArmorMaterial GlacianArmor = EnumHelper.addArmorMaterial("Glacian Armor", 35, new int[] {5, 10, 8, 5}, 18);
-		
+
 		EnumArmorMaterial PirateArmour = EnumHelper.addArmorMaterial("Pirate Armor", 33, new int[] {1, 3, 2, 1}, 15);
-		
+
 		EnumArmorMaterial hikingAmrour = EnumHelper.addArmorMaterial("Hiking Armoru" , 33, new int[]{1, 3, 2, 1}, 20);
-		
+
 		frostGrass = new AC_BlockFrostGrass(230).setHardness(0.6F).setCreativeTab(tabBlocks).setUnlocalizedName("frostgrass").setStepSound(Block.soundGrassFootstep);
 		frostDirt = new AC_BlockFrostDirt(231).setHardness(0.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frost_dirt").setStepSound(Block.soundGrassFootstep);
-		frostStone = new AC_BlockFrostStone(232).setHardness(1.5F).setResistance(2.0F).setUnlocalizedName("AC:frost_stone").setCreativeTab(tabBlocks);
-		frostCobble = new AC_BlockFrostCobble(1503).setHardness(2.0F).setResistance(2.0F).setUnlocalizedName("AC:frost_cobble").setCreativeTab(tabBlocks);
+		frostStone = new AC_BlockFrostStone(232).setHardness(1.5F).setResistance(2.0F).setUnlocalizedName("AC:frost_stone").setCreativeTab(tabBlocks).setStepSound(Block.soundStoneFootstep);
+		frostCobble = new AC_BlockFrostCobble(1503).setHardness(2.0F).setResistance(2.0F).setUnlocalizedName("AC:frost_cobble").setCreativeTab(tabBlocks).setStepSound(Block.soundStoneFootstep);
 		acWaterFlowing = new AC_BlockACWaterFlowing(233).setCreativeTab(tabBlocks).setUnlocalizedName("acwaterflowing");
 		acWaterStill = new AC_BlockACWaterStill(234).setUnlocalizedName("acwaterstill").setCreativeTab(tabBlocks);
 		mysticalSnow = new AC_BlockMysticalSnow(1506).setHardness(0.8F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:mystical_snow").setStepSound(Block.soundClothFootstep);
@@ -368,41 +368,42 @@ public class MainRegistry
 		unbreakableIce =  new AC_BlockUnbreakableIce(1523, 0).setBlockUnbreakable().setResistance(6000000.0F).setCreativeTab(tabBlocks).setLightOpacity(3).setUnlocalizedName("AC:ice").setStepSound(Block.soundGlassFootstep);
 		snowPressurePlate = new AC_BlockSnowPressurePlate(1524,  "AC:snow_pressure_plate", Material.rock, EnumMobType.players).setHardness(0.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:snow_pressure_plate").setStepSound(Block.soundSnowFootstep);
 		snowTrapdoor = new AC_BlockSnowTrapdoor(1525, Material.snow).setHardness(0.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:snow_trapdoor").setStepSound(Block.soundSnowFootstep);	
-		tekkiteOre = new AC_BlockOres(1526).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:tektite_ore");
-		escariaOre = new AC_BlockOres(1527).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:escaria_ore");
-		frigusOre = new AC_BlockOres(1528).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frigus_ore");
-		rigentemOre = new AC_BlockOres(1529).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:rigentem_ore");
-		glacianOre = new AC_BlockOres(1530).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:glacian_ore");
-		eriumOre = new AC_BlockOres(1531).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:erium_ore");
-		arcticFurnaceIdle = new AC_BlockACFurnace(1532, false).setHardness(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("ac_furnace");
-		arcticFurnaceBurning = new AC_BlockACFurnace(1533, true).setHardness(3.5F).setLightValue(0.875F).setUnlocalizedName("ac_furnace");
-		freezerIdle = new AC_BlockFreezer(1534, false).setHardness(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("freezer");
-		freezerBurning = new AC_BlockFreezer(1535, true).setHardness(3.5F).setLightValue(0.875F).setUnlocalizedName("freezer");
-		frostFlower = new AC_BlockFlower(1536, Material.plants).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frost_flower");
-		frostWoodDoubleSlab = (BlockHalfSlab) (new AC_BlockFrostSlab(1537, true)).setHardness(2.0F).setResistance(5.0F).setUnlocalizedName("frost_wood_double_slab");
-		frostWoodSingleSlab = (BlockHalfSlab) (new AC_BlockFrostSlab(1538, false)).setHardness(2.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("frost_wood_single_slab");
-		frostChest = new AC_FrostChest(1539, 0).setHardness(2.0F).setResistance(3.5F).setUnlocalizedName("AC:frost_chest").setCreativeTab(tabBlocks);
-		statue = new AC_BlockStatue(1540, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:statue");
+		tekkiteOre = new AC_BlockOres(1526).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:tektite_ore").setStepSound(Block.soundStoneFootstep);
+		escariaOre = new AC_BlockOres(1527).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:escaria_ore").setStepSound(Block.soundStoneFootstep);
+		frigusOre = new AC_BlockOres(1528).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frigus_ore").setStepSound(Block.soundStoneFootstep);
+		rigentemOre = new AC_BlockOres(1529).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:rigentem_ore").setStepSound(Block.soundStoneFootstep);
+		glacianOre = new AC_BlockOres(1530).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:glacian_ore").setStepSound(Block.soundStoneFootstep);
+		eriumOre = new AC_BlockOres(1531).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:erium_ore").setStepSound(Block.soundStoneFootstep);
+		arcticFurnaceIdle = new AC_BlockACFurnace(1532, false).setHardness(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("ac_furnace").setStepSound(Block.soundStoneFootstep);
+		arcticFurnaceBurning = new AC_BlockACFurnace(1533, true).setHardness(3.5F).setLightValue(0.875F).setUnlocalizedName("ac_furnace").setStepSound(Block.soundStoneFootstep);
+		freezerIdle = new AC_BlockFreezer(1534, false).setHardness(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("freezer").setStepSound(Block.soundMetalFootstep);
+		freezerBurning = new AC_BlockFreezer(1535, true).setHardness(3.5F).setLightValue(0.875F).setUnlocalizedName("freezer").setStepSound(Block.soundMetalFootstep);
+		frostFlower = new AC_BlockFlower(1536, Material.plants).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frost_flower").setStepSound(Block.soundGrassFootstep);
+		frostWoodDoubleSlab = (BlockHalfSlab) (new AC_BlockFrostSlab(1537, true)).setHardness(2.0F).setResistance(5.0F).setUnlocalizedName("frost_wood_double_slab").setStepSound(Block.soundWoodFootstep);
+		frostWoodSingleSlab = (BlockHalfSlab) (new AC_BlockFrostSlab(1538, false)).setHardness(2.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("frost_wood_single_slab").setStepSound(Block.soundWoodFootstep);
+		frostChest = new AC_FrostChest(1539, 0).setHardness(2.0F).setResistance(3.5F).setUnlocalizedName("AC:frost_chest").setCreativeTab(tabBlocks).setStepSound(Block.soundWoodFootstep);
+		statue = new AC_BlockStatue(1540, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:statue").setStepSound(Block.soundStoneFootstep);
+
 		frostDoorPlace = new AC_FrostDoorPlace(1541, Material.wood).setUnlocalizedName("AC:icedoor").setCreativeTab(tabBlocks); 
 		frostDoor = new AC_FrostDoor(1542, Material.wood).setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("AC:icedoor");
-		tilledFrostField = new AC_BlockTilledFrostField(1543).setUnlocalizedName("frostfarmland");
-	    /* The berry has to be initialized before the plant to avoid NPE so thats why theres an item in the blocks section*/
+		tilledFrostField = new AC_BlockTilledFrostField(1543).setUnlocalizedName("frostfarmland").setStepSound(Block.soundGravelFootstep);
+		/* The berry has to be initialized before the plant to avoid NPE so thats why theres an item in the blocks section*/
 		floranBerry = new ItemFood(6273, 6, false).setCreativeTab(tabFood).setUnlocalizedName("AC:floran_berry");
-		floranPlant = new AC_BlockFloranCrop(1544, Material.plants, this.tilledFrostField.blockID, this.floranBerry.itemID).setUnlocalizedName("floranPlant");
-		 
+		floranPlant = new AC_BlockFloranCrop(1544, Material.plants, this.tilledFrostField.blockID, this.floranBerry.itemID).setUnlocalizedName("floranPlant").setStepSound(Block.soundGravelFootstep);
+
 		/* The berry has to be initialized before the plant to avoid NPE so thats why theres an item in the blocks section*/
 		whiteberry = new AC_ItemWhiteberry(6272,  2, 0.6F, 1545, 1545).setCreativeTab(tabMisc).setUnlocalizedName("AC:Whiteberry");
-		whiteberryBush = new AC_BlockWhiteberry(1545, Material.plants, this.tilledFrostField.blockID, this.whiteberry.itemID).setUnlocalizedName("whiteberry_bush");
-		
+		whiteberryBush = new AC_BlockWhiteberry(1545, Material.plants, this.tilledFrostField.blockID, this.whiteberry.itemID).setUnlocalizedName("whiteberry_bush").setStepSound(Block.soundGravelFootstep);
+
 		//Items
 		bucketIcyWater = new AC_ItemBucket(6200, acWaterFlowing.blockID).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyWater");
 		bucketEmpty = new AC_ItemBucket(6201, 0).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyEmpty");
 		MystFruit = new AC_ItemFruits(6202, 0, false).setCreativeTab(tabFood).setUnlocalizedName("AC:mystical_fruit");
 		GlacierFruit = (new AC_ItemFruits(6203, 0, false).setCreativeTab(tabFood).setUnlocalizedName("AC:glacier_fruit"));
 		IceShard = new Item(6204).setCreativeTab(tabCombat).setUnlocalizedName("AC:ice_shard");
-	
-		
-		
+
+
+
 		TekkitePickaxe = new AC_ItemPickaxe(6205, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("Tekkite Pickaxe");
 		TekkiteAxe = new AC_ItemAxe(6206, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("articcraft:tekkiteAxe");
 		TekkiteHoe = new AC_ItemHoe(6207, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("Tekkite Hoe");
@@ -419,46 +420,46 @@ public class MainRegistry
 		EscariaHoe = new AC_ItemHoe(6216, EscariaTool).setCreativeTab(tabTools).setUnlocalizedName("Escaria Hoe");
 		EscariaSword = new AC_ItemSword(6217, EscariaTool).setCreativeTab(tabTools).setUnlocalizedName("Escaria Sword");
 		EscariaShovel = new AC_ItemShovel(6218, EscariaTool).setCreativeTab(tabTools).setUnlocalizedName("Escaria Spade");
-		
+
 		EscariaHelmet = new AC_ItemArmour(6219, EscariaArmor, proxy.addArmor("Escaria"), 0).setCreativeTab(tabCombat).setUnlocalizedName("Escaria Helmet");
 		EscariaPlate = new AC_ItemArmour(6220, EscariaArmor, proxy.addArmor("Escaria"), 1).setCreativeTab(tabCombat).setUnlocalizedName("Escaria Plate");
 		EscariaLegs = new AC_ItemArmour(6221, EscariaArmor, proxy.addArmor("Escaria"), 2).setCreativeTab(tabCombat).setUnlocalizedName("Escaria Legs");
 		EscariaBoots = new AC_ItemArmour(6222, EscariaArmor, proxy.addArmor("Escaria"), 3).setCreativeTab(tabCombat).setUnlocalizedName("Escaria Boots");
-		
+
 		RigentemPickaxe = new AC_ItemPickaxe(6223, RigentemTool).setCreativeTab(tabTools).setUnlocalizedName("Rigentem Pickaxe");
 		RigentemAxe = new AC_ItemAxe(6224, RigentemTool).setCreativeTab(tabTools).setUnlocalizedName("rigentemAxe");
 		RigentemHoe = new AC_ItemHoe(6225, RigentemTool).setCreativeTab(tabTools).setUnlocalizedName("Rigentem Hoe");
 		RigentemSword = new AC_ItemSword(6226, RigentemTool).setCreativeTab(tabTools).setUnlocalizedName("Rigentem Sword");
 		RigentemShovel = new AC_ItemShovel(6227, RigentemTool).setCreativeTab(tabTools).setUnlocalizedName("Rigentem Spade");
-		
+
 		RigentemHelmet = new AC_ItemArmour(6228, RigentemArmor, proxy.addArmor("Rigentem"), 0).setCreativeTab(tabCombat).setUnlocalizedName("Rigentem Helmet");
 		RigentemPlate = new AC_ItemArmour(6229, RigentemArmor, proxy.addArmor("Rigentem"), 1).setCreativeTab(tabCombat).setUnlocalizedName("Rigentem Plate");
 		RigentemLegs = new AC_ItemArmour(6230, RigentemArmor, proxy.addArmor("Rigentem"), 2).setCreativeTab(tabCombat).setUnlocalizedName("Rigentem Legs");
 		RigentemBoots = new AC_ItemArmour(6231, RigentemArmor, proxy.addArmor("Rigentem"), 3).setCreativeTab(tabCombat).setUnlocalizedName("Rigentem Boots");
-		
+
 		GlacianPickaxe = new AC_ItemPickaxe(6232, GlacianTool).setCreativeTab(tabTools).setUnlocalizedName("Glacian Pickaxe");
 		GlacianAxe = new AC_ItemAxe(6233, GlacianTool).setCreativeTab(tabTools).setUnlocalizedName("articcraft:glaciansAxe");
 		GlacianHoe = new AC_ItemHoe(6234, GlacianTool).setCreativeTab(tabTools).setUnlocalizedName("Glacian Hoe");
 		GlacianSword = new AC_ItemSword(6235, GlacianTool).setCreativeTab(tabTools).setUnlocalizedName("Glacian Sword");
 		GlacianShovel = new AC_ItemShovel(6236, GlacianTool).setCreativeTab(tabTools).setUnlocalizedName("Glacian Spade");
-		
+
 		GlacianHelmet = new AC_ItemArmour(6237, GlacianArmor, proxy.addArmor("Glacian"), 0).setCreativeTab(tabCombat).setUnlocalizedName("Glacian Helmet");
 		GlacianPlate = new AC_ItemArmour(6238, GlacianArmor, proxy.addArmor("Glacian"), 1).setCreativeTab(tabCombat).setUnlocalizedName("Glacian Plate");
 		GlacianLegs = new AC_ItemArmour(6239, GlacianArmor, proxy.addArmor("Glacian"), 2).setCreativeTab(tabCombat).setUnlocalizedName("Glacian Legs");
 		GlacianBoots = new AC_ItemArmour(6240, GlacianArmor, proxy.addArmor("Glacian"), 3).setCreativeTab(tabCombat).setUnlocalizedName("Glacian Boots");
-		
+
 		ArcticStonePickaxe = new AC_ItemPickaxe(6241, EnumToolMaterial.STONE).setCreativeTab(tabTools).setUnlocalizedName("Arctic Stone Pickaxe");
 		ArcticStoneAxe = new AC_ItemAxe(6242, EnumToolMaterial.STONE).setCreativeTab(tabTools).setUnlocalizedName("iceAxe");
 		ArcticStoneHoe = new AC_ItemHoe(6243, EnumToolMaterial.STONE).setCreativeTab(tabTools).setUnlocalizedName("Arctic Stone Hoe");
 		ArcticStoneSword = new AC_ItemSword(6244, EnumToolMaterial.STONE).setCreativeTab(tabTools).setUnlocalizedName("Arctic Stone Sword");
 		ArcticStoneShovel = new AC_ItemShovel(6245, EnumToolMaterial.STONE).setCreativeTab(tabTools).setUnlocalizedName("Arctic Stone Spade");
-		
+
 		FrostWoodPickaxe = new AC_ItemPickaxe(6246, EnumToolMaterial.WOOD).setCreativeTab(tabTools).setUnlocalizedName("Frost Wood Pickaxe");
 		FrostWoodAxe = new AC_ItemAxe(6247, EnumToolMaterial.WOOD).setCreativeTab(tabTools).setUnlocalizedName("frostWoodAxe");
 		FrostWoodHoe = new AC_ItemHoe(6248, EnumToolMaterial.WOOD).setCreativeTab(tabTools).setUnlocalizedName("Frost Wood Hoe");
 		FrostWoodSword = new AC_ItemSword(6249, EnumToolMaterial.WOOD).setCreativeTab(tabTools).setUnlocalizedName("Frost Wood Sword");
 		FrostWoodShovel = new AC_ItemShovel(6250, EnumToolMaterial.WOOD).setCreativeTab(tabTools).setUnlocalizedName("Frost Wood Spade");
-		
+
 		frostSticks = new Item(6251).setCreativeTab(tabMaterial).setUnlocalizedName("AC:froststicks");
 		penguinMeat = new ItemFood(6252, 4, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(tabFood).setUnlocalizedName("AC:penguin_meat");
 		penguinMeatCooked = new ItemFood(6253, 8, true).setCreativeTab(tabFood).setUnlocalizedName("AC:penguin_meat_cooked");
@@ -481,22 +482,22 @@ public class MainRegistry
 		pirateSword = new AC_ItemCaptainSword(6271, EnumToolMaterial.EMERALD).setCreativeTab(tabTools).setUnlocalizedName("AC:pirateSword");
 		boarMeat = new ItemFood(6274, 4, true).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat");
 		uncookedBoarMeat = new ItemFood(6275, 10, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat_cooked");
-		
+
 		hikingBoots = new AC_ItemArmour(6276, hikingAmrour, proxy.addArmor("Hiking"), 3).setCreativeTab(tabCombat).setUnlocalizedName("Hiking Boots");
-		
+
 		AC_Recipes.initializeRecipes();
 		proxy.reigsterRenderThings();
 		proxy.registerTickHandler();
 		proxy.registerKeyHandler();
 
 	}
-	
+
 	@Init
 	public void init(FMLInitializationEvent event)
 	{
-		
+
 		GameRegistry.registerWorldGenerator(new AC_WorldGenerator());
-		
+
 		GameRegistry.registerBlock(frostDoor, "Frost_Door");
 		GameRegistry.registerBlock(frostGrass, "Frost_Grass");
 		GameRegistry.registerBlock(frostDirt, "Frost_Dirt");
@@ -535,13 +536,13 @@ public class MainRegistry
 		GameRegistry.registerBlock(floranPlant, "Floran_Plant");
 		GameRegistry.registerBlock(tilledFrostField, "Tilled_Frost_Field");
 		GameRegistry.registerBlock(whiteberryBush, "Whiteberry_Bush");
-		
+
 		//furnace
 		GameRegistry.registerBlock(arcticFurnaceIdle, "AC_Furnace_Idle");
 		GameRegistry.registerBlock(arcticFurnaceBurning, "AC_Furnace_Buring");
 		GameRegistry.registerTileEntity(AC_TileEntityArcticFurnace.class, "tileEntityArcticFurnace");
-		
-		
+
+
 		//Freezer
 		GameRegistry.registerBlock(freezerIdle, "Freeer_Idle");
 		GameRegistry.registerBlock(freezerBurning, "Freezer_Buring");
@@ -550,12 +551,12 @@ public class MainRegistry
 		//Frost Chest
 		GameRegistry.registerBlock(frostChest, "AC_FrostChest");
 		GameRegistry.registerTileEntity(TileEntityFrostChest.class, "tileEntityFrostChest");
-		
+
 		//lantern, feel free to move if needed
 		GameRegistry.registerTileEntity(AC_TileEntityLantern.class, "tileEntityLantern");
-		
+
 		GameRegistry.registerTileEntity(AC_TileEntityStatue.class, "tileEntityStatue");
-		
+
 		LanguageRegistry.addName(pirateSword, "Pirate Sword");
 		LanguageRegistry.addName(pirateHat, "Pirate Hat");
 		LanguageRegistry.addName(frostDoorPlace, "Frost Door");
@@ -618,14 +619,14 @@ public class MainRegistry
 		LanguageRegistry.addName(uncookedBoarMeat, "Uncooked Boar Meat");
 		LanguageRegistry.addName(boarMeat, "Cooked Boar Meat");
 		LanguageRegistry.addName(hikingBoots, "Hiking Boots");
-		
+
 		LanguageRegistry.addName(frostSticks, "Frost Sticks");
 		LanguageRegistry.addName(frostStairs, "Frost Stairs");
 		LanguageRegistry.addName(frostLadders, "Frost Ladders");
 		LanguageRegistry.addName(frostPlanks, "Frost Planks");
 		LanguageRegistry.addName(frostFence, "Frost Fence");
-		
-		
+
+
 		LanguageRegistry.addName(TekkitePickaxe, "Tekkite Pickaxe");
 		LanguageRegistry.addName(TekkiteAxe, "Tekkite Axe");
 		LanguageRegistry.addName(TekkiteHoe, "Tekkite Hoe");
@@ -635,8 +636,8 @@ public class MainRegistry
 		LanguageRegistry.addName(TekkitePlate, "Tekkite Chestplate");
 		LanguageRegistry.addName(TekkiteLegs, "Tekkite Pants");
 		LanguageRegistry.addName(TekkiteBoots, "Tekkite Boots");
-		
-		
+
+
 		LanguageRegistry.addName(EscariaPickaxe, "Escaria Pickaxe");
 		LanguageRegistry.addName(EscariaAxe, "Escaria Axe");
 		LanguageRegistry.addName(EscariaHoe, "Escaria Hoe");
@@ -647,7 +648,7 @@ public class MainRegistry
 		LanguageRegistry.addName(EscariaLegs, "Escaria Pants");
 		LanguageRegistry.addName(EscariaBoots, "Escaria Boots");
 
-		
+
 		LanguageRegistry.addName(RigentemPickaxe, "Rigentem Pickaxe");
 		LanguageRegistry.addName(RigentemAxe, "Rigentem Axe");
 		LanguageRegistry.addName(RigentemHoe, "Rigentem Hoe");
@@ -657,7 +658,7 @@ public class MainRegistry
 		LanguageRegistry.addName(RigentemPlate, "Rigentem Chestplate");
 		LanguageRegistry.addName(RigentemLegs, "Rigentem Pants");
 		LanguageRegistry.addName(RigentemBoots, "Rigentem Boots");
-		
+
 		LanguageRegistry.addName(GlacianPickaxe, "Glacian Pickaxe");
 		LanguageRegistry.addName(GlacianAxe, "Glacian Axe");
 		LanguageRegistry.addName(GlacianHoe, "Glacian Hoe");
@@ -667,19 +668,19 @@ public class MainRegistry
 		LanguageRegistry.addName(GlacianPlate, "Glacian Chestplate");
 		LanguageRegistry.addName(GlacianLegs, "Glacian Pants");
 		LanguageRegistry.addName(GlacianBoots, "Glacian Boots");
-		
+
 		LanguageRegistry.addName(FrostWoodPickaxe, "Frost Wood Pickaxe");
 		LanguageRegistry.addName(FrostWoodAxe, "Frost Wood Axe");
 		LanguageRegistry.addName(FrostWoodHoe, "Frost Wood Hoe");
 		LanguageRegistry.addName(FrostWoodSword, "Frost Wood Sword");
 		LanguageRegistry.addName(FrostWoodShovel, "Frost Wood Spade");
-		
+
 		LanguageRegistry.addName(ArcticStonePickaxe, "Arctic Stone Pickaxe");
 		LanguageRegistry.addName(ArcticStoneAxe, "Arctic Stone Axe");
 		LanguageRegistry.addName(ArcticStoneHoe, "Arctic Stone Hoe");
 		LanguageRegistry.addName(ArcticStoneSword, "Arctic Stone Sword");
 		LanguageRegistry.addName(ArcticStoneShovel, "Arctic Stone Spade");
-	
+
 		int zombieBackGround = 0x00AFAF;
 		int zombieSpots = 0x5FA88E;
 		int whiteColor = 0xffffff;
@@ -691,86 +692,86 @@ public class MainRegistry
 		int kindaBlueColor = 0x337BC7;
 		int purpleBlueishColor = 0x6419F0;
 		int redishPinkishColour = 0xEB0E58;
-		
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityMage.class, "Mage", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Mage.name", "The Ancient Ice Mage");
 		registerEntityEgg(AC_EntityMage.class, kindaBlueColor, purpleBlueishColor);
-		
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityFrostZombie.class, "FrostZombie", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.FrostZombie.name", "Frost Zombie");
 		registerEntityEgg(AC_EntityFrostZombie.class, zombieBackGround, zombieSpots);
-		
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityIceCreeper.class, "IceCreeper", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.IceCreeper.name", "Ice Creeper");
 		registerEntityEgg(AC_EntityIceCreeper.class, blueishIcyColor, lightBlueColor);
-		
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityPirate.class, "Pirate", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Pirate.name", "Pirate");
 		registerEntityEgg(AC_EntityPirate.class, redishPinkishColour, blackColor);
-		
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityCaptain.class, "Captain", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Captain.name", "Pirate Captain");
 		registerEntityEgg(AC_EntityCaptain.class, redishPinkishColour, blackColor);
-		
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityPenguin.class, "Penguin", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Penguin.name", "Penguin");
 		registerEntityEgg(AC_EntityPenguin.class, blackColor, whiteColor);
-		
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityPolarBear.class, "PolarBear", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.PolarBear.name", "Polar Bear");
 		registerEntityEgg(AC_EntityPolarBear.class,whiteColor, whiteColor);
-		
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityIceShard.class, "IceShard", EntityRegistry.findGlobalUniqueEntityId());
 		EntityRegistry.registerModEntity(AC_EntityIceShard.class, "IceShard", 0, this, 128, 1, true);
-		 LanguageRegistry.instance().addStringLocalization("entity.articcraft.IceShard.name", "Ice Shard");
+		LanguageRegistry.instance().addStringLocalization("entity.articcraft.IceShard.name", "Ice Shard");
 
-	
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityBoar.class, "Boar", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Boar.name", "Boar");
 		registerEntityEgg(AC_EntityBoar.class, lightGrayColor, lightGrayColor);
-		
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityHusky.class, "Husky", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Husky.name", "Husky");
 		registerEntityEgg(AC_EntityHusky.class, lightGrayColor, grayColor);
-		
+
 		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 342, this, 64, 10, true);
-		
-		
-	
-		
+
+
+
+
 		MinecraftForge.setBlockHarvestLevel(tekkiteOre, "pickaxe", 2);
 		MinecraftForge.setBlockHarvestLevel(escariaOre, "pickaxe", 2);
 		MinecraftForge.setBlockHarvestLevel(frigusOre, "pickaxe", 0);
 		MinecraftForge.setBlockHarvestLevel(rigentemOre, "pickaxe", 1);
 		MinecraftForge.setBlockHarvestLevel(glacianOre, "pickaxe", 2);
-		
+
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
-//		MinecraftForge.EVENT_BUS.register(new AC_EventWorldLoad());
-		
-		
+		//		MinecraftForge.EVENT_BUS.register(new AC_EventWorldLoad());
+
+
 	}
-	
+
 	@PostInit
 	public void postInit(FMLPostInitializationEvent event)
 	{
-	/*	
+		/*	
 		if(mc.thePlayer != null && mc.theWorld != null)
 		{	
 		NBTTagCompound tg = mc.thePlayer.getEntityData();
 		tg.setInteger("temp", AC_TickHandler.value);*/
-		
+
 	}
-	
 
 
-	
+
+
 	public static void registerEntityEgg(Class <? extends Entity> entity, int primaryColor, int secondaryColor)
 	{
 		int id = getUniqueEntityId();
 		EntityList.IDtoClassMapping.put(id, entity);
 		EntityList.entityEggs.put(id, new EntityEggInfo(id, primaryColor, secondaryColor));
 	}
-	
+
 	public static int getUniqueEntityId()
 	{
 		do
