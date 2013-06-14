@@ -324,10 +324,7 @@ public class MainRegistry
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
-	{
-
-		//This is a change i just made, i added blocks blah blah blah, time to share it to the others. cfcbg
-		
+	{	
 		mc = mc.getMinecraft();
 		DimensionManager.registerProviderType(dimension, AC_WorldProvider.class, false);
 		DimensionManager.registerDimension(dimension, dimension);
@@ -347,8 +344,6 @@ public class MainRegistry
 		EnumArmorMaterial PirateArmour = EnumHelper.addArmorMaterial("Pirate Armor", 33, new int[] {1, 3, 2, 1}, 15);
 		
 		EnumArmorMaterial hikingAmrour = EnumHelper.addArmorMaterial("Hiking Armoru" , 33, new int[]{1, 3, 2, 1}, 20);
-
-		///change for thor
 		
 		frostGrass = new AC_BlockFrostGrass(230).setHardness(0.6F).setCreativeTab(tabBlocks).setUnlocalizedName("frostgrass").setStepSound(Block.soundGrassFootstep);
 		frostDirt = new AC_BlockFrostDirt(231).setHardness(0.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frost_dirt").setStepSound(Block.soundGrassFootstep);
