@@ -11,3 +11,6 @@ kill player at 0 temp
 sound handler + sounds and music on main menu
 bomb and ice shards fireable through dispenser
 tool tip on gui button
+
+THINGS DONE OVERNIGHT:
+Made frostforest only spawn biome

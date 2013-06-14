@@ -30,8 +30,6 @@ public class AC_WorldChunkManager extends WorldChunkManager
 		this.myBiomeCache = new BiomeCache(this);
 		this.myBiomesToSpawnIn = new ArrayList <BiomeGenBase>();
 		this.myBiomesToSpawnIn.add(AC_BiomeGenBaseArcticraft.frostForest);
-		this.myBiomesToSpawnIn.add(AC_BiomeGenBaseArcticraft.glacier);
-
 	}
 
 	public AC_WorldChunkManager(long seed, WorldType worldtype)
