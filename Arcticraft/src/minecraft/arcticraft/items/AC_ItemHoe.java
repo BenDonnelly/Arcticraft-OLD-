@@ -51,13 +51,13 @@ public class AC_ItemHoe extends Item
 	            int i1 = par3World.getBlockId(par4, par5, par6);
 	            int j1 = par3World.getBlockId(par4, par5 + 1, par6);
 
-	            if ((par7 == 0 || j1 != 0 || i1 != MainRegistry.tilledFrostField.blockID) && i1 != MainRegistry.frostDirt.blockID)
+	            if ((par7 == 0 || j1 != 0 || i1 != MainRegistry.frostGrass.blockID) && i1 != MainRegistry.frostDirt.blockID)
 	            {
 	                return false;
 	            }
 	            else
 	            {
-	                Block block = MainRegistry.frostGrass;
+	                Block block = MainRegistry.tilledFrostField;
 	                par3World.playSoundEffect((double)((float)par4 + 0.5F), (double)((float)par5 + 0.5F), (double)((float)par6 + 0.5F), block.stepSound.getStepSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
 
 	                if (par3World.isRemote)
