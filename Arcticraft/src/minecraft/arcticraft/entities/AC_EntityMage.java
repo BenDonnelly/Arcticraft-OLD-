@@ -46,25 +46,6 @@ public class AC_EntityMage extends EntityAnimal
 		return false;
 	}
 
-	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
-	{
-		super.writeEntityToNBT(par1NBTTagCompound);
-	}
-
-	/**
-	 * (abstract) Protected helper method to read subclass entity data from NBT.
-	 */
-	public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
-	{
-		super.readEntityFromNBT(par1NBTTagCompound);
-		this.setInvulnerable(par1NBTTagCompound.getBoolean("Invulnerable"));
-	}
-
-	public void setInvulnerable(boolean par1)
-	{
-		par1 = true;
-	}
-
 	/**
 	 * Moves the entity based on the specified heading. Args: strafe, forward
 	 */
