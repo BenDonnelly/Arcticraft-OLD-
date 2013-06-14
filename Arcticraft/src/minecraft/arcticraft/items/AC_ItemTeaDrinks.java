@@ -47,7 +47,7 @@ public class AC_ItemTeaDrinks extends ItemFood
 	public String getItemDisplayName(ItemStack par1ItemStack)
 	{
 		String [] teaflavours = new String []
-			{"Red Tea", "Hot Chocolate", "Floran Tea", "Cold Hot Chocolate"};
+			{"Red Tea", "Hot Chocolate", "Floran Tea", "Chocolate Milk"};
 
 		return teaflavours [par1ItemStack.getItemDamage()];
 	}
