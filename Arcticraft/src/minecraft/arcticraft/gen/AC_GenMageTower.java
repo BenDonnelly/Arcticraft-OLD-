@@ -1,6 +1,7 @@
 package arcticraft.gen;
 import java.util.Random;
 
+import arcticraft.entities.AC_EntityMage;
 import arcticraft.main.MainRegistry;
 
 import net.minecraft.block.Block;
@@ -2588,6 +2589,10 @@ public class AC_GenMageTower extends WorldGenerator
 		world.setBlock(i + 16, j + 0, k + 6, Block.vine.blockID, 2, 2);
 		world.setBlock(i + 16, j + 1, k + 6, Block.vine.blockID, 2, 2);
 		world.setBlock(i + 16, j + 2, k + 6, Block.vine.blockID, 2, 2);
+		
+		AC_EntityMage entityicemage = new AC_EntityMage(world);
+		entityicemage.setPosition(i + 9, j + 12, k + 4.5);
+		world.spawnEntityInWorld(entityicemage);
 
 		return true;
 	}
