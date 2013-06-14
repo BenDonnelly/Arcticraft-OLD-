@@ -10,3 +10,6 @@ fix placement of door in items
 mage and stuff
 chocolate milk
 drinking sound for drinks
+make ac blocks not breakable with mc tools(at least some of them)
+arcane stone needs to drop more than one dust
+fix respawn in ac 
