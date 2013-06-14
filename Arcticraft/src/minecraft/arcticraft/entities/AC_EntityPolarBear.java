@@ -73,7 +73,7 @@ public class AC_EntityPolarBear extends EntityMob
 			double x = 0;
 			double y = 0;
 			double z = 0;
-			worldObj.playSoundEffect(x, y, z, "bearAngry", 1.0F, 1.0F);
+			worldObj.playSoundEffect(x, y, z, "arcticraft.bearAngry", 1.0F, 1.0F);
 		}
 
 		super.onUpdate();
@@ -170,7 +170,7 @@ public class AC_EntityPolarBear extends EntityMob
 	 */
 	protected String getLivingSound()
 	{
-		return "bear";
+		return "arcticraft.bearIdle";
 	}
 
 	/**
@@ -178,7 +178,7 @@ public class AC_EntityPolarBear extends EntityMob
 	 */
 	protected String getHurtSound()
 	{
-		return "bearHurt";
+		return "arcticraft.bearHurt";
 	}
 
 	/**
@@ -186,7 +186,7 @@ public class AC_EntityPolarBear extends EntityMob
 	 */
 	protected String getDeathSound()
 	{
-		return "bearDead";
+		return "arcticraft.bearDeath";
 	}
 
 }

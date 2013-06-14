@@ -5,6 +5,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelPig;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 import arcticraft.entities.AC_EntityBoar;
 import arcticraft.entities.AC_EntityBomb;
 import arcticraft.entities.AC_EntityCaptain;
@@ -59,6 +60,7 @@ public class AC_ClientProxy extends AC_CommonProxy
 	@Override
 	public void reigsterRenderThings()
 	{
+		MinecraftForge.EVENT_BUS.register(new AC_EventSoundLoad());
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityMage.class, new AC_RenderMage(new AC_ModelMage(), 0.3F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityIceCreeper.class, new AC_RenderIceCreeper());
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityIceShard.class, new AC_RenderIceShards());
