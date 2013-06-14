@@ -11,6 +11,7 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import arcticraft.main.MainRegistry;
@@ -30,8 +31,6 @@ public class AC_EntityMage extends EntityAnimal
 		setSize(1.5F, 1.9F);
 		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(5, new EntityAILookIdle(this));
-		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -44,22 +43,26 @@ public class AC_EntityMage extends EntityAnimal
 	 */
 	public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
 	{
-		int i = rand.nextInt(3);
+		return false;
+	}
 
-		if (i == 2)
-		{
-			MainRegistry.talkStuff("\247bI can never be killed, your better off not to bother", this.worldObj);
-		}
-		else if (i == 1)
-		{
-			MainRegistry.talkStuff("\247bYou should seriously stop, I have no weaknesses", this.worldObj);
-		}
-		else
-		{
-			MainRegistry.talkStuff("\247bThere is no point in what your doing, I am not going to hurt you", this.worldObj);
-		}
-		this.heal(100);
-		return super.attackEntityFrom(par1DamageSource, par2);
+	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
+	{
+		super.writeEntityToNBT(par1NBTTagCompound);
+	}
+
+	/**
+	 * (abstract) Protected helper method to read subclass entity data from NBT.
+	 */
+	public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
+	{
+		super.readEntityFromNBT(par1NBTTagCompound);
+		this.setInvulnerable(par1NBTTagCompound.getBoolean("Invulnerable"));
+	}
+
+	public void setInvulnerable(boolean par1)
+	{
+		par1 = true;
 	}
 
 	/**
@@ -82,21 +85,6 @@ public class AC_EntityMage extends EntityAnimal
 		return 1000;
 	}
 
-	public int getAttackStrength()
-	{
-		return 4;
-	}
-
-	public int getTotalArmorValue()
-	{
-		return 4;
-	}
-
-	public ItemStack getHeldItem()
-	{
-		return new ItemStack(Item.swordStone, 1);
-	}
-
 	/**
 	 * Called when a player interacts with a mob. e.g. gets milk from a cow,
 	 * gets into the saddle on a pig.
@@ -111,17 +99,11 @@ public class AC_EntityMage extends EntityAnimal
 
 			if (--var2.stackSize <= 0)
 			{
-				par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(MainRegistry.mysticalSnow));// change
-																																						// to
-																																						// fruit
+				par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(MainRegistry.MystFruit));
 			}
-			else if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(MainRegistry.mysticalSnow)))// change
-																													// to
-																													// fruit
+			else if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(MainRegistry.MystFruit)))																									// fruit
 			{
-				par1EntityPlayer.dropPlayerItem(new ItemStack(MainRegistry.mysticalSnow.blockID, 1, 0));// change
-																										// to
-																										// fruit
+				par1EntityPlayer.dropPlayerItem(new ItemStack(MainRegistry.MystFruit.itemID, 1, 0));
 			}
 			return true;
 		}
@@ -130,14 +112,6 @@ public class AC_EntityMage extends EntityAnimal
 			MainRegistry.talkStuff("\247bIf you give me some Mystical Snow I will show you the way to a new world", this.worldObj);
 			return super.interact(par1EntityPlayer);
 		}
-	}
-
-	/**
-	 * Returns the item ID for the item the mob drops on death.
-	 */
-	protected int getDropItemId()
-	{
-		return Item.ingotIron.itemID;
 	}
 
 	@Override

@@ -2,9 +2,7 @@ Put your name in brackets after the task if your planning on doing it
 
 Put tasks below:
 
-Make ancient ice mage always look at the player
 make it not render in inventories
-mage and stuff
 chocolate milk
 drinking sound for drinks
 make ac blocks not breakable with mc tools(at least some of them)
