@@ -21,3 +21,4 @@ frost ghost
 kill player at 0 temp
 add grass sound instead of stone sound when hoing our grass
 sound handler + sounds and music on main menu
+bomb and ice shards fireable through dispenser
