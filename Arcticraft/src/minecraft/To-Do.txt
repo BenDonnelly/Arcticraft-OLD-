@@ -6,11 +6,9 @@ make it not render in inventories
 chocolate milk
 drinking sound for drinks
 make ac blocks not breakable with mc tools(at least some of them)
-arcane stone needs to drop more than one dust
 polar bear resize
 captain and pirates spawn in ship
 chests in ships and other strucutres get changed to ac chests
-portal house
 frost ghost
 kill player at 0 temp
 add grass sound instead of stone sound when hoing our grass
