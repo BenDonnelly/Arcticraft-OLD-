@@ -17,3 +17,5 @@ polar bear resize
 captain and pirates spawn in ship
 chests in ships and other strucutres get changed to ac chests
 portal house
+frost ghost
+kill player at 0 temp
