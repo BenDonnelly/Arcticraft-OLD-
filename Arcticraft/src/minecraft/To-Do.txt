@@ -1,3 +1,12 @@
 Put your name in brackets after the task if your planning on doing it
 
 Put tasks below:
+
+Mob Egg coloring
+Make ancient ice mage always look at the player
+replace statue model file
+make it not render in inventories
+fix placement of door in items
+mage and stuff
+chocolate milk
+drinking sound for drinks
