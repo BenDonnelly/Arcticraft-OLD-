@@ -326,7 +326,7 @@ public class MainRegistry
 	public void preInit(FMLPreInitializationEvent event)
 	{
 
-		
+		//This is a change i just made, i added blocks blah blah blah, time to share it to the others. cfcbg
 		
 		mc = mc.getMinecraft();
 		DimensionManager.registerProviderType(dimension, AC_WorldProvider.class, false);
