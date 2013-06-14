@@ -2,7 +2,7 @@ package arcticraft.world;
 
 import java.util.Random;
 
-import arcticraft.gen.AC_GenPortalHouse;
+import arcticraft.gen.AC_GenMageTower;
 
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -39,7 +39,7 @@ public class AC_WorldGenerator implements IWorldGenerator
     			   int RandPosX = x + rand.nextInt(16);
     			   int RandPosY = rand.nextInt(128);
     			   int RandPosZ = z + rand.nextInt(16);
-    			   (new AC_GenPortalHouse()).generate(world, rand, RandPosX, RandPosY, RandPosZ);
+    			   (new AC_GenMageTower()).generate(world, rand, RandPosX, RandPosY, RandPosZ);
     		   }
     	   }
        }
