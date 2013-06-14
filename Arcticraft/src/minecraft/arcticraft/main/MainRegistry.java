@@ -363,7 +363,7 @@ public class MainRegistry
 		frostPlanks = new AC_BlockFrostPlanks(1517).setHardness(2.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frostplanks").setStepSound(Block.soundWoodFootstep);
 		frostStairs = new AC_BlockFrostStairs(1518, frostPlanks, 0).setCreativeTab(tabBlocks).setUnlocalizedName("froststairs").setStepSound(Block.soundWoodFootstep);
 		frostFence = new BlockFence(1520, "AC:frostplanks", Material.wood).setHardness(2.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("frostfence").setStepSound(Block.soundWoodFootstep);
-		frostLadders = new AC_BlockFrostLadder(1521).setHardness(1.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frostladders").setStepSound(Block.soundWoodFootstep);
+		frostLadders = new AC_BlockFrostLadder(1521).setHardness(1.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frostladders").setStepSound(Block.soundGlassFootstep);
 		mossyFrostCobble = new AC_BlockMossyFrostCobble(1522).setHardness(2.0F).setResistance(10.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frost_mossy_cobble").setStepSound(Block.soundStoneFootstep);
 		unbreakableIce =  new AC_BlockUnbreakableIce(1523, 0).setBlockUnbreakable().setResistance(6000000.0F).setCreativeTab(tabBlocks).setLightOpacity(3).setUnlocalizedName("AC:ice").setStepSound(Block.soundGlassFootstep);
 		snowPressurePlate = new AC_BlockSnowPressurePlate(1524,  "AC:snow_pressure_plate", Material.rock, EnumMobType.players).setHardness(0.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:snow_pressure_plate").setStepSound(Block.soundSnowFootstep);
