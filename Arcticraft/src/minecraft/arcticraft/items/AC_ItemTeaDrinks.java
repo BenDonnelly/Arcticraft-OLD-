@@ -8,6 +8,7 @@ import arcticraft.main.MainRegistry;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -143,6 +144,11 @@ public class AC_ItemTeaDrinks extends ItemFood
 		{
 			par3List.add(new ItemStack(par1, 1, i));
 		}
+	}
+	
+	public EnumAction getItemUseAction(ItemStack par1ItemStack)
+	{
+		return EnumAction.drink;
 	}
 
 	@SideOnly(Side.CLIENT)

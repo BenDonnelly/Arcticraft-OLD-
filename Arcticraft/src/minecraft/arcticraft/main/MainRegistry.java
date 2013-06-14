@@ -347,8 +347,8 @@ public class MainRegistry
 		
 		frostGrass = new AC_BlockFrostGrass(230).setHardness(0.6F).setCreativeTab(tabBlocks).setUnlocalizedName("frostgrass").setStepSound(Block.soundGrassFootstep);
 		frostDirt = new AC_BlockFrostDirt(231).setHardness(0.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frost_dirt").setStepSound(Block.soundGrassFootstep);
-		frostStone = new AC_BlockFrostStone(232).setHardness(1.5F).setResistance(2.0F).setUnlocalizedName("AC:frost_stone").setCreativeTab(tabBlocks);
-		frostCobble = new AC_BlockFrostCobble(1503).setHardness(2.0F).setResistance(2.0F).setUnlocalizedName("AC:frost_cobble").setCreativeTab(tabBlocks);
+		frostStone = new AC_BlockFrostStone(232).setHardness(1.5F).setResistance(2.0F).setUnlocalizedName("AC:frost_stone").setCreativeTab(tabBlocks).setStepSound(Block.soundStoneFootstep);
+		frostCobble = new AC_BlockFrostCobble(1503).setHardness(2.0F).setResistance(2.0F).setUnlocalizedName("AC:frost_cobble").setCreativeTab(tabBlocks).setStepSound(Block.soundStoneFootstep);
 		acWaterFlowing = new AC_BlockACWaterFlowing(233).setCreativeTab(tabBlocks).setUnlocalizedName("acwaterflowing");
 		acWaterStill = new AC_BlockACWaterStill(234).setUnlocalizedName("acwaterstill").setCreativeTab(tabBlocks);
 		mysticalSnow = new AC_BlockMysticalSnow(1506).setHardness(0.8F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:mystical_snow").setStepSound(Block.soundClothFootstep);
@@ -368,31 +368,31 @@ public class MainRegistry
 		unbreakableIce =  new AC_BlockUnbreakableIce(1523, 0).setBlockUnbreakable().setResistance(6000000.0F).setCreativeTab(tabBlocks).setLightOpacity(3).setUnlocalizedName("AC:ice").setStepSound(Block.soundGlassFootstep);
 		snowPressurePlate = new AC_BlockSnowPressurePlate(1524,  "AC:snow_pressure_plate", Material.rock, EnumMobType.players).setHardness(0.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:snow_pressure_plate").setStepSound(Block.soundSnowFootstep);
 		snowTrapdoor = new AC_BlockSnowTrapdoor(1525, Material.snow).setHardness(0.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:snow_trapdoor").setStepSound(Block.soundSnowFootstep);	
-		tekkiteOre = new AC_BlockOres(1526).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:tektite_ore");
-		escariaOre = new AC_BlockOres(1527).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:escaria_ore");
-		frigusOre = new AC_BlockOres(1528).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frigus_ore");
-		rigentemOre = new AC_BlockOres(1529).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:rigentem_ore");
-		glacianOre = new AC_BlockOres(1530).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:glacian_ore");
-		eriumOre = new AC_BlockOres(1531).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:erium_ore");
-		arcticFurnaceIdle = new AC_BlockACFurnace(1532, false).setHardness(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("ac_furnace");
-		arcticFurnaceBurning = new AC_BlockACFurnace(1533, true).setHardness(3.5F).setLightValue(0.875F).setUnlocalizedName("ac_furnace");
-		freezerIdle = new AC_BlockFreezer(1534, false).setHardness(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("freezer");
-		freezerBurning = new AC_BlockFreezer(1535, true).setHardness(3.5F).setLightValue(0.875F).setUnlocalizedName("freezer");
-		frostFlower = new AC_BlockFlower(1536, Material.plants).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frost_flower");
-		frostWoodDoubleSlab = (BlockHalfSlab) (new AC_BlockFrostSlab(1537, true)).setHardness(2.0F).setResistance(5.0F).setUnlocalizedName("frost_wood_double_slab");
-		frostWoodSingleSlab = (BlockHalfSlab) (new AC_BlockFrostSlab(1538, false)).setHardness(2.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("frost_wood_single_slab");
-		frostChest = new AC_FrostChest(1539, 0).setHardness(2.0F).setResistance(3.5F).setUnlocalizedName("AC:frost_chest").setCreativeTab(tabBlocks);
-		statue = new AC_BlockStatue(1540, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:plain_statue");
+		tekkiteOre = new AC_BlockOres(1526).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:tektite_ore").setStepSound(Block.soundStoneFootstep);
+		escariaOre = new AC_BlockOres(1527).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:escaria_ore").setStepSound(Block.soundStoneFootstep);
+		frigusOre = new AC_BlockOres(1528).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frigus_ore").setStepSound(Block.soundStoneFootstep);
+		rigentemOre = new AC_BlockOres(1529).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:rigentem_ore").setStepSound(Block.soundStoneFootstep);
+		glacianOre = new AC_BlockOres(1530).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:glacian_ore").setStepSound(Block.soundStoneFootstep);
+		eriumOre = new AC_BlockOres(1531).setHardness(3.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:erium_ore").setStepSound(Block.soundStoneFootstep);
+		arcticFurnaceIdle = new AC_BlockACFurnace(1532, false).setHardness(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("ac_furnace").setStepSound(Block.soundStoneFootstep);
+		arcticFurnaceBurning = new AC_BlockACFurnace(1533, true).setHardness(3.5F).setLightValue(0.875F).setUnlocalizedName("ac_furnace").setStepSound(Block.soundStoneFootstep);
+		freezerIdle = new AC_BlockFreezer(1534, false).setHardness(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("freezer").setStepSound(Block.soundMetalFootstep);
+		freezerBurning = new AC_BlockFreezer(1535, true).setHardness(3.5F).setLightValue(0.875F).setUnlocalizedName("freezer").setStepSound(Block.soundMetalFootstep);
+		frostFlower = new AC_BlockFlower(1536, Material.plants).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frost_flower").setStepSound(Block.soundGrassFootstep);
+		frostWoodDoubleSlab = (BlockHalfSlab) (new AC_BlockFrostSlab(1537, true)).setHardness(2.0F).setResistance(5.0F).setUnlocalizedName("frost_wood_double_slab").setStepSound(Block.soundWoodFootstep);
+		frostWoodSingleSlab = (BlockHalfSlab) (new AC_BlockFrostSlab(1538, false)).setHardness(2.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("frost_wood_single_slab").setStepSound(Block.soundWoodFootstep);
+		frostChest = new AC_FrostChest(1539, 0).setHardness(2.0F).setResistance(3.5F).setUnlocalizedName("AC:frost_chest").setCreativeTab(tabBlocks).setStepSound(Block.soundWoodFootstep);
+		statue = new AC_BlockStatue(1540, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:plain_statue").setStepSound(Block.soundStoneFootstep);
 		frostDoorPlace = new AC_FrostDoorPlace(1541, Material.wood).setUnlocalizedName("AC:icedoor").setCreativeTab(tabBlocks); 
 		frostDoor = new AC_FrostDoor(1542, Material.wood).setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("AC:icedoor");
-		tilledFrostField = new AC_BlockTilledFrostField(1543).setUnlocalizedName("frostfarmland");
+		tilledFrostField = new AC_BlockTilledFrostField(1543).setUnlocalizedName("frostfarmland").setStepSound(Block.soundGravelFootstep);
 	    /* The berry has to be initialized before the plant to avoid NPE so thats why theres an item in the blocks section*/
 		floranBerry = new ItemFood(6273, 6, false).setCreativeTab(tabFood).setUnlocalizedName("AC:floran_berry");
-		floranPlant = new AC_BlockFloranCrop(1544, Material.plants, this.tilledFrostField.blockID, this.floranBerry.itemID).setUnlocalizedName("floranPlant");
+		floranPlant = new AC_BlockFloranCrop(1544, Material.plants, this.tilledFrostField.blockID, this.floranBerry.itemID).setUnlocalizedName("floranPlant").setStepSound(Block.soundGravelFootstep);
 		 
 		/* The berry has to be initialized before the plant to avoid NPE so thats why theres an item in the blocks section*/
 		whiteberry = new AC_ItemWhiteberry(6272,  2, 0.6F, 1545, 1545).setCreativeTab(tabMisc).setUnlocalizedName("AC:Whiteberry");
-		whiteberryBush = new AC_BlockWhiteberry(1545, Material.plants, this.tilledFrostField.blockID, this.whiteberry.itemID).setUnlocalizedName("whiteberry_bush");
+		whiteberryBush = new AC_BlockWhiteberry(1545, Material.plants, this.tilledFrostField.blockID, this.whiteberry.itemID).setUnlocalizedName("whiteberry_bush").setStepSound(Block.soundGravelFootstep);
 		
 		//Items
 		bucketIcyWater = new AC_ItemBucket(6200, acWaterFlowing.blockID).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyWater");
