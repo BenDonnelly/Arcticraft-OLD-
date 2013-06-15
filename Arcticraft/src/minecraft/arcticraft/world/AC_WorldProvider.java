@@ -54,7 +54,7 @@ public class AC_WorldProvider extends WorldProvider
 	 */
 	public boolean canRespawnHere()
 	{
-		return true;
+		return false;
 	}
 
 	public String getWelcomeMessage()
