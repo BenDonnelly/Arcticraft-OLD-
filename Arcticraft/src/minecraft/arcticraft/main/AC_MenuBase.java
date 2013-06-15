@@ -534,12 +534,18 @@ public class AC_MenuBase extends MenuBase
     {
     	GL11.glPushMatrix();
     	
-    	GL11.glScalef(0.85F, 0.85F, 0.85F);
-    	this.drawTexturedModalRect(20, b0 - 10, 0, 0, 155, 44);
-        this.drawTexturedModalRect(175, b0 - 10, 0, 45, 155, 44);
+    	scalingLol += scalingLol * 0.001F;
+    	
+    	if (scalingLol > 1)
+    		scalingLol = 1.0F;
+    	
+    	GL11.glScalef(scalingLol, scalingLol, scalingLol);
+    	this.drawTexturedModalRect(25, b0 - 10, 0, 0, 155, 44);
+        this.drawTexturedModalRect(180, b0 - 10, 0, 45, 155, 44);
         
         GL11.glPopMatrix();
     }
+
 
     /**
      * Draws the screen and all the components in it.
