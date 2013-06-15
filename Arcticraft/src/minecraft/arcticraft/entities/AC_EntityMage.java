@@ -2,6 +2,7 @@ package arcticraft.entities;
 
 import java.util.Random;
 
+import net.minecraft.block.BlockCloth;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -76,7 +77,7 @@ public class AC_EntityMage extends EntityAnimal
 
 		if (var2 != null && var2.itemID == MainRegistry.mysticalSnow.blockID)
 		{
-			MainRegistry.talkStuff("\247bIf you feel the need for some new adventures, eat this!", this.worldObj);
+			this.randomChat("trade");
 
 			if (--var2.stackSize <= 0)
 			{
@@ -86,12 +87,51 @@ public class AC_EntityMage extends EntityAnimal
 			{
 				par1EntityPlayer.dropPlayerItem(new ItemStack(MainRegistry.MystFruit.itemID, 1, 0));
 			}
+
 			return true;
 		}
 		else
 		{
-			MainRegistry.talkStuff("\247bIf you give me some Mystical Snow I will show you the way to a new world", this.worldObj);
+			this.randomChat("give");
+			
 			return super.interact(par1EntityPlayer);
+		}
+	}
+
+	public void randomChat(String type)
+	{
+		int i = rand.nextInt(3);
+
+		if(type.equals("trade"))
+		{		
+			if (i == 2)
+			{
+				MainRegistry.talkStuff("\247bIf you feel the need for some new adventures, eat this!", this.worldObj);
+			}
+			else if (i == 1)
+			{
+				MainRegistry.talkStuff("\247bDevouring this will send you off into the cold!", this.worldObj);
+			}
+			else
+			{
+				MainRegistry.talkStuff("\247bEating this will cast you into the snow barren Arctic!", this.worldObj);
+			}
+		}
+
+		if(type.equals("give"))
+		{		
+			if (i == 2)
+			{
+				MainRegistry.talkStuff("\247bIf you give me some Mystical Snow I will show you the way to a new world", this.worldObj);
+			}
+			else if (i == 1)
+			{
+				MainRegistry.talkStuff("\247bAdventures await if you hand me some Mystical Snow", this.worldObj);
+			}
+			else
+			{
+				MainRegistry.talkStuff("\247bA Freezing future awaits if I can have some Mystical Snow from you", this.worldObj);
+			}
 		}
 	}
 
