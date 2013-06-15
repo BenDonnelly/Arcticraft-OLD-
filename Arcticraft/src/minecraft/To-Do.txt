@@ -10,10 +10,6 @@ frost ghost
 kill player at 0 temp
 bomb and ice shards fireable through dispenser
 tool tip on gui button
-Fix AC Logo
-Custom menu buttons
-Fix splash text up(maybe custom text)
-Custom Background music
 
 THINGS DONE OVERNIGHT:
 Made frostforest only spawn biome - Dosent work.
