@@ -12,6 +12,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
@@ -42,22 +43,19 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityLiving.class, 30.0F, 0, false, false, attackEntitySelector));
 		this.experienceValue = 50;
 	}
-	
-	public boolean attackEntityAsMob(Entity par1Entity)
-    {
-        if (super.attackEntityAsMob(par1Entity))
-        {
-           
-                ((EntityLiving)par1Entity).addPotionEffect(new PotionEffect(Potion.poison.id, 200));
-            
 
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+	public boolean attackEntityAsMob(Entity par1Entity)
+	{
+		if (super.attackEntityAsMob(par1Entity))
+		{
+			((EntityLiving)par1Entity).addPotionEffect(new PotionEffect(Potion.poison.id, 200));
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	public int func_82212_n()
 	{
@@ -92,7 +90,7 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 		this.setEntityHealth(this.getMaxHealth() / 3);
 	}
 
-	
+
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -127,6 +125,15 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 	{
 		return 250;
 	}
+	
+	/**
+     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
+     * par2 - Level of Looting used to kill this mob.
+     */
+    protected void dropFewItems(boolean par1, int par2)
+    {
+        this.dropItem(MainRegistry.pirateSword.itemID, 1);
+    }
 
 	/**
 	 * Returns the amount of damage a mob should deal.

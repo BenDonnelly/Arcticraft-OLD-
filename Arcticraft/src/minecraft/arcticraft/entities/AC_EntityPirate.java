@@ -52,6 +52,12 @@ public class AC_EntityPirate extends EntityMob
 		this.moveSpeed = 0.8F;
 	}
 	
+
+	public boolean canDespawn()
+	{
+		return false;
+	}
+	
 	@Override
 	public int getMaxHealth()
 	{

@@ -12,6 +12,7 @@ Fix AC Logo
 Custom menu buttons
 Fix splash text up(maybe custom text)
 Custom Background music
+Depending on biome change blocks that spawn under tent
 
 
 THINGS DONE OVERNIGHT:

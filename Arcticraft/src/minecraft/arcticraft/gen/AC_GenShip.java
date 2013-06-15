@@ -8,6 +8,9 @@ import net.minecraft.item.ItemDoor;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import arcticraft.entities.AC_EntityCaptain;
+import arcticraft.entities.AC_EntityMage;
+import arcticraft.entities.AC_EntityPirate;
 import arcticraft.helpers.AC_WorldGenHelpers;
 import arcticraft.main.MainRegistry;
 
@@ -1240,6 +1243,34 @@ public class AC_GenShip extends WorldGenerator
         {
 			AC_WorldGenHelpers.addRandomDungeonLoot(new TileEntityChest[] { chest0, chest1, chest2, chest3, chest4, chest5, chest6, chest7, chest8, chest9, chest10 }, "ship");
         }
+		
+		AC_EntityPirate entitypirate1 = new AC_EntityPirate(world);
+		entitypirate1.setPosition(i + 3.5, j + 5, k + 10.5);
+		world.spawnEntityInWorld(entitypirate1);	
+
+		AC_EntityPirate entitypirate2 = new AC_EntityPirate(world);
+		entitypirate2.setPosition(i + 3.5, j - 5, k + 14.5);
+		world.spawnEntityInWorld(entitypirate2);
+		
+		AC_EntityPirate entitypirate3 = new AC_EntityPirate(world);
+		entitypirate3.setPosition(i + 3.5, j - 5, k + 18.5);
+		world.spawnEntityInWorld(entitypirate3);
+		
+		AC_EntityPirate entitypirate4 = new AC_EntityPirate(world);
+		entitypirate4.setPosition(i + 8.5, j + 5, k + 10.5);
+		world.spawnEntityInWorld(entitypirate4);
+		
+		AC_EntityPirate entitypirate5 = new AC_EntityPirate(world);
+		entitypirate5.setPosition(i + 8.5, j + 5, k + 14.5);
+		world.spawnEntityInWorld(entitypirate5);
+		
+		AC_EntityPirate entitypirate6 = new AC_EntityPirate(world);
+		entitypirate6.setPosition(i + 8.5, j + 5, k + 18.5);
+		world.spawnEntityInWorld(entitypirate6);
+		
+		AC_EntityCaptain entitycaptain = new AC_EntityCaptain(world);
+		entitycaptain.setPosition(i + 5.5, j + 14, k + 3.5);
+		world.spawnEntityInWorld(entitycaptain);
 		
 		return true;
 	}
