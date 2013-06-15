@@ -15,8 +15,14 @@ public class AC_BlockArcaneStone extends Block
         
     }
 
+    public int quantityDropped(Random par1Random)
+    {
+        return 2 + par1Random.nextInt(3);
+    }
+
+    
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return MainRegistry.arcaneDust.itemID;
+        return MainRegistry.arcaneDust.itemID ;
     }
 }
