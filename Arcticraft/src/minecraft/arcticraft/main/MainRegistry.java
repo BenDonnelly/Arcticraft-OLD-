@@ -384,7 +384,7 @@ public class MainRegistry
 		frostChest = new AC_FrostChest(1539, 0).setHardness(2.0F).setResistance(3.5F).setUnlocalizedName("AC:frost_chest").setCreativeTab(tabBlocks);
 		statue = new AC_BlockStatue(1540, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:plain_statue");
 		frostDoorPlace = new AC_FrostDoorPlace(1541, Material.wood).setUnlocalizedName("AC:icedoor").setCreativeTab(tabBlocks); 
-		frostDoor = new AC_FrostDoor(1542, Material.wood).setHardness(3.0F).setUnlocalizedName("AC:icedoor");
+		frostDoor = new AC_FrostDoor(1542, Material.wood).setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("AC:icedoor");
 		tilledFrostField = new AC_BlockTilledFrostField(1543).setUnlocalizedName("frostfarmland");
 	    /* The berry has to be initialized before the plant to avoid NPE so thats why theres an item in the blocks section*/
 		floranBerry = new ItemFood(6273, 6, false).setCreativeTab(tabFood).setUnlocalizedName("AC:floran_berry");
@@ -690,6 +690,7 @@ public class MainRegistry
 		int blueishIcyColor = 0x3EA6CF;
 		int kindaBlueColor = 0x337BC7;
 		int purpleBlueishColor = 0x6419F0;
+		int redishPinkishColour = 0xEB0E58;
 		
 		EntityRegistry.registerGlobalEntityID(AC_EntityMage.class, "Mage", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Mage.name", "The Ancient Ice Mage");
@@ -697,27 +698,27 @@ public class MainRegistry
 		
 		EntityRegistry.registerGlobalEntityID(AC_EntityFrostZombie.class, "FrostZombie", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.FrostZombie.name", "Frost Zombie");
-		registerEntityEgg(AC_EntityFrostZombie.class, 0x3CDECE, 0x95EAF5);
+		registerEntityEgg(AC_EntityFrostZombie.class, zombieBackGround, zombieSpots);
 		
 		EntityRegistry.registerGlobalEntityID(AC_EntityIceCreeper.class, "IceCreeper", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.IceCreeper.name", "Ice Creeper");
-		registerEntityEgg(AC_EntityIceCreeper.class, 0x3CDECE, 0x1BE056);
+		registerEntityEgg(AC_EntityIceCreeper.class, blueishIcyColor, lightBlueColor);
 		
 		EntityRegistry.registerGlobalEntityID(AC_EntityPirate.class, "Pirate", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Pirate.name", "Pirate");
-		registerEntityEgg(AC_EntityPirate.class, 0x3CDECE, 0x1BE056);
+		registerEntityEgg(AC_EntityPirate.class, redishPinkishColour, blackColor);
 		
 		EntityRegistry.registerGlobalEntityID(AC_EntityCaptain.class, "Captain", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Captain.name", "Pirate Captain");
-		registerEntityEgg(AC_EntityCaptain.class, 0x3CDECE, 0x1BE056);
+		registerEntityEgg(AC_EntityCaptain.class, redishPinkishColour, blackColor);
 		
 		EntityRegistry.registerGlobalEntityID(AC_EntityPenguin.class, "Penguin", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Penguin.name", "Penguin");
-		registerEntityEgg(AC_EntityPenguin.class, 0x3CDECE, 0x1BE056);
+		registerEntityEgg(AC_EntityPenguin.class, blackColor, whiteColor);
 		
 		EntityRegistry.registerGlobalEntityID(AC_EntityPolarBear.class, "PolarBear", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.PolarBear.name", "Polar Bear");
-		registerEntityEgg(AC_EntityPolarBear.class, 0x3CDECE, 0x1BE056);
+		registerEntityEgg(AC_EntityPolarBear.class,whiteColor, whiteColor);
 		
 		EntityRegistry.registerGlobalEntityID(AC_EntityIceShard.class, "IceShard", EntityRegistry.findGlobalUniqueEntityId());
 		EntityRegistry.registerModEntity(AC_EntityIceShard.class, "IceShard", 0, this, 128, 1, true);
@@ -726,11 +727,11 @@ public class MainRegistry
 	
 		EntityRegistry.registerGlobalEntityID(AC_EntityBoar.class, "Boar", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Boar.name", "Boar");
-		registerEntityEgg(AC_EntityBoar.class, 0x3CDECE, 0x1BE056);
+		registerEntityEgg(AC_EntityBoar.class, lightGrayColor, lightGrayColor);
 		
 		EntityRegistry.registerGlobalEntityID(AC_EntityHusky.class, "Husky", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Husky.name", "Husky");
-		registerEntityEgg(AC_EntityHusky.class, 0x3CDECE, 0x1BE056);
+		registerEntityEgg(AC_EntityHusky.class, lightGrayColor, grayColor);
 		
 		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 342, this, 64, 10, true);
 		
