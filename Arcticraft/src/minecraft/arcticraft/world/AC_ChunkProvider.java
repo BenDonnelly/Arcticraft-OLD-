@@ -33,6 +33,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
+import arcticraft.biomes.AC_BiomeFrostForest;
 import arcticraft.biomes.AC_BiomeFrostMountains;
 import arcticraft.gen.AC_GenArcaneStone1;
 import arcticraft.gen.AC_GenArcaneStone2;
@@ -671,7 +672,7 @@ public class AC_ChunkProvider implements IChunkProvider
 					this.worldObj.setBlock(k1 + i, l3 - 1, l2 + j, Block.ice.blockID);
 				}
 				
-				if (this.worldObj.canSnowAt(k1 + i, l3, l2 + j))
+				if (this.worldObj.canSnowAt(k1 + i, l3, l2 + j) )
 				{
 					this.worldObj.setBlock(k1 + i, l3, l2 + j, this.pickSnow(rand));
 				}
@@ -683,6 +684,7 @@ public class AC_ChunkProvider implements IChunkProvider
 
 	private int pickSnow(Random par1Random)
 	{
+		
 		int var2 = par1Random.nextInt(4);
 		return var2 == 0 ? MainRegistry.thickSnow.blockID : Block.snow.blockID;
 	}

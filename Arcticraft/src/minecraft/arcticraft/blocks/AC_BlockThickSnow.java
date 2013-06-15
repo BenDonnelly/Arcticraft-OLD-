@@ -155,7 +155,6 @@ public class AC_BlockThickSnow extends Block
 		{
 			par5Entity.motionX *= 0.8D;
 			par5Entity.motionZ *= 0.8D;
-			System.out.println("Should slow player = " + shouldSlowPlayer);
 
 		}
 	}
