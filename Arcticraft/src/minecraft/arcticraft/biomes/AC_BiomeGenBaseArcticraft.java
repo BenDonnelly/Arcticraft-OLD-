@@ -29,6 +29,7 @@ public class AC_BiomeGenBaseArcticraft extends BiomeGenBase
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
+        this.spawnableCaveCreatureList.clear();
         this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityIceCreeper.class, 5, 2, 2));
 		this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityFrostZombie.class, 5, 2, 2));
 		this.spawnableCreatureList.add(new SpawnListEntry(AC_EntityPenguin.class, 12, 4, 4));
