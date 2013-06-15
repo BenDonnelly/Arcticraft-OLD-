@@ -118,7 +118,7 @@ public class AC_EntityPirate extends EntityMob
 	
 	public ItemStack getHeldItem()
 	{
-		return new ItemStack(MainRegistry.pirateSword, 1);
+		return new ItemStack(Item.swordSteel, 1);
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
