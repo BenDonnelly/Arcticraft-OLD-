@@ -57,20 +57,20 @@ public class AC_ItemTeaDrinks extends ItemFood
 		if (par1ItemStack.getItemDamage() == 0)
 		{
 			par3List.add("Regeneration II (1:00)");
-			par3List.add("Decrease Temperature By 15°C");
+			par3List.add("Decrease Temperature By 15\u00B0C");
 		}
 		else if (par1ItemStack.getItemDamage() == 1)
 		{
-			par3List.add("Increase Temperature By 30°C");
+			par3List.add("Increase Temperature By 30\u00B0C");
 		}
 		else if (par1ItemStack.getItemDamage() == 2)
 		{
 			par3List.add("Jump Boost III (1:00)");
-			par3List.add("Decrease Temperature By 15°C");
+			par3List.add("Decrease Temperature By 15\u00B0C");
 		}
 		else if (par1ItemStack.getItemDamage() == 3)
 		{
-			par3List.add("Decrease Temperature By 15°C");
+			par3List.add("Decrease Temperature By 15\u00B0C");
 		}
 
 	}

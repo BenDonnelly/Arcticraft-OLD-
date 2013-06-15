@@ -11,8 +11,4 @@ Custom menu buttons
 Custom Background music
 Depending on biome change blocks that spawn under tent
 add a new menu button "AC LINKS" will provide links to our youtube and topic 
-
-
-
-THINGS DONE OVERNIGHT:
-Made frostforest only spawn biome - Dosent work.
+Make frostforest only spawn biome
