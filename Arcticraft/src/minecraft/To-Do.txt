@@ -3,7 +3,6 @@ Put your name in brackets after the task if your planning on doing it
 Put tasks below:
 
 make ac blocks not breakable with mc tools(at least some of them)
-captain and pirates spawn in ship
 chests in ships and other strucutres get changed to ac chests
 frost ghost
 kill player at 0 temp
