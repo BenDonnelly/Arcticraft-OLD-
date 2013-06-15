@@ -416,7 +416,7 @@ public class AC_FrostDoor extends Block
      */
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return MainRegistry.frostDoor.blockID;
+        return MainRegistry.frostDoorPlace.itemID;
     }
 
     /**
