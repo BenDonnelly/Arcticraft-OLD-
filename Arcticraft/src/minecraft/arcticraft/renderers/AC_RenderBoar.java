@@ -1,19 +1,26 @@
 package arcticraft.renderers;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import arcticraft.entities.AC_EntityBoar;
+import arcticraft.entities.AC_EntityPolarBear;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class AC_RenderBoar extends RenderLiving
 {
-    public AC_RenderBoar(ModelBase par1ModelBase, ModelBase par2ModelBase, float par3)
+	/** Scale of the model to use */
+	private float scale;
+	
+    public AC_RenderBoar(ModelBase par1ModelBase, ModelBase par2ModelBase, float par3, float par4)
     {
         super(par1ModelBase, par3);
+		this.scale = par4;
         this.setRenderPassModel(par2ModelBase);
     }
 
@@ -29,6 +36,16 @@ public class AC_RenderBoar extends RenderLiving
             return -1;
         }
     }
+    
+    
+    
+    /**
+	 * Applies the scale to the transform matrix
+	 */
+	protected void preRenderScale(AC_EntityBoar par1AC_EntityBoar, float par2)
+	{
+		GL11.glScalef(this.scale, this.scale, this.scale);
+	}
 
     public void renderLivingPig(AC_EntityBoar par1EntityBoar, double par2, double par4, double par6, float par8, float par9)
     {
@@ -48,6 +65,15 @@ public class AC_RenderBoar extends RenderLiving
         this.renderLivingPig((AC_EntityBoar)par1EntityLiving, par2, par4, par6, par8, par9);
     }
 
+    /**
+	 * Allows the render to do any OpenGL state modifications necessary before the model is rendered. Args:
+	 * entityLiving, partialTickTime
+	 */
+	protected void preRenderCallback(EntityLiving par1EntityLiving, float par2)
+	{
+		this.preRenderScale((AC_EntityBoar)par1EntityLiving, par2);
+	}
+    
     /**
      * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
      * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
