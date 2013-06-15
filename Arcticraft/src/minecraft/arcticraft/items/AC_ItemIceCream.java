@@ -54,52 +54,52 @@ public class AC_ItemIceCream extends ItemFood
 		if (par1ItemStack.getItemDamage() == 0)
 		{
 			par3List.add("5 Minutes Of Regeneration 3 Potion!");
-			par3List.add("Decrease Temperature By 30°C");
+			par3List.add("Decrease Temperature By 30\u00B0C");
 		}
 		else if (par1ItemStack.getItemDamage() == 1)
 		{
 			par3List.add("5 Minutes Of Speed 3 Potion!");
-			par3List.add("Decrease Temperature By 30°C");
+			par3List.add("Decrease Temperature By 30\u00B0C");
 		}
 		else if (par1ItemStack.getItemDamage() == 2)
 		{
 			par3List.add("5 Minutes Of Haste 3 Potion!");
-			par3List.add("Decrease Temperature By 30°C");
+			par3List.add("Decrease Temperature By 30\u00B0C");
 		}
 		else if (par1ItemStack.getItemDamage() == 3)
 		{
 			par3List.add("5 Minutes Of Mining Fatigue 3 Potion!");
-			par3List.add("Decrease Temperature By 30°C");
+			par3List.add("Decrease Temperature By 30\u00B0C");
 		}
 		else if (par1ItemStack.getItemDamage() == 4)
 		{
 			par3List.add("5 Minutes Of Strenght 3 Potion!");
-			par3List.add("Decrease Temperature By 30°C");
+			par3List.add("Decrease Temperature By 30\u00B0C");
 		}
 		else if (par1ItemStack.getItemDamage() == 5)
 		{
 			par3List.add("5 Minutes Of Jump Boost 3 Potion!");
-			par3List.add("Decrease Temperature By 30°C");
+			par3List.add("Decrease Temperature By 30\u00B0C");
 		}
 		else if (par1ItemStack.getItemDamage() == 6)
 		{
 			par3List.add("5 Minutes Of Resistance 3 Potion!");
-			par3List.add("Decrease Temperature By 30°C");
+			par3List.add("Decrease Temperature By 30\u00B0C");
 		}
 		else if (par1ItemStack.getItemDamage() == 7)
 		{
 			par3List.add("5 Minutes Of Invisibility 3 Potion!");
-			par3List.add("Decrease Temperature By 30°C");
+			par3List.add("Decrease Temperature By 30\u00B0C");
 		}
 		else if (par1ItemStack.getItemDamage() == 8)
 		{
 			par3List.add("5 Minutes Of Night Vision 3 Potion!");
-			par3List.add("Decrease Temperature By 30°C");
+			par3List.add("Decrease Temperature By 30\u00B0C");
 		}
 		else if(par1ItemStack.getItemDamage() == 9)
 		{
 			par3List.add("5 Minutes Of Water Breathing 3 Potion!");
-			par3List.add("Decrease Temperature By 30°C");
+			par3List.add("Decrease Temperature By 30\u00B0C");
 		}
 
 	}
