@@ -348,7 +348,7 @@ public class MainRegistry
 		
 		EnumArmorMaterial hikingAmrour = EnumHelper.addArmorMaterial("Hiking Armoru" , 33, new int[]{1, 3, 2, 1}, 20);
 
-		
+		///change for thor
 		
 		frostGrass = new AC_BlockFrostGrass(230).setHardness(0.6F).setCreativeTab(tabBlocks).setUnlocalizedName("frostgrass").setStepSound(Block.soundGrassFootstep);
 		frostDirt = new AC_BlockFrostDirt(231).setHardness(0.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frost_dirt").setStepSound(Block.soundGrassFootstep);
