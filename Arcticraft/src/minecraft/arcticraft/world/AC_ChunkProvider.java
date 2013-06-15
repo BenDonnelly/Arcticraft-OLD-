@@ -550,10 +550,10 @@ public class AC_ChunkProvider implements IChunkProvider
 		int var9;
 		int var10;
 
-		if ((biome instanceof AC_BiomeFrostMountains))
+		
 		{
 
-			for (int x = 0; x < 1; x++)
+			for (int x = 0; x <10; x++)
 			{
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
@@ -574,7 +574,6 @@ public class AC_ChunkProvider implements IChunkProvider
 		}
 
 		{
-			if ((biome instanceof AC_BiomeFrostMountains))
 
 			for (var7 = 0; var7 < 1; ++var7)
 			{
