@@ -20,6 +20,8 @@ import arcticraft.blocks.AC_BlockThickSnow;
 import arcticraft.items.AC_ItemLantern;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class AC_TickHandler implements ITickHandler
 {
@@ -164,6 +166,7 @@ public class AC_TickHandler implements ITickHandler
 			if (mc.theWorld != null && mc.thePlayer.dimension == MainRegistry.dimension && this.value == 0)
 			{
 				//TODO kill the player.
+				System.out.println("This is running " + this.getSide() + " sided!");
 			}
 			else if (mc.theWorld != null && mc.thePlayer.dimension == MainRegistry.dimension && mc.thePlayer.isInsideOfMaterial(Material.water) && this.tickCounter == 300)
 			{
@@ -186,6 +189,12 @@ public class AC_TickHandler implements ITickHandler
 		}
 
 	}
+	
+	public static String getSide()
+	{
+		return FMLCommonHandler.instance().getSide() == Side.CLIENT ? "client" : "server";
+	}
+	
 	public void canIncrementTemp()
 	{
 		if (!mc.thePlayer.capabilities.isCreativeMode)
