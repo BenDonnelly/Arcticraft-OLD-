@@ -96,6 +96,7 @@ import arcticraft.items.AC_ItemFruits;
 import arcticraft.items.AC_ItemHeatPack;
 import arcticraft.items.AC_ItemHoe;
 import arcticraft.items.AC_ItemIceCream;
+import arcticraft.items.AC_ItemInvisoStaff;
 import arcticraft.items.AC_ItemLantern;
 import arcticraft.items.AC_ItemPickaxe;
 import arcticraft.items.AC_ItemSeed;
@@ -195,6 +196,8 @@ public class MainRegistry
 	public static Item heatPack;
 
 	//Tools and Armour
+	private static Item invisoStaff;
+	
 	private static ItemAxe axe;
 	private static ItemPickaxe pickaxe;
 	private static ItemSpade spade;
@@ -439,9 +442,7 @@ public class MainRegistry
 		MystFruit = new AC_ItemFruits(6202, 0, false).setCreativeTab(tabFood).setUnlocalizedName("AC:mystical_fruit");
 		GlacierFruit = (new AC_ItemFruits(6203, 0, false).setCreativeTab(tabFood).setUnlocalizedName("AC:glacier_fruit"));
 		IceShard = new Item(6204).setCreativeTab(tabCombat).setUnlocalizedName("AC:ice_shard");
-
-
-
+		
 		TekkitePickaxe = new AC_ItemPickaxe(6205, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("Tekkite Pickaxe");
 		TekkiteAxe = new AC_ItemAxe(6206, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("articcraft:tekkiteAxe");
 		TekkiteHoe = new AC_ItemHoe(6207, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("Tekkite Hoe");
@@ -517,10 +518,12 @@ public class MainRegistry
 		teaDrinks = new AC_ItemTeaDrinks(6267, 4, 1.3F, true).setCreativeTab(tabFood).setUnlocalizedName("AC:hot_chocolate");	
 		floranSeed = new AC_ItemSeed(6269, this.floranPlant).setCreativeTab(tabMisc).setUnlocalizedName("AC:floran_seed");
 		pirateHat = new AC_ItemArmour(6270, PirateArmour, proxy.addArmor("Pirate"), 0).setCreativeTab(tabCombat).setUnlocalizedName("AC:piratehaticon");
-		pirateSword = new AC_ItemCaptainSword(6271, EnumToolMaterial.EMERALD).setCreativeTab(tabTools).setUnlocalizedName("AC:pirateSword");
+		pirateSword = new AC_ItemCaptainSword(6271, EnumToolMaterial.EMERALD).setCreativeTab(tabCombat).setUnlocalizedName("AC:pirateSword");
 		boarMeat = new ItemFood(6274, 4, true).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat");
 		uncookedBoarMeat = new ItemFood(6275, 10, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat_cooked");
-		hikingBoots = new AC_ItemArmour(6276, hikingAmrour, proxy.addArmor("Hiking"), 3).setCreativeTab(tabCombat).setUnlocalizedName("Hiking Boots");
+		hikingBoots = new AC_ItemArmour(6276, hikingAmrour, proxy.addArmor("Hiking"), 3).setCreativeTab(tabTools).setUnlocalizedName("Hiking Boots");
+		
+		invisoStaff = new AC_ItemInvisoStaff(6277).setMaxStackSize(1).setCreativeTab(tabTools).setUnlocalizedName("AC:invisibility_staff");
 
 		AC_Recipes.initializeRecipes();
 		proxy.reigsterRenderThings();
@@ -666,7 +669,8 @@ public class MainRegistry
 		LanguageRegistry.addName(frostPlanks, "Frost Planks");
 		LanguageRegistry.addName(frostFence, "Frost Fence");
 
-
+		LanguageRegistry.addName(invisoStaff, "Invisibility Staff");
+		
 		LanguageRegistry.addName(TekkitePickaxe, "Tekkite Pickaxe");
 		LanguageRegistry.addName(TekkiteAxe, "Tekkite Axe");
 		LanguageRegistry.addName(TekkiteHoe, "Tekkite Hoe");

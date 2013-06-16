@@ -12,7 +12,7 @@ public class AC_TabFood extends CreativeTabs {
 
 	@SideOnly(Side.CLIENT)
 	public int getTabIconItemIndex() {
-		return MainRegistry.MystFruit.itemID; // this is the item that is
+		return MainRegistry.penguinMeatCooked.itemID; // this is the item that is
 												// displayed on your tab's icon
 	}
 
