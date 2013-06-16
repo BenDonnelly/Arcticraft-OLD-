@@ -134,13 +134,13 @@ public class AC_TickHandler implements ITickHandler
 		ScaledResolution scaledresolution = getScaledResolution();
 		GuiIngame gui = this.mc.ingameGUI;
 
-		/*if (mc.currentScreen == null && mc.thePlayer.dimension != -1 && mc.thePlayer.dimension != 0 || mc.currentScreen instanceof GuiIngameMenu)
+		if (mc.currentScreen == null && mc.thePlayer.dimension != -1 && mc.thePlayer.dimension != 0 || mc.currentScreen instanceof GuiIngameMenu)
 		{
 
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/mods/AC/textures/gui/tempbar.png"));
 			gui.drawTexturedModalRect(x, y, 0, 6, 80, 6);
 			gui.drawTexturedModalRect(x, y, 0, 0, value * 80 / maxValue, 6);
-		}*/
+		}
 	}
 
 	public void tickCounter()
