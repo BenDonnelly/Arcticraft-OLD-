@@ -46,6 +46,11 @@ public class AC_EventSoundLoad
 			event.manager.soundPoolSounds.addSound("arcticraft/bearHurt2.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/bearHurt2.wav"));
 			event.manager.soundPoolSounds.addSound("arcticraft/bearHurt3.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/bearHurt3.wav"));
 			
+			//Boar
+			event.manager.soundPoolSounds.addSound("arcticraft/boar_hurt.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/boar_hurt.wav"));
+			event.manager.soundPoolSounds.addSound("arcticraft/boar_living.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/boar_living.wav"));
+			event.manager.soundPoolSounds.addSound("arcticraft/boar_death.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/boar_death.wav"));
+			
 		} 
 
 		catch (Exception e)
