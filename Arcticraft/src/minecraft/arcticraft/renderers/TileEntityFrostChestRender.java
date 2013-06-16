@@ -12,7 +12,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import arcticraft.blocks.AC_FrostChest;
-import arcticraft.tile_entities.TileEntityFrostChest;
+import arcticraft.tile_entities.AC_TileEntityFrostChest;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -42,7 +42,7 @@ public class TileEntityFrostChestRender extends TileEntitySpecialRenderer
     /**
      * Renders the TileEntity for the chest at a position.
      */
-    public void renderTileEntityChestAt(TileEntityFrostChest par1TileEntityChest, double par2, double par4, double par6, float par8)
+    public void renderTileEntityChestAt(AC_TileEntityFrostChest par1TileEntityChest, double par2, double par4, double par6, float par8)
     {
         int i;
 
@@ -186,6 +186,6 @@ public class TileEntityFrostChestRender extends TileEntitySpecialRenderer
 
     public void renderTileEntityAt(TileEntity par1TileEntity, double par2, double par4, double par6, float par8)
     {
-        this.renderTileEntityChestAt((TileEntityFrostChest)par1TileEntity, par2, par4, par6, par8);
+        this.renderTileEntityChestAt((AC_TileEntityFrostChest)par1TileEntity, par2, par4, par6, par8);
     }
 }

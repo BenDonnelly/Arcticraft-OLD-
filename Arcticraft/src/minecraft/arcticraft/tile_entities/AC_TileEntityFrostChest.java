@@ -15,7 +15,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import arcticraft.blocks.AC_FrostChest;
 
-public class TileEntityFrostChest extends TileEntity implements IInventory
+public class AC_TileEntityFrostChest extends TileEntity implements IInventory
 {
     private ItemStack[] chestContents = new ItemStack[36];
 
@@ -23,16 +23,16 @@ public class TileEntityFrostChest extends TileEntity implements IInventory
     public boolean adjacentChestChecked = false;
 
     /** Contains the chest tile located adjacent to this one (if any) */
-    public TileEntityFrostChest adjacentChestZNeg;
+    public AC_TileEntityFrostChest adjacentChestZNeg;
 
     /** Contains the chest tile located adjacent to this one (if any) */
-    public TileEntityFrostChest adjacentChestXPos;
+    public AC_TileEntityFrostChest adjacentChestXPos;
 
     /** Contains the chest tile located adjacent to this one (if any) */
-    public TileEntityFrostChest adjacentChestXNeg;
+    public AC_TileEntityFrostChest adjacentChestXNeg;
 
     /** Contains the chest tile located adjacent to this one (if any) */
-    public TileEntityFrostChest adjacentChestZPosition;
+    public AC_TileEntityFrostChest adjacentChestZPosition;
 
     /** The current angle of the lid (between 0 and 1) */
     public float lidAngle;
@@ -235,7 +235,7 @@ public class TileEntityFrostChest extends TileEntity implements IInventory
         this.adjacentChestChecked = false;
     }
 
-    private void func_90009_a(TileEntityFrostChest par1TileEntityChest, int par2)
+    private void func_90009_a(AC_TileEntityFrostChest par1TileEntityChest, int par2)
     {
         if (par1TileEntityChest.isInvalid())
         {
@@ -290,22 +290,22 @@ public class TileEntityFrostChest extends TileEntity implements IInventory
 
             if (this.func_94044_a(this.xCoord - 1, this.yCoord, this.zCoord))
             {
-                this.adjacentChestXNeg = (TileEntityFrostChest)this.worldObj.getBlockTileEntity(this.xCoord - 1, this.yCoord, this.zCoord);
+                this.adjacentChestXNeg = (AC_TileEntityFrostChest)this.worldObj.getBlockTileEntity(this.xCoord - 1, this.yCoord, this.zCoord);
             }
 
             if (this.func_94044_a(this.xCoord + 1, this.yCoord, this.zCoord))
             {
-                this.adjacentChestXPos = (TileEntityFrostChest)this.worldObj.getBlockTileEntity(this.xCoord + 1, this.yCoord, this.zCoord);
+                this.adjacentChestXPos = (AC_TileEntityFrostChest)this.worldObj.getBlockTileEntity(this.xCoord + 1, this.yCoord, this.zCoord);
             }
 
             if (this.func_94044_a(this.xCoord, this.yCoord, this.zCoord - 1))
             {
-                this.adjacentChestZNeg = (TileEntityFrostChest)this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord - 1);
+                this.adjacentChestZNeg = (AC_TileEntityFrostChest)this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord - 1);
             }
 
             if (this.func_94044_a(this.xCoord, this.yCoord, this.zCoord + 1))
             {
-                this.adjacentChestZPosition = (TileEntityFrostChest)this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord + 1);
+                this.adjacentChestZPosition = (AC_TileEntityFrostChest)this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord + 1);
             }
 
             if (this.adjacentChestZNeg != null)

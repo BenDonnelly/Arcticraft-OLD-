@@ -39,7 +39,7 @@ public class AC_KeyBindHandler extends KeyHandler
 	@Override
 	public void keyDown(EnumSet <TickType> types, KeyBinding kb, boolean tickEnd, boolean isRepeat)
 	{
-		if (tickEnd)
+		if (tickEnd && mc.thePlayer != null && mc.currentScreen == null)
 		{
 			/*if(kb.keyCode == keyName.keyCode)
 			{

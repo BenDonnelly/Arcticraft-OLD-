@@ -5,7 +5,7 @@ import static net.minecraftforge.common.ForgeDirection.DOWN;
 import java.util.Iterator;
 import java.util.Random;
 
-import arcticraft.tile_entities.TileEntityFrostChest;
+import arcticraft.tile_entities.AC_TileEntityFrostChest;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -196,7 +196,7 @@ public class AC_FrostChest extends BlockContainer
 
         if (par6ItemStack.hasDisplayName())
         {
-            ((TileEntityFrostChest)par1World.getBlockTileEntity(par2, par3, par4)).func_94043_a(par6ItemStack.getDisplayName());
+            ((AC_TileEntityFrostChest)par1World.getBlockTileEntity(par2, par3, par4)).func_94043_a(par6ItemStack.getDisplayName());
         }
     }
 
@@ -357,7 +357,7 @@ public class AC_FrostChest extends BlockContainer
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5)
     {
         super.onNeighborBlockChange(par1World, par2, par3, par4, par5);
-        TileEntityFrostChest tileentitychest = (TileEntityFrostChest)par1World.getBlockTileEntity(par2, par3, par4);
+        AC_TileEntityFrostChest tileentitychest = (AC_TileEntityFrostChest)par1World.getBlockTileEntity(par2, par3, par4);
 
         if (tileentitychest != null)
         {
@@ -370,7 +370,7 @@ public class AC_FrostChest extends BlockContainer
      */
     public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
     {
-    	TileEntityFrostChest tileentitychest = (TileEntityFrostChest)par1World.getBlockTileEntity(par2, par3, par4);
+    	AC_TileEntityFrostChest tileentitychest = (AC_TileEntityFrostChest)par1World.getBlockTileEntity(par2, par3, par4);
 
         if (tileentitychest != null)
         {
@@ -438,7 +438,7 @@ public class AC_FrostChest extends BlockContainer
 
     public IInventory func_94442_h_(World par1World, int par2, int par3, int par4)
     {
-        Object object = (TileEntityFrostChest)par1World.getBlockTileEntity(par2, par3, par4);
+        Object object = (AC_TileEntityFrostChest)par1World.getBlockTileEntity(par2, par3, par4);
 
         if (object == null)
         {
@@ -472,22 +472,22 @@ public class AC_FrostChest extends BlockContainer
         {
             if (par1World.getBlockId(par2 - 1, par3, par4) == this.blockID)
             {
-                object = new InventoryLargeChest("Large Frost Chest", (TileEntityFrostChest)par1World.getBlockTileEntity(par2 - 1, par3, par4), (IInventory)object);
+                object = new InventoryLargeChest("Large Frost Chest", (AC_TileEntityFrostChest)par1World.getBlockTileEntity(par2 - 1, par3, par4), (IInventory)object);
             }
 
             if (par1World.getBlockId(par2 + 1, par3, par4) == this.blockID)
             {
-                object = new InventoryLargeChest("Large Frost Chest", (IInventory)object, (TileEntityFrostChest)par1World.getBlockTileEntity(par2 + 1, par3, par4));
+                object = new InventoryLargeChest("Large Frost Chest", (IInventory)object, (AC_TileEntityFrostChest)par1World.getBlockTileEntity(par2 + 1, par3, par4));
             }
 
             if (par1World.getBlockId(par2, par3, par4 - 1) == this.blockID)
             {
-                object = new InventoryLargeChest("Large Frost Chest", (TileEntityFrostChest)par1World.getBlockTileEntity(par2, par3, par4 - 1), (IInventory)object);
+                object = new InventoryLargeChest("Large Frost Chest", (AC_TileEntityFrostChest)par1World.getBlockTileEntity(par2, par3, par4 - 1), (IInventory)object);
             }
 
             if (par1World.getBlockId(par2, par3, par4 + 1) == this.blockID)
             {
-                object = new InventoryLargeChest("Large Frost Chest", (TileEntityFrostChest)object, (TileEntityFrostChest)par1World.getBlockTileEntity(par2, par3, par4 + 1));
+                object = new InventoryLargeChest("Large Frost Chest", (AC_TileEntityFrostChest)object, (AC_TileEntityFrostChest)par1World.getBlockTileEntity(par2, par3, par4 + 1));
             }
 
             return (IInventory)object;
@@ -499,7 +499,7 @@ public class AC_FrostChest extends BlockContainer
      */
     public TileEntity createNewTileEntity(World par1World)
     {
-        TileEntityFrostChest tileentitychest = new TileEntityFrostChest();
+        AC_TileEntityFrostChest tileentitychest = new AC_TileEntityFrostChest();
         return tileentitychest;
     }
 
@@ -524,7 +524,7 @@ public class AC_FrostChest extends BlockContainer
         }
         else
         {
-            int i1 = ((TileEntityFrostChest)par1IBlockAccess.getBlockTileEntity(par2, par3, par4)).numUsingPlayers;
+            int i1 = ((AC_TileEntityFrostChest)par1IBlockAccess.getBlockTileEntity(par2, par3, par4)).numUsingPlayers;
             return MathHelper.clamp_int(i1, 0, 15);
         }
     }

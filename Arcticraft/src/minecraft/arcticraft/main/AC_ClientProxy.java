@@ -34,7 +34,7 @@ import arcticraft.renderers.AC_RenderPolarBear;
 import arcticraft.renderers.TileEntityFrostChestRender;
 import arcticraft.tile_entities.AC_TileEntityStatue;
 import arcticraft.tile_entities.AC_TileEntityStatueRenderer;
-import arcticraft.tile_entities.TileEntityFrostChest;
+import arcticraft.tile_entities.AC_TileEntityFrostChest;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -75,7 +75,7 @@ public class AC_ClientProxy extends AC_CommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityStatue.class, new AC_TileEntityStatueRenderer());
 		MinecraftForgeClient.registerItemRenderer(MainRegistry.statue.blockID, new AC_ItemStatueRenderer());
 		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFrostChest.class, new TileEntityFrostChestRender());
+		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityFrostChest.class, new TileEntityFrostChestRender());
 		MinecraftForgeClient.registerItemRenderer(MainRegistry.frostChest.blockID, new AC_FrostChestItemRenderHelper());
 	
 	}

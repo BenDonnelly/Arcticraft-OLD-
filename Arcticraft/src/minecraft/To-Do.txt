@@ -2,14 +2,12 @@ Put your name in brackets after the task if your planning on doing it
 
 Put tasks below:
 
-chocolate milk
 make ac blocks not breakable with mc tools(at least some of them)
 captain and pirates spawn in ship
 chests in ships and other strucutres get changed to ac chests
 frost ghost
 kill player at 0 temp
 bomb and ice shards fireable through dispenser
-tool tip on gui button
 Fix AC Logo
 Custom menu buttons
 Fix splash text up(maybe custom text)

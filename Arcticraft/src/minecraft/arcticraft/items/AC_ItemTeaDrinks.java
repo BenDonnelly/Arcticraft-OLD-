@@ -56,7 +56,7 @@ public class AC_ItemTeaDrinks extends ItemFood
 	{
 		if (par1ItemStack.getItemDamage() == 0)
 		{
-			par3List.add("60 Seconds Of Regeneration 3!");
+			par3List.add("Regeneration II (1:00)");
 			par3List.add("Decrease Temperature By 15°C");
 		}
 		else if (par1ItemStack.getItemDamage() == 1)
@@ -65,7 +65,7 @@ public class AC_ItemTeaDrinks extends ItemFood
 		}
 		else if (par1ItemStack.getItemDamage() == 2)
 		{
-			par3List.add("60 Seconds Of Jump Boost 3 Potion!");
+			par3List.add("Jump Boost III (1:00)");
 			par3List.add("Decrease Temperature By 15°C");
 		}
 		else if (par1ItemStack.getItemDamage() == 3)
