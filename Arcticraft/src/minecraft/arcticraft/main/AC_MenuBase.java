@@ -586,15 +586,15 @@ public class AC_MenuBase extends MenuBase
 
 		tessellator.setColorOpaque_I(16777215);
 		GL11.glPushMatrix();
-		GL11.glTranslatef((float) 215, 50F, 0.0F);
-		GL11.glRotatef(-20.0F, 0.0F, 0.0F, 1.0F);
-		float f1 = 1.4F - MathHelper.abs(MathHelper.sin((float) (Minecraft.getSystemTime() % 1000L) / 1000.0F * (float) Math.PI * 2.0F) * 0.1F);
-		f1 = f1 * 100.0F / (float) (this.fontRenderer.getStringWidth(this.splashText) + 32);
+		GL11.glTranslatef((float) 200, 35F, 0.0F);//position 
+		GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);//rotates it
+		float f1 = 1.4F - MathHelper.abs(MathHelper.sin((float) (Minecraft.getSystemTime() % 1000L) / 1000.0F * (float) Math.PI * 2.0F) * 0.1F); //makes it bounce
+		f1 = f1 * 100.0F / (float) (this.fontRenderer.getStringWidth(this.splashText) + 40); //size of the font
 		GL11.glScalef(f1, f1, f1);
-		this.drawCenteredString(this.fontRenderer, this.splashText, 50 ,-5, 16776960);
+		this.drawCenteredString(this.fontRenderer, this.splashText, 50 ,-5, 0x3BA2BC);//diagonal position
 		GL11.glPopMatrix();
 		String s = "Minecraft 1.5.1";
-
+		
 		if (this.mc.isDemo())
 		{
 			s = s + " Demo";
@@ -611,8 +611,10 @@ public class AC_MenuBase extends MenuBase
 		}
 
 		String s1 = "Copyright Mojang AB. Do not distribute!";
+		String s2 = "Arcticraft 1.0";
 		this.drawString(this.fontRenderer, s1, 2, this.height - 10, 16777215);
-
+		this.drawString(this.fontRenderer, s2, 2, this.height - 20, 0x3BA2BC);
+		
 		if (this.field_92025_p != null && this.field_92025_p.length() > 0)
 		{
 			drawRect(this.field_92022_t - 2, this.field_92021_u - 2, this.field_92020_v + 2, this.field_92019_w - 1, 1428160512);
