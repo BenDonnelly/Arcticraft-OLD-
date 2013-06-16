@@ -64,16 +64,22 @@ public class AC_TickHandler implements ITickHandler
 	{
 		if (entityPlayer != null && this.value == 0)
 		{
-			System.out.println("Attempting to kill the player");
+			//System.out.println("Attempting to kill the player " + getSideAsString() + " sided!"); //Apperently, that should be an Mp version of the player but obviosuly not hmmhmhm
 			entityPlayer.attackEntityFrom(DamageSource.generic, 5);
 		}
+	}
+	
+	@Deprecated
+	public static String getSideAsString()
+	{
+		return FMLCommonHandler.instance().getSide() == Side.CLIENT ? "client" : "server";
 	}
 
 	@Override
 	public void tickStart(EnumSet <TickType> type, Object... tickData)
 	{
 
-		if (mc.thePlayer != null)
+		if (mc.thePlayer != null) 
 		{
 
 			if (type.equals(EnumSet.of(TickType.PLAYER)))
@@ -179,7 +185,6 @@ public class AC_TickHandler implements ITickHandler
 			if (mc.theWorld != null && mc.thePlayer.dimension == MainRegistry.dimension && this.value == 0)
 			{
 				//TODO kill the player.
-				System.out.println("This is running " + this.getSide() + " sided!");
 			}
 			else if (mc.theWorld != null && mc.thePlayer.dimension == MainRegistry.dimension && mc.thePlayer.isInsideOfMaterial(Material.water) && this.tickCounter == 300)
 			{
@@ -202,12 +207,7 @@ public class AC_TickHandler implements ITickHandler
 		}
 
 	}
-	
-	public static String getSide()
-	{
-		return FMLCommonHandler.instance().getSide() == Side.CLIENT ? "client" : "server";
-	}
-	
+		
 	public void canIncrementTemp()
 	{
 		if (!mc.thePlayer.capabilities.isCreativeMode)

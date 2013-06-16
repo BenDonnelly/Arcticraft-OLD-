@@ -1,5 +1,7 @@
 package arcticraft.main;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import net.aetherteam.mainmenu_api.MainMenuAPI;
@@ -26,8 +28,10 @@ import net.minecraft.item.ItemSeedFood;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
@@ -106,20 +110,26 @@ import arcticraft.tile_entities.AC_TileEntityStatue;
 import arcticraft.tile_entities.AC_TileEntityFrostChest;
 import arcticraft.world.AC_WorldGenerator;
 import arcticraft.world.AC_WorldProvider;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.Mod.ServerStarting;
+import cpw.mods.fml.common.Mod.ServerStopping;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = "AC", name = "Arcticraft", version = "[1.5] V.1.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = { "AC_mod" }, packetHandler = AC_PacketHandler.class)
@@ -321,11 +331,37 @@ public class MainRegistry
 	//Blocks with a Techne Model
 	public static Block statue; 
 
-
+	public static HashMap<EntityPlayer, Integer> playerTemps = new HashMap<EntityPlayer, Integer>();
+	
+	public static Configuration temperatureFile;
+	
+	@ServerStarting
+	public void serverStarting(FMLServerStartingEvent event) //I thing i'm missing a param
+	{
+		System.out.println("I am getting called!!!! :D"); 			
+		
+		//TODO: load temps from file
+		temperatureFile = new Configuration(new File(new File(Minecraft.getMinecraftDir(), "ac_data"), "playertemps_" + MinecraftServer.getServer().getWorldName()));
+		temperatureFile.load();
+		
+		temperatureFile.get("general", "player123", -12).getInt();
+		
+		temperatureFile.save();
+	}
+	
+	@ServerStopping
+	public void serverStopping(FMLServerStoppingEvent event)
+	{
+		//TODO: save temps to file
+		temperatureFile.load();
+		temperatureFile.save();
+	}
 
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{	
+		AC_Properties.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
+		
 		mc = mc.getMinecraft();
 		DimensionManager.registerProviderType(dimension, AC_WorldProvider.class, false);
 		DimensionManager.registerDimension(dimension, dimension);
