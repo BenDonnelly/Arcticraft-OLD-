@@ -553,7 +553,7 @@ public class AC_ChunkProvider implements IChunkProvider
 		
 		{
 
-			for (int x = 0; x <10; x++)
+			for (int x = 0; x <1; x++)
 			{
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
@@ -564,7 +564,7 @@ public class AC_ChunkProvider implements IChunkProvider
 
 		{
 
-			for (int x = 0; x < 3; x++)
+			for (int x = 0; x < 2; x++)
 			{
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);

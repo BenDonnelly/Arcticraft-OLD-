@@ -78,6 +78,5 @@ public class AC_ClientProxy extends AC_CommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFrostChest.class, new TileEntityFrostChestRender());
 		MinecraftForgeClient.registerItemRenderer(MainRegistry.frostChest.blockID, new AC_FrostChestItemRenderHelper());
 	
-		 MainMenuAPI.registerMenu("Arcticraft", AC_MenuBase.class);
 	}
 }

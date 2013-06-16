@@ -34,8 +34,13 @@ public class AC_WorldGenHelpers
 				if (type.equals("ship"))
 				{
 					int var2 = rand.nextInt(11);
-					chest.setInventorySlotContents(i, var2 == 0 ? new ItemStack(Item.saddle) : (var2 == 1 ? new ItemStack(Item.ingotIron, rand.nextInt(4) + 1) : (var2 == 2 ? new ItemStack(Item.bread): null)));
+					chest.setInventorySlotContents(i, var2 == 0 ? new ItemStack(MainRegistry.itemLantern) : (var2 == 1 ? new ItemStack(MainRegistry.bomb, rand.nextInt(4) + 1) : (var2 == 2 ? new ItemStack(MainRegistry.pirateHat): (var2 == 3 ? new ItemStack(MainRegistry.escariaGem) : (var2 == 5 ? new ItemStack(MainRegistry.eriumGem) : null)))));
 					
+				}
+				else if(type.equals("iceberg"))
+				{
+					int var2 = rand.nextInt(11);
+					chest.setInventorySlotContents(i, var2 == 0 ? new ItemStack(MainRegistry.floranSeed) : (var2 == 0 ? new ItemStack(MainRegistry.whiteberry) : (var2 == 1 ? new ItemStack(MainRegistry.ArcticStoneSword, rand.nextInt(4) + 1) : (var2 == 2 ? new ItemStack(MainRegistry.arcaneStone): (var2 == 3 ? new ItemStack(MainRegistry.emptyCup) : (var2 == 5 ? new ItemStack(MainRegistry.floranBerry) : null))))));
 				}
 				else
 				{
@@ -51,6 +56,7 @@ public class AC_WorldGenHelpers
 		{
 			addRandomDungeonLoot(chest, type);
 			addRandomDungeonLoot(chest, "ship");
+			addRandomDungeonLoot(chest, "iceberg");
 		}
 	}
 

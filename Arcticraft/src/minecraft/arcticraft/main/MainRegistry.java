@@ -2,6 +2,7 @@ package arcticraft.main;
 
 import java.util.Iterator;
 
+import net.aetherteam.mainmenu_api.MainMenuAPI;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockHalfSlab;
@@ -344,6 +345,7 @@ public class MainRegistry
 		EnumArmorMaterial PirateArmour = EnumHelper.addArmorMaterial("Pirate Armor", 33, new int[] {1, 3, 2, 1}, 15);
 
 		EnumArmorMaterial hikingAmrour = EnumHelper.addArmorMaterial("Hiking Armoru" , 33, new int[]{1, 3, 2, 1}, 20);
+		
 
 		frostGrass = new AC_BlockFrostGrass(230).setHardness(0.6F).setCreativeTab(tabBlocks).setUnlocalizedName("frostgrass").setStepSound(Block.soundGrassFootstep);
 		frostDirt = new AC_BlockFrostDirt(231).setHardness(0.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frost_dirt").setStepSound(Block.soundGrassFootstep);
@@ -495,7 +497,7 @@ public class MainRegistry
 	@Init
 	public void init(FMLInitializationEvent event)
 	{
-
+		MainMenuAPI.registerMenu("Arcticraft", AC_MenuBase.class);
 		GameRegistry.registerWorldGenerator(new AC_WorldGenerator());
 
 		GameRegistry.registerBlock(frostDoor, "Frost_Door");
