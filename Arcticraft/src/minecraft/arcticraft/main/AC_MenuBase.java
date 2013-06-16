@@ -1,5 +1,6 @@
 package arcticraft.main;
 
+import java.awt.Desktop;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -86,6 +87,7 @@ public class AC_MenuBase extends MenuBase
 	private int field_92019_w;
 
 	private GuiButton fmlModButton = null;
+	private static boolean showACLinks = false;
 
 	public AC_MenuBase()
 	{
@@ -198,24 +200,34 @@ public class AC_MenuBase extends MenuBase
 		{
 			this.addDemoButtons(i, 24, stringtranslate);
 		}
-		else
+		else if (this.showACLinks == false)
 		{
 			this.addSingleplayerMultiplayerButtons(i, 24, stringtranslate);
 		}
 
-		fmlModButton = new GuiButton(6, 30, i + 48 - 45, "Mods");
-		this.buttonList.add(fmlModButton);
+		if (this.showACLinks == false)
+		{
+			fmlModButton = new GuiButton(6, 30, i + 48 - 45, "Mods");
+			this.buttonList.add(fmlModButton);
 
-		this.func_96137_a(stringtranslate, i, 24);
+			this.func_96137_a(stringtranslate, i, 24);
+		}
 
-		if (this.mc.hideQuitButton)
+		if (this.mc.hideQuitButton && this.showACLinks == false)
 		{
 			this.buttonList.add(new GuiButton(0, 30, i + 27, stringtranslate.translateKey("menu.options")));
 		}
-		else
+		else if (this.showACLinks == false)
 		{
-			this.buttonList.add(new GuiButton(0, 30, i + 27 + 12, 200, 20, stringtranslate.translateKey("menu.options")));
-			this.buttonList.add(new GuiButton(4, 30, i + 27 + 35, 200, 20, stringtranslate.translateKey("menu.quit")));
+			this.buttonList.add(new GuiButton(7, 30, i + 27, stringtranslate.translateKey("Arcticraft Links")));
+			this.buttonList.add(new GuiButton(0, 30, i + 27 + 35, 200, 20, stringtranslate.translateKey("menu.options")));
+			this.buttonList.add(new GuiButton(4, 30, i + 27 + 60, 200, 20, stringtranslate.translateKey("menu.quit")));
+		}
+		if (this.showACLinks == true)
+		{
+			this.buttonList.add(new GuiButton(8, 30, i - 45 + 20 * 1, stringtranslate.translateKey("Arcticraft's YouTube")));
+			this.buttonList.add(new GuiButton(9, 30, i - 45 + 45 * 1, stringtranslate.translateKey("Arcticraft's Topic")));
+			this.buttonList.add(new GuiButton(10, 30, i - 45 + 70 * 1, stringtranslate.translateKey("Back To Main Menu")));
 		}
 
 		this.buttonList.add(new GuiButtonLanguage(5, width - 48, 4));
@@ -240,7 +252,6 @@ public class AC_MenuBase extends MenuBase
 		this.field_92020_v = this.field_92022_t + j;
 		this.field_92019_w = this.field_92021_u + 24;
 	}
-
 	private void func_96137_a(StringTranslate par1StringTranslate, int par2, int par3)
 	{
 		if (this.field_96141_q)
@@ -259,24 +270,30 @@ public class AC_MenuBase extends MenuBase
 
 	private void func_98060_b(StringTranslate par1StringTranslate, int par2, int par3)
 	{
-		//If Minecraft Realms is enabled, halve the size of both buttons and set them next to eachother.
-		//fmlModButton.width = 98;
-		fmlModButton.xPosition = this.width / 2 + 2;
 
-		GuiButton realmButton = new GuiButton(3, 30, par2 - 45 + par3 * 2, par1StringTranslate.translateKey("menu.online"));
-		//realmButton.width = 98;
-		realmButton.xPosition = this.width / 2 - 100;
-		this.buttonList.add(realmButton);
+		if (this.showACLinks == false)
+		{
+			//If Minecraft Realms is enabled, halve the size of both buttons and set them next to eachother.
+			//fmlModButton.width = 98;
+			fmlModButton.xPosition = this.width / 2 + 2;
+
+			GuiButton realmButton = new GuiButton(3, 30, par2 - 45 + par3 * 2, par1StringTranslate.translateKey("menu.online"));
+			//realmButton.width = 98;
+			realmButton.xPosition = this.width / 2 - 100;
+			this.buttonList.add(realmButton);
+		}
 	}
-
 	/**
 	 * Adds Singleplayer and Multiplayer buttons on Main Menu for players who
 	 * have bought the game.
 	 */
 	private void addSingleplayerMultiplayerButtons(int par1, int par2, StringTranslate par3StringTranslate)
 	{
-		this.buttonList.add(new GuiButton(1, 30, par1 - 45, par3StringTranslate.translateKey("menu.singleplayer")));
-		this.buttonList.add(new GuiButton(2, 30, par1 - 45 + par2 * 1, par3StringTranslate.translateKey("menu.multiplayer")));
+		if (this.showACLinks == false)
+		{
+			this.buttonList.add(new GuiButton(1, 30, par1 - 45, par3StringTranslate.translateKey("menu.singleplayer")));
+			this.buttonList.add(new GuiButton(2, 30, par1 - 45 + par2 * 1, par3StringTranslate.translateKey("menu.multiplayer")));
+		}
 	}
 
 	/**
@@ -284,17 +301,22 @@ public class AC_MenuBase extends MenuBase
 	 */
 	private void addDemoButtons(int par1, int par2, StringTranslate par3StringTranslate)
 	{
-		this.buttonList.add(new GuiButton(11, 30, par1, par3StringTranslate.translateKey("menu.playdemo")));
-		this.buttonList.add(this.buttonResetDemo = new GuiButton(12, 30, par1 - 45 + par2 * 1, par3StringTranslate.translateKey("menu.resetdemo")));
-		ISaveFormat isaveformat = this.mc.getSaveLoader();
-		WorldInfo worldinfo = isaveformat.getWorldInfo("Demo_World");
-
-		if (worldinfo == null)
+		if (this.showACLinks == false)
 		{
-			this.buttonResetDemo.enabled = false;
+			this.buttonList.add(new GuiButton(11, 30, par1, par3StringTranslate.translateKey("menu.playdemo")));
+			this.buttonList.add(this.buttonResetDemo = new GuiButton(12, 30, par1 - 45 + par2 * 1, par3StringTranslate.translateKey("menu.resetdemo")));
+			ISaveFormat isaveformat = this.mc.getSaveLoader();
+			WorldInfo worldinfo = isaveformat.getWorldInfo("Demo_World");
+
+			if (worldinfo == null)
+			{
+				this.buttonResetDemo.enabled = false;
+			}
 		}
 	}
 
+	
+	
 	/**
 	 * Fired when a control is clicked. This is the equivalent of
 	 * ActionListener.actionPerformed(ActionEvent e).
@@ -336,6 +358,41 @@ public class AC_MenuBase extends MenuBase
 			this.mc.displayGuiScreen(new GuiModList(this));
 		}
 
+		if (par1GuiButton.id == 7)
+		{
+			this.initGui();
+			showACLinks = true;
+			mc.currentScreen.updateScreen();
+			System.out.println("Arcticraftlinks button, boolean: " + showACLinks);
+		}
+		if (par1GuiButton.id == 8)
+		{
+			try
+			{
+				Desktop.getDesktop().browse(URI.create("http://youtube.com/user/ArcticraftDEV"));
+			}
+			catch (Exception e)
+			{
+				System.err.println("Failed to load arcticraftdev youtubes");
+			}
+		}
+		if (par1GuiButton.id == 9)
+		{
+			try
+			{
+				Desktop.getDesktop().browse(URI.create("http://minecraftforum.net/topic/1292251-arcticraft-an-icy-new-dimension-reboot/"));
+			}
+			catch (Exception e)
+			{
+				System.err.println("Failed to load arcticraft topic");
+			}
+
+		}
+		if (par1GuiButton.id == 10)
+		{
+			this.showACLinks = false;
+			this.mc.displayGuiScreen(new AC_MenuBase());
+		}
 		if (par1GuiButton.id == 11)
 		{
 			this.mc.launchIntegratedServer("Demo_World", "Demo_World", DemoWorldServer.demoWorldSettings);
@@ -353,7 +410,6 @@ public class AC_MenuBase extends MenuBase
 			}
 		}
 	}
-
 	public void confirmClicked(boolean par1, int par2)
 	{
 		if (par1 && par2 == 12)
@@ -591,10 +647,10 @@ public class AC_MenuBase extends MenuBase
 		float f1 = 1.4F - MathHelper.abs(MathHelper.sin((float) (Minecraft.getSystemTime() % 1000L) / 1000.0F * (float) Math.PI * 2.0F) * 0.1F); //makes it bounce
 		f1 = f1 * 100.0F / (float) (this.fontRenderer.getStringWidth(this.splashText) + 40); //size of the font
 		GL11.glScalef(f1, f1, f1);
-		this.drawCenteredString(this.fontRenderer, this.splashText, 50 ,-5, 0x3BA2BC);//diagonal position
+		this.drawCenteredString(this.fontRenderer, this.splashText, 50, -5, 0x3BA2BC);//diagonal position
 		GL11.glPopMatrix();
 		String s = "Minecraft 1.5.1";
-		
+
 		if (this.mc.isDemo())
 		{
 			s = s + " Demo";
@@ -614,7 +670,7 @@ public class AC_MenuBase extends MenuBase
 		String s2 = "Arcticraft 1.0";
 		this.drawString(this.fontRenderer, s1, 2, this.height - 10, 16777215);
 		this.drawString(this.fontRenderer, s2, 2, this.height - 20, 0x3BA2BC);
-		
+
 		if (this.field_92025_p != null && this.field_92025_p.length() > 0)
 		{
 			drawRect(this.field_92022_t - 2, this.field_92021_u - 2, this.field_92020_v + 2, this.field_92019_w - 1, 1428160512);
