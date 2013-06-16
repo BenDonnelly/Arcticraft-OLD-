@@ -11,6 +11,9 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 
 import org.lwjgl.opengl.GL11;
 
@@ -37,7 +40,7 @@ public class AC_TickHandler implements ITickHandler
 	{
 		this.mc = Minecraft.getMinecraft();
 		this.maxValue = 100;
-		this.value = 100;
+		this.value = 0;
 	}
 
 	//Util Methods
@@ -57,6 +60,15 @@ public class AC_TickHandler implements ITickHandler
 		return new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
 	}
 
+	public void killPlayer(EntityPlayer entityPlayer)
+	{
+		if (entityPlayer != null && this.value == 0)
+		{
+			System.out.println("Attempting to kill the player");
+			entityPlayer.attackEntityFrom(DamageSource.generic, 5);
+		}
+	}
+
 	@Override
 	public void tickStart(EnumSet <TickType> type, Object... tickData)
 	{
@@ -64,7 +76,7 @@ public class AC_TickHandler implements ITickHandler
 		if (mc.thePlayer != null)
 		{
 
-			if (type.equals(EnumSet.of(TickType.RENDER)))
+			if (type.equals(EnumSet.of(TickType.PLAYER)))
 			{
 
 				AC_ItemLantern.fuelCounter(mc.thePlayer, mc.thePlayer.getCurrentItemOrArmor(0));
@@ -75,6 +87,7 @@ public class AC_TickHandler implements ITickHandler
 				canDecrementTemp();
 				canIncrementTemp();
 				slowPlayer();
+				killPlayer((EntityPlayer) tickData [0]);
 
 			}
 		}
@@ -95,7 +108,7 @@ public class AC_TickHandler implements ITickHandler
 	@Override
 	public EnumSet <TickType> ticks()
 	{
-		return EnumSet.of(TickType.RENDER);
+		return EnumSet.of(TickType.RENDER, TickType.PLAYER);
 
 	}
 
@@ -229,7 +242,7 @@ public class AC_TickHandler implements ITickHandler
 
 		ItemStack boots = mc.thePlayer.getCurrentItemOrArmor(1);
 
-		if ( mc.thePlayer.getCurrentItemOrArmor(1) != null && boots.getItem() == MainRegistry.hikingBoots )
+		if (mc.thePlayer.getCurrentItemOrArmor(1) != null && boots.getItem() == MainRegistry.hikingBoots)
 		{
 			AC_BlockThickSnow.shouldSlowPlayer = false;
 		}
