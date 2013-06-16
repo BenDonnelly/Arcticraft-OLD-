@@ -547,7 +547,7 @@ public class AC_MenuBase extends MenuBase
 
 		scalingLol += scalingLol * 0.001F;
 
-		if (scalingLol > 1) scalingLol = 1.0F;
+		if (scalingLol > 1) scalingLol = 1.3F;
 
 		GL11.glScalef(scalingLol, scalingLol, scalingLol);
 		this.drawTexturedModalRect(25, b0 - 10, 0, 0, 155, 44);
@@ -591,7 +591,7 @@ public class AC_MenuBase extends MenuBase
 		float f1 = 1.4F - MathHelper.abs(MathHelper.sin((float) (Minecraft.getSystemTime() % 1000L) / 1000.0F * (float) Math.PI * 2.0F) * 0.1F);
 		f1 = f1 * 100.0F / (float) (this.fontRenderer.getStringWidth(this.splashText) + 32);
 		GL11.glScalef(f1, f1, f1);
-		this.drawCenteredString(this.fontRenderer, this.splashText, 0, -8, 16776960);
+		this.drawCenteredString(this.fontRenderer, this.splashText, 50 ,-5, 16776960);
 		GL11.glPopMatrix();
 		String s = "Minecraft 1.5.1";
 

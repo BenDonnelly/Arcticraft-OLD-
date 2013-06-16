@@ -40,7 +40,7 @@ public class AC_TickHandler implements ITickHandler
 	{
 		this.mc = Minecraft.getMinecraft();
 		this.maxValue = 100;
-		this.value = 0;
+		this.value = 100;
 	}
 
 	//Util Methods
@@ -255,7 +255,7 @@ public class AC_TickHandler implements ITickHandler
 	public void renderFreezeEffect(int par1, int par2)
 	{
 
-		if (mc.thePlayer != null && mc.theWorld != null && mc.currentScreen == null && mc.thePlayer.dimension == MainRegistry.dimension && this.value <= 35 && this.renderOverlay == true)
+		if (mc.thePlayer != null && mc.theWorld != null && mc.currentScreen == null && mc.thePlayer.dimension == MainRegistry.dimension && this.value <= 20 && this.renderOverlay == true)
 		{
 
 			GL11.glDisable(2929);

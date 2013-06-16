@@ -7,11 +7,11 @@ chests in ships and other strucutres get changed to ac chests
 frost ghost
 kill player at 0 temp
 bomb and ice shards fireable through dispenser
-Fix AC Logo
 Custom menu buttons
-Fix splash text up(maybe custom text)
 Custom Background music
 Depending on biome change blocks that spawn under tent
+add a new menu button "AC LINKS" will provide links to our youtube and topic 
+
 
 
 THINGS DONE OVERNIGHT:
