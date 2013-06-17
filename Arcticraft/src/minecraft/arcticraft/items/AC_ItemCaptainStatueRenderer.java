@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import arcticraft.models.AC_ModelPlainStatue;
+import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
 import arcticraft.tile_entities.AC_TileEntityStatue;
 
 public class AC_ItemCaptainStatueRenderer implements IItemRenderer
@@ -35,7 +36,7 @@ public class AC_ItemCaptainStatueRenderer implements IItemRenderer
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
-		TileEntityRenderer.instance.renderTileEntityAt(new AC_TileEntityStatue(), 0.0D, 0.0D, 0.0D, 0.0F);
+		TileEntityRenderer.instance.renderTileEntityAt(new AC_TileEntityCaptainStatue(), 0.0D, 0.0D, 0.0D, 0.0F);
 
 	}
 }

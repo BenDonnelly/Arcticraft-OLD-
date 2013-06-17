@@ -97,9 +97,9 @@ public class AC_GuiCoordinates extends GuiScreen
 		ScaledResolution scaledresolution = getScaledResolution();
 
 		drawDefaultBackground();
-		this.drawCenteredString(mc.fontRenderer, "X: " + i + ", Y: " + j, scaledresolution.getScaledWidth() / 2, 0, 0x00ff00);
-		this.drawCenteredString(mc.fontRenderer, "X: " + i + ", Y: " + j, scaledresolution.getScaledWidth() / 2, 0, 0xff0000);
-		this.drawCenteredString(mc.fontRenderer, "X: " + width + ", Y: " + height, scaledresolution.getScaledWidth() / 2, 10, 0x00ffff);
+		this.drawCenteredString(mc.fontRenderer, "X: " + i + ", Y: " + j, scaledresolution.getScaledWidth() / 2, 0, 0xffffff);
+		this.drawCenteredString(mc.fontRenderer, "X: " + i + ", Y: " + j, scaledresolution.getScaledWidth() / 2, 0, 0xffffff);
+//		this.drawCenteredString(mc.fontRenderer, "X: " + width + ", Y: " + height, scaledresolution.getScaledWidth() / 2, 10, 0x00ffff);
 		int k = width / 2 - 100;
 		int l = height / 2 - 40;
 

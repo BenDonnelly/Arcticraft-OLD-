@@ -202,7 +202,8 @@ public class AC_GuiLinks extends GuiScreen
 
 		this.buttonList.add(new AC_GuiMMButtons(8, 30, i - 45 + 20 * 1, stringtranslate.translateKey("Arcticraft's YouTube")));
 		this.buttonList.add(new AC_GuiMMButtons(9, 30, i - 45 + 45 * 1, stringtranslate.translateKey("Arcticraft's Topic")));
-		this.buttonList.add(new AC_GuiMMButtons(10, 30, i - 45 + 70 * 1, stringtranslate.translateKey("Back To Main Menu"))); 
+		this.buttonList.add(new AC_GuiMMButtons(11, 30, i - 45 + 70 * 1, stringtranslate.translateKey("Tom's Modding Tutorials")));
+		this.buttonList.add(new AC_GuiMMButtons(10, 30, i - 45 + 95 * 1, stringtranslate.translateKey("Back To Main Menu"))); 
 		
 		this.buttonList.add(new GuiButtonLanguage(5, width - 48, 4));
 		this.field_92025_p = "";
@@ -260,6 +261,18 @@ public class AC_GuiLinks extends GuiScreen
 		if (par1GuiButton.id == 10)
 		{
 			this.mc.displayGuiScreen(new AC_MenuBase());
+		}
+		if (par1GuiButton.id == 11)
+		{
+			try
+			{
+				Desktop.getDesktop().browse(URI.create("http://youtube.com/user/TheGrovesyProject101/videos"));
+			}
+			catch (Exception e)
+			{
+				System.err.println("Failed to load arcticraft topic");
+			}
+
 		}
 
 	}
