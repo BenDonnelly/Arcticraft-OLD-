@@ -75,7 +75,7 @@ public class AC_GuiMMButtons extends GuiButton
 
 		if (!enabled)
 		{
-			drawString(fontrenderer, displayString, xPosition + width / 10 / 5 - 5 + scrollHeight - 80, yPosition + (height - 8) / 2, -6250336);
+			drawString(fontrenderer, displayString, xPosition + width / 10 / 5 - 5 + scrollHeight - 80, yPosition + (height - 8) / 2, 0xBAAEFF);
 		}
 		else if (flag)
 		{
@@ -83,7 +83,7 @@ public class AC_GuiMMButtons extends GuiButton
 		}
 		else
 		{
-			drawString(fontrenderer, displayString, xPosition + width / 10 / 5 - 5 + scrollHeight - 80, yPosition + (height - 8) / 2, 14737632);
+			drawString(fontrenderer, displayString, xPosition + width / 10 / 5 - 5 + scrollHeight - 80, yPosition + (height - 8) / 2, 0xBAAEFF);
 		}
 	}
 
