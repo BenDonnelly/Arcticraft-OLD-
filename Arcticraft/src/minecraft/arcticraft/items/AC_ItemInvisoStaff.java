@@ -14,6 +14,7 @@ public class AC_ItemInvisoStaff extends Item {
 	public AC_ItemInvisoStaff(int par1)
 	{
 		super(par1);
+		this.setMaxDamage(16);
 	}
 	
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
@@ -26,6 +27,7 @@ public class AC_ItemInvisoStaff extends Item {
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
+    	par2World.playSoundAtEntity(par3EntityPlayer, "mob.endermen.portal", 1.0F, 1.0F);
     	par3EntityPlayer.addPotionEffect(new PotionEffect(14, 1800, 0));
         return par1ItemStack;
     }
