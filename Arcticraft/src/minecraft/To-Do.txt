@@ -8,5 +8,8 @@ frost ghost
 kill player at 0 temp
 bomb and ice shards fireable through dispenser
 Custom Background music
-
-
+final boss dimension(frozen wasteland)
+final boss model(King)
+objectives to get to said boss
+quest system
+quest table with gui that looks good as shit
