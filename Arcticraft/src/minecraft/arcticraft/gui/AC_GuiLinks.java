@@ -1,4 +1,4 @@
-package arcticraft.main;
+package arcticraft.gui;
 
 import java.awt.Desktop;
 import java.awt.image.BufferedImage;
@@ -21,6 +21,7 @@ import net.minecraft.client.gui.GuiConfirmOpenLink;
 import net.minecraft.client.gui.GuiLanguage;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiOptions;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiScreenOnlineServers;
 import net.minecraft.client.gui.GuiSelectWorld;
 import net.minecraft.client.gui.GuiYesNo;
@@ -36,7 +37,7 @@ import net.minecraft.world.storage.WorldInfo;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
-import arcticraft.gui.AC_GuiLinks;
+import arcticraft.main.AC_MenuBase;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -49,7 +50,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 //import net.minecraft.client.gui.ThreadTitleScreen;
 
 @SideOnly(Side.CLIENT)
-public class AC_MenuBase extends MenuBase
+public class AC_GuiLinks extends GuiScreen
 {
 
 	/** The RNG used by the Main Menu Screen. */
@@ -89,16 +90,15 @@ public class AC_MenuBase extends MenuBase
 	private int field_92019_w;
 
 	private GuiButton fmlModButton = null;
-	private static boolean showACLinks = false;
 
-	public AC_MenuBase()
+	public AC_GuiLinks()
 	{
 		BufferedReader bufferedreader = null;
 
 		try
 		{
 			ArrayList arraylist = new ArrayList();
-			bufferedreader = new BufferedReader(new InputStreamReader(AC_MenuBase.class.getResourceAsStream("/title/splashes.txt"), Charset.forName("UTF-8")));
+			bufferedreader = new BufferedReader(new InputStreamReader(AC_GuiLinks.class.getResourceAsStream("/title/splashes.txt"), Charset.forName("UTF-8")));
 			String s;
 
 			while ((s = bufferedreader.readLine()) != null)
@@ -200,31 +200,9 @@ public class AC_MenuBase extends MenuBase
 		StringTranslate stringtranslate = StringTranslate.getInstance();
 		int i = this.height / 4 + 68;
 
-		if (this.showACLinks == false)
-		{
-			this.addSingleplayerMultiplayerButtons(i, 24, stringtranslate);
-		}
-
-		if (this.showACLinks == false )
-		{
-			fmlModButton = new GuiButton(6, 30, i + 48 - 45, "Mods");
-			this.buttonList.add(fmlModButton);
-
-			this.func_96137_a(stringtranslate, i, 24);
-		}
-
-		if (this.showACLinks == false)
-		{
-			this.buttonList.add(new GuiButton(7, 30, i + 27, stringtranslate.translateKey("Arcticraft Links")));
-			this.buttonList.add(new GuiButton(0, 30, i + 27 + 35, 200, 20, stringtranslate.translateKey("menu.options")));
-			this.buttonList.add(new GuiButton(4, 30, i + 27 + 60, 200, 20, stringtranslate.translateKey("menu.quit")));
-		}
-		if (this.showACLinks == true)
-		{
-//			this.buttonList.add(new GuiButton(8, 30, i - 45 + 20 * 1, stringtranslate.translateKey("Arcticraft's YouTube")));
-//			this.buttonList.add(new GuiButton(9, 30, i - 45 + 45 * 1, stringtranslate.translateKey("Arcticraft's Topic")));
-//			this.buttonList.add(new GuiButton(10, 30, i - 45 + 70 * 1, stringtranslate.translateKey("Back To Main Menu")));
-		}
+		this.buttonList.add(new GuiButton(8, 30, i - 45 + 20 * 1, stringtranslate.translateKey("Arcticraft's YouTube")));
+		this.buttonList.add(new GuiButton(9, 30, i - 45 + 45 * 1, stringtranslate.translateKey("Arcticraft's Topic")));
+		this.buttonList.add(new GuiButton(10, 30, i - 45 + 70 * 1, stringtranslate.translateKey("Back To Main Menu")));
 
 		this.buttonList.add(new GuiButtonLanguage(5, width - 48, 4));
 		this.field_92025_p = "";
@@ -248,49 +226,6 @@ public class AC_MenuBase extends MenuBase
 		this.field_92020_v = this.field_92022_t + j;
 		this.field_92019_w = this.field_92021_u + 24;
 	}
-	private void func_96137_a(StringTranslate par1StringTranslate, int par2, int par3)
-	{
-		if (this.field_96141_q)
-		{
-			if (!field_96140_r)
-			{
-				field_96140_r = true;
-				//(new ThreadTitleScreen(this, par1StringTranslate, par2, par3)).start();
-			}
-			else if (field_96139_s)
-			{
-				this.func_98060_b(par1StringTranslate, par2, par3);
-			}
-		}
-	}
-
-	private void func_98060_b(StringTranslate par1StringTranslate, int par2, int par3)
-	{
-
-		if (this.showACLinks == false)
-		{
-			//If Minecraft Realms is enabled, halve the size of both buttons and set them next to eachother.
-			//fmlModButton.width = 98;
-			fmlModButton.xPosition = this.width / 2 + 2;
-
-			GuiButton realmButton = new GuiButton(3, 30, par2 - 45 + par3 * 2, par1StringTranslate.translateKey("menu.online"));
-			//realmButton.width = 98;
-			realmButton.xPosition = this.width / 2 - 100;
-			this.buttonList.add(realmButton);
-		}
-	}
-	/**
-	 * Adds Singleplayer and Multiplayer buttons on Main Menu for players who
-	 * have bought the game.
-	 */
-	private void addSingleplayerMultiplayerButtons(int par1, int par2, StringTranslate par3StringTranslate)
-	{
-		if (this.showACLinks == false)
-		{
-			this.buttonList.add(new GuiButton(1, 30, par1 - 45, par3StringTranslate.translateKey("menu.singleplayer")));
-			this.buttonList.add(new GuiButton(2, 30, par1 - 45 + par2 * 1, par3StringTranslate.translateKey("menu.multiplayer")));
-		}
-	}
 
 	/**
 	 * Fired when a control is clicked. This is the equivalent of
@@ -298,50 +233,8 @@ public class AC_MenuBase extends MenuBase
 	 */
 	protected void actionPerformed(GuiButton par1GuiButton)
 	{
-		if (par1GuiButton.id == 0)
-		{
-			this.mc.displayGuiScreen(new GuiOptions(this, this.mc.gameSettings));
-		}
 
-		if (par1GuiButton.id == 5)
-		{
-			this.mc.displayGuiScreen(new GuiLanguage(this, this.mc.gameSettings));
-		}
-
-		if (par1GuiButton.id == 1)
-		{
-			this.mc.displayGuiScreen(new GuiSelectWorld(this));
-		}
-
-		if (par1GuiButton.id == 2)
-		{
-			this.mc.displayGuiScreen(new GuiMultiplayer(this));
-		}
-
-		if (par1GuiButton.id == 3)
-		{
-			this.mc.displayGuiScreen(new GuiScreenOnlineServers(this));
-		}
-
-		if (par1GuiButton.id == 4)
-		{
-			this.mc.shutdown();
-		}
-
-		if (par1GuiButton.id == 6)
-		{
-			this.mc.displayGuiScreen(new GuiModList(this));
-		}
-
-		if (par1GuiButton.id == 7)
-		{
-			
-			this.mc.displayGuiScreen(new AC_GuiLinks());
-			/*showACLinks = true;
-			initGui();
-			System.out.println("Arcticraftlinks button, boolean: " + showACLinks);*/
-		}
-		/*if (par1GuiButton.id == 8)
+		if (par1GuiButton.id == 8)
 		{
 			try
 			{
@@ -366,25 +259,9 @@ public class AC_MenuBase extends MenuBase
 		}
 		if (par1GuiButton.id == 10)
 		{
-			this.showACLinks = false;
 			this.mc.displayGuiScreen(new AC_MenuBase());
-		}*/
-		if (par1GuiButton.id == 11)
-		{
-			this.mc.launchIntegratedServer("Demo_World", "Demo_World", DemoWorldServer.demoWorldSettings);
 		}
 
-		if (par1GuiButton.id == 12)
-		{
-			ISaveFormat isaveformat = this.mc.getSaveLoader();
-			WorldInfo worldinfo = isaveformat.getWorldInfo("Demo_World");
-
-			if (worldinfo != null)
-			{
-				GuiYesNo guiyesno = GuiSelectWorld.getDeleteWorldScreen(this, worldinfo.getWorldName(), 12);
-				this.mc.displayGuiScreen(guiyesno);
-			}
-		}
 	}
 	public void confirmClicked(boolean par1, int par2)
 	{
@@ -657,82 +534,4 @@ public class AC_MenuBase extends MenuBase
 		super.drawScreen(par1, par2, par3);
 	}
 
-	/**
-	 * Called when the mouse is clicked.
-	 */
-	protected void mouseClicked(int par1, int par2, int par3)
-	{
-		super.mouseClicked(par1, par2, par3);
-
-		if (this.field_92025_p.length() > 0 && par1 >= this.field_92022_t && par1 <= this.field_92020_v && par2 >= this.field_92021_u && par2 <= this.field_92019_w)
-		{
-			GuiConfirmOpenLink guiconfirmopenlink = new GuiConfirmOpenLink(this, "http://tinyurl.com/javappc", 13);
-			guiconfirmopenlink.func_92026_h();
-			this.mc.displayGuiScreen(guiconfirmopenlink);
-		}
-	}
-
-	static Minecraft func_98058_a(AC_MenuBase par0GuiMainMenu)
-	{
-		return par0GuiMainMenu.mc;
-	}
-
-	static void func_98061_a(AC_MenuBase par0GuiMainMenu, StringTranslate par1StringTranslate, int par2, int par3)
-	{
-		par0GuiMainMenu.func_98060_b(par1StringTranslate, par2, par3);
-	}
-
-	static boolean func_98059_a(boolean par0)
-	{
-		field_96139_s = par0;
-		return par0;
-	}
-
-	public int getListButtonX()
-	{
-		return width - 110;
-	}
-
-	public int getListButtonY()
-	{
-		Minecraft mc = Minecraft.getMinecraft();
-		ScaledResolution scaledresolution = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
-		int width = scaledresolution.getScaledWidth();
-		int height = scaledresolution.getScaledHeight();
-
-		return 4;
-	}
-
-	public int getJukeboxButtonX()
-	{
-		return width - 24;
-	}
-
-	public int getJukeboxButtonY()
-	{
-		return 4;
-	}
-
-	public String getName()
-	{
-		return "Arcticraft!";
-	}
-
-	public String getVersion()
-	{
-		return "Version 1.0!";
-	}
-
-	public String getMusicFileName()
-	{
-		return "AC Menu Music";
-	}
-	public boolean useJukebox()
-	{
-		return true;
-	}
-	public String getIconPath()
-	{
-		return "/mods/AC/textures/title/MenuIcon.png";
-	}
 }
