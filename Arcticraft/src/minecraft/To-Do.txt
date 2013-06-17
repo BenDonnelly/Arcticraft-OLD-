@@ -7,7 +7,6 @@ chests in ships and other strucutres get changed to ac chests
 frost ghost
 kill player at 0 temp
 bomb and ice shards fireable through dispenser
-Custom menu buttons
 Custom Background music
 
 

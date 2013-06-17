@@ -89,7 +89,7 @@ public class AC_GuiLinks extends GuiScreen
 	private int field_92020_v;
 	private int field_92019_w;
 
-	private GuiButton fmlModButton = null;
+	private AC_GuiMMButtons fmlModButton = null;
 
 	public AC_GuiLinks()
 	{
@@ -200,10 +200,10 @@ public class AC_GuiLinks extends GuiScreen
 		StringTranslate stringtranslate = StringTranslate.getInstance();
 		int i = this.height / 4 + 68;
 
-		this.buttonList.add(new GuiButton(8, 30, i - 45 + 20 * 1, stringtranslate.translateKey("Arcticraft's YouTube")));
-		this.buttonList.add(new GuiButton(9, 30, i - 45 + 45 * 1, stringtranslate.translateKey("Arcticraft's Topic")));
-		this.buttonList.add(new GuiButton(10, 30, i - 45 + 70 * 1, stringtranslate.translateKey("Back To Main Menu")));
-
+		this.buttonList.add(new AC_GuiMMButtons(8, 30, i - 45 + 20 * 1, stringtranslate.translateKey("Arcticraft's YouTube")));
+		this.buttonList.add(new AC_GuiMMButtons(9, 30, i - 45 + 45 * 1, stringtranslate.translateKey("Arcticraft's Topic")));
+		this.buttonList.add(new AC_GuiMMButtons(10, 30, i - 45 + 70 * 1, stringtranslate.translateKey("Back To Main Menu"))); 
+		
 		this.buttonList.add(new GuiButtonLanguage(5, width - 48, 4));
 		this.field_92025_p = "";
 		String s = System.getProperty("os_architecture");

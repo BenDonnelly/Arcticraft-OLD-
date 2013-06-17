@@ -37,6 +37,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
 import arcticraft.gui.AC_GuiLinks;
+import arcticraft.gui.AC_GuiMMButtons;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -88,7 +89,7 @@ public class AC_MenuBase extends MenuBase
 	private int field_92020_v;
 	private int field_92019_w;
 
-	private GuiButton fmlModButton = null;
+	private AC_GuiMMButtons fmlModButton = null;
 	private static boolean showACLinks = false;
 
 	public AC_MenuBase()
@@ -207,7 +208,7 @@ public class AC_MenuBase extends MenuBase
 
 		if (this.showACLinks == false )
 		{
-			fmlModButton = new GuiButton(6, 30, i + 48 - 45, "Mods");
+			fmlModButton = new AC_GuiMMButtons(6, 30, i + 48 - 45, "Mods");
 			this.buttonList.add(fmlModButton);
 
 			this.func_96137_a(stringtranslate, i, 24);
@@ -215,9 +216,9 @@ public class AC_MenuBase extends MenuBase
 
 		if (this.showACLinks == false)
 		{
-			this.buttonList.add(new GuiButton(7, 30, i + 27, stringtranslate.translateKey("Arcticraft Links")));
-			this.buttonList.add(new GuiButton(0, 30, i + 27 + 35, 200, 20, stringtranslate.translateKey("menu.options")));
-			this.buttonList.add(new GuiButton(4, 30, i + 27 + 60, 200, 20, stringtranslate.translateKey("menu.quit")));
+			this.buttonList.add(new AC_GuiMMButtons(7, 30, i + 27, stringtranslate.translateKey("Arcticraft Links")));
+			this.buttonList.add(new AC_GuiMMButtons(0, 30, i + 27 + 35, 200, 20, stringtranslate.translateKey("menu.options")));
+			this.buttonList.add(new AC_GuiMMButtons(4, 30, i + 27 + 60, 200, 20, stringtranslate.translateKey("menu.quit")));
 		}
 		if (this.showACLinks == true)
 		{
@@ -273,7 +274,7 @@ public class AC_MenuBase extends MenuBase
 			//fmlModButton.width = 98;
 			fmlModButton.xPosition = this.width / 2 + 2;
 
-			GuiButton realmButton = new GuiButton(3, 30, par2 - 45 + par3 * 2, par1StringTranslate.translateKey("menu.online"));
+			AC_GuiMMButtons realmButton = new AC_GuiMMButtons(3, 30, par2 - 45 + par3 * 2, par1StringTranslate.translateKey("menu.online"));
 			//realmButton.width = 98;
 			realmButton.xPosition = this.width / 2 - 100;
 			this.buttonList.add(realmButton);
@@ -287,8 +288,8 @@ public class AC_MenuBase extends MenuBase
 	{
 		if (this.showACLinks == false)
 		{
-			this.buttonList.add(new GuiButton(1, 30, par1 - 45, par3StringTranslate.translateKey("menu.singleplayer")));
-			this.buttonList.add(new GuiButton(2, 30, par1 - 45 + par2 * 1, par3StringTranslate.translateKey("menu.multiplayer")));
+			this.buttonList.add(new AC_GuiMMButtons(1, 30, par1 - 45, par3StringTranslate.translateKey("menu.singleplayer")));
+			this.buttonList.add(new AC_GuiMMButtons(2, 30, par1 - 45 + par2 * 1, par3StringTranslate.translateKey("menu.multiplayer")));
 		}
 	}
 
