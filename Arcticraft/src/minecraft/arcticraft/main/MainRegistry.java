@@ -24,7 +24,6 @@ import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemPickaxe;
-import net.minecraft.item.ItemSeedFood;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
@@ -39,6 +38,7 @@ import arcticraft.blocks.AC_BlockACFurnace;
 import arcticraft.blocks.AC_BlockACWaterFlowing;
 import arcticraft.blocks.AC_BlockACWaterStill;
 import arcticraft.blocks.AC_BlockArcaneStone;
+import arcticraft.blocks.AC_BlockCaptainStatue;
 import arcticraft.blocks.AC_BlockFloranCrop;
 import arcticraft.blocks.AC_BlockFlower;
 import arcticraft.blocks.AC_BlockFreezer;
@@ -104,13 +104,13 @@ import arcticraft.items.AC_ItemSword;
 import arcticraft.items.AC_ItemTeaDrinks;
 import arcticraft.items.AC_ItemWhiteberry;
 import arcticraft.tile_entities.AC_TileEntityArcticFurnace;
+import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
 import arcticraft.tile_entities.AC_TileEntityFreezer;
+import arcticraft.tile_entities.AC_TileEntityFrostChest;
 import arcticraft.tile_entities.AC_TileEntityLantern;
 import arcticraft.tile_entities.AC_TileEntityStatue;
-import arcticraft.tile_entities.AC_TileEntityFrostChest;
 import arcticraft.world.AC_WorldGenerator;
 import arcticraft.world.AC_WorldProvider;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -129,7 +129,6 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = "AC", name = "Arcticraft", version = "[1.5] V.1.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = { "AC_mod" }, packetHandler = AC_PacketHandler.class)
@@ -329,7 +328,8 @@ public class MainRegistry
 	public static Block tilledFrostField;
 
 	//Blocks with a Techne Model
-	public static Block statue; 
+	public static Block statue;
+	public static Block captainStatue;
 
 	public static HashMap<EntityPlayer, Integer> playerTemps = new HashMap<EntityPlayer, Integer>();
 	
@@ -421,18 +421,18 @@ public class MainRegistry
 		frostWoodSingleSlab = (BlockHalfSlab) (new AC_BlockFrostSlab(1538, false)).setHardness(2.0F).setResistance(5.0F).setCreativeTab(tabBlocks).setUnlocalizedName("frost_wood_single_slab").setStepSound(Block.soundWoodFootstep);
 		frostChest = new AC_FrostChest(1539, 0).setHardness(2.0F).setResistance(3.5F).setUnlocalizedName("AC:frost_chest").setCreativeTab(tabBlocks).setStepSound(Block.soundWoodFootstep);
 		statue = new AC_BlockStatue(1540, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:statue").setStepSound(Block.soundStoneFootstep);
-
 		frostDoorPlace = new AC_FrostDoorPlace(1541, Material.wood).setUnlocalizedName("AC:icedoor").setCreativeTab(tabBlocks); 
 		frostDoor = new AC_FrostDoor(1542, Material.wood).setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("AC:icedoor");
 		tilledFrostField = new AC_BlockTilledFrostField(1543).setUnlocalizedName("frostfarmland").setStepSound(Block.soundGravelFootstep);
 		/* The berry has to be initialized before the plant to avoid NPE so thats why theres an item in the blocks section*/
 		floranBerry = new ItemFood(6273, 6, false).setCreativeTab(tabFood).setUnlocalizedName("AC:floran_berry");
 		floranPlant = new AC_BlockFloranCrop(1544, Material.plants, this.tilledFrostField.blockID, this.floranBerry.itemID).setUnlocalizedName("floranPlant").setStepSound(Block.soundGravelFootstep);
-
 		/* The berry has to be initialized before the plant to avoid NPE so thats why theres an item in the blocks section*/
 		whiteberry = new AC_ItemWhiteberry(6272,  2, 0.6F, 1545, 1545).setCreativeTab(tabMisc).setUnlocalizedName("AC:Whiteberry");
 		whiteberryBush = new AC_BlockWhiteberry(1545, Material.plants, this.tilledFrostField.blockID, this.whiteberry.itemID).setUnlocalizedName("whiteberry_bush").setStepSound(Block.soundGravelFootstep);
 
+		captainStatue = new AC_BlockCaptainStatue(1546, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:captain_statue").setStepSound(Block.soundStoneFootstep);
+		
 		//Items
 		bucketIcyWater = new AC_ItemBucket(6200, acWaterFlowing.blockID).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyWater");
 		bucketEmpty = new AC_ItemBucket(6201, 0).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyEmpty");
@@ -520,7 +520,6 @@ public class MainRegistry
 		pirateSword = new AC_ItemCaptainSword(6271, EnumToolMaterial.EMERALD).setCreativeTab(tabTools).setUnlocalizedName("AC:pirateSword");
 		boarMeat = new ItemFood(6274, 4, true).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat");
 		uncookedBoarMeat = new ItemFood(6275, 10, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat_cooked");
-
 		hikingBoots = new AC_ItemArmour(6276, hikingAmrour, proxy.addArmor("Hiking"), 3).setCreativeTab(tabCombat).setUnlocalizedName("Hiking Boots");
 
 		AC_Recipes.initializeRecipes();
@@ -574,6 +573,7 @@ public class MainRegistry
 		GameRegistry.registerBlock(floranPlant, "Floran_Plant");
 		GameRegistry.registerBlock(tilledFrostField, "Tilled_Frost_Field");
 		GameRegistry.registerBlock(whiteberryBush, "Whiteberry_Bush");
+		GameRegistry.registerBlock(captainStatue, "Captain_Statue");
 
 		//furnace
 		GameRegistry.registerBlock(arcticFurnaceIdle, "AC_Furnace_Idle");
@@ -589,12 +589,13 @@ public class MainRegistry
 		//Frost Chest
 		GameRegistry.registerBlock(frostChest, "AC_FrostChest");
 		GameRegistry.registerTileEntity(AC_TileEntityFrostChest.class, "tileEntityFrostChest");
-
-		//lantern, feel free to move if needed
+		
 		GameRegistry.registerTileEntity(AC_TileEntityLantern.class, "tileEntityLantern");
 
+		//Statues
 		GameRegistry.registerTileEntity(AC_TileEntityStatue.class, "tileEntityStatue");
-
+		GameRegistry.registerTileEntity(AC_TileEntityCaptainStatue.class, "tileEntityCaptainStatue");
+		
 		LanguageRegistry.addName(pirateSword, "Pirate Sword");
 		LanguageRegistry.addName(pirateHat, "Pirate Hat");
 		LanguageRegistry.addName(frostDoorPlace, "Frost Door");
@@ -657,6 +658,7 @@ public class MainRegistry
 		LanguageRegistry.addName(uncookedBoarMeat, "Uncooked Boar Meat");
 		LanguageRegistry.addName(boarMeat, "Cooked Boar Meat");
 		LanguageRegistry.addName(hikingBoots, "Hiking Boots");
+		LanguageRegistry.addName(captainStatue, "Captain Statue");
 
 		LanguageRegistry.addName(frostSticks, "Frost Sticks");
 		LanguageRegistry.addName(frostStairs, "Frost Stairs");

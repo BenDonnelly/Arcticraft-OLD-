@@ -1,6 +1,5 @@
 package arcticraft.main;
 
-import net.aetherteam.mainmenu_api.MainMenuAPI;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelPig;
 import net.minecraft.client.renderer.entity.RenderBiped;
@@ -16,6 +15,7 @@ import arcticraft.entities.AC_EntityMage;
 import arcticraft.entities.AC_EntityPenguin;
 import arcticraft.entities.AC_EntityPirate;
 import arcticraft.entities.AC_EntityPolarBear;
+import arcticraft.items.AC_ItemCaptainStatueRenderer;
 import arcticraft.items.AC_ItemStatueRenderer;
 import arcticraft.models.AC_ModelHusky;
 import arcticraft.models.AC_ModelMage;
@@ -32,9 +32,11 @@ import arcticraft.renderers.AC_RenderMage;
 import arcticraft.renderers.AC_RenderPenguin;
 import arcticraft.renderers.AC_RenderPolarBear;
 import arcticraft.renderers.TileEntityFrostChestRender;
+import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
+import arcticraft.tile_entities.AC_TileEntityCaptainStatueRenderer;
+import arcticraft.tile_entities.AC_TileEntityFrostChest;
 import arcticraft.tile_entities.AC_TileEntityStatue;
 import arcticraft.tile_entities.AC_TileEntityStatueRenderer;
-import arcticraft.tile_entities.AC_TileEntityFrostChest;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -74,6 +76,9 @@ public class AC_ClientProxy extends AC_CommonProxy
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityStatue.class, new AC_TileEntityStatueRenderer());
 		MinecraftForgeClient.registerItemRenderer(MainRegistry.statue.blockID, new AC_ItemStatueRenderer());
+		
+		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCaptainStatue.class, new AC_TileEntityCaptainStatueRenderer());
+		MinecraftForgeClient.registerItemRenderer(MainRegistry.captainStatue.blockID, new AC_ItemCaptainStatueRenderer());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityFrostChest.class, new TileEntityFrostChestRender());
 		MinecraftForgeClient.registerItemRenderer(MainRegistry.frostChest.blockID, new AC_FrostChestItemRenderHelper());

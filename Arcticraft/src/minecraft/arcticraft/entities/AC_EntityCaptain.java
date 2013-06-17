@@ -133,6 +133,7 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
     protected void dropFewItems(boolean par1, int par2)
     {
         this.dropItem(MainRegistry.pirateSword.itemID, 1);
+        this.dropItem(MainRegistry.captainStatue.blockID, 1);
     }
 
 	/**
