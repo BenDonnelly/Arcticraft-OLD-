@@ -3,6 +3,7 @@ package arcticraft.biomes;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import arcticraft.entities.AC_EntityBoar;
+import arcticraft.entities.AC_EntityFrostGhost;
 import arcticraft.entities.AC_EntityFrostZombie;
 import arcticraft.entities.AC_EntityHusky;
 import arcticraft.entities.AC_EntityIceCreeper;
@@ -34,6 +35,7 @@ public class AC_BiomeGenBaseArcticraft extends BiomeGenBase
         this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityIceCreeper.class, 5, 2, 2));
 		this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityFrostZombie.class, 5, 2, 2));
 		this.spawnableCreatureList.add(new SpawnListEntry(AC_EntityPenguin.class, 12, 4, 4));
+		this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityFrostGhost.class, 14, 3, 8));
 		this.genFrostTrees = new AC_GenFrostTrees(false);
 		this.genGlacierTrees = new AC_GenGlacierTrees(false);
     }

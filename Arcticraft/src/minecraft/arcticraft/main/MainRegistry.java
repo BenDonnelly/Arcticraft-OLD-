@@ -77,6 +77,7 @@ import arcticraft.creative_tabs.AC_TabTools;
 import arcticraft.entities.AC_EntityBoar;
 import arcticraft.entities.AC_EntityBomb;
 import arcticraft.entities.AC_EntityCaptain;
+import arcticraft.entities.AC_EntityFrostGhost;
 import arcticraft.entities.AC_EntityFrostZombie;
 import arcticraft.entities.AC_EntityHusky;
 import arcticraft.entities.AC_EntityIceCreeper;
@@ -737,6 +738,10 @@ public class MainRegistry
 		int purpleBlueishColor = 0x6419F0;
 		int redishPinkishColour = 0xEB0E58;
 
+		EntityRegistry.registerGlobalEntityID(AC_EntityFrostGhost.class, "FrostGhost", EntityRegistry.findGlobalUniqueEntityId());
+		LanguageRegistry.instance().addStringLocalization("entity.FrostGhost.name", "FrostGhost");
+		registerEntityEgg(AC_EntityFrostGhost.class, lightGrayColor, grayColor);
+		
 		EntityRegistry.registerGlobalEntityID(AC_EntityMage.class, "Mage", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Mage.name", "The Ancient Ice Mage");
 		registerEntityEgg(AC_EntityMage.class, kindaBlueColor, purpleBlueishColor);
@@ -777,6 +782,8 @@ public class MainRegistry
 		EntityRegistry.registerGlobalEntityID(AC_EntityHusky.class, "Husky", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Husky.name", "Husky");
 		registerEntityEgg(AC_EntityHusky.class, lightGrayColor, grayColor);
+		
+		
 
 		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 342, this, 64, 10, true);
 

@@ -4,7 +4,7 @@ Put tasks below:
 
 make ac blocks not breakable with mc tools(at least some of them)
 chests in ships and other strucutres get changed to ac chests
-frost ghost
+frost ghost(tom)
 kill player at 0 temp
 bomb and ice shards fireable through dispenser
 Custom Background music
