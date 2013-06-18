@@ -9,7 +9,7 @@ public class AC_GenLayerBiomes extends GenLayer
 {
 
 	protected BiomeGenBase [] allowedBiomes =
-		{AC_BiomeGenBaseArcticraft.FrostMountains, AC_BiomeGenBaseArcticraft.frostForest, AC_BiomeGenBaseArcticraft.glacier};
+		{AC_BiomeGenBaseArcticraft.FrostMountains, AC_BiomeGenBaseArcticraft.frostForest, AC_BiomeGenBaseArcticraft.glacier, AC_BiomeGenBaseArcticraft.snowPlains};
 
 	public AC_GenLayerBiomes(long seed, GenLayer genlayer)
 	{

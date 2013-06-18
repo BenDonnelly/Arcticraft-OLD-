@@ -33,11 +33,10 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
-import arcticraft.biomes.AC_BiomeFrostForest;
-import arcticraft.biomes.AC_BiomeFrostMountains;
+import arcticraft.biomes.AC_BiomeSnowPlains;
 import arcticraft.gen.AC_GenArcaneStone1;
 import arcticraft.gen.AC_GenArcaneStone2;
-import arcticraft.gen.AC_GenIceCastle;
+import arcticraft.gen.AC_GenEskimoVillage;
 import arcticraft.gen.AC_GenIceberg;
 import arcticraft.gen.AC_GenShip;
 import arcticraft.main.MainRegistry;
@@ -550,38 +549,34 @@ public class AC_ChunkProvider implements IChunkProvider
 		int var9;
 		int var10;
 
-		
+		for (int x = 0; x < 1; x++)
 		{
 
-			for (int x = 0; x <1; x++)
-			{
-				int e = i + rand.nextInt(16);
-				int r = rand.nextInt(128);
-				int b = j + rand.nextInt(16);
-				(new AC_GenShip()).generate(worldObj, rand, e, r, b);
-			}
+			int e = i + rand.nextInt(16);
+			int r = rand.nextInt(128);
+			int b = j + rand.nextInt(16);
+			(new AC_GenShip()).generate(worldObj, rand, e, r, b);
 		}
-
+//		
+//			for (var7 = 0; var7 < 50; ++var7)
+//			{
+//				System.out.println("Generating Eskimo village");
+//				int e = i + rand.nextInt(16);
+//				int r = rand.nextInt(128);
+//				int b = j + rand.nextInt(16);
+//
+//				(new AC_GenEskimoVillage()).generate(this.worldObj, this.rand, e, r, b);
+//			}
+		
 		{
 
 			for (int x = 0; x < 2; x++)
 			{
+
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
 				int b = j + rand.nextInt(16);
 				(new AC_GenIceberg()).generate(worldObj, rand, e, r, b);
-			}
-		}
-
-		{
-
-			for (var7 = 0; var7 < 1; ++var7)
-			{
-				int e = i + rand.nextInt(16);
-				int r = rand.nextInt(128);
-				int b = j + rand.nextInt(16);
-
-				(new AC_GenIceCastle()).generate(this.worldObj, this.rand, e, r, b);
 			}
 		}
 
@@ -671,15 +666,15 @@ public class AC_ChunkProvider implements IChunkProvider
 				}
 
 				if (this.worldObj.canSnowAt(k1 + i, l3, l2 + j))
+				;
 				{
-					this.worldObj.setBlock(k1 + i, l3, l2 + j, this.pickSnow(rand));
+					//		this.worldObj.setBlock(k1 + i, l3, l2 + j, this.pickSnow(rand));
 				}
 			}
 		}
 
 		BlockSand.fallInstantly = false;
 	}
-
 	private int pickSnow(Random par1Random)
 	{
 
