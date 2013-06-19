@@ -557,17 +557,17 @@ public class AC_ChunkProvider implements IChunkProvider
 			int b = j + rand.nextInt(16);
 			(new AC_GenShip()).generate(worldObj, rand, e, r, b);
 		}
-//		
-//			for (var7 = 0; var7 < 50; ++var7)
-//			{
-//				System.out.println("Generating Eskimo village");
-//				int e = i + rand.nextInt(16);
-//				int r = rand.nextInt(128);
-//				int b = j + rand.nextInt(16);
-//
-//				(new AC_GenEskimoVillage()).generate(this.worldObj, this.rand, e, r, b);
-//			}
 		
+			/*for (var7 = 0; var7 < 50; ++var7)
+			{
+				System.out.println("Generating Eskimo village");
+				int e = i + rand.nextInt(16);
+				int r = rand.nextInt(128);
+				int b = j + rand.nextInt(16);
+
+				(new AC_GenEskimoVillage()).generate(this.worldObj, this.rand, e, r, b);
+			}
+*/		
 		{
 
 			for (int x = 0; x < 2; x++)
@@ -668,7 +668,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				if (this.worldObj.canSnowAt(k1 + i, l3, l2 + j))
 				;
 				{
-					//		this.worldObj.setBlock(k1 + i, l3, l2 + j, this.pickSnow(rand));
+						this.worldObj.setBlock(k1 + i, l3, l2 + j, this.pickSnow(rand));
 				}
 			}
 		}
