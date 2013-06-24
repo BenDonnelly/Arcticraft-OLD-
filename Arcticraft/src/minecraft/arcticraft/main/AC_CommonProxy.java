@@ -12,7 +12,6 @@ public void registerKeyHandler(){
 	
 	public void registerTickHandler()
 	{
-		TickRegistry.registerScheduledTickHandler(new AC_TickHandlerScheduled(), Side.SERVER);
 	}
 
 	public void reigsterRenderThings()

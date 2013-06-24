@@ -20,6 +20,7 @@ import org.lwjgl.opengl.GL11;
 import arcticraft.blocks.AC_BlockFrostLeaves;
 import arcticraft.blocks.AC_BlockGlacierLeaves;
 import arcticraft.blocks.AC_BlockThickSnow;
+import arcticraft.data_store.TemperatureDataStorage;
 import arcticraft.items.AC_ItemLantern;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
@@ -33,6 +34,7 @@ public class AC_TickHandler implements ITickHandler
 	private Minecraft mc;
 	int tickCounter;
 	int tempIncrementCounter;
+	private boolean dataLoaded = false;
 	public static boolean renderOverlay = true;
 	public static AC_TickHandler tickHandler;
 
@@ -40,7 +42,7 @@ public class AC_TickHandler implements ITickHandler
 	{
 		this.mc = Minecraft.getMinecraft();
 		this.maxValue = 100;
-		this.value = 100;
+		this.value = 0;
 	}
 
 	//Util Methods
@@ -68,7 +70,7 @@ public class AC_TickHandler implements ITickHandler
 			entityPlayer.attackEntityFrom(DamageSource.generic, 5);
 		}
 	}
-	
+
 	@Deprecated
 	public static String getSideAsString()
 	{
@@ -79,12 +81,17 @@ public class AC_TickHandler implements ITickHandler
 	public void tickStart(EnumSet <TickType> type, Object... tickData)
 	{
 
-		if (mc.thePlayer != null) 
+		if (mc.thePlayer != null)
 		{
+			if (!dataLoaded)
+			{
+				this.value = TemperatureDataStorage.instance.getTemperature("Player");
+				dataLoaded = true;
+			}
 
 			if (type.equals(EnumSet.of(TickType.PLAYER)))
 			{
-
+				TemperatureDataStorage.instance.setTemperature("Player", value);
 				AC_ItemLantern.fuelCounter(mc.thePlayer, mc.thePlayer.getCurrentItemOrArmor(0));
 				AC_BlockFrostLeaves.setGraphicsLevel(!Minecraft.getMinecraft().gameSettings.fancyGraphics);
 				AC_BlockGlacierLeaves.setGraphicsLevel(!Minecraft.getMinecraft().gameSettings.fancyGraphics);
@@ -207,7 +214,7 @@ public class AC_TickHandler implements ITickHandler
 		}
 
 	}
-		
+
 	public void canIncrementTemp()
 	{
 		if (!mc.thePlayer.capabilities.isCreativeMode)

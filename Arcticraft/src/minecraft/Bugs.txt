@@ -1,7 +1,3 @@
 Lantern needs to remember its durability when placed
 Lantern stacksize dosent decrease when at max damage
-Need to remember Temperature value
-Main menu panorama shots need redoing
 After drinking a drink it spawns a "ghosted" empty cup which dissapears on click in the inventory
-AC Options can be triggered from anywhere in minecraft, causes crashes if not in game
-smp needs to be fixed
