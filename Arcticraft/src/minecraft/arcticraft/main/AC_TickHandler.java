@@ -34,7 +34,6 @@ public class AC_TickHandler implements ITickHandler
 	private Minecraft mc;
 	int tickCounter;
 	int tempIncrementCounter;
-	private boolean dataLoaded = false;
 	public static boolean renderOverlay = true;
 	public static AC_TickHandler tickHandler;
 
@@ -42,7 +41,6 @@ public class AC_TickHandler implements ITickHandler
 	{
 		this.mc = Minecraft.getMinecraft();
 		this.maxValue = 100;
-		this.value = 0;
 	}
 
 	//Util Methods
@@ -83,15 +81,9 @@ public class AC_TickHandler implements ITickHandler
 
 		if (mc.thePlayer != null)
 		{
-			if (!dataLoaded)
-			{
-				this.value = TemperatureDataStorage.instance.getTemperature("Player");
-				dataLoaded = true;
-			}
 
 			if (type.equals(EnumSet.of(TickType.PLAYER)))
 			{
-				TemperatureDataStorage.instance.setTemperature("Player", value);
 				AC_ItemLantern.fuelCounter(mc.thePlayer, mc.thePlayer.getCurrentItemOrArmor(0));
 				AC_BlockFrostLeaves.setGraphicsLevel(!Minecraft.getMinecraft().gameSettings.fancyGraphics);
 				AC_BlockGlacierLeaves.setGraphicsLevel(!Minecraft.getMinecraft().gameSettings.fancyGraphics);
@@ -130,7 +122,7 @@ public class AC_TickHandler implements ITickHandler
 	{
 		return "Temperature Bar";
 	}
-	public static int value;
+	public static int value = 50;
 	public static int maxValue = 100;
 	//	public static boolean dragging = false;
 	public static int x;

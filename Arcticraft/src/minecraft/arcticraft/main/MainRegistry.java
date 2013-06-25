@@ -39,6 +39,7 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Property;
+import net.minecraftforge.common.Property.Type;
 import arcticraft.blocks.AC_BlockACFurnace;
 import arcticraft.blocks.AC_BlockACWaterFlowing;
 import arcticraft.blocks.AC_BlockACWaterStill;
@@ -336,17 +337,19 @@ public class MainRegistry
 	public static Block statue;
 	public static Block captainStatue;
 
-	public static HashMap <EntityPlayer, Integer> playerTemps = new HashMap <EntityPlayer, Integer>();
+	//public static HashMap <EntityPlayer, Integer> playerTemps = new HashMap <EntityPlayer, Integer>();
 
 	private Configuration temperatureFile;
 	private TemperatureDataStorage storage = new TemperatureDataStorage();
+	private Configuration globalConfigFile;
+	
 	@ServerStarting
 	public void serverStarting(FMLServerStartingEvent event) //I thing i'm missing a param
 	{
-		TemperatureDataStorage.instance.clear();
+		storage.clear();
 		System.out.println("I am getting called!!!! :D");
 
-		//TODO: load temps from file
+		// Load temps from file
 		// Format: general.PLAYERNAME: TEMPERATURE
 		File worldConfigFile = new File(new File(Minecraft.getMinecraftDir(), "ac_data"), "playertemps_" + MinecraftServer.getServer().getWorldName() + ".cfg");
 		if (!worldConfigFile.exists())
@@ -364,18 +367,25 @@ public class MainRegistry
 		temperatureFile = new Configuration(worldConfigFile);
 		temperatureFile.load();
 		temperatureFile.save();
+		// temperatures section
 		ConfigCategory general = temperatureFile.getCategory("general");
 		Map <String, Property> entries = general.getValues();
 		storage.load(entries);
+		AC_TickHandler.value = storage.getTemperature("Player");
 	}
 
 	@ServerStopping
 	public void serverStopping(FMLServerStoppingEvent event)
 	{
-		//TODO: save temps to file
+		storage.setTemperature("Player", AC_TickHandler.value);
+		// Save temps to file
 		ConfigCategory general = temperatureFile.getCategory("general"); // actually, temperatureFile is null :D
 		general.putAll(storage.save());
 		temperatureFile.save();
+		ConfigCategory gui = globalConfigFile.getCategory("gui");
+		gui.put("temp-bar-x", new Property("temp-bar-x",""+AC_TickHandler.x,Type.INTEGER));
+		gui.put("temp-bar-y", new Property("temp-bar-y",""+AC_TickHandler.y,Type.INTEGER));
+		globalConfigFile.save();
 	}
 
 	@PreInit
@@ -383,6 +393,23 @@ public class MainRegistry
 	{
 
 		mc = mc.getMinecraft();
+		// global configuration file
+		File cfgFile = event.getSuggestedConfigurationFile();
+		if (!cfgFile.exists()) {
+			try {
+				cfgFile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		globalConfigFile = new Configuration(cfgFile);
+		globalConfigFile.load();
+		globalConfigFile.save();
+		ConfigCategory gui = globalConfigFile.getCategory("gui");
+		if(gui.get("temp-bar-x") != null){
+			AC_TickHandler.x = gui.get("temp-bar-x").getInt();
+			AC_TickHandler.y = gui.get("temp-bar-y").getInt();
+		}
 		DimensionManager.registerProviderType(dimension, AC_WorldProvider.class, false);
 		DimensionManager.registerDimension(dimension, dimension);
 
