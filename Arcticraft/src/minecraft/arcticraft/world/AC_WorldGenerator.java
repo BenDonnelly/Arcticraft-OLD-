@@ -37,7 +37,7 @@ public class AC_WorldGenerator implements IWorldGenerator
 	       if ((biome instanceof AC_BiomeSnowPlains))
 	       {
 	    	   {
-	    		   for(int k = 0; k < 13; k++)
+	    		   for(int k = 0; k < 100; k++)
 	    		   {
 	    			   int RandPosX = BlockX + random.nextInt(16);
 	    			   int RandPosY = random.nextInt(128);
