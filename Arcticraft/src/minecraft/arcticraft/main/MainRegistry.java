@@ -495,7 +495,7 @@ public class MainRegistry
 		TekkitePickaxe = new AC_ItemPickaxe(6205, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("Tekkite Pickaxe");
 		TekkiteAxe = new AC_ItemAxe(6206, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("articcraft:tekkiteAxe");
 		TekkiteHoe = new AC_ItemHoe(6207, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("Tekkite Hoe");
-		TekkiteSword = new AC_ItemSword(6208, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("Tekkite Sword");
+		TekkiteSword = new AC_ItemSword(6208, TekkiteTool).setCreativeTab(tabCombat).setUnlocalizedName("Tekkite Sword");
 		TekkiteShovel = new AC_ItemShovel(6209, TekkiteTool).setCreativeTab(tabTools).setUnlocalizedName("Tekkite Spade");
 
 		TekkiteHelmet = new AC_ItemArmour(6210, TekkiteArmor, proxy.addArmor("Tekkite"), 0).setCreativeTab(tabCombat).setUnlocalizedName("Tekkite Helmet");
@@ -506,7 +506,7 @@ public class MainRegistry
 		EscariaPickaxe = new AC_ItemPickaxe(6214, EscariaTool).setCreativeTab(tabTools).setUnlocalizedName("Escaria Pickaxe");
 		EscariaAxe = new AC_ItemAxe(6215, EscariaTool).setCreativeTab(tabTools).setUnlocalizedName("escariaAxe");
 		EscariaHoe = new AC_ItemHoe(6216, EscariaTool).setCreativeTab(tabTools).setUnlocalizedName("Escaria Hoe");
-		EscariaSword = new AC_ItemSword(6217, EscariaTool).setCreativeTab(tabTools).setUnlocalizedName("Escaria Sword");
+		EscariaSword = new AC_ItemSword(6217, EscariaTool).setCreativeTab(tabCombat).setUnlocalizedName("Escaria Sword");
 		EscariaShovel = new AC_ItemShovel(6218, EscariaTool).setCreativeTab(tabTools).setUnlocalizedName("Escaria Spade");
 
 		EscariaHelmet = new AC_ItemArmour(6219, EscariaArmor, proxy.addArmor("Escaria"), 0).setCreativeTab(tabCombat).setUnlocalizedName("Escaria Helmet");
@@ -517,7 +517,7 @@ public class MainRegistry
 		RigentemPickaxe = new AC_ItemPickaxe(6223, RigentemTool).setCreativeTab(tabTools).setUnlocalizedName("Rigentem Pickaxe");
 		RigentemAxe = new AC_ItemAxe(6224, RigentemTool).setCreativeTab(tabTools).setUnlocalizedName("rigentemAxe");
 		RigentemHoe = new AC_ItemHoe(6225, RigentemTool).setCreativeTab(tabTools).setUnlocalizedName("Rigentem Hoe");
-		RigentemSword = new AC_ItemSword(6226, RigentemTool).setCreativeTab(tabTools).setUnlocalizedName("Rigentem Sword");
+		RigentemSword = new AC_ItemSword(6226, RigentemTool).setCreativeTab(tabCombat).setUnlocalizedName("Rigentem Sword");
 		RigentemShovel = new AC_ItemShovel(6227, RigentemTool).setCreativeTab(tabTools).setUnlocalizedName("Rigentem Spade");
 
 		RigentemHelmet = new AC_ItemArmour(6228, RigentemArmor, proxy.addArmor("Rigentem"), 0).setCreativeTab(tabCombat).setUnlocalizedName("Rigentem Helmet");
@@ -528,7 +528,7 @@ public class MainRegistry
 		GlacianPickaxe = new AC_ItemPickaxe(6232, GlacianTool).setCreativeTab(tabTools).setUnlocalizedName("Glacian Pickaxe");
 		GlacianAxe = new AC_ItemAxe(6233, GlacianTool).setCreativeTab(tabTools).setUnlocalizedName("articcraft:glaciansAxe");
 		GlacianHoe = new AC_ItemHoe(6234, GlacianTool).setCreativeTab(tabTools).setUnlocalizedName("Glacian Hoe");
-		GlacianSword = new AC_ItemSword(6235, GlacianTool).setCreativeTab(tabTools).setUnlocalizedName("Glacian Sword");
+		GlacianSword = new AC_ItemSword(6235, GlacianTool).setCreativeTab(tabCombat).setUnlocalizedName("Glacian Sword");
 		GlacianShovel = new AC_ItemShovel(6236, GlacianTool).setCreativeTab(tabTools).setUnlocalizedName("Glacian Spade");
 
 		GlacianHelmet = new AC_ItemArmour(6237, GlacianArmor, proxy.addArmor("Glacian"), 0).setCreativeTab(tabCombat).setUnlocalizedName("Glacian Helmet");
@@ -539,20 +539,20 @@ public class MainRegistry
 		ArcticStonePickaxe = new AC_ItemPickaxe(6241, EnumToolMaterial.STONE).setCreativeTab(tabTools).setUnlocalizedName("Arctic Stone Pickaxe");
 		ArcticStoneAxe = new AC_ItemAxe(6242, EnumToolMaterial.STONE).setCreativeTab(tabTools).setUnlocalizedName("iceAxe");
 		ArcticStoneHoe = new AC_ItemHoe(6243, EnumToolMaterial.STONE).setCreativeTab(tabTools).setUnlocalizedName("Arctic Stone Hoe");
-		ArcticStoneSword = new AC_ItemSword(6244, EnumToolMaterial.STONE).setCreativeTab(tabTools).setUnlocalizedName("Arctic Stone Sword");
+		ArcticStoneSword = new AC_ItemSword(6244, EnumToolMaterial.STONE).setCreativeTab(tabCombat).setUnlocalizedName("Arctic Stone Sword");
 		ArcticStoneShovel = new AC_ItemShovel(6245, EnumToolMaterial.STONE).setCreativeTab(tabTools).setUnlocalizedName("Arctic Stone Spade");
 
 		FrostWoodPickaxe = new AC_ItemPickaxe(6246, EnumToolMaterial.WOOD).setCreativeTab(tabTools).setUnlocalizedName("Frost Wood Pickaxe");
 		FrostWoodAxe = new AC_ItemAxe(6247, EnumToolMaterial.WOOD).setCreativeTab(tabTools).setUnlocalizedName("frostWoodAxe");
 		FrostWoodHoe = new AC_ItemHoe(6248, EnumToolMaterial.WOOD).setCreativeTab(tabTools).setUnlocalizedName("Frost Wood Hoe");
-		FrostWoodSword = new AC_ItemSword(6249, EnumToolMaterial.WOOD).setCreativeTab(tabTools).setUnlocalizedName("Frost Wood Sword");
+		FrostWoodSword = new AC_ItemSword(6249, EnumToolMaterial.WOOD).setCreativeTab(tabCombat).setUnlocalizedName("Frost Wood Sword");
 		FrostWoodShovel = new AC_ItemShovel(6250, EnumToolMaterial.WOOD).setCreativeTab(tabTools).setUnlocalizedName("Frost Wood Spade");
 
 		frostSticks = new Item(6251).setCreativeTab(tabMaterial).setUnlocalizedName("AC:froststicks");
 		penguinMeat = new ItemFood(6252, 4, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(tabFood).setUnlocalizedName("AC:penguin_meat");
 		penguinMeatCooked = new ItemFood(6253, 8, true).setCreativeTab(tabFood).setUnlocalizedName("AC:penguin_meat_cooked");
 		penguinFeather = new Item(6254).setCreativeTab(tabMaterial).setUnlocalizedName("AC:penguin_feather");
-		tekkiteGem = new Item(6255).setCreativeTab(tabMaterial).setUnlocalizedName("AC:tektike_gem");
+		tekkiteGem = new Item(6255).setCreativeTab(tabMaterial).setUnlocalizedName("AC:tekkite_gem");
 		escariaGem = new Item(6256).setCreativeTab(tabMaterial).setUnlocalizedName("AC:escaria_gem");
 		frigus = new Item(6257).setCreativeTab(tabMaterial).setUnlocalizedName("AC:frigus");
 		glacianIngot = new Item(6258).setCreativeTab(tabMaterial).setUnlocalizedName("AC:glacian");

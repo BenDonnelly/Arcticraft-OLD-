@@ -100,7 +100,7 @@ public class AC_ItemHoe extends Item
 		}
 		if (this == MainRegistry.EscariaHoe)
 		{
-			this.iconIndex = par1IconRegister.registerIcon("AC:escariaHos");
+			this.iconIndex = par1IconRegister.registerIcon("AC:escariaHoe");
 		}
 
 		if (this == MainRegistry.RigentemHoe)
