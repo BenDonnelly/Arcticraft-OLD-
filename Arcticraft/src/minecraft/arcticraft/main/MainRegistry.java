@@ -31,7 +31,6 @@ import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ConfigCategory;
 import net.minecraftforge.common.Configuration;
@@ -163,8 +162,6 @@ public class MainRegistry
 	public static CreativeTabs tabMaterial = new AC_TabMaterial(CreativeTabs.getNextID(), "TabMaterial");
 	public static CreativeTabs tabMisc = new AC_TabMisc(CreativeTabs.getNextID(), "TabMisc");
 
-	//Damage Sources
-	public static DamageSource freezing = (new AC_DamageSource("freeze"));
 
 	//Core dimension blocks & items
 	public static Block frostGrass;
@@ -337,6 +334,7 @@ public class MainRegistry
 	public static Block statue;
 	public static Block captainStatue;
 
+	public static Potion freezePotion = new AC_Potions(27, true, 0xffff).setIconIndex(2, 2).setPotionName("Freezing");
 	//public static HashMap <EntityPlayer, Integer> playerTemps = new HashMap <EntityPlayer, Integer>();
 
 	private Configuration temperatureFile;
@@ -710,6 +708,7 @@ public class MainRegistry
 		LanguageRegistry.addName(boarMeat, "Cooked Boar Meat");
 		LanguageRegistry.addName(hikingBoots, "Hiking Boots");
 		LanguageRegistry.addName(captainStatue, "Captain Statue");
+		LanguageRegistry.instance().addStringLocalization("death.attack.Freezing", "%1$s froze");
 
 		LanguageRegistry.addName(frostSticks, "Frost Sticks");
 		LanguageRegistry.addName(frostStairs, "Frost Stairs");

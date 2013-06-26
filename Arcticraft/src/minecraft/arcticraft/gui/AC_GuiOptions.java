@@ -3,10 +3,12 @@ package arcticraft.gui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.potion.PotionEffect;
 
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.main.AC_TickHandler;
+import arcticraft.main.MainRegistry;
 
 public class AC_GuiOptions extends GuiScreen
 {
@@ -42,7 +44,11 @@ public class AC_GuiOptions extends GuiScreen
 			mc.displayGuiScreen(new AC_GuiCoordinates());
 			mc.thePlayer.sendChatToPlayer("Type your desired X coordinate in the left box and the Y coordinate in the right.");
 		}
-		
+		else if(button.id == 2)
+		{
+			mc.thePlayer.addPotionEffect(new PotionEffect(MainRegistry.freezePotion.id, 200, 1));
+			System.out.println("Freezing potion");
+		}
 		else if(button.id == 3)
 		{
 			tickHandlerInstance.renderOverlay = !tickHandlerInstance.renderOverlay;

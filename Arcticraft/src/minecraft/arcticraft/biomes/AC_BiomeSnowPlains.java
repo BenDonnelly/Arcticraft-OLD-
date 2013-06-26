@@ -1,5 +1,6 @@
 package arcticraft.biomes;
 
+import arcticraft.entities.AC_EntityBoar;
 import arcticraft.entities.AC_EntityPolarBear;
 import arcticraft.main.MainRegistry;
 import net.minecraft.block.Block;
@@ -17,6 +18,7 @@ public class AC_BiomeSnowPlains extends AC_BiomeGenBaseArcticraft
 		topBlock = (byte) Block.blockSnow.blockID;
 		fillerBlock = (byte)Block.blockSnow.blockID;
 		this.theBiomeDecorator.treesPerChunk = -999;
+		this.spawnableCreatureList.add(new SpawnListEntry(AC_EntityBoar.class, 5, 4, 4));
 		setMinMaxHeight(0.1F, 0.1F);
 		setEnableSnow();
 		setTemperatureRainfall(0.0F, 0.5F);

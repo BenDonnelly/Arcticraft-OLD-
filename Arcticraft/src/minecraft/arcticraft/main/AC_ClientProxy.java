@@ -34,12 +34,12 @@ import arcticraft.renderers.AC_RenderIceShards;
 import arcticraft.renderers.AC_RenderMage;
 import arcticraft.renderers.AC_RenderPenguin;
 import arcticraft.renderers.AC_RenderPolarBear;
-import arcticraft.renderers.TileEntityFrostChestRender;
 import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
 import arcticraft.tile_entities.AC_TileEntityCaptainStatueRenderer;
 import arcticraft.tile_entities.AC_TileEntityFrostChest;
 import arcticraft.tile_entities.AC_TileEntityStatue;
 import arcticraft.tile_entities.AC_TileEntityStatueRenderer;
+import arcticraft.tile_entities.TileEntityFrostChestRender;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -60,6 +60,8 @@ public class AC_ClientProxy extends AC_CommonProxy
 	public void registerTickHandler()
 	{
 		TickRegistry.registerTickHandler(new AC_TickHandler(), Side.CLIENT);
+		TickRegistry.registerTickHandler(new AC_TickHandlerServer(), Side.SERVER);
+		
 	}
 
 	@Override

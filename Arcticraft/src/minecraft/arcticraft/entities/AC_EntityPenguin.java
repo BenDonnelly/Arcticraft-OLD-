@@ -1,7 +1,7 @@
-
 package arcticraft.entities;
 
 
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.EntityAIFollowParent;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -15,7 +15,11 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.SpawnListEntry;
+import net.minecraft.world.chunk.Chunk;
 import arcticraft.main.MainRegistry;
 
 public class AC_EntityPenguin extends EntityAnimal
@@ -121,4 +125,29 @@ public class AC_EntityPenguin extends EntityAnimal
 	{
 		return this.func_90012_b(par1EntityAgeable);
 	}
+
+    public boolean getCanSpawnHere()
+    {
+		System.out.println("Spawning Penguin");
+
+    	for (int x = 0; x < 16; x++)
+    	{
+    		for (int y = 0; y < 16; y++)
+    		{
+    			for (int z = 0; z < 16; z++)
+    			{
+    				int x1 = MathHelper.floor_double(this.posX + x - 8);
+    				int y1 = MathHelper.floor_double(this.posY + y - 8); 
+    				int z1 = MathHelper.floor_double(this.posZ + z - 8);
+    				
+    				if (this.worldObj.getBlockMaterial(x1, y1, z1) == Material.water)
+    				{
+    					return super.getCanSpawnHere();
+    				}
+    			}
+    		}
+    	}
+    	
+    	return false;
+    }
 }

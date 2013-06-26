@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.world.biome.SpawnListEntry;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import arcticraft.entities.AC_EntityBoar;
+import arcticraft.entities.AC_EntityFrostZombie;
 import arcticraft.entities.AC_EntityHusky;
 import arcticraft.main.MainRegistry;
 
@@ -20,6 +21,7 @@ public class AC_BiomeFrostForest extends AC_BiomeGenBaseArcticraft
 		this.theBiomeDecorator.treesPerChunk = 10;
 		this.spawnableCreatureList.add(new SpawnListEntry(AC_EntityHusky.class, 5,4, 4));
 		this.spawnableCreatureList.add(new SpawnListEntry(AC_EntityBoar.class, 5, 4, 4));
+		this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityFrostZombie.class,  10, 4, 4));
 		setEnableSnow();
 		setTemperatureRainfall(0.0F, 0.5F);
 		setColor(16777215);

@@ -1,4 +1,4 @@
-package arcticraft.renderers;
+package arcticraft.tile_entities;
 
 import java.util.Calendar;
 
@@ -12,7 +12,6 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import arcticraft.blocks.AC_FrostChest;
-import arcticraft.tile_entities.AC_TileEntityFrostChest;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

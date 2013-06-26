@@ -60,15 +60,6 @@ public class AC_TickHandler implements ITickHandler
 		return new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
 	}
 
-	public void killPlayer(EntityPlayer entityPlayer)
-	{
-		if (entityPlayer != null && this.value == 0)
-		{
-			//System.out.println("Attempting to kill the player " + getSideAsString() + " sided!"); //Apperently, that should be an Mp version of the player but obviosuly not hmmhmhm
-			entityPlayer.attackEntityFrom(DamageSource.generic, 5);
-		}
-	}
-
 	@Deprecated
 	public static String getSideAsString()
 	{
@@ -92,7 +83,6 @@ public class AC_TickHandler implements ITickHandler
 				canDecrementTemp();
 				canIncrementTemp();
 				slowPlayer();
-				killPlayer((EntityPlayer) tickData [0]);
 
 			}
 		}
@@ -141,6 +131,8 @@ public class AC_TickHandler implements ITickHandler
 			gui.drawTexturedModalRect(x, y, 0, 0, value * 80 / maxValue, 6);
 		}
 	}
+	
+	
 
 	public void tickCounter()
 	{
@@ -181,11 +173,8 @@ public class AC_TickHandler implements ITickHandler
 	{
 		if (!mc.thePlayer.capabilities.isCreativeMode)
 		{
-			if (mc.theWorld != null && mc.thePlayer.dimension == MainRegistry.dimension && this.value == 0)
-			{
-				//TODO kill the player.
-			}
-			else if (mc.theWorld != null && mc.thePlayer.dimension == MainRegistry.dimension && mc.thePlayer.isInsideOfMaterial(Material.water) && this.tickCounter == 300)
+
+			if (mc.theWorld != null && mc.thePlayer.dimension == MainRegistry.dimension && mc.thePlayer.isInsideOfMaterial(Material.water) && this.tickCounter == 300)
 			{
 				this.value -= 2;
 				this.tickCounter = 0;

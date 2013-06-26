@@ -12,6 +12,7 @@ public void registerKeyHandler(){
 	
 	public void registerTickHandler()
 	{
+	
 	}
 
 	public void reigsterRenderThings()
