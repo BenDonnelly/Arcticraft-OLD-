@@ -2,13 +2,22 @@ package arcticraft.main;
 
 import java.util.EnumSet;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.DamageSource;
+import net.minecraft.potion.PotionEffect;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 
 public class AC_TickHandlerServer implements ITickHandler
 {
+
+	Minecraft mc;
+	private int tickCounter;
+
+	public AC_TickHandlerServer()
+	{
+		mc = mc.getMinecraft();
+	}
 
 	@Override
 	public void tickStart(EnumSet <TickType> type, Object... tickData)
@@ -16,7 +25,20 @@ public class AC_TickHandlerServer implements ITickHandler
 		if (type.equals(EnumSet.of(TickType.PLAYER)))
 		{
 			killPlayer((EntityPlayer) tickData [0]);
+			freezingPotion((EntityPlayer) tickData [0]);
 		}
+	}
+
+	@Override
+	public void tickEnd(EnumSet <TickType> type, Object... tickData)
+	{
+
+	}
+
+	@Override
+	public EnumSet <TickType> ticks()
+	{
+		return EnumSet.of(TickType.PLAYER, TickType.SERVER);
 	}
 
 	public void killPlayer(EntityPlayer entityPlayer)
@@ -32,20 +54,24 @@ public class AC_TickHandlerServer implements ITickHandler
 			if (entityPlayer.getHealth() == 0)
 			{
 				AC_TickHandler.value = 50;
-				System.out.println("Reset Value: " + AC_TickHandler.value);
 			}
 		}
 	}
-	@Override
-	public void tickEnd(EnumSet <TickType> type, Object... tickData)
-	{
 
-	}
-
-	@Override
-	public EnumSet <TickType> ticks()
+	public void freezingPotion(EntityPlayer entityPlayer)
 	{
-		return EnumSet.of(TickType.PLAYER, TickType.SERVER);
+		entityPlayer.addPotionEffect(new PotionEffect(MainRegistry.freezePotion.id, 300, 0));
+		tickCounter++;
+
+		if (entityPlayer.isPotionActive(MainRegistry.freezePotion))
+		{
+			if (tickCounter == 40)
+			{
+				tickCounter = 0;
+				AC_TickHandler.value -= 1;
+				entityPlayer.attackEntityFrom(AC_DamageSource.freezing, 1);
+			}
+		}
 	}
 
 	@Override

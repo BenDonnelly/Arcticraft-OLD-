@@ -334,7 +334,7 @@ public class MainRegistry
 	public static Block statue;
 	public static Block captainStatue;
 
-	public static Potion freezePotion = new AC_Potions(27, true, 0xffff).setIconIndex(2, 2).setPotionName("Freezing");
+	public static Potion freezePotion;
 	//public static HashMap <EntityPlayer, Integer> playerTemps = new HashMap <EntityPlayer, Integer>();
 
 	private Configuration temperatureFile;
@@ -569,9 +569,10 @@ public class MainRegistry
 		boarMeat = new ItemFood(6274, 4, true).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat");
 		uncookedBoarMeat = new ItemFood(6275, 10, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat_cooked");
 		hikingBoots = new AC_ItemArmour(6276, hikingAmrour, proxy.addArmor("Hiking"), 3).setCreativeTab(tabTools).setUnlocalizedName("Hiking Boots");
-
 		invisoStaff = new AC_ItemInvisoStaff(6277).setMaxStackSize(1).setCreativeTab(tabTools).setUnlocalizedName("stick");
 
+		freezePotion = new AC_Potions(27, true, 0xffff).setIconIndex(2, 2).setPotionName("Freezing");
+		
 		AC_Recipes.initializeRecipes();
 		proxy.reigsterRenderThings();
 		proxy.registerTickHandler();
