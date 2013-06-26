@@ -44,11 +44,16 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 		this.experienceValue = 50;
 	}
 
+	public boolean isAIEnabled()
+	{
+		return true;
+	}
+
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (super.attackEntityAsMob(par1Entity))
 		{
-			((EntityLiving)par1Entity).addPotionEffect(new PotionEffect(Potion.poison.id, 200));
+			((EntityLiving) par1Entity).addPotionEffect(new PotionEffect(Potion.poison.id, 200));
 			return true;
 		}
 		else
@@ -90,7 +95,6 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 		this.setEntityHealth(this.getMaxHealth() / 3);
 	}
 
-
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -125,16 +129,17 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 	{
 		return 250;
 	}
-	
+
 	/**
-     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
-     * par2 - Level of Looting used to kill this mob.
-     */
-    protected void dropFewItems(boolean par1, int par2)
-    {
-        this.dropItem(MainRegistry.pirateSword.itemID, 1);
-        this.dropItem(MainRegistry.captainStatue.blockID, 1);
-    }
+	 * Drop 0-2 items of this living's type. @param par1 - Whether this entity
+	 * has recently been hit by a player. @param par2 - Level of Looting used to
+	 * kill this mob.
+	 */
+	protected void dropFewItems(boolean par1, int par2)
+	{
+		this.dropItem(MainRegistry.pirateSword.itemID, 1);
+		this.dropItem(MainRegistry.captainStatue.blockID, 1);
+	}
 
 	/**
 	 * Returns the amount of damage a mob should deal.

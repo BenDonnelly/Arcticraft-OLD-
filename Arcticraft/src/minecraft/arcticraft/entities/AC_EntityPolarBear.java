@@ -31,7 +31,6 @@ public class AC_EntityPolarBear extends EntityMob
 		super(par1World);
 		this.texture = "/mods/AC/textures/mobs/polar_bear.png";
 		this.moveSpeed = 0.4F;
-		this.isImmuneToFire = true;
 		this.setSize(this.width + 0.4F, this.height + 0.4F);
 		this.tasks.addTask(0, new EntityAIWander(this, 0.5F));
 		this.tasks.addTask(1, new EntityAISwimming(this));

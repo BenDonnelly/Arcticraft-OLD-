@@ -54,6 +54,12 @@ public class AC_EventSoundLoad
 			event.manager.soundPoolSounds.addSound("arcticraft/boar_living.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/boar_living.wav"));
 			event.manager.soundPoolSounds.addSound("arcticraft/boar_death.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/boar_death.wav"));
 
+			//Ingame Music
+			System.out.println("Playing my music");
+			event.manager.soundPoolMusic.addSound("arcticraft/Welcome To The Cold.wav", MainRegistry.class.getResource("/mods/AC/sounds/music/Welcome To The Cold.wav"));
+			System.out.println("Playing my music");
+			event.manager.soundPoolMusic.addSound("arcticraft/Frozen Feelings.wav", MainRegistry.class.getResource("/mods/AC/sounds/music/Frozen Feelings.wav"));
+
 		}
 
 		catch (Exception e)

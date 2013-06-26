@@ -34,6 +34,11 @@ public class AC_EntityMage extends EntityAnimal
 		this.tasks.addTask(5, new EntityAILookIdle(this));
 	}
 
+	public boolean isAIEnabled()
+	{
+		return true;
+	}
+
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.UNDEFINED;
@@ -83,7 +88,7 @@ public class AC_EntityMage extends EntityAnimal
 			{
 				par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(MainRegistry.MystFruit));
 			}
-			else if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(MainRegistry.MystFruit)))																									// fruit
+			else if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(MainRegistry.MystFruit))) // fruit
 			{
 				par1EntityPlayer.dropPlayerItem(new ItemStack(MainRegistry.MystFruit.itemID, 1, 0));
 			}
@@ -93,7 +98,7 @@ public class AC_EntityMage extends EntityAnimal
 		else
 		{
 			this.randomChat("give");
-			
+
 			return super.interact(par1EntityPlayer);
 		}
 	}
@@ -102,8 +107,8 @@ public class AC_EntityMage extends EntityAnimal
 	{
 		int i = rand.nextInt(3);
 
-		if(type.equals("trade"))
-		{		
+		if (type.equals("trade"))
+		{
 			if (i == 2)
 			{
 				MainRegistry.talkStuff("\247bIf you feel the need for some new adventures, eat this!", this.worldObj);
@@ -118,8 +123,8 @@ public class AC_EntityMage extends EntityAnimal
 			}
 		}
 
-		if(type.equals("give"))
-		{		
+		if (type.equals("give"))
+		{
 			if (i == 2)
 			{
 				MainRegistry.talkStuff("\247bIf you give me some Mystical Snow I will show you the way to a new world", this.worldObj);

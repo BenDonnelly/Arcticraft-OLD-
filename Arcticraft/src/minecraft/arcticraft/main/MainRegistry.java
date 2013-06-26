@@ -2,10 +2,8 @@ package arcticraft.main;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import net.aetherteam.mainmenu_api.MainMenuAPI;
 import net.minecraft.block.Block;
@@ -83,8 +81,11 @@ import arcticraft.data_store.TemperatureDataStorage;
 import arcticraft.entities.AC_EntityBoar;
 import arcticraft.entities.AC_EntityBomb;
 import arcticraft.entities.AC_EntityCaptain;
+import arcticraft.entities.AC_EntityCheifEskimo;
+import arcticraft.entities.AC_EntityEskimo;
 import arcticraft.entities.AC_EntityFrostGhost;
 import arcticraft.entities.AC_EntityFrostZombie;
+import arcticraft.entities.AC_EntityHunterEskimo;
 import arcticraft.entities.AC_EntityHusky;
 import arcticraft.entities.AC_EntityIceCreeper;
 import arcticraft.entities.AC_EntityIceShard;
@@ -826,6 +827,18 @@ public class MainRegistry
 		EntityRegistry.registerGlobalEntityID(AC_EntityHusky.class, "Husky", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Husky.name", "Husky");
 		registerEntityEgg(AC_EntityHusky.class, lightGrayColor, grayColor);
+		
+		EntityRegistry.registerGlobalEntityID(AC_EntityCheifEskimo.class, "EskimoCheif", EntityRegistry.findGlobalUniqueEntityId());
+		LanguageRegistry.instance().addStringLocalization("entity.EskimoCheif.name", "Eskimo Chief");
+		registerEntityEgg(AC_EntityCheifEskimo.class, purpleBlueishColor, grayColor);
+		
+		EntityRegistry.registerGlobalEntityID(AC_EntityHunterEskimo.class, "EskimoHunter", EntityRegistry.findGlobalUniqueEntityId());
+		LanguageRegistry.instance().addStringLocalization("entity.EskimoHunter.name", "Eskimo Hunter");
+		registerEntityEgg(AC_EntityHunterEskimo.class, redishPinkishColour, grayColor);
+		
+		EntityRegistry.registerGlobalEntityID(AC_EntityEskimo.class, "Eskimo", EntityRegistry.findGlobalUniqueEntityId());
+		LanguageRegistry.instance().addStringLocalization("entity.Eskimo.name", "Eskimo");
+		registerEntityEgg(AC_EntityEskimo.class, blueishIcyColor, grayColor);
 
 		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 342, this, 64, 10, true);
 
