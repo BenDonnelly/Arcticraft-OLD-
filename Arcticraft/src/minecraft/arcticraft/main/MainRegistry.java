@@ -41,6 +41,7 @@ import arcticraft.blocks.AC_BlockACFurnace;
 import arcticraft.blocks.AC_BlockACWaterFlowing;
 import arcticraft.blocks.AC_BlockACWaterStill;
 import arcticraft.blocks.AC_BlockArcaneStone;
+import arcticraft.blocks.AC_BlockCampfire;
 import arcticraft.blocks.AC_BlockCaptainStatue;
 import arcticraft.blocks.AC_BlockFloranCrop;
 import arcticraft.blocks.AC_BlockFlower;
@@ -81,6 +82,7 @@ import arcticraft.data_store.TemperatureDataStorage;
 import arcticraft.entities.AC_EntityBoar;
 import arcticraft.entities.AC_EntityBomb;
 import arcticraft.entities.AC_EntityCaptain;
+import arcticraft.entities.AC_EntityChefEskimo;
 import arcticraft.entities.AC_EntityCheifEskimo;
 import arcticraft.entities.AC_EntityEskimo;
 import arcticraft.entities.AC_EntityFrostGhost;
@@ -93,6 +95,7 @@ import arcticraft.entities.AC_EntityMage;
 import arcticraft.entities.AC_EntityPenguin;
 import arcticraft.entities.AC_EntityPirate;
 import arcticraft.entities.AC_EntityPolarBear;
+import arcticraft.entities.AC_EntityTraderEskimo;
 import arcticraft.gui.AC_GuiHandler;
 import arcticraft.items.AC_FrostDoorPlace;
 import arcticraft.items.AC_ItemArmour;
@@ -113,6 +116,7 @@ import arcticraft.items.AC_ItemSword;
 import arcticraft.items.AC_ItemTeaDrinks;
 import arcticraft.items.AC_ItemWhiteberry;
 import arcticraft.tile_entities.AC_TileEntityArcticFurnace;
+import arcticraft.tile_entities.AC_TileEntityCampfire;
 import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
 import arcticraft.tile_entities.AC_TileEntityFreezer;
 import arcticraft.tile_entities.AC_TileEntityFrostChest;
@@ -334,7 +338,8 @@ public class MainRegistry
 	//Blocks with a Techne Model
 	public static Block statue;
 	public static Block captainStatue;
-
+	public static Block campfire;
+	
 	public static Potion freezePotion;
 	//public static HashMap <EntityPlayer, Integer> playerTemps = new HashMap <EntityPlayer, Integer>();
 
@@ -481,9 +486,10 @@ public class MainRegistry
 		/* The berry has to be initialized before the plant to avoid NPE so thats why theres an item in the blocks section*/
 		whiteberry = new AC_ItemWhiteberry(6272, 2, 0.6F, 1545, 1545).setCreativeTab(tabMisc).setUnlocalizedName("AC:Whiteberry");
 		whiteberryBush = new AC_BlockWhiteberry(1545, Material.plants, this.tilledFrostField.blockID, this.whiteberry.itemID).setUnlocalizedName("whiteberry_bush").setStepSound(Block.soundGravelFootstep);
-
 		captainStatue = new AC_BlockCaptainStatue(1546, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:captain_statue_icon").setStepSound(Block.soundStoneFootstep);
+		campfire = new AC_BlockCampfire(1547, Material.wood).setHardness(1.0F).setCreativeTab(tabBlocks).setLightValue(1.0F).setUnlocalizedName("campfire").setStepSound(Block.soundStoneFootstep);
 
+		
 		//Items
 		bucketIcyWater = new AC_ItemBucket(6200, acWaterFlowing.blockID).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyWater");
 		bucketEmpty = new AC_ItemBucket(6201, 0).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyEmpty");
@@ -578,6 +584,8 @@ public class MainRegistry
 		proxy.reigsterRenderThings();
 		proxy.registerTickHandler();
 		proxy.registerKeyHandler();
+		
+
 
 	}
 
@@ -626,6 +634,7 @@ public class MainRegistry
 		GameRegistry.registerBlock(tilledFrostField, "Tilled_Frost_Field");
 		GameRegistry.registerBlock(whiteberryBush, "Whiteberry_Bush");
 		GameRegistry.registerBlock(captainStatue, "Captain_Statue");
+		GameRegistry.registerBlock(campfire, "Campfire");
 
 		//furnace
 		GameRegistry.registerBlock(arcticFurnaceIdle, "AC_Furnace_Idle");
@@ -647,6 +656,9 @@ public class MainRegistry
 		GameRegistry.registerTileEntity(AC_TileEntityStatue.class, "tileEntityStatue");
 		GameRegistry.registerTileEntity(AC_TileEntityCaptainStatue.class, "tileEntityCaptainStatue");
 
+		//Campfire
+		GameRegistry.registerTileEntity(AC_TileEntityCampfire.class, "tileEntityCampfire");
+		
 		LanguageRegistry.addName(pirateSword, "Pirate Sword");
 		LanguageRegistry.addName(pirateHat, "Pirate Hat");
 		LanguageRegistry.addName(frostDoorPlace, "Frost Door");
@@ -711,6 +723,7 @@ public class MainRegistry
 		LanguageRegistry.addName(hikingBoots, "Hiking Boots");
 		LanguageRegistry.addName(captainStatue, "Captain Statue");
 		LanguageRegistry.instance().addStringLocalization("death.attack.Freezing", "%1$s froze");
+		LanguageRegistry.addName(campfire, "Campfire");
 
 		LanguageRegistry.addName(frostSticks, "Frost Sticks");
 		LanguageRegistry.addName(frostStairs, "Frost Stairs");
@@ -783,6 +796,8 @@ public class MainRegistry
 		int kindaBlueColor = 0x337BC7;
 		int purpleBlueishColor = 0x6419F0;
 		int redishPinkishColour = 0xEB0E58;
+		int greenishColour = 0x99FF66;
+		int yellowishColour  = 0xFFFF33;
 
 		EntityRegistry.registerGlobalEntityID(AC_EntityFrostGhost.class, "FrostGhost", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.FrostGhost.name", "FrostGhost");
@@ -839,6 +854,14 @@ public class MainRegistry
 		EntityRegistry.registerGlobalEntityID(AC_EntityEskimo.class, "Eskimo", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Eskimo.name", "Eskimo");
 		registerEntityEgg(AC_EntityEskimo.class, blueishIcyColor, grayColor);
+		
+		EntityRegistry.registerGlobalEntityID(AC_EntityTraderEskimo.class, "EskimoTrader", EntityRegistry.findGlobalUniqueEntityId());
+		LanguageRegistry.instance().addStringLocalization("entity.EskimoTrader.name", "Eskimo Trader");
+		registerEntityEgg(AC_EntityTraderEskimo.class, greenishColour, grayColor);
+		
+		EntityRegistry.registerGlobalEntityID(AC_EntityChefEskimo.class, "EskimoChef", EntityRegistry.findGlobalUniqueEntityId());
+		LanguageRegistry.instance().addStringLocalization("entity.EskimoChef.name", "Eskimo Chef");
+		registerEntityEgg(AC_EntityChefEskimo.class, yellowishColour, grayColor);
 
 		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 342, this, 64, 10, true);
 
@@ -849,8 +872,7 @@ public class MainRegistry
 		MinecraftForge.setBlockHarvestLevel(glacianOre, "pickaxe", 2);
 
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
-		//		MinecraftForge.EVENT_BUS.register(new AC_EventWorldLoad());
-
+		MinecraftForge.EVENT_BUS.register(new AC_ForgeEvents());
 	}
 
 	@PostInit

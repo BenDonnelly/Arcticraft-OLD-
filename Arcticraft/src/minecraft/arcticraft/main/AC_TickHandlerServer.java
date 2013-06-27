@@ -51,16 +51,13 @@ public class AC_TickHandlerServer implements ITickHandler
 				entityPlayer.attackEntityFrom(AC_DamageSource.freezing, 5);
 
 			}
-			if (entityPlayer.getHealth() == 0)
-			{
-				AC_TickHandler.value = 50;
-			}
+
 		}
 	}
 
 	public void freezingPotion(EntityPlayer entityPlayer)
 	{
-		entityPlayer.addPotionEffect(new PotionEffect(MainRegistry.freezePotion.id, 300, 0));
+		//		entityPlayer.addPotionEffect(new PotionEffect(MainRegistry.freezePotion.id, 300, 0));
 		tickCounter++;
 
 		if (entityPlayer.isPotionActive(MainRegistry.freezePotion))

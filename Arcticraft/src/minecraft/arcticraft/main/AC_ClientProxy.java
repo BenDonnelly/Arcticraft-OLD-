@@ -8,6 +8,7 @@ import net.minecraftforge.common.MinecraftForge;
 import arcticraft.entities.AC_EntityBoar;
 import arcticraft.entities.AC_EntityBomb;
 import arcticraft.entities.AC_EntityCaptain;
+import arcticraft.entities.AC_EntityChefEskimo;
 import arcticraft.entities.AC_EntityCheifEskimo;
 import arcticraft.entities.AC_EntityEskimo;
 import arcticraft.entities.AC_EntityFrostGhost;
@@ -19,8 +20,11 @@ import arcticraft.entities.AC_EntityMage;
 import arcticraft.entities.AC_EntityPenguin;
 import arcticraft.entities.AC_EntityPirate;
 import arcticraft.entities.AC_EntityPolarBear;
+import arcticraft.entities.AC_EntityTraderEskimo;
+import arcticraft.items.AC_ItemCampfireRenderer;
 import arcticraft.items.AC_ItemCaptainStatueRenderer;
 import arcticraft.items.AC_ItemStatueRenderer;
+import arcticraft.models.AC_ModelChefEskimo;
 import arcticraft.models.AC_ModelCheifEskimo;
 import arcticraft.models.AC_ModelEskimo;
 import arcticraft.models.AC_ModelFrostGhost;
@@ -29,10 +33,12 @@ import arcticraft.models.AC_ModelHusky;
 import arcticraft.models.AC_ModelMage;
 import arcticraft.models.AC_ModelPenguin;
 import arcticraft.models.AC_ModelPolarBear;
+import arcticraft.models.AC_ModelTraderEskimo;
 import arcticraft.renderers.AC_FrostChestItemRenderHelper;
 import arcticraft.renderers.AC_RenderBoar;
 import arcticraft.renderers.AC_RenderBomb;
 import arcticraft.renderers.AC_RenderCaptain;
+import arcticraft.renderers.AC_RenderChefEskimo;
 import arcticraft.renderers.AC_RenderCheifEskimo;
 import arcticraft.renderers.AC_RenderEskimo;
 import arcticraft.renderers.AC_RenderFrostGhost;
@@ -43,6 +49,9 @@ import arcticraft.renderers.AC_RenderIceShards;
 import arcticraft.renderers.AC_RenderMage;
 import arcticraft.renderers.AC_RenderPenguin;
 import arcticraft.renderers.AC_RenderPolarBear;
+import arcticraft.renderers.AC_RenderTraderEskimo;
+import arcticraft.tile_entities.AC_TileEntityCampfire;
+import arcticraft.tile_entities.AC_TileEntityCampfireRenderer;
 import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
 import arcticraft.tile_entities.AC_TileEntityCaptainStatueRenderer;
 import arcticraft.tile_entities.AC_TileEntityFrostChest;
@@ -91,6 +100,9 @@ public class AC_ClientProxy extends AC_CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityCheifEskimo.class, new AC_RenderCheifEskimo(new AC_ModelCheifEskimo(), 0.3F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityHunterEskimo.class, new AC_RenderHunterEskimo(new AC_ModelHunterEskimo(), 0.3F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityEskimo.class, new AC_RenderEskimo(new AC_ModelEskimo(), 0.3F));
+		RenderingRegistry.registerEntityRenderingHandler(AC_EntityTraderEskimo.class, new AC_RenderTraderEskimo(new AC_ModelTraderEskimo(), 0.3F));
+		RenderingRegistry.registerEntityRenderingHandler(AC_EntityChefEskimo.class, new AC_RenderChefEskimo(new AC_ModelChefEskimo(), 0.3F));
+
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityStatue.class, new AC_TileEntityStatueRenderer());
 		MinecraftForgeClient.registerItemRenderer(MainRegistry.statue.blockID, new AC_ItemStatueRenderer());
@@ -100,6 +112,9 @@ public class AC_ClientProxy extends AC_CommonProxy
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityFrostChest.class, new TileEntityFrostChestRender());
 		MinecraftForgeClient.registerItemRenderer(MainRegistry.frostChest.blockID, new AC_FrostChestItemRenderHelper());
+		
+		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCampfire.class, new AC_TileEntityCampfireRenderer());
+		MinecraftForgeClient.registerItemRenderer(MainRegistry.campfire.blockID, new AC_ItemCampfireRenderer());
 	
 	}
 }

@@ -8,6 +8,11 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import arcticraft.entities.AC_EntityChefEskimo;
+import arcticraft.entities.AC_EntityCheifEskimo;
+import arcticraft.entities.AC_EntityEskimo;
+import arcticraft.entities.AC_EntityHunterEskimo;
+import arcticraft.entities.AC_EntityTraderEskimo;
 import arcticraft.main.MainRegistry;
 
 public class AC_GenEskimoVillage extends WorldGenerator
@@ -1263,7 +1268,7 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		world.setBlock(i + 35, j + 0, k + 3, Block.blockSnow.blockID);
 		world.setBlock(i + 35, j + 0, k + 4, Block.blockSnow.blockID);
 		world.setBlock(i + 35, j + 0, k + 5, Block.wood.blockID, 5, 3);
-		world.setBlock(i + 35, j + 0, k + 6, Block.cloth.blockID, 14, 3);
+		world.setBlock(i + 35, j + 0, k + 6, MainRegistry.campfire.blockID);
 		world.setBlock(i + 35, j + 0, k + 7, Block.wood.blockID, 9, 3);
 		world.setBlock(i + 35, j + 0, k + 8, Block.blockSnow.blockID);
 		world.setBlock(i + 35, j + 0, k + 9, Block.blockSnow.blockID);
@@ -1279,15 +1284,14 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		world.setBlock(i + 35, j + 0, k + 19, Block.blockSnow.blockID);
 		world.setBlock(i + 35, j + 0, k + 20, Block.blockSnow.blockID);
 		world.setBlock(i + 35, j + 0, k + 21, Block.wood.blockID, 5, 3 );
-		world.setBlock(i + 35, j + 0, k + 22, Block.cloth.blockID, 14, 3);
+		world.setBlock(i + 35, j + 0, k + 22, MainRegistry.campfire.blockID );
 		world.setBlock(i + 35, j + 0, k + 23, Block.wood.blockID, 5, 3);
 		world.setBlock(i + 35, j + 0, k + 24, Block.blockSnow.blockID);
 		world.setBlock(i + 35, j + 0, k + 25, Block.blockSnow.blockID);
 		world.setBlock(i + 35, j + 0, k + 26, Block.blockSnow.blockID);
 		world.setBlock(i + 35, j + 0, k + 27, Block.blockSnow.blockID);
 		world.setBlock(i + 35, j + 1, k + 1, Block.blockSnow.blockID);
-		world.setBlock(i + 35, j + 1, k + 3, Block.blockGold.blockID);
-		world.setBlock(i + 35, j + 1, k + 25, Block.blockGold.blockID);
+
 		world.setBlock(i + 35, j + 1, k + 27, Block.blockSnow.blockID);
 		world.setBlock(i + 35, j + 2, k + 1, Block.blockSnow.blockID);
 		world.setBlock(i + 35, j + 2, k + 27, Block.blockSnow.blockID);
@@ -1838,7 +1842,7 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		world.setBlock(i + 46, j + 0, k + 3, Block.blockSnow.blockID);
 		world.setBlock(i + 46, j + 0, k + 4, Block.blockSnow.blockID);
 		world.setBlock(i + 46, j + 0, k + 5, Block.wood.blockID, 9 ,3);
-		world.setBlock(i + 46, j + 0, k + 6, Block.cloth.blockID, 14, 3);
+		world.setBlock(i + 46, j + 0, k + 6, MainRegistry.campfire.blockID);
 		world.setBlock(i + 46, j + 0, k + 7, Block.wood.blockID, 9, 3);
 		world.setBlock(i + 46, j + 0, k + 8, Block.blockSnow.blockID);
 		world.setBlock(i + 46, j + 0, k + 9, Block.blockSnow.blockID);
@@ -1854,15 +1858,14 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		world.setBlock(i + 46, j + 0, k + 19, Block.blockSnow.blockID);
 		world.setBlock(i + 46, j + 0, k + 20, Block.blockSnow.blockID);
 		world.setBlock(i + 46, j + 0, k + 21, Block.wood.blockID, 5, 3);
-		world.setBlock(i + 46, j + 0, k + 22, Block.cloth.blockID, 14, 3);
+		world.setBlock(i + 46, j + 0, k + 22, MainRegistry.campfire.blockID);
 		world.setBlock(i + 46, j + 0, k + 23, Block.wood.blockID, 5, 3);
 		world.setBlock(i + 46, j + 0, k + 24, Block.blockSnow.blockID);
 		world.setBlock(i + 46, j + 0, k + 25, Block.blockSnow.blockID);
 		world.setBlock(i + 46, j + 0, k + 26, Block.blockSnow.blockID);
 		world.setBlock(i + 46, j + 0, k + 27, Block.blockSnow.blockID);
 		world.setBlock(i + 46, j + 1, k + 1, Block.blockSnow.blockID);
-		world.setBlock(i + 46, j + 1, k + 3, Block.blockGold.blockID);
-		world.setBlock(i + 46, j + 1, k + 25, Block.blockGold.blockID);
+	
 		world.setBlock(i + 46, j + 1, k + 27, Block.blockSnow.blockID);
 		world.setBlock(i + 46, j + 2, k + 1, Block.blockSnow.blockID);
 		world.setBlock(i + 46, j + 2, k + 27, Block.blockSnow.blockID);
@@ -2410,7 +2413,7 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		world.setBlock(i + 62, j + 0, k + 11, 126);
 		world.setBlock(i + 62, j + 0, k + 12, 126);
 		world.setBlock(i + 62, j + 0, k + 13, Block.wood.blockID, 5, 3);
-		world.setBlock(i + 62, j + 0, k + 14, Block.cloth.blockID, 14, 3);
+		world.setBlock(i + 62, j + 0, k + 14, MainRegistry.campfire.blockID);
 		world.setBlock(i + 62, j + 0, k + 15, Block.wood.blockID, 5, 3);
 		world.setBlock(i + 62, j + 0, k + 16, 126);
 		world.setBlock(i + 62, j + 0, k + 17, 126);
@@ -2541,7 +2544,6 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		world.setBlock(i + 65, j + 0, k + 19, Block.blockSnow.blockID);
 		world.setBlock(i + 65, j + 0, k + 20, Block.blockSnow.blockID);
 		world.setBlock(i + 65, j + 1, k + 8, Block.blockSnow.blockID);
-		world.setBlock(i + 65, j + 1, k + 14, Block.oreGold.blockID);
 		world.setBlock(i + 65, j + 1, k + 20, Block.blockSnow.blockID);
 		world.setBlock(i + 65, j + 2, k + 8, Block.blockSnow.blockID);
 		world.setBlock(i + 65, j + 2, k + 20, Block.blockSnow.blockID);
@@ -2696,6 +2698,39 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		world.setBlock(i + 69, j + 5, k + 15, Block.blockSnow.blockID);
 		world.setBlock(i + 69, j + 5, k + 16, Block.blockSnow.blockID);
 
+		AC_EntityCheifEskimo chief = new AC_EntityCheifEskimo(world);
+		chief.setPosition(i + 65, j + 1, k + 14);
+		world.spawnEntityInWorld(chief);	
+		
+		AC_EntityHunterEskimo hunter = new AC_EntityHunterEskimo(world);
+		hunter.setPosition(i + 35, j + 1, k + 3);
+		world.spawnEntityInWorld(hunter);
+		
+		AC_EntityHunterEskimo hunter2 = new AC_EntityHunterEskimo(world);
+		hunter2.setPosition(i + 35, j + 1, k + 3);
+		world.spawnEntityInWorld(hunter2);
+		
+		AC_EntityChefEskimo chef = new AC_EntityChefEskimo(world);
+		chef.setPosition(i + 35, j + 1, k + 25);
+		world.spawnEntityInWorld(chef);
+		
+		AC_EntityChefEskimo chef2 = new AC_EntityChefEskimo(world);
+		chef2.setPosition(i + 35, j + 1, k + 25);
+		world.spawnEntityInWorld(chef2);
+		
+		AC_EntityEskimo eskimo = new AC_EntityEskimo(world);
+		eskimo.setPosition(i + 46, j + 1, k + 3);
+		world.spawnEntityInWorld(eskimo);
+		
+		AC_EntityEskimo eskimo2 = new AC_EntityEskimo(world);
+		eskimo2.setPosition(i + 46, j + 1, k + 3);
+		world.spawnEntityInWorld(eskimo2);
+		
+		AC_EntityTraderEskimo traderEskimo = new AC_EntityTraderEskimo(world);
+		traderEskimo.setPosition(i + 46, j + 1, k + 25);
+		world.spawnEntityInWorld(traderEskimo);
+		
+		
 		return true;
 	}
 }
