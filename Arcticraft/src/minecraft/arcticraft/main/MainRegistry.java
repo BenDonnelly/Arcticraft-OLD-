@@ -97,6 +97,7 @@ import arcticraft.entities.AC_EntityPenguin;
 import arcticraft.entities.AC_EntityPirate;
 import arcticraft.entities.AC_EntityPolarBear;
 import arcticraft.entities.AC_EntityTraderEskimo;
+import arcticraft.entities.AC_EntityYeti;
 import arcticraft.gui.AC_GuiHandler;
 import arcticraft.items.AC_FrostDoorPlace;
 import arcticraft.items.AC_ItemArmour;
@@ -488,7 +489,7 @@ public class MainRegistry
 		whiteberry = new AC_ItemWhiteberry(6272, 2, 0.6F, 1545, 1545).setCreativeTab(tabMisc).setUnlocalizedName("AC:Whiteberry");
 		whiteberryBush = new AC_BlockWhiteberry(1545, Material.plants, this.tilledFrostField.blockID, this.whiteberry.itemID).setUnlocalizedName("whiteberry_bush").setStepSound(Block.soundGravelFootstep);
 		captainStatue = new AC_BlockCaptainStatue(1546, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:captain_statue_icon").setStepSound(Block.soundStoneFootstep);
-		campfire = new AC_BlockCampfire(1547, Material.wood).setHardness(1.0F).setCreativeTab(tabBlocks).setLightValue(1.0F).setUnlocalizedName("campfire").setStepSound(Block.soundStoneFootstep);
+		campfire = new AC_BlockCampfire(1547, Material.wood).setHardness(1.0F).setCreativeTab(tabBlocks).setLightValue(1.0F).setUnlocalizedName("AC:campfire_icon").setStepSound(Block.soundStoneFootstep);
 
 		
 		//Items
@@ -861,6 +862,10 @@ public class MainRegistry
 		EntityRegistry.registerGlobalEntityID(AC_EntityChefEskimo.class, "EskimoChef", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.EskimoChef.name", "Eskimo Chef");
 		registerEntityEgg(AC_EntityChefEskimo.class, yellowishColour, grayColor);
+		
+		EntityRegistry.registerGlobalEntityID(AC_EntityYeti.class, "Yeti", EntityRegistry.findGlobalUniqueEntityId());
+		LanguageRegistry.instance().addStringLocalization("entity.Yeti.name", "Yeti");
+		registerEntityEgg(AC_EntityYeti.class, 0x99FFFF, 0xDEDEDE);
 
 		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 342, this, 64, 10, true);
 
@@ -872,7 +877,7 @@ public class MainRegistry
 
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 		MinecraftForge.EVENT_BUS.register(new AC_ForgeEvents());
-		MinecraftForge.EVENT_BUS.register(new AC_EventSoundLoad());
+		
 	}
 
 	@PostInit

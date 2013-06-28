@@ -3,8 +3,10 @@ package arcticraft.entities;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAIMoveTwardsRestriction;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
@@ -12,53 +14,43 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import arcticraft.main.MainRegistry;
 
-public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
+public class AC_EntityYeti extends EntityMob implements AC_IBossDisplayData
 {
-
-	private static final IEntitySelector attackEntitySelector = null;
 
 	public int deathTicks = 0;
 	World theWorld;
 
-	public AC_EntityCaptain(World par1World)
+	public AC_EntityYeti(World par1World)
 	{
 		super(par1World);
 		this.setEntityHealth(this.getMaxHealth());
-		this.texture = "/mods/AC/textures/mobs/captain.png";
-		this.moveSpeed = 0.6F;
+		this.texture = "/mods/AC/textures/mobs/yeti.png";
+		this.moveSpeed = 0.3F;
 		this.getNavigator().setCanSwim(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(5, new EntityAIWander(this, this.moveSpeed));
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
+		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityPlayer.class, this.moveSpeed, false));
+		this.tasks.addTask(2, new EntityAIMoveTwardsRestriction(this, this.moveSpeed));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityLiving.class, 30.0F, 0, false, false, attackEntitySelector));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 16.0F, 0, true));
 		this.experienceValue = 50;
+
 	}
 
 	public boolean isAIEnabled()
 	{
 		return true;
-	}
-
-	public boolean attackEntityAsMob(Entity par1Entity)
-	{
-		if (super.attackEntityAsMob(par1Entity))
-		{
-			((EntityLiving) par1Entity).addPotionEffect(new PotionEffect(Potion.poison.id, 200));
-			return true;
-		}
-		else
-		{
-			return false;
-		}
 	}
 
 	public int func_82212_n()
@@ -81,11 +73,6 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 
 		super.onLivingUpdate();
 
-	}
-
-	public ItemStack getHeldItem()
-	{
-		return new ItemStack(MainRegistry.pirateSword, 1);
 	}
 
 	public void func_82206_m()
@@ -126,7 +113,7 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 	@Override
 	public int getMaxHealth()
 	{
-		return 250;
+		return 400;
 	}
 
 	/**
@@ -136,8 +123,7 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 	 */
 	protected void dropFewItems(boolean par1, int par2)
 	{
-		this.dropItem(MainRegistry.pirateSword.itemID, 1);
-		this.dropItem(MainRegistry.captainStatue.blockID, 1);
+		//TODO 
 	}
 
 	/**
@@ -154,7 +140,7 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 	}
 
 	@Override
-	public int getDragonHealth()
+	public int getBossHealth()
 	{
 		return this.dataWatcher.getWatchableObjectInt(16);
 	}
@@ -167,7 +153,5 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 	{
 		return !this.isDead;
 	}
-
-	
 
 }

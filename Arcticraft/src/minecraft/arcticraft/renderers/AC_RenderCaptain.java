@@ -5,9 +5,6 @@ import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.boss.BossStatus;
-
-import org.lwjgl.opengl.GL11;
-
 import arcticraft.entities.AC_EntityCaptain;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -24,7 +21,7 @@ public class AC_RenderCaptain extends RenderBiped
 
     public void func_82418_a(AC_EntityCaptain par1EntityFrostZombieBoss, double par2, double par4, double par6, float par8, float par9)
     {
-        BossStatus.func_82824_a(par1EntityFrostZombieBoss, true);
+       BossStatus.func_82824_a(par1EntityFrostZombieBoss, true);
        
 
         super.doRenderLiving(par1EntityFrostZombieBoss, par2, par4, par6, par8, par9);

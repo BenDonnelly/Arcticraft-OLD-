@@ -1,31 +1,29 @@
 package arcticraft.main;
 
 import java.util.EnumSet;
+import java.util.Random;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
 
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.blocks.AC_BlockFrostLeaves;
 import arcticraft.blocks.AC_BlockGlacierLeaves;
 import arcticraft.blocks.AC_BlockThickSnow;
-import arcticraft.data_store.TemperatureDataStorage;
+import arcticraft.entities.AC_BossStatus;
 import arcticraft.items.AC_ItemLantern;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.common.FMLCommonHandler;
 
 public class AC_TickHandler implements ITickHandler
 {
@@ -36,11 +34,13 @@ public class AC_TickHandler implements ITickHandler
 	int tempIncrementCounter;
 	public static boolean renderOverlay = true;
 	public static AC_TickHandler tickHandler;
+	Random rand = new Random();
 
 	public AC_TickHandler()
 	{
 		this.mc = Minecraft.getMinecraft();
 		this.maxValue = 100;
+
 	}
 
 	//Util Methods
@@ -97,6 +97,7 @@ public class AC_TickHandler implements ITickHandler
 		{
 			renderFreezeEffect(scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight());
 			onRenderTick();
+			renderBossBars();
 		}
 	}
 
@@ -131,8 +132,34 @@ public class AC_TickHandler implements ITickHandler
 			gui.drawTexturedModalRect(x, y, 0, 0, value * 80 / maxValue, 6);
 		}
 	}
-	
-	
+
+	public void renderBossBars()
+	{
+		GuiIngame gui = this.mc.ingameGUI;
+
+		if (AC_BossStatus.bossName != null && AC_BossStatus.statusBarLength > 0)
+		{
+			--AC_BossStatus.statusBarLength;
+			FontRenderer fontrenderer = this.mc.fontRenderer;
+			ScaledResolution scaledresolution = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
+			int i = scaledresolution.getScaledWidth();
+			short short1 = 182;
+			int j = i / 2 - short1 / 2;
+			int k = (int) (AC_BossStatus.healthScale * (float) (short1 + 1));
+			byte b0 = 12;
+			GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/mods/AC/textures/gui/boss_bars.png"));
+			gui.drawTexturedModalRect(j, b0, 0, 0, short1, 14);
+			if (k > 0)
+			{
+				gui.drawTexturedModalRect(j, b0, 0, 14, k, 14);
+			}
+
+			String s = AC_BossStatus.bossName;
+
+			fontrenderer.drawStringWithShadow(s, i / 2 - fontrenderer.getStringWidth(s) / 2, b0 - 10, 16777215);
+
+		}
+	}
 
 	public void tickCounter()
 	{
