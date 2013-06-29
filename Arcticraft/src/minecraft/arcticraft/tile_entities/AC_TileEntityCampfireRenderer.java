@@ -25,8 +25,8 @@ public class AC_TileEntityCampfireRenderer extends TileEntitySpecialRenderer
 		}
 		bindTextureByName("/mods/AC/textures/blocks/campfire.png"); //texture
 		GL11.glPushMatrix();
-		GL11.glTranslatef((float) d + 0.5F, (float) d1 + 1.5F, (float) d2 + 0.5F);
-		GL11.glScalef(1.0F, -1F, -1F);
+		GL11.glTranslatef((float) d + 0.5F, (float) d1 + 3F, (float) d2 + 0.5F);
+		GL11.glScalef(2.0F, -2.0F, -2.0F);
 		GL11.glRotatef(rotation * 90, 0.0F, 1.0F, 0.0F);
 		model.renderAll();
 		GL11.glPopMatrix(); //end

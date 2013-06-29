@@ -1,8 +1,8 @@
 package arcticraft.entities;
 
-import net.minecraft.command.IEntitySelector;
+import java.util.Random;
+
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -11,17 +11,10 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import arcticraft.main.MainRegistry;
 
 public class AC_EntityYeti extends EntityMob implements AC_IBossDisplayData
 {
@@ -138,6 +131,12 @@ public class AC_EntityYeti extends EntityMob implements AC_IBossDisplayData
 	{
 		return false;
 	}
+
+	/*public String getEntityName()
+	{
+		Random rand = new Random();
+		return "";
+	}*/
 
 	@Override
 	public int getBossHealth()

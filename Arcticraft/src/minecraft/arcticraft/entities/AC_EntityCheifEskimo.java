@@ -8,6 +8,8 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import arcticraft.gui.AC_GuiEskimoTalk;
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class AC_EntityCheifEskimo extends EntityAnimal
 {
@@ -38,6 +40,13 @@ public class AC_EntityCheifEskimo extends EntityAnimal
 		return EnumCreatureAttribute.UNDEFINED;
 	}
 
+	public boolean interact(EntityPlayer par1EntityPlayer)
+	{
+		FMLClientHandler.instance().displayGuiScreen(par1EntityPlayer, new AC_GuiEskimoTalk());
+		System.out.println("Opening the eskimo talking sequence...");
+		return true;
+	}
+	
 	public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
 	{
 		return false;

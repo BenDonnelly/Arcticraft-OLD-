@@ -6,26 +6,24 @@ import static net.minecraftforge.common.ForgeDirection.SOUTH;
 import static net.minecraftforge.common.ForgeDirection.WEST;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-
-import arcticraft.main.MainRegistry;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import arcticraft.main.AC_TickHandler;
+import arcticraft.main.MainRegistry;
+import arcticraft.tile_entities.AC_TileEntityLantern;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import arcticraft.tile_entities.*;
 
 public class AC_BlockLantern extends Block implements ITileEntityProvider
 {
@@ -72,20 +70,21 @@ public class AC_BlockLantern extends Block implements ITileEntityProvider
 	public ArrayList <ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata, int fortune)
 	{
 		ArrayList<ItemStack> list = new ArrayList<ItemStack>();
+		AC_TileEntityLantern lan = (AC_TileEntityLantern)world.getBlockTileEntity(x, y, z);
+		list.add(new ItemStack(MainRegistry.itemLantern, 1, lan.getDurability()));
 		return list;
-		//this makes it drop no items. Right. 
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
+	} 
+	
+	/*@Override
 	public void onBlockHarvested(World par1World, int par2, int par3, int par4, int par5, EntityPlayer par6EntityPlayer)
 	{
+		System.out.println("This is being called " + AC_TickHandler.getSideAsString() + " sided");
 		AC_TileEntityLantern lan = (AC_TileEntityLantern)par1World.getBlockTileEntity(par2, par3, par4);
 		ItemStack is = new ItemStack(MainRegistry.itemLantern);
 		is.setItemDamage(lan.getDurability());
 		System.out.println(lan.getDurability());
 		par1World.spawnEntityInWorld(new EntityItem(par1World, par2, par3, par4, is));
-	}
+	}*/
 
 	/**
 	 * Is this block (a) opaque and (b) a full 1m cube? This determines whether
@@ -223,7 +222,7 @@ public class AC_BlockLantern extends Block implements ITileEntityProvider
 			{
 				par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
 			}
-		}
+		} 
 
 		this.dropTorchIfCantStay(par1World, par2, par3, par4);
 	}

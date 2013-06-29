@@ -12,6 +12,7 @@ import net.minecraft.block.BlockHalfSlab;
 import net.minecraft.block.EnumMobType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityEggInfo;
@@ -718,8 +719,8 @@ public class MainRegistry
 		LanguageRegistry.addName(floranSeed, "Floran Seed");
 		LanguageRegistry.addName(floranBerry, "Floran Berry");
 		LanguageRegistry.addName(whiteberry, "Whiteberry");
-		LanguageRegistry.addName(uncookedBoarMeat, "Uncooked Boar Meat");
-		LanguageRegistry.addName(boarMeat, "Cooked Boar Meat");
+		LanguageRegistry.addName(uncookedBoarMeat, "Raw Boar Meat");
+		LanguageRegistry.addName(boarMeat, "Boar Meat");
 		LanguageRegistry.addName(hikingBoots, "Hiking Boots");
 		LanguageRegistry.addName(captainStatue, "Captain Statue");
 		LanguageRegistry.instance().addStringLocalization("death.attack.Freezing", "%1$s froze");
@@ -891,6 +892,15 @@ public class MainRegistry
 
 	}
 
+	public void renderBossStrings()
+	{
+		
+		/*I was testing rendering strings onto the screen, it seems that strings can only be rendered when a gui or something is open
+		ScaledResolution scaledresolution = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
+		int i = scaledresolution.getScaledWidth();
+		mc.fontRenderer.drawStringWithShadow("Test", i / 2 - mc.fontRenderer.getStringWidth("test") / 2, 12 - 10, 16777215); */
+	}
+	
 	public static void registerEntityEgg(Class <? extends Entity> entity, int primaryColor, int secondaryColor)
 	{
 		int id = getUniqueEntityId();

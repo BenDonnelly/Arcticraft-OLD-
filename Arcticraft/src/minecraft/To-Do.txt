@@ -2,12 +2,8 @@ Put your name in brackets after the task if your planning on doing it
 
 Put tasks below:
 
-make ac blocks not breakable with mc tools(at least some of them)
 chests in ships and other strucutres get changed to ac chests
-kill player at 0 temp
 bomb and ice shards fireable through dispenser
-Custom Background music
-final boss dimension(frozen wasteland)
 final boss model(King)
 objectives to get to said boss
 quest system

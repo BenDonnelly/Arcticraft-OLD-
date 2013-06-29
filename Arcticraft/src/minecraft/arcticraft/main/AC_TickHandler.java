@@ -98,6 +98,7 @@ public class AC_TickHandler implements ITickHandler
 			renderFreezeEffect(scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight());
 			onRenderTick();
 			renderBossBars();
+			MainRegistry.instance.renderBossStrings();
 		}
 	}
 

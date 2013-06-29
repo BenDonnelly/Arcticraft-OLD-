@@ -1,5 +1,6 @@
 package arcticraft.entities;
 
+import arcticraft.main.MainRegistry;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.EntityAIControlledByPlayer;
 import net.minecraft.entity.ai.EntityAIFollowParent;
@@ -171,11 +172,11 @@ public class AC_EntityBoar extends EntityAnimal
 		{
 			if (this.isBurning())
 			{
-				this.dropItem(Item.porkCooked.itemID, 1);
+				this.dropItem(MainRegistry.boarMeat.itemID, 1);
 			}
 			else
 			{
-				this.dropItem(Item.porkRaw.itemID, 1);
+				this.dropItem(MainRegistry.uncookedBoarMeat.itemID, 1);
 			}
 		}
 

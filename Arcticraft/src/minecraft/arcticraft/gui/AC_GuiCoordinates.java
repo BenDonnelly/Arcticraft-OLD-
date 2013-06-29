@@ -60,7 +60,7 @@ public class AC_GuiCoordinates extends GuiScreen
 			AC_TickHandler.y = Integer.parseInt(textfield2.getText());
 //			mc.currentScreen.updateScreen();
 			mc.thePlayer.sendChatToPlayer("You've succesfully changed the coordinates to - X: " + AC_TickHandler.x + " and Y: " + AC_TickHandler.y);
-			mc.thePlayer.sendChatToPlayer("Your temperature is:"+AC_TickHandler.value);
+			mc.thePlayer.sendChatToPlayer("Your temperature is: "+AC_TickHandler.value);
 
 		}
 		else if (button.id == 2)

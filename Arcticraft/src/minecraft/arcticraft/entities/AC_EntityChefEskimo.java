@@ -1,23 +1,18 @@
 package arcticraft.entities;
 
-import net.minecraft.entity.Entity;
+import arcticraft.gui.AC_GuiEskimoTalk;
+import arcticraft.main.MainRegistry;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTwardsRestriction;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class AC_EntityChefEskimo extends EntityMob
 {
@@ -32,7 +27,6 @@ public class AC_EntityChefEskimo extends EntityMob
 		this.tasks.addTask(11, new EntityAISwimming(this));
 		this.tasks.addTask(6, new EntityAIWander(this, this.moveSpeed));
 
-		
 	}
 
 	public boolean isAIEnabled()
@@ -55,8 +49,6 @@ public class AC_EntityChefEskimo extends EntityMob
 		return 40;
 	}
 
-	
-	
 	public EntityAgeable createChild(EntityAgeable entityageable)
 	{
 		return null;
