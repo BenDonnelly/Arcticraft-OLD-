@@ -253,5 +253,9 @@ public class AC_Recipes
 		GameRegistry.addRecipe(new ItemStack(MainRegistry.freezerIdle), new Object[] {
 			"XXX", "XYX", "XXX", Character.valueOf('X'), Item.ingotIron,
 			Character.valueOf('Y'), MainRegistry.tekkiteGem});
+		
+		GameRegistry.addRecipe(new ItemStack(MainRegistry.campfire), new Object[]{
+		 " Y ", "XXX", Character.valueOf('X'), Item.stick,
+			Character.valueOf('Y'), MainRegistry.frigus});
 	}
 }

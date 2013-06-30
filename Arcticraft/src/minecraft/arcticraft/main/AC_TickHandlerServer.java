@@ -4,7 +4,8 @@ import java.util.EnumSet;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.PotionEffect;
+import net.minecraft.item.ItemStack;
+import arcticraft.gui.AC_GuiEskimoTalk;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 
@@ -40,6 +41,8 @@ public class AC_TickHandlerServer implements ITickHandler
 	{
 		return EnumSet.of(TickType.PLAYER, TickType.SERVER);
 	}
+
+	
 
 	public void killPlayer(EntityPlayer entityPlayer)
 	{

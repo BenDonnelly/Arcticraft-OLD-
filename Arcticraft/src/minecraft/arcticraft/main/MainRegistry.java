@@ -580,7 +580,7 @@ public class MainRegistry
 		uncookedBoarMeat = new ItemFood(6275, 10, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat_cooked");
 		hikingBoots = new AC_ItemArmour(6276, hikingAmrour, proxy.addArmor("Hiking"), 3).setCreativeTab(tabTools).setUnlocalizedName("Hiking Boots");
 		freezePotion = new AC_Potions(27, true, 0xffff).setIconIndex(2, 2).setPotionName("Freezing");
-		invisoStaff = new AC_ItemInvisoStaff(6277).setMaxStackSize(1).setFull3D().setCreativeTab(tabTools).setUnlocalizedName("stick");
+		invisoStaff = new AC_ItemInvisoStaff(6277).setMaxStackSize(1).setFull3D().setCreativeTab(tabTools).setUnlocalizedName("");
 		
 		AC_Recipes.initializeRecipes();
 		proxy.reigsterRenderThings();

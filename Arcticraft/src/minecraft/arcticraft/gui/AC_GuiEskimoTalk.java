@@ -7,9 +7,11 @@ import java.util.Random;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import arcticraft.entities.AC_EntityYeti;
 import arcticraft.main.AC_TickHandler;
+import arcticraft.main.MainRegistry;
 
 public class AC_GuiEskimoTalk extends GuiScreen
 {
@@ -20,6 +22,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 	public String thing = randomItem [rand.nextInt(randomItem.length)];
 	private int chatProgress;
 	private int reward;
+	private boolean hasCollectedReward = false;
 
 	public AC_GuiEskimoTalk()
 	{
@@ -33,13 +36,13 @@ public class AC_GuiEskimoTalk extends GuiScreen
 		{
 		case 0:
 			this.buttonList.add(new GuiButton(0, 2, this.height / 4 + 72 + -16, 220, 20, "Who are you?"));
-			this.buttonList.add(new GuiButton(1, 2, this.height / 4 + 96 + -16, 220, 20, "Why are you keeping that Yeti captive?")); //this one i pressed
+			this.buttonList.add(new GuiButton(1, 2, this.height / 4 + 96 + -16, 220, 20, "Why are you keeping that Yeti captive?"));
 			this.buttonList.add(new GuiButton(2, 2, this.height / 4 + 120 + -16, 220, 20, "What's with that temple over there?"));
 			this.buttonList.add(new GuiButton(3, 2, this.height / 4 + 48 + -16, 220, 20, "Hey. Where can I get " + thing + " from?"));
 			break;
 
 		case 1:
-			this.buttonList.add(new GuiButton(4, 2, this.height / 4 + 72 + -16, 220, 20, "What if I could slay it for you?")); //Im not even double clicking aha, wtff. 
+			this.buttonList.add(new GuiButton(4, 2, this.height / 4 + 72 + -16, 220, 20, "What if I could slay it for you?"));
 			this.buttonList.add(new GuiButton(5, 2, this.height / 4 + 96 + -16, 220, 20, "I'll slay it for you. For a price."));
 			break;
 
@@ -50,13 +53,8 @@ public class AC_GuiEskimoTalk extends GuiScreen
 
 		case 3:
 			this.buttonList.add(new GuiButton(8, 2, this.height / 4 + 96 + -16, 220, 20, "I've killed the Yeti"));
-//			this.buttonList.add(new GuiButton(9, 2, this.height / 4 + 72 + -16, 220, 20, "I'm still working on killing the Yeti"));
 			break;
 
-		case 4:
-			this.buttonList.add(new GuiButton(10, 2, this.height / 4 + 96 + -16, 220, 20, "Sacred Item"));
-			this.buttonList.add(new GuiButton(11, 2, this.height / 4 + 72 + -16, 220, 20, "Erium"));
-			break;
 		}
 
 	}
@@ -108,8 +106,8 @@ public class AC_GuiEskimoTalk extends GuiScreen
 			chatProgress = 3;
 			initGui();
 			break;
-		}
-		if (button.id == 8)
+
+		case 8:
 		{
 			out("case 8");
 			int offsetX = (int) Math.round(mc.thePlayer.posX);
@@ -123,7 +121,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 			for (int i = 0; i < entitiesInRange.size(); ++i)
 			{
 				Entity check = (Entity) entitiesInRange.get(i);
-				if (check instanceof AC_EntityYeti) 
+				if (check instanceof AC_EntityYeti)
 				{
 					try
 					{
@@ -142,17 +140,50 @@ public class AC_GuiEskimoTalk extends GuiScreen
 			{
 				mc.thePlayer.sendChatToPlayer("The beast has not been slaid yet, kill it if you want your reward");
 				out("The Yeti is not dead...");
+				break;
 			}
 			else
 			{
-				mc.thePlayer.sendChatToPlayer("Thank you for the killing the Yeti. It has brought peace to my people. Heres is a reward for your efforts.");
-				chatProgress = 4;
-				initGui();	
+				if (hasCollectedReward == false)
+				{
+
+					if (reward == 2)
+					{
+						mc.thePlayer.sendChatToPlayer("Thank you for the killing the Yeti. It has brought peace to my people. Heres is a reward for your efforts.");
+						mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(MainRegistry.eriumGem, 128));
+						//TODO sacred item
+						hasCollectedReward = true;
+						mc.thePlayer.closeScreen();
+						break;
+					}
+					else if (reward == 0)
+					{
+						mc.thePlayer.sendChatToPlayer("The village is very grateful, here is your Erium");
+						mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(MainRegistry.eriumGem, 128));
+						//TODO sacred item
+						hasCollectedReward = true;
+						mc.thePlayer.closeScreen();
+						break;
+					}
+					else if (reward == 1)
+					{
+						mc.thePlayer.sendChatToPlayer("It took me a while to convince my people, but I manage to get it. Here it is X - the most sacred item we have to offer ");
+						//TODO sacred item
+						hasCollectedReward = true;
+						mc.thePlayer.closeScreen();
+						break;
+					}
+					if(hasCollectedReward == true)
+					{
+						button.enabled = false;
+						break;
+					}
+				}
+
 			}
 		}
-		
+		}
 	}
-
 	protected void keyTyped(char par1, int par2)
 	{
 		if (par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.keyCode)
@@ -169,7 +200,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 	{
 		super.drawScreen(x, y, f);
 	}
-	
+
 	public static void out(String text)
 	{
 		System.out.println(AC_TickHandler.getSideAsString() + ": " + text);
