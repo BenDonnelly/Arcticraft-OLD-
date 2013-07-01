@@ -184,7 +184,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 					}
 				}
 				else {
-					this.mc.thePlayer.addChatMessage("Something went wrong, is your inventory full?");
+					this.mc.thePlayer.sendChatToPlayer("Something went wrong, is your inventory full?");
 				}
 			}
 		}
