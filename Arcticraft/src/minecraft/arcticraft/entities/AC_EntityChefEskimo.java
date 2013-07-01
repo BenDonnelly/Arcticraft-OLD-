@@ -1,8 +1,5 @@
 package arcticraft.entities;
 
-import arcticraft.gui.AC_GuiEskimoTalk;
-import arcticraft.main.MainRegistry;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -12,7 +9,6 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import cpw.mods.fml.client.FMLClientHandler;
 
 public class AC_EntityChefEskimo extends EntityMob
 {

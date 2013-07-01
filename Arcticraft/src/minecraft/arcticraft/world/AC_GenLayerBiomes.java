@@ -1,9 +1,9 @@
 package arcticraft.world;
 
-import arcticraft.biomes.AC_BiomeGenBaseArcticraft;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
+import arcticraft.biomes.AC_BiomeGenBaseArcticraft;
 
 public class AC_GenLayerBiomes extends GenLayer
 {

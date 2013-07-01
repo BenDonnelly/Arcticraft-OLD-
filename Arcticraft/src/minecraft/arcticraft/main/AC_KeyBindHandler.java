@@ -4,7 +4,6 @@ import java.util.EnumSet;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.src.ModLoader;
 
 import org.lwjgl.input.Keyboard;
 

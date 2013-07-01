@@ -1,12 +1,10 @@
 package arcticraft.items;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import arcticraft.models.AC_ModelPlainStatue;
 import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
-import arcticraft.tile_entities.AC_TileEntityStatue;
 
 public class AC_ItemCaptainStatueRenderer implements IItemRenderer
 {

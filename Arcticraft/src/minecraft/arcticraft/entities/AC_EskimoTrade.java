@@ -1,8 +1,8 @@
 package arcticraft.entities;
 
-import arcticraft.main.MainRegistry;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
+import arcticraft.main.MainRegistry;
 
 public class AC_EskimoTrade {
 	

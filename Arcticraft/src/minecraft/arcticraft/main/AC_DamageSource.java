@@ -1,10 +1,8 @@
 package arcticraft.main;
 
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
-import net.minecraft.util.StatCollector;
 
 public class AC_DamageSource extends DamageSource
 {

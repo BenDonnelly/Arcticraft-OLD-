@@ -2,13 +2,9 @@ package arcticraft.biomes;
 
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
-import arcticraft.entities.AC_EntityBoar;
 import arcticraft.entities.AC_EntityFrostGhost;
-import arcticraft.entities.AC_EntityFrostZombie;
-import arcticraft.entities.AC_EntityHusky;
 import arcticraft.entities.AC_EntityIceCreeper;
 import arcticraft.entities.AC_EntityPenguin;
-import arcticraft.entities.AC_EntityPolarBear;
 import arcticraft.gen.AC_GenFrostTrees;
 import arcticraft.gen.AC_GenGlacierTrees;
 import arcticraft.main.MainRegistry;

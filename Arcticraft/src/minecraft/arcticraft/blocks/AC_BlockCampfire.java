@@ -6,15 +6,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
 import arcticraft.tile_entities.AC_TileEntityCampfire;
-import arcticraft.tile_entities.AC_TileEntityStatue;
 
 public class AC_BlockCampfire extends BlockContainer
 {

@@ -1,9 +1,9 @@
 package arcticraft.creative_tabs;
 
-import arcticraft.main.MainRegistry;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import cpw.mods.fml.relauncher.*;
+import arcticraft.main.MainRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class AC_TabFood extends CreativeTabs {
 	public AC_TabFood(int position, String tabID) {

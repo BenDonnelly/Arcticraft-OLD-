@@ -2,11 +2,9 @@ package arcticraft.helpers;
 
 import java.util.Random;
 
-import arcticraft.main.MainRegistry;
-
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
+import arcticraft.main.MainRegistry;
 
 public class AC_WorldGenHelpers
 {

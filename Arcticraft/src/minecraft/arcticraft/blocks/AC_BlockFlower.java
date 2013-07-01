@@ -1,19 +1,22 @@
 package arcticraft.blocks;
 
-import java.util.Random;
+import static net.minecraftforge.common.EnumPlantType.Cave;
+import static net.minecraftforge.common.EnumPlantType.Crop;
+import static net.minecraftforge.common.EnumPlantType.Desert;
+import static net.minecraftforge.common.EnumPlantType.Nether;
+import static net.minecraftforge.common.EnumPlantType.Plains;
+import static net.minecraftforge.common.EnumPlantType.Water;
 
-import arcticraft.main.MainRegistry;
+import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
-
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
-import static net.minecraftforge.common.EnumPlantType.*;
+import arcticraft.main.MainRegistry;
 
 public class AC_BlockFlower extends Block implements IPlantable
 {

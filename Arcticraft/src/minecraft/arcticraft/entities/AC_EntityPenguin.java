@@ -17,9 +17,6 @@ import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.SpawnListEntry;
-import net.minecraft.world.chunk.Chunk;
 import arcticraft.main.MainRegistry;
 
 public class AC_EntityPenguin extends EntityAnimal

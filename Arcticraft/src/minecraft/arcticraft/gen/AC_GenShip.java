@@ -9,7 +9,6 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import arcticraft.entities.AC_EntityCaptain;
-import arcticraft.entities.AC_EntityMage;
 import arcticraft.entities.AC_EntityPirate;
 import arcticraft.helpers.AC_WorldGenHelpers;
 import arcticraft.main.MainRegistry;

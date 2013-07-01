@@ -1,13 +1,13 @@
 package arcticraft.renderers;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+
+import org.lwjgl.opengl.GL11;
+
 import arcticraft.entities.AC_EntityBoar;
-import arcticraft.entities.AC_EntityPolarBear;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

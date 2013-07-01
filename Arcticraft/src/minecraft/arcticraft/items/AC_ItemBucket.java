@@ -1,9 +1,7 @@
 package arcticraft.items;
 
-import arcticraft.main.MainRegistry;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumMovingObjectType;
@@ -12,6 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
+import arcticraft.main.MainRegistry;
 
 public class AC_ItemBucket extends ItemBucket{
 

@@ -1,14 +1,11 @@
 package arcticraft.tile_entities;
 
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.models.AC_ModelPlainStatue;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 public class AC_TileEntityStatueRenderer extends TileEntitySpecialRenderer
 {

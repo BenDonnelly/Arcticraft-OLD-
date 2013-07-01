@@ -1,14 +1,11 @@
 package arcticraft.items;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import arcticraft.blocks.AC_BlockLantern;
 import arcticraft.main.AC_TickHandler;
 import arcticraft.main.MainRegistry;
 import arcticraft.tile_entities.AC_TileEntityLantern;

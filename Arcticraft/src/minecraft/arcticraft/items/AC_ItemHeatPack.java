@@ -1,10 +1,10 @@
 package arcticraft.items;
 
-import arcticraft.main.AC_TickHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import arcticraft.main.AC_TickHandler;
 
 public class AC_ItemHeatPack extends Item
 {

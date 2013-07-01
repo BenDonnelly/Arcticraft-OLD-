@@ -1,11 +1,8 @@
 package arcticraft.biomes;
 
-import arcticraft.entities.AC_EntityBoar;
-import arcticraft.entities.AC_EntityPolarBear;
-import arcticraft.main.MainRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
+import arcticraft.entities.AC_EntityBoar;
 
 public class AC_BiomeSnowPlains extends AC_BiomeGenBaseArcticraft
 {

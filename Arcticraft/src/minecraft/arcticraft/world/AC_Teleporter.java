@@ -2,8 +2,6 @@ package arcticraft.world;
 
 import java.util.Iterator;
 
-import arcticraft.main.MainRegistry;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -21,6 +19,7 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import arcticraft.main.MainRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class AC_Teleporter

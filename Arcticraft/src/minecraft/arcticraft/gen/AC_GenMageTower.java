@@ -1,14 +1,13 @@
 package arcticraft.gen;
 import java.util.Random;
 
-import arcticraft.entities.AC_EntityMage;
-import arcticraft.main.MainRegistry;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import arcticraft.entities.AC_EntityMage;
+import arcticraft.main.MainRegistry;
 
 public class AC_GenMageTower extends WorldGenerator
 {

@@ -1,8 +1,8 @@
 package arcticraft.biomes;
 
-import arcticraft.entities.AC_EntityPolarBear;
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.SpawnListEntry;
+import arcticraft.entities.AC_EntityPolarBear;
 
 public class AC_BiomeGlacier extends AC_BiomeGenBaseArcticraft
 {

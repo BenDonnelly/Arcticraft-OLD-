@@ -5,10 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import arcticraft.entities.AC_EntityCheifEskimo;
-import arcticraft.entities.AC_EntityFrostZombie;
 
 public class AC_ForgeEvents
 {

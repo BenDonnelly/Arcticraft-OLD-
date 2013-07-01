@@ -3,13 +3,10 @@ package arcticraft.gui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.potion.PotionEffect;
 
 import org.lwjgl.opengl.GL11;
 
-import arcticraft.entities.AC_BossStatus;
 import arcticraft.main.AC_TickHandler;
-import arcticraft.main.MainRegistry;
 
 public class AC_GuiOptions extends GuiScreen
 {

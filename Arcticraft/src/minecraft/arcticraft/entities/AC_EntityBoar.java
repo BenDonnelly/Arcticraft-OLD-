@@ -1,6 +1,5 @@
 package arcticraft.entities;
 
-import arcticraft.main.MainRegistry;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.EntityAIControlledByPlayer;
 import net.minecraft.entity.ai.EntityAIFollowParent;
@@ -20,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.world.World;
+import arcticraft.main.MainRegistry;
 
 public class AC_EntityBoar extends EntityAnimal
 {

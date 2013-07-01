@@ -2,7 +2,6 @@ package arcticraft.biomes;
 
 import java.util.Random;
 
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import arcticraft.entities.AC_EntityPolarBear;

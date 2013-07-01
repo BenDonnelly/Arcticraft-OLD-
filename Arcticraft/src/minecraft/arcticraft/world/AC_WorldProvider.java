@@ -4,10 +4,8 @@ import java.util.Random;
 
 import net.minecraft.util.Vec3;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.DimensionManager;
-import arcticraft.biomes.AC_BiomeGenBaseArcticraft;
 import arcticraft.main.MainRegistry;
 
 public class AC_WorldProvider extends WorldProvider

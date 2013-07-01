@@ -2,12 +2,9 @@ package arcticraft.blocks;
 
 import java.util.Random;
 
-import arcticraft.main.MainRegistry;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
+import arcticraft.main.MainRegistry;
 
 public class AC_BlockFrostStone extends Block
 {

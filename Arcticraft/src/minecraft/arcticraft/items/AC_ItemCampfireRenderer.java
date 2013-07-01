@@ -4,7 +4,6 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import arcticraft.models.AC_ModelCampfire;
-import arcticraft.models.AC_ModelPlainStatue;
 import arcticraft.tile_entities.AC_TileEntityCampfire;
 
 public class AC_ItemCampfireRenderer implements IItemRenderer
