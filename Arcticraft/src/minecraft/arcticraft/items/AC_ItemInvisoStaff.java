@@ -59,7 +59,7 @@ public class AC_ItemInvisoStaff extends Item implements IItemRenderer
 	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
 	{
-		return false;
+		return true;
 	}
 
 	@Override

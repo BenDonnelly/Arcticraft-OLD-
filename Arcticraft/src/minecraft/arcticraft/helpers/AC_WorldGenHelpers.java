@@ -40,7 +40,7 @@ public class AC_WorldGenHelpers
 				else if(type.equals("iceberg"))
 				{
 					int var2 = rand.nextInt(11);
-					chest.setInventorySlotContents(i, var2 == 0 ? new ItemStack(MainRegistry.floranSeed) : (var2 == 0 ? new ItemStack(MainRegistry.whiteberry) : (var2 == 1 ? new ItemStack(MainRegistry.ArcticStoneSword, rand.nextInt(4) + 1) : (var2 == 2 ? new ItemStack(MainRegistry.arcaneStone): (var2 == 3 ? new ItemStack(MainRegistry.emptyCup) : (var2 == 5 ? new ItemStack(MainRegistry.floranBerry) : null))))));
+					chest.setInventorySlotContents(i, var2 == 0 ? new ItemStack(MainRegistry.floranSeed) : (var2 == 0 ? new ItemStack(MainRegistry.whiteberry) : (var2 == 1 ? new ItemStack(MainRegistry.ArcticStoneSword, rand.nextInt(4) + 1) : (var2 == 2 ? new ItemStack(MainRegistry.arcaneStone): (var2 == 3 ? new ItemStack(MainRegistry.emptyCup) : (var2 == 5 ? new ItemStack(MainRegistry.floranBerry) : (var2 == 5 ? new ItemStack(MainRegistry.iceCream, 0) : (var2 == 5 ? new ItemStack(MainRegistry.iceCream, 1) : (var2 == 5 ? new ItemStack(MainRegistry.iceCream, 2) : (var2 == 5 ? new ItemStack(MainRegistry.iceCream, 3) : (var2 == 5 ? new ItemStack(MainRegistry.iceCream, 4) : (var2 == 5 ? new ItemStack(MainRegistry.iceCream, 5) :(var2 == 5 ? new ItemStack(MainRegistry.iceCream, 6) : (var2 == 5 ? new ItemStack(MainRegistry.iceCream, 7) :(var2 == 5 ? new ItemStack(MainRegistry.iceCream, 8) :(var2 == 5 ? new ItemStack(MainRegistry.iceCream, 9) :null))))))))))))))));
 				}
 				else
 				{
