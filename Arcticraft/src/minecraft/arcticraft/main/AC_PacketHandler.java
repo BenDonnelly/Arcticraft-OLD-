@@ -3,33 +3,91 @@ package arcticraft.main;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.util.Random;
 
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
+import arcticraft.entities.AC_EskimoTrade;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 
 public class AC_PacketHandler implements IPacketHandler {
+	
 	@Override
-	public void onPacketData(INetworkManager manager,
-			Packet250CustomPayload packet, Player player) {
-		if (packet.channel.equals("GenericRandom")) {
-			handleRandom(packet);
+	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
+		if (packet.channel.equals("AC_EskimoTrade")) {
+			this.handleEskimoTrade(packet, player);
+		}
+		else if (packet.channel.equals("AC_EskimoTalk")) {
+			this.handleEskimoTalk(packet, player);
 		}
 	}
-
-	private void handleRandom(Packet250CustomPayload packet) {
-		DataInputStream inputStream = new DataInputStream(
-				new ByteArrayInputStream(packet.data));
-		int randomInt1;
-		int randomInt2;
+	
+	private void handleEskimoTalk(Packet250CustomPayload packet, Player plyr) {
+		DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
+        
+		int itemID;
+		int stackSize;
+		int damageValue;
+        
 		try {
-			randomInt1 = inputStream.readInt();
-			randomInt2 = inputStream.readInt();
-		} catch (IOException e) {
+			itemID = inputStream.readInt();
+			stackSize = inputStream.readInt();
+			damageValue = inputStream.readInt();
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 			return;
 		}
-		System.out.println(randomInt1 + " " + randomInt2);
+		
+		ItemStack stack = new ItemStack(itemID, stackSize, damageValue);
+		EntityPlayer player;
+		
+		if (plyr instanceof EntityPlayer) {
+			player = (EntityPlayer) plyr;
+		}
+		else {
+			return;
+		}
+		
+		player.inventory.addItemStackToInventory(stack);
+	}
+	
+	private void handleEskimoTrade(Packet250CustomPayload packet, Player plyr) {
+		DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
+        
+		int itemID;
+		int stackSize;
+		int damageValue;
+		int gems;
+        
+		try {
+			itemID = inputStream.readInt();
+			stackSize = inputStream.readInt();
+			damageValue = inputStream.readInt();
+			gems = inputStream.readInt();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
+		
+		ItemStack stack = new ItemStack(itemID, stackSize, damageValue);
+		EntityPlayer player;
+		
+		if (plyr instanceof EntityPlayer) {
+			player = (EntityPlayer) plyr;
+		}
+		else {
+			return;
+		}
+		
+		if (AC_EskimoTrade.removeGemsFromInventory(player.inventory, gems)) {
+			player.sendChatToPlayer("You have bought: " + stack.stackSize + "x " + stack.getDisplayName());
+			player.inventory.addItemStackToInventory(stack);
+		}
 	}
 }

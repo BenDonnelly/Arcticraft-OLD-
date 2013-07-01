@@ -1,13 +1,17 @@
 package arcticraft.gui;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.util.AxisAlignedBB;
 import arcticraft.entities.AC_EntityYeti;
 import arcticraft.main.AC_TickHandler;
@@ -144,13 +148,13 @@ public class AC_GuiEskimoTalk extends GuiScreen
 			}
 			else
 			{
-				if (hasCollectedReward == false)
+				if (hasCollectedReward == false && mc.thePlayer.inventory.getFirstEmptyStack() != -1)
 				{
 
 					if (reward == 2)
 					{
 						mc.thePlayer.sendChatToPlayer("Thank you for the killing the Yeti. It has brought peace to my people. Heres is a reward for your efforts.");
-						mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(MainRegistry.eriumGem, 128));
+						sendRewardToPlayer(this.mc.thePlayer, new ItemStack(MainRegistry.eriumGem, 128));
 						//TODO sacred item
 						hasCollectedReward = true;
 						mc.thePlayer.closeScreen();
@@ -159,7 +163,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 					else if (reward == 0)
 					{
 						mc.thePlayer.sendChatToPlayer("The village is very grateful, here is your Erium");
-						mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(MainRegistry.eriumGem, 128));
+						sendRewardToPlayer(this.mc.thePlayer, new ItemStack(MainRegistry.eriumGem, 128));
 						//TODO sacred item
 						hasCollectedReward = true;
 						mc.thePlayer.closeScreen();
@@ -179,11 +183,39 @@ public class AC_GuiEskimoTalk extends GuiScreen
 						break;
 					}
 				}
-
+				else {
+					this.mc.thePlayer.addChatMessage("Something went wrong, is your inventory full?");
+				}
 			}
 		}
 		}
 	}
+	
+	private static void sendRewardToPlayer(EntityClientPlayerMP player, ItemStack stack) {
+		int itemID = stack.itemID;
+		int stackSize = stack.stackSize;
+		int damageValue = stack.getItemDamage();
+		
+		ByteArrayOutputStream bos = new ByteArrayOutputStream(12);
+		DataOutputStream outputStream = new DataOutputStream(bos);
+		
+		try {
+			outputStream.writeInt(itemID);
+			outputStream.writeInt(stackSize);
+			outputStream.writeInt(damageValue);
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		Packet250CustomPayload packet = new Packet250CustomPayload();
+        packet.channel = "AC_EskimoTalk";
+        packet.data = bos.toByteArray();
+        packet.length = bos.size();
+        
+        player.sendQueue.addToSendQueue(packet);
+	}
+	
 	protected void keyTyped(char par1, int par2)
 	{
 		if (par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.keyCode)
@@ -196,11 +228,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 	{
 		return false;
 	}
-	public void drawScreen(int x, int y, float f)
-	{
-		super.drawScreen(x, y, f);
-	}
-
+	
 	public static void out(String text)
 	{
 		System.out.println(AC_TickHandler.getSideAsString() + ": " + text);
