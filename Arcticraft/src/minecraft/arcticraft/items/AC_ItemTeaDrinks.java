@@ -30,6 +30,7 @@ public class AC_ItemTeaDrinks extends ItemFood
 	{
 		super(par1, par2, par3, par4);
 		this.setHasSubtypes(true);
+		this.setAlwaysEdible();
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -73,66 +74,63 @@ public class AC_ItemTeaDrinks extends ItemFood
 
 	}
 
-	protected void onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+	@Override
+	public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (!par2World.isRemote)
+		super.onEaten(par1ItemStack, par2World, par3EntityPlayer);
+
+		if (par1ItemStack.getItemDamage() == 0)
 		{
-			if (par1ItemStack.getItemDamage() == 0)
+			par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.regeneration.id, 1200, 2));
+			if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
 			{
-				par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.regeneration.id, 1200, 2));
-				if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
-				{
-					AC_TickHandler.value -= 15;
-				}
-				else if (AC_TickHandler.value <= 14)
-				{
-					AC_TickHandler.value = 0;
+				AC_TickHandler.value -= 15;
+			}
+			else if (AC_TickHandler.value <= 14)
+			{
+				AC_TickHandler.value = 0;
 
-				}
-			}
-			
-			else if (par1ItemStack.getItemDamage() == 1)
-			{
-				if (AC_TickHandler.value <= 70)
-				{
-					AC_TickHandler.value += 30;
-				}
-				else if (AC_TickHandler.value >= 71)
-				{
-					AC_TickHandler.value = 100;
-				}
-			}
-			
-			else if (par1ItemStack.getItemDamage() == 2)
-			{
-				par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.jump.id, 1200, 2));
-				if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
-				{
-					AC_TickHandler.value -= 15;
-				}
-				else if (AC_TickHandler.value <= 14)
-				{
-					AC_TickHandler.value = 0;
-
-				}
-			}
-			else if (par1ItemStack.getItemDamage() == 3)
-			{
-				if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
-				{
-					AC_TickHandler.value -= 15;
-				}
-				else if (AC_TickHandler.value <= 14)
-				{
-					AC_TickHandler.value = 0;
-				}
 			}
 		}
-		else
+
+		else if (par1ItemStack.getItemDamage() == 1)
 		{
-			super.onFoodEaten(par1ItemStack, par2World, par3EntityPlayer);
-			par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(MainRegistry.emptyCup, 1));
+			if (AC_TickHandler.value <= 70)
+			{
+				AC_TickHandler.value += 30;
+			}
+			else if (AC_TickHandler.value >= 71)
+			{
+				AC_TickHandler.value = 100;
+			}
 		}
+
+		else if (par1ItemStack.getItemDamage() == 2)
+		{
+			par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.jump.id, 1200, 2));
+			if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
+			{
+				AC_TickHandler.value -= 15;
+			}
+			else if (AC_TickHandler.value <= 14)
+			{
+				AC_TickHandler.value = 0;
+
+			}
+		}
+		else if (par1ItemStack.getItemDamage() == 3)
+		{
+			if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
+			{
+				AC_TickHandler.value -= 15;
+			}
+			else if (AC_TickHandler.value <= 14)
+			{
+				AC_TickHandler.value = 0;
+			}
+		}
+
+		return new ItemStack(MainRegistry.emptyCup);
 	}
 
 	@SideOnly(Side.CLIENT)
