@@ -111,6 +111,7 @@ import arcticraft.items.AC_ItemIceCream;
 import arcticraft.items.AC_ItemInvisoStaff;
 import arcticraft.items.AC_ItemLantern;
 import arcticraft.items.AC_ItemPickaxe;
+import arcticraft.items.AC_ItemRecord;
 import arcticraft.items.AC_ItemSeed;
 import arcticraft.items.AC_ItemShovel;
 import arcticraft.items.AC_ItemSword;
@@ -340,6 +341,10 @@ public class MainRegistry
 	public static Block statue;
 	public static Block captainStatue;
 	public static Block campfire;
+	
+	//records
+	public static Item recordFrozenFeelings;
+	public static Item recordWTTC;
 	
 	public static Potion freezePotion;
 	//public static HashMap <EntityPlayer, Integer> playerTemps = new HashMap <EntityPlayer, Integer>();
@@ -578,7 +583,10 @@ public class MainRegistry
 		uncookedBoarMeat = new ItemFood(6275, 10, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat_cooked");
 		hikingBoots = new AC_ItemArmour(6276, hikingAmrour, proxy.addArmor("Hiking"), 3).setCreativeTab(tabTools).setUnlocalizedName("Hiking Boots");
 		freezePotion = new AC_Potions(27, true, 0xffff).setIconIndex(2, 2).setPotionName("Freezing");
+	
 		invisoStaff = new AC_ItemInvisoStaff(6277).setMaxStackSize(1).setFull3D().setCreativeTab(tabTools).setUnlocalizedName("");
+		recordFrozenFeelings = new AC_ItemRecord(6278, "Welcome To The Cold").setUnlocalizedName("record_FF");
+		recordWTTC = new AC_ItemRecord(6279, "Frozen Feelings").setUnlocalizedName("record_WTTC");
 		
 		AC_Recipes.initializeRecipes();
 		proxy.reigsterRenderThings();
