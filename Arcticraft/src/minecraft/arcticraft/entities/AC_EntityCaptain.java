@@ -1,5 +1,7 @@
 package arcticraft.entities;
 
+import java.util.Random;
+
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -9,7 +11,6 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -19,20 +20,25 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import arcticraft.main.MainRegistry;
 
-public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
+public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData
 {
 
 	private static final IEntitySelector attackEntitySelector = null;
 
 	public int deathTicks = 0;
 	World theWorld;
+	Random rand = new Random();
+	public String [] bossName =
+		{"Caladan", "Arthen", "Farem", "Thoran", "Icyrus", "Meznar", "Kefadan", "Lonleh", "Ladur", "Brens", "Petern", "Cevan", "Tob"};
+	public String chooseBossName = bossName [rand.nextInt(bossName.length)];
 
 	public AC_EntityCaptain(World par1World)
 	{
 		super(par1World);
 		this.setEntityHealth(this.getMaxHealth());
+		this.setSize(this.width, this.height + 0.4F);
 		this.texture = "/mods/AC/textures/mobs/captain.png";
-		this.moveSpeed = 0.6F;
+		this.moveSpeed = 0.4F;
 		this.getNavigator().setCanSwim(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(5, new EntityAIWander(this, this.moveSpeed));
@@ -153,8 +159,18 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 		return false;
 	}
 
+	public String getEntityName()
+	{
+		return chooseBossName + ", the Captain";
+	}
+
+	public boolean isMiniBoss()
+	{
+		return true;
+	}
+
 	@Override
-	public int getDragonHealth()
+	public int getBossHealth()
 	{
 		return this.dataWatcher.getWatchableObjectInt(16);
 	}
@@ -167,7 +183,5 @@ public class AC_EntityCaptain extends EntityMob implements IBossDisplayData
 	{
 		return !this.isDead;
 	}
-
-	
 
 }

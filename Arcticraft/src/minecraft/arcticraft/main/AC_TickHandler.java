@@ -12,6 +12,7 @@ import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 
 import org.lwjgl.opengl.GL11;
 
@@ -35,6 +36,7 @@ public class AC_TickHandler implements ITickHandler
 	public static boolean renderOverlay = true;
 	public static AC_TickHandler tickHandler;
 	Random rand = new Random();
+
 
 	public AC_TickHandler()
 	{
@@ -156,9 +158,16 @@ public class AC_TickHandler implements ITickHandler
 			}
 
 			String s = AC_BossStatus.bossName;
-
 			fontrenderer.drawStringWithShadow(s, i / 2 - fontrenderer.getStringWidth(s) / 2, b0 - 10, 16777215);
-
+		
+			if(AC_BossStatus.isMiniBoss == true)
+			{
+				fontrenderer.drawStringWithShadow(EnumChatFormatting.ITALIC + "Mini Boss" , i / 2 - fontrenderer.getStringWidth(s) / 2, b0 + 15 , 0xffffffff);
+			}
+			else
+			{
+				fontrenderer.drawStringWithShadow(EnumChatFormatting.ITALIC + "Final Boss" , i / 2 - fontrenderer.getStringWidth(s) / 2, b0 + 15 , 0xffffffff);
+			}
 		}
 	}
 

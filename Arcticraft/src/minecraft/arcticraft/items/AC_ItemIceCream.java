@@ -72,7 +72,7 @@ public class AC_ItemIceCream extends ItemFood
 		}
 		else if (par1ItemStack.getItemDamage() == 4)
 		{
-			par3List.add("Strenght III (5:00)");
+			par3List.add("Strength III (5:00)");
 			par3List.add("Decrease Temperature By 30\u00B0C");
 		}
 		else if (par1ItemStack.getItemDamage() == 5)

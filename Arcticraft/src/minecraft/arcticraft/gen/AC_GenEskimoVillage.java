@@ -14,6 +14,7 @@ import arcticraft.entities.AC_EntityCheifEskimo;
 import arcticraft.entities.AC_EntityEskimo;
 import arcticraft.entities.AC_EntityHunterEskimo;
 import arcticraft.entities.AC_EntityTraderEskimo;
+import arcticraft.entities.AC_EntityYeti;
 import arcticraft.main.MainRegistry;
 
 public class AC_GenEskimoVillage extends WorldGenerator
@@ -217,7 +218,6 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		world.setBlock(i + 4, j + 1, k + 11, 0);
 		world.setBlock(i + 4, j + 1, k + 12, 0);
 		world.setBlock(i + 4, j + 1, k + 13, 0);
-		world.setBlock(i + 4, j + 1, k + 14, Block.blockDiamond.blockID);
 		world.setBlock(i + 4, j + 1, k + 15, 0);
 		world.setBlock(i + 4, j + 1, k + 16, 0);
 		world.setBlock(i + 4, j + 1, k + 17, 0);
@@ -4829,6 +4829,10 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		AC_EntityTraderEskimo traderEskimo = new AC_EntityTraderEskimo(world);
 		traderEskimo.setPosition(i + 46, j + 1, k + 25);
 		world.spawnEntityInWorld(traderEskimo);
+		
+		AC_EntityYeti yeti = new AC_EntityYeti(world);
+		yeti.setPosition(i + 4, j + 1, k + 14);
+		world.spawnEntityInWorld(yeti);
 
 		return true;
 	}

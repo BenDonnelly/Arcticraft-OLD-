@@ -14,5 +14,5 @@ public interface AC_IBossDisplayData
      */
     String getEntityName();
     
-    
+    boolean isMiniBoss();
 }

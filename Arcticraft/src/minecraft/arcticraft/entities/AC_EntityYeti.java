@@ -1,5 +1,7 @@
 package arcticraft.entities;
 
+import java.util.Random;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -19,12 +21,17 @@ public class AC_EntityYeti extends EntityMob implements AC_IBossDisplayData
 
 	public int deathTicks = 0;
 	World theWorld;
+	Random rand = new Random();
+	public String [] bossName =
+		{"Glacken", "Ceton", "Esctor", "Sesitur", "Glacius", "Benscus", "Scentor", "Nashausc", "Fedsenur"};
+	public String chooseBossName = bossName [rand.nextInt(bossName.length)];
 
 	public AC_EntityYeti(World par1World)
 	{
 		super(par1World);
 		this.setEntityHealth(this.getMaxHealth());
 		this.texture = "/mods/AC/textures/mobs/yeti.png";
+		this.setSize(width + 0.8F, height + 1.2F);
 		this.moveSpeed = 0.3F;
 		this.getNavigator().setCanSwim(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
@@ -130,11 +137,15 @@ public class AC_EntityYeti extends EntityMob implements AC_IBossDisplayData
 		return false;
 	}
 
-	/*public String getEntityName()
+	public String getEntityName()
 	{
-		Random rand = new Random();
-		return "";
-	}*/
+		return chooseBossName + ", the Yeti";
+	}
+
+	public boolean isMiniBoss()
+	{
+		return true;
+	}
 
 	@Override
 	public int getBossHealth()
