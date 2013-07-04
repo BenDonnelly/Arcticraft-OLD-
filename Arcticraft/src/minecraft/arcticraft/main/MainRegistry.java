@@ -731,6 +731,8 @@ public class MainRegistry
 		LanguageRegistry.addName(captainStatue, "Captain Statue");
 		LanguageRegistry.instance().addStringLocalization("death.attack.Freezing", "%1$s froze");
 		LanguageRegistry.addName(campfire, "Campfire");
+		LanguageRegistry.addName(recordFrozenFeelings, "Music Disk");
+		LanguageRegistry.addName(recordWTTC, "Music Disk");
 
 		LanguageRegistry.addName(frostSticks, "Frost Sticks");
 		LanguageRegistry.addName(frostStairs, "Frost Stairs");
