@@ -85,6 +85,7 @@ import arcticraft.entities.AC_EntityBomb;
 import arcticraft.entities.AC_EntityCaptain;
 import arcticraft.entities.AC_EntityChefEskimo;
 import arcticraft.entities.AC_EntityCheifEskimo;
+import arcticraft.entities.AC_EntityDragon;
 import arcticraft.entities.AC_EntityEskimo;
 import arcticraft.entities.AC_EntityFrostGhost;
 import arcticraft.entities.AC_EntityFrostZombie;
@@ -148,10 +149,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid = "AC", name = "Arcticraft", version = "[1.5] V.1.0")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels =
-	{"AC_EskimoTrade", "AC_EskimoTalk"}, packetHandler = AC_PacketHandler.class)
-public class MainRegistry
-{
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = { "AC_EskimoTrade", "AC_EskimoTalk" }, packetHandler = AC_PacketHandler.class)
+public class MainRegistry {
 
 	@Instance("AC")
 	public static MainRegistry instance = new MainRegistry();
@@ -163,7 +162,7 @@ public class MainRegistry
 	public static int dimension = DimensionManager.getNextFreeDimId();
 	static int startEntityId = 327;
 
-	//Creative Tabs
+	// Creative Tabs
 	public static CreativeTabs tabTools = new AC_TabTools(CreativeTabs.getNextID(), "Tabtools");
 	public static CreativeTabs tabBlocks = new AC_TabBlocks(CreativeTabs.getNextID(), "TabBlocks");
 	public static CreativeTabs tabCombat = new AC_TabCombat(CreativeTabs.getNextID(), "TabCombat");
@@ -171,8 +170,7 @@ public class MainRegistry
 	public static CreativeTabs tabMaterial = new AC_TabMaterial(CreativeTabs.getNextID(), "TabMaterial");
 	public static CreativeTabs tabMisc = new AC_TabMisc(CreativeTabs.getNextID(), "TabMisc");
 
-
-	//Core dimension blocks & items
+	// Core dimension blocks & items
 	public static Block frostGrass;
 	public static Block frostDirt;
 	public static Block frostStone;
@@ -184,7 +182,7 @@ public class MainRegistry
 	public static Block thickSnow;
 	public static Block arcaneStone;
 
-	//Frost type things. 
+	// Frost type things.
 	public static Block frostPlanks;
 	public static Block frostStairs;
 	public static Block frostWoodDoubleSlab;
@@ -194,7 +192,7 @@ public class MainRegistry
 	public static Block frostLadders;
 	public static Block frostChest;
 
-	//Items
+	// Items
 	public static Item MystFruit;
 	public static Item GlacierFruit;
 	public static Block Lantern;
@@ -206,7 +204,7 @@ public class MainRegistry
 	public static Item arcaneDust;
 	public static Item heatPack;
 
-	//Tools and Armour
+	// Tools and Armour
 	public static Item invisoStaff;
 
 	private static ItemAxe axe;
@@ -275,9 +273,9 @@ public class MainRegistry
 	public static Item pirateSword;
 
 	public static Item hikingBoots;
-	//Tools and armour
+	// Tools and armour
 
-	//Land Generation
+	// Land Generation
 	public static Block frostLog;
 	public static Block frostLeaves;
 	public static Block frostSapling;
@@ -285,7 +283,7 @@ public class MainRegistry
 	public static Block glacierLeaves;
 	public static Block frostFlower;
 
-	//Dungeon loot and blocks
+	// Dungeon loot and blocks
 	public static Block mossyFrostCobble;
 	public static Block unbreakableIce;
 	public static Item iceCream;
@@ -293,7 +291,7 @@ public class MainRegistry
 	public static Block amouryDoor;
 	public static Item amouryDoorPlace;
 
-	//Food
+	// Food
 	public static Item emptyCup;
 	public static Item teaDrinks;
 	public static Block floranPlant;
@@ -304,14 +302,14 @@ public class MainRegistry
 	public static Item boarMeat;
 	public static Item uncookedBoarMeat;
 
-	//Decoration blocks
+	// Decoration blocks
 	public static Block mysticalSnow;
 
-	//snow blocks
+	// snow blocks
 	public static Block snowPressurePlate;
 	public static Block snowTrapdoor;
 
-	//Ores
+	// Ores
 	public static Block tekkiteOre;
 	public static Block escariaOre;
 	public static Block frigusOre;
@@ -319,7 +317,7 @@ public class MainRegistry
 	public static Block glacianOre;
 	public static Block eriumOre;
 
-	//Ore Drops
+	// Ore Drops
 	public static Item tekkiteGem;
 	public static Item escariaGem;
 	public static Item frigus;
@@ -327,7 +325,7 @@ public class MainRegistry
 	public static Item rigentemIngot;
 	public static Item eriumGem;
 
-	//GUIs
+	// GUIs
 	public static Block arcticFurnaceIdle;
 	public static Block arcticFurnaceBurning;
 
@@ -337,27 +335,30 @@ public class MainRegistry
 	public static Block frostDoor;
 	public static Item frostDoorPlace;
 
-	//Other Blocks
+	// Other Blocks
 	public static Block tilledFrostField;
 
-	//Blocks with a Techne Model
+	// Blocks with a Techne Model
 	public static Block statue;
 	public static Block captainStatue;
 	public static Block campfire;
-	
-	//records
+
+	// records
 	public static Item recordFrozenFeelings;
 	public static Item recordWTTC;
-	
+
 	public static Potion freezePotion;
-	//public static HashMap <EntityPlayer, Integer> playerTemps = new HashMap <EntityPlayer, Integer>();
+	// public static HashMap <EntityPlayer, Integer> playerTemps = new HashMap
+	// <EntityPlayer, Integer>();
 
 	private Configuration temperatureFile;
 	private TemperatureDataStorage storage = new TemperatureDataStorage();
 	private Configuration globalConfigFile;
-	
+
 	@ServerStarting
-	public void serverStarting(FMLServerStartingEvent event) //I thing i'm missing a param
+	public void serverStarting(FMLServerStartingEvent event) // I thing i'm
+																// missing a
+																// param
 	{
 		storage.clear();
 		System.out.println("I am getting called!!!! :D");
@@ -365,14 +366,10 @@ public class MainRegistry
 		// Load temps from file
 		// Format: general.PLAYERNAME: TEMPERATURE
 		File worldConfigFile = new File(new File(Minecraft.getMinecraftDir(), "ac_data"), "playertemps_" + MinecraftServer.getServer().getWorldName() + ".cfg");
-		if (!worldConfigFile.exists())
-		{
-			try
-			{
+		if (!worldConfigFile.exists()) {
+			try {
 				worldConfigFile.createNewFile();
-			}
-			catch (IOException e)
-			{
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -382,28 +379,30 @@ public class MainRegistry
 		temperatureFile.save();
 		// temperatures section
 		ConfigCategory general = temperatureFile.getCategory("general");
-		Map <String, Property> entries = general.getValues();
+		Map<String, Property> entries = general.getValues();
 		storage.load(entries);
 		AC_TickHandler.value = storage.getTemperature("Player");
 	}
 
 	@ServerStopping
-	public void serverStopping(FMLServerStoppingEvent event)
-	{
+	public void serverStopping(FMLServerStoppingEvent event) {
 		storage.setTemperature("Player", AC_TickHandler.value);
 		// Save temps to file
-		ConfigCategory general = temperatureFile.getCategory("general"); // actually, temperatureFile is null :D
+		ConfigCategory general = temperatureFile.getCategory("general"); // actually,
+																			// temperatureFile
+																			// is
+																			// null
+																			// :D
 		general.putAll(storage.save());
 		temperatureFile.save();
 		ConfigCategory gui = globalConfigFile.getCategory("gui");
-		gui.put("temp-bar-x", new Property("temp-bar-x",""+AC_TickHandler.x,Type.INTEGER));
-		gui.put("temp-bar-y", new Property("temp-bar-y",""+AC_TickHandler.y,Type.INTEGER));
+		gui.put("temp-bar-x", new Property("temp-bar-x", "" + AC_TickHandler.x, Type.INTEGER));
+		gui.put("temp-bar-y", new Property("temp-bar-y", "" + AC_TickHandler.y, Type.INTEGER));
 		globalConfigFile.save();
 	}
 
 	@PreInit
-	public void preInit(FMLPreInitializationEvent event)
-	{
+	public void preInit(FMLPreInitializationEvent event) {
 
 		mc = mc.getMinecraft();
 		// global configuration file
@@ -419,7 +418,7 @@ public class MainRegistry
 		globalConfigFile.load();
 		globalConfigFile.save();
 		ConfigCategory gui = globalConfigFile.getCategory("gui");
-		if(gui.get("temp-bar-x") != null){
+		if (gui.get("temp-bar-x") != null) {
 			AC_TickHandler.x = gui.get("temp-bar-x").getInt();
 			AC_TickHandler.y = gui.get("temp-bar-y").getInt();
 		}
@@ -427,26 +426,20 @@ public class MainRegistry
 		DimensionManager.registerDimension(dimension, dimension);
 
 		EnumToolMaterial TekkiteTool = EnumHelper.addToolMaterial("Tekkite Tool", 2, 250, 5.1F, 2, 22);
-		EnumArmorMaterial TekkiteArmor = EnumHelper.addArmorMaterial("Tekkite Armor", 15, new int []
-			{2, 6, 5, 2}, 22);
+		EnumArmorMaterial TekkiteArmor = EnumHelper.addArmorMaterial("Tekkite Armor", 15, new int[] { 2, 6, 5, 2 }, 22);
 
 		EnumToolMaterial EscariaTool = EnumHelper.addToolMaterial("Escaria Tool", 2, 310, 5.1F, 2, 22);
-		EnumArmorMaterial EscariaArmor = EnumHelper.addArmorMaterial("Escaria Armor", 17, new int []
-			{2, 6, 5, 2}, 22);
+		EnumArmorMaterial EscariaArmor = EnumHelper.addArmorMaterial("Escaria Armor", 17, new int[] { 2, 6, 5, 2 }, 22);
 
 		EnumToolMaterial RigentemTool = EnumHelper.addToolMaterial("Rigentem Tool", 2, 350, 6.0F, 2, 15);
-		EnumArmorMaterial RigentemArmor = EnumHelper.addArmorMaterial("Rigentem Armor", 19, new int []
-			{3, 7, 6, 3}, 15);
+		EnumArmorMaterial RigentemArmor = EnumHelper.addArmorMaterial("Rigentem Armor", 19, new int[] { 3, 7, 6, 3 }, 15);
 
 		EnumToolMaterial GlacianTool = EnumHelper.addToolMaterial("Glacian Tool", 4, 900, 10.0F, 5, 18);
-		EnumArmorMaterial GlacianArmor = EnumHelper.addArmorMaterial("Glacian Armor", 35, new int []
-			{5, 10, 8, 5}, 18);
+		EnumArmorMaterial GlacianArmor = EnumHelper.addArmorMaterial("Glacian Armor", 35, new int[] { 5, 10, 8, 5 }, 18);
 
-		EnumArmorMaterial PirateArmour = EnumHelper.addArmorMaterial("Pirate Armor", 33, new int []
-			{1, 3, 2, 1}, 15);
+		EnumArmorMaterial PirateArmour = EnumHelper.addArmorMaterial("Pirate Armor", 33, new int[] { 1, 3, 2, 1 }, 15);
 
-		EnumArmorMaterial hikingAmrour = EnumHelper.addArmorMaterial("Hiking Armoru", 33, new int []
-			{1, 3, 2, 1}, 20);
+		EnumArmorMaterial hikingAmrour = EnumHelper.addArmorMaterial("Hiking Armoru", 33, new int[] { 1, 3, 2, 1 }, 20);
 
 		frostGrass = new AC_BlockFrostGrass(230).setHardness(0.6F).setCreativeTab(tabBlocks).setUnlocalizedName("frostgrass").setStepSound(Block.soundGrassFootstep);
 		frostDirt = new AC_BlockFrostDirt(231).setHardness(0.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:frost_dirt").setStepSound(Block.soundGrassFootstep);
@@ -489,10 +482,16 @@ public class MainRegistry
 		frostDoorPlace = new AC_FrostDoorPlace(1541, Material.wood).setUnlocalizedName("AC:icedoor").setCreativeTab(tabBlocks);
 		frostDoor = new AC_FrostDoor(1542, Material.wood).setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("AC:icedoor");
 		tilledFrostField = new AC_BlockTilledFrostField(1543).setUnlocalizedName("frostfarmland").setStepSound(Block.soundGravelFootstep);
-		/* The berry has to be initialized before the plant to avoid NPE so thats why theres an item in the blocks section*/
+		/*
+		 * The berry has to be initialized before the plant to avoid NPE so
+		 * thats why theres an item in the blocks section
+		 */
 		floranBerry = new ItemFood(6273, 6, false).setCreativeTab(tabFood).setUnlocalizedName("AC:floran_berry");
 		floranPlant = new AC_BlockFloranCrop(1544, Material.plants, this.tilledFrostField.blockID, this.floranBerry.itemID).setUnlocalizedName("floranPlant").setStepSound(Block.soundGravelFootstep);
-		/* The berry has to be initialized before the plant to avoid NPE so thats why theres an item in the blocks section*/
+		/*
+		 * The berry has to be initialized before the plant to avoid NPE so
+		 * thats why theres an item in the blocks section
+		 */
 		whiteberry = new AC_ItemWhiteberry(6272, 2, 0.6F, 1545, 1545).setCreativeTab(tabMisc).setUnlocalizedName("AC:Whiteberry");
 		whiteberryBush = new AC_BlockWhiteberry(1545, Material.plants, this.tilledFrostField.blockID, this.whiteberry.itemID).setUnlocalizedName("whiteberry_bush").setStepSound(Block.soundGravelFootstep);
 		captainStatue = new AC_BlockCaptainStatue(1546, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:captain_statue_icon").setStepSound(Block.soundStoneFootstep);
@@ -500,8 +499,8 @@ public class MainRegistry
 
 		amouryDoorPlace = new AC_ItemAmouryDoor(1548, Material.wood).setUnlocalizedName("AC:amoury_door").setCreativeTab(tabBlocks);
 		amouryDoor = new AC_BlockAmouryDoor(1549, Material.wood).setBlockUnbreakable().setResistance(6000000.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("AC:amoury_door");
-		
-		//Items
+
+		// Items
 		bucketIcyWater = new AC_ItemBucket(6200, acWaterFlowing.blockID).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyWater");
 		bucketEmpty = new AC_ItemBucket(6201, 0).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyEmpty");
 		MystFruit = new AC_ItemFruits(6202, 0, false).setCreativeTab(tabFood).setUnlocalizedName("AC:mystical_fruit");
@@ -591,18 +590,16 @@ public class MainRegistry
 		invisoStaff = new AC_ItemInvisoStaff(6277).setFull3D().setCreativeTab(tabTools).setUnlocalizedName("AC:staff_icon");
 		recordFrozenFeelings = new AC_ItemRecord(6278, "Welcome To The Cold").setUnlocalizedName("record_FF");
 		recordWTTC = new AC_ItemRecord(6279, "Frozen Feelings").setUnlocalizedName("record_WTTC");
-		
+
 		AC_Recipes.initializeRecipes();
 		proxy.reigsterRenderThings();
 		proxy.registerTickHandler();
 		proxy.registerKeyHandler();
-		
-		
+
 	}
 
 	@Init
-	public void init(FMLInitializationEvent event)
-	{
+	public void init(FMLInitializationEvent event) {
 		MainMenuAPI.registerMenu("Arcticraft", AC_MenuBase.class);
 		GameRegistry.registerWorldGenerator(new AC_WorldGenerator());
 
@@ -626,7 +623,7 @@ public class MainRegistry
 		GameRegistry.registerBlock(frostFence, "Frost_fence");
 		GameRegistry.registerBlock(frostLadders, "Frost_Ladder");
 		GameRegistry.registerBlock(frostStairs, "Frost_stairs");
-		//GameRegistry.registerBlock(frostSlab, "Frost_slab");
+		// GameRegistry.registerBlock(frostSlab, "Frost_slab");
 		GameRegistry.registerBlock(mossyFrostCobble, "Mossy_frost_cobble");
 		GameRegistry.registerBlock(unbreakableIce, "Unbreakable_Ice");
 		GameRegistry.registerBlock(snowTrapdoor, "Snow_trapdoor");
@@ -647,30 +644,30 @@ public class MainRegistry
 		GameRegistry.registerBlock(captainStatue, "Captain_Statue");
 		GameRegistry.registerBlock(campfire, "Campfire");
 		GameRegistry.registerBlock(amouryDoor, "Amoury_door");
-		
-		//furnace
+
+		// furnace
 		GameRegistry.registerBlock(arcticFurnaceIdle, "AC_Furnace_Idle");
 		GameRegistry.registerBlock(arcticFurnaceBurning, "AC_Furnace_Buring");
 		GameRegistry.registerTileEntity(AC_TileEntityArcticFurnace.class, "tileEntityArcticFurnace");
 
-		//Freezer
+		// Freezer
 		GameRegistry.registerBlock(freezerIdle, "Freeer_Idle");
 		GameRegistry.registerBlock(freezerBurning, "Freezer_Buring");
 		GameRegistry.registerTileEntity(AC_TileEntityFreezer.class, "tileEntityFreezer");
 
-		//Frost Chest
+		// Frost Chest
 		GameRegistry.registerBlock(frostChest, "AC_FrostChest");
 		GameRegistry.registerTileEntity(AC_TileEntityFrostChest.class, "tileEntityFrostChest");
 
 		GameRegistry.registerTileEntity(AC_TileEntityLantern.class, "tileEntityLantern");
 
-		//Statues
+		// Statues
 		GameRegistry.registerTileEntity(AC_TileEntityStatue.class, "tileEntityStatue");
 		GameRegistry.registerTileEntity(AC_TileEntityCaptainStatue.class, "tileEntityCaptainStatue");
 
-		//Campfire
+		// Campfire
 		GameRegistry.registerTileEntity(AC_TileEntityCampfire.class, "tileEntityCampfire");
-		
+
 		LanguageRegistry.addName(pirateSword, "Pirate Sword");
 		LanguageRegistry.addName(pirateHat, "Pirate Hat");
 		LanguageRegistry.addName(frostDoorPlace, "Frost Door");
@@ -696,7 +693,7 @@ public class MainRegistry
 		LanguageRegistry.addName(arcaneStone, "Arcane Stone");
 		LanguageRegistry.addName(Lantern, "Do not use this lantern, use the other one");
 		LanguageRegistry.addName(IceShard, "Ice Shards");
-		//LanguageRegistry.addName(frostSlab, "Frost Slab");
+		// LanguageRegistry.addName(frostSlab, "Frost Slab");
 		LanguageRegistry.addName(penguinMeat, "Penguin Meat");
 		LanguageRegistry.addName(penguinMeatCooked, "Cooked Penguin Meat");
 		LanguageRegistry.addName(unbreakableIce, "Unbreakable Ice");
@@ -740,7 +737,6 @@ public class MainRegistry
 		LanguageRegistry.addName(recordWTTC, "Music Disk");
 		LanguageRegistry.addName(amouryDoor, "Amoured Door");
 		LanguageRegistry.addName(amouryDoorPlace, "Amoured Door");
-		
 
 		LanguageRegistry.addName(frostSticks, "Frost Sticks");
 		LanguageRegistry.addName(frostStairs, "Frost Stairs");
@@ -814,7 +810,7 @@ public class MainRegistry
 		int purpleBlueishColor = 0x6419F0;
 		int redishPinkishColour = 0xEB0E58;
 		int greenishColour = 0x99FF66;
-		int yellowishColour  = 0xFFFF33;
+		int yellowishColour = 0xFFFF33;
 
 		EntityRegistry.registerGlobalEntityID(AC_EntityFrostGhost.class, "FrostGhost", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.FrostGhost.name", "FrostGhost");
@@ -859,30 +855,34 @@ public class MainRegistry
 		EntityRegistry.registerGlobalEntityID(AC_EntityHusky.class, "Husky", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Husky.name", "Husky");
 		registerEntityEgg(AC_EntityHusky.class, lightGrayColor, grayColor);
-		
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityCheifEskimo.class, "EskimoCheif", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.EskimoCheif.name", "Eskimo Chief");
 		registerEntityEgg(AC_EntityCheifEskimo.class, purpleBlueishColor, grayColor);
-		
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityHunterEskimo.class, "EskimoHunter", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.EskimoHunter.name", "Eskimo Hunter");
 		registerEntityEgg(AC_EntityHunterEskimo.class, redishPinkishColour, grayColor);
-		
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityEskimo.class, "Eskimo", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Eskimo.name", "Eskimo");
 		registerEntityEgg(AC_EntityEskimo.class, blueishIcyColor, grayColor);
-		
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityTraderEskimo.class, "EskimoTrader", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.EskimoTrader.name", "Eskimo Trader");
 		registerEntityEgg(AC_EntityTraderEskimo.class, greenishColour, grayColor);
-		
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityChefEskimo.class, "EskimoChef", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.EskimoChef.name", "Eskimo Chef");
 		registerEntityEgg(AC_EntityChefEskimo.class, yellowishColour, grayColor);
-		
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityYeti.class, "Yeti", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Yeti.name", "Yeti");
 		registerEntityEgg(AC_EntityYeti.class, 0x99FFFF, 0xDEDEDE);
+		
+		EntityRegistry.registerGlobalEntityID(AC_EntityDragon.class, "Dragon", EntityRegistry.findGlobalUniqueEntityId());
+		LanguageRegistry.instance().addStringLocalization("entity.Dragon.name", "Dragon");
+		registerEntityEgg(AC_EntityDragon.class, 0x99FFFF, 0xDEDEDE);
 
 		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 342, this, 64, 10, true);
 
@@ -894,56 +894,53 @@ public class MainRegistry
 
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 		MinecraftForge.EVENT_BUS.register(new AC_ForgeEvents());
-		
+
 	}
 
 	@PostInit
-	public void postInit(FMLPostInitializationEvent event)
-	{
-		/*	
-		if(mc.thePlayer != null && mc.theWorld != null)
-		{	
-		NBTTagCompound tg = mc.thePlayer.getEntityData();
-		tg.setInteger("temp", AC_TickHandler.value);*/
+	public void postInit(FMLPostInitializationEvent event) {
+		/*
+		 * if(mc.thePlayer != null && mc.theWorld != null) { NBTTagCompound tg =
+		 * mc.thePlayer.getEntityData(); tg.setInteger("temp",
+		 * AC_TickHandler.value);
+		 */
 
 	}
 
-	public void renderBossStrings()
-	{
-		
-		/*I was testing rendering strings onto the screen, it seems that strings can only be rendered when a gui or something is open
-		ScaledResolution scaledresolution = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
-		int i = scaledresolution.getScaledWidth();
-		mc.fontRenderer.drawStringWithShadow("Test", i / 2 - mc.fontRenderer.getStringWidth("test") / 2, 12 - 10, 16777215); */
+	public void renderBossStrings() {
+
+		/*
+		 * I was testing rendering strings onto the screen, it seems that
+		 * strings can only be rendered when a gui or something is open
+		 * ScaledResolution scaledresolution = new
+		 * ScaledResolution(this.mc.gameSettings, this.mc.displayWidth,
+		 * this.mc.displayHeight); int i = scaledresolution.getScaledWidth();
+		 * mc.fontRenderer.drawStringWithShadow("Test", i / 2 -
+		 * mc.fontRenderer.getStringWidth("test") / 2, 12 - 10, 16777215);
+		 */
 	}
-	
-	public static void registerEntityEgg(Class <? extends Entity> entity, int primaryColor, int secondaryColor)
-	{
+
+	public static void registerEntityEgg(Class<? extends Entity> entity, int primaryColor, int secondaryColor) {
 		int id = getUniqueEntityId();
 		EntityList.IDtoClassMapping.put(id, entity);
 		EntityList.entityEggs.put(id, new EntityEggInfo(id, primaryColor, secondaryColor));
 	}
 
-	public static int getUniqueEntityId()
-	{
-		do
-		{
+	public static int getUniqueEntityId() {
+		do {
 			startEntityId++;
-		}while (EntityList.getStringFromID(startEntityId) != null);
+		} while (EntityList.getStringFromID(startEntityId) != null);
 
 		return startEntityId;
 	}
 
-	public static void talkStuff(String s, World par1World)
-	{
-		Iterator <EntityPlayer> players = par1World.playerEntities.iterator();
+	public static void talkStuff(String s, World par1World) {
+		Iterator<EntityPlayer> players = par1World.playerEntities.iterator();
 
-		while (players.hasNext())
-		{
+		while (players.hasNext()) {
 			EntityPlayer player = players.next();
 
-			if (player instanceof EntityPlayerMP)
-			{
+			if (player instanceof EntityPlayerMP) {
 				player.sendChatToPlayer(s);
 			}
 		}
