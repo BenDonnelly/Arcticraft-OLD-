@@ -40,6 +40,7 @@ import net.minecraftforge.common.Property.Type;
 import arcticraft.blocks.AC_BlockACFurnace;
 import arcticraft.blocks.AC_BlockACWaterFlowing;
 import arcticraft.blocks.AC_BlockACWaterStill;
+import arcticraft.blocks.AC_BlockAmouryDoor;
 import arcticraft.blocks.AC_BlockArcaneStone;
 import arcticraft.blocks.AC_BlockCampfire;
 import arcticraft.blocks.AC_BlockCaptainStatue;
@@ -99,6 +100,7 @@ import arcticraft.entities.AC_EntityTraderEskimo;
 import arcticraft.entities.AC_EntityYeti;
 import arcticraft.gui.AC_GuiHandler;
 import arcticraft.items.AC_FrostDoorPlace;
+import arcticraft.items.AC_ItemAmouryDoor;
 import arcticraft.items.AC_ItemArmour;
 import arcticraft.items.AC_ItemAxe;
 import arcticraft.items.AC_ItemBomb;
@@ -190,7 +192,6 @@ public class MainRegistry
 	public static Block frostFence;
 	public static Item frostSticks;
 	public static Block frostLadders;
-
 	public static Block frostChest;
 
 	//Items
@@ -289,6 +290,8 @@ public class MainRegistry
 	public static Block unbreakableIce;
 	public static Item iceCream;
 	public static Item bomb;
+	public static Block amouryDoor;
+	public static Item amouryDoorPlace;
 
 	//Food
 	public static Item emptyCup;
@@ -495,6 +498,8 @@ public class MainRegistry
 		captainStatue = new AC_BlockCaptainStatue(1546, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:captain_statue_icon").setStepSound(Block.soundStoneFootstep);
 		campfire = new AC_BlockCampfire(1547, Material.wood).setHardness(1.0F).setCreativeTab(tabBlocks).setLightValue(1.0F).setUnlocalizedName("AC:campfire_icon").setStepSound(Block.soundStoneFootstep);
 
+		amouryDoorPlace = new AC_ItemAmouryDoor(1548, Material.wood).setUnlocalizedName("AC:amoury_door").setCreativeTab(tabBlocks);
+		amouryDoor = new AC_BlockAmouryDoor(1549, Material.wood).setBlockUnbreakable().setResistance(6000000.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("AC:amoury_door");
 		
 		//Items
 		bucketIcyWater = new AC_ItemBucket(6200, acWaterFlowing.blockID).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyWater");
@@ -583,8 +588,7 @@ public class MainRegistry
 		uncookedBoarMeat = new ItemFood(6275, 10, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(tabFood).setUnlocalizedName("AC:boar_meat_cooked");
 		hikingBoots = new AC_ItemArmour(6276, hikingAmrour, proxy.addArmor("Hiking"), 3).setCreativeTab(tabTools).setUnlocalizedName("Hiking Boots");
 		freezePotion = new AC_Potions(27, true, 0xffff).setIconIndex(2, 2).setPotionName("Freezing");
-	
-		invisoStaff = new AC_ItemInvisoStaff(6277).setMaxStackSize(1).setFull3D().setCreativeTab(tabTools).setUnlocalizedName("");
+		invisoStaff = new AC_ItemInvisoStaff(6277).setFull3D().setCreativeTab(tabTools).setUnlocalizedName("AC:staff_icon");
 		recordFrozenFeelings = new AC_ItemRecord(6278, "Welcome To The Cold").setUnlocalizedName("record_FF");
 		recordWTTC = new AC_ItemRecord(6279, "Frozen Feelings").setUnlocalizedName("record_WTTC");
 		
@@ -642,7 +646,8 @@ public class MainRegistry
 		GameRegistry.registerBlock(whiteberryBush, "Whiteberry_Bush");
 		GameRegistry.registerBlock(captainStatue, "Captain_Statue");
 		GameRegistry.registerBlock(campfire, "Campfire");
-
+		GameRegistry.registerBlock(amouryDoor, "Amoury_door");
+		
 		//furnace
 		GameRegistry.registerBlock(arcticFurnaceIdle, "AC_Furnace_Idle");
 		GameRegistry.registerBlock(arcticFurnaceBurning, "AC_Furnace_Buring");
@@ -733,6 +738,9 @@ public class MainRegistry
 		LanguageRegistry.addName(campfire, "Campfire");
 		LanguageRegistry.addName(recordFrozenFeelings, "Music Disk");
 		LanguageRegistry.addName(recordWTTC, "Music Disk");
+		LanguageRegistry.addName(amouryDoor, "Amoured Door");
+		LanguageRegistry.addName(amouryDoorPlace, "Amoured Door");
+		
 
 		LanguageRegistry.addName(frostSticks, "Frost Sticks");
 		LanguageRegistry.addName(frostStairs, "Frost Stairs");

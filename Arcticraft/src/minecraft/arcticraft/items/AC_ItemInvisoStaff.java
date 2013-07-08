@@ -2,29 +2,20 @@ package arcticraft.items;
 
 import java.util.List;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import net.minecraftforge.client.IItemRenderer;
 
-import org.lwjgl.opengl.GL11;
-
-import arcticraft.models.AC_ModelStaff;
-
-public class AC_ItemInvisoStaff extends Item implements IItemRenderer
+public class AC_ItemInvisoStaff extends Item 
 {
-
-	protected AC_ModelStaff staffModel;
 
 	public AC_ItemInvisoStaff(int par1)
 	{
 		super(par1);
 		this.setMaxDamage(16);
-		staffModel = new AC_ModelStaff();
+		this.maxStackSize = 1;
 	}
 
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
@@ -40,46 +31,8 @@ public class AC_ItemInvisoStaff extends Item implements IItemRenderer
 	{
 		par2World.playSoundAtEntity(par3EntityPlayer, "mob.endermen.portal", 1.0F, 1.0F);
 		par3EntityPlayer.addPotionEffect(new PotionEffect(14, 1800, 0));
+		par1ItemStack.damageItem(1, par3EntityPlayer);
 		return par1ItemStack;
 	}
 
-	@Override
-	public boolean handleRenderType(ItemStack item, ItemRenderType type)
-	{
-		switch (type)
-		{
-		case EQUIPPED:
-			return true;
-		default:
-			return false;
-		}
-	}
-
-	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
-	{
-		return true;
-	}
-
-	@Override
-	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
-	{
-
-		switch (type)
-		{
-		case EQUIPPED:
-		{
-			GL11.glPushMatrix();
-
-			Minecraft.getMinecraft().renderEngine.bindTexture("/mods/AC/textures/items/inviso_staff.png");
-
-			staffModel.render((Entity) data [1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
-
-			GL11.glPopMatrix();
-		}
-		default:
-			break;
-		}
-
-	}
 }
