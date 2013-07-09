@@ -17,6 +17,7 @@ public class AC_WorldProvider extends WorldProvider
 	{
 		this.worldChunkMgr = new AC_WorldChunkManager(worldObj.getSeed(), terrainType);
 		this.dimensionId = MainRegistry.dimension;
+		//this.setSkyRenderer(new AC_RenderHandlerTest());
 	}
 
 	@Override
@@ -43,7 +44,7 @@ public class AC_WorldProvider extends WorldProvider
 
 	public Vec3 getFogColor(float par1, float par2)
 	{
-		return Vec3.createVectorHelper(0.75, 127.5, 255);
+		return Vec3.createVectorHelper(0.1, 0.9, 1.0);
 	}
 
 	/**
