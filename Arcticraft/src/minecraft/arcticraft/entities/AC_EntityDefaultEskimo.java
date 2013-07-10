@@ -7,11 +7,17 @@ import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IMerchant;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
@@ -19,22 +25,47 @@ import net.minecraft.util.Tuple;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
+import arcticraft.main.MainRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerchant {
 
 	private EntityPlayer buyingPlayer;
-	private MerchantRecipeList buyingList;
+	private MerchantRecipeList currentBuyingList;
 	private String lastBuyingPlayer;
 	private int timeUntilReset;
 	private boolean needsInitilization;
 	private float stock;
 	
 	public static final Map stockList = new HashMap();
+	public static final Map rarityStockList = new HashMap();
+	
+	public static final Map buyingList = new HashMap();
+	public static final Map rarityBuyingList = new HashMap();
 	
 	public AC_EntityDefaultEskimo(World par1World) {
 		super(par1World);
+		this.moveSpeed = 0.3F;
+		this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		this.tasks.addTask(2, new EntityAILookIdle(this));
+		this.tasks.addTask(11, new EntityAISwimming(this));
+		this.tasks.addTask(6, new EntityAIWander(this, this.moveSpeed));
+	}
+	
+	@Override
+	public boolean isAIEnabled() {
+		return true;
+	}
+	
+	@Override
+	public boolean canDespawn() {
+		return false;
+	}
+	
+	@Override
+	public int getMaxHealth() {
+		return 40;
 	}
 	
 	@Override
@@ -47,9 +78,9 @@ public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerch
             {
                 if (this.needsInitilization)
                 {
-                    if (this.buyingList.size() > 1)
+                    if (this.currentBuyingList.size() > 1)
                     {
-                        Iterator iterator = this.buyingList.iterator();
+                        Iterator iterator = this.currentBuyingList.iterator();
 
                         while (iterator.hasNext())
                         {
@@ -62,7 +93,7 @@ public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerch
                         }
                     }
 
-                    this.addRecipes(1);
+                    this.addTrades(1);
                     this.needsInitilization = false;
                 }
 
@@ -73,7 +104,7 @@ public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerch
 		super.updateAITick();
 	}
 	
-	private float getProbability(float prob)
+	private float getRarity(float prob)
     {
         float f1 = prob + this.stock;
         return f1 > 0.9F ? 0.9F - (f1 - 0.9F) : f1;
@@ -95,11 +126,11 @@ public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerch
 
 	@Override
 	public MerchantRecipeList getRecipes(EntityPlayer player) {
-		if (this.buyingList == null) {
-            this.addRecipes(1);
+		if (this.currentBuyingList == null) {
+            this.addTrades(1);
         }
 
-        return this.buyingList;
+        return this.currentBuyingList;
 	}
 
 	@Override
@@ -112,64 +143,153 @@ public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerch
 	public void useRecipe(MerchantRecipe recipe) {
 		recipe.incrementToolUses();
 		
-		if (recipe.hasSameIDsAs((MerchantRecipe)this.buyingList.get(this.buyingList.size() - 1))) {
-			this.timeUntilReset = 40;
+		if (recipe.hasSameIDsAs((MerchantRecipe)this.currentBuyingList.get(this.currentBuyingList.size() - 1))) {
+			this.timeUntilReset = 10;
             this.needsInitilization = true;
 		}
 	}
 	
-	private void addRecipes(int amount) {
-		if (this.buyingList != null) {
-            this.stock = MathHelper.sqrt_float((float)this.buyingList.size()) * 0.2F;
+	@Override
+	public boolean interact(EntityPlayer par1EntityPlayer) {
+        ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
+        boolean flag = itemstack != null && itemstack.itemID == Item.monsterPlacer.itemID;
+
+        if (!flag && this.isEntityAlive() && !this.isTrading() && !this.isChild())
+        {
+            if (!this.worldObj.isRemote)
+            {
+                this.setCustomer(par1EntityPlayer);
+                par1EntityPlayer.displayGUIMerchant(this, this.func_94057_bL());
+            }
+
+            return true;
+        }
+        else
+        {
+            return super.interact(par1EntityPlayer);
+        }
+    }
+	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
+        super.writeEntityToNBT(par1NBTTagCompound);
+
+        if (this.currentBuyingList != null) {
+            par1NBTTagCompound.setCompoundTag("Offers", this.currentBuyingList.getRecipiesAsTags());
+        }
+    }
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
+        super.readEntityFromNBT(par1NBTTagCompound);
+
+        if (par1NBTTagCompound.hasKey("Offers")) {
+            NBTTagCompound nbttagcompound1 = par1NBTTagCompound.getCompoundTag("Offers");
+            this.currentBuyingList = new MerchantRecipeList(nbttagcompound1);
+        }
+    }
+	
+	private void addTrades(int amount) {
+		if (this.currentBuyingList != null) {
+            this.stock = MathHelper.sqrt_float((float)this.currentBuyingList.size()) * 0.2F;
         }
         else {
             this.stock = 0.0F;
         }
 		
 		MerchantRecipeList merchantrecipelist = new MerchantRecipeList();
-		this.addRecipesToList(merchantrecipelist, this.rand);
+		
+		for (Object obj : buyingList.keySet()) {
+			int ID = (Integer) obj;
+			float prob = (Float) rarityBuyingList.get(obj);
+			addBuyingItem(merchantrecipelist, ID, this.rand, this.getRarity(prob));
+		}
+		
+		for (Object obj : stockList.keySet()) {
+			int ID = (Integer) obj;
+			float prob = (Float) rarityStockList.get(obj);
+			addSellingItem(merchantrecipelist, ID, this.rand, this.getRarity(prob));
+		}
+		
 		Collections.shuffle(merchantrecipelist);
 		
-		if (this.buyingList == null) {
-            this.buyingList = new MerchantRecipeList();
+		if (this.currentBuyingList == null) {
+            this.currentBuyingList = new MerchantRecipeList();
         }
 		
 		for (int i = 0; i < amount && i < merchantrecipelist.size(); i++) {
-            this.buyingList.addToListWithCheck((MerchantRecipe)merchantrecipelist.get(i));
+            this.currentBuyingList.addToListWithCheck((MerchantRecipe)merchantrecipelist.get(i));
         }
 	}
 	
-	public static void addMerchantItem(MerchantRecipeList par0MerchantRecipeList, int par1, Random par2Random, float par3) {
-        if (par2Random.nextFloat() < par3) {
-            par0MerchantRecipeList.add(new MerchantRecipe(getRandomSizedStack(par1, par2Random), Item.emerald));
+	private static void addBuyingItem(MerchantRecipeList par0MerchantRecipeList, int ID, Random par2Random, float prob) {
+        if (par2Random.nextFloat() < prob) {
+            par0MerchantRecipeList.add(new MerchantRecipe(getRandomSizedStack(ID, par2Random), MainRegistry.eriumGem));
         }
     }
 	
-	private static ItemStack getRandomSizedStack(int par0, Random par1Random) {
-        return new ItemStack(par0, getRandomCountForItem(par0, par1Random), 0);
+	private static void addSellingItem(MerchantRecipeList par0MerchantRecipeList, int par1, Random par2Random, float par3)
+    {
+        if (par2Random.nextFloat() < par3)
+        {
+            int j = getRandomCountForSellingItem(par1, par2Random);
+            ItemStack itemstack;
+            ItemStack itemstack1;
+
+            if (j < 0)
+            {
+                itemstack = new ItemStack(MainRegistry.eriumGem, 1, 0);
+                itemstack1 = new ItemStack(par1, -j, 0);
+            }
+            else
+            {
+                itemstack = new ItemStack(MainRegistry.eriumGem, j, 0);
+                itemstack1 = new ItemStack(par1, 1, 0);
+            }
+
+            par0MerchantRecipeList.add(new MerchantRecipe(itemstack, itemstack1));
+        }
     }
 	
-	private static int getRandomCountForItem(int par0, Random par1Random) {
+	private static int getRandomCountForSellingItem(int par0, Random par1Random)
+    {
         Tuple tuple = (Tuple)stockList.get(Integer.valueOf(par0));
         return tuple == null ? 1 : (((Integer)tuple.getFirst()).intValue() >= ((Integer)tuple.getSecond()).intValue() ? ((Integer)tuple.getFirst()).intValue() : ((Integer)tuple.getFirst()).intValue() + par1Random.nextInt(((Integer)tuple.getSecond()).intValue() - ((Integer)tuple.getFirst()).intValue()));
     }
 	
-	private static void addStuffToStock(Item item, int minAmount, int maxAmount) {
-		addStuffToStock(item.itemID, minAmount, maxAmount);
+	private static int getRandomCountForBuyingItem(int ID, Random par1Random) {
+        Tuple tuple = (Tuple)buyingList.get(Integer.valueOf(ID));
+        return tuple == null ? 1 : (((Integer)tuple.getFirst()).intValue() >= ((Integer)tuple.getSecond()).intValue() ? ((Integer)tuple.getFirst()).intValue() : ((Integer)tuple.getFirst()).intValue() + par1Random.nextInt(((Integer)tuple.getSecond()).intValue() - ((Integer)tuple.getFirst()).intValue()));
+    }
+	
+	private static ItemStack getRandomSizedStack(int ID, Random par1Random) {
+        return new ItemStack(ID, getRandomCountForBuyingItem(ID, par1Random), 0);
+    }
+	
+	protected static void addStuffToBuy(Item item, int minAmount, int maxAmount, float rarity) {
+		addStuffToBuy(item.itemID, minAmount, maxAmount, rarity);
 	}
 	
-	private static void addStuffToStock(Block block, int minAmount, int maxAmount) {
-		addStuffToStock(block.blockID, minAmount, maxAmount);
+	protected static void addStuffToBuy(Block block, int minAmount, int maxAmount, float rarity) {
+		addStuffToBuy(block.blockID, minAmount, maxAmount, rarity);
 	}
 	
-	public static void addStuffToStock(int ID, int minAmount, int maxAmount) {
+	protected static void addStuffToBuy(int ID, int minAmount, int maxAmount, float rarity) {
+		buyingList.put(Integer.valueOf(ID), new Tuple(Integer.valueOf(minAmount), Integer.valueOf(maxAmount)));
+		rarityBuyingList.put(Integer.valueOf(ID), Float.valueOf(rarity));
+	}
+	
+	protected static void addStuffToSell(Item item, int minAmount, int maxAmount, float rarity) {
+		addStuffToSell(item.itemID, minAmount, maxAmount, rarity);
+	}
+	
+	protected static void addStuffToSell(Block block, int minAmount, int maxAmount, float rarity) {
+		addStuffToSell(block.blockID, minAmount, maxAmount, rarity);
+	}
+	
+	protected static void addStuffToSell(int ID, int minAmount, int maxAmount, float rarity) {
 		stockList.put(Integer.valueOf(ID), new Tuple(Integer.valueOf(minAmount), Integer.valueOf(maxAmount)));
-	}
-	
-	public abstract void addRecipesToList(MerchantRecipeList list, Random rand);
-	
-	static {
-		addStuffToStock(Block.stone, 5, 46);
+		rarityStockList.put(Integer.valueOf(ID), Float.valueOf(rarity));
 	}
 
 }
