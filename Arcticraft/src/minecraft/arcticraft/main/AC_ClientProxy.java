@@ -1,9 +1,23 @@
 package arcticraft.main;
 
 import net.minecraft.client.model.ModelBiped;
+
+
+
+
 import net.minecraft.client.model.ModelDragon;
 import net.minecraft.client.model.ModelPig;
+
+
+
+
+import net.minecraft.client.model.ModelZombie;
+
+
+
+
 import net.minecraft.client.renderer.entity.RenderBiped;
+import net.minecraft.client.renderer.entity.RenderZombie;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
@@ -15,6 +29,7 @@ import arcticraft.entities.AC_EntityCheifEskimo;
 import arcticraft.entities.AC_EntityDragon;
 import arcticraft.entities.AC_EntityEskimo;
 import arcticraft.entities.AC_EntityFrostGhost;
+import arcticraft.entities.AC_EntityFrostZombie;
 import arcticraft.entities.AC_EntityHunterEskimo;
 import arcticraft.entities.AC_EntityHusky;
 import arcticraft.entities.AC_EntityIceCreeper;
@@ -29,6 +44,7 @@ import arcticraft.items.AC_ItemCampfireRenderer;
 import arcticraft.items.AC_ItemCaptainStatueRenderer;
 import arcticraft.items.AC_ItemInvisoStaffRenderer;
 import arcticraft.items.AC_ItemStatueRenderer;
+import arcticraft.models.AC_ModelBoar;
 import arcticraft.models.AC_ModelChefEskimo;
 import arcticraft.models.AC_ModelCheifEskimo;
 import arcticraft.models.AC_ModelEskimo;
@@ -98,7 +114,7 @@ public class AC_ClientProxy extends AC_CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityPenguin.class, new AC_RenderPenguin(new AC_ModelPenguin(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityPirate.class, new RenderBiped(new ModelBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityPolarBear.class, new AC_RenderPolarBear(new AC_ModelPolarBear(), 1.4F, 1.4F));
-		RenderingRegistry.registerEntityRenderingHandler(AC_EntityBoar.class, new AC_RenderBoar(new ModelPig(), new ModelPig(), 0.8F, 1.3F));
+		RenderingRegistry.registerEntityRenderingHandler(AC_EntityBoar.class, new AC_RenderBoar(new AC_ModelBoar(), new AC_ModelBoar(), 0.8F, 1.3F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityHusky.class, new AC_RenderHusky(new AC_ModelHusky(), new AC_ModelHusky(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityBomb.class, new AC_RenderBomb(MainRegistry.bomb, 0));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityCaptain.class, new AC_RenderCaptain());

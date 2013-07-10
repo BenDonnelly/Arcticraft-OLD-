@@ -17,6 +17,7 @@ public class AC_BiomeGenBaseArcticraft extends BiomeGenBase
     public static final AC_BiomeGenBaseArcticraft frostForest;
     public static final AC_BiomeGenBaseArcticraft glacier;
     public static final AC_BiomeGenBaseArcticraft snowPlains;
+    public static final AC_BiomeGenBaseArcticraft ocean;
     protected AC_GenFrostTrees genFrostTrees;
 	protected AC_GenGlacierTrees genGlacierTrees;
     public AC_BiomeGenBaseArcticraft(int i)
@@ -47,6 +48,7 @@ public class AC_BiomeGenBaseArcticraft extends BiomeGenBase
     	frostForest = (AC_BiomeGenBaseArcticraft) (new AC_BiomeFrostForest(24)).setBiomeName("Frost Forest");
     	glacier = (AC_BiomeGenBaseArcticraft) (new AC_BiomeGlacier(25)).setBiomeName("Glacier");
     	snowPlains = (AC_BiomeGenBaseArcticraft) (new AC_BiomeSnowPlains(26)).setBiomeName("Snow Plains");
+    	ocean = (AC_BiomeGenBaseArcticraft) (new AC_BiomeOcean(27)).setBiomeName("Arctic Ocean");
     }
     
   

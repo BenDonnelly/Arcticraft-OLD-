@@ -44,11 +44,13 @@ import arcticraft.blocks.AC_BlockAmouryDoor;
 import arcticraft.blocks.AC_BlockArcaneStone;
 import arcticraft.blocks.AC_BlockCampfire;
 import arcticraft.blocks.AC_BlockCaptainStatue;
+import arcticraft.blocks.AC_BlockCrystalGlass;
 import arcticraft.blocks.AC_BlockFloranCrop;
 import arcticraft.blocks.AC_BlockFlower;
 import arcticraft.blocks.AC_BlockFreezer;
 import arcticraft.blocks.AC_BlockFrostCobble;
 import arcticraft.blocks.AC_BlockFrostDirt;
+import arcticraft.blocks.AC_BlockFrostFlame;
 import arcticraft.blocks.AC_BlockFrostGrass;
 import arcticraft.blocks.AC_BlockFrostLadder;
 import arcticraft.blocks.AC_BlockFrostLeaves;
@@ -290,6 +292,8 @@ public class MainRegistry {
 	public static Item bomb;
 	public static Block amouryDoor;
 	public static Item amouryDoorPlace;
+	public static Item amouryKey;
+	public static Block frostFlame;
 
 	// Food
 	public static Item emptyCup;
@@ -304,8 +308,8 @@ public class MainRegistry {
 
 	// Decoration blocks
 	public static Block mysticalSnow;
-
-	// snow blocks
+	public static Block crystalGlass;	
+	//snow blocks
 	public static Block snowPressurePlate;
 	public static Block snowTrapdoor;
 
@@ -337,8 +341,7 @@ public class MainRegistry {
 
 	// Other Blocks
 	public static Block tilledFrostField;
-
-	// Blocks with a Techne Model
+	//Blocks with a Techne Model
 	public static Block statue;
 	public static Block captainStatue;
 	public static Block campfire;
@@ -388,11 +391,7 @@ public class MainRegistry {
 	public void serverStopping(FMLServerStoppingEvent event) {
 		storage.setTemperature("Player", AC_TickHandler.value);
 		// Save temps to file
-		ConfigCategory general = temperatureFile.getCategory("general"); // actually,
-																			// temperatureFile
-																			// is
-																			// null
-																			// :D
+		ConfigCategory general = temperatureFile.getCategory("general"); 
 		general.putAll(storage.save());
 		temperatureFile.save();
 		ConfigCategory gui = globalConfigFile.getCategory("gui");
@@ -405,7 +404,6 @@ public class MainRegistry {
 	public void preInit(FMLPreInitializationEvent event) {
 
 		mc = mc.getMinecraft();
-		// global configuration file
 		File cfgFile = event.getSuggestedConfigurationFile();
 		if (!cfgFile.exists()) {
 			try {
@@ -496,11 +494,12 @@ public class MainRegistry {
 		whiteberryBush = new AC_BlockWhiteberry(1545, Material.plants, this.tilledFrostField.blockID, this.whiteberry.itemID).setUnlocalizedName("whiteberry_bush").setStepSound(Block.soundGravelFootstep);
 		captainStatue = new AC_BlockCaptainStatue(1546, Material.iron).setHardness(3.0F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:captain_statue_icon").setStepSound(Block.soundStoneFootstep);
 		campfire = new AC_BlockCampfire(1547, Material.wood).setHardness(1.0F).setCreativeTab(tabBlocks).setLightValue(1.0F).setUnlocalizedName("AC:campfire_icon").setStepSound(Block.soundStoneFootstep);
-
 		amouryDoorPlace = new AC_ItemAmouryDoor(1548, Material.wood).setUnlocalizedName("AC:amoury_door").setCreativeTab(tabBlocks);
 		amouryDoor = new AC_BlockAmouryDoor(1549, Material.wood).setBlockUnbreakable().setResistance(6000000.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("AC:amoury_door");
-
-		// Items
+		crystalGlass = new AC_BlockCrystalGlass(1550).setStepSound(Block.soundGlassFootstep).setCreativeTab(tabBlocks).setUnlocalizedName("AC:crystal_glass");
+		frostFlame = new AC_BlockFrostFlame(1551).setStepSound(Block.soundPowderFootstep).setCreativeTab(tabBlocks).setUnlocalizedName("frost_flame");
+		
+		//Items
 		bucketIcyWater = new AC_ItemBucket(6200, acWaterFlowing.blockID).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyWater");
 		bucketEmpty = new AC_ItemBucket(6201, 0).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyEmpty");
 		MystFruit = new AC_ItemFruits(6202, 0, false).setCreativeTab(tabFood).setUnlocalizedName("AC:mystical_fruit");
@@ -590,6 +589,7 @@ public class MainRegistry {
 		invisoStaff = new AC_ItemInvisoStaff(6277).setFull3D().setCreativeTab(tabTools).setUnlocalizedName("AC:staff_icon");
 		recordFrozenFeelings = new AC_ItemRecord(6278, "Welcome To The Cold").setUnlocalizedName("record_FF");
 		recordWTTC = new AC_ItemRecord(6279, "Frozen Feelings").setUnlocalizedName("record_WTTC");
+		amouryKey = new Item(6270).setCreativeTab(tabMisc).setUnlocalizedName("AC:amoury_key");
 
 		AC_Recipes.initializeRecipes();
 		proxy.reigsterRenderThings();
@@ -644,8 +644,10 @@ public class MainRegistry {
 		GameRegistry.registerBlock(captainStatue, "Captain_Statue");
 		GameRegistry.registerBlock(campfire, "Campfire");
 		GameRegistry.registerBlock(amouryDoor, "Amoury_door");
-
-		// furnace
+		GameRegistry.registerBlock(crystalGlass, "Ice_Crystal_Glass");
+		GameRegistry.registerBlock(frostFlame, "Frost_Flame");
+		
+		//furnace
 		GameRegistry.registerBlock(arcticFurnaceIdle, "AC_Furnace_Idle");
 		GameRegistry.registerBlock(arcticFurnaceBurning, "AC_Furnace_Buring");
 		GameRegistry.registerTileEntity(AC_TileEntityArcticFurnace.class, "tileEntityArcticFurnace");
@@ -735,15 +737,15 @@ public class MainRegistry {
 		LanguageRegistry.addName(campfire, "Campfire");
 		LanguageRegistry.addName(recordFrozenFeelings, "Music Disk");
 		LanguageRegistry.addName(recordWTTC, "Music Disk");
-		LanguageRegistry.addName(amouryDoor, "Amoured Door");
-		LanguageRegistry.addName(amouryDoorPlace, "Amoured Door");
-
+		LanguageRegistry.addName(amouryDoor, "Armoured");
+		LanguageRegistry.addName(amouryDoorPlace, "Armoured Door");
+		LanguageRegistry.addName(amouryKey, "Armoury Key");
+		LanguageRegistry.addName(frostFlame, "Frost Flame");
 		LanguageRegistry.addName(frostSticks, "Frost Sticks");
 		LanguageRegistry.addName(frostStairs, "Frost Stairs");
 		LanguageRegistry.addName(frostLadders, "Frost Ladders");
 		LanguageRegistry.addName(frostPlanks, "Frost Planks");
 		LanguageRegistry.addName(frostFence, "Frost Fence");
-
 		LanguageRegistry.addName(invisoStaff, "Invisibility Staff");
 
 		LanguageRegistry.addName(TekkitePickaxe, "Tekkite Pickaxe");
@@ -797,6 +799,7 @@ public class MainRegistry {
 		LanguageRegistry.addName(ArcticStoneHoe, "Arctic Stone Hoe");
 		LanguageRegistry.addName(ArcticStoneSword, "Arctic Stone Sword");
 		LanguageRegistry.addName(ArcticStoneShovel, "Arctic Stone Spade");
+		LanguageRegistry.addName(crystalGlass, "Crystal Glass");
 
 		int zombieBackGround = 0x00AFAF;
 		int zombieSpots = 0x5FA88E;

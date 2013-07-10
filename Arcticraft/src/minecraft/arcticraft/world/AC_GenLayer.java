@@ -22,7 +22,7 @@ public abstract class AC_GenLayer extends GenLayer
 		biomes = new GenLayerZoom(1001L, biomes);
 		biomes = new GenLayerZoom(1002L, biomes);
 		biomes = new GenLayerZoom(700L, biomes);
-		biomes = new GenLayerZoom(1004L, biomes);
+		biomes = new GenLayerZoom(1250L, biomes);
 		biomes = new GenLayerZoom(1005L, biomes);
 
 		GenLayer genlayervoronoizoom = new GenLayerVoronoiZoom(10L, biomes);
