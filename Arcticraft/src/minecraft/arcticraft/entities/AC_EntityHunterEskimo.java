@@ -31,12 +31,6 @@ public class AC_EntityHunterEskimo extends AC_EntityDefaultEskimo
 		this.tasks.addTask(8, new EntityAIAttackOnCollide(this, AC_EntityBoar.class, this.moveSpeed, false));
 		this.tasks.addTask(10, new EntityAIMoveTwardsRestriction(this, this.moveSpeed));
 	}
-
-	@Override
-	public int getAttackStrength(Entity par1Entity)
-	{
-		return 6;
-	}
 	
 	static
 	{

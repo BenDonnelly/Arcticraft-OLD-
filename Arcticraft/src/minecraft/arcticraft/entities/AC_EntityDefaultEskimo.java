@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -159,7 +158,7 @@ public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerch
             if (!this.worldObj.isRemote)
             {
                 this.setCustomer(par1EntityPlayer);
-                par1EntityPlayer.displayGUIMerchant(this, this.func_94057_bL());
+                par1EntityPlayer.displayGUIMerchant(this, "Eskimo");
             }
 
             return true;
