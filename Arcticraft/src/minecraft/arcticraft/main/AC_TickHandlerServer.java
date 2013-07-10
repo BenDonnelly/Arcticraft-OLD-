@@ -25,6 +25,7 @@ public class AC_TickHandlerServer implements ITickHandler
 		{
 			killPlayer((EntityPlayer) tickData [0]);
 			freezingPotion((EntityPlayer) tickData [0]);
+			AC_DispenserBehaviours.func_96467_a();
 		}
 	}
 

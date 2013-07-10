@@ -1,3 +1,2 @@
 Lantern needs to remember its durability when placed
 Lantern stacksize dosent decrease when at max damage
-After drinking a drink it spawns a "ghosted" empty cup which dissapears on click in the inventory
