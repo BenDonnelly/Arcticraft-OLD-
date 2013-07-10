@@ -3,12 +3,14 @@ package arcticraft.entities;
 import java.util.Iterator;
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityMultiPart;
 import net.minecraft.entity.boss.EntityDragonPart;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
@@ -16,9 +18,13 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, IMob {
+public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, IMob
+{
+
 	public double targetX;
+
 	public double targetY;
+
 	public double targetZ;
 
 	/**
@@ -31,7 +37,7 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 	 * Index into the ring buffer. Incremented once per tick and restarts at 0
 	 * once it reaches the end of the buffer.
 	 */
-	public int ringBufferIndex = -1;
+	public int ringBufferIndex = - 1;
 
 	/** An array containing all body parts of this dragon */
 	public EntityDragonPart[] dragonPartArray;
@@ -41,10 +47,15 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 
 	/** The body bounding box of a dragon */
 	public EntityDragonPart dragonPartBody;
+
 	public EntityDragonPart dragonPartTail1;
+
 	public EntityDragonPart dragonPartTail2;
+
 	public EntityDragonPart dragonPartTail3;
+
 	public EntityDragonPart dragonPartWing1;
+
 	public EntityDragonPart dragonPartWing2;
 
 	/** Animation time at previous tick. */
@@ -64,12 +75,21 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 	 * bedrock. Slows movement and animation speed.
 	 */
 	public boolean slowed = false;
+
 	private Entity target;
+
 	public int deathTicks = 0;
 
-	public AC_EntityDragon(World par1World) {
+	public AC_EntityDragon(World par1World)
+	{
 		super(par1World);
-		this.dragonPartArray = new EntityDragonPart[] { this.dragonPartHead = new EntityDragonPart(this, "head", 6.0F, 6.0F), this.dragonPartBody = new EntityDragonPart(this, "body", 8.0F, 8.0F), this.dragonPartTail1 = new EntityDragonPart(this, "tail", 4.0F, 4.0F), this.dragonPartTail2 = new EntityDragonPart(this, "tail", 4.0F, 4.0F), this.dragonPartTail3 = new EntityDragonPart(this, "tail", 4.0F, 4.0F), this.dragonPartWing1 = new EntityDragonPart(this, "wing", 4.0F, 4.0F), this.dragonPartWing2 = new EntityDragonPart(this, "wing", 4.0F, 4.0F) };
+		this.dragonPartArray = new EntityDragonPart[] {this.dragonPartHead = new EntityDragonPart(this, "head", 6.0F, 6.0F),
+				this.dragonPartBody = new EntityDragonPart(this, "body", 8.0F, 8.0F),
+				this.dragonPartTail1 = new EntityDragonPart(this, "tail", 4.0F, 4.0F),
+				this.dragonPartTail2 = new EntityDragonPart(this, "tail", 4.0F, 4.0F),
+				this.dragonPartTail3 = new EntityDragonPart(this, "tail", 4.0F, 4.0F),
+				this.dragonPartWing1 = new EntityDragonPart(this, "wing", 4.0F, 4.0F),
+				this.dragonPartWing2 = new EntityDragonPart(this, "wing", 4.0F, 4.0F)};
 		this.setEntityHealth(this.getMaxHealth());
 		this.texture = "/mob/enderdragon/ender.png";
 		this.setSize(16.0F, 8.0F);
@@ -79,11 +99,13 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 		this.ignoreFrustumCheck = true;
 	}
 
-	public int getMaxHealth() {
+	public int getMaxHealth()
+	{
 		return 200;
 	}
 
-	protected void entityInit() {
+	protected void entityInit()
+	{
 		super.entityInit();
 		this.dataWatcher.addObject(16, new Integer(this.getMaxHealth()));
 	}
@@ -93,8 +115,10 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 	 * trailing tail/neck positions. [0] = yaw offset, [1] = y offset, [2] =
 	 * unused, always 0. Parameters: buffer index offset, partial ticks.
 	 */
-	public double[] getMovementOffsets(int par1, float par2) {
-		if (this.health <= 0) {
+	public double[] getMovementOffsets(int par1, float par2)
+	{
+		if(this.health <= 0)
+		{
 			par2 = 0.0F;
 		}
 
@@ -117,17 +141,22 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
-	public void onLivingUpdate() {
+	public void onLivingUpdate()
+	{
 		float f;
 		float f1;
 
-		if (!this.worldObj.isRemote) {
+		if( ! this.worldObj.isRemote)
+		{
 			this.dataWatcher.updateObject(16, Integer.valueOf(this.health));
-		} else {
+		}
+		else
+		{
 			f = MathHelper.cos(this.animTime * (float) Math.PI * 2.0F);
 			f1 = MathHelper.cos(this.prevAnimTime * (float) Math.PI * 2.0F);
 
-			if (f1 <= -0.3F && f >= -0.3F) {
+			if(f1 <= - 0.3F && f >= - 0.3F)
+			{
 				this.worldObj.playSound(this.posX, this.posY, this.posZ, "mob.enderdragon.wings", 5.0F, 0.8F + this.rand.nextFloat() * 0.3F, false);
 			}
 		}
@@ -137,14 +166,17 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 
 		this.rotationYaw = MathHelper.wrapAngleTo180_float(this.rotationYaw);
 
-		if (this.ringBufferIndex < 0) {
-			for (int i = 0; i < this.ringBuffer.length; ++i) {
+		if(this.ringBufferIndex < 0)
+		{
+			for(int i = 0; i < this.ringBuffer.length; ++i)
+			{
 				this.ringBuffer[i][0] = (double) this.rotationYaw;
 				this.ringBuffer[i][1] = this.posY;
 			}
 		}
 
-		if (++this.ringBufferIndex == this.ringBuffer.length) {
+		if(++this.ringBufferIndex == this.ringBuffer.length)
+		{
 			this.ringBufferIndex = 0;
 		}
 
@@ -156,25 +188,31 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 		double d3;
 		float f3;
 
-		if (this.worldObj.isRemote) {
-			if (this.newPosRotationIncrements > 0) {
+		if(this.worldObj.isRemote)
+		{
+			if(this.newPosRotationIncrements > 0)
+			{
 				d3 = this.posX + (this.newPosX - this.posX) / (double) this.newPosRotationIncrements;
 				d0 = this.posY + (this.newPosY - this.posY) / (double) this.newPosRotationIncrements;
 				d1 = this.posZ + (this.newPosZ - this.posZ) / (double) this.newPosRotationIncrements;
 				d2 = MathHelper.wrapAngleTo180_double(this.newRotationYaw - (double) this.rotationYaw);
 				this.rotationYaw = (float) ((double) this.rotationYaw + d2 / (double) this.newPosRotationIncrements);
-				this.rotationPitch = (float) ((double) this.rotationPitch + (this.newRotationPitch - (double) this.rotationPitch) / (double) this.newPosRotationIncrements);
+				this.rotationPitch = (float) ((double) this.rotationPitch + (this.newRotationPitch - (double) this.rotationPitch)
+						/ (double) this.newPosRotationIncrements);
 				--this.newPosRotationIncrements;
 				this.setPosition(d3, d0, d1);
 				this.setRotation(this.rotationYaw, this.rotationPitch);
 			}
-		} else {
+		}
+		else
+		{
 			d3 = this.targetX - this.posX;
 			d0 = this.targetY - this.posY;
 			d1 = this.targetZ - this.posZ;
 			d2 = d3 * d3 + d0 * d0 + d1 * d1;
 
-			if (this.target != null) {
+			if(this.target != null)
+			{
 				this.targetX = this.target.posX;
 				this.targetZ = this.target.posZ;
 				double d4 = this.targetX - this.posX;
@@ -182,28 +220,34 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 				double d6 = Math.sqrt(d4 * d4 + d5 * d5);
 				double d7 = 0.4000000059604645D + d6 / 80.0D - 1.0D;
 
-				if (d7 > 10.0D) {
+				if(d7 > 10.0D)
+				{
 					d7 = 10.0D;
 				}
 
 				this.targetY = this.target.boundingBox.minY + d7;
-			} else {
+			}
+			else
+			{
 				this.targetX += this.rand.nextGaussian() * 2.0D;
 				this.targetZ += this.rand.nextGaussian() * 2.0D;
 			}
 
-			if (this.forceNewTarget || d2 < 100.0D || d2 > 22500.0D || this.isCollidedHorizontally || this.isCollidedVertically) {
+			if(this.forceNewTarget || d2 < 100.0D || d2 > 22500.0D || this.isCollidedHorizontally || this.isCollidedVertically)
+			{
 				this.setNewTarget();
 			}
 
 			d0 /= (double) MathHelper.sqrt_double(d3 * d3 + d1 * d1);
 			f3 = 0.6F;
 
-			if (d0 < (double) (-f3)) {
-				d0 = (double) (-f3);
+			if(d0 < (double) ( - f3))
+			{
+				d0 = (double) ( - f3);
 			}
 
-			if (d0 > (double) f3) {
+			if(d0 > (double) f3)
+			{
 				d0 = (double) f3;
 			}
 
@@ -212,19 +256,26 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 			double d8 = 180.0D - Math.atan2(d3, d1) * 180.0D / Math.PI;
 			double d9 = MathHelper.wrapAngleTo180_double(d8 - (double) this.rotationYaw);
 
-			if (d9 > 50.0D) {
+			if(d9 > 50.0D)
+			{
 				d9 = 50.0D;
 			}
 
-			if (d9 < -50.0D) {
-				d9 = -50.0D;
+			if(d9 < - 50.0D)
+			{
+				d9 = - 50.0D;
 			}
 
-			Vec3 vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.targetX - this.posX, this.targetY - this.posY, this.targetZ - this.posZ).normalize();
-			Vec3 vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool((double) MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F), this.motionY, (double) (-MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F))).normalize();
+			Vec3 vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.targetX - this.posX, this.targetY - this.posY, this.targetZ - this.posZ)
+					.normalize();
+			Vec3 vec31 = this.worldObj
+					.getWorldVec3Pool()
+					.getVecFromPool((double) MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F), this.motionY,
+							(double) ( - MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F))).normalize();
 			float f4 = (float) (vec31.dotProduct(vec3) + 0.5D) / 1.5F;
 
-			if (f4 < 0.0F) {
+			if(f4 < 0.0F)
+			{
 				f4 = 0.0F;
 			}
 
@@ -232,7 +283,8 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 			float f5 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ) * 1.0F + 1.0F;
 			double d10 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ) * 1.0D + 1.0D;
 
-			if (d10 > 40.0D) {
+			if(d10 > 40.0D)
+			{
 				d10 = 40.0D;
 			}
 
@@ -240,11 +292,14 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 			this.rotationYaw += this.randomYawVelocity * 0.1F;
 			float f6 = (float) (2.0D / (d10 + 1.0D));
 			float f7 = 0.06F;
-			this.moveFlying(0.0F, -1.0F, f7 * (f4 * f6 + (1.0F - f6)));
+			this.moveFlying(0.0F, - 1.0F, f7 * (f4 * f6 + (1.0F - f6)));
 
-			if (this.slowed) {
+			if(this.slowed)
+			{
 				this.moveEntity(this.motionX * 0.800000011920929D, this.motionY * 0.800000011920929D, this.motionZ * 0.800000011920929D);
-			} else {
+			}
+			else
+			{
 				this.moveEntity(this.motionX, this.motionY, this.motionZ);
 			}
 
@@ -269,7 +324,7 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 		this.dragonPartWing2.width = 4.0F;
 		f1 = (float) (this.getMovementOffsets(5, 1.0F)[1] - this.getMovementOffsets(10, 1.0F)[1]) * 10.0F / 180.0F * (float) Math.PI;
 		f2 = MathHelper.cos(f1);
-		float f9 = -MathHelper.sin(f1);
+		float f9 = - MathHelper.sin(f1);
 		float f10 = this.rotationYaw * (float) Math.PI / 180.0F;
 		float f11 = MathHelper.sin(f10);
 		float f12 = MathHelper.cos(f10);
@@ -285,20 +340,25 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 		f3 = MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F - this.randomYawVelocity * 0.01F);
 		float f13 = MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F - this.randomYawVelocity * 0.01F);
 		this.dragonPartHead.onUpdate();
-		this.dragonPartHead.setLocationAndAngles(this.posX + (double) (f3 * 5.5F * f2), this.posY + (adouble1[1] - adouble[1]) * 1.0D + (double) (f9 * 5.5F), this.posZ - (double) (f13 * 5.5F * f2), 0.0F, 0.0F);
+		this.dragonPartHead.setLocationAndAngles(this.posX + (double) (f3 * 5.5F * f2), this.posY + (adouble1[1] - adouble[1]) * 1.0D
+				+ (double) (f9 * 5.5F), this.posZ - (double) (f13 * 5.5F * f2), 0.0F, 0.0F);
 
-		for (int j = 0; j < 3; ++j) {
+		for(int j = 0; j < 3; ++j)
+		{
 			EntityDragonPart entitydragonpart = null;
 
-			if (j == 0) {
+			if(j == 0)
+			{
 				entitydragonpart = this.dragonPartTail1;
 			}
 
-			if (j == 1) {
+			if(j == 1)
+			{
 				entitydragonpart = this.dragonPartTail2;
 			}
 
-			if (j == 2) {
+			if(j == 2)
+			{
 				entitydragonpart = this.dragonPartTail3;
 			}
 
@@ -309,23 +369,30 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 			float f17 = 1.5F;
 			float f18 = (float) (j + 1) * 2.0F;
 			entitydragonpart.onUpdate();
-			entitydragonpart.setLocationAndAngles(this.posX - (double) ((f11 * f17 + f15 * f18) * f2), this.posY + (adouble2[1] - adouble[1]) * 1.0D - (double) ((f18 + f17) * f9) + 1.5D, this.posZ + (double) ((f12 * f17 + f16 * f18) * f2), 0.0F, 0.0F);
+			entitydragonpart.setLocationAndAngles(this.posX - (double) ((f11 * f17 + f15 * f18) * f2), this.posY + (adouble2[1] - adouble[1]) * 1.0D
+					- (double) ((f18 + f17) * f9) + 1.5D, this.posZ + (double) ((f12 * f17 + f16 * f18) * f2), 0.0F, 0.0F);
 		}
-
+		if( ! this.worldObj.isRemote)
+		{
+			this.slowed = this.destroyBlocksInAABB(this.dragonPartHead.boundingBox) | this.destroyBlocksInAABB(this.dragonPartBody.boundingBox);
+		}
 	}
 
 	/**
 	 * Pushes all entities inside the list away from the enderdragon.
 	 */
-	private void collideWithEntities(List par1List) {
+	private void collideWithEntities(List par1List)
+	{
 		double d0 = (this.dragonPartBody.boundingBox.minX + this.dragonPartBody.boundingBox.maxX) / 2.0D;
 		double d1 = (this.dragonPartBody.boundingBox.minZ + this.dragonPartBody.boundingBox.maxZ) / 2.0D;
 		Iterator iterator = par1List.iterator();
 
-		while (iterator.hasNext()) {
+		while(iterator.hasNext())
+		{
 			Entity entity = (Entity) iterator.next();
 
-			if (entity instanceof EntityLiving) {
+			if(entity instanceof EntityLiving)
+			{
 				double d2 = entity.posX - d0;
 				double d3 = entity.posZ - d1;
 				double d4 = d2 * d2 + d3 * d3;
@@ -338,14 +405,19 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 	 * Sets a new target for the flight AI. It can be a random coordinate or a
 	 * nearby player.
 	 */
-	private void setNewTarget() {
+	private void setNewTarget()
+	{
 		this.forceNewTarget = false;
 
-		if (this.rand.nextInt(2) == 0 && !this.worldObj.playerEntities.isEmpty()) {
-		} else {
+		if(this.rand.nextInt(2) == 0 && ! this.worldObj.playerEntities.isEmpty())
+		{
+		}
+		else
+		{
 			boolean flag = false;
 
-			do {
+			do
+			{
 				this.targetX = 0.0D;
 				this.targetY = (double) (70.0F + this.rand.nextFloat() * 50.0F);
 				this.targetZ = 0.0D;
@@ -355,31 +427,84 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 				double d1 = this.posY - this.targetY;
 				double d2 = this.posZ - this.targetZ;
 				flag = d0 * d0 + d1 * d1 + d2 * d2 > 100.0D;
-			} while (!flag);
+			}
+			while( ! flag);
 
 			this.target = null;
 		}
 	}
 
 	/**
+	* Destroys all blocks that aren't associated with 'The End' inside the given bounding box.
+	*/
+	private boolean destroyBlocksInAABB(AxisAlignedBB par1AxisAlignedBB)
+	{
+		int i = MathHelper.floor_double(par1AxisAlignedBB.minX);
+		int j = MathHelper.floor_double(par1AxisAlignedBB.minY);
+		int k = MathHelper.floor_double(par1AxisAlignedBB.minZ);
+		int l = MathHelper.floor_double(par1AxisAlignedBB.maxX);
+		int i1 = MathHelper.floor_double(par1AxisAlignedBB.maxY);
+		int j1 = MathHelper.floor_double(par1AxisAlignedBB.maxZ);
+		boolean flag = false;
+		boolean flag1 = false;
+
+		for(int k1 = i; k1 <= l; ++k1)
+		{
+			for(int l1 = j; l1 <= i1; ++l1)
+			{
+				for(int i2 = k; i2 <= j1; ++i2)
+				{
+					int j2 = this.worldObj.getBlockId(k1, l1, i2);
+					Block block = Block.blocksList[j2];
+
+					if(block != null)
+					{
+						if(block.canDragonDestroy(worldObj, k1, l1, i2) && this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"))
+						{
+							flag1 = this.worldObj.setBlockToAir(k1, l1, i2) || flag1;
+						}
+						else
+						{
+							flag = true;
+						}
+					}
+				}
+			}
+		}
+
+		if(flag1)
+		{
+			double d0 = par1AxisAlignedBB.minX + (par1AxisAlignedBB.maxX - par1AxisAlignedBB.minX) * (double) this.rand.nextFloat();
+			double d1 = par1AxisAlignedBB.minY + (par1AxisAlignedBB.maxY - par1AxisAlignedBB.minY) * (double) this.rand.nextFloat();
+			double d2 = par1AxisAlignedBB.minZ + (par1AxisAlignedBB.maxZ - par1AxisAlignedBB.minZ) * (double) this.rand.nextFloat();
+			this.worldObj.spawnParticle("largeexplode", d0, d1, d2, 0.0D, 0.0D, 0.0D);
+		}
+
+		return flag;
+	}
+
+	/**
 	 * Simplifies the value of a number by adding/subtracting 180 to the point
 	 * that the number is between -180 and 180.
 	 */
-	private float simplifyAngle(double par1) {
+	private float simplifyAngle(double par1)
+	{
 		return (float) MathHelper.wrapAngleTo180_double(par1);
 	}
 
 	/**
 	 * Makes the entity despawn if requirements are reached
 	 */
-	protected void despawnEntity() {
+	protected void despawnEntity()
+	{
 	}
 
 	/**
 	 * Return the Entity parts making up this Entity (currently only for
 	 * dragons)
 	 */
-	public Entity[] getParts() {
+	public Entity[] getParts()
+	{
 		return this.dragonPartArray;
 	}
 
@@ -387,7 +512,8 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 	 * Returns true if other Entities should be prevented from moving through
 	 * this Entity.
 	 */
-	public boolean canBeCollidedWith() {
+	public boolean canBeCollidedWith()
+	{
 		return false;
 	}
 
@@ -395,40 +521,47 @@ public class AC_EntityDragon extends EntityLiving implements IEntityMultiPart, I
 	/**
 	 * Returns the health points of the dragon.
 	 */
-	public int getDragonHealth() {
+	public int getDragonHealth()
+	{
 		return this.dataWatcher.getWatchableObjectInt(16);
 	}
 
-	public World func_82194_d() {
+	public World func_82194_d()
+	{
 		return this.worldObj;
 	}
 
 	/**
 	 * Returns the sound this mob makes while it's alive.
 	 */
-	protected String getLivingSound() {
+	protected String getLivingSound()
+	{
 		return "mob.enderdragon.growl";
 	}
 
 	/**
 	 * Returns the sound this mob makes when it is hurt.
 	 */
-	protected String getHurtSound() {
+	protected String getHurtSound()
+	{
 		return "mob.enderdragon.hit";
 	}
 
 	/**
 	 * Returns the volume for the sounds this mob makes.
 	 */
-	protected float getSoundVolume() {
+	protected float getSoundVolume()
+	{
 		return 5.0F;
 	}
 
-	protected boolean func_82195_e(DamageSource par1DamageSource, int par2) {
+	protected boolean func_82195_e(DamageSource par1DamageSource, int par2)
+	{
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
-	public boolean attackEntityFromPart(EntityDragonPart par1EntityDragonPart, DamageSource par2DamageSource, int par3) {
+	public boolean attackEntityFromPart(EntityDragonPart par1EntityDragonPart, DamageSource par2DamageSource, int par3)
+	{
 
 		return false;
 	}
