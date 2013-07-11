@@ -19,6 +19,7 @@ public class AC_EntityEskimo extends AC_EntityDefaultEskimo
 	{
 		super(par1World);
 		this.texture = "/mods/AC/textures/mobs/eskimo.png";
+		this.setSize(1.5F, 1.4F);
 	}
 	
 	static

@@ -19,6 +19,7 @@ public class AC_EntityChefEskimo extends AC_EntityDefaultEskimo
 	{
 		super(par1World);
 		this.texture = "/mods/AC/textures/mobs/eskimo_chef.png";
+		this.setSize(1.5F, 1.4F);
 	}
 	
 	static

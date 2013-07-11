@@ -26,6 +26,7 @@ public class AC_EntityTraderEskimo extends EntityMob
 	{
 		super(par1World);
 		this.moveSpeed = 0.3F;
+		this.setSize(1.5F, 1.4F);
 		this.texture = "/mods/AC/textures/mobs/eskimo_trader.png";
 		this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(2, new EntityAILookIdle(this));

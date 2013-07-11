@@ -46,6 +46,7 @@ public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerch
 	public AC_EntityDefaultEskimo(World par1World) {
 		super(par1World);
 		this.moveSpeed = 0.3F;
+		this.setSize(1.5F, 1.4F);
 		this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(2, new EntityAILookIdle(this));
 		this.tasks.addTask(11, new EntityAISwimming(this));

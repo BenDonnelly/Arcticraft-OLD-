@@ -26,7 +26,7 @@ public class AC_EntityPenguin extends EntityAnimal
 	{
 		super(world);
 		this.texture = "/mods/AC/textures/mobs/penguin.png";
-		this.setSize(1.5F, 1.9F); // this sets the hit area of the mob
+		this.setSize(0.9F, 0.9F); // this sets the hit area of the mob
 
 		tasks.addTask(0, new EntityAISwimming(this));
 		tasks.addTask(1, new EntityAIPanic(this, 0.38F));

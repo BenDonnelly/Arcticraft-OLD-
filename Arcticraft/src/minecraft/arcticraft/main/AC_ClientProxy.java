@@ -2,19 +2,10 @@ package arcticraft.main;
 
 import net.minecraft.client.model.ModelBiped;
 
-
-
-
 import net.minecraft.client.model.ModelDragon;
 import net.minecraft.client.model.ModelPig;
 
-
-
-
 import net.minecraft.client.model.ModelZombie;
-
-
-
 
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderZombie;
@@ -98,14 +89,13 @@ public class AC_ClientProxy extends AC_CommonProxy {
 	@Override
 	public void registerTickHandler() {
 		TickRegistry.registerTickHandler(new AC_TickHandler(), Side.CLIENT);
-		TickRegistry.registerTickHandler(new AC_TickHandlerServer(), Side.SERVER);
 
 	}
 
 	@Override
 	public void reigsterRenderThings() {
 
-		MinecraftForge.EVENT_BUS.register(new AC_EventSoundLoad());
+		//MinecraftForge.EVENT_BUS.register(new AC_EventSoundLoad());
 
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityMage.class, new AC_RenderMage(new AC_ModelMage(), 0.3F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityFrostGhost.class, new AC_RenderFrostGhost(new AC_ModelFrostGhost(), 0.5F));
@@ -141,4 +131,10 @@ public class AC_ClientProxy extends AC_CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(MainRegistry.invisoStaff.itemID, (IItemRenderer) new AC_ItemInvisoStaffRenderer());
 
 	}
+	
+	public int addArmor(String armor)
+	{
+		return RenderingRegistry.addNewArmourRendererPrefix(armor);
+	}
+
 }

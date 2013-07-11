@@ -31,7 +31,7 @@ public class AC_EntityBoar extends EntityAnimal
 	{
 		super(par1World);
 		this.texture = "/mods/AC/textures/mobs/boar.png";
-		this.setSize(0.9F, 0.9F);
+		this.setSize(2.0F, 1.8F);
 		this.getNavigator().setAvoidsWater(true);
 		float f = 0.25F;
 		this.tasks.addTask(0, new EntityAISwimming(this));

@@ -18,7 +18,7 @@ public class AC_EntityCheifEskimo extends EntityAnimal
 	{
 		super(par1World);
 		this.moveSpeed = 0F;
-		this.setSize(1.5F, 1.9F);
+		this.setSize(1.5F, 1.4F);
 		this.texture = "/mods/AC/textures/mobs/eskimo_cheif.png";
 		this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(2, new EntityAILookIdle(this));
