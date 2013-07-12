@@ -36,7 +36,8 @@ public class AC_ItemFruits extends ItemFood {
     {
     	if (par2EntityPlayer.capabilities.isCreativeMode)
     		attemptToTeleport(par1ItemStack, par3World, par2EntityPlayer);
-    	
+    	par3World.playSoundAtEntity(par2EntityPlayer, "AC:portal", 1.0F, 1.0F);
+
     	return super.onItemUse(par1ItemStack, par2EntityPlayer, par3World, par4, par5, par6, par7, par8, par9, par10);
     }
     
@@ -49,6 +50,7 @@ public class AC_ItemFruits extends ItemFood {
 				AC_Teleporter.teleportEntity(player, MainRegistry.dimension);
 				player.addPotionEffect(new PotionEffect(Potion.confusion.id, 250, 50));
 				player.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
+				
 			}
 		}
 		else if(itemStack.itemID == MainRegistry.GlacierFruit.itemID)
@@ -58,6 +60,7 @@ public class AC_ItemFruits extends ItemFood {
 			AC_Teleporter.teleportEntity(player, dimension);			
 			player.addPotionEffect(new PotionEffect(Potion.confusion.id, 250, 50));
 			player.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
+
 		}
     }
     

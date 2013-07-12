@@ -309,6 +309,12 @@ public class MainRegistry {
 	// Decoration blocks
 	public static Block mysticalSnow;
 	public static Block crystalGlass;	
+	public static Block tekkiteBlock;
+	public static Block glacianBlock;
+	public static Block rigentemBlock;
+	public static Block escariaBlock;
+	
+	
 	//snow blocks
 	public static Block snowPressurePlate;
 	public static Block snowTrapdoor;
@@ -320,6 +326,7 @@ public class MainRegistry {
 	public static Block rigentemOre;
 	public static Block glacianOre;
 	public static Block eriumOre;
+	
 
 	// Ore Drops
 	public static Item tekkiteGem;
@@ -501,6 +508,12 @@ public class MainRegistry {
 		crystalGlass = new AC_BlockCrystalGlass(1550).setStepSound(Block.soundGlassFootstep).setCreativeTab(tabBlocks).setUnlocalizedName("AC:crystal_glass");
 		frostFlame = new AC_BlockFrostFlame(1551).setStepSound(Block.soundPowderFootstep).setCreativeTab(tabBlocks).setUnlocalizedName("frost_flame");
 		
+		tekkiteBlock = new Block(1552, Material.rock).setHardness(3.5F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:tekkite_block").setStepSound(Block.soundStoneFootstep);
+		glacianBlock = new Block(1553, Material.rock).setHardness(3.5F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:glacian_block").setStepSound(Block.soundStoneFootstep);
+		escariaBlock = new Block(1554, Material.rock).setHardness(3.5F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:escaria_block").setStepSound(Block.soundStoneFootstep);
+		rigentemBlock = new Block(1555, Material.rock).setHardness(3.5F).setResistance(3.5F).setCreativeTab(tabBlocks).setUnlocalizedName("AC:rigentem_block").setStepSound(Block.soundStoneFootstep);
+
+		
 		//Items
 		bucketIcyWater = new AC_ItemBucket(6200, acWaterFlowing.blockID).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyWater");
 		bucketEmpty = new AC_ItemBucket(6201, 0).setCreativeTab(tabMisc).setUnlocalizedName("AC:BucketIcyEmpty");
@@ -648,7 +661,10 @@ public class MainRegistry {
 		GameRegistry.registerBlock(amouryDoor, "Amoury_door");
 		GameRegistry.registerBlock(crystalGlass, "Ice_Crystal_Glass");
 		GameRegistry.registerBlock(frostFlame, "Frost_Flame");
-		
+		GameRegistry.registerBlock(tekkiteBlock, "Tekkite_Block");
+		GameRegistry.registerBlock(glacianBlock, "Glacia_Block");
+		GameRegistry.registerBlock(rigentemBlock, "Rigentem_Block");
+		GameRegistry.registerBlock(escariaBlock, "Escaria_Block");
 		//furnace
 		GameRegistry.registerBlock(arcticFurnaceIdle, "AC_Furnace_Idle");
 		GameRegistry.registerBlock(arcticFurnaceBurning, "AC_Furnace_Buring");
@@ -749,7 +765,11 @@ public class MainRegistry {
 		LanguageRegistry.addName(frostPlanks, "Frost Planks");
 		LanguageRegistry.addName(frostFence, "Frost Fence");
 		LanguageRegistry.addName(invisoStaff, "Invisibility Staff");
-
+		LanguageRegistry.addName(tekkiteBlock, "Tekkite Block");
+		LanguageRegistry.addName(rigentemBlock, "Rigentem Block");
+		LanguageRegistry.addName(glacianBlock, "Glacian Block");
+		LanguageRegistry.addName(escariaBlock, "Escaria Block");
+		
 		LanguageRegistry.addName(TekkitePickaxe, "Tekkite Pickaxe");
 		LanguageRegistry.addName(TekkiteAxe, "Tekkite Axe");
 		LanguageRegistry.addName(TekkiteHoe, "Tekkite Hoe");
@@ -903,49 +923,37 @@ public class MainRegistry {
 	}
 
 	@PostInit
-	public void postInit(FMLPostInitializationEvent event) {
-		/*
-		 * if(mc.thePlayer != null && mc.theWorld != null) { NBTTagCompound tg =
-		 * mc.thePlayer.getEntityData(); tg.setInteger("temp",
-		 * AC_TickHandler.value);
-		 */
+	public void postInit(FMLPostInitializationEvent event) {}
 
-	}
-
-	public void renderBossStrings() {
-
-		/*
-		 * I was testing rendering strings onto the screen, it seems that
-		 * strings can only be rendered when a gui or something is open
-		 * ScaledResolution scaledresolution = new
-		 * ScaledResolution(this.mc.gameSettings, this.mc.displayWidth,
-		 * this.mc.displayHeight); int i = scaledresolution.getScaledWidth();
-		 * mc.fontRenderer.drawStringWithShadow("Test", i / 2 -
-		 * mc.fontRenderer.getStringWidth("test") / 2, 12 - 10, 16777215);
-		 */
-	}
-
-	public static void registerEntityEgg(Class<? extends Entity> entity, int primaryColor, int secondaryColor) {
+	public static void registerEntityEgg(Class<? extends Entity> entity, int primaryColor, int secondaryColor)
+	{
 		int id = getUniqueEntityId();
 		EntityList.IDtoClassMapping.put(id, entity);
 		EntityList.entityEggs.put(id, new EntityEggInfo(id, primaryColor, secondaryColor));
+
 	}
 
-	public static int getUniqueEntityId() {
-		do {
+	public static int getUniqueEntityId()
+	{
+		do
+		{
 			startEntityId++;
-		} while (EntityList.getStringFromID(startEntityId) != null);
+		}
+		while(EntityList.getStringFromID(startEntityId) != null);
 
 		return startEntityId;
 	}
 
-	public static void talkStuff(String s, World par1World) {
+	public static void talkStuff(String s, World par1World)
+	{
 		Iterator<EntityPlayer> players = par1World.playerEntities.iterator();
 
-		while (players.hasNext()) {
+		while(players.hasNext())
+		{
 			EntityPlayer player = players.next();
 
-			if (player instanceof EntityPlayerMP) {
+			if(player instanceof EntityPlayerMP)
+			{
 				player.sendChatToPlayer(s);
 			}
 		}

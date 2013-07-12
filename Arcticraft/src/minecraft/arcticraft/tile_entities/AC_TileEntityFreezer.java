@@ -224,7 +224,7 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory,
 	 */
 	public int getCookProgressScaled(int par1)
 	{
-		return this.freezerCookTime * par1 / 200;
+		return this.freezerCookTime * par1 / 1800;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -291,7 +291,7 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory,
 			{
 				++this.freezerCookTime;
 
-				if (this.freezerCookTime == 200)
+				if (this.freezerCookTime == 1800)
 				{
 					this.freezerCookTime = 0;
 					this.smeltItem();

@@ -29,7 +29,9 @@ public class AC_FreezerRecipes
 
     private AC_FreezerRecipes()
     {
-        this.addSmelting(Block.oreIron.blockID, Block.oreIron.blockID, new ItemStack(Item.ingotIron), 0.7F);
+        this.addSmelting(Item.bucketWater.itemID, Item.bucketWater.itemID, new ItemStack(Block.ice), 0.7F);
+        this.addSmelting(Item.bucketLava.itemID, Item.bucketLava.itemID, new ItemStack(Block.obsidian), 0.7F);
+        this.addSmelting(MainRegistry.bucketIcyWater.itemID, MainRegistry.bucketIcyWater.itemID, new ItemStack(Block.ice), 0.7F);
     }
 
     /**
@@ -41,6 +43,8 @@ public class AC_FreezerRecipes
         this.experienceList.put(Integer.valueOf(par2ItemStack.itemID), Float.valueOf(par3));
     }
 
+  
+    
     /**
      * Returns the smelting result of an item.
      * Deprecated in favor of a metadata sensitive version

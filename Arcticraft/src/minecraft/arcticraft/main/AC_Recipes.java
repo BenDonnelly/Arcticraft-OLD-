@@ -50,14 +50,7 @@ public class AC_Recipes
 		GameRegistry.addRecipe(new ItemStack(MainRegistry.snowTrapdoor, 2), new Object[] {
 			"XXX", "XXX", Character.valueOf('X'), Block.snow});
 	}
-//
-//	public static void freezing()
-//	{
-//		AC_FreezerRecipes.smelting().addSmelting(Item.bucketMilk.itemID, new ItemStack(MainRegistry.vanillaIceCream, 1), 0.2F);
-//		AC_FreezerRecipes.smelting().addSmelting(Item.bucketWater.itemID, new ItemStack(Block.ice, 1), 0.2F);
-//		AC_FreezerRecipes.smelting().addSmelting(Item.bucketLava.itemID, new ItemStack(Block.obsidian, 1), 0.2F);
-//		AC_FreezerRecipes.smelting().addSmelting(Block.snow.blockID, new ItemStack(Block.ice, 1), 0.1F);
-//	}
+
 
 	public static void smelting()
 	{
@@ -251,11 +244,35 @@ public class AC_Recipes
 			" S ", "SFS", " S ", Character.valueOf('S'), MainRegistry.frostSticks, Character.valueOf('F'), MainRegistry.frigus });
 
 		GameRegistry.addRecipe(new ItemStack(MainRegistry.freezerIdle), new Object[] {
-			"XXX", "XYX", "XXX", Character.valueOf('X'), Item.ingotIron,
+			"XXX", "XYX", "XXX", Character.valueOf('X'), MainRegistry.glacianIngot,
 			Character.valueOf('Y'), MainRegistry.tekkiteGem});
 		
 		GameRegistry.addRecipe(new ItemStack(MainRegistry.campfire), new Object[]{
 		 " Y ", "XXX", Character.valueOf('X'), Item.stick,
 			Character.valueOf('Y'), MainRegistry.frigus});
+		
+		GameRegistry.addRecipe(new ItemStack(MainRegistry.glacianBlock), new Object[]{
+			 "XXX", "XXX", "XXX", Character.valueOf('X'), MainRegistry.glacianIngot});
+		
+		GameRegistry.addRecipe(new ItemStack(MainRegistry.tekkiteBlock), new Object[]{
+			 "XXX", "XXX", "XXX", Character.valueOf('X'), MainRegistry.tekkiteGem});
+		
+		GameRegistry.addRecipe(new ItemStack(MainRegistry.escariaBlock), new Object[]{
+			 "XXX", "XXX", "XXX", Character.valueOf('X'), MainRegistry.escariaGem});
+
+		GameRegistry.addRecipe(new ItemStack(MainRegistry.rigentemBlock), new Object[]{
+			 "XXX", "XXX", "XXX", Character.valueOf('X'), MainRegistry.rigentemIngot});
+	
+		GameRegistry.addRecipe(new ItemStack(MainRegistry.glacianIngot, 9), new Object[]{
+			 "X",  Character.valueOf('X'), MainRegistry.glacianBlock});
+		
+		GameRegistry.addRecipe(new ItemStack(MainRegistry.tekkiteGem, 9), new Object[]{
+			 "X",  Character.valueOf('X'), MainRegistry.tekkiteBlock});
+		
+		GameRegistry.addRecipe(new ItemStack(MainRegistry.rigentemIngot, 9), new Object[]{
+			 "X",  Character.valueOf('X'), MainRegistry.rigentemBlock});
+		
+		GameRegistry.addRecipe(new ItemStack(MainRegistry.escariaGem, 9), new Object[]{
+			 "X",  Character.valueOf('X'), MainRegistry.escariaBlock});
 	}
 }
