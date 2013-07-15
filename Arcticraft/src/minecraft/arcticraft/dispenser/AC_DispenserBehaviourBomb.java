@@ -16,7 +16,8 @@ final class AC_DispenserBehaviourBomb extends BehaviorDefaultDispenseItem
      */
     protected ItemStack dispenseStack(IBlockSource par1IBlockSource, ItemStack par2ItemStack)
     {
-        EnumFacing enumfacing = BlockDispenser.getFacing(par1IBlockSource.getBlockMetadata());
+        System.out.println("sup");
+    	EnumFacing enumfacing = BlockDispenser.getFacing(par1IBlockSource.getBlockMetadata());
         World world = par1IBlockSource.getWorld();
         int i = par1IBlockSource.getXInt() + enumfacing.getFrontOffsetX();
         int j = par1IBlockSource.getYInt() + enumfacing.getFrontOffsetY();

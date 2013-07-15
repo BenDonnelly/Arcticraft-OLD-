@@ -1,5 +1,10 @@
 package arcticraft.items;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemRecord;
@@ -11,47 +16,26 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class AC_ItemRecord extends ItemRecord
 {
-
-	/** The name of the record. */
-	public final String recordName;
-
+	public static List<String> recordNames = new ArrayList<String>();
+	
 	public AC_ItemRecord(int ID, String par2Str)
 	{
 		super(ID, par2Str);
-		this.recordName = par2Str;
+		recordNames.add(this.recordName);
 		this.setCreativeTab(MainRegistry.tabMisc);
 	}
-
-	@SideOnly(Side.CLIENT)
-	/**
-	 * Gets an icon index based on an item's damage value
-	 */
-	public Icon getIconFromDamage(int par1)
-	{
-		return this.itemIcon;
-	}
-
-	/**
-	 * Return the title for this record.
-	 */
+	
+	@Override
 	public String getRecordTitle()
 	{
-		return "Ben Porayko - " + this.recordName;
+		return "Voog2 - " + this.recordName;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
-	/**
-	 * Return an item rarity from EnumRarity
-	 */
-	public EnumRarity getRarity(ItemStack par1ItemStack)
+	public void registerIcons(IconRegister par1IconRegister)
 	{
-		return EnumRarity.rare;
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void updateIcons(IconRegister par1IconRegister)
-	{
-		this.itemIcon = par1IconRegister.registerIcon("AC:record_" + this.recordName);
+		this.itemIcon = par1IconRegister.registerIcon("ac:record_" + this.recordName);
 	}
 
 }

@@ -2,6 +2,7 @@ package arcticraft.entities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
@@ -11,12 +12,11 @@ import net.minecraft.world.World;
 public class AC_EntityBomb extends EntityThrowable
 {
 
-	private EntityLiving thrower;
 	public AC_EntityBomb(World var1)
 	{
 		super(var1);
 	}
-	public AC_EntityBomb(World var1, EntityLiving var2)
+	public AC_EntityBomb(World var1, EntityLivingBase var2)
 	{
 		super(var1, var2);
 	}
@@ -36,7 +36,7 @@ public class AC_EntityBomb extends EntityThrowable
 			{
 				var2 = 3;
 			}
-			if (!var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.thrower), var2))
+			if (!var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), var2))
 			{
 				;
 			}

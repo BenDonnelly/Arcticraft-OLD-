@@ -28,6 +28,7 @@ public class AC_Item
 	public static Item teaDrinks;
 	public static Item boarMeat;
 	public static Item uncookedBoarMeat;
+	public static Item floranSeed;
 	
 	
 	/*Tools & Armour*/
@@ -233,8 +234,8 @@ public class AC_Item
 		uncookedBoarMeat = new ItemFood(6271, 10, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("AC:raw_boar_meat").func_111206_d("ac:raw_boar_meat");
 		hikingBoots = new AC_ItemArmour(6272, hikingAmrour, MainRegistry.instance.proxy.addArmor("Hiking"), 3).setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("Hiking Boots");
 		invisoStaff = new AC_ItemInvisoStaff(6273).setFull3D().setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("AC:staff_icon").func_111206_d("ac:staff_icon");
-		recordFrozenFeelings = new AC_ItemRecord(6274, "Welcome To The Cold").setUnlocalizedName("record_FF").func_111206_d("ac:record_FF");
-		recordWTTC = new AC_ItemRecord(6275, "Frozen Feelings").setUnlocalizedName("record_WTTC").func_111206_d("ac:record_WTTC");
+		recordFrozenFeelings = new AC_ItemRecord(6274, "Welcome To The Cold").setUnlocalizedName("record_FF");
+		recordWTTC = new AC_ItemRecord(6275, "Frozen Feelings").setUnlocalizedName("record_WTTC");
 		amouryKey = new Item(6276).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("AC:amoury_key").func_111206_d("ac:amoury_key");
 		bucketIcyWater = new AC_ItemBucket(6277, AC_Block.acWaterFlowing.blockID).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("AC:bucket_ice_water").func_111206_d("ac:bucket_ice_water");
 		bucketEmpty = new AC_ItemBucket(6278, 0).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("AC:bucket_empty").func_111206_d("ac:bucket_empty");
@@ -243,7 +244,7 @@ public class AC_Item
 		IceShard = new Item(6281).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("AC:ice_shard").func_111206_d("ac:ice_shard");
 		frostDoorPlace = new AC_FrostDoorPlace(6282, Material.wood).setUnlocalizedName("AC:icedoor").setCreativeTab(MainRegistry.tabBlocks).func_111206_d("ac:frost_door_icon");
 		amouryDoorPlace = new AC_ItemAmouryDoor(6283, Material.wood).setUnlocalizedName("AC:amoury_door").setCreativeTab(MainRegistry.tabBlocks).func_111206_d("ac:amoury_door");
-		
+		floranSeed = new AC_ItemSeed(6284, AC_Block.floranPlant).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("AC:floran_seed").func_111206_d("ac:floran_seed");	
 	}
 	
 	public static void nameItems()
@@ -279,6 +280,7 @@ public class AC_Item
 		LanguageRegistry.addName(amouryKey, "Armoury Key");
 		LanguageRegistry.addName(frostSticks, "Frost Sticks");
 		LanguageRegistry.addName(invisoStaff, "Invisibility Staff");
+		LanguageRegistry.addName(floranSeed, "Floran Seed");
 		
 		LanguageRegistry.addName(TekkitePickaxe, "Tekkite Pickaxe");
 		LanguageRegistry.addName(TekkiteAxe, "Tekkite Axe");

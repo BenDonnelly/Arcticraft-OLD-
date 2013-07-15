@@ -164,7 +164,7 @@ public class AC_EntityIceCreeper extends EntityCreeper implements IRangedAttackM
 
 	 public void attackEntityWithRangedAttack(EntityLivingBase par1EntityLivingBase, float par2)
 	    {
-	        AC_EntityIceShard AC_EntityIceShard = new AC_EntityIceShard(this.worldObj);
+	        AC_EntityIceShard AC_EntityIceShard = new AC_EntityIceShard(this.worldObj, par1EntityLivingBase, par2);
 	        int i = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, this.getHeldItem());
 	        int j = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, this.getHeldItem());
 	        AC_EntityIceShard.setDamage((double)(par2 * 2.0F) + this.rand.nextGaussian() * 0.25D + (double)((float)this.worldObj.difficultySetting * 0.11F));

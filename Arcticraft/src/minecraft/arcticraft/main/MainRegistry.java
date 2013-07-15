@@ -18,7 +18,6 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Property;
 import net.minecraftforge.common.Property.Type;
-import net.minecraftforge.fluids.Fluid;
 import arcticraft.blocks.AC_Block;
 import arcticraft.creative_tabs.AC_TabBlocks;
 import arcticraft.creative_tabs.AC_TabCombat;
@@ -27,8 +26,13 @@ import arcticraft.creative_tabs.AC_TabMaterial;
 import arcticraft.creative_tabs.AC_TabMisc;
 import arcticraft.creative_tabs.AC_TabTools;
 import arcticraft.data_store.TemperatureDataStorage;
+import arcticraft.entities.AC_EntityBomb;
 import arcticraft.entities.AC_EntityEgg;
+import arcticraft.entities.AC_EntityIceShard;
 import arcticraft.gui.AC_GuiHandler;
+import arcticraft.helpers.AC_ForgeEvents;
+import arcticraft.helpers.AC_PacketHandler;
+import arcticraft.helpers.AC_TickHandler;
 import arcticraft.items.AC_Item;
 import arcticraft.recipes.AC_Recipes;
 import arcticraft.world.AC_WorldGenerator;
@@ -44,6 +48,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -161,8 +166,7 @@ public class MainRegistry {
 		proxy.registerKeyHandler();
 		GameRegistry.registerWorldGenerator(new AC_WorldGenerator());
 
-		
-		
+
 		LanguageRegistry.instance().addStringLocalization("death.attack.Freezing", "%1$s froze");
 		
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);

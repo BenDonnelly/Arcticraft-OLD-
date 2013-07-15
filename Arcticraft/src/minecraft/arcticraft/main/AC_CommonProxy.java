@@ -13,7 +13,7 @@ public void registerKeyHandler(){
 	
 	public void registerTickHandler()
 	{
-		TickRegistry.registerTickHandler(new AC_TickHandlerServer(), Side.SERVER);
+//		TickRegistry.registerTickHandler(new AC_TickHandlerServer(), Side.SERVER);
 	}
 
 	public void reigsterRenderThings()

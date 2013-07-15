@@ -26,7 +26,10 @@ import arcticraft.entities.AC_EntityPirate;
 import arcticraft.entities.AC_EntityPolarBear;
 import arcticraft.entities.AC_EntityTraderEskimo;
 import arcticraft.entities.AC_EntityYeti;
+import arcticraft.helpers.AC_EventSoundLoad;
 import arcticraft.helpers.AC_KeyBindHelper;
+import arcticraft.helpers.AC_TickHandler;
+import arcticraft.helpers.AC_TickHandlerServer;
 import arcticraft.items.AC_Item;
 import arcticraft.items.AC_ItemCampfireRenderer;
 import arcticraft.items.AC_ItemCaptainStatueRenderer;
@@ -88,6 +91,7 @@ public class AC_ClientProxy extends AC_CommonProxy {
 	@Override
 	public void registerTickHandler() {
 		TickRegistry.registerTickHandler(new AC_TickHandler(), Side.CLIENT);
+		TickRegistry.registerTickHandler(new AC_TickHandlerServer(), Side.SERVER);
 
 	}
 
@@ -105,7 +109,7 @@ public class AC_ClientProxy extends AC_CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityPolarBear.class, new AC_RenderPolarBear(new AC_ModelPolarBear(), 1.4F, 1.4F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityBoar.class, new AC_RenderBoar(new AC_ModelBoar(), new AC_ModelBoar(), 0.8F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityHusky.class, new AC_RenderHusky(new AC_ModelHusky(), new AC_ModelHusky(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(AC_EntityBomb.class, new AC_RenderBomb(AC_Item.bomb, 0));
+		RenderingRegistry.registerEntityRenderingHandler(AC_EntityBomb.class, new AC_RenderBomb(AC_Item.bomb, 0));//gets the texture from the item for rendering 
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityCaptain.class, new AC_RenderCaptain());
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityCheifEskimo.class, new AC_RenderCheifEskimo(new AC_ModelCheifEskimo(), 0.3F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityHunterEskimo.class, new AC_RenderHunterEskimo(new AC_ModelHunterEskimo(), 0.3F));

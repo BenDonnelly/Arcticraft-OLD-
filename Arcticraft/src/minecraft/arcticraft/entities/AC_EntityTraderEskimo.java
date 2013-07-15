@@ -60,7 +60,7 @@ public class AC_EntityTraderEskimo extends EntityMob
 		this.addTrade(1, Block.fenceIron, 6, 5);
 		this.addTrade(2, AC_Block.campfire, 2); 
 		this.addTrade(3, AC_Item.boarMeat, 2, 2);
-		this.addTrade(4, AC_Block.floranSeed,  1);
+		this.addTrade(4, AC_Item.floranSeed,  1);
 		this.addTrade(5, AC_Block.frostChest,  2, 1);
 		this.addTrade(6, AC_Block.frostPlanks, 32, 4);
 		this.addTrade(7, AC_Item.emptyCup, 3, 1);

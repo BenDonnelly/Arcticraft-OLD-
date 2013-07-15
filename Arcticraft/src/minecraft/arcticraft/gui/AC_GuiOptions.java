@@ -6,7 +6,7 @@ import net.minecraft.client.gui.GuiScreen;
 
 import org.lwjgl.opengl.GL11;
 
-import arcticraft.main.AC_TickHandler;
+import arcticraft.helpers.AC_TickHandler;
 
 public class AC_GuiOptions extends GuiScreen
 {

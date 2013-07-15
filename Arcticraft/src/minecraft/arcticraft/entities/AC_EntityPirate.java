@@ -78,7 +78,7 @@ public class AC_EntityPirate extends EntityMob
 	 */
 	protected String getLivingSound()
 	{
-		return "arcticraft.pirateIdle";
+		return "ac:mobs.pirate_idle";
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class AC_EntityPirate extends EntityMob
 	protected String getHurtSound()
 	{
 
-		return "arcticraft.pirateHurt";
+		return "ac:mobs.pirate_hurt";
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class AC_EntityPirate extends EntityMob
 	 */
 	protected String getDeathSound()
 	{
-		return "arcticraft.pirateDeath";
+		return "ac:mobs.pirate_death";
 	}
 	
 	public void onCollideWithPlayer(EntityPlayer par1EntityPlayer)

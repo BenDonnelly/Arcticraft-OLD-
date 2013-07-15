@@ -2,6 +2,7 @@ package arcticraft.renderers;
 
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.item.Item;
@@ -21,27 +22,24 @@ public class AC_RenderBomb extends Render
 {
     private Item field_94151_a;
     private int field_94150_f;
-    
-    private static final ResourceLocation bomb= new ResourceLocation("ac", "textures/items/bomb.png");
 
-
-    public AC_RenderBomb(Item par1, int par2)
+    public AC_RenderBomb(Item par1Item, int par2)
     {
-        this.field_94151_a = par1;
+        this.field_94151_a = par1Item;
         this.field_94150_f = par2;
     }
 
-    public AC_RenderBomb(Item par1)
+    public AC_RenderBomb(Item par1Item)
     {
-        this(par1, 0);
+        this(par1Item, 0);
     }
 
     /**
-* Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
-* handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
-* (Render<T extends Entity) and this method has signature public void doRender(T entity, double d, double d1,
-* double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
-*/
+     * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
+     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
+     * (Render<T extends Entity) and this method has signature public void doRender(T entity, double d, double d1,
+     * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
+     */
     public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9)
     {
         Icon icon = this.field_94151_a.getIconFromDamage(this.field_94150_f);
@@ -52,9 +50,10 @@ public class AC_RenderBomb extends Render
             GL11.glTranslatef((float)par2, (float)par4, (float)par6);
             GL11.glEnable(GL12.GL_RESCALE_NORMAL);
             GL11.glScalef(0.5F, 0.5F, 0.5F);
+            this.func_110777_b(par1Entity);
             Tessellator tessellator = Tessellator.instance;
 
-            if (icon == ItemPotion.func_94589_d("potion_splash"))
+            if (icon == ItemPotion.func_94589_d("bottle_splash"))
             {
                 int i = PotionHelper.func_77915_a(((EntityPotion)par1Entity).getPotionDamage(), false);
                 float f2 = (float)(i >> 16 & 255) / 255.0F;
@@ -62,7 +61,7 @@ public class AC_RenderBomb extends Render
                 float f4 = (float)(i & 255) / 255.0F;
                 GL11.glColor3f(f2, f3, f4);
                 GL11.glPushMatrix();
-                this.func_77026_a(tessellator, ItemPotion.func_94589_d("potion_contents"));
+                this.func_77026_a(tessellator, ItemPotion.func_94589_d("overlay"));
                 GL11.glPopMatrix();
                 GL11.glColor3f(1.0F, 1.0F, 1.0F);
             }
@@ -71,6 +70,11 @@ public class AC_RenderBomb extends Render
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
             GL11.glPopMatrix();
         }
+    }
+
+    protected ResourceLocation func_110775_a(Entity par1Entity)
+    {
+        return TextureMap.field_110576_c;
     }
 
     private void func_77026_a(Tessellator par1Tessellator, Icon par2Icon)
@@ -92,11 +96,4 @@ public class AC_RenderBomb extends Render
         par1Tessellator.addVertexWithUV((double)(0.0F - f5), (double)(f4 - f6), 0.0D, (double)f, (double)f2);
         par1Tessellator.draw();
     }
-
-	@Override
-	protected ResourceLocation func_110775_a(Entity entity)
-	{
-		
-		return bomb;
-	}
 }

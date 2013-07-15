@@ -11,6 +11,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import arcticraft.blocks.AC_Block;
 import arcticraft.entities.AC_EntityCaptain;
 import arcticraft.entities.AC_EntityPirate;
+import arcticraft.helpers.AC_WorldGenHelpers;
 
 public class AC_GenShip extends WorldGenerator
 {
@@ -2023,11 +2024,11 @@ public class AC_GenShip extends WorldGenerator
 		TileEntityChest chest4 = (TileEntityChest) world.getBlockTileEntity(x + 7, y + 11, z + 3);
 		TileEntityChest chest5 = (TileEntityChest) world.getBlockTileEntity(x + 7, y + 11, z + 3);
 
-/*
+
 		if(chest0 != null || chest1 != null || chest2 != null || chest3 != null || chest4 != null || chest5 != null)
 		{
 			AC_WorldGenHelpers.addRandomDungeonLoot(new TileEntityChest[] {chest0, chest1, chest2, chest3, chest4, chest5, }, "ship");
-		}*/
+		}
 
 		AC_EntityPirate pirate1 = new AC_EntityPirate(world);
 		pirate1.setPosition(x + 6, y + 1, z + 22);

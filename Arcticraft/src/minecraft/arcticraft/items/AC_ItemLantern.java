@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import arcticraft.main.AC_TickHandler;
+import arcticraft.helpers.AC_TickHandler;
 import arcticraft.main.MainRegistry;
 import arcticraft.tile_entities.AC_TileEntityLantern;
 

@@ -48,7 +48,6 @@ public class AC_Block
 		
 		/*Crop Blocks + Crop Items*/
 		public static Block floranPlant;
-		public static Item floranSeed;
 		public static Item floranBerry;
 		public static Block whiteberryBush;
 		public static Item whiteberry;
@@ -133,9 +132,10 @@ public class AC_Block
 		/*
 		 The crops berry has to be initialized before the crop to avoid NPE so thats why they're in the Blocks class. 
 		*/
-		floranBerry = new ItemFood(6500, 6, false).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("AC:floran_berry").func_111206_d("floran_berry");
+	
+		floranBerry = new ItemFood(6501, 6, false).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("AC:floran_berry").func_111206_d("ac:floran_berry");
 		floranPlant = new AC_BlockFloranCrop(1544, Material.plants, tilledFrostField.blockID, floranBerry.itemID).setUnlocalizedName("floranPlant").setStepSound(Block.soundGravelFootstep);
-		whiteberry = new AC_ItemWhiteberry(6501, 2, 0.6F, 1545, 1545).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("AC:Whiteberry");
+		whiteberry = new AC_ItemWhiteberry(6502, 2, 0.6F, 1545, 1545).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("AC:Whiteberry").func_111206_d("ac:whiteberry");
 		whiteberryBush = new AC_BlockWhiteberry(1545, Material.plants, tilledFrostField.blockID, whiteberry.itemID).setUnlocalizedName("whiteberry_bush").setStepSound(Block.soundGravelFootstep);
 		/*
 		 The crops berry has to be initialized before the crop to avoid NPE so thats why they're in the Blocks class. 
@@ -261,6 +261,7 @@ public class AC_Block
 		LanguageRegistry.addName(glacianBlock, "Glacian Block");
 		LanguageRegistry.addName(escariaBlock, "Escaria Block");
 		LanguageRegistry.addName(crystalGlass, "Crystal Glass");
+		LanguageRegistry.addName(floranPlant, "Floran Plant");
 	}
 	
 	public static void harvestLevels()

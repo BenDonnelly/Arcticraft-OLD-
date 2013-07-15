@@ -101,7 +101,7 @@ public class AC_EntityEgg
 		LanguageRegistry.instance().addStringLocalization("entity.Dragon.name", "Dragon");
 		registerEntityEgg(AC_EntityDragon.class, 0x99FFFF, 0xDEDEDE);
 		
-		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 342, MainRegistry.instance, 64, 10, true);
+		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 1, MainRegistry.instance, 64, 10, true);
 
 	
 	}

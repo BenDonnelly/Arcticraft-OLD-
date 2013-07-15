@@ -103,7 +103,7 @@ public class AC_EntityBoar extends EntityAnimal
 	 */
 	protected String getLivingSound()
 	{
-		return "arcticraft.boar_living";
+		return "ac:mobs.boar_living";
 	}
 
 	/**
@@ -111,7 +111,7 @@ public class AC_EntityBoar extends EntityAnimal
 	 */
 	protected String getHurtSound()
 	{
-		return "arcticraft.boar_hurt";
+		return "ac:mobs.boar_hurt";
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class AC_EntityBoar extends EntityAnimal
 	 */
 	protected String getDeathSound()
 	{
-		return "arcticraft.boar_death";
+		return "ac:mobs.boar_death";
 	}
 	/**
 	 * Plays step sound at given x, y, z for the entity

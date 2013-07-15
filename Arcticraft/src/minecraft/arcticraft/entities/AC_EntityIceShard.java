@@ -1,7 +1,7 @@
 package arcticraft.entities;
 
+import arcticraft.helpers.AC_DamageSource;
 import arcticraft.items.AC_Item;
-import arcticraft.main.AC_DamageSource;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;

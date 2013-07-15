@@ -14,8 +14,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.util.AxisAlignedBB;
 import arcticraft.entities.AC_EntityYeti;
+import arcticraft.helpers.AC_TickHandler;
 import arcticraft.items.AC_Item;
-import arcticraft.main.AC_TickHandler;
 
 public class AC_GuiEskimoTalk extends GuiScreen
 {

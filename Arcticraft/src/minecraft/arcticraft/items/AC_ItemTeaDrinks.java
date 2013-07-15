@@ -13,7 +13,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import arcticraft.main.AC_TickHandler;
+import arcticraft.helpers.AC_TickHandler;
 import arcticraft.main.MainRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

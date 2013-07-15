@@ -19,7 +19,7 @@ public class AC_BlockACWaterStill extends BlockStationary
 
 	  public Icon getIcon(int par1, int par2)
 	    {
-	        return par1 != 0 && par1 != 1 ? this.theIcon[1] : this.theIcon[0];
+	        return par1 != 0 && par1 != 1 ? AC_BlockACWaterFlowing.theIcon[1] : AC_BlockACWaterFlowing.theIcon[0];
 	    }
 
 }

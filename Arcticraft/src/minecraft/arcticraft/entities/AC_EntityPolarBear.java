@@ -71,7 +71,7 @@ public class AC_EntityPolarBear extends EntityMob
 
 	        if (this.randomSoundDelay > 0 && --this.randomSoundDelay == 0)
 	        {
-	            this.playSound("mob.zombiepig.zpigangry", this.getSoundVolume() * 2.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) * 1.8F);
+	            this.playSound("ac:mobs.bear_angry", this.getSoundVolume() * 2.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) * 1.8F);
 	        }
 
 	        super.onUpdate();
@@ -167,7 +167,7 @@ public class AC_EntityPolarBear extends EntityMob
 	 */
 	protected String getLivingSound()
 	{
-		return "arcticraft.bearIdle";
+		return "ac:mobs.bear_idle";
 	}
 
 	/**
@@ -175,7 +175,7 @@ public class AC_EntityPolarBear extends EntityMob
 	 */
 	protected String getHurtSound()
 	{
-		return "arcticraft.bearHurt";
+		return "ac:mobs.bear_hurt";
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class AC_EntityPolarBear extends EntityMob
 	 */
 	protected String getDeathSound()
 	{
-		return "arcticraft.bearDeath";
+		return "ac:mobs.bear_death";
 	}
 
 }

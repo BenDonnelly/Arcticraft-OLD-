@@ -57,7 +57,7 @@ public class AC_EntityPenguin extends EntityAnimal
 	 */
 	protected String getLivingSound()
 	{
-		return "arcticraft.penguinIdle";
+		return "ac:mobs.penguin_idle";
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class AC_EntityPenguin extends EntityAnimal
 	protected String getHurtSound()
 	{
 
-		return "arcticraft.penguinHurt";
+		return "ac:mobs.penguin_hurt";
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class AC_EntityPenguin extends EntityAnimal
 	 */
 	protected String getDeathSound()
 	{
-		return "arcticraft.penguinDeath";
+		return "ac:mobs.penguin_death";
 	}
 
 	/**
