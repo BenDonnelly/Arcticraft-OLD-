@@ -19,7 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.world.World;
-import arcticraft.main.MainRegistry;
+import arcticraft.items.AC_Item;
 
 public class AC_EntityBoar extends EntityAnimal
 {
@@ -30,7 +30,6 @@ public class AC_EntityBoar extends EntityAnimal
 	public AC_EntityBoar(World par1World)
 	{
 		super(par1World);
-		this.texture = "/mods/AC/textures/mobs/boar.png";
 		this.setSize(2.0F, 1.8F);
 		this.getNavigator().setAvoidsWater(true);
 		float f = 0.25F;
@@ -172,11 +171,11 @@ public class AC_EntityBoar extends EntityAnimal
 		{
 			if (this.isBurning())
 			{
-				this.dropItem(MainRegistry.boarMeat.itemID, 1);
+				this.dropItem(AC_Item.boarMeat.itemID, 1);
 			}
 			else
 			{
-				this.dropItem(MainRegistry.uncookedBoarMeat.itemID, 1);
+				this.dropItem(AC_Item.uncookedBoarMeat.itemID, 1);
 			}
 		}
 

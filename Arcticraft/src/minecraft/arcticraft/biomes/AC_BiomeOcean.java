@@ -1,7 +1,6 @@
 package arcticraft.biomes;
 
-import arcticraft.main.MainRegistry;
-import net.minecraft.block.Block;
+import arcticraft.blocks.AC_Block;
 
 public class AC_BiomeOcean extends AC_BiomeGenBaseArcticraft
 {
@@ -14,8 +13,8 @@ public class AC_BiomeOcean extends AC_BiomeGenBaseArcticraft
 		this.spawnableMonsterList.clear();
 		this.spawnableWaterCreatureList.clear();
 		this.spawnableCaveCreatureList.clear();
-		topBlock = (byte) MainRegistry.frostDirt.blockID;
-		fillerBlock = (byte) MainRegistry.frostDirt.blockID;
+		topBlock = (byte)  AC_Block.frostDirt.blockID;
+		fillerBlock = (byte)  AC_Block.frostDirt.blockID;
 		this.setMinMaxHeight(-1.0F, 0.4F);
 	}
 

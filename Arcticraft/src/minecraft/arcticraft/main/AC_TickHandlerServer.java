@@ -2,6 +2,8 @@ package arcticraft.main;
 
 import java.util.EnumSet;
 
+import arcticraft.dispenser.AC_DispenserBehaviours;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.common.ITickHandler;
@@ -25,7 +27,7 @@ public class AC_TickHandlerServer implements ITickHandler
 		{
 			killPlayer((EntityPlayer) tickData [0]);
 			freezingPotion((EntityPlayer) tickData [0]);
-			AC_DispenserBehaviours.func_96467_a();
+			AC_DispenserBehaviours.registerDispenserBehaviours();
 		}
 	}
 

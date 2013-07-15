@@ -1,6 +1,7 @@
 package arcticraft.entities;
 
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.MathHelper;
@@ -14,14 +15,14 @@ public class AC_EntityAIIceShard extends EntityAIBase
      * The entity (as a RangedAttackMob) the AI instance has been applied to.
      */
     private final IRangedAttackMob rangedAttackEntityHost;
-    private EntityLiving attackTarget;
+    private EntityLivingBase attackTarget;
 
     /**
      * A decrementing tick that spawns a ranged attack once this value reaches 0. It is then set back to the
      * maxRangedAttackTime.
      */
     private int rangedAttackTime;
-    private float entityMoveSpeed;
+    private double entityMoveSpeed;
     private int field_75318_f;
     private int field_96561_g;
 
@@ -32,17 +33,16 @@ public class AC_EntityAIIceShard extends EntityAIBase
     private float field_96562_i;
     private float field_82642_h;
 
-    public AC_EntityAIIceShard(IRangedAttackMob par1IRangedAttackMob, float par2, int par3, float par4)
+    public AC_EntityAIIceShard(IRangedAttackMob par1IRangedAttackMob, double par2, int par4, float par5)
     {
-        this(par1IRangedAttackMob, par2, par3, par3, par4);
+        this(par1IRangedAttackMob, par2, par4, par4, par5);
     }
 
-    public AC_EntityAIIceShard(IRangedAttackMob par1IRangedAttackMob, float par2, int par3, int par4, float par5)
+    public AC_EntityAIIceShard(IRangedAttackMob par1IRangedAttackMob, double par2, int par4, int par5, float par6)
     {
         this.rangedAttackTime = -1;
-        this.field_75318_f = 0;
 
-        if (!(par1IRangedAttackMob instanceof EntityLiving))
+        if (!(par1IRangedAttackMob instanceof EntityLivingBase))
         {
             throw new IllegalArgumentException("ArrowAttackGoal requires Mob implements RangedAttackMob");
         }
@@ -51,10 +51,10 @@ public class AC_EntityAIIceShard extends EntityAIBase
             this.rangedAttackEntityHost = par1IRangedAttackMob;
             this.entityHost = (EntityLiving)par1IRangedAttackMob;
             this.entityMoveSpeed = par2;
-            this.field_96561_g = par3;
-            this.maxRangedAttackTime = par4;
-            this.field_96562_i = par5;
-            this.field_82642_h = par5 * par5;
+            this.field_96561_g = par4;
+            this.maxRangedAttackTime = par5;
+            this.field_96562_i = par6;
+            this.field_82642_h = par6 * par6;
             this.setMutexBits(3);
         }
     }
@@ -64,15 +64,15 @@ public class AC_EntityAIIceShard extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        EntityLiving entityliving = this.entityHost.getAttackTarget();
+        EntityLivingBase entitylivingbase = this.entityHost.getAttackTarget();
 
-        if (entityliving == null)
+        if (entitylivingbase == null)
         {
             return false;
         }
         else
         {
-            this.attackTarget = entityliving;
+            this.attackTarget = entitylivingbase;
             return true;
         }
     }

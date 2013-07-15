@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_BossStatus;
 import arcticraft.entities.AC_EntityCaptain;
 import cpw.mods.fml.relauncher.Side;
@@ -12,6 +13,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class AC_RenderCaptain extends RenderBiped
 {
+	private static final ResourceLocation captain = new ResourceLocation("ac", "textures/mobs/captain.png");
 
     public AC_RenderCaptain()
     {
@@ -31,17 +33,7 @@ public class AC_RenderCaptain extends RenderBiped
     {
         int i = par1EntityFrostZombieBoss.func_82212_n();
 
-        /* Temp removed when hes hit with posion the scale messes up teh rendering and shit*/
-        
-       /* if (i > 0)
-        {
-            float f1 = 2.0F - ((float)i - par2) / 220.0F * 0.5F;
-            GL11.glScalef(f1, f1, f1);
-        }
-        else
-        {
-            GL11.glScalef(1.25F, 1.25F, 1.25F);
-        }*/
+  
     }
 
     protected int func_82417_a(AC_EntityCaptain par1EntityFrostZombieBoss, int par2, float par3)
@@ -91,4 +83,10 @@ public class AC_RenderCaptain extends RenderBiped
     {
         this.func_82418_a((AC_EntityCaptain)par1Entity, par2, par4, par6, par8, par9);
     }
+
+    @Override
+	protected ResourceLocation func_110775_a(Entity entity)
+	{
+		return captain;
+	}
 }

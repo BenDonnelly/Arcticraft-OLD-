@@ -4,10 +4,10 @@ import java.util.Random;
 
 import net.minecraft.world.biome.SpawnListEntry;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import arcticraft.blocks.AC_Block;
 import arcticraft.entities.AC_EntityBoar;
 import arcticraft.entities.AC_EntityFrostZombie;
 import arcticraft.entities.AC_EntityHusky;
-import arcticraft.main.MainRegistry;
 
 public class AC_BiomeFrostForest extends AC_BiomeGenBaseArcticraft
 {	
@@ -16,8 +16,8 @@ public class AC_BiomeFrostForest extends AC_BiomeGenBaseArcticraft
 	{
 		super(par1);		
 		this.theBiomeDecorator = new AC_BiomeDecoratorArcticraft(this);
-		topBlock = (byte)MainRegistry.frostGrass.blockID;
-		fillerBlock = (byte)MainRegistry.frostDirt.blockID;
+		topBlock = (byte)AC_Block.frostGrass.blockID;
+		fillerBlock = (byte)AC_Block.frostDirt.blockID;
 		this.theBiomeDecorator.treesPerChunk = 10;
 		this.spawnableCreatureList.add(new SpawnListEntry(AC_EntityHusky.class, 5,4, 4));
 		this.spawnableCreatureList.add(new SpawnListEntry(AC_EntityBoar.class, 5, 4, 4));

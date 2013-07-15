@@ -43,7 +43,7 @@ public class AC_ItemFruits extends ItemFood {
     
     private void attemptToTeleport(ItemStack itemStack, World world, EntityPlayer player)
     {
-    	if(itemStack.itemID == MainRegistry.MystFruit.itemID)
+    	if(itemStack.itemID == AC_Item.MystFruit.itemID)
 		{
 			if(player.dimension == 0)
 			{
@@ -53,7 +53,7 @@ public class AC_ItemFruits extends ItemFood {
 				
 			}
 		}
-		else if(itemStack.itemID == MainRegistry.GlacierFruit.itemID)
+		else if(itemStack.itemID == AC_Item.GlacierFruit.itemID)
 		{
 			int dimension = player.dimension == 0 ? MainRegistry.dimension : 0;
 			
@@ -65,11 +65,11 @@ public class AC_ItemFruits extends ItemFood {
     }
     
 	public boolean hasEffect(ItemStack par1ItemStack) {
-		if (par1ItemStack.itemID == MainRegistry.MystFruit.itemID) {
+		if (par1ItemStack.itemID == AC_Item.MystFruit.itemID) {
 			return true;
 		}
 
-		if (par1ItemStack.itemID == MainRegistry.GlacierFruit.itemID) {
+		if (par1ItemStack.itemID == AC_Item.GlacierFruit.itemID) {
 			return true;
 		}
 
@@ -80,11 +80,11 @@ public class AC_ItemFruits extends ItemFood {
 	 * Return an item rarity from EnumRarity
 	 */
 	public EnumRarity getRarity(ItemStack par1ItemStack) {
-		if (par1ItemStack.itemID == MainRegistry.MystFruit.itemID) {
+		if (par1ItemStack.itemID == AC_Item.MystFruit.itemID) {
 			return EnumRarity.epic;
 		}
 
-		if (par1ItemStack.itemID == MainRegistry.GlacierFruit.itemID) {
+		if (par1ItemStack.itemID == AC_Item.GlacierFruit.itemID) {
 			return EnumRarity.epic;
 		}
 

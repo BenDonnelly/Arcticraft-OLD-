@@ -509,4 +509,10 @@ public class AC_TileEntityFrostChest extends TileEntity implements IInventory
 
         return this.field_94046_i;
     }
+
+	@Override
+	public boolean isItemValidForSlot(int i, ItemStack itemstack)
+	{
+		return true;
+	}
 }

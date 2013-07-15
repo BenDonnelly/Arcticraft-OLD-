@@ -1,7 +1,9 @@
 package arcticraft.blocks; 
 
+import arcticraft.main.MainRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -33,4 +35,12 @@ public class AC_BlockCrystalGlass extends Block
 	{
 		return false;
 	}
+
+	public void registerIcons(IconRegister iconRegister)
+	{
+	
+	this.blockIcon = iconRegister.registerIcon("AC:crystal_glass");
+	
+	}
+
 }

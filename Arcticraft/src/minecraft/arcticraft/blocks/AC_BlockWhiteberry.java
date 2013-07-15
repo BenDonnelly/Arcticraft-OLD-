@@ -85,7 +85,7 @@ public class AC_BlockWhiteberry extends Block
 
 	protected boolean canThisPlantGrowOnThisBlockID(int par1)
 	{
-		return par1 == MainRegistry.tilledFrostField.blockID;
+		return par1 == AC_Block.tilledFrostField.blockID;
 	}
 
 	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
@@ -97,7 +97,7 @@ public class AC_BlockWhiteberry extends Block
 	/**
 	 * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
 	 */
-	public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+	public Icon getIcon(int par1, int par2)
 	{
 		if (par2 == 0)
 		{
@@ -214,7 +214,7 @@ public class AC_BlockWhiteberry extends Block
 	 */
 	public int idPicked(World par1World, int par2, int par3, int par4)
 	{
-		return MainRegistry.whiteberry.itemID;
+		return AC_Block.whiteberry.itemID;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -228,7 +228,7 @@ public class AC_BlockWhiteberry extends Block
 
 		for (int i = 0; i < this.iconArray.length; ++i)
 		{
-			this.iconArray [i] = par1IconRegister.registerIcon("AC:berry_" + i);
+			this.iconArray [i] = par1IconRegister.registerIcon("ac:berry_" + i);
 		}
 	}
 

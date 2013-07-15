@@ -20,7 +20,7 @@ public class AC_ItemIceCream extends ItemFood
 {
 
 	private static final String [] iceCreamFlavours =
-		{"AC:Chocolate", "AC:Strawberry", "AC:Vanilla", "AC:Banana", "AC:Raspberry", "AC:Mint Choc Chip", "AC:Pistachio", "AC:Lemon Ice", "AC:Stracciatella", "AC:Bubblegum",};
+		{"ac:Chocolate", "ac:Strawberry", "ac:Vanilla", "ac:Banana", "ac:Raspberry", "ac:Mint Choc Chip", "ac:Pistachio", "ac:Lemon Ice", "ac:Stracciatella", "ac:Bubblegum",};
 	@SideOnly(Side.CLIENT)
 	private Icon [] field_94594_d;
 
@@ -36,7 +36,7 @@ public class AC_ItemIceCream extends ItemFood
 	 */
 	public Icon getIconFromDamage(int par1)
 	{
-		int j = MathHelper.clamp_int(par1, 0, 15);
+		int j = MathHelper.clamp_int(par1, 0, 10);
 		return this.field_94594_d [j];
 	}
 
@@ -264,7 +264,7 @@ public class AC_ItemIceCream extends ItemFood
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void updateIcons(IconRegister par1IconRegister)
+	public void registerIcons(IconRegister par1IconRegister)
 	{
 		this.field_94594_d = new Icon [iceCreamFlavours.length];
 

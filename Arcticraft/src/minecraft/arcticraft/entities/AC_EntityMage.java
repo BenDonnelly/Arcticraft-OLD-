@@ -11,6 +11,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import arcticraft.blocks.AC_Block;
+import arcticraft.items.AC_Item;
 import arcticraft.main.MainRegistry;
 
 public class AC_EntityMage extends EntityAnimal
@@ -24,7 +26,6 @@ public class AC_EntityMage extends EntityAnimal
 	public AC_EntityMage(World world)
 	{
 		super(world);
-		this.texture = "/mods/AC/textures/mobs/ice_mage.png";
 		setSize(1.5F, 1.9F);
 		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(5, new EntityAILookIdle(this));
@@ -62,11 +63,7 @@ public class AC_EntityMage extends EntityAnimal
 		return false;
 	}
 
-	@Override
-	public int getMaxHealth()
-	{
-		return 1000;
-	}
+
 
 	/**
 	 * Called when a player interacts with a mob. e.g. gets milk from a cow,
@@ -76,17 +73,17 @@ public class AC_EntityMage extends EntityAnimal
 	{
 		ItemStack var2 = par1EntityPlayer.inventory.getCurrentItem();
 
-		if (var2 != null && var2.itemID == MainRegistry.mysticalSnow.blockID)
+		if (var2 != null && var2.itemID == AC_Block.mysticalSnow.blockID)
 		{
 			this.randomChat("trade");
 
 			if (--var2.stackSize <= 0)
 			{
-				par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(MainRegistry.MystFruit));
+				par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(AC_Item.MystFruit));
 			}
-			else if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(MainRegistry.MystFruit))) // fruit
+			else if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(AC_Item.MystFruit))) // fruit
 			{
-				par1EntityPlayer.dropPlayerItem(new ItemStack(MainRegistry.MystFruit.itemID, 1, 0));
+				par1EntityPlayer.dropPlayerItem(new ItemStack(AC_Item.MystFruit.itemID, 1, 0));
 			}
 
 			return true;

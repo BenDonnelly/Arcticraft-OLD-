@@ -17,8 +17,6 @@ public class AC_EntityFrostGhost extends EntityFlying implements IMob
 	public AC_EntityFrostGhost(World par1World)
 	{
 		super(par1World);
-		this.texture = "/mods/AC/textures/mobs/arctic_ghost.png";
-		this.moveSpeed = 0.3F;
 		this.setSize(1.0F, 2.0F);
 	}
 

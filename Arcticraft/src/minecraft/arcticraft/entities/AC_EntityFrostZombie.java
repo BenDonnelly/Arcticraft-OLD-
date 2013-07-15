@@ -2,11 +2,13 @@
 package arcticraft.entities;
 
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTwardsRestriction;
+import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
@@ -23,30 +25,45 @@ public class AC_EntityFrostZombie extends EntityMob
 	{
 		super(par1World);
 
-		this.texture = "/mods/AC/textures/mobs/frozen_zombie.png";
-		this.moveSpeed = 0.5F;
-		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityPlayer.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIMoveTwardsRestriction(this, this.moveSpeed));
-		this.tasks.addTask(3, new EntityAIWander(this, this.moveSpeed));
-		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(5, new EntityAILookIdle(this));
-		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 16.0F, 0, true));
+	        this.tasks.addTask(0, new EntityAISwimming(this));
+	        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
+	        this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D));
+	        this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
+	        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+	        this.tasks.addTask(7, new EntityAILookIdle(this));
+	        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
+	        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 
 	}
 
-	@Override
-	public int getMaxHealth()
+	
+	public boolean isAIEnabled()
 	{
-		return 20;
+return true;
 	}
+	
+	 protected void func_110147_ax()
+	    {
+	        super.func_110147_ax();
+	        this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(40.0D);
+	        this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.23000000417232513D);
+	        this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(4.0D);
+	    }
+	
 
-	public int getAttackStrength()
-	{
-		return 4;
-	}
+	    public boolean attackEntityAsMob(Entity par1Entity)
+	    {
+	        boolean flag = super.attackEntityAsMob(par1Entity);
 
+	        if (flag && this.getHeldItem() == null && this.isBurning() && this.rand.nextFloat() < (float)this.worldObj.difficultySetting * 0.3F)
+	        {
+	            par1Entity.setFire(2 * this.worldObj.difficultySetting);
+	        }
+
+	        return flag;
+	    }
+
+	 
 	public int getTotalArmorValue()
 	{
 		return 4;

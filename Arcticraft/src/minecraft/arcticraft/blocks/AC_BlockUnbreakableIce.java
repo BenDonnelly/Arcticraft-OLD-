@@ -14,7 +14,6 @@ public class AC_BlockUnbreakableIce extends BlockBreakable
 		super(par1, "ice", Material.ice, false);
 		this.slipperiness = 0.98F;
 		this.setTickRandomly(true);
-		this.setCreativeTab(CreativeTabs.tabBlock);
 		this.disableStats();
 	}
 

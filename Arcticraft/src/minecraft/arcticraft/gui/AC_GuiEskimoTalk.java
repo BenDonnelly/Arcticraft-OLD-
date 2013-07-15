@@ -14,8 +14,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.util.AxisAlignedBB;
 import arcticraft.entities.AC_EntityYeti;
+import arcticraft.items.AC_Item;
 import arcticraft.main.AC_TickHandler;
-import arcticraft.main.MainRegistry;
 
 public class AC_GuiEskimoTalk extends GuiScreen
 {
@@ -70,42 +70,42 @@ public class AC_GuiEskimoTalk extends GuiScreen
 		switch (button.id)
 		{
 		case 0:
-			mc.thePlayer.sendChatToPlayer("I am the chief of this great Eskimo village!");
+			mc.thePlayer.addChatMessage("I am the chief of this great Eskimo village!");
 			button.enabled = false;
 			break;
 		case 1:
-			mc.thePlayer.sendChatToPlayer("We're not. He invaded our temple and my men are too afraid to attack him - so captivity of him is our only option.");
+			mc.thePlayer.addChatMessage("We're not. He invaded our temple and my men are too afraid to attack him - so captivity of him is our only option.");
 			chatProgress = 1;
 			initGui();
 			break;
 		case 2:
-			mc.thePlayer.sendChatToPlayer("That is our place of worship, well it used to be. Since the Yeti attack we haven't been able to use it");
+			mc.thePlayer.addChatMessage("That is our place of worship, well it used to be. Since the Yeti attack we haven't been able to use it");
 			chatProgress = 1;
 			initGui();
 			break;
 		case 3:
-			mc.thePlayer.sendChatToPlayer("Speak to our men around the village. They'll trade with you - at a price, of course.");
+			mc.thePlayer.addChatMessage("Speak to our men around the village. They'll trade with you - at a price, of course.");
 			button.enabled = false;
 			break;
 		case 4:
-			mc.thePlayer.sendChatToPlayer("The whole village will be very grateful and we shall be for ever in your debt.");
+			mc.thePlayer.addChatMessage("The whole village will be very grateful and we shall be for ever in your debt.");
 			chatProgress = 3;
 			reward = 2;
 			initGui();
 			break;
 		case 5:
-			mc.thePlayer.sendChatToPlayer("What could you possibly want from us?");
+			mc.thePlayer.addChatMessage("What could you possibly want from us?");
 			chatProgress = 2;
 			initGui();
 			break;
 		case 6:
-			mc.thePlayer.sendChatToPlayer("Then it's a deal. You kill the Yeti and you shall recieve 128 of the finest Erium");
+			mc.thePlayer.addChatMessage("Then it's a deal. You kill the Yeti and you shall recieve 128 of the finest Erium");
 			chatProgress = 3;
 			reward = 0;
 			initGui();
 			break;
 		case 7:
-			mc.thePlayer.sendChatToPlayer("Hm, we'll see about that. Slay the beast and I'll see what I can do");
+			mc.thePlayer.addChatMessage("Hm, we'll see about that. Slay the beast and I'll see what I can do");
 			reward = 1;
 			chatProgress = 3;
 			initGui();
@@ -142,7 +142,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 
 			if (yetiInstance != null)
 			{
-				mc.thePlayer.sendChatToPlayer("The beast has not been slaid yet, kill it if you want your reward");
+				mc.thePlayer.addChatMessage("The beast has not been slaid yet, kill it if you want your reward");
 				out("The Yeti is not dead...");
 				break;
 			}
@@ -153,8 +153,8 @@ public class AC_GuiEskimoTalk extends GuiScreen
 
 					if (reward == 2)
 					{
-						mc.thePlayer.sendChatToPlayer("Thank you for the killing the Yeti. It has brought peace to my people. Heres is a reward for your efforts.");
-						sendRewardToPlayer(this.mc.thePlayer, new ItemStack(MainRegistry.eriumGem, 128));
+						mc.thePlayer.addChatMessage("Thank you for the killing the Yeti. It has brought peace to my people. Heres is a reward for your efforts.");
+						sendRewardToPlayer(this.mc.thePlayer, new ItemStack(AC_Item.eriumGem, 128));
 						//TODO sacred item
 						hasCollectedReward = true;
 						mc.thePlayer.closeScreen();
@@ -162,8 +162,8 @@ public class AC_GuiEskimoTalk extends GuiScreen
 					}
 					else if (reward == 0)
 					{
-						mc.thePlayer.sendChatToPlayer("The village is very grateful, here is your Erium");
-						sendRewardToPlayer(this.mc.thePlayer, new ItemStack(MainRegistry.eriumGem, 128));
+						mc.thePlayer.addChatMessage("The village is very grateful, here is your Erium");
+						sendRewardToPlayer(this.mc.thePlayer, new ItemStack(AC_Item.eriumGem, 128));
 						//TODO sacred item
 						hasCollectedReward = true;
 						mc.thePlayer.closeScreen();
@@ -171,7 +171,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 					}
 					else if (reward == 1)
 					{
-						mc.thePlayer.sendChatToPlayer("It took me a while to convince my people, but I manage to get it. Here it is X - the most sacred item we have to offer ");
+						mc.thePlayer.addChatMessage("It took me a while to convince my people, but I manage to get it. Here it is X - the most sacred item we have to offer ");
 						//TODO sacred item
 						hasCollectedReward = true;
 						mc.thePlayer.closeScreen();
@@ -184,7 +184,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 					}
 				}
 				else {
-					this.mc.thePlayer.sendChatToPlayer("Something went wrong, is your inventory full?");
+					this.mc.thePlayer.addChatMessage("Something went wrong, is your inventory full?");
 				}
 			}
 		}

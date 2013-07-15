@@ -4,9 +4,9 @@ import java.util.Random;
 
 import net.minecraft.world.biome.SpawnListEntry;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import arcticraft.blocks.AC_Block;
 import arcticraft.entities.AC_EntityDragon;
 import arcticraft.entities.AC_EntityPolarBear;
-import arcticraft.main.MainRegistry;
 
 public class AC_BiomeFrostMountains extends AC_BiomeGenBaseArcticraft
 {
@@ -15,8 +15,8 @@ public class AC_BiomeFrostMountains extends AC_BiomeGenBaseArcticraft
 	{
 		super(par1);
 		this.theBiomeDecorator = new AC_BiomeDecoratorArcticraft(this);
-		topBlock = (byte) MainRegistry.frostGrass.blockID;
-		fillerBlock = (byte) MainRegistry.frostDirt.blockID;
+		topBlock = (byte)  AC_Block.frostGrass.blockID;
+		fillerBlock = (byte)  AC_Block.frostDirt.blockID;
 		this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityPolarBear.class, 5, 4, 4));
 		this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityDragon.class, 1, 1, 1));
 		setMinMaxHeight(0.2F, 2.3F);

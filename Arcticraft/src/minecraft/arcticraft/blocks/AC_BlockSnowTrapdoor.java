@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockHalfSlab;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
@@ -328,4 +329,11 @@ public class AC_BlockSnowTrapdoor extends Block
             return block != null && block.blockMaterial.isOpaque() && block.renderAsNormalBlock() || block == Block.glowStone || block instanceof BlockHalfSlab || block instanceof BlockStairs;
         }
     }
+
+    public void registerIcons(IconRegister iconRegister)
+   	{
+   	
+   	this.blockIcon = iconRegister.registerIcon("AC:thick_snow");
+   	
+   	}
 }

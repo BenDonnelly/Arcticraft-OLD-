@@ -94,12 +94,12 @@ public class AC_ItemBucket extends ItemBucket{
 
 	                        if (--par1ItemStack.stackSize <= 0)
 	                        {
-	                            return new ItemStack(MainRegistry.bucketIcyWater);
+	                            return new ItemStack(AC_Item.bucketIcyWater);
 	                        }
 
-	                        if (!par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(MainRegistry.bucketIcyWater)))
+	                        if (!par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(AC_Item.bucketIcyWater)))
 	                        {
-	                            par3EntityPlayer.dropPlayerItem(new ItemStack(MainRegistry.bucketIcyWater.itemID, 1, 0));
+	                            par3EntityPlayer.dropPlayerItem(new ItemStack(AC_Item.bucketIcyWater.itemID, 1, 0));
 	                        }
 
 	                        return par1ItemStack;
@@ -109,7 +109,7 @@ public class AC_ItemBucket extends ItemBucket{
 	                {
 	                    if (this.isFull < 0)
 	                    {
-	                        return new ItemStack(MainRegistry.bucketEmpty);
+	                        return new ItemStack(AC_Item.bucketEmpty);
 	                    }
 
 	                    if (movingobjectposition.sideHit == 0)
@@ -147,9 +147,9 @@ public class AC_ItemBucket extends ItemBucket{
 	                        return par1ItemStack;
 	                    }
 
-	                    if (this.tryPlaceContainedLiquid(par2World, d0, d1, d2, i, j, k) && !par3EntityPlayer.capabilities.isCreativeMode)
+	                    if (this.tryPlaceContainedLiquid(par2World, i, j, k) && !par3EntityPlayer.capabilities.isCreativeMode)
 	                    {
-	                        return new ItemStack(MainRegistry.bucketEmpty);
+	                        return new ItemStack(AC_Item.bucketEmpty);
 	                    }
 	                }
 	            }

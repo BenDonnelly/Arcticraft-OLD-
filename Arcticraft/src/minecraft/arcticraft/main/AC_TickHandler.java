@@ -13,6 +13,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
@@ -20,7 +21,9 @@ import arcticraft.blocks.AC_BlockFrostLeaves;
 import arcticraft.blocks.AC_BlockGlacierLeaves;
 import arcticraft.blocks.AC_BlockThickSnow;
 import arcticraft.entities.AC_BossStatus;
+import arcticraft.items.AC_Item;
 import arcticraft.items.AC_ItemLantern;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
@@ -99,7 +102,6 @@ public class AC_TickHandler implements ITickHandler
 		{
 			renderFreezeEffect(scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight());
 			onRenderTick();
-			renderBossBars();
 		}
 	}
 
@@ -129,46 +131,13 @@ public class AC_TickHandler implements ITickHandler
 		if (mc.currentScreen == null && mc.thePlayer.dimension != -1 && mc.thePlayer.dimension != 0 || mc.currentScreen instanceof GuiIngameMenu)
 		{
 
-			GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/mods/AC/textures/gui/tempbar.png"));
+			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/gui/temperature_bar.png"));
 			gui.drawTexturedModalRect(x, y, 0, 6, 80, 6);
 			gui.drawTexturedModalRect(x, y, 0, 0, value * 80 / maxValue, 6);
 		}
 	}
 
-	public void renderBossBars()
-	{
-		GuiIngame gui = this.mc.ingameGUI;
-
-		if (AC_BossStatus.bossName != null && AC_BossStatus.statusBarLength > 0)
-		{
-			--AC_BossStatus.statusBarLength;
-			FontRenderer fontrenderer = this.mc.fontRenderer;
-			ScaledResolution scaledresolution = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
-			int i = scaledresolution.getScaledWidth();
-			short short1 = 182;
-			int j = i / 2 - short1 / 2;
-			int k = (int) (AC_BossStatus.healthScale * (float) (short1 + 1));
-			byte b0 = 12;
-			GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/mods/AC/textures/gui/boss_bars.png"));
-			gui.drawTexturedModalRect(j, b0, 0, 0, short1, 14);
-			if (k > 0)
-			{
-				gui.drawTexturedModalRect(j, b0, 0, 14, k, 14);
-			}
-
-			String s = AC_BossStatus.bossName;
-			fontrenderer.drawStringWithShadow(s, i / 2 - fontrenderer.getStringWidth(s) / 2, b0 - 10, 16777215);
-		
-			if(AC_BossStatus.isMiniBoss == true)
-			{
-				fontrenderer.drawStringWithShadow(EnumChatFormatting.ITALIC + "Mini Boss" , i / 2 - fontrenderer.getStringWidth(s) / 2, b0 + 15 , 0xffffffff);
-			}
-			else
-			{
-				fontrenderer.drawStringWithShadow(EnumChatFormatting.ITALIC + "Final Boss" , i / 2 - fontrenderer.getStringWidth(s) / 2, b0 + 15 , 0xffffffff);
-			}
-		}
-	}
+	
 
 	public void tickCounter()
 	{
@@ -266,7 +235,7 @@ public class AC_TickHandler implements ITickHandler
 
 		ItemStack boots = mc.thePlayer.getCurrentItemOrArmor(1);
 
-		if (mc.thePlayer.getCurrentItemOrArmor(1) != null && boots.getItem() == MainRegistry.hikingBoots)
+		if (mc.thePlayer.getCurrentItemOrArmor(1) != null && boots.getItem() == AC_Item.hikingBoots)
 		{
 			AC_BlockThickSnow.shouldSlowPlayer = false;
 		}
@@ -287,7 +256,7 @@ public class AC_TickHandler implements ITickHandler
 			GL11.glBlendFunc(770, 771);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			GL11.glDisable(3008);
-			GL11.glBindTexture(3553, mc.renderEngine.getTexture("/mods/AC/textures/misc/freezing.png"));
+			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/misc/freezing.png"));
 			Tessellator tessellator = Tessellator.instance;
 			tessellator.startDrawingQuads();
 			tessellator.addVertexWithUV(0.0D, par2, -90.0D, 0.0D, 1.0D);

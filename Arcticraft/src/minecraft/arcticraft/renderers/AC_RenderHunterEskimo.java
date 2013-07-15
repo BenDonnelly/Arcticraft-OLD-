@@ -3,12 +3,16 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_EntityHunterEskimo;
 
 
 public class AC_RenderHunterEskimo extends RenderLiving
 {
 
+	private static final ResourceLocation hunter = new ResourceLocation("ac", "textures/mobs/eskimo_hunter.png");
+
+	
     public AC_RenderHunterEskimo(ModelBase modelbase, float f)
     {
         super(modelbase, f); 
@@ -31,4 +35,10 @@ public class AC_RenderHunterEskimo extends RenderLiving
     {
     	func_177_a((AC_EntityHunterEskimo)entity, d, d1, d2, f, f1);
     }
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity)
+	{
+		return hunter;
+	}
 }

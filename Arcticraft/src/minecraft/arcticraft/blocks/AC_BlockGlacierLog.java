@@ -10,7 +10,8 @@ import net.minecraft.world.World;
 
 public class AC_BlockGlacierLog extends Block
 {
-	public Icon[] textures = new Icon[3];
+	public Icon glacierLogTopBottom;
+	public Icon glacierLogSide;
 	
     public AC_BlockGlacierLog(int par1)
     {
@@ -71,16 +72,18 @@ public class AC_BlockGlacierLog extends Block
     }
 
   
-    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+    public Icon getIcon(int par1, int par2)
     {
-    	 return par1 == 1 ? textures[1] : (par1 == 0 ? textures[2] : textures[0]);
+    	  return par1 == 1 ? glacierLogTopBottom : (par1 == 0 ? glacierLogTopBottom : glacierLogSide);
     }
+  
+ 
 
     public void registerIcons(IconRegister par1IconRegister)
     {
-        textures[0] = par1IconRegister.registerIcon("AC:glacier_log_side");
-        textures[1] = par1IconRegister.registerIcon("AC:glacier_log_top_bottom");
-        textures[2] = par1IconRegister.registerIcon("AC:glacier_log_top_bottom");
+    	glacierLogSide = par1IconRegister.registerIcon("ac:glacier_log_side");
+    	glacierLogTopBottom = par1IconRegister.registerIcon("ac:glacier_log_top_bottom");
+    	glacierLogTopBottom = par1IconRegister.registerIcon("ac:glacier_log_top_bottom");
    
     }
    

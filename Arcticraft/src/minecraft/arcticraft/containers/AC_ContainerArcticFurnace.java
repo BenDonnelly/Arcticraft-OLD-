@@ -7,7 +7,7 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import arcticraft.gui.AC_SlotArcticFurnace;
-import arcticraft.main.AC_FurnaceRecipes;
+import arcticraft.recipes.AC_FurnaceRecipes;
 import arcticraft.tile_entities.AC_TileEntityArcticFurnace;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.block.BlockBasePressurePlate;
 import net.minecraft.block.EnumMobType;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.IBlockAccess;
@@ -44,24 +45,26 @@ public class AC_BlockSnowPressurePlate extends BlockBasePressurePlate
     }
 
     
-    protected int func_94355_d(int par1)
+    protected int getMetaFromWeight(int par1)
     {
         return par1 > 0 ? 1 : 0;
     }
 
-    protected int func_94350_c(int par1)
+    protected int getPowerSupply(int par1)
     {
         return par1 == 1 ? 15 : 0;
     }
 
-    protected int func_94351_d(World par1World, int par2, int par3, int par4)
+    protected int getPlateState(World par1World, int par2, int par3, int par4)
     {
         List list = null;
 
+
         if (this.triggerMobType == EnumMobType.players)
         {
-            list = par1World.getEntitiesWithinAABB(EntityPlayer.class, this.func_94352_a(par2, par3, par4));
+            list = par1World.getEntitiesWithinAABB(EntityPlayer.class, this.getSensitiveAABB(par2, par3, par4));
         }
+
 
         if (!list.isEmpty())
         {
@@ -80,4 +83,11 @@ public class AC_BlockSnowPressurePlate extends BlockBasePressurePlate
 
         return 0;
     }
+
+    public void registerIcons(IconRegister iconRegister)
+	{
+	
+	this.blockIcon = iconRegister.registerIcon("AC:thick_snow");
+	
+	}
 }

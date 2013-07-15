@@ -19,6 +19,8 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import arcticraft.blocks.AC_Block;
+import arcticraft.items.AC_Item;
 import arcticraft.main.MainRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -30,8 +32,8 @@ public class AC_Teleporter
 					 TENT_ID = Block.cloth.blockID, 
 					 FENCE_ID = Block.fence.blockID, 
 					 CHEST_ID = Block.chest.blockID, 
-					 GROUND_ID = MainRegistry.frostGrass.blockID, 
-					 DIRT_ID = MainRegistry.frostDirt.blockID;
+					 GROUND_ID = AC_Block.frostGrass.blockID, 
+					 DIRT_ID = AC_Block.frostDirt.blockID;
 
 	public static void teleportEntity(Entity entity, int dimensionId)
 	{
@@ -194,7 +196,7 @@ public class AC_Teleporter
 			}
 
 			world.loadedEntityList.remove(entity);
-			world.releaseEntitySkin(entity);
+//			world.releaseEntitySkin(entity);
 		}
 
 		entity.isDead = false;
@@ -287,7 +289,7 @@ public class AC_Teleporter
 						{
 							TileEntityChest chest = (TileEntityChest) world.getBlockTileEntity(x, y, z);
 
-							chest.setInventorySlotContents(0, new ItemStack(MainRegistry.GlacierFruit, 1));
+							chest.setInventorySlotContents(0, new ItemStack(AC_Item.GlacierFruit, 1));
 						}
 					}
 

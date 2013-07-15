@@ -2,12 +2,12 @@ package arcticraft.biomes;
 
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
+import arcticraft.blocks.AC_Block;
 import arcticraft.entities.AC_EntityFrostGhost;
 import arcticraft.entities.AC_EntityIceCreeper;
 import arcticraft.entities.AC_EntityPenguin;
 import arcticraft.gen.AC_GenFrostTrees;
 import arcticraft.gen.AC_GenGlacierTrees;
-import arcticraft.main.MainRegistry;
 
 public class AC_BiomeGenBaseArcticraft extends BiomeGenBase
 {  
@@ -23,8 +23,8 @@ public class AC_BiomeGenBaseArcticraft extends BiomeGenBase
     public AC_BiomeGenBaseArcticraft(int i)
     {
         super(i);
-        this.topBlock = (byte)MainRegistry.frostGrass.blockID;
-        this.topBlock = (byte)MainRegistry.frostDirt.blockID;
+        this.topBlock = (byte) AC_Block.frostGrass.blockID;
+        this.topBlock = (byte) AC_Block.frostDirt.blockID;
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();

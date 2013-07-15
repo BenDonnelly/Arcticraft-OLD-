@@ -3,15 +3,16 @@ package arcticraft.tile_entities;
 import java.util.Calendar;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockChest;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.model.ModelLargeChest;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import arcticraft.blocks.AC_FrostChest;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -27,6 +28,13 @@ public class TileEntityFrostChestRender extends TileEntitySpecialRenderer
 
     /** If true, chests will be rendered with the Christmas present textures. */
     private boolean isChristmas;
+    
+    private static final ResourceLocation field_110635_a = new ResourceLocation("textures/entity/chest/trapped_double.png");
+    private static final ResourceLocation field_110634_c = new ResourceLocation("textures/entity/chest/christmas_double.png");
+    private static final ResourceLocation frostChestDouble = new ResourceLocation("ac", "textures/blocks/frost_chest_double.png");
+    private static final ResourceLocation field_110633_e = new ResourceLocation("textures/entity/chest/trapped.png");
+    private static final ResourceLocation field_110630_f = new ResourceLocation("textures/entity/chest/christmas.png");
+    private static final ResourceLocation frostChest = new ResourceLocation("ac", "textures/blocks/frost_chest.png");
 
     public TileEntityFrostChestRender()
     {
@@ -45,7 +53,7 @@ public class TileEntityFrostChestRender extends TileEntitySpecialRenderer
     {
         int i;
 
-        if (!par1TileEntityChest.func_70309_m())
+        if (!par1TileEntityChest.hasWorldObj())
         {
             i = 0;
         }
@@ -54,11 +62,11 @@ public class TileEntityFrostChestRender extends TileEntitySpecialRenderer
             Block block = par1TileEntityChest.getBlockType();
             i = par1TileEntityChest.getBlockMetadata();
 
-            if (block instanceof AC_FrostChest && i == 0)
+            if (block instanceof BlockChest && i == 0)
             {
                 try
                 {
-                    ((AC_FrostChest)block).unifyAdjacentChests(par1TileEntityChest.getWorldObj(), par1TileEntityChest.xCoord, par1TileEntityChest.yCoord, par1TileEntityChest.zCoord);
+                    ((BlockChest)block).unifyAdjacentChests(par1TileEntityChest.getWorldObj(), par1TileEntityChest.xCoord, par1TileEntityChest.yCoord, par1TileEntityChest.zCoord);
                 }
                 catch (ClassCastException e)
                 {
@@ -81,15 +89,15 @@ public class TileEntityFrostChestRender extends TileEntitySpecialRenderer
 
                 if (par1TileEntityChest.func_98041_l() == 1)
                 {
-                    this.bindTextureByName("/mods/AC/textures/blocks/frost_chest.png");
+                    this.func_110628_a(field_110633_e);
                 }
                 else if (this.isChristmas)
                 {
-                    this.bindTextureByName("/mods/AC/textures/blocks/frost_chest.png");
+                    this.func_110628_a(field_110630_f);
                 }
                 else
                 {
-                    this.bindTextureByName("/mods/AC/textures/blocks/frost_chest.png");
+                    this.func_110628_a(frostChest);
                 }
             }
             else
@@ -98,15 +106,15 @@ public class TileEntityFrostChestRender extends TileEntitySpecialRenderer
 
                 if (par1TileEntityChest.func_98041_l() == 1)
                 {
-                    this.bindTextureByName("/mods/AC/textures/blocks/largefrostchest.png");
+                    this.func_110628_a(field_110635_a);
                 }
                 else if (this.isChristmas)
                 {
-                    this.bindTextureByName("/mods/AC/textures/blocks/largefrostchest.png");
+                    this.func_110628_a(field_110634_c);
                 }
                 else
                 {
-                    this.bindTextureByName("/mods/AC/textures/blocks/largefrostchest.png");
+                    this.func_110628_a(frostChestDouble);
                 }
             }
 

@@ -24,6 +24,7 @@ import net.minecraft.util.Tuple;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
+import arcticraft.items.AC_Item;
 import arcticraft.main.MainRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -45,12 +46,11 @@ public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerch
 	
 	public AC_EntityDefaultEskimo(World par1World) {
 		super(par1World);
-		this.moveSpeed = 0.3F;
 		this.setSize(1.5F, 1.4F);
 		this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(2, new EntityAILookIdle(this));
 		this.tasks.addTask(11, new EntityAISwimming(this));
-		this.tasks.addTask(6, new EntityAIWander(this, this.moveSpeed));
+		this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
 	}
 	
 	@Override
@@ -63,10 +63,6 @@ public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerch
 		return false;
 	}
 	
-	@Override
-	public int getMaxHealth() {
-		return 40;
-	}
 	
 	@Override
 	protected void updateAITick() {
@@ -224,7 +220,7 @@ public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerch
 	
 	private static void addBuyingItem(MerchantRecipeList par0MerchantRecipeList, int ID, Random par2Random, float prob) {
         if (par2Random.nextFloat() < prob) {
-            par0MerchantRecipeList.add(new MerchantRecipe(getRandomSizedStack(ID, par2Random), MainRegistry.eriumGem));
+            par0MerchantRecipeList.add(new MerchantRecipe(getRandomSizedStack(ID, par2Random), AC_Item.eriumGem));
         }
     }
 	
@@ -238,12 +234,12 @@ public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerch
 
             if (j < 0)
             {
-                itemstack = new ItemStack(MainRegistry.eriumGem, 1, 0);
+                itemstack = new ItemStack(AC_Item.eriumGem, 1, 0);
                 itemstack1 = new ItemStack(par1, -j, 0);
             }
             else
             {
-                itemstack = new ItemStack(MainRegistry.eriumGem, j, 0);
+                itemstack = new ItemStack(AC_Item.eriumGem, j, 0);
                 itemstack1 = new ItemStack(par1, 1, 0);
             }
 

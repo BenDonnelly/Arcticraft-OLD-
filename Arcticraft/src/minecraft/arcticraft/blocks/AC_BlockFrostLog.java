@@ -10,7 +10,10 @@ import net.minecraft.world.World;
 
 public class AC_BlockFrostLog extends Block
 {
-	public Icon[] textures = new Icon[3];
+
+	
+	public Icon frostLogTopBottom;
+	public Icon frostLogSide;
 	
     public AC_BlockFrostLog(int par1)
     {
@@ -70,17 +73,19 @@ public class AC_BlockFrostLog extends Block
         }
     }
 
-  
-    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+    
+    public Icon getIcon(int par1, int par2)
     {
-        return par1 == 1 ? textures[1] : (par1 == 0 ? textures[2] : textures[0]);
+    	  return par1 == 1 ? frostLogTopBottom : (par1 == 0 ? frostLogTopBottom : frostLogSide);
     }
+  
+ 
 
     public void registerIcons(IconRegister par1IconRegister)
     {
-        textures[0] = par1IconRegister.registerIcon("AC:frost_log_side");
-        textures[1] = par1IconRegister.registerIcon("AC:frost_log_top_bottom");
-        textures[2] = par1IconRegister.registerIcon("AC:frost_log_top_bottom");
+        frostLogSide = par1IconRegister.registerIcon("ac:frost_log_side");
+        frostLogTopBottom = par1IconRegister.registerIcon("ac:frost_log_top_bottom");
+        frostLogTopBottom = par1IconRegister.registerIcon("ac:frost_log_top_bottom");
    
     }
    

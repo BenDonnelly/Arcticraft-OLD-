@@ -33,6 +33,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
+import arcticraft.blocks.AC_Block;
 import arcticraft.gen.AC_GenArcaneStone1;
 import arcticraft.gen.AC_GenArcaneStone2;
 import arcticraft.gen.AC_GenIceberg;
@@ -199,11 +200,11 @@ public class AC_ChunkProvider implements IChunkProvider
 							{
 								if ((var47 += var49) > 0.0D)
 								{
-									par3ArrayOfByte [var43 += var44] = (byte) MainRegistry.frostStone.blockID;
+									par3ArrayOfByte [var43 += var44] = (byte) AC_Block.frostStone.blockID;
 								}
 								else if (var12 * 8 + var31 < var6)
 								{
-									par3ArrayOfByte [var43 += var44] = (byte) MainRegistry.acWaterStill.blockID;
+									par3ArrayOfByte [var43 += var44] = (byte) AC_Block.acWaterStill.blockID;
 								}
 								else
 								{
@@ -263,7 +264,7 @@ public class AC_ChunkProvider implements IChunkProvider
 						continue;
 					}
 
-					if (byte3 != (byte) MainRegistry.frostStone.blockID)
+					if (byte3 != (byte) AC_Block.frostStone.blockID)
 					{
 						continue;
 					}
@@ -273,7 +274,7 @@ public class AC_ChunkProvider implements IChunkProvider
 						if (k <= 0)
 						{
 							byte1 = 0;
-							byte2 = (byte) MainRegistry.frostStone.blockID;
+							byte2 = (byte) AC_Block.frostStone.blockID;
 						}
 						else if (i1 >= byte0 - 4 && i1 <= byte0 + 1)
 						{
@@ -289,7 +290,7 @@ public class AC_ChunkProvider implements IChunkProvider
 							}
 							else
 							{
-								byte1 = (byte) MainRegistry.acWaterStill.blockID;
+								byte1 = (byte) AC_Block.acWaterStill.blockID;
 							}
 						}
 
@@ -578,7 +579,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				var9 = this.rand.nextInt(128);
 				var10 = j + this.rand.nextInt(16) + 8;
 
-				(new AC_GenArcaneStone1(MainRegistry.arcaneStone.blockID, 16)).generate(this.worldObj, this.rand, var8, var9, var10);
+				(new AC_GenArcaneStone1(AC_Block.arcaneStone.blockID, 16)).generate(this.worldObj, this.rand, var8, var9, var10);
 			}
 
 			for (var7 = 0; var7 < var6; var7++)
@@ -587,14 +588,14 @@ public class AC_ChunkProvider implements IChunkProvider
 				var9 = this.rand.nextInt(128);
 				var10 = j + this.rand.nextInt(16) + 8;
 
-				(new AC_GenArcaneStone2(MainRegistry.arcaneStone.blockID, 16)).generate(this.worldObj, this.rand, var8, var9, var10);
+				(new AC_GenArcaneStone2(AC_Block.arcaneStone.blockID, 16)).generate(this.worldObj, this.rand, var8, var9, var10);
 			}
 			for (int x = 0; x < 1; x++)
 			{
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
 				int b = j + rand.nextInt(16);
-				(new AC_WorldGenMineable(MainRegistry.tekkiteOre.blockID, 11, 0)).generate(worldObj, rand, e, r, b);
+				(new AC_WorldGenMineable(AC_Block.tekkiteOre.blockID, 11, 0)).generate(worldObj, rand, e, r, b);
 			}
 
 			for (int x = 0; x < 2; x++)
@@ -602,7 +603,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
 				int b = j + rand.nextInt(16);
-				(new AC_WorldGenMineable(MainRegistry.escariaOre.blockID, 11, 0)).generate(worldObj, rand, e, r, b);
+				(new AC_WorldGenMineable(AC_Block.escariaOre.blockID, 11, 0)).generate(worldObj, rand, e, r, b);
 			}
 
 			for (int x = 0; x < 5; x++)
@@ -610,7 +611,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
 				int b = j + rand.nextInt(16);
-				(new AC_WorldGenMineable(MainRegistry.glacianOre.blockID, 8, 0)).generate(worldObj, rand, e, r, b);
+				(new AC_WorldGenMineable(AC_Block.glacianOre.blockID, 8, 0)).generate(worldObj, rand, e, r, b);
 			}
 
 			for (int x = 0; x < 9; x++)
@@ -618,7 +619,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
 				int b = j + rand.nextInt(16);
-				(new AC_WorldGenMineable(MainRegistry.eriumOre.blockID, 13, 0)).generate(worldObj, rand, e, r, b);
+				(new AC_WorldGenMineable(AC_Block.eriumOre.blockID, 13, 0)).generate(worldObj, rand, e, r, b);
 			}
 
 			for (int x = 0; x < 40; x++)
@@ -626,7 +627,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
 				int b = j + rand.nextInt(16);
-				(new AC_WorldGenMineable(MainRegistry.frigusOre.blockID, 15, 0)).generate(worldObj, rand, e, r, b);
+				(new AC_WorldGenMineable(AC_Block.frigusOre.blockID, 15, 0)).generate(worldObj, rand, e, r, b);
 			}
 
 			for (int x = 0; x < 20; x++)
@@ -634,7 +635,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
 				int b = j + rand.nextInt(16);
-				(new AC_WorldGenMineable(MainRegistry.rigentemOre.blockID, 12, 0)).generate(worldObj, rand, e, r, b);
+				(new AC_WorldGenMineable(AC_Block.rigentemOre.blockID, 12, 0)).generate(worldObj, rand, e, r, b);
 			}
 		}
 
@@ -668,7 +669,7 @@ public class AC_ChunkProvider implements IChunkProvider
 	{
 
 		int var2 = par1Random.nextInt(4);
-		return var2 == 0 ? MainRegistry.thickSnow.blockID : Block.snow.blockID;
+		return var2 == 0 ? AC_Block.thickSnow.blockID : Block.snow.blockID;
 	}
 
 	/**
@@ -745,7 +746,9 @@ public class AC_ChunkProvider implements IChunkProvider
 	@Override
 	public boolean unloadQueuedChunks()
 	{
-		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public void func_104112_b(){}
 }

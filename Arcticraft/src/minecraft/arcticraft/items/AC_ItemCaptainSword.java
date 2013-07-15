@@ -30,9 +30,9 @@ public class AC_ItemCaptainSword extends ItemSword
 	@SideOnly(Side.CLIENT)
 	public void updateIcons(IconRegister par1IconRegister)
 	{
-		if (this == MainRegistry.pirateSword)
+		if (this ==  AC_Item.pirateSword)
 		{
-			this.iconIndex = par1IconRegister.registerIcon("AC:captainSword");
+			this.itemIcon = par1IconRegister.registerIcon("AC:captain_sword");
 		}
 	}
 }

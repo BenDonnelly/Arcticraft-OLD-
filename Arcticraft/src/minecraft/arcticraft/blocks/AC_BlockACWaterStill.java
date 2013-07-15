@@ -17,20 +17,9 @@ public class AC_BlockACWaterStill extends BlockStationary
 
 	}
 
-	@Override
-	public void registerIcons(IconRegister par1IconRegister)
-	{
-		this.blockIcon = par1IconRegister.registerIcon("AC:icyWater");
-	}
-	
-	 /**
-     * Called whenever an entity is walking on top of this block. Args: world, x, y, z, entity
-     */
-  
+	  public Icon getIcon(int par1, int par2)
+	    {
+	        return par1 != 0 && par1 != 1 ? this.theIcon[1] : this.theIcon[0];
+	    }
 
-	public Icon getBlockTextureFromSideAndMetadata(int side, int meta)
-	{
-		if (side > 1) return AC_BlockACWaterFlowing.waterFlowingTexture;
-		return blockIcon;
-	}
 }

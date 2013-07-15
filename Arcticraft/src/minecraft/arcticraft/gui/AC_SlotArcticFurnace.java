@@ -8,7 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.util.MathHelper;
-import arcticraft.main.AC_FurnaceRecipes;
+import arcticraft.recipes.AC_FurnaceRecipes;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class AC_SlotArcticFurnace extends Slot

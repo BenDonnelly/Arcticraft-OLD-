@@ -64,9 +64,10 @@ public class AC_BlockTilledFrostField extends Block
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
-    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+    
+    public Icon getIcon(int par1, int par2)
     {
-        return par1 == 1 ? (par2 > 0 ? this.field_94441_a : this.field_94440_b) : MainRegistry.frostDirt.getBlockTextureFromSide(par1);
+    	  return par1 == 1 ? (par2 > 0 ? this.field_94441_a : this.field_94440_b) : AC_Block.frostDirt.getBlockTextureFromSide(par1);
     }
 
     /**
@@ -84,7 +85,7 @@ public class AC_BlockTilledFrostField extends Block
             }
             else if (!this.isCropsNearby(par1World, par2, par3, par4))
             {
-                par1World.setBlock(par2, par3, par4, MainRegistry.frostDirt.blockID);
+                par1World.setBlock(par2, par3, par4, AC_Block.frostDirt.blockID);
             }
         }
         else
@@ -105,7 +106,7 @@ public class AC_BlockTilledFrostField extends Block
                 return;
             }
 
-            par1World.setBlock(par2, par3, par4, MainRegistry.frostDirt.blockID);
+            par1World.setBlock(par2, par3, par4, AC_Block.frostDirt.blockID);
         }
     }
 
@@ -166,7 +167,7 @@ public class AC_BlockTilledFrostField extends Block
 
         if (material.isSolid())
         {
-            par1World.setBlock(par2, par3, par4, MainRegistry.frostDirt.blockID);
+            par1World.setBlock(par2, par3, par4, AC_Block.frostDirt.blockID);
         }
     }
 
@@ -175,7 +176,7 @@ public class AC_BlockTilledFrostField extends Block
      */
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return MainRegistry.frostDirt.idDropped(0, par2Random, par3);
+        return AC_Block.frostDirt.idDropped(0, par2Random, par3);
     }
 
     @SideOnly(Side.CLIENT)
@@ -185,7 +186,7 @@ public class AC_BlockTilledFrostField extends Block
      */
     public int idPicked(World par1World, int par2, int par3, int par4)
     {
-        return MainRegistry.frostDirt.blockID;
+        return AC_Block.frostDirt.blockID;
     }
 
     @SideOnly(Side.CLIENT)
@@ -196,7 +197,7 @@ public class AC_BlockTilledFrostField extends Block
      */
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.field_94441_a = par1IconRegister.registerIcon("AC:frostfarmland_wet");
-        this.field_94440_b = par1IconRegister.registerIcon("AC:frostfarmland_dry");
+        this.field_94441_a = par1IconRegister.registerIcon("ac:frostfarmland_wet");
+        this.field_94440_b = par1IconRegister.registerIcon("ac:frostfarmland_dry");
     }
 }

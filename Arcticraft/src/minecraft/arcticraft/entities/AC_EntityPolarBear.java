@@ -3,12 +3,14 @@ package arcticraft.entities;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.attributes.AttributeInstance;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -23,20 +25,20 @@ public class AC_EntityPolarBear extends EntityMob
 
 	/** A random delay until this PolarBear next makes a sound. */
 	private int randomSoundDelay = 0;
+    private Entity field_110191_bu;
+	
 
 	public AC_EntityPolarBear(World par1World)
 	{
 		super(par1World);
-		this.texture = "/mods/AC/textures/mobs/polar_bear.png";
-		this.moveSpeed = 0.4F;
 		this.setSize(1.9F, 1.8F);
 		this.tasks.addTask(0, new EntityAIWander(this, 0.5F));
 		this.tasks.addTask(1, new EntityAISwimming(this));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 16.0F, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, AC_EntityPenguin.class, 16.0F, 0, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class,  16, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, AC_EntityPenguin.class, 16, true));
 
 	}
 
@@ -61,29 +63,27 @@ public class AC_EntityPolarBear extends EntityMob
 	/**
 	 * Called to update the entity's position/logic.
 	 */
-	public void onUpdate()
-	{
-		this.moveSpeed = this.entityToAttack != null ? 0.95F : 0.5F;
+	  public void onUpdate()
+	    {
+	   
 
-		if (this.randomSoundDelay > 0 && --this.randomSoundDelay == 0)
-		{
-			double x = 0;
-			double y = 0;
-			double z = 0;
-			worldObj.playSoundEffect(x, y, z, "arcticraft.bearAngry", 1.0F, 1.0F);
-		}
+	        this.field_110191_bu = this.entityToAttack;
 
-		super.onUpdate();
-	}
+	        if (this.randomSoundDelay > 0 && --this.randomSoundDelay == 0)
+	        {
+	            this.playSound("mob.zombiepig.zpigangry", this.getSoundVolume() * 2.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) * 1.8F);
+	        }
 
+	        super.onUpdate();
+	    }
 	/**
 	 * Checks if the entity's current position is a valid location to spawn this
 	 * entity.
 	 */
-	public boolean getCanSpawnHere()
-	{
-		return this.worldObj.difficultySetting > 0 && this.worldObj.checkIfAABBIsClear(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).size() == 0 && !this.worldObj.isAnyLiquid(this.boundingBox);
-	}
+	  public boolean getCanSpawnHere()
+	    {
+	        return this.worldObj.difficultySetting > 0 && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
+	    }
 
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.

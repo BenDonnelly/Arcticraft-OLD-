@@ -3,8 +3,11 @@ package arcticraft.gui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class AC_GuiMMButtons extends GuiButton
 {
@@ -62,7 +65,7 @@ public class AC_GuiMMButtons extends GuiButton
 		}
 
 		FontRenderer fontrenderer = minecraft.fontRenderer;
-		GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/, minecraft.renderEngine.getTexture("/mods/AC/textures/gui/main_menu_buttons.png"));
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("floralexpansion", "/textures/misc/blockBarrel.png"));
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		boolean flag = i >= xPosition && j >= yPosition && i < xPosition + width && j < yPosition + height;
 		int k = getHoverState(flag);
@@ -70,7 +73,7 @@ public class AC_GuiMMButtons extends GuiButton
 		drawTexturedModalRect(xPosition + scrollHeight + width / 2 - 90, yPosition, 200 - width / 2, 46 + k * 20, width / 2, height);
 		mouseDragged(minecraft, i, j);
 
-		minecraft.renderEngine.resetBoundTexture();
+	//	minecraft.renderEngine.resetBoundTexture();
 
 		if (!enabled)
 		{

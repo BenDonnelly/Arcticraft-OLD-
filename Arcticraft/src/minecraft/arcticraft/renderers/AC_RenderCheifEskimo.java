@@ -3,11 +3,13 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_EntityCheifEskimo;
 
 
 public class AC_RenderCheifEskimo extends RenderLiving
 {
+	private static final ResourceLocation chief = new ResourceLocation("ac", "textures/mobs/eskimo_chief.png");
 
     public AC_RenderCheifEskimo(ModelBase modelbase, float f)
     {
@@ -31,4 +33,10 @@ public class AC_RenderCheifEskimo extends RenderLiving
     {
     	func_177_a((AC_EntityCheifEskimo)entity, d, d1, d2, f, f1);
     }
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity)
+	{
+		return chief;
+	}
 }

@@ -23,26 +23,26 @@ public class AC_BlockFrostSlab extends BlockHalfSlab {
 	}
 
 	public void registerIcons(IconRegister par1IconRegister) {
-		this.blockIcon = par1IconRegister.registerIcon("AC:frostplanks");
+		this.blockIcon = par1IconRegister.registerIcon("ac:frost_planks");
 	}
 
 	public int idDropped(int par1, Random par2Random, int par3) {
-		return MainRegistry.frostWoodSingleSlab.blockID;
+		return AC_Block.frostWoodSingleSlab.blockID;
 	}
 
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving) {
-		if (par1World.getBlockId(par2, par3 - 1, par4) == MainRegistry.frostWoodSingleSlab.blockID) {
+		if (par1World.getBlockId(par2, par3 - 1, par4) == AC_Block.frostWoodSingleSlab.blockID) {
 			par1World.setBlock(par2, par3, par4, 0);
-			par1World.setBlock(par2, par3 - 1, par4, MainRegistry.frostWoodDoubleSlab.blockID);
+			par1World.setBlock(par2, par3 - 1, par4, AC_Block.frostWoodDoubleSlab.blockID);
 		}
-		if (par1World.getBlockId(par2, par3 + 1, par4) == MainRegistry.frostWoodSingleSlab.blockID) {
+		if (par1World.getBlockId(par2, par3 + 1, par4) == AC_Block.frostWoodSingleSlab.blockID) {
 			par1World.setBlock(par2, par3, par4, 0);
-			par1World.setBlock(par2, par3 + 1, par4, MainRegistry.frostWoodDoubleSlab.blockID);
+			par1World.setBlock(par2, par3 + 1, par4, AC_Block.frostWoodDoubleSlab.blockID);
 		}
 	}
 
 	protected ItemStack createStackedBlock(int par1) {
-		return new ItemStack(MainRegistry.frostWoodSingleSlab.blockID, 2, par1 & 7);
+		return new ItemStack(AC_Block.frostWoodSingleSlab.blockID, 2, par1 & 7);
 	}
 
 	public String getFullSlabName(int par1) {
@@ -50,11 +50,11 @@ public class AC_BlockFrostSlab extends BlockHalfSlab {
 			par1 = 0;
 		}
 
-		return super.getUnlocalizedName2() + "." + woodType[par1];
+		return super.getUnlocalizedName() + "." + woodType[par1];
 	}
 
 	public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
-		if (par1 != MainRegistry.frostWoodDoubleSlab.blockID) {
+		if (par1 != AC_Block.frostWoodDoubleSlab.blockID) {
 			par3List.add(new ItemStack(par1, 1, 0));
 		}
 	}

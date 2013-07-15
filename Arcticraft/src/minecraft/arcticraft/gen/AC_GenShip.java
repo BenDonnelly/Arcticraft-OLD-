@@ -5,15 +5,12 @@ package arcticraft.gen;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemDoor;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import arcticraft.blocks.AC_Block;
 import arcticraft.entities.AC_EntityCaptain;
 import arcticraft.entities.AC_EntityPirate;
-import arcticraft.helpers.AC_WorldGenHelpers;
-import arcticraft.main.MainRegistry;
 
 public class AC_GenShip extends WorldGenerator
 {
@@ -24,7 +21,7 @@ public class AC_GenShip extends WorldGenerator
 	public boolean generate(World world, Random rand, int x, int y, int z)
 	{
 
-		if(world.getBlockId(x, y, z) != MainRegistry.acWaterStill.blockID || world.getBlockId(x, y + 1, z) != 0)
+		if(world.getBlockId(x, y, z) != AC_Block.acWaterStill.blockID || world.getBlockId(x, y + 1, z) != 0)
 		{
 			return false;
 		}

@@ -4,6 +4,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import arcticraft.blocks.AC_Block;
 import arcticraft.main.MainRegistry;
 
 public class AC_GenGlacierTrees extends WorldGenerator
@@ -59,7 +60,7 @@ public class AC_GenGlacierTrees extends WorldGenerator
                     {
                         int j2 = par1World.getBlockId(l, j, j1);
 
-                        if (j2 != 0 && j2 != MainRegistry.glacierLeaves.blockID && j2 != MainRegistry.frostGrass.blockID && j2 != MainRegistry.frostDirt.blockID && j2 != MainRegistry.glacierLog.blockID)
+                        if (j2 != 0 && j2 != AC_Block.glacierLeaves.blockID && j2 != AC_Block.frostGrass.blockID && j2 != AC_Block.frostDirt.blockID && j2 != AC_Block.glacierLog.blockID)
                         {
                             flag = false;
                         }
@@ -79,12 +80,12 @@ public class AC_GenGlacierTrees extends WorldGenerator
 
         int k = par1World.getBlockId(par3, par4 - 1, par5);
 
-        if (k != MainRegistry.frostGrass.blockID && k != MainRegistry.frostDirt.blockID || par4 >= 256 - i - 1)
+        if (k != AC_Block.frostGrass.blockID && k != AC_Block.frostDirt.blockID || par4 >= 256 - i - 1)
         {
             return false;
         }
 
-        par1World.setBlock(par3, par4 - 1, par5, MainRegistry.frostDirt.blockID, 0, 2);
+        par1World.setBlock(par3, par4 - 1, par5, AC_Block.frostDirt.blockID, 0, 2);
         byte byte1 = 3;
         int i1 = 0;
 
@@ -103,7 +104,7 @@ public class AC_GenGlacierTrees extends WorldGenerator
 
                     if ((Math.abs(j4) != j3 || Math.abs(i5) != j3 || par2Random.nextInt(2) != 0 && k2 != 0) && !Block.opaqueCubeLookup[par1World.getBlockId(l3, k1, l4)])
                     {
-                        setBlockAndMetadata(par1World, l3, k1, l4, MainRegistry.glacierLeaves.blockID, field_48199_d);
+                        setBlockAndMetadata(par1World, l3, k1, l4, AC_Block.glacierLeaves.blockID, field_48199_d);
                     }
                 }
             }
@@ -113,12 +114,12 @@ public class AC_GenGlacierTrees extends WorldGenerator
         {
             int l2 = par1World.getBlockId(par3, par4 + l1, par5);
 
-            if (l2 != 0 && l2 != MainRegistry.glacierLeaves.blockID)
+            if (l2 != 0 && l2 != AC_Block.glacierLeaves.blockID)
             {
                 continue;
             }
 
-            setBlockAndMetadata(par1World, par3, par4 + l1, par5, MainRegistry.glacierLog.blockID, field_48201_c);
+            setBlockAndMetadata(par1World, par3, par4 + l1, par5, AC_Block.glacierLog.blockID, field_48201_c);
 
             if (!field_48200_b || l1 <= 0)
             {
@@ -139,7 +140,7 @@ public class AC_GenGlacierTrees extends WorldGenerator
                 {
                     for (int k4 = par5 - k3; k4 <= par5 + k3; k4++)
                     {
-                        if (par1World.getBlockId(i4, i2, k4) != MainRegistry.glacierLeaves.blockID)
+                        if (par1World.getBlockId(i4, i2, k4) != AC_Block.glacierLeaves.blockID)
                         {
                             continue;
                         }

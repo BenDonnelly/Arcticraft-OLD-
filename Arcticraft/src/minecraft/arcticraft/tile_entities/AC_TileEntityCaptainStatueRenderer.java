@@ -2,10 +2,12 @@ package arcticraft.tile_entities;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.models.AC_ModelPlainStatue;
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class AC_TileEntityCaptainStatueRenderer extends TileEntitySpecialRenderer
 {
@@ -23,7 +25,7 @@ public class AC_TileEntityCaptainStatueRenderer extends TileEntitySpecialRendere
 		{
 			rotation = tile.getBlockMetadata();
 		}
-		bindTextureByName("/mods/AC/textures/blocks/captain_statue.png"); //texture
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/blocks/captain_statue.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) d + 0.5F, (float) d1 + 1.5F, (float) d2 + 0.5F);
 		GL11.glScalef(1.0F, -1F, -1F);

@@ -84,7 +84,7 @@ public class AC_PacketHandler implements IPacketHandler {
 		}
 		
 		if (AC_EskimoTrade.removeGemsFromInventory(player.inventory, gems)) {
-			player.sendChatToPlayer("You have bought: " + stack.stackSize + "x " + stack.getDisplayName());
+			player.addChatMessage("You have bought: " + stack.stackSize + "x " + stack.getDisplayName());
 			player.inventory.addItemStackToInventory(stack);
 		}
 	}

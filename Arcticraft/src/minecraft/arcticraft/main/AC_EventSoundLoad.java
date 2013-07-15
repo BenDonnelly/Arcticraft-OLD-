@@ -27,37 +27,35 @@ public class AC_EventSoundLoad
 			*/
 
 			//Portal
-			event.manager.soundPoolSounds.addSound("arcticraft/portal.wav", MainRegistry.class.getResource("/mods/AC/sounds/other/portal.wav"));
+			event.manager.soundPoolSounds.addSound("arcticraft/portal.wav");
 
 			//Penguin
-			event.manager.soundPoolSounds.addSound("arcticraft/penguinHurt.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/penguinhurt.wav"));
-			event.manager.soundPoolSounds.addSound("arcticraft/penguinDeath.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/penguindeath.wav"));
-			event.manager.soundPoolSounds.addSound("arcticraft/penguinIdle.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/penguinidle.wav"));
+			event.manager.soundPoolSounds.addSound("arcticraft/penguinHurt.wav");
+			event.manager.soundPoolSounds.addSound("arcticraft/penguinDeath.wav");
+			event.manager.soundPoolSounds.addSound("arcticraft/penguinIdle.wav");
 
 			//Pirate
-			event.manager.soundPoolSounds.addSound("arcticraft/pirateHurt.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/buccaneerhit.wav"));
-			event.manager.soundPoolSounds.addSound("arcticraft/pirateDeath.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/buccaneerdie.wav"));
-			event.manager.soundPoolSounds.addSound("arcticraft/pirateIdle.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/buccaneermoan.wav"));
+			event.manager.soundPoolSounds.addSound("arcticraft/pirateHurt.wav");
+			event.manager.soundPoolSounds.addSound("arcticraft/pirateDeath.wav");
+			event.manager.soundPoolSounds.addSound("arcticraft/pirateIdle.wav");
 
 			//Polar Bear
-			event.manager.soundPoolSounds.addSound("arcticraft/bearIdle1.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/bear1.wav"));
-			event.manager.soundPoolSounds.addSound("arcticraft/bearIdle2.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/bear2.wav"));
-			event.manager.soundPoolSounds.addSound("arcticraft/bearAngry.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/bearAngry.wav"));
-			event.manager.soundPoolSounds.addSound("arcticraft/bearDeath.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/bearDead.wav"));
-			event.manager.soundPoolSounds.addSound("arcticraft/bearHurt1.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/bearHurt1.wav"));
-			event.manager.soundPoolSounds.addSound("arcticraft/bearHurt2.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/bearHurt2.wav"));
-			event.manager.soundPoolSounds.addSound("arcticraft/bearHurt3.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/bearHurt3.wav"));
+			event.manager.soundPoolSounds.addSound("arcticraft/bearIdle1.wav");
+			event.manager.soundPoolSounds.addSound("arcticraft/bearIdle2.wav");
+			event.manager.soundPoolSounds.addSound("arcticraft/bearAngry.wav");
+			event.manager.soundPoolSounds.addSound("arcticraft/bearDeath.wav");
+			event.manager.soundPoolSounds.addSound("arcticraft/bearHurt1.wav");
+			event.manager.soundPoolSounds.addSound("arcticraft/bearHurt2.wav");
+			event.manager.soundPoolSounds.addSound("arcticraft/bearHurt3.wav");
 
 			//Boar
-			event.manager.soundPoolSounds.addSound("arcticraft/boar_hurt.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/boar_hurt.wav"));
-			event.manager.soundPoolSounds.addSound("arcticraft/boar_living.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/boar_living.wav"));
-			event.manager.soundPoolSounds.addSound("arcticraft/boar_death.wav", MainRegistry.class.getResource("/mods/AC/sounds/mobs/boar_death.wav"));
+			event.manager.soundPoolSounds.addSound("arcticraft/boar_hurt.wav");
+			event.manager.soundPoolSounds.addSound("arcticraft/boar_living.wav");
+			event.manager.soundPoolSounds.addSound("arcticraft/boar_death.wav");
 
 			//Ingame Music
-			System.out.println("Playing my music");
-			event.manager.soundPoolMusic.addSound("arcticraft/Welcome To The Cold.wav", MainRegistry.class.getResource("/mods/AC/sounds/music/Welcome To The Cold.wav"));
-			System.out.println("Playing my music");
-			event.manager.soundPoolMusic.addSound("arcticraft/Frozen Feelings.wav", MainRegistry.class.getResource("/mods/AC/sounds/music/Frozen Feelings.wav"));
+			event.manager.soundPoolMusic.addSound("arcticraft/Welcome To The Cold.wav");
+			event.manager.soundPoolMusic.addSound("arcticraft/Frozen Feelings.wav");
 
 		}
 

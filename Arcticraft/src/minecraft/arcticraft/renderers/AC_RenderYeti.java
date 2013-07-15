@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
@@ -15,6 +16,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class AC_RenderYeti extends RenderLiving
 {
+	private static final ResourceLocation yeti = new ResourceLocation("ac", "textures/mobs/yeti.png");
+
 
 	public AC_RenderYeti(ModelBase modelbase, float f)
 	{
@@ -92,5 +95,11 @@ public class AC_RenderYeti extends RenderLiving
 	public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9)
 	{
 		this.func_82418_a((AC_EntityYeti) par1Entity, par2, par4, par6, par8, par9);
+	}
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity)
+	{
+		return yeti;
 	}
 }

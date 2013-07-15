@@ -17,20 +17,18 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import arcticraft.entities.AC_EntityBlueSparkle;
-import arcticraft.main.MainRegistry;
+import arcticraft.items.AC_Item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class AC_BlockGlacierLeaves extends AC_BlockLeavesBase implements IShearable {
 	
 	public static final String[] LEAF_TYPES = new String[] { "glacier" };
-	public static final String[][] field_94396_b = new String[][] { { "glacier_leaves" }, { "glacier_leaves_fancy" } };
+	public static final String[][] LEAF_TEXTURES = new String[][] { { "glacier_leaves_fast" }, { "glacier_leaves_fancy" } };
 	@SideOnly(Side.CLIENT)
 	private static int field_94394_cP;
 	private Icon[][] iconArray = new Icon[2][];
 	int[] adjacentTreeBlocks;
-
-	private Minecraft mc;;
 
 	public AC_BlockGlacierLeaves(int par1) {
 		super(par1, Material.leaves, false);
@@ -86,7 +84,7 @@ public class AC_BlockGlacierLeaves extends AC_BlockLeavesBase implements ISheara
 	 * Returns the ID of the items to drop on destruction.
 	 */
 	public int idDropped(int par1, Random par2Random, int par3) {
-		return MainRegistry.frostSapling.blockID;
+		return AC_Block.frostSapling.blockID;
 	}
 
 	/**
@@ -277,7 +275,7 @@ public class AC_BlockGlacierLeaves extends AC_BlockLeavesBase implements ISheara
 			}
 
 			if ((par5 & 3) == 0 && par1World.rand.nextInt(j1) == 0) {
-				this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(MainRegistry.GlacierFruit, 1, 0));
+				this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(AC_Item.GlacierFruit, 1, 0));
 			}
 		}
 	}
@@ -336,17 +334,22 @@ public class AC_BlockGlacierLeaves extends AC_BlockLeavesBase implements ISheara
 	protected ItemStack createStackedBlock(int par1) {
 		return new ItemStack(this.blockID, 1, par1 & 3);
 	}
+	 public Icon getIcon(int par1, int par2)
+	    {
+	        return (par2 & 3) == 1 ? this.iconArray[this.field_94394_cP][1] : ((par2 & 3) == 3 ? this.iconArray[this.field_94394_cP][3] : ((par2 & 3) == 2 ? this.iconArray[this.field_94394_cP][2] : this.iconArray[this.field_94394_cP][0]));
+	    }
+	
 
 	 @SideOnly(Side.CLIENT)
 	    public void registerIcons(IconRegister par1IconRegister) {
 
-	        for (int i = 0; i < field_94396_b.length; ++i) {
+	        for (int i = 0; i < LEAF_TEXTURES.length; ++i) {
 
-	            this.iconArray[i] = new Icon[field_94396_b[i].length];
+	            this.iconArray[i] = new Icon[LEAF_TEXTURES[i].length];
 
-	            for (int j = 0; j < field_94396_b[i].length; ++j) {
+	            for (int j = 0; j < LEAF_TEXTURES[i].length; ++j) {
 
-	                this.iconArray[i][j] = par1IconRegister.registerIcon("AC:" + field_94396_b[i][j]);
+	                this.iconArray[i][j] = par1IconRegister.registerIcon("ac:" + LEAF_TEXTURES[i][j]);
 	            }
 	        }
 	    }

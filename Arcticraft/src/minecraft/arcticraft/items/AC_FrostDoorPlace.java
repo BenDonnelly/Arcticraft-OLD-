@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import arcticraft.main.MainRegistry;
+import arcticraft.blocks.AC_Block;
 
 public class AC_FrostDoorPlace extends Item
 {
@@ -36,7 +36,7 @@ public class AC_FrostDoorPlace extends Item
             Block block;
 
            
-                block = MainRegistry.frostDoor;
+                block = AC_Block.frostDoor;
           
             if (par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack) && par2EntityPlayer.canPlayerEdit(par4, par5 + 1, par6, par7, par1ItemStack))
             {

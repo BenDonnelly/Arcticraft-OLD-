@@ -11,28 +11,35 @@ import arcticraft.main.MainRegistry;
 
 public class AC_BlockFrostGrass extends Block 
 {
-	public Icon[] textures = new Icon[4];
+	public Icon grassSide;
+	public Icon grassTop;
+	public Icon grassBottom;
+	public Icon grasSnowOverlay;
   
 	  
     public AC_BlockFrostGrass(int par1)
     {
         super(par1, Material.grass);
-        this.setTickRandomly(true);
-        setCreativeTab(MainRegistry.tabBlocks);
-        
+        this.setTickRandomly(true);        
    
     }
 
+    public Icon getIcon(int par1, int par2)
+    {
+        return par1 == 1 ? this.grassTop : (par1 == 0 ? AC_Block.frostDirt.getBlockTextureFromSide(par1): this.grassSide);
+    }
+    
+    
     public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
     {
-        return par1 == 1 ? textures[1] : (par1 == 0 ? textures[2] : textures[0]);
+        return par1 == 1 ? grassTop : (par1 == 0 ? grassBottom : grassSide);
     }
     
     public Icon getBlockTexture(IBlockAccess world, int x, int y, int z, int side)
     {
-    	if (world.getBlockId(x, y+1, z) == Block.snow.blockID && side > 1) return textures[3];
+    	if (world.getBlockId(x, y+1, z) == Block.snow.blockID && side > 1) return grasSnowOverlay;
     	{
-    	if (world.getBlockId(x, y+1, z) == MainRegistry.thickSnow.blockID && side > 1) return textures[3];
+    	if (world.getBlockId(x, y+1, z) == AC_Block.thickSnow.blockID && side > 1) return grasSnowOverlay;
     	}
         return this.getBlockTextureFromSideAndMetadata(side, world.getBlockMetadata(x, y, z));
     }
@@ -40,10 +47,10 @@ public class AC_BlockFrostGrass extends Block
 
     public void registerIcons(IconRegister par1IconRegister)
     {
-        textures[0] = par1IconRegister.registerIcon("AC:frost_grass_side");
-        textures[1] = par1IconRegister.registerIcon("AC:frost_grass_top");
-        textures[2] = par1IconRegister.registerIcon("AC:frost_grass_bottom");
-        textures[3] = par1IconRegister.registerIcon("AC:frost_snow_overlay");
+    	grassSide = par1IconRegister.registerIcon("ac:frost_grass_side");
+    	grassTop = par1IconRegister.registerIcon("ac:frost_grass_top");
+    	grassBottom = par1IconRegister.registerIcon("ac:frost_grass_bottom");
+    	grasSnowOverlay = par1IconRegister.registerIcon("ac:frost_snow_overlay");
     }
     
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
@@ -52,7 +59,7 @@ public class AC_BlockFrostGrass extends Block
         {
             if (par1World.getBlockLightValue(par2, par3 + 1, par4) < 4 && par1World.getBlockLightOpacity(par2, par3 + 1, par4) > 2)
             {
-                par1World.setBlock(par2, par3, par4, MainRegistry.frostDirt.blockID);
+                par1World.setBlock(par2, par3, par4, AC_Block.frostDirt.blockID);
             }
             else if (par1World.getBlockLightValue(par2, par3 + 1, par4) >= 9)
             {
@@ -63,9 +70,9 @@ public class AC_BlockFrostGrass extends Block
                     int k1 = par4 + par5Random.nextInt(3) - 1;
                     int l1 = par1World.getBlockId(i1, j1 + 1, k1);
 
-                    if (par1World.getBlockId(i1, j1, k1) == MainRegistry.frostDirt.blockID && par1World.getBlockLightValue(i1, j1 + 1, k1) >= 4 && par1World.getBlockLightOpacity(i1, j1 + 1, k1) <= 2)
+                    if (par1World.getBlockId(i1, j1, k1) == AC_Block.frostDirt.blockID && par1World.getBlockLightValue(i1, j1 + 1, k1) >= 4 && par1World.getBlockLightOpacity(i1, j1 + 1, k1) <= 2)
                     {
-                        par1World.setBlock(i1, j1, k1, MainRegistry.frostGrass.blockID);
+                        par1World.setBlock(i1, j1, k1, AC_Block.frostGrass.blockID);
                     }
                 }
             }
@@ -77,7 +84,7 @@ public class AC_BlockFrostGrass extends Block
      */
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return MainRegistry.frostDirt.idDropped(0, par2Random, par3);
+        return AC_Block.frostDirt.idDropped(0, par2Random, par3);
     }
 	
 	

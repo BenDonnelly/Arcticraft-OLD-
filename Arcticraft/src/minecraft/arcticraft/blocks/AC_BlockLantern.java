@@ -11,13 +11,14 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import arcticraft.main.MainRegistry;
+import arcticraft.items.AC_Item;
 import arcticraft.tile_entities.AC_TileEntityLantern;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -60,7 +61,7 @@ public class AC_BlockLantern extends Block implements ITileEntityProvider
 	public int idDropped(int par1, Random par2Random, int par3)
 	{
 
-		return MainRegistry.itemLantern.itemID; //couldnt you use this? 
+		return AC_Item.itemLantern.itemID; //couldnt you use this? 
 	}
 
 	@Override
@@ -68,7 +69,7 @@ public class AC_BlockLantern extends Block implements ITileEntityProvider
 	{
 		ArrayList<ItemStack> list = new ArrayList<ItemStack>();
 		AC_TileEntityLantern lan = (AC_TileEntityLantern)world.getBlockTileEntity(x, y, z);
-		list.add(new ItemStack(MainRegistry.itemLantern, 1, lan.getDurability()));
+		list.add(new ItemStack(AC_Item.itemLantern, 1, lan.getDurability()));
 		return list;
 	} 
 	
@@ -382,8 +383,11 @@ public class AC_BlockLantern extends Block implements ITileEntityProvider
 
 
 
-	/**
-	 * Returns a new instance of a block's tile entity class. Called on placing the block.
-	 */
+    public void registerIcons(IconRegister iconRegister)
+   	{
+   	
+   	this.blockIcon = iconRegister.registerIcon("AC:lantern");
+   	
+   	}
 
 }

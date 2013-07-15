@@ -424,7 +424,7 @@ public class AC_FrostChest extends BlockContainer
         }
         else
         {
-            IInventory iinventory = this.func_94442_h_(par1World, par2, par3, par4);
+            IInventory iinventory = this.getInventory(par1World, par2, par3, par4);
 
             if (iinventory != null)
             {
@@ -435,7 +435,7 @@ public class AC_FrostChest extends BlockContainer
         }
     }
 
-    public IInventory func_94442_h_(World par1World, int par2, int par3, int par4)
+    public IInventory getInventory(World par1World, int par2, int par3, int par4)
     {
         Object object = (AC_TileEntityFrostChest)par1World.getBlockTileEntity(par2, par3, par4);
 
@@ -576,7 +576,7 @@ public class AC_FrostChest extends BlockContainer
      */
     public int getComparatorInputOverride(World par1World, int par2, int par3, int par4, int par5)
     {
-        return Container.func_94526_b(this.func_94442_h_(par1World, par2, par3, par4));
+        return Container.calcRedstoneFromInventory(this.getInventory(par1World, par2, par3, par4));
     }
 
     @SideOnly(Side.CLIENT)

@@ -72,7 +72,6 @@ public class AC_EntityDragon extends EntityLiving implements IMob, IEntityMultiP
         super(par1World);
         this.dragonPartArray = new EntityDragonPart[] {this.dragonPartHead = new EntityDragonPart(this, "head", 6.0F, 6.0F), this.dragonPartBody = new EntityDragonPart(this, "body", 8.0F, 8.0F), this.dragonPartTail1 = new EntityDragonPart(this, "tail", 4.0F, 4.0F), this.dragonPartTail2 = new EntityDragonPart(this, "tail", 4.0F, 4.0F), this.dragonPartTail3 = new EntityDragonPart(this, "tail", 4.0F, 4.0F), this.dragonPartWing1 = new EntityDragonPart(this, "wing", 4.0F, 4.0F), this.dragonPartWing2 = new EntityDragonPart(this, "wing", 4.0F, 4.0F)};
         this.setEntityHealth(this.getMaxHealth());
-        this.texture = "/mob/enderdragon/ender.png";
         this.setSize(16.0F, 8.0F);
         this.noClip = true;
         this.isImmuneToFire = true;
@@ -97,11 +96,10 @@ public class AC_EntityDragon extends EntityLiving implements IMob, IEntityMultiP
      */
     public double[] getMovementOffsets(int par1, float par2)
     {
-        if (this.health <= 0)
-        {
-            par2 = 0.0F;
-        }
-
+    	   if (this.func_110143_aJ() <= 0.0F)
+           {
+               par2 = 0.0F;
+           }
         par2 = 1.0F - par2;
         int j = this.ringBufferIndex - par1 * 1 & 63;
         int k = this.ringBufferIndex - par1 * 1 - 1 & 63;
@@ -125,11 +123,7 @@ public class AC_EntityDragon extends EntityLiving implements IMob, IEntityMultiP
         float f;
         float f1;
 
-        if (!this.worldObj.isRemote)
-        {
-            this.dataWatcher.updateObject(16, Integer.valueOf(this.health));
-        }
-        else
+        if (this.worldObj.isRemote)
         {
             f = MathHelper.cos(this.animTime * (float)Math.PI * 2.0F);
             f1 = MathHelper.cos(this.prevAnimTime * (float)Math.PI * 2.0F);
@@ -143,7 +137,7 @@ public class AC_EntityDragon extends EntityLiving implements IMob, IEntityMultiP
         this.prevAnimTime = this.animTime;
         float f2;
 
-        if (this.health <= 0)
+        if (this.func_110143_aJ() <= 0.0F)
         {
             f = (this.rand.nextFloat() - 0.5F) * 8.0F;
             f1 = (this.rand.nextFloat() - 0.5F) * 4.0F;
@@ -194,7 +188,7 @@ public class AC_EntityDragon extends EntityLiving implements IMob, IEntityMultiP
                 {
                     d3 = this.posX + (this.newPosX - this.posX) / (double)this.newPosRotationIncrements;
                     d0 = this.posY + (this.newPosY - this.posY) / (double)this.newPosRotationIncrements;
-                    d1 = this.posZ + (this.newPosZ - this.posZ) / (double)this.newPosRotationIncrements;
+                    d1 = this.posZ + (this.field_110152_bk - this.posZ) / (double)this.newPosRotationIncrements;
                     d2 = MathHelper.wrapAngleTo180_double(this.newRotationYaw - (double)this.rotationYaw);
                     this.rotationYaw = (float)((double)this.rotationYaw + d2 / (double)this.newPosRotationIncrements);
                     this.rotationPitch = (float)((double)this.rotationPitch + (this.newRotationPitch - (double)this.rotationPitch) / (double)this.newPosRotationIncrements);
@@ -379,7 +373,6 @@ public class AC_EntityDragon extends EntityLiving implements IMob, IEntityMultiP
             }
         }
     }
-
   
     /**
      * Pushes all entities inside the list away from the enderdragon.
@@ -607,5 +600,33 @@ public class AC_EntityDragon extends EntityLiving implements IMob, IEntityMultiP
     protected float getSoundVolume()
     {
         return 5.0F;
+    }
+
+    protected boolean func_82195_e(DamageSource par1DamageSource, float par2)
+    {
+        return super.attackEntityFrom(par1DamageSource, par2);
+    }
+    
+    public boolean attackEntityFromPart(EntityDragonPart par1EntityDragonPart, DamageSource par2DamageSource, float par3)
+    {
+        if (par1EntityDragonPart != this.dragonPartHead)
+        {
+            par3 = par3 / 4.0F + 1.0F;
+        }
+
+        float f1 = this.rotationYaw * (float)Math.PI / 180.0F;
+        float f2 = MathHelper.sin(f1);
+        float f3 = MathHelper.cos(f1);
+        this.targetX = this.posX + (double)(f2 * 5.0F) + (double)((this.rand.nextFloat() - 0.5F) * 2.0F);
+        this.targetY = this.posY + (double)(this.rand.nextFloat() * 3.0F) + 1.0D;
+        this.targetZ = this.posZ - (double)(f3 * 5.0F) + (double)((this.rand.nextFloat() - 0.5F) * 2.0F);
+        this.target = null;
+
+        if (par2DamageSource.getEntity() instanceof EntityPlayer || par2DamageSource.isExplosion())
+        {
+            this.func_82195_e(par2DamageSource, par3);
+        }
+
+        return true;
     }
 }

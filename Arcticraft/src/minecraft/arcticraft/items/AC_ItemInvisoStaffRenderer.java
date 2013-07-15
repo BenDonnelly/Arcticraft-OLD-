@@ -3,9 +3,12 @@ package arcticraft.items;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 import arcticraft.models.AC_ModelStaff;
 
@@ -47,9 +50,8 @@ public class AC_ItemInvisoStaffRenderer implements IItemRenderer
 		{
 			GL11.glPushMatrix();
 
-			Minecraft.getMinecraft().renderEngine.bindTexture("/mods/AC/textures/items/inviso_staff.png");
-
-			//			GL11.glTranslatef(0.095F, 0.4F, 0.66F);
+			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/items/inviso_staff.png"));
+						GL11.glTranslatef(0.8F, 0.2F, 0.01F);
 
 			staffModel.render((Entity) data [1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 

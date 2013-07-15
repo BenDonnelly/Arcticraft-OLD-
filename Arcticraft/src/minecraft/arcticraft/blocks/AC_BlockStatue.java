@@ -5,13 +5,12 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
 import arcticraft.tile_entities.AC_TileEntityStatue;
 
 public class AC_BlockStatue extends BlockContainer
@@ -29,40 +28,32 @@ public class AC_BlockStatue extends BlockContainer
 	}
 
 	@Override
-	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entityLiving, ItemStack itemStack)
+	 public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
 	{
-		int direction = 0;
-		int facing = MathHelper.floor_double(entityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+       int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
-		if (facing == 0)
-		{
-			direction = ForgeDirection.NORTH.ordinal();
-		}
-		else if (facing == 1)
-		{
-			direction = ForgeDirection.EAST.ordinal();
-		}
-		else if (facing == 2)
-		{
-			direction = ForgeDirection.SOUTH.ordinal();
-		}
-		else if (facing == 3)
-		{
-			direction = ForgeDirection.WEST.ordinal();
-		}
+       if (l == 0)
+       {
+           par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
+       }
 
-		if (entityLiving.rotationPitch > 65 && entityLiving.rotationPitch <= 90)
-		{
-			direction = ForgeDirection.UP.ordinal();
-		}
-		else if (entityLiving.rotationPitch < -65 && entityLiving.rotationPitch >= -90)
-		{
-			direction = ForgeDirection.DOWN.ordinal();
-		}
+       if (l == 1)
+       {
+           par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
+       }
 
-		world.setBlockMetadataWithNotify(x, y, z, direction, 0);
-	}
+       if (l == 2)
+       {
+           par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
+       }
 
+       if (l == 3)
+       {
+           par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
+       }
+
+   
+   }
 	/**
 	 * Returns a bounding box from the pool of bounding boxes (this means this
 	 * box can change after the pool has been cleared to be reused)

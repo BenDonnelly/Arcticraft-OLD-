@@ -6,6 +6,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import arcticraft.blocks.AC_Block;
 import arcticraft.main.MainRegistry;
 
 public class AC_GenArcaneStone2 extends WorldGenerator
@@ -59,7 +60,7 @@ public class AC_GenArcaneStone2 extends WorldGenerator
 					for (int j2 = l; j2 <= k1; j2++)
 					{
 						double d14 = (((double)j2 + 0.5D) - d8) / (d10 / 2D);
-						if (d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && par1World.getBlockId(l1, i2, j2) == MainRegistry.frostGrass.blockID)
+						if (d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && par1World.getBlockId(l1, i2, j2) ==  AC_Block.frostGrass.blockID)
 						{
 							par1World.setBlock(l1, i2, j2, minableBlockId);
 						}
@@ -76,16 +77,16 @@ public class AC_GenArcaneStone2 extends WorldGenerator
 		{
 			return;
 		}
-		if (par1World.getBlockId(par3, par4 - 1, par5) != MainRegistry.frostGrass.blockID)
+		if (par1World.getBlockId(par3, par4 - 1, par5) !=  AC_Block.frostGrass.blockID)
 		{
 			return;
 		}
-		else if (par1World.getBlockId(par3, par4 + 1, par5) != MainRegistry.frostStone.blockID)
+		else if (par1World.getBlockId(par3, par4 + 1, par5) !=  AC_Block.frostStone.blockID)
 		{
 			return;
 		}
 
-		par1World.setBlock(par3, par4, par5, MainRegistry.arcaneStone.blockID);
+		par1World.setBlock(par3, par4, par5,  AC_Block.arcaneStone.blockID);
 		for (int i = 0; i < 1500; i++)
 		{
 			int j = (par3 + par2Random.nextInt(8)) - par2Random.nextInt(8);
@@ -123,14 +124,14 @@ public class AC_GenArcaneStone2 extends WorldGenerator
 				{
 					k1 = par1World.getBlockId(j, k, l + 1);
 				}
-				if (k1 == MainRegistry.arcaneStone.blockID)
+				if (k1 ==  AC_Block.arcaneStone.blockID)
 				{
 					i1++;
 				}
 			}
 			if (i1 == 1)
 			{
-				par1World.setBlock(j, k, l, MainRegistry.arcaneStone.blockID);
+				par1World.setBlock(j, k, l,  AC_Block.arcaneStone.blockID);
 			}
 		}
 		return;

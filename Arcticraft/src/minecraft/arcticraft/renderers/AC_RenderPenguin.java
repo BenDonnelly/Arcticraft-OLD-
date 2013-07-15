@@ -3,11 +3,13 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_EntityPenguin;
 
 
 public class AC_RenderPenguin extends RenderLiving
 {
+	private static final ResourceLocation penguin = new ResourceLocation("ac", "textures/mobs/penguin.png");
 
     public AC_RenderPenguin(ModelBase modelbase, float f)
     {
@@ -31,4 +33,10 @@ public class AC_RenderPenguin extends RenderLiving
     {
     	func_177_a((AC_EntityPenguin)entity, d, d1, d2, f, f1);
     }
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity)
+	{
+		return penguin;
+	}
 }

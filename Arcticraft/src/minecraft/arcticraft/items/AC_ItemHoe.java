@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
-import arcticraft.main.MainRegistry;
+import arcticraft.blocks.AC_Block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -50,13 +50,13 @@ public class AC_ItemHoe extends Item
 	            int i1 = par3World.getBlockId(par4, par5, par6);
 	            int j1 = par3World.getBlockId(par4, par5 + 1, par6);
 
-	            if ((par7 == 0 || j1 != 0 || i1 != MainRegistry.frostGrass.blockID) && i1 != MainRegistry.frostDirt.blockID)
+	            if ((par7 == 0 || j1 != 0 || i1 != AC_Block.frostGrass.blockID) && i1 != AC_Block.frostDirt.blockID)
 	            {
 	                return false;
 	            }
 	            else
 	            {
-	                Block block = MainRegistry.tilledFrostField;
+	                Block block = AC_Block.tilledFrostField;
 	                par3World.playSoundEffect((double)((float)par4 + 0.5F), (double)((float)par5 + 0.5F), (double)((float)par6 + 0.5F), block.stepSound.getStepSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
 
 	                if (par3World.isRemote)
@@ -90,36 +90,5 @@ public class AC_ItemHoe extends Item
 	    
 	    
 	
-	@SideOnly(Side.CLIENT)
-	public void updateIcons(IconRegister par1IconRegister)
-	{
-		if (this == MainRegistry.TekkiteHoe)
-		{
-			this.iconIndex = par1IconRegister.registerIcon("AC:tekkiteHoe");
-		}
-		if (this == MainRegistry.EscariaHoe)
-		{
-			this.iconIndex = par1IconRegister.registerIcon("AC:escariaHoe");
-		}
 
-		if (this == MainRegistry.RigentemHoe)
-		{
-			this.iconIndex = par1IconRegister.registerIcon("AC:rigentemHoe");
-		}
-
-		if (this == MainRegistry.GlacianHoe)
-		{
-			this.iconIndex = par1IconRegister.registerIcon("AC:glaciansHoe");
-		}
-
-		if (this == MainRegistry.ArcticStoneHoe)
-		{
-			this.iconIndex = par1IconRegister.registerIcon("AC:iceHoe");
-		}
-
-		if (this == MainRegistry.FrostWoodHoe)
-		{
-			this.iconIndex = par1IconRegister.registerIcon("AC:frostWoodHoe");
-		}
-	}
 }

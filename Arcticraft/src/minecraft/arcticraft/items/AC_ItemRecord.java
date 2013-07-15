@@ -28,7 +28,7 @@ public class AC_ItemRecord extends ItemRecord
 	 */
 	public Icon getIconFromDamage(int par1)
 	{
-		return this.iconIndex;
+		return this.itemIcon;
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class AC_ItemRecord extends ItemRecord
 	@SideOnly(Side.CLIENT)
 	public void updateIcons(IconRegister par1IconRegister)
 	{
-		this.iconIndex = par1IconRegister.registerIcon("AC:record_" + this.recordName);
+		this.itemIcon = par1IconRegister.registerIcon("AC:record_" + this.recordName);
 	}
 
 }

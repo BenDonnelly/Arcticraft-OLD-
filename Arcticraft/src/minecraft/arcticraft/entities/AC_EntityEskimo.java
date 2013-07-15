@@ -9,6 +9,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
@@ -18,7 +19,6 @@ public class AC_EntityEskimo extends AC_EntityDefaultEskimo
 	public AC_EntityEskimo(World par1World)
 	{
 		super(par1World);
-		this.texture = "/mods/AC/textures/mobs/eskimo.png";
 		this.setSize(1.5F, 1.4F);
 	}
 	
@@ -29,6 +29,12 @@ public class AC_EntityEskimo extends AC_EntityDefaultEskimo
 		addStuffToBuy(Item.stick, 12, 54, 0.6F);
 		addStuffToSell(Block.blockGold, 2, 6, 0.8F);
 		addStuffToSell(Item.emerald, 1, 1, 0.99F);
+	}
+
+	@Override
+	public void func_110297_a_(ItemStack itemstack) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

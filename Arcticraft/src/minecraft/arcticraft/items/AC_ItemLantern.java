@@ -36,17 +36,17 @@ public class AC_ItemLantern extends Item
 		{
 			ItemStack hand = entityPlayer.getCurrentItemOrArmor(0);
 
-			if (hand.getItem() == MainRegistry.itemLantern)
+			if (hand.getItem() == AC_Item.itemLantern)
 			{
 			//	System.out.println("Fuel Counter " + fuelCounter);
 				fuelCounter++;
 
-				if (hand.getItem() == MainRegistry.itemLantern && fuelCounter == 300)
+				if (hand.getItem() == AC_Item.itemLantern && fuelCounter == 300)
 				{
 					fuelCounter = 0;
 				}
 
-				if (hand.getItem() == MainRegistry.itemLantern && fuelCounter == 299 && AC_TickHandler.value < 100)
+				if (hand.getItem() == AC_Item.itemLantern && fuelCounter == 299 && AC_TickHandler.value < 100)
 				{
 					AC_TickHandler.value += 1;
 					hand.damageItem(1, entityPlayer);

@@ -6,14 +6,14 @@ import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import arcticraft.blocks.AC_Block;
 import arcticraft.helpers.AC_WorldGenHelpers;
-import arcticraft.main.MainRegistry;
 
 public class AC_GenIceberg extends WorldGenerator
 {
 	protected int[] GetValidSpawnBlocks() {
 		return new int[] {
-			MainRegistry.acWaterStill.blockID
+				AC_Block.acWaterStill.blockID
 		};
 	}
 

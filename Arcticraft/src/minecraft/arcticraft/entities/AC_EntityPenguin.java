@@ -17,7 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import arcticraft.main.MainRegistry;
+import arcticraft.items.AC_Item;
 
 public class AC_EntityPenguin extends EntityAnimal
 {
@@ -25,7 +25,6 @@ public class AC_EntityPenguin extends EntityAnimal
 	public AC_EntityPenguin(World world)
 	{
 		super(world);
-		this.texture = "/mods/AC/textures/mobs/penguin.png";
 		this.setSize(0.9F, 0.9F); // this sets the hit area of the mob
 
 		tasks.addTask(0, new EntityAISwimming(this));
@@ -45,12 +44,12 @@ public class AC_EntityPenguin extends EntityAnimal
 
 	public void writeEntityToNBT(NBTTagCompound nbttagcompound)
 	{
-		super.writeEntityToNBT(nbttagcompound); // this saves the mob to disk
+		super.writeEntityToNBT(nbttagcompound); 
 	}
 
 	public void readEntityFromNBT(NBTTagCompound nbttagcompound)
 	{
-		super.readEntityFromNBT(nbttagcompound); // this loads the mob from disk
+		super.readEntityFromNBT(nbttagcompound); 
 	}
 
 	/**
@@ -86,16 +85,10 @@ public class AC_EntityPenguin extends EntityAnimal
 		return 0.4F;
 	}
 
-	@Override
-	public int getMaxHealth()
-	{
-		return 10;
-	}
 
 	public AC_EntityPenguin func_90012_b(EntityAgeable par1EntityAgeable)
 	{
 		AC_EntityPenguin entitypenguin = new AC_EntityPenguin(this.worldObj);
-		entitypenguin.initCreature();
 		return entitypenguin;
 	}
 
@@ -106,14 +99,14 @@ public class AC_EntityPenguin extends EntityAnimal
 
         for (var4 = 0; var4 < var3; ++var4)
         {
-            this.dropItem(MainRegistry.penguinMeat.itemID, 1);
+            this.dropItem(AC_Item.penguinMeat.itemID, 1);
         }
 
         var3 = this.rand.nextInt(3 + par2);
 
         for (var4 = 0; var4 < var3; ++var4)
         {
-            this.dropItem(MainRegistry.penguinFeather.itemID, 2);
+            this.dropItem(AC_Item.penguinFeather.itemID, 2);
         }
     }
 	

@@ -1,9 +1,10 @@
 package arcticraft.entities;
 
-import net.minecraft.block.BlockCloth;
+import net.minecraft.block.BlockColored;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIFollowOwner;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -16,7 +17,10 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAITargetNonTamed;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +33,6 @@ import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import arcticraft.main.MainRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -51,24 +54,38 @@ public class AC_EntityHusky extends EntityTameable
     public AC_EntityHusky(World par1World)
     {
         super(par1World);
-        this.texture = "/mods/AC/textures/mobs/husky.png";
         this.setSize(0.6F, 0.8F);
-        this.moveSpeed = 0.3F;
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
         this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
-        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, this.moveSpeed, true));
-        this.tasks.addTask(5, new EntityAIFollowOwner(this, this.moveSpeed, 10.0F, 2.0F));
-        this.tasks.addTask(6, new EntityAIMate(this, this.moveSpeed));
-        this.tasks.addTask(7, new EntityAIWander(this, this.moveSpeed));
+        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0D, true));
+        this.tasks.addTask(5, new EntityAIFollowOwner(this, 1.0D, 10.0F, 2.0F));
+        this.tasks.addTask(6, new EntityAIMate(this, 1.0D));
+        this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(8, new AC_EntityAIHuskyBeg(this, 8.0F));
         this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(9, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(4, new EntityAITargetNonTamed(this, EntitySheep.class, 16.0F, 200, false));
+        this.targetTasks.addTask(4, new EntityAITargetNonTamed(this, EntitySheep.class, 200, false));
+        this.setTamed(false);
+    }
+
+    protected void func_110147_ax()
+    {
+        super.func_110147_ax();
+        this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.30000001192092896D);
+
+        if (this.isTamed())
+        {
+            this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(20.0D);
+        }
+        else
+        {
+            this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(8.0D);
+        }
     }
 
     /**
@@ -82,11 +99,15 @@ public class AC_EntityHusky extends EntityTameable
     /**
      * Sets the active target the Task system uses for tracking
      */
-    public void setAttackTarget(EntityLiving par1EntityLiving)
+    public void setAttackTarget(EntityLivingBase par1EntityLivingBase)
     {
-        super.setAttackTarget(par1EntityLiving);
+        super.setAttackTarget(par1EntityLivingBase);
 
-        if (par1EntityLiving instanceof EntityPlayer)
+        if (par1EntityLivingBase == null)
+        {
+            this.setAngry(false);
+        }
+        else if (!this.isTamed())
         {
             this.setAngry(true);
         }
@@ -97,20 +118,15 @@ public class AC_EntityHusky extends EntityTameable
      */
     protected void updateAITick()
     {
-        this.dataWatcher.updateObject(18, Integer.valueOf(this.getHealth()));
-    }
-
-    public int getMaxHealth()
-    {
-        return this.isTamed() ? 20 : 8;
+        this.dataWatcher.updateObject(18, Float.valueOf(this.func_110143_aJ()));
     }
 
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(18, new Integer(this.getHealth()));
+        this.dataWatcher.addObject(18, new Float(this.func_110143_aJ()));
         this.dataWatcher.addObject(19, new Byte((byte)0));
-        this.dataWatcher.addObject(20, new Byte((byte)BlockCloth.getBlockFromDye(1)));
+        this.dataWatcher.addObject(20, new Byte((byte)BlockColored.getBlockFromDye(1)));
     }
 
     /**
@@ -119,16 +135,6 @@ public class AC_EntityHusky extends EntityTameable
     protected void playStepSound(int par1, int par2, int par3, int par4)
     {
         this.playSound("mob.wolf.step", 0.15F, 1.0F);
-    }
-
-    @SideOnly(Side.CLIENT)
-
-    /**
-     * Returns the texture's file path as a String.
-     */
-    public String getTexture()
-    {
-        return this.isTamed() ? "/mods/AC/textures/mobs/husky_tamed.png" : (this.isAngry() ? "/mods/AC/textures/mobs/husky_angry.png" : super.getTexture());
     }
 
     /**
@@ -156,19 +162,11 @@ public class AC_EntityHusky extends EntityTameable
     }
 
     /**
-     * Determines if an entity can be despawned, used on idle far away entities
-     */
-    protected boolean canDespawn()
-    {
-        return this.isAngry();
-    }
-
-    /**
      * Returns the sound this mob makes while it's alive.
      */
     protected String getLivingSound()
     {
-        return this.isAngry() ? "mob.wolf.growl" : (this.rand.nextInt(3) == 0 ? (this.isTamed() && this.dataWatcher.getWatchableObjectInt(18) < 10 ? "mob.wolf.whine" : "mob.wolf.panting") : "mob.wolf.bark");
+        return this.isAngry() ? "mob.wolf.growl" : (this.rand.nextInt(3) == 0 ? (this.isTamed() && this.dataWatcher.func_111145_d(18) < 10.0F ? "mob.wolf.whine" : "mob.wolf.panting") : "mob.wolf.bark");
     }
 
     /**
@@ -338,7 +336,7 @@ public class AC_EntityHusky extends EntityTameable
     /**
      * Called when the entity is attacked.
      */
-    public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
+    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
     {
         if (this.isEntityInvulnerable())
         {
@@ -351,7 +349,7 @@ public class AC_EntityHusky extends EntityTameable
 
             if (entity != null && !(entity instanceof EntityPlayer) && !(entity instanceof EntityArrow))
             {
-                par2 = (par2 + 1) / 2;
+                par2 = (par2 + 1.0F) / 2.0F;
             }
 
             return super.attackEntityFrom(par1DamageSource, par2);
@@ -361,7 +359,21 @@ public class AC_EntityHusky extends EntityTameable
     public boolean attackEntityAsMob(Entity par1Entity)
     {
         int i = this.isTamed() ? 4 : 2;
-        return par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), i);
+        return par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float)i);
+    }
+
+    public void setTamed(boolean par1)
+    {
+        super.setTamed(par1);
+
+        if (par1)
+        {
+            this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(20.0D);
+        }
+        else
+        {
+            this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(8.0D);
+        }
     }
 
     /**
@@ -379,14 +391,14 @@ public class AC_EntityHusky extends EntityTameable
                 {
                     ItemFood itemfood = (ItemFood)Item.itemsList[itemstack.itemID];
 
-                    if (itemfood.isWolfsFavoriteMeat() && this.dataWatcher.getWatchableObjectInt(18) < 20)
+                    if (itemfood.isWolfsFavoriteMeat() && this.dataWatcher.func_111145_d(18) < 20.0F)
                     {
                         if (!par1EntityPlayer.capabilities.isCreativeMode)
                         {
                             --itemstack.stackSize;
                         }
 
-                        this.heal(itemfood.getHealAmount());
+                        this.heal((float)itemfood.getHealAmount());
 
                         if (itemstack.stackSize <= 0)
                         {
@@ -398,7 +410,7 @@ public class AC_EntityHusky extends EntityTameable
                 }
                 else if (itemstack.itemID == Item.dyePowder.itemID)
                 {
-                    int i = BlockCloth.getBlockFromDye(itemstack.getItemDamage());
+                    int i = BlockColored.getBlockFromDye(itemstack.getItemDamage());
 
                     if (i != this.getCollarColor())
                     {
@@ -414,14 +426,16 @@ public class AC_EntityHusky extends EntityTameable
                 }
             }
 
-            if (par1EntityPlayer.username.equalsIgnoreCase(this.getOwnerName()) && !this.worldObj.isRemote && !this.isBreedingItem(itemstack))
+            if (par1EntityPlayer.getCommandSenderName().equalsIgnoreCase(this.getOwnerName()) && !this.worldObj.isRemote && !this.isBreedingItem(itemstack))
             {
                 this.aiSit.setSitting(!this.isSitting());
                 this.isJumping = false;
                 this.setPathToEntity((PathEntity)null);
+                this.setTarget((Entity)null);
+                this.setAttackTarget((EntityLivingBase)null);
             }
         }
-        else if (itemstack != null && itemstack.itemID == MainRegistry.penguinMeat.itemID && !this.isAngry())
+        else if (itemstack != null && itemstack.itemID == Item.bone.itemID && !this.isAngry())
         {
             if (!par1EntityPlayer.capabilities.isCreativeMode)
             {
@@ -439,10 +453,10 @@ public class AC_EntityHusky extends EntityTameable
                 {
                     this.setTamed(true);
                     this.setPathToEntity((PathEntity)null);
-                    this.setAttackTarget((EntityLiving)null);
+                    this.setAttackTarget((EntityLivingBase)null);
                     this.aiSit.setSitting(true);
-                    this.setEntityHealth(20);
-                    this.setOwner(par1EntityPlayer.username);
+                    this.setEntityHealth(20.0F);
+                    this.setOwner(par1EntityPlayer.getCommandSenderName());
                     this.playTameEffect(true);
                     this.worldObj.setEntityState(this, (byte)7);
                 }
@@ -477,7 +491,7 @@ public class AC_EntityHusky extends EntityTameable
     @SideOnly(Side.CLIENT)
     public float getTailRotation()
     {
-        return this.isAngry() ? 1.5393804F : (this.isTamed() ? (0.55F - (float)(20 - this.dataWatcher.getWatchableObjectInt(18)) * 0.02F) * (float)Math.PI : ((float)Math.PI / 5F));
+        return this.isAngry() ? 1.5393804F : (this.isTamed() ? (0.55F - (20.0F - this.dataWatcher.func_111145_d(18)) * 0.02F) * (float)Math.PI : ((float)Math.PI / 5F));
     }
 
     /**
@@ -557,8 +571,6 @@ public class AC_EntityHusky extends EntityTameable
 
     public void func_70918_i(boolean par1)
     {
-        byte b0 = this.dataWatcher.getWatchableObjectByte(19);
-
         if (par1)
         {
             this.dataWatcher.updateObject(19, Byte.valueOf((byte)1));
@@ -596,6 +608,36 @@ public class AC_EntityHusky extends EntityTameable
     public boolean func_70922_bv()
     {
         return this.dataWatcher.getWatchableObjectByte(19) == 1;
+    }
+
+    /**
+     * Determines if an entity can be despawned, used on idle far away entities
+     */
+    protected boolean canDespawn()
+    {
+        return !this.isTamed() && this.ticksExisted > 2400;
+    }
+
+    public boolean func_142018_a(EntityLivingBase par1EntityLivingBase, EntityLivingBase par2EntityLivingBase)
+    {
+        if (!(par1EntityLivingBase instanceof EntityCreeper) && !(par1EntityLivingBase instanceof EntityGhast))
+        {
+            if (par1EntityLivingBase instanceof AC_EntityHusky)
+            {
+                AC_EntityHusky entitywolf = (AC_EntityHusky)par1EntityLivingBase;
+
+                if (entitywolf.isTamed() && entitywolf.func_130012_q() == par2EntityLivingBase)
+                {
+                    return false;
+                }
+            }
+
+            return par1EntityLivingBase instanceof EntityPlayer && par2EntityLivingBase instanceof EntityPlayer && !((EntityPlayer)par2EntityLivingBase).func_96122_a((EntityPlayer)par1EntityLivingBase) ? false : !(par1EntityLivingBase instanceof EntityHorse) || !((EntityHorse)par1EntityLivingBase).func_110248_bS();
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public EntityAgeable createChild(EntityAgeable par1EntityAgeable)

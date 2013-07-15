@@ -6,7 +6,7 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTwardsRestriction;
+import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
@@ -29,24 +29,16 @@ public class AC_EntityPirate extends EntityMob
 	public AC_EntityPirate(World world)
 	{
 		super(world);
-		this.texture = "/mods/AC/textures/mobs/pirate.png";
-		this.moveSpeed = 0.8F;
 		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, this.moveSpeed, false));
-		this.tasks.addTask(4, new EntityAIMoveTwardsRestriction(this, this.moveSpeed));
-		this.tasks.addTask(6, new EntityAIWander(this, this.moveSpeed));
+		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
+		this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D));
+		this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 16.0F, 0, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class,  16, true));
 	}
 
-	public AC_EntityPirate(World world, double d, double d1, double d2)
-	{
-		super(world);
-		this.texture = "/mods/AC/textures/mobs/pirate.png";
-		this.moveSpeed = 0.8F;
-	}
 	
 
 	public boolean canDespawn()
@@ -54,11 +46,7 @@ public class AC_EntityPirate extends EntityMob
 		return false;
 	}
 	
-	@Override
-	public int getMaxHealth()
-	{
-		return 14;
-	}
+
 	public int getAttackStrength()
 	{
 		return 4;
@@ -145,7 +133,7 @@ public class AC_EntityPirate extends EntityMob
 	
 	public ItemStack getHeldItem()
 	{
-		return new ItemStack(Item.swordSteel, 1);
+		return new ItemStack(Item.swordIron, 1);
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()

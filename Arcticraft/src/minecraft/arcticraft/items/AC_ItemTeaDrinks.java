@@ -22,7 +22,7 @@ public class AC_ItemTeaDrinks extends ItemFood
 {
 
 	private static final String [] teaFlavours =
-		{"AC:red_tea", "AC:hot_chocolate", "AC:floran_tea", "AC:hot_chocolate_cold"};
+		{"ac:red_tea", "ac:hot_chocolate", "ac:floran_tea", "ac:hot_chocolate_cold"};
 	@SideOnly(Side.CLIENT)
 	private Icon [] teaField;
 
@@ -130,7 +130,7 @@ public class AC_ItemTeaDrinks extends ItemFood
 			}
 		}
 
-		return new ItemStack(MainRegistry.emptyCup);
+		return new ItemStack(AC_Item.emptyCup);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -148,7 +148,7 @@ public class AC_ItemTeaDrinks extends ItemFood
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void updateIcons(IconRegister par1IconRegister)
+	public void registerIcons(IconRegister par1IconRegister)
 	{
 		this.teaField = new Icon [teaFlavours.length];
 

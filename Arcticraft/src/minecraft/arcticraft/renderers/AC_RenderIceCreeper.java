@@ -3,8 +3,10 @@ package arcticraft.renderers;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelCreeper;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
@@ -15,6 +17,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class AC_RenderIceCreeper extends RenderLiving
 {
+    private static final ResourceLocation field_110831_a = new ResourceLocation("ac", "textures/entity/creeper/creeper_armor.png");
+    private static final ResourceLocation field_110830_f = new ResourceLocation("ac", "textures/mobs/ice_creeper.png");
+
     /** The creeper model. */
     private ModelBase creeperModel = new ModelCreeper(2.0F);
 
@@ -26,9 +31,9 @@ public class AC_RenderIceCreeper extends RenderLiving
     /**
      * Updates creeper scale in prerender callback
      */
-    protected void updateCreeperScale(AC_EntityIceCreeper par1EntityIceCreeper, float par2)
+    protected void updateCreeperScale(AC_EntityIceCreeper par1AC_EntityIceCreeper, float par2)
     {
-        float f1 = par1EntityIceCreeper.getCreeperFlashIntensity(par2);
+        float f1 = par1AC_EntityIceCreeper.getCreeperFlashIntensity(par2);
         float f2 = 1.0F + MathHelper.sin(f1 * 100.0F) * f1 * 0.01F;
 
         if (f1 < 0.0F)
@@ -51,9 +56,9 @@ public class AC_RenderIceCreeper extends RenderLiving
     /**
      * Updates color multiplier based on creeper state called by getColorMultiplier
      */
-    protected int updateCreeperColorMultiplier(AC_EntityIceCreeper par1EntityIceCreeper, float par2, float par3)
+    protected int updateCreeperColorMultiplier(AC_EntityIceCreeper par1AC_EntityIceCreeper, float par2, float par3)
     {
-        float f2 = par1EntityIceCreeper.getCreeperFlashIntensity(par3);
+        float f2 = par1AC_EntityIceCreeper.getCreeperFlashIntensity(par3);
 
         if ((int)(f2 * 10.0F) % 2 == 0)
         {
@@ -83,11 +88,11 @@ public class AC_RenderIceCreeper extends RenderLiving
     /**
      * A method used to render a creeper's powered form as a pass model.
      */
-    protected int renderCreeperPassModel(AC_EntityIceCreeper par1EntityIceCreeper, int par2, float par3)
+    protected int renderCreeperPassModel(AC_EntityIceCreeper par1AC_EntityIceCreeper, int par2, float par3)
     {
-        if (par1EntityIceCreeper.getPowered())
+        if (par1AC_EntityIceCreeper.getPowered())
         {
-            if (par1EntityIceCreeper.getHasActivePotion())
+            if (par1AC_EntityIceCreeper.isInvisible())
             {
                 GL11.glDepthMask(false);
             }
@@ -98,8 +103,8 @@ public class AC_RenderIceCreeper extends RenderLiving
 
             if (par2 == 1)
             {
-                float f1 = (float)par1EntityIceCreeper.ticksExisted + par3;
-                this.loadTexture("/armor/power.png");
+                float f1 = (float)par1AC_EntityIceCreeper.ticksExisted + par3;
+                this.func_110776_a(field_110831_a);
                 GL11.glMatrixMode(GL11.GL_TEXTURE);
                 GL11.glLoadIdentity();
                 float f2 = f1 * 0.01F;
@@ -128,38 +133,48 @@ public class AC_RenderIceCreeper extends RenderLiving
         return -1;
     }
 
-    protected int func_77061_b(AC_EntityIceCreeper par1EntityIceCreeper, int par2, float par3)
+    protected int func_77061_b(AC_EntityIceCreeper par1AC_EntityIceCreeper, int par2, float par3)
     {
         return -1;
+    }
+
+    protected ResourceLocation func_110829_a(AC_EntityIceCreeper par1AC_EntityIceCreeper)
+    {
+        return field_110830_f;
     }
 
     /**
      * Allows the render to do any OpenGL state modifications necessary before the model is rendered. Args:
      * entityLiving, partialTickTime
      */
-    protected void preRenderCallback(EntityLiving par1EntityLiving, float par2)
+    protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2)
     {
-        this.updateCreeperScale((AC_EntityIceCreeper)par1EntityLiving, par2);
+        this.updateCreeperScale((AC_EntityIceCreeper)par1EntityLivingBase, par2);
     }
 
     /**
      * Returns an ARGB int color back. Args: entityLiving, lightBrightness, partialTickTime
      */
-    protected int getColorMultiplier(EntityLiving par1EntityLiving, float par2, float par3)
+    protected int getColorMultiplier(EntityLivingBase par1EntityLivingBase, float par2, float par3)
     {
-        return this.updateCreeperColorMultiplier((AC_EntityIceCreeper)par1EntityLiving, par2, par3);
+        return this.updateCreeperColorMultiplier((AC_EntityIceCreeper)par1EntityLivingBase, par2, par3);
     }
 
     /**
      * Queries whether should render the specified pass or not.
      */
-    protected int shouldRenderPass(EntityLiving par1EntityLiving, int par2, float par3)
+    protected int shouldRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
     {
-        return this.renderCreeperPassModel((AC_EntityIceCreeper)par1EntityLiving, par2, par3);
+        return this.renderCreeperPassModel((AC_EntityIceCreeper)par1EntityLivingBase, par2, par3);
     }
 
-    protected int inheritRenderPass(EntityLiving par1EntityLiving, int par2, float par3)
+    protected int inheritRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
     {
-        return this.func_77061_b((AC_EntityIceCreeper)par1EntityLiving, par2, par3);
+        return this.func_77061_b((AC_EntityIceCreeper)par1EntityLivingBase, par2, par3);
+    }
+
+    protected ResourceLocation func_110775_a(Entity par1Entity)
+    {
+        return this.func_110829_a((AC_EntityIceCreeper)par1Entity);
     }
 }

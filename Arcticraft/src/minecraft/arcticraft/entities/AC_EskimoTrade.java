@@ -2,7 +2,7 @@ package arcticraft.entities;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
-import arcticraft.main.MainRegistry;
+import arcticraft.items.AC_Item;
 
 public class AC_EskimoTrade {
 	
@@ -15,7 +15,7 @@ public class AC_EskimoTrade {
 	}
 	
 	public static boolean removeGemsFromInventory(InventoryPlayer inv, int amount) {
-		int gemID = MainRegistry.eriumGem.itemID;
+		int gemID = AC_Item.eriumGem.itemID;
 		
 		if (getGemsFromInventory(inv) < amount) {
 			return false;
@@ -35,7 +35,7 @@ public class AC_EskimoTrade {
 	}
 	
 	public static int getGemsFromInventory(InventoryPlayer inv) {
-		int gemID = MainRegistry.eriumGem.itemID;
+		int gemID = AC_Item.eriumGem.itemID;
 		int stackSize = 0;
 		
 		for (int j = 0; j < inv.mainInventory.length; ++j) {

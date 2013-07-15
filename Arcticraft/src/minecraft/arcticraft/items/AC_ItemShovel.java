@@ -14,31 +14,4 @@ public class AC_ItemShovel extends ItemSpade{
 		// TODO Auto-generated constructor stub
 	}
 
-	  @SideOnly(Side.CLIENT)
-	    public void updateIcons(IconRegister par1IconRegister)
-	    {
-		  if(this == MainRegistry.TekkiteShovel){
-	        this.iconIndex = par1IconRegister.registerIcon("AC:tekkiteShovel");
-	    }
-		  
-		  if(this == MainRegistry.EscariaShovel){
-		        this.iconIndex = par1IconRegister.registerIcon("AC:escariaShovel");
-		    }
-		  
-		  if(this == MainRegistry.RigentemShovel){
-		        this.iconIndex = par1IconRegister.registerIcon("AC:rigentemShovel");
-		    }
-		  
-		  if(this == MainRegistry.GlacianShovel){
-		        this.iconIndex = par1IconRegister.registerIcon("AC:glaciansShovel");
-		    }
-		  
-		  if(this == MainRegistry.ArcticStoneShovel){
-		        this.iconIndex = par1IconRegister.registerIcon("AC:iceShovel");
-		    }
-		  
-		  if(this == MainRegistry.FrostWoodShovel){
-		        this.iconIndex = par1IconRegister.registerIcon("AC:frostWoodShovel");
-		    }
-	    }
 }

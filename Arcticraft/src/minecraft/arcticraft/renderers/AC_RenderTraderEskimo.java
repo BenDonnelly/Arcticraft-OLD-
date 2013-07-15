@@ -3,11 +3,15 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_EntityTraderEskimo;
 
 
 public class AC_RenderTraderEskimo extends RenderLiving
 {
+	
+	private static final ResourceLocation trader = new ResourceLocation("ac", "textures/mobs/eskimo_trader.png");
+
 
     public AC_RenderTraderEskimo(ModelBase modelbase, float f)
     {
@@ -31,4 +35,10 @@ public class AC_RenderTraderEskimo extends RenderLiving
     {
     	func_177_a((AC_EntityTraderEskimo)entity, d, d1, d2, f, f1);
     }
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity)
+	{
+		return trader;
+	}
 }

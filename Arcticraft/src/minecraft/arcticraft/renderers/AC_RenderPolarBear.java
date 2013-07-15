@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
@@ -13,6 +14,8 @@ public class AC_RenderPolarBear extends RenderLiving
 {
 	/** Scale of the model to use */
 	private float scale;
+	private static final ResourceLocation polarBear = new ResourceLocation("ac", "textures/mobs/polar_bear.png");
+
 
 	public AC_RenderPolarBear(ModelBase par1ModelBase, float par2, float par3)
 	{
@@ -56,5 +59,11 @@ public class AC_RenderPolarBear extends RenderLiving
 	public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9)
 	{
 		this.renderPolarBear((AC_EntityPolarBear)par1Entity, par2, par4, par6, par8, par9);
+	}
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity)
+	{
+		return polarBear;
 	}
 }

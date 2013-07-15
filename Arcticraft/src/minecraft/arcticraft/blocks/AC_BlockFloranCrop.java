@@ -86,7 +86,7 @@ public class AC_BlockFloranCrop extends Block
 
 	protected boolean canThisPlantGrowOnThisBlockID(int par1)
 	{
-		return par1 == MainRegistry.tilledFrostField.blockID;
+		return par1 == AC_Block.tilledFrostField.blockID;
 	}
 
 	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
@@ -110,7 +110,7 @@ public class AC_BlockFloranCrop extends Block
 	/**
 	 * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
 	 */
-	 public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+	 public Icon getIcon(int par1, int par2)
     {
         if (par2 == 1)
         {
@@ -190,10 +190,6 @@ public class AC_BlockFloranCrop extends Block
 				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) + 1, 3);
 				System.out.println("Metadata: " + world.getBlockMetadata(x, y, z));
 			}
-//			else if (world.getBlockMetadata(x, y, z) == 3)
-//			{
-//				world.setBlockMetadataWithNotify(x, y, z, 0, 3);
-//			}
 		}
 	}
 
@@ -218,7 +214,7 @@ public class AC_BlockFloranCrop extends Block
 	 */
 	public int idPicked(World par1World, int par2, int par3, int par4)
 	{
-		return MainRegistry.floranBerry.itemID;
+		return AC_Block.floranBerry.itemID;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -232,7 +228,7 @@ public class AC_BlockFloranCrop extends Block
 
 		for (int i = 0; i < this.iconArray.length; ++i)
 		{
-			this.iconArray [i] = par1IconRegister.registerIcon("AC:floran_" + i);
+			this.iconArray [i] = par1IconRegister.registerIcon("ac:floran_" + i);
 		}
 	}
 

@@ -40,7 +40,7 @@ public class AC_GuiOptions extends GuiScreen
 		else if (button.id == 1)
 		{
 			mc.displayGuiScreen(new AC_GuiCoordinates());
-			mc.thePlayer.sendChatToPlayer("Type your desired X coordinate in the left box and the Y coordinate in the right.");
+			mc.thePlayer.addChatMessage("Type your desired X coordinate in the left box and the Y coordinate in the right.");
 		}
 		else if (button.id == 2)
 		{

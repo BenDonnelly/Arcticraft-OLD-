@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_EntityFrostGhost;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -11,6 +12,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class AC_RenderFrostGhost extends RenderLiving
 {
+	private static final ResourceLocation ghost = new ResourceLocation("ac", "textures/mobs/arctic_ghost.png");
+
+	
     public AC_RenderFrostGhost(ModelBase par1ModelBase, float par2)
     {
         super(par1ModelBase, par2);
@@ -36,4 +40,10 @@ public class AC_RenderFrostGhost extends RenderLiving
     {
         this.renderCow((AC_EntityFrostGhost)par1Entity, par2, par4, par6, par8, par9);
     }
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity)
+	{
+		return ghost;
+	}
 }

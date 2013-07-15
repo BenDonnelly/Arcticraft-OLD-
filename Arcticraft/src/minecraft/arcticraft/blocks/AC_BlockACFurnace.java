@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -17,7 +17,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
 import arcticraft.main.MainRegistry;
 import arcticraft.tile_entities.AC_TileEntityArcticFurnace;
 import cpw.mods.fml.relauncher.Side;
@@ -42,9 +41,9 @@ public class AC_BlockACFurnace extends BlockContainer
 	 */
 	private static boolean keepFurnaceInventory = false;
 	@SideOnly(Side.CLIENT)
-	private Icon field_94458_cO;
+	private Icon furnaceIconTop;
 	@SideOnly(Side.CLIENT)
-	private Icon field_94459_cP;
+	private Icon furnaceIconFront;
 
 	private Icon [] activeFace;
 	private Icon sideFace;
@@ -56,81 +55,60 @@ public class AC_BlockACFurnace extends BlockContainer
 	}
 
 	@Override
-	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entityLiving, ItemStack itemStack)
-	{
-		int direction = 0;
-		int facing = MathHelper.floor_double(entityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+	 public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
+    {
+        int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
-		if (facing == 0)
-		{
-			direction = ForgeDirection.NORTH.ordinal();
-		}
-		else if (facing == 1)
-		{
-			direction = ForgeDirection.EAST.ordinal();
-		}
-		else if (facing == 2)
-		{
-			direction = ForgeDirection.SOUTH.ordinal();
-		}
-		else if (facing == 3)
-		{
-			direction = ForgeDirection.WEST.ordinal();
-		}
+        if (l == 0)
+        {
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
+        }
 
-		if (entityLiving.rotationPitch > 65 && entityLiving.rotationPitch <= 90)
-		{
-			direction = ForgeDirection.UP.ordinal();
-		}
-		else if (entityLiving.rotationPitch < -65 && entityLiving.rotationPitch >= -90)
-		{
-			direction = ForgeDirection.DOWN.ordinal();
-		}
+        if (l == 1)
+        {
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
+        }
 
-		world.setBlockMetadataWithNotify(x, y, z, direction, 0);
-	}
+        if (l == 2)
+        {
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
+        }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public Icon getBlockTextureFromSideAndMetadata(int side, int meta)
-	{
-		if (side == 0)
-		{
-			return field_94458_cO;
-		}
-		if (side == 1)
-		{
-			return field_94458_cO;
-		}
-		if (side == meta)
-		{
-			return field_94459_cP;
-		}
-		else
-		{
-			return blockIcon;
+        if (l == 3)
+        {
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
+        }
 
-		}
-	}
+        if (par6ItemStack.hasDisplayName())
+        {
+            ((AC_TileEntityArcticFurnace)par1World.getBlockTileEntity(par2, par3, par4)).getInvName();
+        }
+    }
 
-	@SideOnly(Side.CLIENT)
-	/**
-	 * When this method is called, your block should register all the icons it needs with the given IconRegister. This
-	 * is the only chance you get to register icons.
-	 */
-	public void registerIcons(IconRegister par1IconRegister)
-	{
-		this.blockIcon = par1IconRegister.registerIcon("AC:ac_furnace_side");
-		this.field_94459_cP = par1IconRegister.registerIcon(this.isActive ? "AC:ac_furnace_front_on" : "AC:ac_furnace_front_off");
-		this.field_94458_cO = par1IconRegister.registerIcon("AC:ac_furnace_top");
-	}
+	  public Icon getIcon(int par1, int par2)
+	    {
+	        return par1 == 1 ? this.furnaceIconTop : (par1 == 0 ? this.furnaceIconTop : (par1 != par2 ? this.blockIcon : this.furnaceIconFront));
+	    }
+
+	    @SideOnly(Side.CLIENT)
+
+	    /**
+	     * When this method is called, your block should register all the icons it needs with the given IconRegister. This
+	     * is the only chance you get to register icons.
+	     */
+	    public void registerIcons(IconRegister par1IconRegister)
+	    {
+	        this.blockIcon = par1IconRegister.registerIcon("ac:ac_furnace_side");
+	        this.furnaceIconFront = par1IconRegister.registerIcon(this.isActive ? "ac:ac_furnace_front_on" : "ac:ac_furnace_front_off");
+	        this.furnaceIconTop = par1IconRegister.registerIcon("ac:ac_furnace_top");
+	    }
 
 	/**
 	 * Returns the ID of the items to drop on destruction.
 	 */
 	public int idDropped(int par1, Random par2Random, int par3)
 	{
-		return MainRegistry.arcticFurnaceIdle.blockID;
+		return  AC_Block.arcticFurnaceIdle.blockID;
 	}
 
 	/**
@@ -210,11 +188,11 @@ public class AC_BlockACFurnace extends BlockContainer
 
 		if (par0)
 		{
-			par1World.setBlock(par2, par3, par4, MainRegistry.arcticFurnaceBurning.blockID);
+			par1World.setBlock(par2, par3, par4,  AC_Block.arcticFurnaceBurning.blockID);
 		}
 		else
 		{
-			par1World.setBlock(par2, par3, par4, MainRegistry.arcticFurnaceIdle.blockID);
+			par1World.setBlock(par2, par3, par4,  AC_Block.arcticFurnaceIdle.blockID);
 		}
 
 		keepFurnaceInventory = false;
@@ -344,8 +322,8 @@ public class AC_BlockACFurnace extends BlockContainer
 	 * used instead of the redstone signal strength when this block inputs to a
 	 * comparator.
 	 */
-	public int getComparatorInputOverride(World par1World, int par2, int par3, int par4, int par5)
-	{
-		return Container.func_94526_b((IInventory) par1World.getBlockTileEntity(par2, par3, par4));
-	}
+	 public int getComparatorInputOverride(World par1World, int par2, int par3, int par4, int par5)
+	    {
+	        return Container.calcRedstoneFromInventory((IInventory)par1World.getBlockTileEntity(par2, par3, par4));
+	    }
 }

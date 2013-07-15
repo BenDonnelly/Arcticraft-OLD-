@@ -14,10 +14,10 @@ public final class AC_BossStatus
     
     public static void func_82824_a(AC_IBossDisplayData par0IBossDisplayData, boolean par1)
     {
-        healthScale = (float)par0IBossDisplayData.getBossHealth() / (float)par0IBossDisplayData.getMaxHealth();
+        healthScale = par0IBossDisplayData.func_110143_aJ() / par0IBossDisplayData.func_110138_aP();
         statusBarLength = 100;
-        field_82825_d = par1;
         bossName = par0IBossDisplayData.getEntityName();
         isMiniBoss = par0IBossDisplayData.isMiniBoss();
+        field_82825_d = par1; 
     }
 }

@@ -3,6 +3,7 @@ package arcticraft.blocks;
 import java.util.Random;
 
 import net.minecraft.block.BlockFlower;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import arcticraft.gen.AC_GenFrostTrees;
@@ -20,7 +21,7 @@ public class AC_BlockFrostSapling extends BlockFlower
 
 	protected boolean canThisPlantGrowOnThisBlockID(int i, int j)
 	{
-		return i == MainRegistry.frostGrass.blockID;
+		return i == AC_Block.frostGrass.blockID;
 	}
 
 	public void updateTick(World world, int i, int j, int k, Random random)
@@ -59,4 +60,6 @@ public class AC_BlockFrostSapling extends BlockFlower
 	{
 		return i & 3;
 	}
+	
+	
 }

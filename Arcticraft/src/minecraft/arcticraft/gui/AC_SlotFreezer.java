@@ -6,7 +6,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
-import arcticraft.main.AC_FreezerRecipes;
+import arcticraft.recipes.AC_FreezerRecipes;
 
 public class AC_SlotFreezer extends Slot
 {

@@ -10,23 +10,22 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.common.ForgeDummyContainer;
+import arcticraft.blocks.AC_Block;
 import arcticraft.blocks.AC_BlockACFurnace;
+import arcticraft.items.AC_Item;
 import arcticraft.items.AC_ItemAxe;
 import arcticraft.items.AC_ItemHoe;
 import arcticraft.items.AC_ItemSword;
-import arcticraft.main.AC_FurnaceRecipes;
-import arcticraft.main.MainRegistry;
+import arcticraft.recipes.AC_FurnaceRecipes;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class AC_TileEntityArcticFurnace extends TileEntity implements ISidedInventory, net.minecraftforge.common.ISidedInventory
+public class AC_TileEntityArcticFurnace extends TileEntity implements ISidedInventory
 {
-    private static final int[] field_102010_d = new int[] {0};
-    private static final int[] field_102011_e = new int[] {2, 1};
-    private static final int[] field_102009_f = new int[] {1};
+    private static final int[] slots_top = new int[] {0};
+    private static final int[] slots_bottom = new int[] {2, 1};
+    private static final int[] slots_sides = new int[] {1};
 
     /**
      * The ItemStacks that hold the items currently being used in the furnace
@@ -382,10 +381,10 @@ public class AC_TileEntityArcticFurnace extends TileEntity implements ISidedInve
 
             if (item instanceof AC_ItemAxe && ((ItemTool) item).getToolMaterialName().equals("WOOD")) return 200;
             if (item instanceof AC_ItemSword && ((ItemSword) item).getToolMaterialName().equals("WOOD")) return 200;
-            if (item instanceof AC_ItemHoe && ((ItemHoe) item).func_77842_f().equals("WOOD")) return 200;
-            if (i == MainRegistry.frigus.itemID) return 1600;
-            if(i == MainRegistry.frostLog.blockID) return 1200;
-            if(i == MainRegistry.frostPlanks.blockID) return 300;
+            if (item instanceof AC_ItemHoe && ((ItemHoe) item).getMaterialName().equals("WOOD")) return 200;
+            if (i == AC_Item.frigus.itemID) return 1600;
+            if(i == AC_Block.frostLog.blockID) return 1200;
+            if(i == AC_Block.frostPlanks.blockID) return 300;
             return GameRegistry.getFuelValue(par0ItemStack);
         }
     }
@@ -413,7 +412,7 @@ public class AC_TileEntityArcticFurnace extends TileEntity implements ISidedInve
     /**
      * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
      */
-    public boolean isStackValidForSlot(int par1, ItemStack par2ItemStack)
+    public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack)
     {
         return par1 == 2 ? false : (par1 == 1 ? isItemFuel(par2ItemStack) : true);
     }
@@ -421,64 +420,19 @@ public class AC_TileEntityArcticFurnace extends TileEntity implements ISidedInve
     /**
      * Get the size of the side inventory.
      */
-    public int[] getSizeInventorySide(int par1)
+    public int[] getAccessibleSlotsFromSide(int par1)
     {
-        return par1 == 0 ? field_102011_e : (par1 == 1 ? field_102010_d : field_102009_f);
+        return par1 == 0 ? slots_bottom : (par1 == 1 ? slots_top : slots_sides);
     }
 
-    public boolean func_102007_a(int par1, ItemStack par2ItemStack, int par3)
+    public boolean canInsertItem(int par1, ItemStack par2ItemStack, int par3)
     {
-        return this.isStackValidForSlot(par1, par2ItemStack);
+        return this.isItemValidForSlot(par1, par2ItemStack);
     }
 
-    public boolean func_102008_b(int par1, ItemStack par2ItemStack, int par3)
+    public boolean canExtractItem(int par1, ItemStack par2ItemStack, int par3)
     {
         return par3 != 0 || par1 != 1 || par2ItemStack.itemID == Item.bucketEmpty.itemID;
     }
 
-    /***********************************************************************************
-     * This function is here for compatibilities sake, Modders should Check for
-     * Sided before ContainerWorldly, Vanilla Minecraft does not follow the sided standard
-     * that Modding has for a while.
-     *
-     * In vanilla:
-     *
-     *   Top: Ores
-     *   Sides: Fuel
-     *   Bottom: Output
-     *
-     * Standard Modding:
-     *   Top: Ores
-     *   Sides: Output
-     *   Bottom: Fuel
-     *
-     * The Modding one is designed after the GUI, the vanilla one is designed because its
-     * intended use is for the hopper, which logically would take things in from the top.
-     *
-     * This will possibly be removed in future updates, and make vanilla the definitive
-     * standard.
-     */
-
-    @Override
-    public int getStartInventorySide(ForgeDirection side)
-    {
-        if (ForgeDummyContainer.legacyFurnaceSides)
-        {
-            if (side == ForgeDirection.DOWN) return 1;
-            if (side == ForgeDirection.UP) return 0;
-            return 2;
-        }
-        else
-        {
-            if (side == ForgeDirection.DOWN) return 2;
-            if (side == ForgeDirection.UP) return 0;
-            return 1;
-        }
-    }
-
-    @Override
-    public int getSizeInventorySide(ForgeDirection side)
-    {
-        return 1;
-    }
 }

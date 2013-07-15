@@ -7,7 +7,7 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import arcticraft.gui.AC_SlotFreezer;
-import arcticraft.main.AC_FreezerRecipes;
+import arcticraft.recipes.AC_FreezerRecipes;
 import arcticraft.tile_entities.AC_TileEntityFreezer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

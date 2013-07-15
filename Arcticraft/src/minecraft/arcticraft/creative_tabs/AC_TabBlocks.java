@@ -1,7 +1,7 @@
 package arcticraft.creative_tabs;
 
 import net.minecraft.creativetab.CreativeTabs;
-import arcticraft.main.MainRegistry;
+import arcticraft.blocks.AC_Block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -12,7 +12,7 @@ public class AC_TabBlocks extends CreativeTabs {
 
 	@SideOnly(Side.CLIENT)
 	public int getTabIconItemIndex() {
-		return MainRegistry.frostGrass.blockID; // this is the item that is
+		return AC_Block.frostGrass.blockID; // this is the item that is
 												// displayed on your tab's icon
 	}
 

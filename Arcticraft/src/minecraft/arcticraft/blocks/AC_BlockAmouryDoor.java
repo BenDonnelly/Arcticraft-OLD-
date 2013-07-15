@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import arcticraft.main.MainRegistry;
+import arcticraft.items.AC_Item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -17,7 +17,7 @@ public class AC_BlockAmouryDoor extends BlockDoor
 {
 
 	private static final String [] field_94467_a = new String []
-		{"AC:amoury_door_bottom", "AC:amoury_door_top"};
+		{"ac:amoury_door_bottom", "ac:amoury_door_top"};
 	private final int field_94465_b;
 	@SideOnly(Side.CLIENT)
 	private Icon [] iconArray;
@@ -37,7 +37,7 @@ public class AC_BlockAmouryDoor extends BlockDoor
 	/**
 	 * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
 	 */
-	public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+	public Icon getIcon(int par1, int par2)
 	{
 		return this.iconArray [this.field_94465_b];
 	}
@@ -113,7 +113,7 @@ public class AC_BlockAmouryDoor extends BlockDoor
 	{
 		ItemStack hand = par5EntityPlayer.getCurrentItemOrArmor(0);
 
-		if (par5EntityPlayer.getCurrentItemOrArmor(0) != null && hand.getItem() == MainRegistry.amouryKey)
+		if (par5EntityPlayer.getCurrentItemOrArmor(0) != null && hand.getItem() == AC_Item.amouryKey)
 		{
 			int i1 = this.getFullMetadata(par1World, par2, par3, par4);
 			int j1 = i1 & 7;
@@ -132,7 +132,7 @@ public class AC_BlockAmouryDoor extends BlockDoor
 
 			par1World.playAuxSFXAtEntity(par5EntityPlayer, 1003, par2, par3, par4, 0);
 			hand.stackSize--;
-			par5EntityPlayer.sendChatToPlayer("The key seems to disintegrate...");
+			par5EntityPlayer.addChatMessage("The key seems to disintegrate...");
 		}
 		
 		return true;

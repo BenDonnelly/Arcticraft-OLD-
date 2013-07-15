@@ -8,8 +8,9 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.boss.BossStatus;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
@@ -22,13 +23,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class AC_RenderDragon extends RenderLiving
 {
     /**
-     * Reloads the dragon model if not equal to 4. Presumably a leftover debugging field.
-     */
+* Reloads the dragon model if not equal to 4. Presumably a leftover debugging field.
+*/
     private static int updateModelState = 0;
 
     /** An instance of the dragon model in RenderDragon */
     protected AC_ModelDragon modelDragon;
-
+    private static final ResourceLocation field_110842_f = new ResourceLocation("textures/entity/enderdragon/dragon_exploding.png");
+    private static final ResourceLocation field_110845_h = new ResourceLocation("textures/entity/enderdragon/dragon_eyes.png");
+    private static final ResourceLocation field_110844_k = new ResourceLocation("textures/entity/enderdragon/dragon.png");
+    
     public AC_RenderDragon()
     {
         super(new AC_ModelDragon(0.0F), 0.5F);
@@ -37,8 +41,8 @@ public class AC_RenderDragon extends RenderLiving
     }
 
     /**
-     * Used to rotate the dragon as a whole in RenderDragon. It's called in the rotateCorpse method.
-     */
+* Used to rotate the dragon as a whole in RenderDragon. It's called in the rotateCorpse method.
+*/
     protected void rotateDragonBody(AC_EntityDragon par1AC_EntityDragon, float par2, float par3, float par4)
     {
         float f3 = (float)par1AC_EntityDragon.getMovementOffsets(7, par4)[0];
@@ -62,8 +66,8 @@ public class AC_RenderDragon extends RenderLiving
     }
 
     /**
-     * Renders the dragon model. Called by renderModel.
-     */
+* Renders the dragon model. Called by renderModel.
+*/
     protected void renderDragonModel(AC_EntityDragon par1AC_EntityDragon, float par2, float par3, float par4, float par5, float par6, float par7)
     {
         if (par1AC_EntityDragon.deathTicks > 0)
@@ -72,13 +76,13 @@ public class AC_RenderDragon extends RenderLiving
             GL11.glDepthFunc(GL11.GL_LEQUAL);
             GL11.glEnable(GL11.GL_ALPHA_TEST);
             GL11.glAlphaFunc(GL11.GL_GREATER, f6);
-            this.loadTexture("/mob/enderdragon/shuffle.png");
+            this.func_110776_a(field_110842_f);
             this.mainModel.render(par1AC_EntityDragon, par2, par3, par4, par5, par6, par7);
             GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
             GL11.glDepthFunc(GL11.GL_EQUAL);
         }
 
-        this.loadTexture(par1AC_EntityDragon.getTexture());
+        this.func_110777_b(par1AC_EntityDragon);
         this.mainModel.render(par1AC_EntityDragon, par2, par3, par4, par5, par6, par7);
 
         if (par1AC_EntityDragon.hurtTime > 0)
@@ -161,8 +165,8 @@ public class AC_RenderDragon extends RenderLiving
     }
 
     /**
-     * Renders the overlay for glowing eyes and the mouth. Called by shouldRenderPass.
-     */
+* Renders the overlay for glowing eyes and the mouth. Called by shouldRenderPass.
+*/
     protected int renderGlow(AC_EntityDragon par1AC_EntityDragon, int par2, float par3)
     {
         if (par2 == 1)
@@ -176,7 +180,7 @@ public class AC_RenderDragon extends RenderLiving
         }
         else
         {
-            this.loadTexture("/mob/enderdragon/ender_eyes.png");
+            this.func_110776_a(field_110845_h);
             float f1 = 1.0F;
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glDisable(GL11.GL_ALPHA_TEST);
@@ -192,33 +196,40 @@ public class AC_RenderDragon extends RenderLiving
             GL11.glColor4f(1.0F, 1.0F, 1.0F, f1);
             return 1;
         }
+    
     }
 
     /**
      * Queries whether should render the specified pass or not.
      */
-    protected int shouldRenderPass(EntityLiving par1EntityLiving, int par2, float par3)
+    protected int shouldRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
     {
-        return this.renderGlow((AC_EntityDragon)par1EntityLiving, par2, par3);
+        return this.renderGlow((AC_EntityDragon)par1EntityLivingBase, par2, par3);
     }
 
-    protected void renderEquippedItems(EntityLiving par1EntityLiving, float par2)
+    protected void renderEquippedItems(EntityLivingBase par1EntityLivingBase, float par2)
     {
-        this.renderDragonDying((AC_EntityDragon)par1EntityLiving, par2);
+        this.renderDragonDying((AC_EntityDragon)par1EntityLivingBase, par2);
     }
 
-    protected void rotateCorpse(EntityLiving par1EntityLiving, float par2, float par3, float par4)
+    protected void rotateCorpse(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4)
     {
-        this.rotateDragonBody((AC_EntityDragon)par1EntityLiving, par2, par3, par4);
+        this.rotateDragonBody((AC_EntityDragon)par1EntityLivingBase, par2, par3, par4);
     }
 
     /**
      * Renders the model in RenderLiving
      */
-    protected void renderModel(EntityLiving par1EntityLiving, float par2, float par3, float par4, float par5, float par6, float par7)
+    protected void renderModel(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4, float par5, float par6, float par7)
     {
-        this.renderDragonModel((AC_EntityDragon)par1EntityLiving, par2, par3, par4, par5, par6, par7);
+        this.renderDragonModel((AC_EntityDragon)par1EntityLivingBase, par2, par3, par4, par5, par6, par7);
     }
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity)
+	{
+		return field_110844_k;
+	}
 
     
 }
