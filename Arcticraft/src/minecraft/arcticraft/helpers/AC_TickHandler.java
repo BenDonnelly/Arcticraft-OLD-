@@ -3,6 +3,7 @@ package arcticraft.helpers;
 import java.util.EnumSet;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngame;
@@ -10,6 +11,7 @@ import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -84,7 +86,7 @@ public class AC_TickHandler implements ITickHandler
 				tempIncrementCounter();
 				canDecrementTemp();
 				canIncrementTemp();
-				slowPlayer();
+				slowPlayer((EntityPlayer) tickData[0]);
 
 			}
 		}
@@ -229,18 +231,23 @@ public class AC_TickHandler implements ITickHandler
 		}
 	}
 
-	public void slowPlayer()
+	public void slowPlayer(EntityPlayer player)
 	{
 
-		ItemStack boots = mc.thePlayer.getCurrentItemOrArmor(1);
-
-		if(mc.thePlayer.getCurrentItemOrArmor(1) != null && boots.getItem() == AC_Item.hikingBoots)
+		ItemStack boots = player.getCurrentItemOrArmor(1);
+		int x = (int) Math.floor(player.posX);
+		int y = (int) Math.floor(player.boundingBox.minY);
+		int z = (int) Math.floor(player.posZ);
+		int meta = player.worldObj.getBlockMetadata(x, y, z);
+		
+		if (boots != null && boots.getItem() == AC_Item.hikingBoots)
 		{
-			AC_BlockThickSnow.shouldSlowPlayer = false;
+			return;
 		}
-		else
+		else if (player.worldObj.getBlockId(x, y, z) == Block.snow.blockID && meta > 0)
 		{
-			AC_BlockThickSnow.shouldSlowPlayer = true;
+			player.motionX *= 0.9D - meta * 0.1D;
+			player.motionZ *= 0.9D - meta * 0.1D;
 		}
 	}
 
