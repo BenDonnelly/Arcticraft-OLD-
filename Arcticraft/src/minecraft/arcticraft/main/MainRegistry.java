@@ -49,7 +49,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "ac", name = "Arcticraft", version = "[1.5] V.1.0")
+@Mod(modid = "ac", name = "Arcticraft", version = "[1.6] V.1.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"AC_EskimoTrade" , "AC_EskimoTalk"}, packetHandler = AC_PacketHandler.class)
 public class MainRegistry
 {

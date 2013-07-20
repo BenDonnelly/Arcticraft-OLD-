@@ -24,6 +24,7 @@ import arcticraft.entities.AC_EntityMage;
 import arcticraft.entities.AC_EntityPenguin;
 import arcticraft.entities.AC_EntityPirate;
 import arcticraft.entities.AC_EntityPolarBear;
+import arcticraft.entities.AC_EntitySled;
 import arcticraft.entities.AC_EntityTraderEskimo;
 import arcticraft.entities.AC_EntityYeti;
 import arcticraft.helpers.AC_EventSoundLoad;
@@ -64,6 +65,7 @@ import arcticraft.renderers.AC_RenderMage;
 import arcticraft.renderers.AC_RenderPenguin;
 import arcticraft.renderers.AC_RenderPirate;
 import arcticraft.renderers.AC_RenderPolarBear;
+import arcticraft.renderers.AC_RenderSled;
 import arcticraft.renderers.AC_RenderTraderEskimo;
 import arcticraft.renderers.AC_RenderYeti;
 import arcticraft.renderers.AC_RenderZombie;
@@ -124,6 +126,7 @@ public class AC_ClientProxy extends AC_CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityDragon.class, new AC_RenderDragon());
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityFrostZombie.class, new AC_RenderZombie(new ModelZombie(), 0.5F, 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityPirate.class, new AC_RenderPirate());
+		RenderingRegistry.registerEntityRenderingHandler(AC_EntitySled.class, new AC_RenderSled());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityStatue.class, new AC_TileEntityStatueRenderer());
 		MinecraftForgeClient.registerItemRenderer(AC_Block.statue.blockID, new AC_ItemStatueRenderer());

@@ -101,7 +101,7 @@ public class AC_EntityRegistry
 		registerEntityEgg(AC_EntityDragon.class, 0x99FFFF, 0xDEDEDE);
 
 		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 1, MainRegistry.instance, 64, 10, true);
-
+		EntityRegistry.registerModEntity(AC_EntitySled.class, "sled", 2, MainRegistry.instance, 64, 10, true);
 	}
 
 	public static void registerEntityEgg(Class<? extends Entity> entity, int primaryColor, int secondaryColor)

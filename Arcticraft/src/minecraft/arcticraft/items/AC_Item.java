@@ -127,6 +127,7 @@ public class AC_Item
 	public static Item bucketIcyWater;
 	public static Item frostDoorPlace;
 	public static Item invisoStaff;
+	public static Item sled;
 
 	public static void initializeItems()
 	{
@@ -238,6 +239,7 @@ public class AC_Item
 		frostDoorPlace = new AC_ItemFrostDoor(6282, Material.wood).setUnlocalizedName("icedoor").setCreativeTab(MainRegistry.tabBlocks).func_111206_d("ac:frost_door_icon");
 		amouryDoorPlace = new AC_ItemAmouryDoor(6283, Material.wood).setUnlocalizedName("amoury_door").setCreativeTab(MainRegistry.tabBlocks).func_111206_d("ac:amoury_door");
 		floranSeed = new AC_ItemSeed(6284, AC_Block.floranPlant).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("floran_seed").func_111206_d("ac:floran_seed");
+		sled = new AC_ItemSled(6285).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("sled").func_111206_d("ac:sled");
 	}
 
 	public static void nameItems()
@@ -274,6 +276,7 @@ public class AC_Item
 		LanguageRegistry.addName(frostSticks, "Frost Sticks");
 		LanguageRegistry.addName(invisoStaff, "Invisibility Staff");
 		LanguageRegistry.addName(floranSeed, "Floran Seed");
+		LanguageRegistry.addName(sled, "Sled");
 
 		LanguageRegistry.addName(TekkitePickaxe, "Tekkite Pickaxe");
 		LanguageRegistry.addName(TekkiteAxe, "Tekkite Axe");

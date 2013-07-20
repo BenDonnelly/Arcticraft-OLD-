@@ -2024,7 +2024,7 @@ public class AC_GenShip extends WorldGenerator
 		TileEntityChest chest4 = (TileEntityChest) world.getBlockTileEntity(x + 7, y + 11, z + 3);
 		TileEntityChest chest5 = (TileEntityChest) world.getBlockTileEntity(x + 7, y + 11, z + 3);
 
-		if(chest0 != null || chest1 != null || chest2 != null || chest3 != null || chest4 != null || chest5 != null)
+		if(chest0 != null && chest1 != null && chest2 != null && chest3 != null && chest4 != null && chest5 != null)
 		{
 			AC_WorldGenHelpers.addRandomDungeonLoot(new TileEntityChest[] {chest0 , chest1 , chest2 , chest3 , chest4 , chest5 ,}, "ship");
 		}
