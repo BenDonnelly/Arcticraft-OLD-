@@ -1,5 +1,7 @@
 package arcticraft.helpers;
 
+import arcticraft.blocks.AC_Block;
+import arcticraft.items.AC_Item;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
@@ -37,16 +39,41 @@ public class AC_ChestLootHelper
 	
 	public static void ship()
 	{
-
+		ChestGenHooks chestcontents = ChestGenHooks.getInfo("acpirateship");
+		
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.itemLantern, 1, 0), 1, 1, 10));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.bomb, 1, 0), 1, 3, 10));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.pirateHat, 1, 0), 1, 1, 9));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.eriumGem, 1, 0), 1, 8, 10));
+		
+		chestcontents.setMin(5);
+		chestcontents.setMax(7);
 	}
 	
 	public static void iceBerg()
 	{
-		ChestGenHooks chestcontents = ChestGenHooks.getInfo("iceberg");
+		ChestGenHooks chestcontents = ChestGenHooks.getInfo("aciceberg");
 		
-		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(Item.dyePowder, 1, 3), 4, 6, 10));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.itemLantern, 1, 0), 1, 1, 10));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.iceCream, 1, 0), 1, 1, 8));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.iceCream, 1, 1), 1, 1, 8));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.iceCream, 1, 2), 1, 1, 8));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.iceCream, 1, 3), 1, 1, 8));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.iceCream, 1, 4), 1, 1, 8));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.iceCream, 1, 5), 1, 1, 8));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.iceCream, 1, 6), 1, 1, 8));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.iceCream, 1, 7), 1, 1, 8));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.iceCream, 1, 8), 1, 1, 8));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.iceCream, 1, 8), 1, 1, 8));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.teaDrinks, 1, 0), 1, 1, 9));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.teaDrinks, 1, 1), 1, 1, 9));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.teaDrinks, 1, 2), 1, 1, 9));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.teaDrinks, 1, 3), 1, 1, 9));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.floranSeed, 1, 3), 1, 1, 10));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Block.whiteberry, 1, 3), 1, 1, 10));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Block.floranBerry, 1, 3), 1, 1, 9));
 		
-		chestcontents.setMin(1);
-		chestcontents.setMax(2);
+		chestcontents.setMin(2);
+		chestcontents.setMax(4);
 	}
 }

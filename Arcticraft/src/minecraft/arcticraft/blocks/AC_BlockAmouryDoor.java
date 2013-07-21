@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.IconFlipped;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
@@ -131,7 +132,11 @@ public class AC_BlockAmouryDoor extends BlockDoor
 
 			par1World.playAuxSFXAtEntity(par5EntityPlayer, 1003, par2, par3, par4, 0);
 			hand.stackSize--;
-			par5EntityPlayer.addChatMessage("The key seems to disintegrate...");
+			
+			if(par5EntityPlayer instanceof EntityPlayerMP)
+			{
+				par5EntityPlayer.addChatMessage("The key seems to disintegrate...");
+			}
 		}
 
 		return true;

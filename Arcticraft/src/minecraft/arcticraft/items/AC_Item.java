@@ -228,8 +228,8 @@ public class AC_Item
 		uncookedBoarMeat = new ItemFood(6271, 10, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("raw_boar_meat").func_111206_d("ac:raw_boar_meat");
 		hikingBoots = new AC_ItemArmour(6272, hikingAmrour, MainRegistry.instance.proxy.addArmor("Hiking"), 3).setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("Hiking Boots");
 		invisoStaff = new AC_ItemInvisoStaff(6273).setFull3D().setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("staff_icon").func_111206_d("ac:staff_icon");
-		recordFrozenFeelings = new AC_ItemRecord(6274, "Welcome To The Cold").setUnlocalizedName("record_FF");
-		recordWTTC = new AC_ItemRecord(6275, "Frozen Feelings").setUnlocalizedName("record_WTTC");
+		recordFrozenFeelings = new AC_ItemRecord(6274, "Frozen Feelings").setUnlocalizedName("record_FF");
+		recordWTTC = new AC_ItemRecord(6275, "Welcome To The Cold").setUnlocalizedName("record_WTTC");
 		amouryKey = new Item(6276).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("amoury_key").func_111206_d("ac:amoury_key");
 		bucketIcyWater = new AC_ItemBucket(6277, AC_Block.acWaterFlowing.blockID).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("bucket_ice_water").func_111206_d("ac:bucket_ice_water");
 		bucketEmpty = new AC_ItemBucket(6278, 0).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("bucket_empty").func_111206_d("ac:bucket_empty");

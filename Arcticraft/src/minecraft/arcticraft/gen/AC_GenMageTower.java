@@ -14,6 +14,7 @@ import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.DungeonHooks;
 import arcticraft.blocks.AC_Block;
 import arcticraft.entities.AC_EntityMage;
+import arcticraft.tile_entities.AC_TileEntityFrostChest;
 
 public class AC_GenMageTower extends WorldGenerator
 {
@@ -2590,15 +2591,15 @@ public class AC_GenMageTower extends WorldGenerator
 		world.setBlock(i + 16, j + 1, k + 6, Block.vine.blockID, 2, 2);
 		world.setBlock(i + 16, j + 2, k + 6, Block.vine.blockID, 2, 2);
 		
-		world.setBlock(i + 12, j + 8, k + 4, Block.chest.blockID, 0, 2);
-		world.setBlock(i + 9, j + 12, k + 11, Block.chest.blockID, 0, 2);
-		world.setBlock(i + 8, j + 12, k + 11, Block.chest.blockID, 0, 2);
-		world.setBlock(i + 5, j + 8, k + 4, Block.chest.blockID, 0, 2);
+		world.setBlock(i + 12, j + 8, k + 4, AC_Block.frostChest.blockID, 0, 2);
+		world.setBlock(i + 9, j + 12, k + 11, AC_Block.frostChest.blockID, 0, 2);
+		world.setBlock(i + 8, j + 12, k + 11, AC_Block.frostChest.blockID, 0, 2);
+		world.setBlock(i + 5, j + 8, k + 4, AC_Block.frostChest.blockID, 0, 2);
 		
-		TileEntityChest chest0 = (TileEntityChest) world.getBlockTileEntity(i + 12, j + 8, k + 4);
-		TileEntityChest chest1 = (TileEntityChest) world.getBlockTileEntity(i + 9, j + 12, k + 11);
-		TileEntityChest chest2 = (TileEntityChest) world.getBlockTileEntity(i + 8, j + 12, k + 11);
-		TileEntityChest chest3 = (TileEntityChest) world.getBlockTileEntity(i + 5, j + 8, k + 4);
+		AC_TileEntityFrostChest chest0 = (AC_TileEntityFrostChest) world.getBlockTileEntity(i + 12, j + 8, k + 4);
+		AC_TileEntityFrostChest chest1 = (AC_TileEntityFrostChest) world.getBlockTileEntity(i + 9, j + 12, k + 11);
+		AC_TileEntityFrostChest chest2 = (AC_TileEntityFrostChest) world.getBlockTileEntity(i + 8, j + 12, k + 11);
+		AC_TileEntityFrostChest chest3 = (AC_TileEntityFrostChest) world.getBlockTileEntity(i + 5, j + 8, k + 4);
 		
 		if (chest0 != null && chest1 != null && chest2 != null && chest3 != null)
         {

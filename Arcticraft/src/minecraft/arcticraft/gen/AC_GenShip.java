@@ -6,12 +6,14 @@ package arcticraft.gen;
 import java.util.Random;
 
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.ChestGenHooks;
 import arcticraft.blocks.AC_Block;
 import arcticraft.entities.AC_EntityCaptain;
 import arcticraft.entities.AC_EntityPirate;
-import arcticraft.helpers.AC_WorldGenHelpers;
+import arcticraft.tile_entities.AC_TileEntityFrostChest;
 
 public class AC_GenShip extends WorldGenerator
 {
@@ -226,7 +228,6 @@ public class AC_GenShip extends WorldGenerator
 		world.setBlock(x + 7, y + 1, z + 26, 65, 3, 1);
 		world.setBlock(x + 9, y + 1, z + 26, 17, 13, 1);
 		world.setBlock(x + 5, y + 1, z + 27, 17, 13, 1);
-		world.setBlock(x + 7, y + 11, z + 3, 54, 2, 1);
 		world.setBlock(x + 9, y + 1, z + 27, 17, 13, 1);
 		world.setBlock(x + 5, y + 1, z + 28, 17, 13, 1);
 		world.setBlock(x + 7, y + 1, z + 28, 17, 13, 1);
@@ -1011,11 +1012,9 @@ public class AC_GenShip extends WorldGenerator
 		world.setBlock(x + 11, y + 7, z + 3, 17, 13, 1);
 		world.setBlock(x + 3, y + 7, z + 4, 17, 13, 1);
 		world.setBlock(x + 4, y + 7, z + 4, 134, 7, 1);
-		world.setBlock(x + 10, y + 7, z + 4, 54, 4, 1);
 		world.setBlock(x + 11, y + 7, z + 4, 17, 13, 1);
 		world.setBlock(x + 3, y + 7, z + 5, 17, 13, 1);
 		world.setBlock(x + 4, y + 7, z + 5, 134, 6, 1);
-		world.setBlock(x + 10, y + 7, z + 5, 54, 4, 1);
 		world.setBlock(x + 11, y + 7, z + 5, 17, 13, 1);
 		world.setBlock(x + 3, y + 7, z + 6, 17, 13, 1);
 		world.setBlock(x + 4, y + 7, z + 6, 17, 13, 1);
@@ -1314,7 +1313,6 @@ public class AC_GenShip extends WorldGenerator
 		world.setBlock(x + 11, y + 9, z + 35, 85, 0, 1);
 		world.setBlock(x + 4, y + 9, z + 36, 85, 0, 1);
 		world.setBlock(x + 5, y + 9, z + 36, 85, 0, 1);
-		world.setBlock(x + 7, y + 9, z + 36, 54, 2, 1);
 		world.setBlock(x + 9, y + 9, z + 36, 85, 0, 1);
 		world.setBlock(x + 10, y + 9, z + 36, 85, 0, 1);
 		world.setBlock(x + 5, y + 9, z + 37, 85, 0, 1);
@@ -1443,7 +1441,6 @@ public class AC_GenShip extends WorldGenerator
 		world.setBlock(x + 3, y + 11, z + 2, 85, 0, 1);
 		world.setBlock(x + 11, y + 11, z + 2, 85, 0, 1);
 		world.setBlock(x + 3, y + 11, z + 3, 85, 0, 1);
-		world.setBlock(x + 7, y + 11, z + 3, 54, 2, 1);
 		world.setBlock(x + 11, y + 11, z + 3, 85, 0, 1);
 		world.setBlock(x + 3, y + 11, z + 4, 85, 0, 1);
 		world.setBlock(x + 11, y + 11, z + 4, 85, 0, 1);
@@ -2016,17 +2013,27 @@ public class AC_GenShip extends WorldGenerator
 		world.setBlock(x + 7, y + 32, z + 19, 17, 13, 1);
 		world.setBlock(x + 8, y + 32, z + 19, 50, 1, 1);
 		world.setBlock(x + 7, y + 32, z + 20, 50, 3, 1);
-
-		TileEntityChest chest0 = (TileEntityChest) world.getBlockTileEntity(x + 7, y + 1, z + 27);
+		
+		world.setBlock(x + 7, y + 11, z + 3, 54, 2, 1);
+		world.setBlock(x + 10, y + 7, z + 4, 54, 4, 1);
+		world.setBlock(x + 10, y + 7, z + 5, 54, 4, 1);
+		world.setBlock(x + 7, y + 9, z + 36, 54, 2, 1);
+		world.setBlock(x + 7, y + 11, z + 3, 54, 2, 1);
+		
+		TileEntityChest chest0 = (TileEntityChest) world.getBlockTileEntity(x + 7, y + 11, z + 3);
 		TileEntityChest chest1 = (TileEntityChest) world.getBlockTileEntity(x + 10, y + 7, z + 4);
 		TileEntityChest chest2 = (TileEntityChest) world.getBlockTileEntity(x + 10, y + 7, z + 5);
 		TileEntityChest chest3 = (TileEntityChest) world.getBlockTileEntity(x + 7, y + 9, z + 36);
 		TileEntityChest chest4 = (TileEntityChest) world.getBlockTileEntity(x + 7, y + 11, z + 3);
-		TileEntityChest chest5 = (TileEntityChest) world.getBlockTileEntity(x + 7, y + 11, z + 3);
 
-		if(chest0 != null && chest1 != null && chest2 != null && chest3 != null && chest4 != null && chest5 != null)
+		if(chest0 != null && chest1 != null && chest2 != null && chest3 != null && chest4 != null)
 		{
-			AC_WorldGenHelpers.addRandomDungeonLoot(new TileEntityChest[] {chest0 , chest1 , chest2 , chest3 , chest4 , chest5 ,}, "ship");
+			ChestGenHooks info = ChestGenHooks.getInfo("acpirateship");
+			WeightedRandomChestContent.generateChestContents(rand, info.getItems(rand), chest0, info.getCount(rand));
+			WeightedRandomChestContent.generateChestContents(rand, info.getItems(rand), chest1, info.getCount(rand));
+			WeightedRandomChestContent.generateChestContents(rand, info.getItems(rand), chest2, info.getCount(rand));
+			WeightedRandomChestContent.generateChestContents(rand, info.getItems(rand), chest3, info.getCount(rand));
+			WeightedRandomChestContent.generateChestContents(rand, info.getItems(rand), chest4, info.getCount(rand));
 		}
 
 		AC_EntityPirate pirate1 = new AC_EntityPirate(world);
