@@ -112,12 +112,12 @@ public class AC_Block
 		unbreakableIce = new AC_BlockUnbreakableIce(1523, 0).setBlockUnbreakable().setResistance(6000000.0F).setCreativeTab(MainRegistry.tabBlocks).setLightOpacity(3).setUnlocalizedName("ice").func_111022_d("ac:ice").setStepSound(Block.soundGlassFootstep);
 		snowPressurePlate = new AC_BlockSnowPressurePlate(1524, "AC:snow_pressure_plate", Material.rock, EnumMobType.players).setHardness(0.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("snow_pressure_plate").func_111022_d("ac:snow_pressure_plate").setStepSound(Block.soundSnowFootstep);
 		snowTrapdoor = new AC_BlockSnowTrapdoor(1525, Material.snow).setHardness(0.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("snow_trapdoor").func_111022_d("ac:snow_trapdoor").setStepSound(Block.soundSnowFootstep);
-		tekkiteOre = new AC_BlockOres(1526).setHardness(3.0F).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("tektite_ore").func_111022_d("ac:tekkite_ore").setStepSound(Block.soundStoneFootstep);
-		escariaOre = new AC_BlockOres(1527).setHardness(3.0F).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("escaria_ore").func_111022_d("ac:escaria_ore").setStepSound(Block.soundStoneFootstep);
-		frigusOre = new AC_BlockOres(1528).setHardness(3.0F).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("frigus_ore").func_111022_d("ac:frigus_ore").setStepSound(Block.soundStoneFootstep);
-		rigentemOre = new AC_BlockOres(1529).setHardness(3.0F).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("rigentem_ore").func_111022_d("ac:rigentem_ore").setStepSound(Block.soundStoneFootstep);
-		glacianOre = new AC_BlockOres(1530).setHardness(3.0F).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("glacian_ore").func_111022_d("ac:glacian_ore").setStepSound(Block.soundStoneFootstep);
-		eriumOre = new AC_BlockOres(1531).setHardness(3.0F).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("erium_ore").func_111022_d("ac:erium_ore").setStepSound(Block.soundStoneFootstep);
+		tekkiteOre = new AC_BlockOres(1526).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("tektite_ore").func_111022_d("ac:tekkite_ore").setStepSound(Block.soundStoneFootstep);
+		escariaOre = new AC_BlockOres(1527).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("escaria_ore").func_111022_d("ac:escaria_ore").setStepSound(Block.soundStoneFootstep);
+		frigusOre = new AC_BlockOres(1528).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("frigus_ore").func_111022_d("ac:frigus_ore").setStepSound(Block.soundStoneFootstep);
+		rigentemOre = new AC_BlockOres(1529).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("rigentem_ore").func_111022_d("ac:rigentem_ore").setStepSound(Block.soundStoneFootstep);
+		glacianOre = new AC_BlockOres(1530).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("glacian_ore").func_111022_d("ac:glacian_ore").setStepSound(Block.soundStoneFootstep);
+		eriumOre = new AC_BlockOres(1531).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("erium_ore").func_111022_d("ac:erium_ore").setStepSound(Block.soundStoneFootstep);
 		arcticFurnaceIdle = new AC_BlockACFurnace(1532, false).setHardness(3.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("ac_furnace").setStepSound(Block.soundStoneFootstep);
 		arcticFurnaceBurning = new AC_BlockACFurnace(1533, true).setHardness(3.5F).setLightValue(0.875F).setUnlocalizedName("ac_furnace").setStepSound(Block.soundStoneFootstep);
 		freezerIdle = new AC_BlockFreezer(1534, false).setHardness(3.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("freezer").setStepSound(Block.soundMetalFootstep);
@@ -268,8 +268,8 @@ public class AC_Block
 		MinecraftForge.setBlockHarvestLevel(tekkiteOre, "pickaxe", 2);
 		MinecraftForge.setBlockHarvestLevel(escariaOre, "pickaxe", 2);
 		MinecraftForge.setBlockHarvestLevel(frigusOre, "pickaxe", 0);
-		MinecraftForge.setBlockHarvestLevel(rigentemOre, "pickaxe", 1);
-		MinecraftForge.setBlockHarvestLevel(glacianOre, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(rigentemOre, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(glacianOre, "pickaxe", 3);
 	}
 
 }

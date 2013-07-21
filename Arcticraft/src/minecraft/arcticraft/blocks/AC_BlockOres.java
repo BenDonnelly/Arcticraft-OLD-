@@ -2,9 +2,15 @@ package arcticraft.blocks;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.Mod.Item;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import arcticraft.items.AC_Item;
+import arcticraft.items.AC_ItemPickaxe;
 
 public class AC_BlockOres extends Block
 {
@@ -46,5 +52,20 @@ public class AC_BlockOres extends Block
 
 		else
 			return this.blockID;
+	}
+	
+	public void onBlockClicked(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer)
+	{
+		ItemStack itemstack = par5EntityPlayer.getCurrentEquippedItem();
+
+		if(itemstack != null && itemstack.getItem() instanceof AC_ItemPickaxe)
+		{
+			this.blockHardness = 3.0F;
+		}
+
+		else
+		{
+			this.setBlockUnbreakable();
+		}
 	}
 }

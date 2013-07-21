@@ -133,17 +133,17 @@ public class AC_Item
 	{
 		/**Params go as follows : name, durability, reductionAmounts, enchantability**/
 
-		EnumToolMaterial TekkiteTool = EnumHelper.addToolMaterial("Tekkite Tool", 2, 250, 5.1F, 2, 22);
-		EnumArmorMaterial TekkiteArmor = EnumHelper.addArmorMaterial("Tekkite Armor", 15, new int[] {2 , 6 , 5 , 2}, 22);
+		EnumToolMaterial TekkiteTool = EnumHelper.addToolMaterial("Tekkite Tool", 3, 1634, 8.3F, 4.0F, 22);
+		EnumArmorMaterial TekkiteArmor = EnumHelper.addArmorMaterial("Tekkite Armor", 36, new int[]{3, 7, 6, 3}, 12);
 
-		EnumToolMaterial EscariaTool = EnumHelper.addToolMaterial("Escaria Tool", 2, 310, 5.1F, 2, 22);
-		EnumArmorMaterial EscariaArmor = EnumHelper.addArmorMaterial("Escaria Armor", 17, new int[] {2 , 6 , 5 , 2}, 22);
+		EnumToolMaterial EscariaTool = EnumHelper.addToolMaterial("Escaria Tool", 0, 120, 12.0F, 0.5F, 23);
+		EnumArmorMaterial EscariaArmor = EnumHelper.addArmorMaterial("Escaria Armor", 9, new int[]{2, 5, 3, 1}, 25);
 
-		EnumToolMaterial RigentemTool = EnumHelper.addToolMaterial("Rigentem Tool", 2, 350, 6.0F, 2, 15);
-		EnumArmorMaterial RigentemArmor = EnumHelper.addArmorMaterial("Rigentem Armor", 19, new int[] {3 , 7 , 6 , 3}, 15);
+		EnumToolMaterial RigentemTool = EnumHelper.addToolMaterial("Rigentem Tool", 2, 500, 7.0F, 3.0F, 15);
+		EnumArmorMaterial RigentemArmor = EnumHelper.addArmorMaterial("Rigentem Armor", 17, new int[]{2, 6, 5, 2}, 11);
 
-		EnumToolMaterial GlacianTool = EnumHelper.addToolMaterial("Glacian Tool", 4, 900, 10.0F, 5, 18);
-		EnumArmorMaterial GlacianArmor = EnumHelper.addArmorMaterial("Glacian Armor", 35, new int[] {3 , 8 , 6 , 3}, 18);
+		EnumToolMaterial GlacianTool = EnumHelper.addToolMaterial("Glacian Tool", 3, 1400, 9.0F, 5.0F, 13);
+		EnumArmorMaterial GlacianArmor = EnumHelper.addArmorMaterial("Glacian Armor", 40, new int[]{3, 8, 6, 3}, 15);
 
 		EnumArmorMaterial PirateArmour = EnumHelper.addArmorMaterial("Pirate Armor", 33, new int[] {1 , 3 , 2 , 1}, 15);
 

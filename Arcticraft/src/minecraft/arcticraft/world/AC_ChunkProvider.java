@@ -596,7 +596,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				(new AC_WorldGenMineable(AC_Block.tekkiteOre.blockID, 11, 0)).generate(worldObj, rand, e, r, b);
 			}
 
-			for(int x = 0; x < 2; x++)
+			for(int x = 0; x < 3; x++)
 			{
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
@@ -604,15 +604,15 @@ public class AC_ChunkProvider implements IChunkProvider
 				(new AC_WorldGenMineable(AC_Block.escariaOre.blockID, 11, 0)).generate(worldObj, rand, e, r, b);
 			}
 
-			for(int x = 0; x < 5; x++)
+			for(int x = 0; x < 1; x++)
 			{
 				int e = i + rand.nextInt(16);
-				int r = rand.nextInt(128);
+				int r = rand.nextInt(20);
 				int b = j + rand.nextInt(16);
 				(new AC_WorldGenMineable(AC_Block.glacianOre.blockID, 8, 0)).generate(worldObj, rand, e, r, b);
 			}
 
-			for(int x = 0; x < 9; x++)
+			for(int x = 0; x < 5; x++)
 			{
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
@@ -620,7 +620,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				(new AC_WorldGenMineable(AC_Block.eriumOre.blockID, 13, 0)).generate(worldObj, rand, e, r, b);
 			}
 
-			for(int x = 0; x < 40; x++)
+			for(int x = 0; x < 35; x++)
 			{
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
@@ -628,7 +628,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				(new AC_WorldGenMineable(AC_Block.frigusOre.blockID, 15, 0)).generate(worldObj, rand, e, r, b);
 			}
 
-			for(int x = 0; x < 20; x++)
+			for(int x = 0; x < 10; x++)
 			{
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
