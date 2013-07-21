@@ -28,6 +28,7 @@ import arcticraft.creative_tabs.AC_TabTools;
 import arcticraft.data_store.TemperatureDataStorage;
 import arcticraft.entities.AC_EntityRegistry;
 import arcticraft.gui.AC_GuiHandler;
+import arcticraft.helpers.AC_ChestLootHelper;
 import arcticraft.helpers.AC_ForgeEvents;
 import arcticraft.helpers.AC_PacketHandler;
 import arcticraft.helpers.AC_TickHandler;
@@ -173,7 +174,7 @@ public class MainRegistry
 
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 		MinecraftForge.EVENT_BUS.register(new AC_ForgeEvents());
-
+		AC_ChestLootHelper.initializeChestLoot();
 	}
 
 	@EventHandler

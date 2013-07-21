@@ -4,8 +4,10 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.ChestGenHooks;
 import arcticraft.blocks.AC_Block;
 import arcticraft.helpers.AC_WorldGenHelpers;
 
@@ -5646,10 +5648,11 @@ public class AC_GenIceberg extends WorldGenerator
 		world.setBlock(i + 26, j + 1, k + 14, Block.ice.blockID);
 		world.setBlock(i + 26, j + 1, k + 15, Block.ice.blockID);
 		world.setBlock(i + 26, j + 1, k + 16, Block.ice.blockID);
-
+		
 		if(world.getBlockTileEntity(i + 13, j + 12, k + 17) != null)
 		{
-			AC_WorldGenHelpers.addRandomDungeonLoot((TileEntityChest) world.getBlockTileEntity(i + 13, j + 12, k + 17), "iceberg");
+			ChestGenHooks info = ChestGenHooks.getInfo("iceberg");
+			WeightedRandomChestContent.generateChestContents(rand, info.getItems(rand), (TileEntityChest) world.getBlockTileEntity(i + 13, j + 12, k + 17), info.getCount(rand));
 		}
 
 		return true;

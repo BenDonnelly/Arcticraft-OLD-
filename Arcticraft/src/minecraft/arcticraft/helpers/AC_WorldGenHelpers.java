@@ -64,7 +64,6 @@ public class AC_WorldGenHelpers
 		for(TileEntityChest chest : chests)
 		{
 			addRandomDungeonLoot(chest, type);
-			addRandomDungeonLoot(chest, "magetower");
 			addRandomDungeonLoot(chest, "ship");
 			addRandomDungeonLoot(chest, "iceberg");
 		}
