@@ -41,10 +41,10 @@ public class AC_Teleporter
 		{
 			EntityPlayer player = (EntityPlayer) entity;
 
-			ChunkCoordinates spawnPoint = player.getBedLocation();
+			ChunkCoordinates spawnPoint = player.getBedLocation(0);
 			ChunkCoordinates worldSpawn = world.getSpawnPoint();
 
-			if(player.getBedLocation() != null)
+			if(player.getBedLocation(0) != null)
 			{
 				x = spawnPoint.posX;
 				z = spawnPoint.posZ;
