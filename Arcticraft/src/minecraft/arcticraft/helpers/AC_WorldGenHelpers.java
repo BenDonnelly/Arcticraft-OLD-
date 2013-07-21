@@ -29,6 +29,13 @@ public class AC_WorldGenHelpers
 		{
 			if(rand.nextInt(10) <= 1)
 			{
+				if(type.equals("magetower"))
+				{
+					int var2 = rand.nextInt(11);
+					chest.setInventorySlotContents(i, var2 == 0 ? new ItemStack(AC_Item.itemLantern) : (var2 == 1 ? new ItemStack(AC_Item.bomb, rand.nextInt(4) + 1) : (var2 == 2 ? new ItemStack(AC_Item.pirateHat) : (var2 == 3 ? new ItemStack(AC_Item.escariaGem) : (var2 == 5 ? new ItemStack(
+							AC_Item.eriumGem) : null)))));
+				}
+				
 				if(type.equals("ship"))
 				{
 					int var2 = rand.nextInt(11);
@@ -57,6 +64,7 @@ public class AC_WorldGenHelpers
 		for(TileEntityChest chest : chests)
 		{
 			addRandomDungeonLoot(chest, type);
+			addRandomDungeonLoot(chest, "magetower");
 			addRandomDungeonLoot(chest, "ship");
 			addRandomDungeonLoot(chest, "iceberg");
 		}

@@ -5,8 +5,13 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.tileentity.TileEntityMobSpawner;
+import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.ChestGenHooks;
+import net.minecraftforge.common.DungeonHooks;
 import arcticraft.blocks.AC_Block;
 import arcticraft.entities.AC_EntityMage;
 
@@ -416,17 +421,14 @@ public class AC_GenMageTower extends WorldGenerator
 		world.setBlock(i + 5, j + 6, k + 12, Block.brick.blockID, 0, 2);
 		world.setBlock(i + 5, j + 6, k + 13, Block.stairsBrick.blockID, 3, 2);
 		world.setBlock(i + 5, j + 7, k + 3, Block.stoneBrick.blockID, this.pickStoneBrickType(rand), 2);
-		world.setBlock(i + 5, j + 7, k + 4, Block.blockGold.blockID, 0, 2);
 		world.setBlock(i + 5, j + 7, k + 5, Block.stoneBrick.blockID, this.pickStoneBrickType(rand), 2);
 		world.setBlock(i + 5, j + 7, k + 6, 0, 0, 2);
 		world.setBlock(i + 5, j + 7, k + 7, 0, 0, 2);
 		world.setBlock(i + 5, j + 7, k + 8, 0, 0, 2);
 		world.setBlock(i + 5, j + 7, k + 9, 0, 0, 2);
 		world.setBlock(i + 5, j + 7, k + 10, Block.stoneBrick.blockID, this.pickStoneBrickType(rand), 2);
-		world.setBlock(i + 5, j + 7, k + 11, Block.blockGold.blockID, 0, 2);
 		world.setBlock(i + 5, j + 7, k + 12, Block.stoneBrick.blockID, this.pickStoneBrickType(rand), 2);
 		world.setBlock(i + 5, j + 8, k + 3, Block.stoneBrick.blockID, this.pickStoneBrickType(rand), 2);
-		world.setBlock(i + 5, j + 8, k + 4, Block.blockIron.blockID, 0, 2);
 		world.setBlock(i + 5, j + 8, k + 5, 0, 0, 2);
 		world.setBlock(i + 5, j + 8, k + 6, 0, 0, 2);
 		world.setBlock(i + 5, j + 8, k + 7, 0, 0, 2);
@@ -1115,7 +1117,6 @@ public class AC_GenMageTower extends WorldGenerator
 		world.setBlock(i + 8, j + 12, k + 6, Block.stairsWoodOak.blockID, 7, 2);
 		world.setBlock(i + 8, j + 12, k + 9, 0, 0, 2);
 		world.setBlock(i + 8, j + 12, k + 10, 0, 0, 2);
-		world.setBlock(i + 8, j + 12, k + 11, Block.blockIron.blockID, 0, 2);
 		world.setBlock(i + 8, j + 12, k + 12, Block.stoneBrick.blockID, this.pickStoneBrickType(rand), 2);
 		world.setBlock(i + 8, j + 13, k + 3, Block.thinGlass.blockID, 0, 2);
 		world.setBlock(i + 8, j + 13, k + 4, 0, 0, 2);
@@ -1352,7 +1353,6 @@ public class AC_GenMageTower extends WorldGenerator
 		world.setBlock(i + 9, j + 12, k + 6, Block.stairsWoodOak.blockID, 7, 2);
 		world.setBlock(i + 9, j + 12, k + 9, 0, 0, 2);
 		world.setBlock(i + 9, j + 12, k + 10, 0, 0, 2);
-		world.setBlock(i + 9, j + 12, k + 11, Block.blockIron.blockID, 0, 2);
 		world.setBlock(i + 9, j + 12, k + 12, Block.stoneBrick.blockID, this.pickStoneBrickType(rand), 2);
 		world.setBlock(i + 9, j + 13, k + 3, Block.thinGlass.blockID, 0, 2);
 		world.setBlock(i + 9, j + 13, k + 4, 0, 0, 2);
@@ -1961,17 +1961,14 @@ public class AC_GenMageTower extends WorldGenerator
 		world.setBlock(i + 12, j + 6, k + 12, Block.brick.blockID, 0, 2);
 		world.setBlock(i + 12, j + 6, k + 13, Block.stairsBrick.blockID, 3, 2);
 		world.setBlock(i + 12, j + 7, k + 3, Block.stoneBrick.blockID, this.pickStoneBrickType(rand), 2);
-		world.setBlock(i + 12, j + 7, k + 4, Block.blockGold.blockID, 0, 2);
 		world.setBlock(i + 12, j + 7, k + 5, 0, 0, 2);
 		world.setBlock(i + 12, j + 7, k + 6, 0, 0, 2);
 		world.setBlock(i + 12, j + 7, k + 7, 0, 0, 2);
 		world.setBlock(i + 12, j + 7, k + 8, Block.stoneBrick.blockID, this.pickStoneBrickType(rand), 2);
 		world.setBlock(i + 12, j + 7, k + 9, 0, 0, 2);
 		world.setBlock(i + 12, j + 7, k + 10, Block.stoneBrick.blockID, this.pickStoneBrickType(rand), 2);
-		world.setBlock(i + 12, j + 7, k + 11, Block.blockGold.blockID, 0, 2);
 		world.setBlock(i + 12, j + 7, k + 12, Block.stoneBrick.blockID, this.pickStoneBrickType(rand), 2);
 		world.setBlock(i + 12, j + 8, k + 3, Block.stoneBrick.blockID, this.pickStoneBrickType(rand), 2);
-		world.setBlock(i + 12, j + 8, k + 4, Block.blockIron.blockID, 0, 2);
 		world.setBlock(i + 12, j + 8, k + 5, 0, 0, 2);
 		world.setBlock(i + 12, j + 8, k + 6, 0, 0, 2);
 		world.setBlock(i + 12, j + 8, k + 7, 0, 0, 2);
@@ -2592,6 +2589,43 @@ public class AC_GenMageTower extends WorldGenerator
 		world.setBlock(i + 16, j + 0, k + 6, Block.vine.blockID, 2, 2);
 		world.setBlock(i + 16, j + 1, k + 6, Block.vine.blockID, 2, 2);
 		world.setBlock(i + 16, j + 2, k + 6, Block.vine.blockID, 2, 2);
+		
+		world.setBlock(i + 12, j + 8, k + 4, Block.chest.blockID, 0, 2);
+		world.setBlock(i + 9, j + 12, k + 11, Block.chest.blockID, 0, 2);
+		world.setBlock(i + 8, j + 12, k + 11, Block.chest.blockID, 0, 2);
+		world.setBlock(i + 5, j + 8, k + 4, Block.chest.blockID, 0, 2);
+		
+		TileEntityChest chest0 = (TileEntityChest) world.getBlockTileEntity(i + 12, j + 8, k + 4);
+		TileEntityChest chest1 = (TileEntityChest) world.getBlockTileEntity(i + 9, j + 12, k + 11);
+		TileEntityChest chest2 = (TileEntityChest) world.getBlockTileEntity(i + 8, j + 12, k + 11);
+		TileEntityChest chest3 = (TileEntityChest) world.getBlockTileEntity(i + 5, j + 8, k + 4);
+		
+		if (chest0 != null && chest1 != null && chest2 != null && chest3 != null)
+        {
+            ChestGenHooks info = ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST);
+            WeightedRandomChestContent.generateChestContents(rand, info.getItems(rand), chest0, info.getCount(rand));
+            WeightedRandomChestContent.generateChestContents(rand, info.getItems(rand), chest1, info.getCount(rand));
+            WeightedRandomChestContent.generateChestContents(rand, info.getItems(rand), chest2, info.getCount(rand));
+            WeightedRandomChestContent.generateChestContents(rand, info.getItems(rand), chest3, info.getCount(rand));
+        }
+		
+		world.setBlock(i + 5, j + 7, k + 4, Block.mobSpawner.blockID, 0, 2);
+		world.setBlock(i + 5, j + 7, k + 11, Block.mobSpawner.blockID, 0, 2);
+		world.setBlock(i + 12, j + 7, k + 4, Block.mobSpawner.blockID, 0, 2);
+		world.setBlock(i + 12, j + 7, k + 11, Block.mobSpawner.blockID, 0, 2);
+		
+		TileEntityMobSpawner sp0 = (TileEntityMobSpawner)world.getBlockTileEntity(i + 5, j + 7, k + 4);
+		TileEntityMobSpawner sp1 = (TileEntityMobSpawner)world.getBlockTileEntity(i + 5, j + 7, k + 11);
+		TileEntityMobSpawner sp2 = (TileEntityMobSpawner)world.getBlockTileEntity(i + 12, j + 7, k + 4);
+		TileEntityMobSpawner sp3 = (TileEntityMobSpawner)world.getBlockTileEntity(i + 12, j + 7, k + 11);
+		
+		if (sp0 != null && sp1 != null && sp2 != null && sp3 != null)
+        {
+			sp0.getSpawnerLogic().setMobID(this.pickMobSpawner(rand));
+			sp1.getSpawnerLogic().setMobID(this.pickMobSpawner(rand));
+			sp2.getSpawnerLogic().setMobID(this.pickMobSpawner(rand));
+			sp3.getSpawnerLogic().setMobID(this.pickMobSpawner(rand));
+        }
 
 		AC_EntityMage entityicemage = new AC_EntityMage(world);
 		entityicemage.setPosition(i + 9, j + 12, k + 4.5);
@@ -2599,27 +2633,14 @@ public class AC_GenMageTower extends WorldGenerator
 
 		return true;
 	}
-
+	
 	/**
-	 * Picks potentially a random item to add to a dungeon chest.
-	 */
-	private ItemStack pickCheckLootItem(Random par1Random)
-	{
-		int var2 = par1Random.nextInt(11);
-		return var2 == 0 ? new ItemStack(Item.saddle) : (var2 == 1 ? new ItemStack(Item.ingotIron, par1Random.nextInt(4) + 1) : (var2 == 2 ? new ItemStack(Item.bread) : (var2 == 3 ? new ItemStack(Item.wheat, par1Random.nextInt(4) + 1) : (var2 == 4 ? new ItemStack(Item.gunpowder,
-				par1Random.nextInt(4) + 1) : (var2 == 5 ? new ItemStack(Item.silk, par1Random.nextInt(4) + 1) : (var2 == 6 ? new ItemStack(Item.bucketEmpty) : (var2 == 7 && par1Random.nextInt(40) == 0 ? new ItemStack(Item.appleGold) : (var2 == 7 && par1Random.nextInt(100) == 0 ? new ItemStack(
-				AC_Block.mysticalSnow) : (var2 == 8 && par1Random.nextInt(2) == 0 ? new ItemStack(Item.redstone, par1Random.nextInt(4) + 1) : (var2 == 9 && par1Random.nextInt(10) == 0 ? new ItemStack(Item.itemsList[Item.record13.itemID + par1Random.nextInt(2)]) : (var2 == 10 ? new ItemStack(
-				Item.dyePowder, 1, 3) : null)))))))))));
-	}
-
-	/**
-	 * Randomly decides which spawner to use in a dungeon
-	 */
-	private String pickMobSpawner(Random par1Random)
-	{
-		int var2 = par1Random.nextInt(4);
-		return var2 == 0 ? "Skeleton" : (var2 == 1 ? "Zombie" : (var2 == 2 ? "Zombie" : ""));
-	}
+     * Randomly decides which spawner to use in a dungeon
+     */
+    private String pickMobSpawner(Random par1Random)
+    {
+        return DungeonHooks.getRandomDungeonMob(par1Random);
+    }
 
 	/**
 	 * Picks potentially a random item to add to a dungeon chest.
