@@ -14,17 +14,15 @@ import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import arcticraft.helpers.AC_TickHandler;
-import arcticraft.main.MainRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class AC_ItemTeaDrinks extends ItemFood
 {
 
-	private static final String [] teaFlavours =
-		{"ac:red_tea", "ac:hot_chocolate", "ac:floran_tea", "ac:hot_chocolate_cold"};
+	private static final String[] teaFlavours = {"ac:red_tea" , "ac:hot_chocolate" , "ac:floran_tea" , "ac:hot_chocolate_cold"};
 	@SideOnly(Side.CLIENT)
-	private Icon [] teaField;
+	private Icon[] teaField;
 
 	public AC_ItemTeaDrinks(int par1, int par2, float par3, boolean par4)
 	{
@@ -40,34 +38,33 @@ public class AC_ItemTeaDrinks extends ItemFood
 	public Icon getIconFromDamage(int par1)
 	{
 		int j = MathHelper.clamp_int(par1, 0, 15);
-		return this.teaField [j];
+		return this.teaField[j];
 	}
 
 	public String getItemDisplayName(ItemStack par1ItemStack)
 	{
-		String [] teaflavours = new String []
-			{"Red Tea", "Hot Chocolate", "Floran Tea", "Chocolate Milk"};
+		String[] teaflavours = new String[] {"Red Tea" , "Hot Chocolate" , "Floran Tea" , "Chocolate Milk"};
 
-		return teaflavours [par1ItemStack.getItemDamage()];
+		return teaflavours[par1ItemStack.getItemDamage()];
 	}
 
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
 	{
-		if (par1ItemStack.getItemDamage() == 0)
+		if(par1ItemStack.getItemDamage() == 0)
 		{
 			par3List.add("Regeneration II (1:00)");
 			par3List.add("Decrease Temperature By 15\u00B0C");
 		}
-		else if (par1ItemStack.getItemDamage() == 1)
+		else if(par1ItemStack.getItemDamage() == 1)
 		{
 			par3List.add("Increase Temperature By 30\u00B0C");
 		}
-		else if (par1ItemStack.getItemDamage() == 2)
+		else if(par1ItemStack.getItemDamage() == 2)
 		{
 			par3List.add("Jump Boost III (1:00)");
 			par3List.add("Decrease Temperature By 15\u00B0C");
 		}
-		else if (par1ItemStack.getItemDamage() == 3)
+		else if(par1ItemStack.getItemDamage() == 3)
 		{
 			par3List.add("Decrease Temperature By 15\u00B0C");
 		}
@@ -79,52 +76,52 @@ public class AC_ItemTeaDrinks extends ItemFood
 	{
 		super.onEaten(par1ItemStack, par2World, par3EntityPlayer);
 
-		if (par1ItemStack.getItemDamage() == 0)
+		if(par1ItemStack.getItemDamage() == 0)
 		{
 			par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.regeneration.id, 1200, 2));
-			if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
+			if(AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
 			{
 				AC_TickHandler.value -= 15;
 			}
-			else if (AC_TickHandler.value <= 14)
+			else if(AC_TickHandler.value <= 14)
 			{
 				AC_TickHandler.value = 0;
 
 			}
 		}
 
-		else if (par1ItemStack.getItemDamage() == 1)
+		else if(par1ItemStack.getItemDamage() == 1)
 		{
-			if (AC_TickHandler.value <= 70)
+			if(AC_TickHandler.value <= 70)
 			{
 				AC_TickHandler.value += 30;
 			}
-			else if (AC_TickHandler.value >= 71)
+			else if(AC_TickHandler.value >= 71)
 			{
 				AC_TickHandler.value = 100;
 			}
 		}
 
-		else if (par1ItemStack.getItemDamage() == 2)
+		else if(par1ItemStack.getItemDamage() == 2)
 		{
 			par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.jump.id, 1200, 2));
-			if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
+			if(AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
 			{
 				AC_TickHandler.value -= 15;
 			}
-			else if (AC_TickHandler.value <= 14)
+			else if(AC_TickHandler.value <= 14)
 			{
 				AC_TickHandler.value = 0;
 
 			}
 		}
-		else if (par1ItemStack.getItemDamage() == 3)
+		else if(par1ItemStack.getItemDamage() == 3)
 		{
-			if (AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
+			if(AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
 			{
 				AC_TickHandler.value -= 15;
 			}
-			else if (AC_TickHandler.value <= 14)
+			else if(AC_TickHandler.value <= 14)
 			{
 				AC_TickHandler.value = 0;
 			}
@@ -136,12 +133,12 @@ public class AC_ItemTeaDrinks extends ItemFood
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
 	{
-		for (int i = 0; i < 4; i++)
+		for(int i = 0; i < 4; i++)
 		{
 			par3List.add(new ItemStack(par1, 1, i));
 		}
 	}
-	
+
 	public EnumAction getItemUseAction(ItemStack par1ItemStack)
 	{
 		return EnumAction.drink;
@@ -150,11 +147,11 @@ public class AC_ItemTeaDrinks extends ItemFood
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister par1IconRegister)
 	{
-		this.teaField = new Icon [teaFlavours.length];
+		this.teaField = new Icon[teaFlavours.length];
 
-		for (int i = 0; i < teaFlavours.length; ++i)
+		for(int i = 0; i < teaFlavours.length; ++i)
 		{
-			this.teaField [i] = par1IconRegister.registerIcon(teaFlavours [i]);
+			this.teaField[i] = par1IconRegister.registerIcon(teaFlavours[i]);
 		}
 	}
 }

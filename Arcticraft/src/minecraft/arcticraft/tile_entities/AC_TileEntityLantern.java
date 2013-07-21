@@ -3,9 +3,9 @@ package arcticraft.tile_entities;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
-
 public class AC_TileEntityLantern extends TileEntity
 {
+
 	int durability;
 
 	@Override
@@ -17,15 +17,19 @@ public class AC_TileEntityLantern extends TileEntity
 
 	@Override
 	public void writeToNBT(NBTTagCompound par1nbtTagCompound)
-	{	
+	{
 		super.writeToNBT(par1nbtTagCompound);
 		par1nbtTagCompound.setInteger("durability", durability);
 	}
-	public void setDurability(int durability) {
+
+	public void setDurability(int durability)
+	{
 		this.durability = durability;
 	}
-	public int getDurability() {
+
+	public int getDurability()
+	{
 		return durability;
 	}
-	
+
 }

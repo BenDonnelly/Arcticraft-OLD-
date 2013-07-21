@@ -2,7 +2,9 @@ package arcticraft.entities;
 
 import java.util.Random;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -36,43 +38,58 @@ public class AC_EntityPirate extends EntityMob
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class,  16, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 16, true));
 	}
 
-	
+	protected void func_110147_ax()
+	{
+		super.func_110147_ax();
+		this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(25.0D);
+		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.23000000417232513D);
+		this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(4.0D);
+	}
 
 	public boolean canDespawn()
 	{
 		return false;
 	}
-	
 
-	public int getAttackStrength()
+	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		return 4;
+		boolean flag = super.attackEntityAsMob(par1Entity);
+
+		if(flag && this.getHeldItem() == null && this.isBurning() && this.rand.nextFloat() < (float) this.worldObj.difficultySetting * 0.3F)
+		{
+			par1Entity.setFire(2 * this.worldObj.difficultySetting);
+		}
+
+		return flag;
+	}
+
+	public boolean isAIEnabled()
+	{
+		return true;
 	}
 
 	public int getTotalArmorValue()
 	{
 		return 4;
 	}
-	
+
 	public void swingItem()
 	{
-		if (!this.isSwinging || this.swingProgressInt >= this.getSwingSpeedModifier() / 2 || this.swingProgressInt < 0)
+		if(! this.isSwinging || this.swingProgressInt >= this.getSwingSpeedModifier() / 2 || this.swingProgressInt < 0)
 		{
-			this.swingProgressInt = -1;
+			this.swingProgressInt = - 1;
 			this.isSwinging = true;
 		}
 	}
-	
-	 
-	
+
 	private int getSwingSpeedModifier()
 	{
 		return this.isPotionActive(Potion.digSpeed) ? 6 - (1 + this.getActivePotionEffect(Potion.digSpeed).getAmplifier()) * 1 : (this.isPotionActive(Potion.digSlowdown) ? 6 + (1 + this.getActivePotionEffect(Potion.digSlowdown).getAmplifier()) * 2 : 6);
 	}
-	
+
 	/**
 	 * Returns the sound this mob makes while it's alive.
 	 */
@@ -97,25 +114,27 @@ public class AC_EntityPirate extends EntityMob
 	{
 		return "ac:mobs.pirate_death";
 	}
-	
+
 	public void onCollideWithPlayer(EntityPlayer par1EntityPlayer)
 	{
-		/*THIS IS REMOVED FOR DEBUGGING if(!ModLoader.getMinecraftInstance().thePlayer.capabilities.isCreativeMode)
-		{*/
-			this.swingItem();
+		/*
+		 * THIS IS REMOVED FOR DEBUGGING if(!ModLoader.getMinecraftInstance().thePlayer.capabilities.isCreativeMode)
+		 * {
+		 */
+		this.swingItem();
 		//}
 		super.onCollideWithPlayer(par1EntityPlayer);
 	}
-	
+
 	protected void updateEntityActionState()
 	{
 		int var1 = this.getSwingSpeedModifier();
 
-		if (this.isSwinging)
+		if(this.isSwinging)
 		{
 			++this.swingProgressInt;
 
-			if (this.swingProgressInt >= var1)
+			if(this.swingProgressInt >= var1)
 			{
 				this.swingProgressInt = 0;
 				this.isSwinging = false;
@@ -126,11 +145,10 @@ public class AC_EntityPirate extends EntityMob
 			this.swingProgressInt = 0;
 		}
 
-		this.swingProgress = (float)this.swingProgressInt / (float)var1;
+		this.swingProgress = (float) this.swingProgressInt / (float) var1;
 		super.updateEntityActionState();
 	}
-	
-	
+
 	public ItemStack getHeldItem()
 	{
 		return new ItemStack(Item.swordIron, 1);

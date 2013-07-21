@@ -29,19 +29,19 @@ public class AC_EntityFrostGhost extends EntityFlying implements IMob
 		double d2 = this.waypointZ - this.posZ;
 		double d3 = d0 * d0 + d1 * d1 + d2 * d2;
 
-		if (d3 < 1.0D || d3 > 3600.0D)
+		if(d3 < 1.0D || d3 > 3600.0D)
 		{
 			this.waypointX = this.posX + (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
 			this.waypointY = this.posY + (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
 			this.waypointZ = this.posZ + (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
 		}
 
-		if (this.courseChangeCooldown-- <= 0)
+		if(this.courseChangeCooldown-- <= 0)
 		{
 			this.courseChangeCooldown += this.rand.nextInt(5) + 2;
 			d3 = (double) MathHelper.sqrt_double(d3);
 
-			if (this.isCourseTraversable(this.waypointX, this.waypointY, this.waypointZ, d3))
+			if(this.isCourseTraversable(this.waypointX, this.waypointY, this.waypointZ, d3))
 			{
 				this.motionX += d0 / d3 * 0.1D;
 				this.motionY += d1 / d3 * 0.1D;
@@ -67,11 +67,11 @@ public class AC_EntityFrostGhost extends EntityFlying implements IMob
 		double d6 = (this.waypointZ - this.posZ) / par7;
 		AxisAlignedBB axisalignedbb = this.boundingBox.copy();
 
-		for (int i = 1; (double) i < par7; ++i)
+		for(int i = 1; (double) i < par7; ++i)
 		{
 			axisalignedbb.offset(d4, d5, d6);
 
-			if (!this.worldObj.getCollidingBoundingBoxes(this, axisalignedbb).isEmpty())
+			if(! this.worldObj.getCollidingBoundingBoxes(this, axisalignedbb).isEmpty())
 			{
 				return false;
 			}

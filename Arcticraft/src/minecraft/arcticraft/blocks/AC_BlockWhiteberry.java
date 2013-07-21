@@ -12,7 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
-import arcticraft.main.MainRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -20,7 +19,7 @@ public class AC_BlockWhiteberry extends Block
 {
 
 	@SideOnly(Side.CLIENT)
-	private Icon [] iconArray;
+	private Icon[] iconArray;
 
 	public int berryID;
 	public int berryMeta;
@@ -69,11 +68,11 @@ public class AC_BlockWhiteberry extends Block
 
 	public int quantityDropped(int meta, int fortune, Random random)
 	{
-		if (meta > 4)
+		if(meta > 4)
 		{
 			return 2;
 		}
-		else if (meta < 2)
+		else if(meta < 2)
 		{
 			return 0;
 		}
@@ -99,17 +98,17 @@ public class AC_BlockWhiteberry extends Block
 	 */
 	public Icon getIcon(int par1, int par2)
 	{
-		if (par2 == 0)
+		if(par2 == 0)
 		{
-			return this.iconArray [0];
+			return this.iconArray[0];
 		}
-		else if (par2 == 1)
+		else if(par2 == 1)
 		{
-			return this.iconArray [1];
+			return this.iconArray[1];
 		}
-		else if (par2 == 2)
+		else if(par2 == 2)
 		{
-			return this.iconArray [2];
+			return this.iconArray[2];
 		}
 		else if(par2 == 3)
 		{
@@ -121,7 +120,7 @@ public class AC_BlockWhiteberry extends Block
 		}
 		else
 		{
-			return this.iconArray [5];
+			return this.iconArray[5];
 		}
 	}
 
@@ -132,20 +131,20 @@ public class AC_BlockWhiteberry extends Block
 
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float f, float g, float t)
 	{
-		if (player.getCurrentEquippedItem().itemID == Item.shears.itemID)
+		if(player.getCurrentEquippedItem().itemID == Item.shears.itemID)
 		{
 			harvestBerries(world, x, y, z, player);
 			world.playSoundEffect(x, y, z, "random.wood click", 1F, 1F);
 		}
-		else if (player.getCurrentEquippedItem().isItemEqual(new ItemStack(Item.dyePowder, -1, 15)))
+		else if(player.getCurrentEquippedItem().isItemEqual(new ItemStack(Item.dyePowder, - 1, 15)))
 		{
 
-			if (world.getBlockMetadata(x, x, z) < 4)
+			if(world.getBlockMetadata(x, x, z) < 4)
 			{
 				world.setBlockMetadataWithNotify(x, y, z, 4, 3);
 			}
 
-			if (!player.capabilities.isCreativeMode)
+			if(! player.capabilities.isCreativeMode)
 			{
 				player.getCurrentEquippedItem().stackSize--;
 			}
@@ -155,19 +154,19 @@ public class AC_BlockWhiteberry extends Block
 
 	public void harvestBerries(World world, int x, int y, int z, EntityPlayer player)
 	{
-		if (world.getBlockMetadata(x, y, z) == 5)
+		if(world.getBlockMetadata(x, y, z) == 5)
 		{
-			if (!world.isRemote && world != null)
+			if(! world.isRemote && world != null)
 			{
 				int dropAmount = ((int) Math.round(Math.random() * 4)) + 1;
-				for (int i = 0; i < dropAmount; i++)
+				for(int i = 0; i < dropAmount; i++)
 				{
 					EntityItem entity = new EntityItem(world, x + 0.5, y + 0.5, z + 0.5, new ItemStack(berryID, 1, berryMeta));
 					entity.delayBeforeCanPickup = 10;
 					world.spawnEntityInWorld(entity);
 				}
 				world.setBlockMetadataWithNotify(x, y, z, 4, 3);
-				if (!player.capabilities.isCreativeMode)
+				if(! player.capabilities.isCreativeMode)
 				{
 					player.getCurrentEquippedItem().damageItem(1, player);
 				}
@@ -179,14 +178,14 @@ public class AC_BlockWhiteberry extends Block
 	{
 		super.updateTick(world, x, y, z, random);
 		int l = 0;
-		if (l == 0)
+		if(l == 0)
 		{
-			if (world.getBlockMetadata(x, y, z) < 4)
+			if(world.getBlockMetadata(x, y, z) < 4)
 			{
 				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) + 1, 3);
 				System.out.println("Metadata: " + world.getBlockMetadata(x, y, z));
 			}
-			else if (world.getBlockMetadata(x, y, z) == 4)
+			else if(world.getBlockMetadata(x, y, z) == 4)
 			{
 				world.setBlockMetadataWithNotify(x, y, z, 5, 3);
 			}
@@ -224,11 +223,11 @@ public class AC_BlockWhiteberry extends Block
 	 */
 	public void registerIcons(IconRegister par1IconRegister)
 	{
-		this.iconArray = new Icon [6];
+		this.iconArray = new Icon[6];
 
-		for (int i = 0; i < this.iconArray.length; ++i)
+		for(int i = 0; i < this.iconArray.length; ++i)
 		{
-			this.iconArray [i] = par1IconRegister.registerIcon("ac:berry_" + i);
+			this.iconArray[i] = par1IconRegister.registerIcon("ac:berry_" + i);
 		}
 	}
 

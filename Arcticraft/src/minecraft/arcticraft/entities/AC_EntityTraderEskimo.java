@@ -17,13 +17,12 @@ import net.minecraft.world.World;
 import arcticraft.blocks.AC_Block;
 import arcticraft.gui.AC_GuiTraderEskimo;
 import arcticraft.items.AC_Item;
-import arcticraft.main.MainRegistry;
 import cpw.mods.fml.client.FMLClientHandler;
 
 public class AC_EntityTraderEskimo extends EntityMob
 {
 
-	private AC_EskimoTrade [] trades = new AC_EskimoTrade [35];
+	private AC_EskimoTrade[] trades = new AC_EskimoTrade[35];
 
 	public AC_EntityTraderEskimo(World par1World)
 	{
@@ -39,14 +38,14 @@ public class AC_EntityTraderEskimo extends EntityMob
 	@Override
 	public boolean interact(EntityPlayer player)
 	{
-		if (player.inventory.hasItem(AC_Item.eriumGem.itemID))
+		if(player.inventory.hasItem(AC_Item.eriumGem.itemID))
 		{
 			FMLClientHandler.instance().displayGuiScreen(player, new AC_GuiTraderEskimo(player.inventory, this));
 			return true;
 		}
 		else
 		{
-			if (player.worldObj.isRemote)
+			if(player.worldObj.isRemote)
 			{
 				Minecraft.getMinecraft().thePlayer.addChatMessage("You require Erium gems if you want to trade with me");
 			}
@@ -58,10 +57,10 @@ public class AC_EntityTraderEskimo extends EntityMob
 	{
 		this.addTrade(0, AC_Item.bucketEmpty, 3);
 		this.addTrade(1, Block.fenceIron, 6, 5);
-		this.addTrade(2, AC_Block.campfire, 2); 
+		this.addTrade(2, AC_Block.campfire, 2);
 		this.addTrade(3, AC_Item.boarMeat, 2, 2);
-		this.addTrade(4, AC_Item.floranSeed,  1);
-		this.addTrade(5, AC_Block.frostChest,  2, 1);
+		this.addTrade(4, AC_Item.floranSeed, 1);
+		this.addTrade(5, AC_Block.frostChest, 2, 1);
 		this.addTrade(6, AC_Block.frostPlanks, 32, 4);
 		this.addTrade(7, AC_Item.emptyCup, 3, 1);
 		this.addTrade(8, AC_Item.GlacianPickaxe, 35);
@@ -84,31 +83,31 @@ public class AC_EntityTraderEskimo extends EntityMob
 		this.addTrade(25, AC_Item.TekkiteHelmet, 6);
 		this.addTrade(26, Block.jukebox, 5);
 		this.addTrade(27, Item.bow, 5);
-		this.addTrade(28, Item.bed,	1);
+		this.addTrade(28, Item.bed, 1);
 		this.addTrade(29, AC_Item.frigus, 8, 5);
 		this.addTrade(30, AC_Block.arcticFurnaceIdle, 1);
 		this.addTrade(31, Item.enderPearl, 3);
 		this.addTrade(32, Item.arrow, 32, 7);
 		this.addTrade(33, AC_Item.EscariaPlate, 5);
 		this.addTrade(34, Item.appleRed, 1);
-		}
+	}
 
 	public void addTrade(int slotIndex, int ID, int amount, int damage, int price)
 	{
 		int lastID = this.trades.length - 1;
 		int index = lastID - MathHelper.clamp_int(slotIndex, 0, lastID);
 
-		if (this.trades [index] != null)
+		if(this.trades[index] != null)
 		{
-			throw new IllegalArgumentException("Slot " + index + " is already occupied by " + this.trades [index]);
+			throw new IllegalArgumentException("Slot " + index + " is already occupied by " + this.trades[index]);
 		}
 		else
 		{
-			this.trades [index] = new AC_EskimoTrade(new ItemStack(ID, amount, damage), price);
+			this.trades[index] = new AC_EskimoTrade(new ItemStack(ID, amount, damage), price);
 		}
 	}
 
-	public AC_EskimoTrade [] getTrades()
+	public AC_EskimoTrade[] getTrades()
 	{
 		return this.trades;
 	}

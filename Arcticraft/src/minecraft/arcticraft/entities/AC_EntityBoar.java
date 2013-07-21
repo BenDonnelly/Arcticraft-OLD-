@@ -121,6 +121,7 @@ public class AC_EntityBoar extends EntityAnimal
 	{
 		return "ac:mobs.boar_death";
 	}
+
 	/**
 	 * Plays step sound at given x, y, z for the entity
 	 */
@@ -135,11 +136,11 @@ public class AC_EntityBoar extends EntityAnimal
 	 */
 	public boolean interact(EntityPlayer par1EntityPlayer)
 	{
-		if (super.interact(par1EntityPlayer))
+		if(super.interact(par1EntityPlayer))
 		{
 			return true;
 		}
-		else if (this.getSaddled() && !this.worldObj.isRemote && (this.riddenByEntity == null || this.riddenByEntity == par1EntityPlayer))
+		else if(this.getSaddled() && ! this.worldObj.isRemote && (this.riddenByEntity == null || this.riddenByEntity == par1EntityPlayer))
 		{
 			par1EntityPlayer.mountEntity(this);
 			return true;
@@ -167,9 +168,9 @@ public class AC_EntityBoar extends EntityAnimal
 	{
 		int j = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + par2);
 
-		for (int k = 0; k < j; ++k)
+		for(int k = 0; k < j; ++k)
 		{
-			if (this.isBurning())
+			if(this.isBurning())
 			{
 				this.dropItem(AC_Item.boarMeat.itemID, 1);
 			}
@@ -179,7 +180,7 @@ public class AC_EntityBoar extends EntityAnimal
 			}
 		}
 
-		if (this.getSaddled())
+		if(this.getSaddled())
 		{
 			this.dropItem(Item.saddle.itemID, 1);
 		}
@@ -198,7 +199,7 @@ public class AC_EntityBoar extends EntityAnimal
 	 */
 	public void setSaddled(boolean par1)
 	{
-		if (par1)
+		if(par1)
 		{
 			this.dataWatcher.updateObject(16, Byte.valueOf((byte) 1));
 		}
@@ -213,7 +214,7 @@ public class AC_EntityBoar extends EntityAnimal
 	 */
 	public void onStruckByLightning(EntityLightningBolt par1EntityLightningBolt)
 	{
-		if (!this.worldObj.isRemote)
+		if(! this.worldObj.isRemote)
 		{
 			EntityPigZombie entitypigzombie = new EntityPigZombie(this.worldObj);
 			entitypigzombie.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
@@ -229,7 +230,7 @@ public class AC_EntityBoar extends EntityAnimal
 	{
 		super.fall(par1);
 
-		if (par1 > 5.0F && this.riddenByEntity instanceof EntityPlayer)
+		if(par1 > 5.0F && this.riddenByEntity instanceof EntityPlayer)
 		{
 			((EntityPlayer) this.riddenByEntity).triggerAchievement(AchievementList.flyPig);
 		}

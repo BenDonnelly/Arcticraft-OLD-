@@ -21,42 +21,40 @@ public class AC_GuiEskimoTalk extends GuiScreen
 {
 
 	Random rand = new Random();
-	public String [] randomItem =
-		{"bombs", "ice cream", "whiteberries", "floran tea", "food", "swords", "axes", "shovels"};
-	public String thing = randomItem [rand.nextInt(randomItem.length)];
+	public String[] randomItem = {"bombs" , "ice cream" , "whiteberries" , "floran tea" , "food" , "swords" , "axes" , "shovels"};
+	public String thing = randomItem[rand.nextInt(randomItem.length)];
 	private int chatProgress;
 	private int reward;
 	private boolean hasCollectedReward = false;
 
 	public AC_GuiEskimoTalk()
-	{
-	}
+	{}
 
 	public void initGui()
 	{
 		//id, x, y, width, height, text, b pixel width, b pixel height
 		buttonList = new ArrayList();
-		switch (chatProgress)
+		switch(chatProgress)
 		{
 		case 0:
-			this.buttonList.add(new GuiButton(0, 2, this.height / 4 + 72 + -16, 220, 20, "Who are you?"));
-			this.buttonList.add(new GuiButton(1, 2, this.height / 4 + 96 + -16, 220, 20, "Why are you keeping that Yeti captive?"));
-			this.buttonList.add(new GuiButton(2, 2, this.height / 4 + 120 + -16, 220, 20, "What's with that temple over there?"));
-			this.buttonList.add(new GuiButton(3, 2, this.height / 4 + 48 + -16, 220, 20, "Hey. Where can I get " + thing + " from?"));
+			this.buttonList.add(new GuiButton(0, 2, this.height / 4 + 72 + - 16, 220, 20, "Who are you?"));
+			this.buttonList.add(new GuiButton(1, 2, this.height / 4 + 96 + - 16, 220, 20, "Why are you keeping that Yeti captive?"));
+			this.buttonList.add(new GuiButton(2, 2, this.height / 4 + 120 + - 16, 220, 20, "What's with that temple over there?"));
+			this.buttonList.add(new GuiButton(3, 2, this.height / 4 + 48 + - 16, 220, 20, "Hey. Where can I get " + thing + " from?"));
 			break;
 
 		case 1:
-			this.buttonList.add(new GuiButton(4, 2, this.height / 4 + 72 + -16, 220, 20, "What if I could slay it for you?"));
-			this.buttonList.add(new GuiButton(5, 2, this.height / 4 + 96 + -16, 220, 20, "I'll slay it for you. For a price."));
+			this.buttonList.add(new GuiButton(4, 2, this.height / 4 + 72 + - 16, 220, 20, "What if I could slay it for you?"));
+			this.buttonList.add(new GuiButton(5, 2, this.height / 4 + 96 + - 16, 220, 20, "I'll slay it for you. For a price."));
 			break;
 
 		case 2:
-			this.buttonList.add(new GuiButton(6, 2, this.height / 4 + 72 + -16, 220, 20, "Erium! Lots of it!"));
-			this.buttonList.add(new GuiButton(7, 2, this.height / 4 + 96 + -16, 220, 20, "The most sacred item the village has"));
+			this.buttonList.add(new GuiButton(6, 2, this.height / 4 + 72 + - 16, 220, 20, "Erium! Lots of it!"));
+			this.buttonList.add(new GuiButton(7, 2, this.height / 4 + 96 + - 16, 220, 20, "The most sacred item the village has"));
 			break;
 
 		case 3:
-			this.buttonList.add(new GuiButton(8, 2, this.height / 4 + 96 + -16, 220, 20, "I've killed the Yeti"));
+			this.buttonList.add(new GuiButton(8, 2, this.height / 4 + 96 + - 16, 220, 20, "I've killed the Yeti"));
 			break;
 
 		}
@@ -67,7 +65,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 	{
 		int buttonID = button.id;
 		out("" + button.id);
-		switch (button.id)
+		switch(button.id)
 		{
 		case 0:
 			mc.thePlayer.addChatMessage("I am the chief of this great Eskimo village!");
@@ -118,20 +116,20 @@ public class AC_GuiEskimoTalk extends GuiScreen
 			int offsetY = (int) Math.round(mc.thePlayer.posY);
 			int offsetZ = (int) Math.round(mc.thePlayer.posZ);
 
-			List <?> entitiesInRange = mc.theWorld.getEntitiesWithinAABB(AC_EntityYeti.class, AxisAlignedBB.getBoundingBox(offsetX - 32, offsetY - 32, offsetZ - 32, offsetX + 32, offsetY + 32, offsetZ + 32));
+			List<?> entitiesInRange = mc.theWorld.getEntitiesWithinAABB(AC_EntityYeti.class, AxisAlignedBB.getBoundingBox(offsetX - 32, offsetY - 32, offsetZ - 32, offsetX + 32, offsetY + 32, offsetZ + 32));
 
 			AC_EntityYeti yetiInstance = null;
 
-			for (int i = 0; i < entitiesInRange.size(); ++i)
+			for(int i = 0; i < entitiesInRange.size(); ++i)
 			{
 				Entity check = (Entity) entitiesInRange.get(i);
-				if (check instanceof AC_EntityYeti)
+				if(check instanceof AC_EntityYeti)
 				{
 					try
 					{
 						yetiInstance = (AC_EntityYeti) check;
 					}
-					catch (Exception e)
+					catch(Exception e)
 					{
 						out("[AC]Error occured while casting an Entity into an EntityYeti:");
 						out("");
@@ -140,7 +138,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 				}
 			}
 
-			if (yetiInstance != null)
+			if(yetiInstance != null)
 			{
 				mc.thePlayer.addChatMessage("The beast has not been slaid yet, kill it if you want your reward");
 				out("The Yeti is not dead...");
@@ -148,10 +146,10 @@ public class AC_GuiEskimoTalk extends GuiScreen
 			}
 			else
 			{
-				if (hasCollectedReward == false && mc.thePlayer.inventory.getFirstEmptyStack() != -1)
+				if(hasCollectedReward == false && mc.thePlayer.inventory.getFirstEmptyStack() != - 1)
 				{
 
-					if (reward == 2)
+					if(reward == 2)
 					{
 						mc.thePlayer.addChatMessage("Thank you for the killing the Yeti. It has brought peace to my people. Heres is a reward for your efforts.");
 						sendRewardToPlayer(this.mc.thePlayer, new ItemStack(AC_Item.eriumGem, 128));
@@ -160,7 +158,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 						mc.thePlayer.closeScreen();
 						break;
 					}
-					else if (reward == 0)
+					else if(reward == 0)
 					{
 						mc.thePlayer.addChatMessage("The village is very grateful, here is your Erium");
 						sendRewardToPlayer(this.mc.thePlayer, new ItemStack(AC_Item.eriumGem, 128));
@@ -169,7 +167,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 						mc.thePlayer.closeScreen();
 						break;
 					}
-					else if (reward == 1)
+					else if(reward == 1)
 					{
 						mc.thePlayer.addChatMessage("It took me a while to convince my people, but I manage to get it. Here it is X - the most sacred item we have to offer ");
 						//TODO sacred item
@@ -183,42 +181,46 @@ public class AC_GuiEskimoTalk extends GuiScreen
 						break;
 					}
 				}
-				else {
+				else
+				{
 					this.mc.thePlayer.addChatMessage("Something went wrong, is your inventory full?");
 				}
 			}
 		}
 		}
 	}
-	
-	private static void sendRewardToPlayer(EntityClientPlayerMP player, ItemStack stack) {
+
+	private static void sendRewardToPlayer(EntityClientPlayerMP player, ItemStack stack)
+	{
 		int itemID = stack.itemID;
 		int stackSize = stack.stackSize;
 		int damageValue = stack.getItemDamage();
-		
+
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(12);
 		DataOutputStream outputStream = new DataOutputStream(bos);
-		
-		try {
+
+		try
+		{
 			outputStream.writeInt(itemID);
 			outputStream.writeInt(stackSize);
 			outputStream.writeInt(damageValue);
 		}
-		catch (Exception ex) {
+		catch(Exception ex)
+		{
 			ex.printStackTrace();
 		}
-		
+
 		Packet250CustomPayload packet = new Packet250CustomPayload();
-        packet.channel = "AC_EskimoTalk";
-        packet.data = bos.toByteArray();
-        packet.length = bos.size();
-        
-        player.sendQueue.addToSendQueue(packet);
+		packet.channel = "AC_EskimoTalk";
+		packet.data = bos.toByteArray();
+		packet.length = bos.size();
+
+		player.sendQueue.addToSendQueue(packet);
 	}
-	
+
 	protected void keyTyped(char par1, int par2)
 	{
-		if (par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.keyCode)
+		if(par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.keyCode)
 		{
 			this.mc.thePlayer.closeScreen();
 		}
@@ -228,7 +230,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 	{
 		return false;
 	}
-	
+
 	public static void out(String text)
 	{
 		System.out.println(AC_TickHandler.getSideAsString() + ": " + text);

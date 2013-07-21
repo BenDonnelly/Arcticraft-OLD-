@@ -16,12 +16,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class AC_RenderYeti extends RenderLiving
 {
-	private static final ResourceLocation yeti = new ResourceLocation("ac", "textures/mobs/yeti.png");
 
+	private static final ResourceLocation yeti = new ResourceLocation("ac", "textures/mobs/yeti.png");
 
 	public AC_RenderYeti(ModelBase modelbase, float f)
 	{
-		super( modelbase, f);
+		super(modelbase, f);
 
 	}
 
@@ -32,38 +32,14 @@ public class AC_RenderYeti extends RenderLiving
 		super.doRenderLiving(yeti, par2, par4, par6, par8, par9);
 	}
 
-	protected void func_82415_a(AC_EntityYeti yeti, float par2)
-	{
-		int i = yeti.func_82212_n();
-
-		if (i > 0)
-		{
-			float f1 = 2.0F - ((float) i - par2) / 220.0F * 0.5F;
-			GL11.glScalef(f1, f1, f1);
-		}
-		else
-		{
-			GL11.glScalef(1.25F, 1.25F, 1.25F);
-		}
-	}
-
 	protected int func_82417_a(AC_EntityYeti yeti, int par2, float par3)
 	{
-		return -1;
+		return - 1;
 	}
 
 	protected int func_82416_b(AC_EntityYeti yeti, int par2, float par3)
 	{
-		return -1;
-	}
-
-	/**
-	 * Allows the render to do any OpenGL state modifications necessary before
-	 * the model is rendered. Args: entityLiving, partialTickTime
-	 */
-	protected void preRenderCallback(EntityLiving par1EntityLiving, float par2)
-	{
-		this.func_82415_a((AC_EntityYeti) par1EntityLiving, par2);
+		return - 1;
 	}
 
 	/**

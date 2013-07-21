@@ -45,7 +45,7 @@ public class AC_BlockFreezer extends BlockContainer
 	@SideOnly(Side.CLIENT)
 	private Icon freezerIconFront;
 
-	private Icon [] activeFace;
+	private Icon[] activeFace;
 	private Icon sideFace;
 
 	public AC_BlockFreezer(int par1, boolean par2)
@@ -55,41 +55,42 @@ public class AC_BlockFreezer extends BlockContainer
 	}
 
 	@Override
-	 public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
-   {
-       int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
+	{
+		int l = MathHelper.floor_double((double) (par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
-       if (l == 0)
-       {
-           par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
-       }
+		if(l == 0)
+		{
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
+		}
 
-       if (l == 1)
-       {
-           par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
-       }
+		if(l == 1)
+		{
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
+		}
 
-       if (l == 2)
-       {
-           par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
-       }
+		if(l == 2)
+		{
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
+		}
 
-       if (l == 3)
-       {
-           par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
-       }
+		if(l == 3)
+		{
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
+		}
 
-       if (par6ItemStack.hasDisplayName())
-       {
-           ((AC_TileEntityFreezer)par1World.getBlockTileEntity(par2, par3, par4)).getInvName();
-       }
-   }
+		if(par6ItemStack.hasDisplayName())
+		{
+			((AC_TileEntityFreezer) par1World.getBlockTileEntity(par2, par3, par4)).getInvName();
+		}
+	}
 
 	@SideOnly(Side.CLIENT)
-	  public Icon getIcon(int par1, int par2)
-    {
-        return par1 == 1 ? this.freezerIconTop : (par1 == 0 ? this.freezerIconTop : (par1 != par2 ? this.blockIcon : this.freezerIconFront));
-    }
+	public Icon getIcon(int par1, int par2)
+	{
+		return par1 == 1 ? this.freezerIconTop : (par1 == 0 ? this.freezerIconTop : (par1 != par2 ? this.blockIcon : this.freezerIconFront));
+	}
+
 	@SideOnly(Side.CLIENT)
 	/**
 	 * When this method is called, your block should register all the icons it needs with the given IconRegister. This
@@ -99,7 +100,7 @@ public class AC_BlockFreezer extends BlockContainer
 	{
 		this.blockIcon = par1IconRegister.registerIcon("ac:freezer_side");
 		this.freezerIconFront = par1IconRegister.registerIcon(this.isActive ? "ac:freezer_front_on" : "ac:freezer_front_off");
-		this.freezerIconTop= par1IconRegister.registerIcon("ac:freezer_top");
+		this.freezerIconTop = par1IconRegister.registerIcon("ac:freezer_top");
 	}
 
 	/**
@@ -107,7 +108,7 @@ public class AC_BlockFreezer extends BlockContainer
 	 */
 	public int idDropped(int par1, Random par2Random, int par3)
 	{
-		return  AC_Block.freezerIdle.blockID;
+		return AC_Block.freezerIdle.blockID;
 	}
 
 	/**
@@ -124,7 +125,7 @@ public class AC_BlockFreezer extends BlockContainer
 	 */
 	private void setDefaultDirection(World par1World, int par2, int par3, int par4)
 	{
-		if (!par1World.isRemote)
+		if(! par1World.isRemote)
 		{
 			int l = par1World.getBlockId(par2, par3, par4 - 1);
 			int i1 = par1World.getBlockId(par2, par3, par4 + 1);
@@ -132,22 +133,22 @@ public class AC_BlockFreezer extends BlockContainer
 			int k1 = par1World.getBlockId(par2 + 1, par3, par4);
 			byte b0 = 3;
 
-			if (Block.opaqueCubeLookup [l] && !Block.opaqueCubeLookup [i1])
+			if(Block.opaqueCubeLookup[l] && ! Block.opaqueCubeLookup[i1])
 			{
 				b0 = 3;
 			}
 
-			if (Block.opaqueCubeLookup [i1] && !Block.opaqueCubeLookup [l])
+			if(Block.opaqueCubeLookup[i1] && ! Block.opaqueCubeLookup[l])
 			{
 				b0 = 2;
 			}
 
-			if (Block.opaqueCubeLookup [j1] && !Block.opaqueCubeLookup [k1])
+			if(Block.opaqueCubeLookup[j1] && ! Block.opaqueCubeLookup[k1])
 			{
 				b0 = 5;
 			}
 
-			if (Block.opaqueCubeLookup [k1] && !Block.opaqueCubeLookup [j1])
+			if(Block.opaqueCubeLookup[k1] && ! Block.opaqueCubeLookup[j1])
 			{
 				b0 = 4;
 			}
@@ -164,7 +165,7 @@ public class AC_BlockFreezer extends BlockContainer
 	{
 		TileEntity tile_entity = world.getBlockTileEntity(x, y, z);
 
-		if (tile_entity == null || player.isSneaking())
+		if(tile_entity == null || player.isSneaking())
 		{
 
 			return false;
@@ -185,19 +186,19 @@ public class AC_BlockFreezer extends BlockContainer
 		TileEntity tileentity = par1World.getBlockTileEntity(par2, par3, par4);
 		keepFreezerInventory = true;
 
-		if (par0)
+		if(par0)
 		{
-			par1World.setBlock(par2, par3, par4,  AC_Block.freezerBurning.blockID);
+			par1World.setBlock(par2, par3, par4, AC_Block.freezerBurning.blockID);
 		}
 		else
 		{
-			par1World.setBlock(par2, par3, par4,  AC_Block.freezerIdle.blockID);
+			par1World.setBlock(par2, par3, par4, AC_Block.freezerIdle.blockID);
 		}
 
 		keepFreezerInventory = false;
 		par1World.setBlockMetadataWithNotify(par2, par3, par4, l, 2);
 
-		if (tileentity != null)
+		if(tileentity != null)
 		{
 			tileentity.validate();
 			par1World.setBlockTileEntity(par2, par3, par4, tileentity);
@@ -210,7 +211,7 @@ public class AC_BlockFreezer extends BlockContainer
 	 */
 	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
 	{
-		if (this.isActive)
+		if(this.isActive)
 		{
 			int l = par1World.getBlockMetadata(par2, par3, par4);
 			float f = (float) par2 + 0.5F;
@@ -219,22 +220,22 @@ public class AC_BlockFreezer extends BlockContainer
 			float f3 = 0.52F;
 			float f4 = par5Random.nextFloat() * 0.6F - 0.3F;
 
-			if (l == 4)
+			if(l == 4)
 			{
 				par1World.spawnParticle("smoke", (double) (f - f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
 				par1World.spawnParticle("flame", (double) (f - f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
 			}
-			else if (l == 5)
+			else if(l == 5)
 			{
 				par1World.spawnParticle("smoke", (double) (f + f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
 				par1World.spawnParticle("flame", (double) (f + f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
 			}
-			else if (l == 2)
+			else if(l == 2)
 			{
 				par1World.spawnParticle("smoke", (double) (f + f4), (double) f1, (double) (f2 - f3), 0.0D, 0.0D, 0.0D);
 				par1World.spawnParticle("flame", (double) (f + f4), (double) f1, (double) (f2 - f3), 0.0D, 0.0D, 0.0D);
 			}
-			else if (l == 3)
+			else if(l == 3)
 			{
 				par1World.spawnParticle("smoke", (double) (f + f4), (double) f1, (double) (f2 + f3), 0.0D, 0.0D, 0.0D);
 				par1World.spawnParticle("flame", (double) (f + f4), (double) f1, (double) (f2 + f3), 0.0D, 0.0D, 0.0D);
@@ -257,27 +258,27 @@ public class AC_BlockFreezer extends BlockContainer
 	 */
 	public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
 	{
-		if (!keepFreezerInventory)
+		if(! keepFreezerInventory)
 		{
 			AC_TileEntityFreezer TileEntityFreezer = (AC_TileEntityFreezer) par1World.getBlockTileEntity(par2, par3, par4);
 
-			if (TileEntityFreezer != null)
+			if(TileEntityFreezer != null)
 			{
-				for (int j1 = 0; j1 < TileEntityFreezer.getSizeInventory(); ++j1)
+				for(int j1 = 0; j1 < TileEntityFreezer.getSizeInventory(); ++j1)
 				{
 					ItemStack itemstack = TileEntityFreezer.getStackInSlot(j1);
 
-					if (itemstack != null)
+					if(itemstack != null)
 					{
 						float f = this.freezerRand.nextFloat() * 0.8F + 0.1F;
 						float f1 = this.freezerRand.nextFloat() * 0.8F + 0.1F;
 						float f2 = this.freezerRand.nextFloat() * 0.8F + 0.1F;
 
-						while (itemstack.stackSize > 0)
+						while(itemstack.stackSize > 0)
 						{
 							int k1 = this.freezerRand.nextInt(21) + 10;
 
-							if (k1 > itemstack.stackSize)
+							if(k1 > itemstack.stackSize)
 							{
 								k1 = itemstack.stackSize;
 							}
@@ -285,7 +286,7 @@ public class AC_BlockFreezer extends BlockContainer
 							itemstack.stackSize -= k1;
 							EntityItem entityitem = new EntityItem(par1World, (double) ((float) par2 + f), (double) ((float) par3 + f1), (double) ((float) par4 + f2), new ItemStack(itemstack.itemID, k1, itemstack.getItemDamage()));
 
-							if (itemstack.hasTagCompound())
+							if(itemstack.hasTagCompound())
 							{
 								entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
 							}
@@ -322,7 +323,7 @@ public class AC_BlockFreezer extends BlockContainer
 	 * comparator.
 	 */
 	public int getComparatorInputOverride(World par1World, int par2, int par3, int par4, int par5)
-    {
-        return Container.calcRedstoneFromInventory((IInventory)par1World.getBlockTileEntity(par2, par3, par4));
-    }
+	{
+		return Container.calcRedstoneFromInventory((IInventory) par1World.getBlockTileEntity(par2, par3, par4));
+	}
 }

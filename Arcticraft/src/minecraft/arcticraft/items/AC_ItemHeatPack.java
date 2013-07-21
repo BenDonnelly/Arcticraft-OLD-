@@ -27,7 +27,7 @@ public class AC_ItemHeatPack extends Item
 
 			else if (AC_TickHandler.value <= 85)
 			{
-				AC_TickHandler.value += 7.5;
+				AC_TickHandler.value += 7;
 			}
 			System.out.println(AC_TickHandler.value);
 			--par1ItemStack.stackSize;

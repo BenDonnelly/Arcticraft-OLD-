@@ -4,47 +4,57 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import arcticraft.items.AC_Item;
 
-public class AC_EskimoTrade {
-	
+public class AC_EskimoTrade
+{
+
 	public ItemStack itemstack;
 	public int gemAmount;
-	
-	public AC_EskimoTrade(ItemStack stack, int gems) {
+
+	public AC_EskimoTrade(ItemStack stack, int gems)
+	{
 		this.itemstack = stack;
 		this.gemAmount = gems;
 	}
-	
-	public static boolean removeGemsFromInventory(InventoryPlayer inv, int amount) {
+
+	public static boolean removeGemsFromInventory(InventoryPlayer inv, int amount)
+	{
 		int gemID = AC_Item.eriumGem.itemID;
-		
-		if (getGemsFromInventory(inv) < amount) {
+
+		if(getGemsFromInventory(inv) < amount)
+		{
 			return false;
 		}
-		
-		for (int j = 0; j < inv.mainInventory.length; ++j) {
+
+		for(int j = 0; j < inv.mainInventory.length; ++j)
+		{
 			ItemStack stack = inv.mainInventory[j];
-            if (stack != null && stack.itemID == gemID) {
-            	while (amount > 0 && stack.stackSize > 0) {
-            		inv.decrStackSize(j, 1);
-            		amount--;
-            	}
-            }
-        }
-		
+			if(stack != null && stack.itemID == gemID)
+			{
+				while(amount > 0 && stack.stackSize > 0)
+				{
+					inv.decrStackSize(j, 1);
+					amount--;
+				}
+			}
+		}
+
 		return true;
 	}
-	
-	public static int getGemsFromInventory(InventoryPlayer inv) {
+
+	public static int getGemsFromInventory(InventoryPlayer inv)
+	{
 		int gemID = AC_Item.eriumGem.itemID;
 		int stackSize = 0;
-		
-		for (int j = 0; j < inv.mainInventory.length; ++j) {
+
+		for(int j = 0; j < inv.mainInventory.length; ++j)
+		{
 			ItemStack stack = inv.mainInventory[j];
-            if (stack != null && stack.itemID == gemID) {
-                stackSize += stack.stackSize;
-            }
-        }
-		
+			if(stack != null && stack.itemID == gemID)
+			{
+				stackSize += stack.stackSize;
+			}
+		}
+
 		return stackSize;
 	}
 }

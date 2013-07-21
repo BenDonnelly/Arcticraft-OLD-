@@ -23,32 +23,32 @@ public class AC_GuiOptions extends GuiScreen
 	public void initGui()
 	{
 		this.buttonList.clear();
-		this.buttonList.add(new AC_GuiOptionsButton(0, 0, this.height / 4 + 24 + -16, "Back To Game"));
-		this.buttonList.add(new AC_GuiOptionsButton(1, 0, this.height / 4 + 144 + -16, "Temperature Bar Coordinates"));
-		this.buttonList.add(new AC_GuiOptionsButton(2, 0, this.height / 4 + 96 + -16, "Debugging button"));
-		this.buttonList.add(new AC_GuiOptionsButton(3, 0, this.height / 4 + 120 + -16, tickHandlerInstance.renderOverlay ? "Render Freezing Overlay" : "Don't Render Freezing Overlay"));
-		this.buttonList.add(new AC_GuiOptionsButton(4, 0, this.height / 4 + 48 + -16, "Example4"));
-		this.buttonList.add(new AC_GuiOptionsButton(5, 0, this.height / 4 + 72 + -16, "Example5"));
+		this.buttonList.add(new AC_GuiOptionsButton(0, 0, this.height / 4 + 24 + - 16, "Back To Game"));
+		this.buttonList.add(new AC_GuiOptionsButton(1, 0, this.height / 4 + 144 + - 16, "Temperature Bar Coordinates"));
+		this.buttonList.add(new AC_GuiOptionsButton(2, 0, this.height / 4 + 96 + - 16, "Debugging button"));
+		this.buttonList.add(new AC_GuiOptionsButton(3, 0, this.height / 4 + 120 + - 16, tickHandlerInstance.renderOverlay ? "Render Freezing Overlay" : "Don't Render Freezing Overlay"));
+		this.buttonList.add(new AC_GuiOptionsButton(4, 0, this.height / 4 + 48 + - 16, "Example4"));
+		this.buttonList.add(new AC_GuiOptionsButton(5, 0, this.height / 4 + 72 + - 16, "Example5"));
 	}
 
 	public void actionPerformed(GuiButton button)
 	{
-		if (button.id == 0)
+		if(button.id == 0)
 		{
 			mc.thePlayer.closeScreen();
 		}
-		else if (button.id == 1)
+		else if(button.id == 1)
 		{
 			mc.displayGuiScreen(new AC_GuiCoordinates());
 			mc.thePlayer.addChatMessage("Type your desired X coordinate in the left box and the Y coordinate in the right.");
 		}
-		else if (button.id == 2)
+		else if(button.id == 2)
 		{
-			
+
 		}
-		else if (button.id == 3)
+		else if(button.id == 3)
 		{
-			tickHandlerInstance.renderOverlay = !tickHandlerInstance.renderOverlay;
+			tickHandlerInstance.renderOverlay = ! tickHandlerInstance.renderOverlay;
 			updateScreen();
 			initGui();
 			System.out.println("Render tickHandler: " + tickHandlerInstance.renderOverlay);
@@ -64,7 +64,7 @@ public class AC_GuiOptions extends GuiScreen
 	@Override
 	protected void keyTyped(char par1, int par2)
 	{
-		if (par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.keyCode)
+		if(par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.keyCode)
 		{
 			this.mc.thePlayer.closeScreen();
 		}

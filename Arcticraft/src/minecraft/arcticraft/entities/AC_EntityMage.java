@@ -63,8 +63,6 @@ public class AC_EntityMage extends EntityAnimal
 		return false;
 	}
 
-
-
 	/**
 	 * Called when a player interacts with a mob. e.g. gets milk from a cow,
 	 * gets into the saddle on a pig.
@@ -73,15 +71,15 @@ public class AC_EntityMage extends EntityAnimal
 	{
 		ItemStack var2 = par1EntityPlayer.inventory.getCurrentItem();
 
-		if (var2 != null && var2.itemID == AC_Block.mysticalSnow.blockID)
+		if(var2 != null && var2.itemID == AC_Block.mysticalSnow.blockID)
 		{
 			this.randomChat("trade");
 
-			if (--var2.stackSize <= 0)
+			if(--var2.stackSize <= 0)
 			{
 				par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(AC_Item.MystFruit));
 			}
-			else if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(AC_Item.MystFruit))) // fruit
+			else if(! par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(AC_Item.MystFruit))) // fruit
 			{
 				par1EntityPlayer.dropPlayerItem(new ItemStack(AC_Item.MystFruit.itemID, 1, 0));
 			}
@@ -100,13 +98,13 @@ public class AC_EntityMage extends EntityAnimal
 	{
 		int i = rand.nextInt(3);
 
-		if (type.equals("trade"))
+		if(type.equals("trade"))
 		{
-			if (i == 2)
+			if(i == 2)
 			{
 				MainRegistry.talkStuff("\247bIf you feel the need for some new adventures, eat this!", this.worldObj);
 			}
-			else if (i == 1)
+			else if(i == 1)
 			{
 				MainRegistry.talkStuff("\247bDevouring this will send you off into the cold!", this.worldObj);
 			}
@@ -116,13 +114,13 @@ public class AC_EntityMage extends EntityAnimal
 			}
 		}
 
-		if (type.equals("give"))
+		if(type.equals("give"))
 		{
-			if (i == 2)
+			if(i == 2)
 			{
 				MainRegistry.talkStuff("\247bIf you give me some Mystical Snow I will show you the way to a new world", this.worldObj);
 			}
-			else if (i == 1)
+			else if(i == 1)
 			{
 				MainRegistry.talkStuff("\247bAdventures await if you hand me some Mystical Snow", this.worldObj);
 			}

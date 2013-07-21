@@ -3,11 +3,9 @@ package arcticraft.blocks;
 import java.util.Random;
 
 import net.minecraft.block.BlockFlower;
-import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import arcticraft.gen.AC_GenFrostTrees;
-import arcticraft.main.MainRegistry;
 
 public class AC_BlockFrostSapling extends BlockFlower
 {
@@ -26,16 +24,16 @@ public class AC_BlockFrostSapling extends BlockFlower
 
 	public void updateTick(World world, int i, int j, int k, Random random)
 	{
-		if (world.isRemote)
+		if(world.isRemote)
 		{
 			return;
 		}
 		super.updateTick(world, i, j, k, random);
 
-		if (world.getBlockLightValue(i, j + 1, k) >= 9 && random.nextInt(7) == 0)
+		if(world.getBlockLightValue(i, j + 1, k) >= 9 && random.nextInt(7) == 0)
 		{
 			int l = world.getBlockMetadata(i, j, k);
-			if ((l & 8) == 0)
+			if((l & 8) == 0)
 			{
 				world.setBlockMetadataWithNotify(i, j, k, l | 8, l);
 			}
@@ -45,21 +43,22 @@ public class AC_BlockFrostSapling extends BlockFlower
 			}
 		}
 	}
+
 	public void growTree(World world, int i, int j, int k, Random random)
 	{
 		int l = world.getBlockMetadata(i, j, k) & 3;
 		world.setBlock(i, j, k, 0);
 		Object obj = null;
 		obj = new AC_GenFrostTrees(blockConstructorCalled);
-		if (!((WorldGenerator) (obj)).generate(world, random, i, j, k))
+		if(! ((WorldGenerator) (obj)).generate(world, random, i, j, k))
 		{
 			world.setBlock(i, j, k, blockID, l, blockID);
 		}
 	}
+
 	public int damageDropped(int i)
 	{
 		return i & 3;
 	}
-	
-	
+
 }

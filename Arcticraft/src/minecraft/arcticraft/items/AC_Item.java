@@ -19,7 +19,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class AC_Item
 {
 
-	/*Food Items*/
+	/* Food Items */
 	public static Item MystFruit;
 	public static Item GlacierFruit;
 	public static Item penguinMeat;
@@ -29,9 +29,8 @@ public class AC_Item
 	public static Item boarMeat;
 	public static Item uncookedBoarMeat;
 	public static Item floranSeed;
-	
-	
-	/*Tools & Armour*/
+
+	/* Tools & Armour */
 	private static ItemAxe axe;
 	private static ItemPickaxe pickaxe;
 	private static ItemSpade spade;
@@ -98,30 +97,26 @@ public class AC_Item
 	public static Item pirateSword;
 
 	public static Item hikingBoots;
-	
-	
-	/*Dungeon Loot*/
+
+	/* Dungeon Loot */
 	public static Item iceCream;
 	public static Item bomb;
 	public static Item amouryDoorPlace;
 	public static Item amouryKey;
-	
-	
-	/*Ore Drops*/
+
+	/* Ore Drops */
 	public static Item tekkiteGem;
 	public static Item escariaGem;
 	public static Item frigus;
 	public static Item glacianIngot;
 	public static Item rigentemIngot;
 	public static Item eriumGem;
-	
-	
-	/*Records*/
+
+	/* Records */
 	public static Item recordFrozenFeelings;
 	public static Item recordWTTC;
 
-	
-	/*Miscellaneous Items*/
+	/* Miscellaneous Items */
 	public static Item IceShard;
 	public static Item penguinFeather;
 	public static Item itemLantern;
@@ -132,28 +127,26 @@ public class AC_Item
 	public static Item bucketIcyWater;
 	public static Item frostDoorPlace;
 	public static Item invisoStaff;
-	
+
 	public static void initializeItems()
 	{
 		/**Params go as follows : name, durability, reductionAmounts, enchantability**/
-		
+
 		EnumToolMaterial TekkiteTool = EnumHelper.addToolMaterial("Tekkite Tool", 2, 250, 5.1F, 2, 22);
-		EnumArmorMaterial TekkiteArmor = EnumHelper.addArmorMaterial("Tekkite Armor", 15, new int[] { 2, 6, 5, 2 }, 22);
+		EnumArmorMaterial TekkiteArmor = EnumHelper.addArmorMaterial("Tekkite Armor", 15, new int[] {2 , 6 , 5 , 2}, 22);
 
 		EnumToolMaterial EscariaTool = EnumHelper.addToolMaterial("Escaria Tool", 2, 310, 5.1F, 2, 22);
-		EnumArmorMaterial EscariaArmor = EnumHelper.addArmorMaterial("Escaria Armor", 17, new int[] { 2, 6, 5, 2 }, 22);
+		EnumArmorMaterial EscariaArmor = EnumHelper.addArmorMaterial("Escaria Armor", 17, new int[] {2 , 6 , 5 , 2}, 22);
 
 		EnumToolMaterial RigentemTool = EnumHelper.addToolMaterial("Rigentem Tool", 2, 350, 6.0F, 2, 15);
-		EnumArmorMaterial RigentemArmor = EnumHelper.addArmorMaterial("Rigentem Armor", 19, new int[] { 3, 7, 6, 3 }, 15);
+		EnumArmorMaterial RigentemArmor = EnumHelper.addArmorMaterial("Rigentem Armor", 19, new int[] {3 , 7 , 6 , 3}, 15);
 
 		EnumToolMaterial GlacianTool = EnumHelper.addToolMaterial("Glacian Tool", 4, 900, 10.0F, 5, 18);
-		EnumArmorMaterial GlacianArmor = EnumHelper.addArmorMaterial("Glacian Armor", 35, new int[] { 3, 8, 6, 3 }, 18);
+		EnumArmorMaterial GlacianArmor = EnumHelper.addArmorMaterial("Glacian Armor", 35, new int[] {3 , 8 , 6 , 3}, 18);
 
-		EnumArmorMaterial PirateArmour = EnumHelper.addArmorMaterial("Pirate Armor", 33, new int[] { 1, 3, 2, 1 }, 15);
-		
-		EnumArmorMaterial hikingAmrour = EnumHelper.addArmorMaterial("Hiking Armoru", 33, new int[] { 1, 3, 2, 1 }, 20);
+		EnumArmorMaterial PirateArmour = EnumHelper.addArmorMaterial("Pirate Armor", 33, new int[] {1 , 3 , 2 , 1}, 15);
 
-		
+		EnumArmorMaterial hikingAmrour = EnumHelper.addArmorMaterial("Hiking Armoru", 33, new int[] {1 , 3 , 2 , 1}, 20);
 
 		TekkitePickaxe = new AC_ItemPickaxe(6205, TekkiteTool).setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("Tekkite Pickaxe").func_111206_d("ac:tekkite_pickaxe");
 		TekkiteAxe = new AC_ItemAxe(6206, TekkiteTool).setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("Tekkite Axe").func_111206_d("ac:tekkite_axe");
@@ -212,41 +205,41 @@ public class AC_Item
 		FrostWoodShovel = new AC_ItemShovel(6250, EnumToolMaterial.WOOD).setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("Frost Wood Spade").func_111206_d("ac:frost_wood_spade");
 
 		frostSticks = new Item(6251).setCreativeTab(MainRegistry.tabMaterial).func_111206_d("ac:frost_stick");
-		penguinMeat = new ItemFood(6252, 4, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("AC:penguin_meat").func_111206_d("ac:penguin_meat");
-		penguinMeatCooked = new ItemFood(6253, 8, true).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("AC:penguin_meat_cooked").func_111206_d("ac:penguin_meat_cooked");
-		penguinFeather = new Item(6254).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("AC:penguin_feather").func_111206_d("ac:penguin_feather");
-		tekkiteGem = new Item(6255).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("AC:tekkite_gem").func_111206_d("ac:tekkite_gem");
-		escariaGem = new Item(6256).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("AC:escaria_gem").func_111206_d("ac:escaria_gem");
-		frigus = new Item(6257).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("AC:frigus").func_111206_d("ac:frigus");
-		glacianIngot = new Item(6258).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("AC:glacian").func_111206_d("ac:glacian_ingot");
-		rigentemIngot = new Item(6259).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("AC:rigentem").func_111206_d("ac:rigentem_ingot");
-		eriumGem = new Item(6260).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("AC:erium_gem").func_111206_d("ac:erium_gem");
+		penguinMeat = new ItemFood(6252, 4, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("penguin_meat").func_111206_d("ac:penguin_meat");
+		penguinMeatCooked = new ItemFood(6253, 8, true).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("penguin_meat_cooked").func_111206_d("ac:penguin_meat_cooked");
+		penguinFeather = new Item(6254).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("penguin_feather").func_111206_d("ac:penguin_feather");
+		tekkiteGem = new Item(6255).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("tekkite_gem").func_111206_d("ac:tekkite_gem");
+		escariaGem = new Item(6256).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("escaria_gem").func_111206_d("ac:escaria_gem");
+		frigus = new Item(6257).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("frigus").func_111206_d("ac:frigus");
+		glacianIngot = new Item(6258).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("glacian").func_111206_d("ac:glacian_ingot");
+		rigentemIngot = new Item(6259).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("rigentem").func_111206_d("ac:rigentem_ingot");
+		eriumGem = new Item(6260).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("erium_gem").func_111206_d("ac:erium_gem");
 		iceCream = new AC_ItemIceCream(6261, 10, 1.3F, true).setAlwaysEdible().setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("icecream");
-		itemLantern = new AC_ItemLantern(6262, AC_Block.Lantern).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("AC:lantern").func_111206_d("ac:lantern");
-		arcaneDust = new Item(6263).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("AC:arcaneDust").func_111206_d("ac:arcane_dust");
-		heatPack = new AC_ItemHeatPack(6264).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("AC:heatpack").func_111206_d("ac:heatpack");
-		bomb = new AC_ItemBomb(6265).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("AC:bomb").func_111206_d("ac:bomb");
-		emptyCup = new Item(6266).setMaxStackSize(8).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("AC:empty_cup").func_111206_d("ac:empty_cup");
-		teaDrinks = new AC_ItemTeaDrinks(6267, 4, 1.3F, true).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("AC:hot_chocolate").func_111206_d("ac:hot_chocolate");
-		pirateHat = new AC_ItemArmour(6268, PirateArmour, MainRegistry.instance.proxy.addArmor("Pirate"), 0).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("AC:piratehaticon").func_111206_d("ac:pirate_hat_icon");
-		pirateSword = new AC_ItemCaptainSword(6269, EnumToolMaterial.EMERALD).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("AC:pirateSword").func_111206_d("ac:captain_sword");
-		boarMeat = new ItemFood(6270, 4, true).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("AC:boar_meat").func_111206_d("ac:cooked_boar_meat");
-		uncookedBoarMeat = new ItemFood(6271, 10, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("AC:raw_boar_meat").func_111206_d("ac:raw_boar_meat");
+		itemLantern = new AC_ItemLantern(6262, AC_Block.Lantern).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("lantern").func_111206_d("ac:lantern");
+		arcaneDust = new Item(6263).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("arcaneDust").func_111206_d("ac:arcane_dust");
+		heatPack = new AC_ItemHeatPack(6264).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("heatpack").func_111206_d("ac:heatpack");
+		bomb = new AC_ItemBomb(6265).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("bomb").func_111206_d("ac:bomb");
+		emptyCup = new Item(6266).setMaxStackSize(8).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("empty_cup").func_111206_d("ac:empty_cup");
+		teaDrinks = new AC_ItemTeaDrinks(6267, 4, 1.3F, true).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("hot_chocolate").func_111206_d("ac:hot_chocolate");
+		pirateHat = new AC_ItemArmour(6268, PirateArmour, MainRegistry.instance.proxy.addArmor("Pirate"), 0).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("piratehaticon").func_111206_d("ac:pirate_hat_icon");
+		pirateSword = new AC_ItemCaptainSword(6269, EnumToolMaterial.EMERALD).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("pirateSword").func_111206_d("ac:captain_sword");
+		boarMeat = new ItemFood(6270, 4, true).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("boar_meat").func_111206_d("ac:cooked_boar_meat");
+		uncookedBoarMeat = new ItemFood(6271, 10, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("raw_boar_meat").func_111206_d("ac:raw_boar_meat");
 		hikingBoots = new AC_ItemArmour(6272, hikingAmrour, MainRegistry.instance.proxy.addArmor("Hiking"), 3).setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("Hiking Boots");
-		invisoStaff = new AC_ItemInvisoStaff(6273).setFull3D().setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("AC:staff_icon").func_111206_d("ac:staff_icon");
+		invisoStaff = new AC_ItemInvisoStaff(6273).setFull3D().setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("staff_icon").func_111206_d("ac:staff_icon");
 		recordFrozenFeelings = new AC_ItemRecord(6274, "Welcome To The Cold").setUnlocalizedName("record_FF");
 		recordWTTC = new AC_ItemRecord(6275, "Frozen Feelings").setUnlocalizedName("record_WTTC");
-		amouryKey = new Item(6276).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("AC:amoury_key").func_111206_d("ac:amoury_key");
-		bucketIcyWater = new AC_ItemBucket(6277, AC_Block.acWaterFlowing.blockID).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("AC:bucket_ice_water").func_111206_d("ac:bucket_ice_water");
-		bucketEmpty = new AC_ItemBucket(6278, 0).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("AC:bucket_empty").func_111206_d("ac:bucket_empty");
-		MystFruit = new AC_ItemFruits(6279, 0, false).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("AC:mystical_fruit").func_111206_d("ac:mystical_fruit");
-		GlacierFruit = (new AC_ItemFruits(6280, 0, false).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("AC:glacier_fruit")).func_111206_d("ac:glacier_fruit");
-		IceShard = new Item(6281).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("AC:ice_shard").func_111206_d("ac:ice_shard");
-		frostDoorPlace = new AC_FrostDoorPlace(6282, Material.wood).setUnlocalizedName("AC:icedoor").setCreativeTab(MainRegistry.tabBlocks).func_111206_d("ac:frost_door_icon");
-		amouryDoorPlace = new AC_ItemAmouryDoor(6283, Material.wood).setUnlocalizedName("AC:amoury_door").setCreativeTab(MainRegistry.tabBlocks).func_111206_d("ac:amoury_door");
-		floranSeed = new AC_ItemSeed(6284, AC_Block.floranPlant).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("AC:floran_seed").func_111206_d("ac:floran_seed");	
+		amouryKey = new Item(6276).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("amoury_key").func_111206_d("ac:amoury_key");
+		bucketIcyWater = new AC_ItemBucket(6277, AC_Block.acWaterFlowing.blockID).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("bucket_ice_water").func_111206_d("ac:bucket_ice_water");
+		bucketEmpty = new AC_ItemBucket(6278, 0).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("bucket_empty").func_111206_d("ac:bucket_empty");
+		MystFruit = new AC_ItemFruits(6279, 0, false).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("mystical_fruit").func_111206_d("ac:mystical_fruit");
+		GlacierFruit = (new AC_ItemFruits(6280, 0, false).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("glacier_fruit")).func_111206_d("ac:glacier_fruit");
+		IceShard = new Item(6281).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("ice_shard").func_111206_d("ac:ice_shard");
+		frostDoorPlace = new AC_ItemFrostDoor(6282, Material.wood).setUnlocalizedName("icedoor").setCreativeTab(MainRegistry.tabBlocks).func_111206_d("ac:frost_door_icon");
+		amouryDoorPlace = new AC_ItemAmouryDoor(6283, Material.wood).setUnlocalizedName("amoury_door").setCreativeTab(MainRegistry.tabBlocks).func_111206_d("ac:amoury_door");
+		floranSeed = new AC_ItemSeed(6284, AC_Block.floranPlant).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("floran_seed").func_111206_d("ac:floran_seed");
 	}
-	
+
 	public static void nameItems()
 	{
 		LanguageRegistry.addName(pirateSword, "Pirate Sword");
@@ -281,7 +274,7 @@ public class AC_Item
 		LanguageRegistry.addName(frostSticks, "Frost Sticks");
 		LanguageRegistry.addName(invisoStaff, "Invisibility Staff");
 		LanguageRegistry.addName(floranSeed, "Floran Seed");
-		
+
 		LanguageRegistry.addName(TekkitePickaxe, "Tekkite Pickaxe");
 		LanguageRegistry.addName(TekkiteAxe, "Tekkite Axe");
 		LanguageRegistry.addName(TekkiteHoe, "Tekkite Hoe");
@@ -334,5 +327,5 @@ public class AC_Item
 		LanguageRegistry.addName(ArcticStoneSword, "Arctic Stone Sword");
 		LanguageRegistry.addName(ArcticStoneShovel, "Arctic Stone Spade");
 	}
-	
+
 }

@@ -22,12 +22,12 @@ public class AC_WorldChunkManager extends WorldChunkManager
 	private GenLayer myGenBiomes;
 	private GenLayer myBiomeIndexLayer;
 	private BiomeCache myBiomeCache;
-	private List <BiomeGenBase> myBiomesToSpawnIn;
+	private List<BiomeGenBase> myBiomesToSpawnIn;
 
 	protected AC_WorldChunkManager()
 	{
 		this.myBiomeCache = new BiomeCache(this);
-		this.myBiomesToSpawnIn = new ArrayList <BiomeGenBase>();
+		this.myBiomesToSpawnIn = new ArrayList<BiomeGenBase>();
 		this.myBiomesToSpawnIn.add(AC_BiomeGenBaseArcticraft.frostForest);
 	}
 
@@ -35,9 +35,9 @@ public class AC_WorldChunkManager extends WorldChunkManager
 	{
 		this();
 		// i changed this to my GenLayerTutorial
-		GenLayer [] agenlayer = AC_GenLayer.makeTheWorld(seed);
-		this.myGenBiomes = agenlayer [0];
-		this.myBiomeIndexLayer = agenlayer [1];
+		GenLayer[] agenlayer = AC_GenLayer.makeTheWorld(seed);
+		this.myGenBiomes = agenlayer[0];
+		this.myBiomeIndexLayer = agenlayer[1];
 	}
 
 	public AC_WorldChunkManager(World world)
@@ -48,7 +48,7 @@ public class AC_WorldChunkManager extends WorldChunkManager
 	/**
 	 * Gets the list of valid biomes for the player to spawn in.
 	 */
-	public List <BiomeGenBase> getBiomesToSpawnIn()
+	public List<BiomeGenBase> getBiomesToSpawnIn()
 	{
 		return this.myBiomesToSpawnIn;
 	}
@@ -59,7 +59,7 @@ public class AC_WorldChunkManager extends WorldChunkManager
 	public BiomeGenBase getBiomeGenAt(int x, int z)
 	{
 		BiomeGenBase biome = this.myBiomeCache.getBiomeGenAt(x, z);
-		if (biome == null)
+		if(biome == null)
 		{
 			return AC_BiomeGenBaseArcticraft.FrostMountains;
 		}
@@ -71,27 +71,27 @@ public class AC_WorldChunkManager extends WorldChunkManager
 	 * Returns a list of rainfall values for the specified blocks. Args:
 	 * listToReuse, x, z, width, length.
 	 */
-	public float [] getRainfall(float [] par1ArrayOfFloat, int par2, int par3, int par4, int par5)
+	public float[] getRainfall(float[] par1ArrayOfFloat, int par2, int par3, int par4, int par5)
 	{
 		IntCache.resetIntCache();
 
-		if (par1ArrayOfFloat == null || par1ArrayOfFloat.length < par4 * par5)
+		if(par1ArrayOfFloat == null || par1ArrayOfFloat.length < par4 * par5)
 		{
-			par1ArrayOfFloat = new float [par4 * par5];
+			par1ArrayOfFloat = new float[par4 * par5];
 		}
 
-		int [] aint = this.myBiomeIndexLayer.getInts(par2, par3, par4, par5);
+		int[] aint = this.myBiomeIndexLayer.getInts(par2, par3, par4, par5);
 
-		for (int i1 = 0; i1 < par4 * par5; ++i1)
+		for(int i1 = 0; i1 < par4 * par5; ++i1)
 		{
-			float f = (float) BiomeGenBase.biomeList [aint [i1]].getIntRainfall() / 65536.0F;
+			float f = (float) BiomeGenBase.biomeList[aint[i1]].getIntRainfall() / 65536.0F;
 
-			if (f > 1.0F)
+			if(f > 1.0F)
 			{
 				f = 1.0F;
 			}
 
-			par1ArrayOfFloat [i1] = f;
+			par1ArrayOfFloat[i1] = f;
 		}
 
 		return par1ArrayOfFloat;
@@ -110,27 +110,27 @@ public class AC_WorldChunkManager extends WorldChunkManager
 	 * Returns a list of temperatures to use for the specified blocks. Args:
 	 * listToReuse, x, y, width, length
 	 */
-	public float [] getTemperatures(float [] par1ArrayOfFloat, int par2, int par3, int par4, int par5)
+	public float[] getTemperatures(float[] par1ArrayOfFloat, int par2, int par3, int par4, int par5)
 	{
 		IntCache.resetIntCache();
 
-		if (par1ArrayOfFloat == null || par1ArrayOfFloat.length < par4 * par5)
+		if(par1ArrayOfFloat == null || par1ArrayOfFloat.length < par4 * par5)
 		{
-			par1ArrayOfFloat = new float [par4 * par5];
+			par1ArrayOfFloat = new float[par4 * par5];
 		}
 
-		int [] aint = this.myBiomeIndexLayer.getInts(par2, par3, par4, par5);
+		int[] aint = this.myBiomeIndexLayer.getInts(par2, par3, par4, par5);
 
-		for (int i1 = 0; i1 < par4 * par5; ++i1)
+		for(int i1 = 0; i1 < par4 * par5; ++i1)
 		{
-			float f = (float) BiomeGenBase.biomeList [aint [i1]].getIntTemperature() / 65536.0F;
+			float f = (float) BiomeGenBase.biomeList[aint[i1]].getIntTemperature() / 65536.0F;
 
-			if (f > 1.0F)
+			if(f > 1.0F)
 			{
 				f = 1.0F;
 			}
 
-			par1ArrayOfFloat [i1] = f;
+			par1ArrayOfFloat[i1] = f;
 		}
 
 		return par1ArrayOfFloat;
@@ -139,27 +139,27 @@ public class AC_WorldChunkManager extends WorldChunkManager
 	/**
 	 * Returns an array of biomes for the location input.
 	 */
-	public BiomeGenBase [] getBiomesForGeneration(BiomeGenBase [] par1ArrayOfBiomeGenBase, int par2, int par3, int par4, int par5)
+	public BiomeGenBase[] getBiomesForGeneration(BiomeGenBase[] par1ArrayOfBiomeGenBase, int par2, int par3, int par4, int par5)
 	{
 		IntCache.resetIntCache();
 
-		if (par1ArrayOfBiomeGenBase == null || par1ArrayOfBiomeGenBase.length < par4 * par5)
+		if(par1ArrayOfBiomeGenBase == null || par1ArrayOfBiomeGenBase.length < par4 * par5)
 		{
-			par1ArrayOfBiomeGenBase = new BiomeGenBase [par4 * par5];
+			par1ArrayOfBiomeGenBase = new BiomeGenBase[par4 * par5];
 		}
 
-		int [] aint = this.myGenBiomes.getInts(par2, par3, par4, par5);
+		int[] aint = this.myGenBiomes.getInts(par2, par3, par4, par5);
 
-		for (int i = 0; i < par4 * par5; ++i)
+		for(int i = 0; i < par4 * par5; ++i)
 		{
-			if (aint [i] >= 0)
+			if(aint[i] >= 0)
 			{
-				par1ArrayOfBiomeGenBase [i] = BiomeGenBase.biomeList [aint [i]];
+				par1ArrayOfBiomeGenBase[i] = BiomeGenBase.biomeList[aint[i]];
 			}
 			else
 			{
 				//Change this to a biome
-				par1ArrayOfBiomeGenBase [i] = AC_BiomeGenBaseArcticraft.FrostMountains;
+				par1ArrayOfBiomeGenBase[i] = AC_BiomeGenBaseArcticraft.FrostMountains;
 			}
 		}
 
@@ -171,7 +171,7 @@ public class AC_WorldChunkManager extends WorldChunkManager
 	 * temperature and humidity onto the WorldChunkManager Args: oldBiomeList,
 	 * x, z, width, depth
 	 */
-	public BiomeGenBase [] loadBlockGeneratorData(BiomeGenBase [] par1ArrayOfBiomeGenBase, int par2, int par3, int par4, int par5)
+	public BiomeGenBase[] loadBlockGeneratorData(BiomeGenBase[] par1ArrayOfBiomeGenBase, int par2, int par3, int par4, int par5)
 	{
 		return this.getBiomeGenAt(par1ArrayOfBiomeGenBase, par2, par3, par4, par5, true);
 	}
@@ -181,35 +181,35 @@ public class AC_WorldChunkManager extends WorldChunkManager
 	 * y, width, length, cacheFlag (if false, don't check biomeCache to avoid
 	 * infinite loop in BiomeCacheBlock)
 	 */
-	public BiomeGenBase [] getBiomeGenAt(BiomeGenBase [] par1ArrayOfBiomeGenBase, int x, int y, int width, int length, boolean cacheFlag)
+	public BiomeGenBase[] getBiomeGenAt(BiomeGenBase[] par1ArrayOfBiomeGenBase, int x, int y, int width, int length, boolean cacheFlag)
 	{
 		IntCache.resetIntCache();
 
-		if (par1ArrayOfBiomeGenBase == null || par1ArrayOfBiomeGenBase.length < width * length)
+		if(par1ArrayOfBiomeGenBase == null || par1ArrayOfBiomeGenBase.length < width * length)
 		{
-			par1ArrayOfBiomeGenBase = new BiomeGenBase [width * length];
+			par1ArrayOfBiomeGenBase = new BiomeGenBase[width * length];
 		}
 
-		if (cacheFlag && width == 16 && length == 16 && (x & 15) == 0 && (y & 15) == 0)
+		if(cacheFlag && width == 16 && length == 16 && (x & 15) == 0 && (y & 15) == 0)
 		{
-			BiomeGenBase [] abiomegenbase1 = this.myBiomeCache.getCachedBiomes(x, y);
+			BiomeGenBase[] abiomegenbase1 = this.myBiomeCache.getCachedBiomes(x, y);
 			System.arraycopy(abiomegenbase1, 0, par1ArrayOfBiomeGenBase, 0, width * length);
 			return par1ArrayOfBiomeGenBase;
 		}
 		else
 		{
-			int [] aint = this.myBiomeIndexLayer.getInts(x, y, width, length);
+			int[] aint = this.myBiomeIndexLayer.getInts(x, y, width, length);
 
-			for (int i = 0; i < width * length; ++i)
+			for(int i = 0; i < width * length; ++i)
 			{
-				if (aint [i] >= 0)
+				if(aint[i] >= 0)
 				{
-					par1ArrayOfBiomeGenBase [i] = BiomeGenBase.biomeList [aint [i]];
+					par1ArrayOfBiomeGenBase[i] = BiomeGenBase.biomeList[aint[i]];
 				}
 				else
 				{
 					//Change this to a biome
-					par1ArrayOfBiomeGenBase [i] = AC_BiomeGenBaseArcticraft.FrostMountains;
+					par1ArrayOfBiomeGenBase[i] = AC_BiomeGenBaseArcticraft.FrostMountains;
 				}
 			}
 
@@ -229,13 +229,13 @@ public class AC_WorldChunkManager extends WorldChunkManager
 		int k1 = par2 + par3 >> 2;
 		int l1 = j1 - l + 1;
 		int i2 = k1 - i1 + 1;
-		int [] aint = this.myGenBiomes.getInts(l, i1, l1, i2);
+		int[] aint = this.myGenBiomes.getInts(l, i1, l1, i2);
 
-		for (int j2 = 0; j2 < l1 * i2; ++j2)
+		for(int j2 = 0; j2 < l1 * i2; ++j2)
 		{
-			BiomeGenBase biomegenbase = BiomeGenBase.biomeList [aint [j2]];
+			BiomeGenBase biomegenbase = BiomeGenBase.biomeList[aint[j2]];
 
-			if (!par4List.contains(biomegenbase))
+			if(! par4List.contains(biomegenbase))
 			{
 				return false;
 			}
@@ -258,17 +258,17 @@ public class AC_WorldChunkManager extends WorldChunkManager
 		int k1 = par2 + par3 >> 2;
 		int l1 = j1 - l + 1;
 		int i2 = k1 - i1 + 1;
-		int [] aint = this.myGenBiomes.getInts(l, i1, l1, i2);
+		int[] aint = this.myGenBiomes.getInts(l, i1, l1, i2);
 		ChunkPosition chunkposition = null;
 		int j2 = 0;
 
-		for (int k2 = 0; k2 < l1 * i2; ++k2)
+		for(int k2 = 0; k2 < l1 * i2; ++k2)
 		{
 			int l2 = l + k2 % l1 << 2;
 			int i3 = i1 + k2 / l1 << 2;
-			BiomeGenBase biomegenbase = BiomeGenBase.biomeList [aint [k2]];
+			BiomeGenBase biomegenbase = BiomeGenBase.biomeList[aint[k2]];
 
-			if (par4List.contains(biomegenbase) && (chunkposition == null || par5Random.nextInt(j2 + 1) == 0))
+			if(par4List.contains(biomegenbase) && (chunkposition == null || par5Random.nextInt(j2 + 1) == 0))
 			{
 				chunkposition = new ChunkPosition(l2, 0, i3);
 				++j2;

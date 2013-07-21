@@ -2,7 +2,6 @@ package arcticraft.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
-import net.minecraft.client.renderer.texture.IconRegister;
 
 public class AC_BlockFrostStairs extends BlockStairs{
 

@@ -5,7 +5,6 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
@@ -17,14 +16,12 @@ public class AC_BlockThickSnow extends Block
 {
 
 	public static boolean shouldSlowPlayer = true;
-	Minecraft mc;
 
 	public AC_BlockThickSnow(int par1)
 	{
 		super(par1, Material.snow);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
 		this.setTickRandomly(true);
-		mc = mc.getMinecraft();
 	}
 
 	/**

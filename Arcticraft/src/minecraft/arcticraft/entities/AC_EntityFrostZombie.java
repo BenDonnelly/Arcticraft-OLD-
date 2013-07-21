@@ -1,6 +1,4 @@
-
 package arcticraft.entities;
-
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -25,45 +23,42 @@ public class AC_EntityFrostZombie extends EntityMob
 	{
 		super(par1World);
 
-	        this.tasks.addTask(0, new EntityAISwimming(this));
-	        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
-	        this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D));
-	        this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
-	        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-	        this.tasks.addTask(7, new EntityAILookIdle(this));
-	        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-	        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.tasks.addTask(0, new EntityAISwimming(this));
+		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
+		this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D));
+		this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
+		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		this.tasks.addTask(7, new EntityAILookIdle(this));
+		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 
 	}
 
-	
 	public boolean isAIEnabled()
 	{
-return true;
+		return true;
 	}
-	
-	 protected void func_110147_ax()
-	    {
-	        super.func_110147_ax();
-	        this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(40.0D);
-	        this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.23000000417232513D);
-	        this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(4.0D);
-	    }
-	
 
-	    public boolean attackEntityAsMob(Entity par1Entity)
-	    {
-	        boolean flag = super.attackEntityAsMob(par1Entity);
+	protected void func_110147_ax()
+	{
+		super.func_110147_ax();
+		this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(40.0D);
+		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.23000000417232513D);
+		this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(4.0D);
+	}
 
-	        if (flag && this.getHeldItem() == null && this.isBurning() && this.rand.nextFloat() < (float)this.worldObj.difficultySetting * 0.3F)
-	        {
-	            par1Entity.setFire(2 * this.worldObj.difficultySetting);
-	        }
+	public boolean attackEntityAsMob(Entity par1Entity)
+	{
+		boolean flag = super.attackEntityAsMob(par1Entity);
 
-	        return flag;
-	    }
+		if(flag && this.getHeldItem() == null && this.isBurning() && this.rand.nextFloat() < (float) this.worldObj.difficultySetting * 0.3F)
+		{
+			par1Entity.setFire(2 * this.worldObj.difficultySetting);
+		}
 
-	 
+		return flag;
+	}
+
 	public int getTotalArmorValue()
 	{
 		return 4;

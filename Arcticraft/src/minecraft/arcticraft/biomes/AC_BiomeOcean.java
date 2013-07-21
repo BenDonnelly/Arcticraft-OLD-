@@ -13,9 +13,9 @@ public class AC_BiomeOcean extends AC_BiomeGenBaseArcticraft
 		this.spawnableMonsterList.clear();
 		this.spawnableWaterCreatureList.clear();
 		this.spawnableCaveCreatureList.clear();
-		topBlock = (byte)  AC_Block.frostDirt.blockID;
-		fillerBlock = (byte)  AC_Block.frostDirt.blockID;
-		this.setMinMaxHeight(-1.0F, 0.4F);
+		topBlock = (byte) AC_Block.frostDirt.blockID;
+		fillerBlock = (byte) AC_Block.frostDirt.blockID;
+		this.setMinMaxHeight(- 1.0F, 0.4F);
 	}
 
 }

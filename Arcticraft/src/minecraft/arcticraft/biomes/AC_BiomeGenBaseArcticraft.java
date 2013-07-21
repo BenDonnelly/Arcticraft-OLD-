@@ -10,47 +10,46 @@ import arcticraft.gen.AC_GenFrostTrees;
 import arcticraft.gen.AC_GenGlacierTrees;
 
 public class AC_BiomeGenBaseArcticraft extends BiomeGenBase
-{  
-	
-    protected boolean enableSnow;
-    public static final AC_BiomeGenBaseArcticraft FrostMountains;
-    public static final AC_BiomeGenBaseArcticraft frostForest;
-    public static final AC_BiomeGenBaseArcticraft glacier;
-    public static final AC_BiomeGenBaseArcticraft snowPlains;
-    public static final AC_BiomeGenBaseArcticraft ocean;
-    protected AC_GenFrostTrees genFrostTrees;
+{
+
+	protected boolean enableSnow;
+	public static final AC_BiomeGenBaseArcticraft FrostMountains;
+	public static final AC_BiomeGenBaseArcticraft frostForest;
+	public static final AC_BiomeGenBaseArcticraft glacier;
+	public static final AC_BiomeGenBaseArcticraft snowPlains;
+	public static final AC_BiomeGenBaseArcticraft ocean;
+	protected AC_GenFrostTrees genFrostTrees;
 	protected AC_GenGlacierTrees genGlacierTrees;
-    public AC_BiomeGenBaseArcticraft(int i)
-    {
-        super(i);
-        this.topBlock = (byte) AC_Block.frostGrass.blockID;
-        this.topBlock = (byte) AC_Block.frostDirt.blockID;
-        this.spawnableCreatureList.clear();
-        this.spawnableMonsterList.clear();
-        this.spawnableWaterCreatureList.clear();
-        this.spawnableCaveCreatureList.clear();
-        this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityIceCreeper.class, 10, 4, 4));
+
+	public AC_BiomeGenBaseArcticraft(int i)
+	{
+		super(i);
+		this.topBlock = (byte) AC_Block.frostGrass.blockID;
+		this.topBlock = (byte) AC_Block.frostDirt.blockID;
+		this.spawnableCreatureList.clear();
+		this.spawnableMonsterList.clear();
+		this.spawnableWaterCreatureList.clear();
+		this.spawnableCaveCreatureList.clear();
+		this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityIceCreeper.class, 10, 4, 4));
 		this.spawnableCreatureList.add(new SpawnListEntry(AC_EntityPenguin.class, 12, 4, 4));
-		this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityFrostGhost.class,  1, 1, 4));
+		this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityFrostGhost.class, 1, 1, 4));
 		this.genFrostTrees = new AC_GenFrostTrees(false);
 		this.genGlacierTrees = new AC_GenGlacierTrees(false);
-    }
-    
-    public boolean getEnableSnow()
-    {
-        return true;
-    }
-    
-    static
-    {
-    	
-    	FrostMountains = (AC_BiomeGenBaseArcticraft) (new AC_BiomeFrostMountains(23)).setBiomeName("Arctic Mountains");
-    	frostForest = (AC_BiomeGenBaseArcticraft) (new AC_BiomeFrostForest(24)).setBiomeName("Frost Forest");
-    	glacier = (AC_BiomeGenBaseArcticraft) (new AC_BiomeGlacier(25)).setBiomeName("Glacier");
-    	snowPlains = (AC_BiomeGenBaseArcticraft) (new AC_BiomeSnowPlains(26)).setBiomeName("Snow Plains");
-    	ocean = (AC_BiomeGenBaseArcticraft) (new AC_BiomeOcean(27)).setBiomeName("Arctic Ocean");
-    }
-    
-  
-    
+	}
+
+	public boolean getEnableSnow()
+	{
+		return true;
+	}
+
+	static
+	{
+
+		FrostMountains = (AC_BiomeGenBaseArcticraft) (new AC_BiomeFrostMountains(23)).setBiomeName("Arctic Mountains");
+		frostForest = (AC_BiomeGenBaseArcticraft) (new AC_BiomeFrostForest(24)).setBiomeName("Frost Forest");
+		glacier = (AC_BiomeGenBaseArcticraft) (new AC_BiomeGlacier(25)).setBiomeName("Glacier");
+		snowPlains = (AC_BiomeGenBaseArcticraft) (new AC_BiomeSnowPlains(26)).setBiomeName("Snow Plains");
+		ocean = (AC_BiomeGenBaseArcticraft) (new AC_BiomeOcean(27)).setBiomeName("Arctic Ocean");
+	}
+
 }

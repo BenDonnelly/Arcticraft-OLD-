@@ -13,48 +13,49 @@ import arcticraft.items.AC_Item;
 
 final class AC_DispenserBehaviorEmptyBucket extends BehaviorDefaultDispenseItem
 {
-    private final BehaviorDefaultDispenseItem defaultDispenserItemBehavior = new BehaviorDefaultDispenseItem();
 
-    /**
-     * Dispense the specified stack, play the dispense sound and spawn particles.
-     */
-    public ItemStack dispenseStack(IBlockSource par1IBlockSource, ItemStack par2ItemStack)
-    {
-        EnumFacing enumfacing = BlockDispenser.getFacing(par1IBlockSource.getBlockMetadata());
-        World world = par1IBlockSource.getWorld();
-        int i = par1IBlockSource.getXInt() + enumfacing.getFrontOffsetX();
-        int j = par1IBlockSource.getYInt() + enumfacing.getFrontOffsetY();
-        int k = par1IBlockSource.getZInt() + enumfacing.getFrontOffsetZ();
-        Material material = world.getBlockMaterial(i, j, k);
-        int l = world.getBlockMetadata(i, j, k);
-        Item item;
+	private final BehaviorDefaultDispenseItem defaultDispenserItemBehavior = new BehaviorDefaultDispenseItem();
 
-        if (Material.water.equals(material) && l == 0)
-        {
-            item = AC_Item.bucketIcyWater;
-        }
-        else
-        {
-            if (!Material.lava.equals(material) || l != 0)
-            {
-                return super.dispenseStack(par1IBlockSource, par2ItemStack);
-            }
+	/**
+	 * Dispense the specified stack, play the dispense sound and spawn particles.
+	 */
+	public ItemStack dispenseStack(IBlockSource par1IBlockSource, ItemStack par2ItemStack)
+	{
+		EnumFacing enumfacing = BlockDispenser.getFacing(par1IBlockSource.getBlockMetadata());
+		World world = par1IBlockSource.getWorld();
+		int i = par1IBlockSource.getXInt() + enumfacing.getFrontOffsetX();
+		int j = par1IBlockSource.getYInt() + enumfacing.getFrontOffsetY();
+		int k = par1IBlockSource.getZInt() + enumfacing.getFrontOffsetZ();
+		Material material = world.getBlockMaterial(i, j, k);
+		int l = world.getBlockMetadata(i, j, k);
+		Item item;
 
-            item = Item.bucketLava;
-        }
+		if(Material.water.equals(material) && l == 0)
+		{
+			item = AC_Item.bucketIcyWater;
+		}
+		else
+		{
+			if(! Material.lava.equals(material) || l != 0)
+			{
+				return super.dispenseStack(par1IBlockSource, par2ItemStack);
+			}
 
-        world.setBlockToAir(i, j, k);
+			item = Item.bucketLava;
+		}
 
-        if (--par2ItemStack.stackSize == 0)
-        {
-            par2ItemStack.itemID = item.itemID;
-            par2ItemStack.stackSize = 1;
-        }
-        else if (((TileEntityDispenser)par1IBlockSource.getBlockTileEntity()).addItem(new ItemStack(item)) < 0)
-        {
-            this.defaultDispenserItemBehavior.dispense(par1IBlockSource, new ItemStack(item));
-        }
+		world.setBlockToAir(i, j, k);
 
-        return par2ItemStack;
-    }
+		if(--par2ItemStack.stackSize == 0)
+		{
+			par2ItemStack.itemID = item.itemID;
+			par2ItemStack.stackSize = 1;
+		}
+		else if(((TileEntityDispenser) par1IBlockSource.getBlockTileEntity()).addItem(new ItemStack(item)) < 0)
+		{
+			this.defaultDispenserItemBehavior.dispense(par1IBlockSource, new ItemStack(item));
+		}
+
+		return par2ItemStack;
+	}
 }

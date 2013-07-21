@@ -1,6 +1,5 @@
-package arcticraft.items;
+package arcticraft.renderers;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -8,16 +7,15 @@ import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
+import arcticraft.models.AC_ModelStaff;
 import cpw.mods.fml.client.FMLClientHandler;
 
-import arcticraft.models.AC_ModelStaff;
-
-public class AC_ItemInvisoStaffRenderer implements IItemRenderer
+public class AC_InvisoStaffRenderer implements IItemRenderer
 {
 
 	protected AC_ModelStaff staffModel;
 
-	public AC_ItemInvisoStaffRenderer()
+	public AC_InvisoStaffRenderer()
 	{
 		staffModel = new AC_ModelStaff();
 	}
@@ -25,7 +23,7 @@ public class AC_ItemInvisoStaffRenderer implements IItemRenderer
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{
-		switch (type)
+		switch(type)
 		{
 		case EQUIPPED:
 			return true;
@@ -44,16 +42,16 @@ public class AC_ItemInvisoStaffRenderer implements IItemRenderer
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
 
-		switch (type)
+		switch(type)
 		{
 		case EQUIPPED:
 		{
 			GL11.glPushMatrix();
 
 			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/items/inviso_staff.png"));
-						GL11.glTranslatef(0.8F, 0.2F, 0.01F);
+			GL11.glTranslatef(0.8F, 0.2F, 0.01F);
 
-			staffModel.render((Entity) data [1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+			staffModel.render((Entity) data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 
 			GL11.glPopMatrix();
 		}

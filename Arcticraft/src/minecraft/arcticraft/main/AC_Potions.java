@@ -15,7 +15,7 @@ public class AC_Potions extends Potion
 	@Override
 	public int getStatusIconIndex()
 	{
-		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/gui/inventory.png"));		
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/gui/inventory.png"));
 		return super.getStatusIconIndex();
 	}
 }

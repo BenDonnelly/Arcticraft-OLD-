@@ -1,20 +1,23 @@
-package arcticraft.items;
+package arcticraft.renderers;
 
+import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
-import arcticraft.models.AC_ModelCampfire;
-import arcticraft.tile_entities.AC_TileEntityCampfire;
+import arcticraft.tile_entities.AC_TileEntityFrostChest;
 
-public class AC_ItemCampfireRenderer implements IItemRenderer
+public class AC_FrostChestRender implements IItemRenderer
 {
 
-	private AC_ModelCampfire campfireModel;
+	private ModelChest chestModel;
 
-	public AC_ItemCampfireRenderer()
+	public AC_FrostChestRender()
 	{
-		campfireModel = new AC_ModelCampfire();
+
+		chestModel = new ModelChest();
 	}
+
+	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{
 
@@ -24,13 +27,13 @@ public class AC_ItemCampfireRenderer implements IItemRenderer
 	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
 	{
+
 		return true;
 	}
 
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
-		TileEntityRenderer.instance.renderTileEntityAt(new AC_TileEntityCampfire(), 0.0D, 0.0D, 0.0D, 0.0F);
-
+		TileEntityRenderer.instance.renderTileEntityAt(new AC_TileEntityFrostChest(), 0.0D, 0.0D, 0.0D, 0.0F);
 	}
 }

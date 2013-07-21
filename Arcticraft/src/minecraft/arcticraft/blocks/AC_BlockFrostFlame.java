@@ -15,19 +15,20 @@ public class AC_BlockFrostFlame extends BlockFire
 {
 
 	@SideOnly(Side.CLIENT)
-	private Icon [] iconArray;
+	private Icon[] iconArray;
 
 	public AC_BlockFrostFlame(int par1)
 	{
 		super(par1);
 		this.disableStats();
 	}
+
 	@Override
 	public void randomDisplayTick(World world, int i, int j, int k, Random random)
 	{
 		super.randomDisplayTick(world, i, j, k, random);
 
-		for (int l = 0; l < 4; l++)
+		for(int l = 0; l < 4; l++)
 		{
 			double d = (double) (float) i + ((double) random.nextFloat() - 0.5D) * 10D;
 			double d1 = (double) (float) j + ((double) random.nextFloat() - 0.5D) * 10D;
@@ -46,20 +47,17 @@ public class AC_BlockFrostFlame extends BlockFire
 
 	public void registerIcons(IconRegister par1IconRegister)
 	{
-		this.iconArray = new Icon []
-			{par1IconRegister.registerIcon("ac:frost_flame_0"), par1IconRegister.registerIcon("ac:frost_flame_1")};
+		this.iconArray = new Icon[] {par1IconRegister.registerIcon("ac:frost_flame_0") , par1IconRegister.registerIcon("ac:frost_flame_1")};
 	}
 
-	
-	
 	@SideOnly(Side.CLIENT)
 	public Icon func_94438_c(int par1)
 	{
-		return this.iconArray [par1];
+		return this.iconArray[par1];
 	}
 
-	 public Icon getIcon(int par1, int par2)
-	    {
-	        return this.iconArray[0];
-	    }
+	public Icon getIcon(int par1, int par2)
+	{
+		return this.iconArray[0];
+	}
 }

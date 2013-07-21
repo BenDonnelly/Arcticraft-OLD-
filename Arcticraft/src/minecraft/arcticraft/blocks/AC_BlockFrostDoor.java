@@ -1,44 +1,34 @@
 package arcticraft.blocks;
 
+import java.util.Random;
+
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.IconFlipped;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 import arcticraft.items.AC_Item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class AC_BlockAmouryDoor extends BlockDoor
+public class AC_BlockFrostDoor extends BlockDoor
 {
 
-	private static final String[] field_94467_a = new String[] {"ac:amoury_door_bottom" , "ac:amoury_door_top"};
+	private static final String[] field_94467_a = new String[] {"ac:frost_door_bottom" , "ac:frost_door_top"};
 	private final int field_94465_b;
 	@SideOnly(Side.CLIENT)
 	private Icon[] iconArray;
 
-	public AC_BlockAmouryDoor(int par1, Material par2Material)
+	public AC_BlockFrostDoor(int par1, Material par2Material)
 	{
 		super(par1, par2Material);
 
 		this.field_94465_b = 0;
-
 		float f = 0.5F;
 		float f1 = 1.0F;
 		this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f1, 0.5F + f);
-	}
 
-	@SideOnly(Side.CLIENT)
-	/**
-	 * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
-	 */
-	public Icon getIcon(int par1, int par2)
-	{
-		return this.iconArray[this.field_94465_b];
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -107,38 +97,10 @@ public class AC_BlockAmouryDoor extends BlockDoor
 		}
 	}
 
-	@Override
-	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
+	public Icon getIcon(int par1, int par2)
 	{
-		ItemStack hand = par5EntityPlayer.getCurrentItemOrArmor(0);
-
-		if(par5EntityPlayer.getCurrentItemOrArmor(0) != null && hand.getItem() == AC_Item.amouryKey)
-		{
-			int i1 = this.getFullMetadata(par1World, par2, par3, par4);
-			int j1 = i1 & 7;
-			j1 ^= 4;
-
-			if((i1 & 8) == 0)
-			{
-				par1World.setBlockMetadataWithNotify(par2, par3, par4, j1, 2);
-				par1World.markBlockRangeForRenderUpdate(par2, par3, par4, par2, par3, par4);
-			}
-			else
-			{
-				par1World.setBlockMetadataWithNotify(par2, par3 - 1, par4, j1, 2);
-				par1World.markBlockRangeForRenderUpdate(par2, par3 - 1, par4, par2, par3, par4);
-			}
-
-			par1World.playAuxSFXAtEntity(par5EntityPlayer, 1003, par2, par3, par4, 0);
-			hand.stackSize--;
-			par5EntityPlayer.addChatMessage("The key seems to disintegrate...");
-		}
-
-		return true;
+		return this.iconArray[this.field_94465_b];
 	}
-
-	public void onPoweredBlockChange(World par1World, int par2, int par3, int par4, boolean par5)
-	{}
 
 	@SideOnly(Side.CLIENT)
 	/**
@@ -154,6 +116,14 @@ public class AC_BlockAmouryDoor extends BlockDoor
 			this.iconArray[i] = par1IconRegister.registerIcon(field_94467_a[i]);
 			this.iconArray[i + field_94467_a.length] = new IconFlipped(this.iconArray[i], true, false);
 		}
+	}
+
+	/**
+	 * Returns the ID of the items to drop on destruction.
+	 */
+	public int idDropped(int par1, Random par2Random, int par3)
+	{
+		return AC_Item.frostDoorPlace.itemID;
 	}
 
 }

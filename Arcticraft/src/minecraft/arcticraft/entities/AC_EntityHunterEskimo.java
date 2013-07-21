@@ -20,9 +20,9 @@ public class AC_EntityHunterEskimo extends AC_EntityDefaultEskimo
 		this.targetTasks.addTask(6, new EntityAINearestAttackableTarget(this, AC_EntityPenguin.class, 16, true));
 		this.tasks.addTask(7, new EntityAIAttackOnCollide(this, AC_EntityPenguin.class, 1.0D, false));
 		this.tasks.addTask(8, new EntityAIAttackOnCollide(this, AC_EntityBoar.class, 1.0D, false));
-	      this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D));
+		this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D));
 	}
-	
+
 	static
 	{
 		addStuffToBuy(Block.stone, 5, 46, 0.5F);
@@ -33,9 +33,10 @@ public class AC_EntityHunterEskimo extends AC_EntityDefaultEskimo
 	}
 
 	@Override
-	public void func_110297_a_(ItemStack itemstack) {
+	public void func_110297_a_(ItemStack itemstack)
+	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

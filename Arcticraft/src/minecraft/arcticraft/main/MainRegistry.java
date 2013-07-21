@@ -26,9 +26,7 @@ import arcticraft.creative_tabs.AC_TabMaterial;
 import arcticraft.creative_tabs.AC_TabMisc;
 import arcticraft.creative_tabs.AC_TabTools;
 import arcticraft.data_store.TemperatureDataStorage;
-import arcticraft.entities.AC_EntityBomb;
-import arcticraft.entities.AC_EntityEgg;
-import arcticraft.entities.AC_EntityIceShard;
+import arcticraft.entities.AC_EntityRegistry;
 import arcticraft.gui.AC_GuiHandler;
 import arcticraft.helpers.AC_ForgeEvents;
 import arcticraft.helpers.AC_PacketHandler;
@@ -48,13 +46,13 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid = "ac", name = "Arcticraft", version = "[1.5] V.1.0")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = { "AC_EskimoTrade", "AC_EskimoTalk" }, packetHandler = AC_PacketHandler.class)
-public class MainRegistry {
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"AC_EskimoTrade" , "AC_EskimoTalk"}, packetHandler = AC_PacketHandler.class)
+public class MainRegistry
+{
 
 	@Instance("ac")
 	public static MainRegistry instance = new MainRegistry();
@@ -64,7 +62,7 @@ public class MainRegistry {
 	public static AC_CommonProxy proxy;
 	public static int dimension = DimensionManager.getNextFreeDimId();
 
-	/*Creative Tabs*/
+	/* Creative Tabs */
 	public static CreativeTabs tabTools = new AC_TabTools(CreativeTabs.getNextID(), "Tabtools");
 	public static CreativeTabs tabBlocks = new AC_TabBlocks(CreativeTabs.getNextID(), "TabBlocks");
 	public static CreativeTabs tabCombat = new AC_TabCombat(CreativeTabs.getNextID(), "TabCombat");
@@ -72,26 +70,29 @@ public class MainRegistry {
 	public static CreativeTabs tabMaterial = new AC_TabMaterial(CreativeTabs.getNextID(), "TabMaterial");
 	public static CreativeTabs tabMisc = new AC_TabMisc(CreativeTabs.getNextID(), "TabMisc");
 
-	/*Potions*/
+	/* Potions */
 	public static Potion freezePotion;
-	
-	
-	/*Configuration Files*/
+
+	/* Configuration Files */
 	private Configuration temperatureFile;
 	private TemperatureDataStorage storage = new TemperatureDataStorage();
 	private Configuration globalConfigFile;
 
 	@EventHandler
-	public void serverStarting(FMLServerStartingEvent event) 
+	public void serverStarting(FMLServerStartingEvent event)
 	{
 		storage.clear();
 		System.out.println("I am getting called!!!! :D");
 
 		File worldConfigFile = new File(new File(Minecraft.getMinecraft().mcDataDir, "ac_data"), "playertemps_" + MinecraftServer.getServer().getWorldName() + ".cfg");
-		if (!worldConfigFile.exists()) {
-			try {
+		if(! worldConfigFile.exists())
+		{
+			try
+			{
 				worldConfigFile.createNewFile();
-			} catch (IOException e) {
+			}
+			catch(IOException e)
+			{
 				e.printStackTrace();
 			}
 		}
@@ -107,10 +108,10 @@ public class MainRegistry {
 	}
 
 	@EventHandler
-	public void serverStopping(FMLServerStoppingEvent event) 
+	public void serverStopping(FMLServerStoppingEvent event)
 	{
 		storage.setTemperature("Player", AC_TickHandler.value);
-		ConfigCategory general = temperatureFile.getCategory("general"); 
+		ConfigCategory general = temperatureFile.getCategory("general");
 		general.putAll(storage.save());
 		temperatureFile.save();
 		ConfigCategory gui = globalConfigFile.getCategory("gui");
@@ -120,14 +121,18 @@ public class MainRegistry {
 	}
 
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) 
+	public void preInit(FMLPreInitializationEvent event)
 	{
 
 		File cfgFile = event.getSuggestedConfigurationFile();
-		if (!cfgFile.exists()) {
-			try {
+		if(! cfgFile.exists())
+		{
+			try
+			{
 				cfgFile.createNewFile();
-			} catch (IOException e) {
+			}
+			catch(IOException e)
+			{
 				e.printStackTrace();
 			}
 		}
@@ -135,49 +140,46 @@ public class MainRegistry {
 		globalConfigFile.load();
 		globalConfigFile.save();
 		ConfigCategory gui = globalConfigFile.getCategory("gui");
-		if (gui.get("temp-bar-x") != null) {
+		if(gui.get("temp-bar-x") != null)
+		{
 			AC_TickHandler.x = gui.get("temp-bar-x").getInt();
 			AC_TickHandler.y = gui.get("temp-bar-y").getInt();
 		}
-	
+
 		DimensionManager.registerProviderType(dimension, AC_WorldProvider.class, false);
-		DimensionManager.registerDimension(dimension, dimension);		
-		
-	
+		DimensionManager.registerDimension(dimension, dimension);
+
 		freezePotion = new AC_Potions(27, true, 0xffff).setIconIndex(2, 2).setPotionName("Freezing");
-		
-		
 
 	}
 
 	@EventHandler
-	public void init(FMLInitializationEvent event) 
+	public void init(FMLInitializationEvent event)
 	{
-//		MainMenuAPI.registerMenu("Arcticraft", AC_MenuBase.class);
+		//		MainMenuAPI.registerMenu("Arcticraft", AC_MenuBase.class);
 		AC_Block.initializeBlocks();
 		AC_Item.initializeItems();
 		AC_Recipes.initializeRecipes();
 		AC_Block.registerBlocks();
 		AC_Block.nameBlocks();
 		AC_Item.nameItems();
-		AC_EntityEgg.registerEntityEggs();
+		AC_EntityRegistry.registerEntityEggs();
 		proxy.reigsterRenderThings();
 		proxy.registerTickHandler();
 		proxy.registerKeyHandler();
 		GameRegistry.registerWorldGenerator(new AC_WorldGenerator());
 
-
 		LanguageRegistry.instance().addStringLocalization("death.attack.Freezing", "%1$s froze");
-		
+
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 		MinecraftForge.EVENT_BUS.register(new AC_ForgeEvents());
 
 	}
 
 	@EventHandler
-	public void postInit(FMLPostInitializationEvent event) {}
+	public void postInit(FMLPostInitializationEvent event)
+	{}
 
-	
 	public static void talkStuff(String s, World par1World)
 	{
 		Iterator<EntityPlayer> players = par1World.playerEntities.iterator();

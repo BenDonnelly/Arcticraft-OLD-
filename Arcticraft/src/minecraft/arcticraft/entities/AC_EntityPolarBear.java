@@ -1,55 +1,38 @@
 package arcticraft.entities;
 
 import java.util.List;
+import java.util.UUID;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeInstance;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import arcticraft.items.AC_Item;
 
 public class AC_EntityPolarBear extends EntityMob
 {
+
+	private static final UUID field_110189_bq = UUID.fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
+	private static final AttributeModifier field_110190_br = (new AttributeModifier(field_110189_bq, "Attacking speed boost", 0.45D, 0)).func_111168_a(false);
 
 	/** Above zero if this PolarBear is Angry. */
 	private int angerLevel = 0;
 
 	/** A random delay until this PolarBear next makes a sound. */
 	private int randomSoundDelay = 0;
-    private Entity field_110191_bu;
-	
+	private Entity field_110191_bu;
 
 	public AC_EntityPolarBear(World par1World)
 	{
 		super(par1World);
 		this.setSize(1.9F, 1.8F);
-		this.tasks.addTask(0, new EntityAIWander(this, 0.5F));
-		this.tasks.addTask(1, new EntityAISwimming(this));
-		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(7, new EntityAILookIdle(this));
-		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class,  16, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, AC_EntityPenguin.class, 16, true));
 
-	}
-
-	public int getMaxHealth()
-	{
-		return 13;
-	}
-
-	public int attackStrenght(Entity par1Entity)
-	{
-		return 6;
 	}
 
 	/**
@@ -60,30 +43,44 @@ public class AC_EntityPolarBear extends EntityMob
 		return false;
 	}
 
+	protected void func_110147_ax()
+	{
+		super.func_110147_ax();
+		// Max Health - default 20.0D - min 0.0D - max Double.MAX_VALUE
+		this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(25.0D);
+		// Follow Range - default 32.0D - min 0.0D - max 2048.0D
+		this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(32.0D);
+		// Movement Speed - default 0.699D - min 0.0D - max Double.MAX_VALUE
+		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.699D);
+		// Attack Damage - default 2.0D - min 0.0D - max Doubt.MAX_VALUE
+		this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(6.0D);
+	}
+
 	/**
 	 * Called to update the entity's position/logic.
 	 */
-	  public void onUpdate()
-	    {
-	   
+	public void onUpdate()
+	{
+		if(this.field_110191_bu != this.entityToAttack && ! this.worldObj.isRemote)
+		{
+			AttributeInstance attributeinstance = this.func_110148_a(SharedMonsterAttributes.field_111263_d);
+			attributeinstance.func_111124_b(field_110190_br);
 
-	        this.field_110191_bu = this.entityToAttack;
+			if(this.entityToAttack != null)
+			{
+				attributeinstance.func_111121_a(field_110190_br);
+			}
+		}
 
-	        if (this.randomSoundDelay > 0 && --this.randomSoundDelay == 0)
-	        {
-	            this.playSound("ac:mobs.bear_angry", this.getSoundVolume() * 2.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) * 1.8F);
-	        }
+		this.field_110191_bu = this.entityToAttack;
 
-	        super.onUpdate();
-	    }
-	/**
-	 * Checks if the entity's current position is a valid location to spawn this
-	 * entity.
-	 */
-	  public boolean getCanSpawnHere()
-	    {
-	        return this.worldObj.difficultySetting > 0 && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
-	    }
+		if(this.randomSoundDelay > 0 && --this.randomSoundDelay == 0)
+		{
+			this.playSound("ac:mobs.bear_angry", this.getSoundVolume() * 2.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) * 1.8F);
+		}
+
+		super.onUpdate();
+	}
 
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
@@ -114,46 +111,45 @@ public class AC_EntityPolarBear extends EntityMob
 	}
 
 	/**
-	 * Called frequently so the entity can update its state every tick as
-	 * required. For example, zombies and skeletons use this to react to
-	 * sunlight and start to burn.
-	 */
-	public void onLivingUpdate()
-	{
-		super.onLivingUpdate();
-	}
-
-	/**
 	 * Called when the entity is attacked.
 	 */
-	public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
+	/**
+	* Called when the entity is attacked.
+	*/
+	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
-		Entity var3 = par1DamageSource.getEntity();
-
-		if (var3 instanceof EntityPlayer)
+		if(this.isEntityInvulnerable())
 		{
-			List var4 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
+			return false;
+		}
+		else
+		{
+			Entity entity = par1DamageSource.getEntity();
 
-			for (int var5 = 0; var5 < var4.size(); ++var5)
+			if(entity instanceof EntityPlayer)
 			{
-				Entity var6 = (Entity) var4.get(var5);
+				List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
 
-				if (var6 instanceof AC_EntityPolarBear)
+				for(int i = 0; i < list.size(); ++i)
 				{
-					AC_EntityPolarBear var7 = (AC_EntityPolarBear) var6;
-					var7.becomeAngryAt(var3);
+					Entity entity1 = (Entity) list.get(i);
+
+					if(entity1 instanceof AC_EntityPolarBear)
+					{
+						AC_EntityPolarBear AC_EntityPolarBear = (AC_EntityPolarBear) entity1;
+						AC_EntityPolarBear.becomeAngryAt(entity);
+					}
 				}
+
+				this.becomeAngryAt(entity);
 			}
 
-			this.becomeAngryAt(var3);
+			return super.attackEntityFrom(par1DamageSource, par2);
 		}
-
-		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
 	/**
-	 * Causes this PigZombie to become angry at the supplied Entity (which will
-	 * be a player).
+	 * Causes this PigZombie to become angry at the supplied Entity (which will be a player).
 	 */
 	private void becomeAngryAt(Entity par1Entity)
 	{
@@ -184,6 +180,24 @@ public class AC_EntityPolarBear extends EntityMob
 	protected String getDeathSound()
 	{
 		return "ac:mobs.bear_death";
+	}
+
+	protected void dropFewItems(boolean par1, int par2)
+	{
+		int var3 = this.rand.nextInt(2) + this.rand.nextInt(1 + par2);
+		int var4;
+
+		for(var4 = 0; var4 < var3; ++var4)
+		{
+			this.dropItem(AC_Item.penguinMeat.itemID, 1);
+		}
+
+		var3 = this.rand.nextInt(3) + this.rand.nextInt(1 + par2);
+
+		for(var4 = 0; var4 < var3; ++var4)
+		{
+			this.dropItem(Item.fishRaw.itemID, 1);
+		}
 	}
 
 }

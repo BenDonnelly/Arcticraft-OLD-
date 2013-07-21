@@ -9,12 +9,12 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import arcticraft.blocks.AC_Block;
 
-public class AC_ItemAmouryDoor extends Item
+public class AC_ItemFrostDoor extends Item
 {
 
 	private Material doorMaterial;
 
-	public AC_ItemAmouryDoor(int par1, Material par2Material)
+	public AC_ItemFrostDoor(int par1, Material par2Material)
 	{
 		super(par1);
 		this.doorMaterial = par2Material;
@@ -36,7 +36,7 @@ public class AC_ItemAmouryDoor extends Item
 			++par5;
 			Block block;
 
-			block = AC_Block.amouryDoor;
+			block = AC_Block.frostDoor;
 
 			if(par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack) && par2EntityPlayer.canPlayerEdit(par4, par5 + 1, par6, par7, par1ItemStack))
 			{

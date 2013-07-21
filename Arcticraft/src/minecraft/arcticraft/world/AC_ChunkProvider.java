@@ -38,7 +38,6 @@ import arcticraft.gen.AC_GenArcaneStone1;
 import arcticraft.gen.AC_GenArcaneStone2;
 import arcticraft.gen.AC_GenIceberg;
 import arcticraft.gen.AC_GenShip;
-import arcticraft.main.MainRegistry;
 
 public class AC_ChunkProvider implements IChunkProvider
 {
@@ -72,8 +71,8 @@ public class AC_ChunkProvider implements IChunkProvider
 	private final boolean mapFeaturesEnabled = false;
 
 	/** Holds the overall noise array used in chunk generation */
-	private double [] noiseArray;
-	private double [] stoneNoise = new double [256];
+	private double[] noiseArray;
+	private double[] stoneNoise = new double[256];
 	private MapGenBase caveGenerator = new MapGenCaves();
 
 	/** Holds Stronghold Generator */
@@ -90,29 +89,29 @@ public class AC_ChunkProvider implements IChunkProvider
 	private MapGenBase ravineGenerator = new MapGenRavine();
 
 	/** The biomes that are used to generate the chunk */
-	private BiomeGenBase [] biomesForGeneration;
+	private BiomeGenBase[] biomesForGeneration;
 
 	/** A double array that hold terrain noise from noiseGen3 */
-	double [] noise3;
+	double[] noise3;
 
 	/** A double array that hold terrain noise */
-	double [] noise1;
+	double[] noise1;
 
 	/** A double array that hold terrain noise from noiseGen2 */
-	double [] noise2;
+	double[] noise2;
 
 	/** A double array that hold terrain noise from noiseGen5 */
-	double [] noise5;
+	double[] noise5;
 
 	/** A double array that holds terrain noise from noiseGen6 */
-	double [] noise6;
+	double[] noise6;
 
 	/**
 	 * Used to store the 5x5 parabolic field that is used during terrain
 	 * generation.
 	 */
-	float [] parabolicField;
-	int [][] field_73219_j = new int [32] [32];
+	float[] parabolicField;
+	int[][] field_73219_j = new int[32][32];
 
 	{
 		caveGenerator = TerrainGen.getModdedMapGen(caveGenerator, CAVE);
@@ -136,23 +135,22 @@ public class AC_ChunkProvider implements IChunkProvider
 		this.noiseGen6 = new NoiseGeneratorOctaves(this.rand, 16);
 		this.mobSpawnerNoise = new NoiseGeneratorOctaves(this.rand, 8);
 
-		NoiseGeneratorOctaves [] noiseGens =
-			{noiseGen1, noiseGen2, noiseGen3, noiseGen4, noiseGen5, noiseGen6, mobSpawnerNoise};
+		NoiseGeneratorOctaves[] noiseGens = {noiseGen1 , noiseGen2 , noiseGen3 , noiseGen4 , noiseGen5 , noiseGen6 , mobSpawnerNoise};
 		noiseGens = TerrainGen.getModdedNoiseGenerators(par1World, this.rand, noiseGens);
-		this.noiseGen1 = noiseGens [0];
-		this.noiseGen2 = noiseGens [1];
-		this.noiseGen3 = noiseGens [2];
-		this.noiseGen4 = noiseGens [3];
-		this.noiseGen5 = noiseGens [4];
-		this.noiseGen6 = noiseGens [5];
-		this.mobSpawnerNoise = noiseGens [6];
+		this.noiseGen1 = noiseGens[0];
+		this.noiseGen2 = noiseGens[1];
+		this.noiseGen3 = noiseGens[2];
+		this.noiseGen4 = noiseGens[3];
+		this.noiseGen5 = noiseGens[4];
+		this.noiseGen6 = noiseGens[5];
+		this.mobSpawnerNoise = noiseGens[6];
 	}
 
 	/**
 	 * Generates the shape of the terrain for the chunk though its all stone
 	 * though the water is frozen if the temperature is low enough
 	 */
-	public void generateTerrain(int par1, int par2, byte [] par3ArrayOfByte)
+	public void generateTerrain(int par1, int par2, byte[] par3ArrayOfByte)
 	{
 		byte var4 = 4;
 		byte var5 = 16;
@@ -163,23 +161,23 @@ public class AC_ChunkProvider implements IChunkProvider
 		this.biomesForGeneration = this.worldObj.getWorldChunkManager().getBiomesForGeneration(this.biomesForGeneration, par1 * 4 - 2, par2 * 4 - 2, var7 + 5, var9 + 5);
 		this.noiseArray = this.initializeNoiseField(this.noiseArray, par1 * var4, 0, par2 * var4, var7, var8, var9);
 
-		for (int var10 = 0; var10 < var4; ++var10)
+		for(int var10 = 0; var10 < var4; ++var10)
 		{
-			for (int var11 = 0; var11 < var4; ++var11)
+			for(int var11 = 0; var11 < var4; ++var11)
 			{
-				for (int var12 = 0; var12 < var5; ++var12)
+				for(int var12 = 0; var12 < var5; ++var12)
 				{
 					double var13 = 0.125D;
-					double var15 = this.noiseArray [((var10 + 0) * var9 + var11 + 0) * var8 + var12 + 0];
-					double var17 = this.noiseArray [((var10 + 0) * var9 + var11 + 1) * var8 + var12 + 0];
-					double var19 = this.noiseArray [((var10 + 1) * var9 + var11 + 0) * var8 + var12 + 0];
-					double var21 = this.noiseArray [((var10 + 1) * var9 + var11 + 1) * var8 + var12 + 0];
-					double var23 = (this.noiseArray [((var10 + 0) * var9 + var11 + 0) * var8 + var12 + 1] - var15) * var13;
-					double var25 = (this.noiseArray [((var10 + 0) * var9 + var11 + 1) * var8 + var12 + 1] - var17) * var13;
-					double var27 = (this.noiseArray [((var10 + 1) * var9 + var11 + 0) * var8 + var12 + 1] - var19) * var13;
-					double var29 = (this.noiseArray [((var10 + 1) * var9 + var11 + 1) * var8 + var12 + 1] - var21) * var13;
+					double var15 = this.noiseArray[((var10 + 0) * var9 + var11 + 0) * var8 + var12 + 0];
+					double var17 = this.noiseArray[((var10 + 0) * var9 + var11 + 1) * var8 + var12 + 0];
+					double var19 = this.noiseArray[((var10 + 1) * var9 + var11 + 0) * var8 + var12 + 0];
+					double var21 = this.noiseArray[((var10 + 1) * var9 + var11 + 1) * var8 + var12 + 0];
+					double var23 = (this.noiseArray[((var10 + 0) * var9 + var11 + 0) * var8 + var12 + 1] - var15) * var13;
+					double var25 = (this.noiseArray[((var10 + 0) * var9 + var11 + 1) * var8 + var12 + 1] - var17) * var13;
+					double var27 = (this.noiseArray[((var10 + 1) * var9 + var11 + 0) * var8 + var12 + 1] - var19) * var13;
+					double var29 = (this.noiseArray[((var10 + 1) * var9 + var11 + 1) * var8 + var12 + 1] - var21) * var13;
 
-					for (int var31 = 0; var31 < 8; ++var31)
+					for(int var31 = 0; var31 < 8; ++var31)
 					{
 						double var32 = 0.25D;
 						double var34 = var15;
@@ -187,7 +185,7 @@ public class AC_ChunkProvider implements IChunkProvider
 						double var38 = (var19 - var15) * var32;
 						double var40 = (var21 - var17) * var32;
 
-						for (int var42 = 0; var42 < 4; ++var42)
+						for(int var42 = 0; var42 < 4; ++var42)
 						{
 							int var43 = var42 + var10 * 4 << 11 | 0 + var11 * 4 << 7 | var12 * 8 + var31;
 							short var44 = 128;
@@ -196,19 +194,19 @@ public class AC_ChunkProvider implements IChunkProvider
 							double var49 = (var36 - var34) * var45;
 							double var47 = var34 - var49;
 
-							for (int var51 = 0; var51 < 4; ++var51)
+							for(int var51 = 0; var51 < 4; ++var51)
 							{
-								if ((var47 += var49) > 0.0D)
+								if((var47 += var49) > 0.0D)
 								{
-									par3ArrayOfByte [var43 += var44] = (byte) AC_Block.frostStone.blockID;
+									par3ArrayOfByte[var43 += var44] = (byte) AC_Block.frostStone.blockID;
 								}
-								else if (var12 * 8 + var31 < var6)
+								else if(var12 * 8 + var31 < var6)
 								{
-									par3ArrayOfByte [var43 += var44] = (byte) AC_Block.acWaterStill.blockID;
+									par3ArrayOfByte[var43 += var44] = (byte) AC_Block.acWaterStill.blockID;
 								}
 								else
 								{
-									par3ArrayOfByte [var43 += var44] = 0;
+									par3ArrayOfByte[var43 += var44] = 0;
 								}
 							}
 
@@ -235,56 +233,56 @@ public class AC_ChunkProvider implements IChunkProvider
 		double d = 0.03125D;
 		this.stoneNoise = this.noiseGen4.generateNoiseOctaves(this.stoneNoise, par1 * 16, par2 * 16, 0, 16, 16, 1, d * 2D, d * 2D, d * 2D);
 
-		for (int i = 0; i < 16; i++)
+		for(int i = 0; i < 16; i++)
 		{
-			for (int j = 0; j < 16; j++)
+			for(int j = 0; j < 16; j++)
 			{
-				BiomeGenBase biomegenbase = par4ArrayOfBiomeGenBase [j + i * 16];
+				BiomeGenBase biomegenbase = par4ArrayOfBiomeGenBase[j + i * 16];
 				float f = biomegenbase.getFloatTemperature();
-				int k = (int) (this.stoneNoise [i + j * 16] / 3D + 3D + this.rand.nextDouble() * 0.25D);
-				int l = -1;
+				int k = (int) (this.stoneNoise[i + j * 16] / 3D + 3D + this.rand.nextDouble() * 0.25D);
+				int l = - 1;
 				byte byte1 = biomegenbase.topBlock;
 				byte byte2 = biomegenbase.fillerBlock;
 
-				for (int i1 = 127; i1 >= 0; i1--)
+				for(int i1 = 127; i1 >= 0; i1--)
 				{
 					int j1 = (j * 16 + i) * 128 + i1;
 
-					if (i1 <= 0 + this.rand.nextInt(5))
+					if(i1 <= 0 + this.rand.nextInt(5))
 					{
-						par3ArrayOfByte [j1] = (byte) Block.bedrock.blockID;
+						par3ArrayOfByte[j1] = (byte) Block.bedrock.blockID;
 						continue;
 					}
 
-					byte byte3 = par3ArrayOfByte [j1];
+					byte byte3 = par3ArrayOfByte[j1];
 
-					if (byte3 == 0)
+					if(byte3 == 0)
 					{
-						l = -1;
+						l = - 1;
 						continue;
 					}
 
-					if (byte3 != (byte) AC_Block.frostStone.blockID)
+					if(byte3 != (byte) AC_Block.frostStone.blockID)
 					{
 						continue;
 					}
 
-					if (l == -1)
+					if(l == - 1)
 					{
-						if (k <= 0)
+						if(k <= 0)
 						{
 							byte1 = 0;
 							byte2 = (byte) AC_Block.frostStone.blockID;
 						}
-						else if (i1 >= byte0 - 4 && i1 <= byte0 + 1)
+						else if(i1 >= byte0 - 4 && i1 <= byte0 + 1)
 						{
 							byte1 = biomegenbase.topBlock;
 							byte2 = biomegenbase.fillerBlock;
 						}
 
-						if (i1 < byte0 && byte1 == 0)
+						if(i1 < byte0 && byte1 == 0)
 						{
-							if (f < 0.15F)
+							if(f < 0.15F)
 							{
 								byte1 = (byte) Block.ice.blockID;
 							}
@@ -296,25 +294,25 @@ public class AC_ChunkProvider implements IChunkProvider
 
 						l = k;
 
-						if (i1 >= byte0 - 1)
+						if(i1 >= byte0 - 1)
 						{
-							par3ArrayOfByte [j1] = byte1;
+							par3ArrayOfByte[j1] = byte1;
 						}
 						else
 						{
-							par3ArrayOfByte [j1] = byte2;
+							par3ArrayOfByte[j1] = byte2;
 						}
 
 						continue;
 					}
 
-					if (l <= 0)
+					if(l <= 0)
 					{
 						continue;
 					}
 
 					l--;
-					par3ArrayOfByte [j1] = byte2;
+					par3ArrayOfByte[j1] = byte2;
 
 				}
 			}
@@ -337,14 +335,14 @@ public class AC_ChunkProvider implements IChunkProvider
 	public Chunk provideChunk(int par1, int par2)
 	{
 		this.rand.setSeed((long) par1 * 341873128712L + (long) par2 * 132897987541L);
-		byte [] var3 = new byte [32768];
+		byte[] var3 = new byte[32768];
 		this.generateTerrain(par1, par2, var3);
 		this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, par1 * 16, par2 * 16, 16, 16);
 		this.replaceBlocksForBiome(par1, par2, var3, this.biomesForGeneration);
 		this.caveGenerator.generate(this, this.worldObj, par1, par2, var3);
 		this.ravineGenerator.generate(this, this.worldObj, par1, par2, var3);
 
-		if (this.mapFeaturesEnabled)
+		if(this.mapFeaturesEnabled)
 		{
 			this.mineshaftGenerator.generate(this, this.worldObj, par1, par2, var3);
 			this.villageGenerator.generate(this, this.worldObj, par1, par2, var3);
@@ -353,11 +351,11 @@ public class AC_ChunkProvider implements IChunkProvider
 		}
 
 		Chunk var4 = new Chunk(this.worldObj, var3, par1, par2);
-		byte [] var5 = var4.getBiomeArray();
+		byte[] var5 = var4.getBiomeArray();
 
-		for (int var6 = 0; var6 < var5.length; ++var6)
+		for(int var6 = 0; var6 < var5.length; ++var6)
 		{
-			var5 [var6] = (byte) this.biomesForGeneration [var6].biomeID;
+			var5[var6] = (byte) this.biomesForGeneration[var6].biomeID;
 		}
 
 		var4.generateSkylightMap();
@@ -368,27 +366,28 @@ public class AC_ChunkProvider implements IChunkProvider
 	 * generates a subset of the level's terrain data. Takes 7 arguments: the
 	 * [empty] noise array, the position, and the size.
 	 */
-	private double [] initializeNoiseField(double [] par1ArrayOfDouble, int par2, int par3, int par4, int par5, int par6, int par7)
+	private double[] initializeNoiseField(double[] par1ArrayOfDouble, int par2, int par3, int par4, int par5, int par6, int par7)
 	{
 		ChunkProviderEvent.InitNoiseField event = new ChunkProviderEvent.InitNoiseField(this, par1ArrayOfDouble, par2, par3, par4, par5, par6, par7);
 		MinecraftForge.EVENT_BUS.post(event);
-		if (event.getResult() == Result.DENY) return event.noisefield;
+		if(event.getResult() == Result.DENY)
+			return event.noisefield;
 
-		if (par1ArrayOfDouble == null)
+		if(par1ArrayOfDouble == null)
 		{
-			par1ArrayOfDouble = new double [par5 * par6 * par7];
+			par1ArrayOfDouble = new double[par5 * par6 * par7];
 		}
 
-		if (this.parabolicField == null)
+		if(this.parabolicField == null)
 		{
-			this.parabolicField = new float [25];
+			this.parabolicField = new float[25];
 
-			for (int var8 = -2; var8 <= 2; ++var8)
+			for(int var8 = - 2; var8 <= 2; ++var8)
 			{
-				for (int var9 = -2; var9 <= 2; ++var9)
+				for(int var9 = - 2; var9 <= 2; ++var9)
 				{
 					float var10 = 10.0F / MathHelper.sqrt_float((float) (var8 * var8 + var9 * var9) + 0.2F);
-					this.parabolicField [var8 + 2 + (var9 + 2) * 5] = var10;
+					this.parabolicField[var8 + 2 + (var9 + 2) * 5] = var10;
 				}
 			}
 		}
@@ -405,24 +404,24 @@ public class AC_ChunkProvider implements IChunkProvider
 		int var12 = 0;
 		int var13 = 0;
 
-		for (int var14 = 0; var14 < par5; ++var14)
+		for(int var14 = 0; var14 < par5; ++var14)
 		{
-			for (int var15 = 0; var15 < par7; ++var15)
+			for(int var15 = 0; var15 < par7; ++var15)
 			{
 				float var16 = 0.0F;
 				float var17 = 0.0F;
 				float var18 = 0.0F;
 				byte var19 = 2;
-				BiomeGenBase var20 = this.biomesForGeneration [var14 + 2 + (var15 + 2) * (par5 + 5)];
+				BiomeGenBase var20 = this.biomesForGeneration[var14 + 2 + (var15 + 2) * (par5 + 5)];
 
-				for (int var21 = -var19; var21 <= var19; ++var21)
+				for(int var21 = - var19; var21 <= var19; ++var21)
 				{
-					for (int var22 = -var19; var22 <= var19; ++var22)
+					for(int var22 = - var19; var22 <= var19; ++var22)
 					{
-						BiomeGenBase var23 = this.biomesForGeneration [var14 + var21 + 2 + (var15 + var22 + 2) * (par5 + 5)];
-						float var24 = this.parabolicField [var21 + 2 + (var22 + 2) * 5] / (var23.minHeight + 2.0F);
+						BiomeGenBase var23 = this.biomesForGeneration[var14 + var21 + 2 + (var15 + var22 + 2) * (par5 + 5)];
+						float var24 = this.parabolicField[var21 + 2 + (var22 + 2) * 5] / (var23.minHeight + 2.0F);
 
-						if (var23.minHeight > var20.minHeight)
+						if(var23.minHeight > var20.minHeight)
 						{
 							var24 /= 2.0F;
 						}
@@ -437,22 +436,22 @@ public class AC_ChunkProvider implements IChunkProvider
 				var17 /= var18;
 				var16 = var16 * 0.9F + 0.1F;
 				var17 = (var17 * 4.0F - 1.0F) / 8.0F;
-				double var47 = this.noise6 [var13] / 8000.0D;
+				double var47 = this.noise6[var13] / 8000.0D;
 
-				if (var47 < 0.0D)
+				if(var47 < 0.0D)
 				{
-					var47 = -var47 * 0.3D;
+					var47 = - var47 * 0.3D;
 				}
 
 				var47 = var47 * 3.0D - 2.0D;
 
-				if (var47 < 0.0D)
+				if(var47 < 0.0D)
 				{
 					var47 /= 2.0D;
 
-					if (var47 < -1.0D)
+					if(var47 < - 1.0D)
 					{
-						var47 = -1.0D;
+						var47 = - 1.0D;
 					}
 
 					var47 /= 1.4D;
@@ -460,7 +459,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				}
 				else
 				{
-					if (var47 > 1.0D)
+					if(var47 > 1.0D)
 					{
 						var47 = 1.0D;
 					}
@@ -470,7 +469,7 @@ public class AC_ChunkProvider implements IChunkProvider
 
 				++var13;
 
-				for (int var46 = 0; var46 < par6; ++var46)
+				for(int var46 = 0; var46 < par6; ++var46)
 				{
 					double var48 = (double) var17;
 					double var26 = (double) var16;
@@ -480,20 +479,20 @@ public class AC_ChunkProvider implements IChunkProvider
 					double var30 = 0.0D;
 					double var32 = ((double) var46 - var28) * 12.0D * 128.0D / 128.0D / var26;
 
-					if (var32 < 0.0D)
+					if(var32 < 0.0D)
 					{
 						var32 *= 4.0D;
 					}
 
-					double var34 = this.noise1 [var12] / 512.0D;
-					double var36 = this.noise2 [var12] / 512.0D;
-					double var38 = (this.noise3 [var12] / 10.0D + 1.0D) / 2.0D;
+					double var34 = this.noise1[var12] / 512.0D;
+					double var36 = this.noise2[var12] / 512.0D;
+					double var38 = (this.noise3[var12] / 10.0D + 1.0D) / 2.0D;
 
-					if (var38 < 0.0D)
+					if(var38 < 0.0D)
 					{
 						var30 = var34;
 					}
-					else if (var38 > 1.0D)
+					else if(var38 > 1.0D)
 					{
 						var30 = var36;
 					}
@@ -504,13 +503,13 @@ public class AC_ChunkProvider implements IChunkProvider
 
 					var30 -= var32;
 
-					if (var46 > par6 - 4)
+					if(var46 > par6 - 4)
 					{
 						double var40 = (double) ((float) (var46 - (par6 - 4)) / 3.0F);
-						var30 = var30 * (1.0D - var40) + -10.0D * var40;
+						var30 = var30 * (1.0D - var40) + - 10.0D * var40;
 					}
 
-					par1ArrayOfDouble [var12] = var30;
+					par1ArrayOfDouble[var12] = var30;
 					++var12;
 				}
 			}
@@ -548,7 +547,7 @@ public class AC_ChunkProvider implements IChunkProvider
 		int var9;
 		int var10;
 
-		for (int x = 0; x < 1; x++)
+		for(int x = 0; x < 1; x++)
 		{
 
 			int e = i + rand.nextInt(16);
@@ -556,11 +555,10 @@ public class AC_ChunkProvider implements IChunkProvider
 			int b = j + rand.nextInt(16);
 			(new AC_GenShip()).generate(worldObj, rand, e, r, b);
 		}
-		
-		
+
 		{
 
-			for (int x = 0; x < 2; x++)
+			for(int x = 0; x < 2; x++)
 			{
 
 				int e = i + rand.nextInt(16);
@@ -573,7 +571,7 @@ public class AC_ChunkProvider implements IChunkProvider
 		{
 			var6 = this.rand.nextInt(this.rand.nextInt(14) + 1) + 1;
 
-			for (var7 = 0; var7 < var6; var7++)
+			for(var7 = 0; var7 < var6; var7++)
 			{
 				var8 = i + this.rand.nextInt(16) + 8;
 				var9 = this.rand.nextInt(128);
@@ -582,7 +580,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				(new AC_GenArcaneStone1(AC_Block.arcaneStone.blockID, 16)).generate(this.worldObj, this.rand, var8, var9, var10);
 			}
 
-			for (var7 = 0; var7 < var6; var7++)
+			for(var7 = 0; var7 < var6; var7++)
 			{
 				var8 = i + this.rand.nextInt(16) + 8;
 				var9 = this.rand.nextInt(128);
@@ -590,7 +588,7 @@ public class AC_ChunkProvider implements IChunkProvider
 
 				(new AC_GenArcaneStone2(AC_Block.arcaneStone.blockID, 16)).generate(this.worldObj, this.rand, var8, var9, var10);
 			}
-			for (int x = 0; x < 1; x++)
+			for(int x = 0; x < 1; x++)
 			{
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
@@ -598,7 +596,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				(new AC_WorldGenMineable(AC_Block.tekkiteOre.blockID, 11, 0)).generate(worldObj, rand, e, r, b);
 			}
 
-			for (int x = 0; x < 2; x++)
+			for(int x = 0; x < 2; x++)
 			{
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
@@ -606,7 +604,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				(new AC_WorldGenMineable(AC_Block.escariaOre.blockID, 11, 0)).generate(worldObj, rand, e, r, b);
 			}
 
-			for (int x = 0; x < 5; x++)
+			for(int x = 0; x < 5; x++)
 			{
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
@@ -614,7 +612,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				(new AC_WorldGenMineable(AC_Block.glacianOre.blockID, 8, 0)).generate(worldObj, rand, e, r, b);
 			}
 
-			for (int x = 0; x < 9; x++)
+			for(int x = 0; x < 9; x++)
 			{
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
@@ -622,7 +620,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				(new AC_WorldGenMineable(AC_Block.eriumOre.blockID, 13, 0)).generate(worldObj, rand, e, r, b);
 			}
 
-			for (int x = 0; x < 40; x++)
+			for(int x = 0; x < 40; x++)
 			{
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
@@ -630,7 +628,7 @@ public class AC_ChunkProvider implements IChunkProvider
 				(new AC_WorldGenMineable(AC_Block.frigusOre.blockID, 15, 0)).generate(worldObj, rand, e, r, b);
 			}
 
-			for (int x = 0; x < 20; x++)
+			for(int x = 0; x < 20; x++)
 			{
 				int e = i + rand.nextInt(16);
 				int r = rand.nextInt(128);
@@ -644,27 +642,28 @@ public class AC_ChunkProvider implements IChunkProvider
 		i += 8;
 		j += 8;
 
-		for (int k1 = 0; k1 < 16; k1++)
+		for(int k1 = 0; k1 < 16; k1++)
 		{
-			for (int l2 = 0; l2 < 16; l2++)
+			for(int l2 = 0; l2 < 16; l2++)
 			{
 				int l3 = this.worldObj.getPrecipitationHeight(i + k1, j + l2);
 
-				if (this.worldObj.isBlockFreezable(k1 + i, l3 - 1, l2 + j))
+				if(this.worldObj.isBlockFreezable(k1 + i, l3 - 1, l2 + j))
 				{
 					this.worldObj.setBlock(k1 + i, l3 - 1, l2 + j, Block.ice.blockID);
 				}
 
-				if (this.worldObj.canSnowAt(k1 + i, l3, l2 + j))
-				;
+				if(this.worldObj.canSnowAt(k1 + i, l3, l2 + j))
+					;
 				{
-						this.worldObj.setBlock(k1 + i, l3, l2 + j, this.pickSnow(rand));
+					this.worldObj.setBlock(k1 + i, l3, l2 + j, this.pickSnow(rand));
 				}
 			}
 		}
 
 		BlockSand.fallInstantly = false;
 	}
+
 	private int pickSnow(Random par1Random)
 	{
 
@@ -734,12 +733,12 @@ public class AC_ChunkProvider implements IChunkProvider
 
 	public void recreateStructures(int par1, int par2)
 	{
-		if (this.mapFeaturesEnabled)
+		if(this.mapFeaturesEnabled)
 		{
-			this.mineshaftGenerator.generate(this, this.worldObj, par1, par2, (byte []) null);
-			this.villageGenerator.generate(this, this.worldObj, par1, par2, (byte []) null);
-			this.strongholdGenerator.generate(this, this.worldObj, par1, par2, (byte []) null);
-			this.scatteredFeatureGenerator.generate(this, this.worldObj, par1, par2, (byte []) null);
+			this.mineshaftGenerator.generate(this, this.worldObj, par1, par2, (byte[]) null);
+			this.villageGenerator.generate(this, this.worldObj, par1, par2, (byte[]) null);
+			this.strongholdGenerator.generate(this, this.worldObj, par1, par2, (byte[]) null);
+			this.scatteredFeatureGenerator.generate(this, this.worldObj, par1, par2, (byte[]) null);
 		}
 	}
 
@@ -750,5 +749,6 @@ public class AC_ChunkProvider implements IChunkProvider
 	}
 
 	@Override
-	public void func_104112_b(){}
+	public void func_104112_b()
+	{}
 }

@@ -1,39 +1,40 @@
 package arcticraft.renderers;
 
-import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
-import arcticraft.tile_entities.AC_TileEntityFrostChest;
+import arcticraft.models.AC_ModelPlainStatue;
+import arcticraft.tile_entities.AC_TileEntityStatue;
 
-public class AC_FrostChestItemRenderHelper implements IItemRenderer
+public class AC_ItemStatueRenderer implements IItemRenderer
 {
 
-	private ModelChest chestModel;
+	private AC_ModelPlainStatue plainStatueModel;
 
-	public AC_FrostChestItemRenderHelper()
+	public AC_ItemStatueRenderer()
 	{
-
-		chestModel = new ModelChest();
+		plainStatueModel = new AC_ModelPlainStatue();
 	}
 
-	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{
-
-		return true;
+		if(type == ItemRenderType.EQUIPPED)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
 	{
-
 		return true;
 	}
 
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
-		TileEntityRenderer.instance.renderTileEntityAt(new AC_TileEntityFrostChest(), 0.0D, 0.0D, 0.0D, 0.0F);
+		TileEntityRenderer.instance.renderTileEntityAt(new AC_TileEntityStatue(), 0.0D, 0.0D, 0.0D, 0.0F);
+
 	}
 }

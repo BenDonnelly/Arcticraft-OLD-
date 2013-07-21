@@ -30,7 +30,6 @@ public class AC_RenderChefEskimo extends RenderLiving
 		func_177_a((AC_EntityChefEskimo) entityliving, d, d1, d2, f, f1);
 	}
 
-
 	public void doRender(Entity entity, double d, double d1, double d2, float f, float f1)
 	{
 		func_177_a((AC_EntityChefEskimo) entity, d, d1, d2, f, f1);

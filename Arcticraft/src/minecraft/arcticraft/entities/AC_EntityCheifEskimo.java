@@ -44,16 +44,7 @@ public class AC_EntityCheifEskimo extends EntityAnimal
 		System.out.println("Opening the eskimo talking sequence...");
 		return true;
 	}
-	
-	public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
-	{
-		return false;
-	}
 
-	public int getMaxHealth()
-	{
-		return 1000;
-	}
 
 	public EntityAgeable createChild(EntityAgeable entityageable)
 	{

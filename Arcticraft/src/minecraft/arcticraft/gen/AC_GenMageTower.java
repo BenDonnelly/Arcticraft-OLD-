@@ -1,4 +1,5 @@
 package arcticraft.gen;
+
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -11,35 +12,37 @@ import arcticraft.entities.AC_EntityMage;
 
 public class AC_GenMageTower extends WorldGenerator
 {
-	public AC_GenMageTower() { }
 
-	public boolean generate(World world, Random rand, int i, int j, int k) 
+	public AC_GenMageTower()
+	{}
+
+	public boolean generate(World world, Random rand, int i, int j, int k)
 	{
-		if (world.getBlockId(i, j, k) != Block.grass.blockID)
+		if(world.getBlockId(i, j, k) != Block.grass.blockID)
 		{
 			return false;
 		}
-		if (world.getBlockId(i, j + 1, k + 1) != 78)
+		if(world.getBlockId(i, j + 1, k + 1) != 78)
 		{
 			return false;
 		}
-		if (world.getBlockId(i, j + 1, k - 1) != 78)
+		if(world.getBlockId(i, j + 1, k - 1) != 78)
 		{
 			return false;
 		}
-		if (world.getBlockId(i + 1, j + 1, k) != 78)
+		if(world.getBlockId(i + 1, j + 1, k) != 78)
 		{
 			return false;
 		}
-		if (world.getBlockId(i - 1, j + 1, k) != 78)
+		if(world.getBlockId(i - 1, j + 1, k) != 78)
 		{
 			return false;
 		}
-		if (world.getBlockId(i, j + 1, k) != 78)
+		if(world.getBlockId(i, j + 1, k) != 78)
 		{
 			return false;
 		}
-		
+
 		world.setBlock(i + 1, j + 0, k + 6, Block.netherBrick.blockID, 0, 2);
 		world.setBlock(i + 1, j + 0, k + 7, Block.planks.blockID, 2, 2);
 		world.setBlock(i + 1, j + 0, k + 8, Block.planks.blockID, 2, 2);
@@ -1545,7 +1548,8 @@ public class AC_GenMageTower extends WorldGenerator
 		return true;
 	}
 
-	public boolean generate2(World world, Random rand, int i, int j, int k) {
+	public boolean generate2(World world, Random rand, int i, int j, int k)
+	{
 		world.setBlock(i + 10, j + 8, k + 11, Block.stoneBrick.blockID, this.pickStoneBrickType(rand), 2);
 		world.setBlock(i + 10, j + 8, k + 12, 0, 0, 2);
 		world.setBlock(i + 10, j + 8, k + 13, Block.stoneBrick.blockID, this.pickStoneBrickType(rand), 2);
@@ -2588,7 +2592,7 @@ public class AC_GenMageTower extends WorldGenerator
 		world.setBlock(i + 16, j + 0, k + 6, Block.vine.blockID, 2, 2);
 		world.setBlock(i + 16, j + 1, k + 6, Block.vine.blockID, 2, 2);
 		world.setBlock(i + 16, j + 2, k + 6, Block.vine.blockID, 2, 2);
-		
+
 		AC_EntityMage entityicemage = new AC_EntityMage(world);
 		entityicemage.setPosition(i + 9, j + 12, k + 4.5);
 		world.spawnEntityInWorld(entityicemage);
@@ -2602,7 +2606,10 @@ public class AC_GenMageTower extends WorldGenerator
 	private ItemStack pickCheckLootItem(Random par1Random)
 	{
 		int var2 = par1Random.nextInt(11);
-		return var2 == 0 ? new ItemStack(Item.saddle) : (var2 == 1 ? new ItemStack(Item.ingotIron, par1Random.nextInt(4) + 1) : (var2 == 2 ? new ItemStack(Item.bread) : (var2 == 3 ? new ItemStack(Item.wheat, par1Random.nextInt(4) + 1) : (var2 == 4 ? new ItemStack(Item.gunpowder, par1Random.nextInt(4) + 1) : (var2 == 5 ? new ItemStack(Item.silk, par1Random.nextInt(4) + 1) : (var2 == 6 ? new ItemStack(Item.bucketEmpty) : (var2 == 7 && par1Random.nextInt(40) == 0 ? new ItemStack(Item.appleGold) : (var2 == 7 && par1Random.nextInt(100) == 0 ? new ItemStack(AC_Block.mysticalSnow) : (var2 == 8 && par1Random.nextInt(2) == 0 ? new ItemStack(Item.redstone, par1Random.nextInt(4) + 1) : (var2 == 9 && par1Random.nextInt(10) == 0 ? new ItemStack(Item.itemsList[Item.record13.itemID + par1Random.nextInt(2)]) : (var2 == 10 ? new ItemStack(Item.dyePowder, 1, 3) : null)))))))))));
+		return var2 == 0 ? new ItemStack(Item.saddle) : (var2 == 1 ? new ItemStack(Item.ingotIron, par1Random.nextInt(4) + 1) : (var2 == 2 ? new ItemStack(Item.bread) : (var2 == 3 ? new ItemStack(Item.wheat, par1Random.nextInt(4) + 1) : (var2 == 4 ? new ItemStack(Item.gunpowder,
+				par1Random.nextInt(4) + 1) : (var2 == 5 ? new ItemStack(Item.silk, par1Random.nextInt(4) + 1) : (var2 == 6 ? new ItemStack(Item.bucketEmpty) : (var2 == 7 && par1Random.nextInt(40) == 0 ? new ItemStack(Item.appleGold) : (var2 == 7 && par1Random.nextInt(100) == 0 ? new ItemStack(
+				AC_Block.mysticalSnow) : (var2 == 8 && par1Random.nextInt(2) == 0 ? new ItemStack(Item.redstone, par1Random.nextInt(4) + 1) : (var2 == 9 && par1Random.nextInt(10) == 0 ? new ItemStack(Item.itemsList[Item.record13.itemID + par1Random.nextInt(2)]) : (var2 == 10 ? new ItemStack(
+				Item.dyePowder, 1, 3) : null)))))))))));
 	}
 
 	/**
@@ -2613,21 +2620,22 @@ public class AC_GenMageTower extends WorldGenerator
 		int var2 = par1Random.nextInt(4);
 		return var2 == 0 ? "Skeleton" : (var2 == 1 ? "Zombie" : (var2 == 2 ? "Zombie" : ""));
 	}
+
 	/**
 	 * Picks potentially a random item to add to a dungeon chest.
 	 */
 	private int pickStoneBrickType(Random par1Random)
-	{	
+	{
 		int var2 = par1Random.nextInt(4);
-		return var2 == 0 ? 0 : var2 == 1 ? 1 : var2 == 2 ? 2 : 0;		
+		return var2 == 0 ? 0 : var2 == 1 ? 1 : var2 == 2 ? 2 : 0;
 	}
-	
+
 	/**
 	 * Picks potentially a random item to add to a dungeon chest.
 	 */
 	private int pickDungeonBlock(Random par1Random)
-	{	
+	{
 		int var2 = par1Random.nextInt(3);
-		return var2 == 0 ? Block.cobblestone.blockID : var2 == 1 ? Block.cobblestoneMossy.blockID : Block.slowSand.blockID;		
+		return var2 == 0 ? Block.cobblestone.blockID : var2 == 1 ? Block.cobblestoneMossy.blockID : Block.slowSand.blockID;
 	}
 }

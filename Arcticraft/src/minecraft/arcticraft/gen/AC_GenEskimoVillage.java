@@ -1,6 +1,6 @@
 /*
-*** MADE BY MITHION'S .SCHEMATIC TO JAVA CONVERTING TOOL v1.6 ***
-*/
+ * ** MADE BY MITHION'S .SCHEMATIC TO JAVA CONVERTING TOOL v1.6 ***
+ */
 
 package arcticraft.gen;
 
@@ -16,15 +16,13 @@ import arcticraft.entities.AC_EntityEskimo;
 import arcticraft.entities.AC_EntityHunterEskimo;
 import arcticraft.entities.AC_EntityTraderEskimo;
 import arcticraft.entities.AC_EntityYeti;
-import arcticraft.main.MainRegistry;
 
 public class AC_GenEskimoVillage extends WorldGenerator
 {
 
-	protected int [] GetValidSpawnBlocks()
+	protected int[] GetValidSpawnBlocks()
 	{
-		return new int []
-			{Block.snow.blockID, Block.blockSnow.blockID, AC_Block.thickSnow.blockID};
+		return new int[] {Block.snow.blockID , Block.blockSnow.blockID , AC_Block.thickSnow.blockID};
 	}
 
 	public boolean LocationIsValidSpawn(World world, int i, int j, int k)
@@ -32,13 +30,13 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		int distanceToAir = 0;
 		int checkID = world.getBlockId(i, j, k);
 
-		while (checkID != 0)
+		while(checkID != 0)
 		{
 			distanceToAir++;
 			checkID = world.getBlockId(i, j + distanceToAir, k);
 		}
 
-		if (distanceToAir > 0)
+		if(distanceToAir > 0)
 		{
 			return false;
 		}
@@ -47,17 +45,17 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		int blockID = world.getBlockId(i, j, k);
 		int blockIDAbove = world.getBlockId(i, j + 1, k);
 		int blockIDBelow = world.getBlockId(i, j - 1, k);
-		for (int x : GetValidSpawnBlocks())
+		for(int x : GetValidSpawnBlocks())
 		{
-			if (blockIDAbove != 0)
+			if(blockIDAbove != 0)
 			{
 				return false;
 			}
-			if (blockID == x)
+			if(blockID == x)
 			{
 				return true;
 			}
-			else if (blockID == Block.snow.blockID && blockIDBelow == x)
+			else if(blockID == Block.snow.blockID && blockIDBelow == x)
 			{
 				return true;
 			}
@@ -66,13 +64,12 @@ public class AC_GenEskimoVillage extends WorldGenerator
 	}
 
 	public AC_GenEskimoVillage()
-	{
-	}
+	{}
 
 	public boolean generate(World world, Random rand, int i, int j, int k)
 	{
 		//check that each corner is one of the valid spawn blocks
-		if (!LocationIsValidSpawn(world, i, j, k) || !LocationIsValidSpawn(world, i + 69, j, k) || !LocationIsValidSpawn(world, i + 69, j, k + 28) || !LocationIsValidSpawn(world, i, j, k + 28))
+		if(! LocationIsValidSpawn(world, i, j, k) || ! LocationIsValidSpawn(world, i + 69, j, k) || ! LocationIsValidSpawn(world, i + 69, j, k + 28) || ! LocationIsValidSpawn(world, i, j, k + 28))
 		{
 			return false;
 		}
@@ -4791,14 +4788,14 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		world.setBlock(i + 68, j + 5, k + 14, Block.blockSnow.blockID);
 		world.setBlock(i + 68, j + 5, k + 15, Block.blockSnow.blockID);
 		world.setBlock(i + 68, j + 5, k + 16, Block.blockSnow.blockID);
-		
-		world.setBlock(i + 9, j + 1, k + 14,AC_Block.campfire.blockID);
-		world.setBlock(i + 34, j + 0, k + 6,AC_Block.campfire.blockID);
-		world.setBlock(i + 34, j + 0, k + 22,AC_Block.campfire.blockID);
-		world.setBlock(i + 45, j + 0, k + 6,AC_Block.campfire.blockID);
+
+		world.setBlock(i + 9, j + 1, k + 14, AC_Block.campfire.blockID);
+		world.setBlock(i + 34, j + 0, k + 6, AC_Block.campfire.blockID);
+		world.setBlock(i + 34, j + 0, k + 22, AC_Block.campfire.blockID);
+		world.setBlock(i + 45, j + 0, k + 6, AC_Block.campfire.blockID);
 		world.setBlock(i + 45, j + 0, k + 22, AC_Block.campfire.blockID);
-		world.setBlock(i + 61, j + 0, k + 14,AC_Block.campfire.blockID);
-		
+		world.setBlock(i + 61, j + 0, k + 14, AC_Block.campfire.blockID);
+
 		AC_EntityCheifEskimo chief = new AC_EntityCheifEskimo(world);
 		chief.setPosition(i + 65, j + 1, k + 14);
 		world.spawnEntityInWorld(chief);
@@ -4830,7 +4827,7 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		AC_EntityTraderEskimo traderEskimo = new AC_EntityTraderEskimo(world);
 		traderEskimo.setPosition(i + 46, j + 1, k + 25);
 		world.spawnEntityInWorld(traderEskimo);
-		
+
 		AC_EntityYeti yeti = new AC_EntityYeti(world);
 		yeti.setPosition(i + 4, j + 1, k + 14);
 		world.spawnEntityInWorld(yeti);

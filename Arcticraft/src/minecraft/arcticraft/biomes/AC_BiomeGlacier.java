@@ -17,13 +17,7 @@ public class AC_BiomeGlacier extends AC_BiomeGenBaseArcticraft
 		fillerBlock = (byte) Block.ice.blockID;
 		this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityPolarBear.class, 5, 4, 4));
 		setMinMaxHeight(0.2F, 2.1F);
-		setEnableSnow();
 		setTemperatureRainfall(0.0F, 0.5F);
-	}
-
-	public boolean getEnableSnow()
-	{
-		return true;
 	}
 
 }

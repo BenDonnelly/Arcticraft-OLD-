@@ -31,10 +31,6 @@ import arcticraft.helpers.AC_KeyBindHelper;
 import arcticraft.helpers.AC_TickHandler;
 import arcticraft.helpers.AC_TickHandlerServer;
 import arcticraft.items.AC_Item;
-import arcticraft.items.AC_ItemCampfireRenderer;
-import arcticraft.items.AC_ItemCaptainStatueRenderer;
-import arcticraft.items.AC_ItemInvisoStaffRenderer;
-import arcticraft.items.AC_ItemStatueRenderer;
 import arcticraft.models.AC_ModelBoar;
 import arcticraft.models.AC_ModelChefEskimo;
 import arcticraft.models.AC_ModelCheifEskimo;
@@ -47,7 +43,11 @@ import arcticraft.models.AC_ModelPenguin;
 import arcticraft.models.AC_ModelPolarBear;
 import arcticraft.models.AC_ModelTraderEskimo;
 import arcticraft.models.AC_ModelYeti;
-import arcticraft.renderers.AC_FrostChestItemRenderHelper;
+import arcticraft.renderers.AC_CampfireRenderer;
+import arcticraft.renderers.AC_CaptainStatueRenderer;
+import arcticraft.renderers.AC_FrostChestRender;
+import arcticraft.renderers.AC_InvisoStaffRenderer;
+import arcticraft.renderers.AC_ItemStatueRenderer;
 import arcticraft.renderers.AC_RenderBoar;
 import arcticraft.renderers.AC_RenderBomb;
 import arcticraft.renderers.AC_RenderCaptain;
@@ -74,29 +74,33 @@ import arcticraft.tile_entities.AC_TileEntityCaptainStatueRenderer;
 import arcticraft.tile_entities.AC_TileEntityFrostChest;
 import arcticraft.tile_entities.AC_TileEntityStatue;
 import arcticraft.tile_entities.AC_TileEntityStatueRenderer;
-import arcticraft.tile_entities.TileEntityFrostChestRender;
+import arcticraft.tile_entities.AC_TileEntityFrostChestRender;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-public class AC_ClientProxy extends AC_CommonProxy {
+public class AC_ClientProxy extends AC_CommonProxy
+{
 
 	@Override
-	public void registerKeyHandler() {
+	public void registerKeyHandler()
+	{
 		KeyBindingRegistry.registerKeyBinding(new AC_KeyBindHelper());
 	}
 
 	@Override
-	public void registerTickHandler() {
+	public void registerTickHandler()
+	{
 		TickRegistry.registerTickHandler(new AC_TickHandler(), Side.CLIENT);
 		TickRegistry.registerTickHandler(new AC_TickHandlerServer(), Side.SERVER);
 
 	}
 
 	@Override
-	public void reigsterRenderThings() {
+	public void reigsterRenderThings()
+	{
 
 		MinecraftForge.EVENT_BUS.register(new AC_EventSoundLoad());
 
@@ -118,25 +122,25 @@ public class AC_ClientProxy extends AC_CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityChefEskimo.class, new AC_RenderChefEskimo(new AC_ModelChefEskimo(), 0.3F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityYeti.class, new AC_RenderYeti(new AC_ModelYeti(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityDragon.class, new AC_RenderDragon());
-		RenderingRegistry.registerEntityRenderingHandler(AC_EntityFrostZombie.class, new AC_RenderZombie(new ModelZombie(), 0.5F, 0.5F));		
-		RenderingRegistry.registerEntityRenderingHandler(AC_EntityPirate.class, new AC_RenderPirate(new ModelBiped(), 0.5F, 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(AC_EntityFrostZombie.class, new AC_RenderZombie(new ModelZombie(), 0.5F, 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(AC_EntityPirate.class, new AC_RenderPirate());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityStatue.class, new AC_TileEntityStatueRenderer());
 		MinecraftForgeClient.registerItemRenderer(AC_Block.statue.blockID, new AC_ItemStatueRenderer());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCaptainStatue.class, new AC_TileEntityCaptainStatueRenderer());
-		MinecraftForgeClient.registerItemRenderer(AC_Block.captainStatue.blockID, new AC_ItemCaptainStatueRenderer());
+		MinecraftForgeClient.registerItemRenderer(AC_Block.captainStatue.blockID, new AC_CaptainStatueRenderer());
 
-		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityFrostChest.class, new TileEntityFrostChestRender());
-		MinecraftForgeClient.registerItemRenderer(AC_Block.frostChest.blockID, new AC_FrostChestItemRenderHelper());
+		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityFrostChest.class, new AC_TileEntityFrostChestRender());
+		MinecraftForgeClient.registerItemRenderer(AC_Block.frostChest.blockID, new AC_FrostChestRender());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCampfire.class, new AC_TileEntityCampfireRenderer());
-		MinecraftForgeClient.registerItemRenderer(AC_Block.campfire.blockID, new AC_ItemCampfireRenderer());
+		MinecraftForgeClient.registerItemRenderer(AC_Block.campfire.blockID, new AC_CampfireRenderer());
 
-		MinecraftForgeClient.registerItemRenderer(AC_Item.invisoStaff.itemID, (IItemRenderer) new AC_ItemInvisoStaffRenderer());
+		MinecraftForgeClient.registerItemRenderer(AC_Item.invisoStaff.itemID, (IItemRenderer) new AC_InvisoStaffRenderer());
 
 	}
-	
+
 	public int addArmor(String armor)
 	{
 		return RenderingRegistry.addNewArmourRendererPrefix(armor);

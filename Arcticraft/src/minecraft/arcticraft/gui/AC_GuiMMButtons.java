@@ -28,30 +28,33 @@ public class AC_GuiMMButtons extends GuiButton
 	{
 		byte byte0 = 1;
 
-		if (!enabled)
+		if(! enabled)
 		{
 			byte0 = 0;
 		}
-		else if (flag)
+		else if(flag)
 		{
-			if (byte0 < 2)
+			if(byte0 < 2)
 			{
 				byte0++;
 			}
-			if (scrollCrop < scrollCropMax)
+			if(scrollCrop < scrollCropMax)
 			{
 				scrollCrop++;
 			}
-			if (scrollHeight < scrollMin) scrollHeight++;
+			if(scrollHeight < scrollMin)
+				scrollHeight++;
 		}
 		else
 		{
-			if (scrollCrop > scrollCropMax)
+			if(scrollCrop > scrollCropMax)
 			{
 				scrollCrop--;
 			}
-			if (scrollHeight > scrollMax) scrollHeight--;
-			if (scrollHeight == scrollMax) retracting = false;
+			if(scrollHeight > scrollMax)
+				scrollHeight--;
+			if(scrollHeight == scrollMax)
+				retracting = false;
 		}
 
 		return byte0;
@@ -59,7 +62,7 @@ public class AC_GuiMMButtons extends GuiButton
 
 	public void drawButton(Minecraft minecraft, int i, int j)
 	{
-		if (!drawButton)
+		if(! drawButton)
 		{
 			return;
 		}
@@ -73,13 +76,13 @@ public class AC_GuiMMButtons extends GuiButton
 		drawTexturedModalRect(xPosition + scrollHeight + width / 2 - 90, yPosition, 200 - width / 2, 46 + k * 20, width / 2, height);
 		mouseDragged(minecraft, i, j);
 
-	//	minecraft.renderEngine.resetBoundTexture();
+		//	minecraft.renderEngine.resetBoundTexture();
 
-		if (!enabled)
+		if(! enabled)
 		{
 			drawString(fontrenderer, displayString, xPosition + width / 10 / 5 - 5 + scrollHeight - 80, yPosition + (height - 8) / 2, 0xBAAEFF);
 		}
-		else if (flag)
+		else if(flag)
 		{
 			drawString(fontrenderer, displayString, xPosition + width / 10 / 5 - 5 + scrollHeight - 80, yPosition + (height - 8) / 2, 0x3BA2BC);
 		}
@@ -90,12 +93,10 @@ public class AC_GuiMMButtons extends GuiButton
 	}
 
 	protected void mouseDragged(Minecraft var1, int var2, int var3)
-	{
-	}
+	{}
 
 	public void mouseReleased(int var1, int var2)
-	{
-	}
+	{}
 
 	public boolean mousePressed(Minecraft var1, int var2, int var3)
 	{

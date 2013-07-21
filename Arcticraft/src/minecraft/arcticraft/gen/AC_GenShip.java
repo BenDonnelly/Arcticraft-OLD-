@@ -1,5 +1,5 @@
 /*
- *** MADE BY MITHION'S .SCHEMATIC TO JAVA CONVERTING TOOLv0.1 ***
+ * ** MADE BY MITHION'S .SCHEMATIC TO JAVA CONVERTING TOOLv0.1 ***
  */
 package arcticraft.gen;
 
@@ -15,9 +15,9 @@ import arcticraft.helpers.AC_WorldGenHelpers;
 
 public class AC_GenShip extends WorldGenerator
 {
+
 	public AC_GenShip()
-	{
-	}
+	{}
 
 	public boolean generate(World world, Random rand, int x, int y, int z)
 	{
@@ -2024,10 +2024,9 @@ public class AC_GenShip extends WorldGenerator
 		TileEntityChest chest4 = (TileEntityChest) world.getBlockTileEntity(x + 7, y + 11, z + 3);
 		TileEntityChest chest5 = (TileEntityChest) world.getBlockTileEntity(x + 7, y + 11, z + 3);
 
-
 		if(chest0 != null || chest1 != null || chest2 != null || chest3 != null || chest4 != null || chest5 != null)
 		{
-			AC_WorldGenHelpers.addRandomDungeonLoot(new TileEntityChest[] {chest0, chest1, chest2, chest3, chest4, chest5, }, "ship");
+			AC_WorldGenHelpers.addRandomDungeonLoot(new TileEntityChest[] {chest0 , chest1 , chest2 , chest3 , chest4 , chest5 ,}, "ship");
 		}
 
 		AC_EntityPirate pirate1 = new AC_EntityPirate(world);
@@ -2053,27 +2052,27 @@ public class AC_GenShip extends WorldGenerator
 		AC_EntityPirate pirate6 = new AC_EntityPirate(world);
 		pirate6.setPosition(x + 9, y + 5, z + 21);
 		world.spawnEntityInWorld(pirate6);
-		
+
 		AC_EntityPirate pirate7 = new AC_EntityPirate(world);
 		pirate7.setPosition(x + 5, y + 5, z + 24);
 		world.spawnEntityInWorld(pirate7);
-		
+
 		AC_EntityPirate pirate8 = new AC_EntityPirate(world);
 		pirate8.setPosition(x + 9, y + 5, z + 24);
 		world.spawnEntityInWorld(pirate8);
-		
+
 		AC_EntityPirate pirate9 = new AC_EntityPirate(world);
 		pirate9.setPosition(x + 5, y + 7, z + 12);
 		world.spawnEntityInWorld(pirate9);
-		
+
 		AC_EntityPirate pirate10 = new AC_EntityPirate(world);
 		pirate10.setPosition(x + 9, y + 7, z + 12);
 		world.spawnEntityInWorld(pirate10);
-		
+
 		AC_EntityPirate pirate11 = new AC_EntityPirate(world);
 		pirate11.setPosition(x + 5, y + 7, z + 27);
 		world.spawnEntityInWorld(pirate11);
-		
+
 		AC_EntityPirate pirate12 = new AC_EntityPirate(world);
 		pirate12.setPosition(x + 9, y + 7, z + 27);
 		world.spawnEntityInWorld(pirate12);
@@ -2085,11 +2084,11 @@ public class AC_GenShip extends WorldGenerator
 		AC_EntityPirate pirate14 = new AC_EntityPirate(world);
 		pirate14.setPosition(x + 9, y + 8, z + 32);
 		world.spawnEntityInWorld(pirate14);
-		
+
 		AC_EntityPirate pirate15 = new AC_EntityPirate(world);
 		pirate15.setPosition(x + 7, y + 9, z + 37);
 		world.spawnEntityInWorld(pirate15);
-		
+
 		AC_EntityCaptain captain = new AC_EntityCaptain(world);
 		captain.setPosition(x + 8, y + 1, z + 19);
 		world.spawnEntityInWorld(captain);

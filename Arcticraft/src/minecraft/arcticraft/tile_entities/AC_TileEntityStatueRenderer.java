@@ -21,14 +21,14 @@ public class AC_TileEntityStatueRenderer extends TileEntitySpecialRenderer
 	{
 
 		int rotation = 0;
-		if (tile.worldObj != null)
+		if(tile.worldObj != null)
 		{
 			rotation = tile.getBlockMetadata();
 		}
-		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/blocks/plain_statue.png"));	
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/blocks/plain_statue.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) d + 0.5F, (float) d1 + 1.5F, (float) d2 + 0.5F);
-		GL11.glScalef(1.0F, -1F, -1F);
+		GL11.glScalef(1.0F, - 1F, - 1F);
 		GL11.glRotatef(rotation * 90, 0.0F, 1.0F, 0.0F);
 		model.renderAll();
 		GL11.glPopMatrix(); //end

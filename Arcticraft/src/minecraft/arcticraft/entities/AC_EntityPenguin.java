@@ -1,8 +1,8 @@
 package arcticraft.entities;
 
-
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFollowParent;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMate;
@@ -42,14 +42,13 @@ public class AC_EntityPenguin extends EntityAnimal
 		return true;
 	}
 
-	public void writeEntityToNBT(NBTTagCompound nbttagcompound)
+	protected void func_110147_ax()
 	{
-		super.writeEntityToNBT(nbttagcompound); 
-	}
-
-	public void readEntityFromNBT(NBTTagCompound nbttagcompound)
-	{
-		super.readEntityFromNBT(nbttagcompound); 
+		super.func_110147_ax();
+		// Max Health - default 20.0D - min 0.0D - max Double.MAX_VALUE
+		this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(10d);
+		// Movement Speed - default 0.699D - min 0.0D - max Double.MAX_VALUE
+		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.699D);
 	}
 
 	/**
@@ -85,7 +84,6 @@ public class AC_EntityPenguin extends EntityAnimal
 		return 0.4F;
 	}
 
-
 	public AC_EntityPenguin func_90012_b(EntityAgeable par1EntityAgeable)
 	{
 		AC_EntityPenguin entitypenguin = new AC_EntityPenguin(this.worldObj);
@@ -93,51 +91,51 @@ public class AC_EntityPenguin extends EntityAnimal
 	}
 
 	protected void dropFewItems(boolean par1, int par2)
-    {
-        int var3 = this.rand.nextInt(3 + par2);
-        int var4;
+	{
+		int var3 = this.rand.nextInt(3 + par2);
+		int var4;
 
-        for (var4 = 0; var4 < var3; ++var4)
-        {
-            this.dropItem(AC_Item.penguinMeat.itemID, 1);
-        }
+		for(var4 = 0; var4 < var3; ++var4)
+		{
+			this.dropItem(AC_Item.penguinMeat.itemID, 1);
+		}
 
-        var3 = this.rand.nextInt(3 + par2);
+		var3 = this.rand.nextInt(3 + par2);
 
-        for (var4 = 0; var4 < var3; ++var4)
-        {
-            this.dropItem(AC_Item.penguinFeather.itemID, 2);
-        }
-    }
-	
+		for(var4 = 0; var4 < var3; ++var4)
+		{
+			this.dropItem(AC_Item.penguinFeather.itemID, 2);
+		}
+	}
+
 	@Override
 	public EntityAgeable createChild(EntityAgeable par1EntityAgeable)
 	{
 		return this.func_90012_b(par1EntityAgeable);
 	}
 
-    public boolean getCanSpawnHere()
-    {
+	public boolean getCanSpawnHere()
+	{
 		System.out.println("Spawning Penguin");
 
-    	for (int x = 0; x < 16; x++)
-    	{
-    		for (int y = 0; y < 16; y++)
-    		{
-    			for (int z = 0; z < 16; z++)
-    			{
-    				int x1 = MathHelper.floor_double(this.posX + x - 8);
-    				int y1 = MathHelper.floor_double(this.posY + y - 8); 
-    				int z1 = MathHelper.floor_double(this.posZ + z - 8);
-    				
-    				if (this.worldObj.getBlockMaterial(x1, y1, z1) == Material.water)
-    				{
-    					return super.getCanSpawnHere();
-    				}
-    			}
-    		}
-    	}
-    	
-    	return false;
-    }
+		for(int x = 0; x < 16; x++)
+		{
+			for(int y = 0; y < 16; y++)
+			{
+				for(int z = 0; z < 16; z++)
+				{
+					int x1 = MathHelper.floor_double(this.posX + x - 8);
+					int y1 = MathHelper.floor_double(this.posY + y - 8);
+					int z1 = MathHelper.floor_double(this.posZ + z - 8);
+
+					if(this.worldObj.getBlockMaterial(x1, y1, z1) == Material.water)
+					{
+						return super.getCanSpawnHere();
+					}
+				}
+			}
+		}
+
+		return false;
+	}
 }

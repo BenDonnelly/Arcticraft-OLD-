@@ -2,22 +2,22 @@ package arcticraft.entities;
 
 public interface AC_IBossDisplayData
 {
+
 	/**
-     * Max health of the boss.
-     */
-	
-    float func_110138_aP();
+	 * Max health of the boss.
+	 */
 
-    /**
-     * Returns the health points of the boss.
-     */
-    float func_110143_aJ();
+	float func_110138_aP();
 
-    /**
-     * Gets the username of the entity.
-     */
-    String getEntityName();
-    
-    
-    boolean isMiniBoss();
+	/**
+	 * Returns the health points of the boss.
+	 */
+	float func_110143_aJ();
+
+	/**
+	 * Gets the username of the entity.
+	 */
+	String getEntityName();
+
+	boolean isMiniBoss();
 }

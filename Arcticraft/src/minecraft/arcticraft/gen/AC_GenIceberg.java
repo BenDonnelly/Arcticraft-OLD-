@@ -11,49 +11,58 @@ import arcticraft.helpers.AC_WorldGenHelpers;
 
 public class AC_GenIceberg extends WorldGenerator
 {
-	protected int[] GetValidSpawnBlocks() {
-		return new int[] {
-				AC_Block.acWaterStill.blockID
-		};
+
+	protected int[] GetValidSpawnBlocks()
+	{
+		return new int[] {AC_Block.acWaterStill.blockID};
 	}
 
-	public boolean LocationIsValidSpawn(World world, int i, int j, int k){
+	public boolean LocationIsValidSpawn(World world, int i, int j, int k)
+	{
 		int distanceToAir = 0;
 		int checkID = world.getBlockId(i, j, k);
 
-		while (checkID != 0){
+		while(checkID != 0)
+		{
 			distanceToAir++;
 			checkID = world.getBlockId(i, j + distanceToAir, k);
 		}
 
-		if (distanceToAir > 9){
+		if(distanceToAir > 9)
+		{
 			return false;
 		}
 		j += distanceToAir - 1;
 
 		int blockID = world.getBlockId(i, j, k);
-		int blockIDAbove = world.getBlockId(i, j+1, k);
-		int blockIDBelow = world.getBlockId(i, j-1, k);
-		for (int x : GetValidSpawnBlocks()){
-			if (blockIDAbove != 0){
+		int blockIDAbove = world.getBlockId(i, j + 1, k);
+		int blockIDBelow = world.getBlockId(i, j - 1, k);
+		for(int x : GetValidSpawnBlocks())
+		{
+			if(blockIDAbove != 0)
+			{
 				return false;
 			}
-			if (blockID == x){
+			if(blockID == x)
+			{
 				return true;
-			}else if (blockID == Block.snow.blockID && blockIDBelow == x){
+			}
+			else if(blockID == Block.snow.blockID && blockIDBelow == x)
+			{
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public boolean generate(World world, Random rand, int i, int j, int k) {
+	public boolean generate(World world, Random rand, int i, int j, int k)
+	{
 		//check that each corner is one of the valid spawn blocks
-		if(!LocationIsValidSpawn(world, i, j, k) || !LocationIsValidSpawn(world, i + 26, j, k) || !LocationIsValidSpawn(world, i + 26, j, k + 23) || !LocationIsValidSpawn(world, i, j, k + 23))
+		if(! LocationIsValidSpawn(world, i, j, k) || ! LocationIsValidSpawn(world, i + 26, j, k) || ! LocationIsValidSpawn(world, i + 26, j, k + 23) || ! LocationIsValidSpawn(world, i, j, k + 23))
 		{
 			return false;
 		}
-		
+
 		j -= 11;
 
 		world.setBlock(i + 0, j + 0, k + 17, Block.ice.blockID);
@@ -1561,7 +1570,8 @@ public class AC_GenIceberg extends WorldGenerator
 		return true;
 	}
 
-	public boolean generate2(World world, Random rand, int i, int j, int k) {
+	public boolean generate2(World world, Random rand, int i, int j, int k)
+	{
 		world.setBlock(i + 11, j + 14, k + 11, Block.ice.blockID);
 		world.setBlock(i + 11, j + 14, k + 12, Block.ice.blockID);
 		world.setBlock(i + 11, j + 14, k + 13, Block.ice.blockID);
@@ -3067,7 +3077,8 @@ public class AC_GenIceberg extends WorldGenerator
 		return true;
 	}
 
-	public boolean generate3(World world, Random rand, int i, int j, int k) {
+	public boolean generate3(World world, Random rand, int i, int j, int k)
+	{
 		world.setBlock(i + 16, j + 4, k + 12, Block.ice.blockID);
 		world.setBlock(i + 16, j + 4, k + 13, Block.ice.blockID);
 		world.setBlock(i + 16, j + 4, k + 14, Block.ice.blockID);
@@ -4573,7 +4584,8 @@ public class AC_GenIceberg extends WorldGenerator
 		return true;
 	}
 
-	public boolean generate4(World world, Random rand, int i, int j, int k) {
+	public boolean generate4(World world, Random rand, int i, int j, int k)
+	{
 		world.setBlock(i + 20, j + 4, k + 15, Block.ice.blockID);
 		world.setBlock(i + 20, j + 4, k + 16, Block.ice.blockID);
 		world.setBlock(i + 20, j + 4, k + 17, Block.ice.blockID);
@@ -5635,11 +5647,11 @@ public class AC_GenIceberg extends WorldGenerator
 		world.setBlock(i + 26, j + 1, k + 15, Block.ice.blockID);
 		world.setBlock(i + 26, j + 1, k + 16, Block.ice.blockID);
 
-		if (world.getBlockTileEntity(i + 13, j + 12, k + 17) != null)
+		if(world.getBlockTileEntity(i + 13, j + 12, k + 17) != null)
 		{
 			AC_WorldGenHelpers.addRandomDungeonLoot((TileEntityChest) world.getBlockTileEntity(i + 13, j + 12, k + 17), "iceberg");
 		}
-		
+
 		return true;
 	}
 }

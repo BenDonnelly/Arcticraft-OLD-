@@ -1,4 +1,4 @@
-package arcticraft.blocks; 
+package arcticraft.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -7,9 +7,10 @@ import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class AC_BlockMysticalSnow extends Block 
+public class AC_BlockMysticalSnow extends Block
 {
-	public AC_BlockMysticalSnow(int i) 
+
+	public AC_BlockMysticalSnow(int i)
 	{
 		super(i, Material.snow);
 	}
@@ -25,20 +26,14 @@ public class AC_BlockMysticalSnow extends Block
 		return super.shouldSideBeRendered(iblockaccess, i, j, k, 1 - l);
 	}
 
-	public boolean renderAsNormalBlock() //Tells the game how to render the block
+	public boolean renderAsNormalBlock()
 	{
-	         return false;
+		return false;
 	}
-	
+
 	public boolean isOpaqueCube()
 	{
 		return false;
 	}
-	public void registerIcons(IconRegister iconRegister)
-	{
-	
-	this.blockIcon = iconRegister.registerIcon("AC:mystical_snow");
-	
-	}
-	
+
 }

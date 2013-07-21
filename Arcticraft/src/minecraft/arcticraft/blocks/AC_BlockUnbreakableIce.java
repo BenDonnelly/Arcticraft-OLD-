@@ -4,11 +4,11 @@ import java.util.Random;
 
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.world.IBlockAccess;
 
 public class AC_BlockUnbreakableIce extends BlockBreakable
 {
+
 	public AC_BlockUnbreakableIce(int par1, int par2)
 	{
 		super(par1, "ice", Material.ice, false);
@@ -39,7 +39,6 @@ public class AC_BlockUnbreakableIce extends BlockBreakable
 	 * block and l is the block's subtype/damage.
 	 */
 
-
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
@@ -51,7 +50,6 @@ public class AC_BlockUnbreakableIce extends BlockBreakable
 	/**
 	 * Ticks the block if it's been scheduled
 	 */
-
 
 	/**
 	 * Returns the mobility information of the block, 0 = free, 1 = can't push but can move over, 2 = total immobility
@@ -66,5 +64,5 @@ public class AC_BlockUnbreakableIce extends BlockBreakable
 	 * Returns an item stack containing a single instance of the current block type. 'i' is the block's subtype/damage
 	 * and is ignored for blocks which do not support subtypes. Blocks which cannot be harvested should return null.
 	 */
-	
+
 }

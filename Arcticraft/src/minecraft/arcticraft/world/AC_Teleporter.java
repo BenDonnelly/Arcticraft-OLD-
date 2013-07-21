@@ -27,29 +27,24 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class AC_Teleporter
 {
 
-	public static int 
-					 DIMENSION_ID = MainRegistry.dimension, 
-					 TENT_ID = Block.cloth.blockID, 
-					 FENCE_ID = Block.fence.blockID, 
-					 CHEST_ID = Block.chest.blockID, 
-					 GROUND_ID = AC_Block.frostGrass.blockID, 
-					 DIRT_ID = AC_Block.frostDirt.blockID;
+	public static int DIMENSION_ID = MainRegistry.dimension, TENT_ID = Block.cloth.blockID, FENCE_ID = Block.fence.blockID, CHEST_ID = Block.chest.blockID, GROUND_ID = AC_Block.frostGrass.blockID, DIRT_ID = AC_Block.frostDirt.blockID;
 
 	public static void teleportEntity(Entity entity, int dimensionId)
 	{
-		if (entity.worldObj.isRemote) return;
+		if(entity.worldObj.isRemote)
+			return;
 
 		World world = MinecraftServer.getServer().worldServerForDimension(dimensionId);
 		int x = 0, y = 0, z = 0;
 
-		if (dimensionId == 0)
+		if(dimensionId == 0)
 		{
 			EntityPlayer player = (EntityPlayer) entity;
 
 			ChunkCoordinates spawnPoint = player.getBedLocation();
 			ChunkCoordinates worldSpawn = world.getSpawnPoint();
 
-			if (player.getBedLocation() != null)
+			if(player.getBedLocation() != null)
 			{
 				x = spawnPoint.posX;
 				z = spawnPoint.posZ;
@@ -78,14 +73,16 @@ public class AC_Teleporter
 
 	private static Entity teleportEntity(World world, Entity entity, double x, double y, double z)
 	{
-		if (entity.riddenByEntity != null) entity.riddenByEntity.mountEntity(null);
+		if(entity.riddenByEntity != null)
+			entity.riddenByEntity.mountEntity(null);
 
-		if (entity.ridingEntity != null) entity.mountEntity(null);
+		if(entity.ridingEntity != null)
+			entity.mountEntity(null);
 
 		entity.worldObj.updateEntityWithOptionalForce(entity, false);
 		EntityPlayerMP player;
 
-		if (entity instanceof EntityPlayerMP)
+		if(entity instanceof EntityPlayerMP)
 		{
 			player = (EntityPlayerMP) entity;
 
@@ -97,15 +94,16 @@ public class AC_Teleporter
 		entity.setLocationAndAngles(x + 0.5, y, z + 0.5, entity.rotationYaw, entity.rotationPitch);
 		((WorldServer) world).theChunkProviderServer.loadChunk((int) x >> 4, (int) z >> 4);
 
-		while (!world.isAirBlock((int) x, (int) y, (int) z))
+		while(! world.isAirBlock((int) x, (int) y, (int) z))
 			y += 1;
 		y += 1;
 
 		entity = recreateEntity(entity, world);
 
-		if (entity == null) return null;
+		if(entity == null)
+			return null;
 
-		if (entity instanceof EntityPlayerMP)
+		if(entity instanceof EntityPlayerMP)
 		{
 			player = (EntityPlayerMP) entity;
 
@@ -115,7 +113,7 @@ public class AC_Teleporter
 
 		world.updateEntityWithOptionalForce(entity, false);
 
-		if (entity instanceof EntityPlayerMP)
+		if(entity instanceof EntityPlayerMP)
 		{
 			player = (EntityPlayerMP) entity;
 
@@ -139,7 +137,7 @@ public class AC_Teleporter
 
 	private static Entity recreateEntity(Entity entity, World world)
 	{
-		if (!(entity instanceof EntityPlayer))
+		if(! (entity instanceof EntityPlayer))
 		{
 			NBTTagCompound nbt = new NBTTagCompound();
 			entity.isDead = false;
@@ -149,7 +147,8 @@ public class AC_Teleporter
 
 			entity = EntityList.createEntityFromNBT(nbt, world);
 
-			if (entity == null) return null;
+			if(entity == null)
+				return null;
 		}
 
 		world.spawnEntityInWorld(entity);
@@ -167,7 +166,7 @@ public class AC_Teleporter
 
 		Iterator iter = player.getActivePotionEffects().iterator();
 
-		while (iter.hasNext())
+		while(iter.hasNext())
 		{
 			PotionEffect effect = (PotionEffect) iter.next();
 			player.playerNetServerHandler.sendPacketToPlayer(new Packet41EntityEffect(player.entityId, effect));
@@ -179,7 +178,7 @@ public class AC_Teleporter
 
 	private static void removeEntityFromWorld(World world, Entity entity)
 	{
-		if (entity instanceof EntityPlayer)
+		if(entity instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) entity;
 
@@ -189,14 +188,14 @@ public class AC_Teleporter
 
 			int chunkX = entity.chunkCoordX, chunkZ = entity.chunkCoordZ;
 
-			if (entity.addedToChunk && world.getChunkProvider().chunkExists(chunkX, chunkZ))
+			if(entity.addedToChunk && world.getChunkProvider().chunkExists(chunkX, chunkZ))
 			{
 				world.getChunkFromChunkCoords(chunkX, chunkZ).removeEntity(entity);
 				world.getChunkFromChunkCoords(chunkX, chunkZ).isModified = true;
 			}
 
 			world.loadedEntityList.remove(entity);
-//			world.releaseEntitySkin(entity);
+			//			world.releaseEntitySkin(entity);
 		}
 
 		entity.isDead = false;
@@ -209,41 +208,37 @@ public class AC_Teleporter
 		//if (entity.worldObj.getBlockId(x, y + 2, z) == TENT_ID || entity.worldObj.getBlockId(x + 2, y, z) == FENCE_ID || entity.worldObj.getBlockId(x + 2, y - 1, z) == FENCE_ID || entity.worldObj.getBlockId(x + 2, y + 1, z) == FENCE_ID || entity.worldObj.getBlockId(x - 2, y - 1, z) == CHEST_ID)
 		//      return;
 
-		if (entity.worldObj.getBlockId(x, y - 2, z) == Block.bedrock.blockID) return;
+		if(entity.worldObj.getBlockId(x, y - 2, z) == Block.bedrock.blockID)
+			return;
 
 		generateStructure(entity.worldObj, MathHelper.floor_double(entity.posX), MathHelper.floor_double(entity.posY), MathHelper.floor_double(entity.posZ));
 	}
 
 	private static void generateStructure(World world, int x, int y, int z)
 	{
-		if (world.provider.dimensionId != DIMENSION_ID) return;
+		if(world.provider.dimensionId != DIMENSION_ID)
+			return;
 
 		y += 2;
 		x -= 3;
 		z -= 3;
 
-		String [][] data = new String [] []
-			{
-				{"XXXXXXXXX", "XXXXXXXXX", "XXXXXXXXX", "TTTTTTXXX", "XXXXXXXXX", "XXXXXXXXX", "XXXXXXXXX"},
-				{"XXXXXXXXX", "XXXXXXXXX", "TTTTTTXXX", "TXXXXFXXX", "TTTTTTXXX", "XXXXXXXXX", "XXXXXXXXX"},
-				{"XXXXXXXXX", "TTTTTTXXX", "TXXXXXXXX", "TXXXXFXXX", "TXXXXXXXX", "TTTTTTXXX", "XXXXXXXXX"},
-				{"TTTTTTXXX", "TXXXXXXXX", "TXXXXXXXX", "TCXXXFXXX", "TXXXXXXXX", "TXXXXXXXX", "TTTTTTXXX"},
-				{"GGGGGGGGG", "GGGGGGGGG", "GGGGGGGGG", "GGGBGGGGG", "GGGGGGGGG", "GGGGGGGGG", "GGGGGGGGG"},
-				{"RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR"},
-				{"RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR"},
-				{"RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR"},
-				{"RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR", "RRRRRRRRR"}};
+		String[][] data = new String[][] { {"XXXXXXXXX" , "XXXXXXXXX" , "XXXXXXXXX" , "TTTTTTXXX" , "XXXXXXXXX" , "XXXXXXXXX" , "XXXXXXXXX"} , {"XXXXXXXXX" , "XXXXXXXXX" , "TTTTTTXXX" , "TXXXXFXXX" , "TTTTTTXXX" , "XXXXXXXXX" , "XXXXXXXXX"} ,
+				{"XXXXXXXXX" , "TTTTTTXXX" , "TXXXXXXXX" , "TXXXXFXXX" , "TXXXXXXXX" , "TTTTTTXXX" , "XXXXXXXXX"} , {"TTTTTTXXX" , "TXXXXXXXX" , "TXXXXXXXX" , "TCXXXFXXX" , "TXXXXXXXX" , "TXXXXXXXX" , "TTTTTTXXX"} ,
+				{"GGGGGGGGG" , "GGGGGGGGG" , "GGGGGGGGG" , "GGGBGGGGG" , "GGGGGGGGG" , "GGGGGGGGG" , "GGGGGGGGG"} , {"RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR"} ,
+				{"RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR"} , {"RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR"} ,
+				{"RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR" , "RRRRRRRRR"}};
 
-		for (String [] row : data)
+		for(String[] row : data)
 		{
-			for (String col : row)
+			for(String col : row)
 			{
-				for (Character c : col.toCharArray())
+				for(Character c : col.toCharArray())
 				{
 					int id = 0;
 					int damage = 0;
 
-					switch (c)
+					switch(c)
 					{
 					case 'X':
 						id = 0;
@@ -275,9 +270,9 @@ public class AC_Teleporter
 						break;
 					}
 
-					if (world.getBlockId(x, y, z) != id)
+					if(world.getBlockId(x, y, z) != id)
 					{
-						if (id == DIRT_ID && world.getBlockId(x, y, z) != 0 && world.getBlockId(x, y, z) != Block.snow.blockID /*&& world.getBlockId(x, y, z) != MainRegistry.thickSnow.blockID*/)
+						if(id == DIRT_ID && world.getBlockId(x, y, z) != 0 && world.getBlockId(x, y, z) != Block.snow.blockID /* && world.getBlockId(x, y, z) != MainRegistry.thickSnow.blockID */)
 						{
 							x++;
 							continue;
@@ -285,7 +280,7 @@ public class AC_Teleporter
 
 						world.setBlock(x, y, z, id, damage, 3);
 
-						if (id == CHEST_ID)
+						if(id == CHEST_ID)
 						{
 							TileEntityChest chest = (TileEntityChest) world.getBlockTileEntity(x, y, z);
 

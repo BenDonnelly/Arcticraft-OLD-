@@ -5,18 +5,22 @@ import arcticraft.items.AC_Item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class AC_TabMisc extends CreativeTabs {
-	public AC_TabMisc(int position, String tabID) {
+public class AC_TabMisc extends CreativeTabs
+{
+
+	public AC_TabMisc(int position, String tabID)
+	{
 		super(position, tabID);
 	}
 
 	@SideOnly(Side.CLIENT)
-	public int getTabIconItemIndex() {
-		return AC_Item.bucketIcyWater.itemID; // this is the item that is
-												// displayed on your tab's icon
+	public int getTabIconItemIndex()
+	{
+		return AC_Item.bucketIcyWater.itemID; 
 	}
 
-	public String getTranslatedTabLabel() {
-		return "Arcticraft Misc"; // the name that shows up in-game
+	public String getTranslatedTabLabel()
+	{
+		return "Arcticraft Misc";
 	}
 }

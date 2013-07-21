@@ -1,13 +1,13 @@
 package arcticraft.entities;
 
-import arcticraft.main.MainRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityEggInfo;
 import net.minecraft.entity.EntityList;
+import arcticraft.main.MainRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-public class AC_EntityEgg
+public class AC_EntityRegistry
 {
 
 	static int startEntityId = 327;
@@ -24,11 +24,10 @@ public class AC_EntityEgg
 	static int redishPinkishColour = 0xEB0E58;
 	static int greenishColour = 0x99FF66;
 	static int yellowishColour = 0xFFFF33;
-	
+
 	public static void registerEntityEggs()
 	{
 
-		
 		EntityRegistry.registerGlobalEntityID(AC_EntityFrostGhost.class, "FrostGhost", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.FrostGhost.name", "FrostGhost");
 		registerEntityEgg(AC_EntityFrostGhost.class, lightGrayColor, grayColor);
@@ -96,16 +95,15 @@ public class AC_EntityEgg
 		EntityRegistry.registerGlobalEntityID(AC_EntityYeti.class, "Yeti", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Yeti.name", "Yeti");
 		registerEntityEgg(AC_EntityYeti.class, 0x99FFFF, 0xDEDEDE);
-		
+
 		EntityRegistry.registerGlobalEntityID(AC_EntityDragon.class, "Dragon", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Dragon.name", "Dragon");
 		registerEntityEgg(AC_EntityDragon.class, 0x99FFFF, 0xDEDEDE);
-		
+
 		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 1, MainRegistry.instance, 64, 10, true);
 
-	
 	}
-	
+
 	public static void registerEntityEgg(Class<? extends Entity> entity, int primaryColor, int secondaryColor)
 	{
 		int id = getUniqueEntityId();
@@ -113,7 +111,7 @@ public class AC_EntityEgg
 		EntityList.entityEggs.put(id, new EntityEggInfo(id, primaryColor, secondaryColor));
 
 	}
-	
+
 	public static int getUniqueEntityId()
 	{
 		do
@@ -124,5 +122,5 @@ public class AC_EntityEgg
 
 		return startEntityId;
 	}
-	
+
 }

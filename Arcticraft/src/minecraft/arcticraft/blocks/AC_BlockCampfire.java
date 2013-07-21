@@ -19,7 +19,7 @@ public class AC_BlockCampfire extends BlockContainer
 		super(id, material);
 
 		//minX, minY, minZ, maxX, maxY, maxZ
-		this.setBlockBounds( 0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
 
 	}
 
@@ -42,7 +42,7 @@ public class AC_BlockCampfire extends BlockContainer
 	 */
 	public int getRenderType()
 	{
-		return -2;
+		return - 2;
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class AC_BlockCampfire extends BlockContainer
 
 	private void setDefaultDirection(World par1World, int par2, int par3, int par4)
 	{
-		if (!par1World.isRemote)
+		if(! par1World.isRemote)
 		{
 			int l = par1World.getBlockId(par2, par3, par4 - 1);
 			int i1 = par1World.getBlockId(par2, par3, par4 + 1);
@@ -109,22 +109,22 @@ public class AC_BlockCampfire extends BlockContainer
 			int k1 = par1World.getBlockId(par2 + 1, par3, par4);
 			byte b0 = 3;
 
-			if (Block.opaqueCubeLookup [l] && !Block.opaqueCubeLookup [i1])
+			if(Block.opaqueCubeLookup[l] && ! Block.opaqueCubeLookup[i1])
 			{
 				b0 = 3;
 			}
 
-			if (Block.opaqueCubeLookup [i1] && !Block.opaqueCubeLookup [l])
+			if(Block.opaqueCubeLookup[i1] && ! Block.opaqueCubeLookup[l])
 			{
 				b0 = 2;
 			}
 
-			if (Block.opaqueCubeLookup [j1] && !Block.opaqueCubeLookup [k1])
+			if(Block.opaqueCubeLookup[j1] && ! Block.opaqueCubeLookup[k1])
 			{
 				b0 = 5;
 			}
 
-			if (Block.opaqueCubeLookup [k1] && !Block.opaqueCubeLookup [j1])
+			if(Block.opaqueCubeLookup[k1] && ! Block.opaqueCubeLookup[j1])
 			{
 				b0 = 4;
 			}

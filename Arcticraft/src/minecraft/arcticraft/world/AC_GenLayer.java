@@ -12,7 +12,7 @@ public abstract class AC_GenLayer extends GenLayer
 		super(seed);
 	}
 
-	public static GenLayer [] makeTheWorld(long seed)
+	public static GenLayer[] makeTheWorld(long seed)
 	{
 
 		GenLayer biomes = new AC_GenLayerBiomes(1L);
@@ -30,7 +30,6 @@ public abstract class AC_GenLayer extends GenLayer
 		biomes.initWorldGenSeed(seed);
 		genlayervoronoizoom.initWorldGenSeed(seed);
 
-		return new GenLayer []
-			{biomes, genlayervoronoizoom};
+		return new GenLayer[] {biomes , genlayervoronoizoom};
 	}
 }

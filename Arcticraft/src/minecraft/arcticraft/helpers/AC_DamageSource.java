@@ -23,8 +23,8 @@ public class AC_DamageSource extends DamageSource
 	}
 
 	public static DamageSource causeIceShardDamage(AC_EntityIceShard par0EntityArrow, Entity par1Entity)
-    {
-        return (new EntityDamageSourceIndirect("ice shard", par0EntityArrow, par1Entity)).setProjectile();
-    }
+	{
+		return (new EntityDamageSourceIndirect("ice shard", par0EntityArrow, par1Entity)).setProjectile();
+	}
 
 }

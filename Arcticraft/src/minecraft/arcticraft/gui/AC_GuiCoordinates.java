@@ -16,15 +16,11 @@ public class AC_GuiCoordinates extends GuiScreen
 
 	private GuiTextField textfield;
 	private GuiTextField textfield2;
-	private Minecraft mc;
 
-	
-    private static final ResourceLocation guiTexture = new ResourceLocation("textures/gui/container/furnace.png");
+	private static final ResourceLocation guiTexture = new ResourceLocation("textures/gui/container/furnace.png");
 
 	public AC_GuiCoordinates()
-	{
-		mc = mc.getMinecraft();
-	}
+	{}
 
 	public static Minecraft getMinecraft()
 	{
@@ -36,6 +32,7 @@ public class AC_GuiCoordinates extends GuiScreen
 		Minecraft mc = getMinecraft();
 		return new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
 	}
+
 	public void initGui()
 	{
 
@@ -50,15 +47,15 @@ public class AC_GuiCoordinates extends GuiScreen
 
 	public void actionPerformed(GuiButton button)
 	{
-		if (button.id == 1)
+		if(button.id == 1)
 		{
 			AC_TickHandler.x = Integer.parseInt(textfield.getText());
 			AC_TickHandler.y = Integer.parseInt(textfield2.getText());
 			mc.thePlayer.addChatMessage("You've succesfully changed the coordinates to - X: " + AC_TickHandler.x + " and Y: " + AC_TickHandler.y);
-			mc.thePlayer.addChatMessage("Your temperature is: "+AC_TickHandler.value);
+			mc.thePlayer.addChatMessage("Your temperature is: " + AC_TickHandler.value);
 
 		}
-		else if (button.id == 2)
+		else if(button.id == 2)
 		{
 			mc.displayGuiScreen(new AC_GuiOptions());
 
@@ -84,10 +81,6 @@ public class AC_GuiCoordinates extends GuiScreen
 		textfield2.mouseClicked(i, j, k);
 	}
 
-	
-
-	
-	
 	public void drawScreen(int i, int j, float f)
 	{
 		ScaledResolution scaledresolution = getScaledResolution();
@@ -98,10 +91,9 @@ public class AC_GuiCoordinates extends GuiScreen
 		int k = width / 2 - 100;
 		int l = height / 2 - 40;
 
-		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		   this.mc.func_110434_K().func_110577_a(guiTexture);
-		   drawTexturedModalRect(k, l, 0, 0, 176, 166);
+		this.mc.func_110434_K().func_110577_a(guiTexture);
+		drawTexturedModalRect(k, l, 0, 0, 176, 166);
 		textfield.drawTextBox();
 		textfield2.drawTextBox();
 		super.drawScreen(i, j, f);

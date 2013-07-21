@@ -18,13 +18,13 @@ public class AC_GuiHandler implements IGuiHandler
 
 		TileEntity tile_entity = world.getBlockTileEntity(x, y, z);
 
-		if (tile_entity instanceof AC_TileEntityArcticFurnace)
+		if(tile_entity instanceof AC_TileEntityArcticFurnace)
 		{
 
 			return new AC_ContainerArcticFurnace(player.inventory, (AC_TileEntityArcticFurnace) tile_entity);
 		}
-		
-		if (tile_entity instanceof AC_TileEntityFreezer)
+
+		if(tile_entity instanceof AC_TileEntityFreezer)
 		{
 
 			return new AC_ContainerArcticFreezer(player.inventory, (AC_TileEntityFreezer) tile_entity);
@@ -39,13 +39,13 @@ public class AC_GuiHandler implements IGuiHandler
 
 		TileEntity tile_entity = world.getBlockTileEntity(x, y, z);
 
-		if (tile_entity instanceof AC_TileEntityArcticFurnace)
+		if(tile_entity instanceof AC_TileEntityArcticFurnace)
 		{
 
 			return new AC_GuiArcticFurnace(player.inventory, (AC_TileEntityArcticFurnace) tile_entity);
 		}
-		
-		if (tile_entity instanceof AC_TileEntityFreezer)
+
+		if(tile_entity instanceof AC_TileEntityFreezer)
 		{
 
 			return new AC_GuiFreezer(player.inventory, (AC_TileEntityFreezer) tile_entity);

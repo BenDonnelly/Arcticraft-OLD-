@@ -13,7 +13,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import arcticraft.main.MainRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -21,7 +20,7 @@ public class AC_BlockFloranCrop extends Block
 {
 
 	@SideOnly(Side.CLIENT)
-	private Icon [] iconArray;
+	private Icon[] iconArray;
 
 	public int berryID;
 	public int berryMeta;
@@ -70,11 +69,11 @@ public class AC_BlockFloranCrop extends Block
 
 	public int quantityDropped(int meta, int fortune, Random random)
 	{
-		if (meta > 4)
+		if(meta > 4)
 		{
 			return 2;
 		}
-		else if (meta < 2)
+		else if(meta < 2)
 		{
 			return 0;
 		}
@@ -98,7 +97,7 @@ public class AC_BlockFloranCrop extends Block
 	{
 		int l = par1World.getBlockMetadata(par2, par3, par4) + MathHelper.getRandomIntegerInRange(par1World.rand, 2, 5);
 
-		if (l > 7)
+		if(l > 7)
 		{
 			l = 7;
 		}
@@ -110,25 +109,25 @@ public class AC_BlockFloranCrop extends Block
 	/**
 	 * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
 	 */
-	 public Icon getIcon(int par1, int par2)
-    {
-        if (par2 == 1)
-        {
-            return this.iconArray[1];
-        }
-        else if(par2 == 2)
-        {
-        	return this.iconArray[2];
-        }
-        else if(par2 == 0)
-        {
-        	return this.iconArray[0];
-        }
-        else
-        {
-            return this.iconArray[3];
-        }
-    }
+	public Icon getIcon(int par1, int par2)
+	{
+		if(par2 == 1)
+		{
+			return this.iconArray[1];
+		}
+		else if(par2 == 2)
+		{
+			return this.iconArray[2];
+		}
+		else if(par2 == 0)
+		{
+			return this.iconArray[0];
+		}
+		else
+		{
+			return this.iconArray[3];
+		}
+	}
 
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int i, int j, int k)
 	{
@@ -137,20 +136,20 @@ public class AC_BlockFloranCrop extends Block
 
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float f, float g, float t)
 	{
-		if (player.getCurrentEquippedItem().itemID == Item.shears.itemID)
+		if(player.getCurrentEquippedItem().itemID == Item.shears.itemID)
 		{
 			harvestBerries(world, x, y, z, player);
 			world.playSoundEffect(x, y, z, "random.wood click", 1F, 1F);
 		}
-		else if (player.getCurrentEquippedItem().isItemEqual(new ItemStack(Item.dyePowder, -1, 15)))
+		else if(player.getCurrentEquippedItem().isItemEqual(new ItemStack(Item.dyePowder, - 1, 15)))
 		{
 
-			if (world.getBlockMetadata(x, x, z) < 3)
+			if(world.getBlockMetadata(x, x, z) < 3)
 			{
 				world.setBlockMetadataWithNotify(x, y, z, 3, 3);
 			}
 
-			if (!player.capabilities.isCreativeMode)
+			if(! player.capabilities.isCreativeMode)
 			{
 				player.getCurrentEquippedItem().stackSize--;
 			}
@@ -160,32 +159,33 @@ public class AC_BlockFloranCrop extends Block
 
 	public void harvestBerries(World world, int x, int y, int z, EntityPlayer player)
 	{
-		if (world.getBlockMetadata(x, y, z) == 3)
+		if(world.getBlockMetadata(x, y, z) == 3)
 		{
-			if (!world.isRemote && world != null)
+			if(! world.isRemote && world != null)
 			{
 				int dropAmount = ((int) Math.round(Math.random() * 4)) + 1;
-				for (int i = 0; i < dropAmount; i++)
+				for(int i = 0; i < dropAmount; i++)
 				{
 					EntityItem entity = new EntityItem(world, x + 0.5, y + 0.5, z + 0.5, new ItemStack(berryID, 1, berryMeta));
 					entity.delayBeforeCanPickup = 10;
 					world.spawnEntityInWorld(entity);
 				}
-				world.setBlockMetadataWithNotify(x, y, z,0, 3);
-				if (!player.capabilities.isCreativeMode)
+				world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+				if(! player.capabilities.isCreativeMode)
 				{
 					player.getCurrentEquippedItem().damageItem(1, player);
 				}
 			}
 		}
 	}
+
 	public void updateTick(World world, int x, int y, int z, Random random)
 	{
 		super.updateTick(world, x, y, z, random);
 		int l = 0;
-		if (l == 0)
+		if(l == 0)
 		{
-			if (world.getBlockMetadata(x, y, z) < 3)
+			if(world.getBlockMetadata(x, y, z) < 3)
 			{
 				world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) + 1, 3);
 				System.out.println("Metadata: " + world.getBlockMetadata(x, y, z));
@@ -224,13 +224,12 @@ public class AC_BlockFloranCrop extends Block
 	 */
 	public void registerIcons(IconRegister par1IconRegister)
 	{
-		this.iconArray = new Icon [4];
+		this.iconArray = new Icon[4];
 
-		for (int i = 0; i < this.iconArray.length; ++i)
+		for(int i = 0; i < this.iconArray.length; ++i)
 		{
-			this.iconArray [i] = par1IconRegister.registerIcon("ac:floran_" + i);
+			this.iconArray[i] = par1IconRegister.registerIcon("ac:floran_" + i);
 		}
 	}
 
-	
 }

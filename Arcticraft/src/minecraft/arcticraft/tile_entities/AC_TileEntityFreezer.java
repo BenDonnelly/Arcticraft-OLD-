@@ -25,13 +25,13 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory
 {
 
 	private static final int[] slots_top = new int[] {0};
-    private static final int[] slots_bottom = new int[] {2, 1};
-    private static final int[] slots_sides = new int[] {1};
+	private static final int[] slots_bottom = new int[] {2 , 1};
+	private static final int[] slots_sides = new int[] {1};
 
 	/**
 	 * The ItemStacks that hold the items currently being used in the freezer
 	 */
-	private ItemStack [] freezerItemStacks = new ItemStack [4];
+	private ItemStack[] freezerItemStacks = new ItemStack[4];
 
 	/** The number of ticks that the freezer will keep burning */
 	public int freezerBurnTime = 0;
@@ -59,7 +59,7 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory
 	 */
 	public ItemStack getStackInSlot(int par1)
 	{
-		return this.freezerItemStacks [par1];
+		return this.freezerItemStacks[par1];
 	}
 
 	/**
@@ -68,18 +68,18 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory
 	 */
 	public ItemStack decrStackSize(int i, int j)
 	{
-		if (freezerItemStacks [i] != null)
+		if(freezerItemStacks[i] != null)
 		{
-			if (freezerItemStacks [i].stackSize <= j)
+			if(freezerItemStacks[i].stackSize <= j)
 			{
-				ItemStack itemstack = freezerItemStacks [i];
-				freezerItemStacks [i] = null;
+				ItemStack itemstack = freezerItemStacks[i];
+				freezerItemStacks[i] = null;
 				return itemstack;
 			}
-			ItemStack itemstack1 = freezerItemStacks [i].splitStack(j);
-			if (freezerItemStacks [i].stackSize == 0)
+			ItemStack itemstack1 = freezerItemStacks[i].splitStack(j);
+			if(freezerItemStacks[i].stackSize == 0)
 			{
-				freezerItemStacks [i] = null;
+				freezerItemStacks[i] = null;
 			}
 			return itemstack1;
 		}
@@ -96,10 +96,10 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory
 	 */
 	public ItemStack getStackInSlotOnClosing(int par1)
 	{
-		if (this.freezerItemStacks [par1] != null)
+		if(this.freezerItemStacks[par1] != null)
 		{
-			ItemStack itemstack = this.freezerItemStacks [par1];
-			this.freezerItemStacks [par1] = null;
+			ItemStack itemstack = this.freezerItemStacks[par1];
+			this.freezerItemStacks[par1] = null;
 			return itemstack;
 		}
 		else
@@ -114,9 +114,9 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory
 	 */
 	public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
 	{
-		this.freezerItemStacks [par1] = par2ItemStack;
+		this.freezerItemStacks[par1] = par2ItemStack;
 
-		if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
+		if(par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
 		{
 			par2ItemStack.stackSize = this.getInventoryStackLimit();
 		}
@@ -152,24 +152,24 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory
 	{
 		super.readFromNBT(par1NBTTagCompound);
 		NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
-		this.freezerItemStacks = new ItemStack [this.getSizeInventory()];
+		this.freezerItemStacks = new ItemStack[this.getSizeInventory()];
 
-		for (int i = 0; i < nbttaglist.tagCount(); ++i)
+		for(int i = 0; i < nbttaglist.tagCount(); ++i)
 		{
 			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
 			byte b0 = nbttagcompound1.getByte("Slot");
 
-			if (b0 >= 0 && b0 < this.freezerItemStacks.length)
+			if(b0 >= 0 && b0 < this.freezerItemStacks.length)
 			{
-				this.freezerItemStacks [b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+				this.freezerItemStacks[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
 
 		this.freezerBurnTime = par1NBTTagCompound.getShort("BurnTime");
 		this.freezerCookTime = par1NBTTagCompound.getShort("CookTime");
-		this.currentItemBurnTime = getItemBurnTime(this.freezerItemStacks [1]);
+		this.currentItemBurnTime = getItemBurnTime(this.freezerItemStacks[1]);
 
-		if (par1NBTTagCompound.hasKey("CustomName"))
+		if(par1NBTTagCompound.hasKey("CustomName"))
 		{
 			this.field_94130_e = par1NBTTagCompound.getString("CustomName");
 		}
@@ -185,20 +185,20 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory
 		par1NBTTagCompound.setShort("CookTime", (short) this.freezerCookTime);
 		NBTTagList nbttaglist = new NBTTagList();
 
-		for (int i = 0; i < this.freezerItemStacks.length; ++i)
+		for(int i = 0; i < this.freezerItemStacks.length; ++i)
 		{
-			if (this.freezerItemStacks [i] != null)
+			if(this.freezerItemStacks[i] != null)
 			{
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);
-				this.freezerItemStacks [i].writeToNBT(nbttagcompound1);
+				this.freezerItemStacks[i].writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
 
 		par1NBTTagCompound.setTag("Items", nbttaglist);
 
-		if (this.isInvNameLocalized())
+		if(this.isInvNameLocalized())
 		{
 			par1NBTTagCompound.setString("CustomName", this.field_94130_e);
 		}
@@ -230,7 +230,7 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory
 	 */
 	public int getBurnTimeRemainingScaled(int par1)
 	{
-		if (this.currentItemBurnTime == 0)
+		if(this.currentItemBurnTime == 0)
 		{
 			this.currentItemBurnTime = 200;
 		}
@@ -256,38 +256,38 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory
 		boolean flag = this.freezerBurnTime > 0;
 		boolean flag1 = false;
 
-		if (this.freezerBurnTime > 0)
+		if(this.freezerBurnTime > 0)
 		{
 			--this.freezerBurnTime;
 		}
 
-		if (!this.worldObj.isRemote)
+		if(! this.worldObj.isRemote)
 		{
-			if (this.freezerBurnTime == 0 && this.canSmelt())
+			if(this.freezerBurnTime == 0 && this.canSmelt())
 			{
-				this.currentItemBurnTime = this.freezerBurnTime = getItemBurnTime(this.freezerItemStacks [1]);
+				this.currentItemBurnTime = this.freezerBurnTime = getItemBurnTime(this.freezerItemStacks[1]);
 
-				if (this.freezerBurnTime > 0)
+				if(this.freezerBurnTime > 0)
 				{
 					flag1 = true;
 
-					if (this.freezerItemStacks [1] != null)
+					if(this.freezerItemStacks[1] != null)
 					{
-						--this.freezerItemStacks [1].stackSize;
+						--this.freezerItemStacks[1].stackSize;
 
-						if (this.freezerItemStacks [1].stackSize == 0)
+						if(this.freezerItemStacks[1].stackSize == 0)
 						{
-							this.freezerItemStacks [1] = this.freezerItemStacks [1].getItem().getContainerItemStack(freezerItemStacks [1]);
+							this.freezerItemStacks[1] = this.freezerItemStacks[1].getItem().getContainerItemStack(freezerItemStacks[1]);
 						}
 					}
 				}
 			}
 
-			if (this.isBurning() && this.canSmelt())
+			if(this.isBurning() && this.canSmelt())
 			{
 				++this.freezerCookTime;
 
-				if (this.freezerCookTime == 1800)
+				if(this.freezerCookTime == 1800)
 				{
 					this.freezerCookTime = 0;
 					this.smeltItem();
@@ -299,14 +299,14 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory
 				this.freezerCookTime = 0;
 			}
 
-			if (flag != this.freezerBurnTime > 0)
+			if(flag != this.freezerBurnTime > 0)
 			{
 				flag1 = true;
 				AC_BlockFreezer.updateFreezerBlockState(this.freezerBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
 			}
 		}
 
-		if (flag1)
+		if(flag1)
 		{
 			this.onInventoryChanged();
 		}
@@ -318,21 +318,24 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory
 	 */
 	private boolean canSmelt()
 	{
-		if (this.freezerItemStacks [0] == null)
+		if(this.freezerItemStacks[0] == null)
 		{
 			return false;
 		}
-		if (this.freezerItemStacks [3] == null)
+		if(this.freezerItemStacks[3] == null)
 		{
 			return false;
 		}
 		else
 		{
-			ItemStack itemstack = AC_FreezerRecipes.smelting().getSmeltingResult(this.freezerItemStacks [0]);
-			if (itemstack == null) return false;
-			if (this.freezerItemStacks [2] == null) return true;
-			if (!this.freezerItemStacks [2].isItemEqual(itemstack)) return false;
-			int result = freezerItemStacks [2].stackSize + itemstack.stackSize;
+			ItemStack itemstack = AC_FreezerRecipes.smelting().getSmeltingResult(this.freezerItemStacks[0]);
+			if(itemstack == null)
+				return false;
+			if(this.freezerItemStacks[2] == null)
+				return true;
+			if(! this.freezerItemStacks[2].isItemEqual(itemstack))
+				return false;
+			int result = freezerItemStacks[2].stackSize + itemstack.stackSize;
 			return(result <= getInventoryStackLimit() && result <= itemstack.getMaxStackSize());
 		}
 	}
@@ -343,29 +346,29 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory
 	 */
 	public void smeltItem()
 	{
-		if (this.canSmelt())
+		if(this.canSmelt())
 		{
-			ItemStack itemstack = AC_FreezerRecipes.smelting().getSmeltingResult(this.freezerItemStacks [0]);
+			ItemStack itemstack = AC_FreezerRecipes.smelting().getSmeltingResult(this.freezerItemStacks[0]);
 
-			if (this.freezerItemStacks [2] == null)
+			if(this.freezerItemStacks[2] == null)
 			{
-				this.freezerItemStacks [2] = itemstack.copy();
+				this.freezerItemStacks[2] = itemstack.copy();
 			}
-			else if (this.freezerItemStacks [2].isItemEqual(itemstack))
+			else if(this.freezerItemStacks[2].isItemEqual(itemstack))
 			{
-				freezerItemStacks [2].stackSize += itemstack.stackSize;
+				freezerItemStacks[2].stackSize += itemstack.stackSize;
 			}
 
-			--this.freezerItemStacks [0].stackSize;
-			--this.freezerItemStacks [3].stackSize;
+			--this.freezerItemStacks[0].stackSize;
+			--this.freezerItemStacks[3].stackSize;
 
-			if (this.freezerItemStacks [0].stackSize <= 0)
+			if(this.freezerItemStacks[0].stackSize <= 0)
 			{
-				this.freezerItemStacks [0] = null;
+				this.freezerItemStacks[0] = null;
 			}
-			if (this.freezerItemStacks [3].stackSize <= 0)
+			if(this.freezerItemStacks[3].stackSize <= 0)
 			{
-				this.freezerItemStacks [3] = null;
+				this.freezerItemStacks[3] = null;
 			}
 		}
 	}
@@ -376,7 +379,7 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory
 	 */
 	public static int getItemBurnTime(ItemStack par0ItemStack)
 	{
-		if (par0ItemStack == null)
+		if(par0ItemStack == null)
 		{
 			return 0;
 		}
@@ -385,12 +388,18 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory
 			int i = par0ItemStack.getItem().itemID;
 			Item item = par0ItemStack.getItem();
 
-			if (item instanceof AC_ItemAxe && ((ItemTool) item).getToolMaterialName().equals("WOOD")) return 200;
-			if (item instanceof AC_ItemSword && ((ItemSword) item).getToolMaterialName().equals("WOOD")) return 200;
-			if (item instanceof AC_ItemHoe && ((ItemHoe) item).getMaterialName().equals("WOOD")) return 200;
-			if (i == AC_Item.frigus.itemID) return 1600;
-			if (i == AC_Block.frostLog.blockID) return 1200;
-			if (i == AC_Block.frostPlanks.blockID) return 300;
+			if(item instanceof AC_ItemAxe && ((ItemTool) item).getToolMaterialName().equals("WOOD"))
+				return 200;
+			if(item instanceof AC_ItemSword && ((ItemSword) item).getToolMaterialName().equals("WOOD"))
+				return 200;
+			if(item instanceof AC_ItemHoe && ((ItemHoe) item).getMaterialName().equals("WOOD"))
+				return 200;
+			if(i == AC_Item.frigus.itemID)
+				return 1600;
+			if(i == AC_Block.frostLog.blockID)
+				return 1200;
+			if(i == AC_Block.frostPlanks.blockID)
+				return 300;
 			return GameRegistry.getFuelValue(par0ItemStack);
 		}
 	}
@@ -413,37 +422,35 @@ public class AC_TileEntityFreezer extends TileEntity implements ISidedInventory
 	}
 
 	public void openChest()
-	{
-	}
+	{}
 
 	public void closeChest()
+	{}
+
+	/**
+	* Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
+	*/
+	public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack)
 	{
+		return par1 == 2 ? false : (par1 == 1 ? isItemFuel(par2ItemStack) : true);
 	}
 
-	 /**
-     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
-     */
-    public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack)
-    {
-        return par1 == 2 ? false : (par1 == 1 ? isItemFuel(par2ItemStack) : true);
-    }
+	/**
+	 * Get the size of the side inventory.
+	 */
+	public int[] getAccessibleSlotsFromSide(int par1)
+	{
+		return par1 == 0 ? slots_bottom : (par1 == 1 ? slots_top : slots_sides);
+	}
 
-    /**
-     * Get the size of the side inventory.
-     */
-    public int[] getAccessibleSlotsFromSide(int par1)
-    {
-        return par1 == 0 ? slots_bottom : (par1 == 1 ? slots_top : slots_sides);
-    }
+	public boolean canInsertItem(int par1, ItemStack par2ItemStack, int par3)
+	{
+		return this.isItemValidForSlot(par1, par2ItemStack);
+	}
 
-    public boolean canInsertItem(int par1, ItemStack par2ItemStack, int par3)
-    {
-        return this.isItemValidForSlot(par1, par2ItemStack);
-    }
-
-    public boolean canExtractItem(int par1, ItemStack par2ItemStack, int par3)
-    {
-        return par3 != 0 || par1 != 1 || par2ItemStack.itemID == Item.bucketEmpty.itemID;
-    }
+	public boolean canExtractItem(int par1, ItemStack par2ItemStack, int par3)
+	{
+		return par3 != 0 || par1 != 1 || par2ItemStack.itemID == Item.bucketEmpty.itemID;
+	}
 
 }

@@ -2,8 +2,6 @@ package arcticraft.dispenser;
 
 import net.minecraft.block.BlockDispenser;
 import arcticraft.items.AC_Item;
-import arcticraft.dispenser.*;
-
 
 public class AC_DispenserBehaviours
 {
