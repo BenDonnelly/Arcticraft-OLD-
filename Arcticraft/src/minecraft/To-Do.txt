@@ -6,4 +6,3 @@ final boss model(King)
 objectives to get to said boss
 quest system
 quest table with gui that looks good as shit
-loot rarity fix
