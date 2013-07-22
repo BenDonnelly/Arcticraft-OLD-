@@ -27,6 +27,9 @@ public class AC_EntityRegistry
 
 	public static void registerEntityEggs()
 	{
+		EntityRegistry.registerGlobalEntityID(AC_EntityWhale.class, "Whale", EntityRegistry.findGlobalUniqueEntityId());
+		LanguageRegistry.instance().addStringLocalization("entity.Whale.name", "Whale");
+		registerEntityEgg(AC_EntityWhale.class, blueishIcyColor, grayColor);
 
 		EntityRegistry.registerGlobalEntityID(AC_EntityFrostGhost.class, "FrostGhost", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.FrostGhost.name", "FrostGhost");
