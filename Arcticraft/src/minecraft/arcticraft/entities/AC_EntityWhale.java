@@ -17,6 +17,7 @@ public class AC_EntityWhale extends EntityWaterMob
     public AC_EntityWhale(World par1World)
     {
         super(par1World);
+        this.setSize(this.width, this.height);
     }
 
     /**
@@ -32,7 +33,7 @@ public class AC_EntityWhale extends EntityWaterMob
      */
     protected String getHurtSound()
     {
-        return null;
+        return "mob.cow.hurt";
     }
 
     /**
@@ -57,51 +58,6 @@ public class AC_EntityWhale extends EntityWaterMob
     protected int getDropItemId()
     {
         return 0;
-    }
-
-    /**
-     * Checks if this entity is inside water (if inWater field is true as a result of handleWaterMovement() returning
-     * true)
-     */
-    public boolean isInWater()
-    {
-        return this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.6000000238418579D, 0.0D), Material.water, this);
-    }
-
-    /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
-     */
-    public void onLivingUpdate()
-    {
-       super.onLivingUpdate();
-    }
-
-    /**
-     * Moves the entity based on the specified heading.  Args: strafe, forward
-     */
-    public void moveEntityWithHeading(float par1, float par2)
-    {
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
-    }
-
-    protected void updateEntityActionState()
-    {
-        ++this.entityAge;
-
-        if (this.entityAge > 100)
-        {
-            this.randomMotionVecX = this.randomMotionVecY = this.randomMotionVecZ = 0.0F;
-        }
-        else if (this.rand.nextInt(50) == 0 || !this.inWater || this.randomMotionVecX == 0.0F && this.randomMotionVecY == 0.0F && this.randomMotionVecZ == 0.0F)
-        {
-            float f = this.rand.nextFloat() * (float)Math.PI * 2.0F;
-            this.randomMotionVecX = MathHelper.cos(f) * 0.2F;
-            this.randomMotionVecY = -0.1F + this.rand.nextFloat() * 0.2F;
-            this.randomMotionVecZ = MathHelper.sin(f) * 0.2F;
-        }
-
-        this.despawnEntity();
     }
 
     /**
