@@ -45,9 +45,6 @@ public class AC_BlockACFurnace extends BlockContainer
 	@SideOnly(Side.CLIENT)
 	private Icon furnaceIconFront;
 
-	private Icon[] activeFace;
-	private Icon sideFace;
-
 	public AC_BlockACFurnace(int par1, boolean par2)
 	{
 		super(par1, Material.rock);
