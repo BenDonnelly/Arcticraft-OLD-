@@ -89,9 +89,11 @@ public class AC_EntitySled extends Entity {
         	
         	this.motionX += (double) direction[0] * this.speedMultiplier;
         	this.motionZ += (double) direction[1] * this.speedMultiplier;
-        	
-        	this.rotationYaw = (180.0F / (float) Math.PI) * (float) Math.atan2((double) this.motionZ, (double) this.motionX) - 180.0F;
         }
+        
+    	if (this.motionX != 0 || this.motionZ != 0) {
+    		this.rotationYaw = (180.0F / (float) Math.PI) * (float) Math.atan2((double) this.motionZ, (double) this.motionX) - 180.0F;
+    	}
         
     	this.motionX *= 0.98F;
     	this.motionZ *= 0.98F;

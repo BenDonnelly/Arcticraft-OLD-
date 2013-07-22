@@ -82,7 +82,7 @@ public class AC_ItemSled extends Item {
                     int k = movingobjectposition.blockZ;
 
                     AC_EntitySled entitysled = new AC_EntitySled(par2World, (double)((float)i + 0.5F), (double)((float)j + 1.0F), (double)((float)k + 0.5F));
-                    entitysled.rotationYaw = par3EntityPlayer.rotationYaw - 90.0F;
+                    entitysled.rotationYaw = par3EntityPlayer.rotationYaw + 90.0F;
 
                     if (!par2World.getCollidingBoundingBoxes(entitysled, entitysled.boundingBox.expand(-0.1D, -0.1D, -0.1D)).isEmpty())
                     {
