@@ -9,6 +9,8 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.client.FMLClientHandler;
+
 import arcticraft.helpers.AC_TickHandler;
 
 public class AC_GuiCoordinates extends GuiScreen
@@ -17,7 +19,6 @@ public class AC_GuiCoordinates extends GuiScreen
 	private GuiTextField textfield;
 	private GuiTextField textfield2;
 
-	private static final ResourceLocation guiTexture = new ResourceLocation("textures/gui/container/furnace.png");
 
 	public AC_GuiCoordinates()
 	{}
@@ -92,7 +93,7 @@ public class AC_GuiCoordinates extends GuiScreen
 		int l = height / 2 - 40;
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.func_110434_K().func_110577_a(guiTexture);
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/gui/ac_default.png"));
 		drawTexturedModalRect(k, l, 0, 0, 176, 166);
 		textfield.drawTextBox();
 		textfield2.drawTextBox();
