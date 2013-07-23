@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.logging.Level;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
@@ -36,6 +37,7 @@ import arcticraft.items.AC_Item;
 import arcticraft.recipes.AC_Recipes;
 import arcticraft.world.AC_WorldGenerator;
 import arcticraft.world.AC_WorldProvider;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -138,19 +140,25 @@ public class MainRegistry
 			}
 		}
 		globalConfigFile = new Configuration(cfgFile);
-		globalConfigFile.load();
-		globalConfigFile.save();
-		ConfigCategory gui = globalConfigFile.getCategory("gui");
-		ConfigCategory gen = globalConfigFile.getCategory("generation");
-		if(gui.get("temp-bar-x") != null)
-		{
-			AC_TickHandler.x = gui.get("temp-bar-x").getInt();
-			AC_TickHandler.y = gui.get("temp-bar-y").getInt();
-		}
 		
-		if(gen.get("snow-layers-enabled") != null)
+		try
 		{
-			AC_TickHandler.snowLayersEnabled = gen.get("snow-layers-enabled").getBoolean(true);
+			globalConfigFile.load();
+
+			String gui = "gui";
+			String generation = "generation";
+
+			AC_TickHandler.x = globalConfigFile.get(gui, "temp-bar-x", 0).getInt(0);
+			AC_TickHandler.y = globalConfigFile.get(gui, "temp-bar-y", 0).getInt(0);
+			AC_TickHandler.snowLayersEnabled = globalConfigFile.get(generation, "snow-layers-enabled", true).getBoolean(true);
+		}
+		catch (Exception e)
+		{
+			FMLLog.log(Level.SEVERE, e, "Arcticraft can't load its configuration");
+		}
+		finally
+		{
+			globalConfigFile.save();
 		}
 
 		DimensionManager.registerProviderType(dimension, AC_WorldProvider.class, false);
