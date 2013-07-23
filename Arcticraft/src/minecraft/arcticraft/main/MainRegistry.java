@@ -114,13 +114,27 @@ public class MainRegistry
 	public void serverStopping(FMLServerStoppingEvent event)
 	{
 		storage.setTemperature("Player", AC_TickHandler.value);
-		ConfigCategory general = temperatureFile.getCategory("general");
-		general.putAll(storage.save());
-		temperatureFile.save();
-		ConfigCategory gui = globalConfigFile.getCategory("gui");
-		gui.put("temp-bar-x", new Property("temp-bar-x", "" + AC_TickHandler.x, Type.INTEGER));
-		gui.put("temp-bar-y", new Property("temp-bar-y", "" + AC_TickHandler.y, Type.INTEGER));
-		globalConfigFile.save();
+		
+		try
+		{
+			ConfigCategory gui = globalConfigFile.getCategory("gui");
+			ConfigCategory gen = globalConfigFile.getCategory("generation");
+			ConfigCategory general = temperatureFile.getCategory("general");
+			
+			gui.put("temp-bar-x", new Property("temp-bar-x", Integer.toString(AC_TickHandler.x), Type.INTEGER));
+			gui.put("temp-bar-y", new Property("temp-bar-y", Integer.toString(AC_TickHandler.y), Type.INTEGER));
+			gen.put("snow-layers-enabled", new Property("snow-layers-enabled", Boolean.toString(AC_TickHandler.snowLayersEnabled), Type.BOOLEAN));
+			general.putAll(storage.save());
+		}
+		catch (Exception e)
+		{
+			FMLLog.log(Level.SEVERE, e, "Arcticraft can't save all of its configuration options");
+		}
+		finally
+		{
+			globalConfigFile.save();
+			temperatureFile.save();
+		}
 	}
 
 	@EventHandler
