@@ -663,13 +663,19 @@ public class AC_ChunkProvider implements IChunkProvider
 					}
 					else
 					{
-						this.worldObj.setBlock(k1 + i, l3, l2 + j, AC_Block.thickSnow.blockID);
+						this.worldObj.setBlock(k1 + i, l3, l2 + j, this.pickSnow(rand));
 					}
 				}
 			}
 		}
 
 		BlockSand.fallInstantly = false;
+	}
+	
+	private int pickSnow(Random par1Random)
+	{
+		int var2 = par1Random.nextInt(4);
+		return var2 == 0 ? AC_Block.thickSnow.blockID : Block.snow.blockID;
 	}
 
 	/**
