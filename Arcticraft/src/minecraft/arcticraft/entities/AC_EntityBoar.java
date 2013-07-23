@@ -1,4 +1,4 @@
-package net.minecraft.entity.passive;
+package arcticraft.entities;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
