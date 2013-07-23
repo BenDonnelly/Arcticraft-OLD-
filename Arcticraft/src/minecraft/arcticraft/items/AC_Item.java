@@ -150,7 +150,7 @@ public class AC_Item
 
 		EnumArmorMaterial hikingAmrour = EnumHelper.addArmorMaterial("Hiking Armoru", 33, new int[] {1 , 3 , 2 , 1}, 20);
 
-		EnumToolMaterial notchedPickaxeMaterial = EnumHelper.addToolMaterial("Notched Pickaxe", 3, 1000, 3.0F, 3.0F, 25);
+		EnumToolMaterial notchedPickaxeMaterial = EnumHelper.addToolMaterial("Notched Pickaxe", 3, 1000, 5.0F, 2.0F, 25);
 
 		
 		TekkitePickaxe = new AC_ItemPickaxe(6205, TekkiteTool).setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("Tekkite Pickaxe").func_111206_d("ac:tekkite_pickaxe");
@@ -266,7 +266,7 @@ public class AC_Item
 		LanguageRegistry.addName(escariaGem, "Escaria Gem");
 		LanguageRegistry.addName(rigentemIngot, "Rigentem Ingot");
 		LanguageRegistry.addName(glacianIngot, "Glacian Ingot");
-		LanguageRegistry.addName(frigus, "frigus");
+		LanguageRegistry.addName(frigus, "Frigus");
 		LanguageRegistry.addName(eriumGem, "Erium Gem");
 		LanguageRegistry.addName(itemLantern, "Lantern");
 		LanguageRegistry.addName(arcaneDust, "Arcane Dust");
@@ -284,6 +284,7 @@ public class AC_Item
 		LanguageRegistry.addName(invisoStaff, "Invisibility Staff");
 		LanguageRegistry.addName(floranSeed, "Floran Seed");
 		LanguageRegistry.addName(sled, "Sled");
+		LanguageRegistry.addName(notchedPickaxe, "Notched Pickaxe");
 
 		LanguageRegistry.addName(TekkitePickaxe, "Tekkite Pickaxe");
 		LanguageRegistry.addName(TekkiteAxe, "Tekkite Axe");

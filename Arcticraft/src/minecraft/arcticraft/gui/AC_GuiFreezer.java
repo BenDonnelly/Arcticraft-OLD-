@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 
 import arcticraft.containers.AC_ContainerArcticFreezer;
 import arcticraft.tile_entities.AC_TileEntityFreezer;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -17,7 +18,6 @@ public class AC_GuiFreezer extends GuiContainer
 {
 
 	private AC_TileEntityFreezer freezerInventory;
-	private static final ResourceLocation guiTexture = new ResourceLocation("textures/gui/container/furnace.png");
 
 	public AC_GuiFreezer(InventoryPlayer par1InventoryPlayer, AC_TileEntityFreezer par2TileEntityFreezer)
 	{
@@ -41,7 +41,7 @@ public class AC_GuiFreezer extends GuiContainer
 	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.func_110434_K().func_110577_a(guiTexture);
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/gui/freezer.png"));
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);

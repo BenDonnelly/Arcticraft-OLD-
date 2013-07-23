@@ -68,7 +68,7 @@ public class AC_TickHandlerServer implements ITickHandler
 			{
 				tickCounter = 0;
 				AC_TickHandler.value -= 1;
-				entityPlayer.attackEntityFrom(AC_DamageSource.freezing, 1);
+				entityPlayer.attackEntityFrom(AC_DamageSource.freezing, 3);
 			}
 		}
 	}

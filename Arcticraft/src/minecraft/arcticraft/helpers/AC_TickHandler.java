@@ -19,7 +19,8 @@ import org.lwjgl.opengl.GL11;
 
 import arcticraft.blocks.AC_BlockFrostLeaves;
 import arcticraft.blocks.AC_BlockGlacierLeaves;
-import arcticraft.blocks.AC_BlockThickSnow;
+import arcticraft.entities.AC_EntityBlueSparkle;
+import arcticraft.entities.AC_EntityYellowSparkle;
 import arcticraft.items.AC_Item;
 import arcticraft.items.AC_ItemLantern;
 import arcticraft.main.MainRegistry;
@@ -32,12 +33,14 @@ import cpw.mods.fml.relauncher.Side;
 public class AC_TickHandler implements ITickHandler
 {
 
-	private AC_ItemLantern itemLantern;
 	private Minecraft mc;
 	int tickCounter;
 	int tempIncrementCounter;
 	public static boolean renderOverlay = true;
 	public static AC_TickHandler tickHandler;
+	public static int cooldown = 1200;
+	public static boolean canFireExplosion;
+	public static int pickaxeStringTick = 0;
 	Random rand = new Random();
 
 	public AC_TickHandler()
@@ -82,11 +85,14 @@ public class AC_TickHandler implements ITickHandler
 				AC_ItemLantern.fuelCounter(mc.thePlayer, mc.thePlayer.getCurrentItemOrArmor(0));
 				AC_BlockFrostLeaves.setGraphicsLevel(! Minecraft.getMinecraft().gameSettings.fancyGraphics);
 				AC_BlockGlacierLeaves.setGraphicsLevel(! Minecraft.getMinecraft().gameSettings.fancyGraphics);
-				tickCounter();
+				tickDecrementCounter();
 				tempIncrementCounter();
 				canDecrementTemp();
 				canIncrementTemp();
 				slowPlayer((EntityPlayer) tickData[0]);
+				renderBlueYellowParticles((EntityPlayer) tickData[0]);
+				startCooldown((EntityPlayer) tickData[0]);
+				stringTick();
 
 			}
 		}
@@ -101,7 +107,7 @@ public class AC_TickHandler implements ITickHandler
 		if(type.equals(EnumSet.of(TickType.RENDER)))
 		{
 			renderFreezeEffect(scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight());
-			onRenderTick();
+			renderTemperatureBar();
 		}
 	}
 
@@ -112,19 +118,30 @@ public class AC_TickHandler implements ITickHandler
 
 	}
 
-	@Override
-	public String getLabel()
+	public void startCooldown(EntityPlayer player)
 	{
-		return "Temperature Bar";
+		ItemStack hand = player.getCurrentItemOrArmor(0);
+		if(hand != null && hand.getItem() == AC_Item.notchedPickaxe)
+		{
+
+			if(cooldown != 0)
+			{
+				cooldown--;
+			}
+			else if(cooldown == 0)
+			{
+				canFireExplosion = true;
+			}
+
+		}
 	}
 
 	public static int value = 50;
 	public static int maxValue = 100;
-	//	public static boolean dragging = false;
 	public static int x;
 	public static int y;
 
-	public void onRenderTick()
+	public void renderTemperatureBar()
 	{
 		ScaledResolution scaledresolution = getScaledResolution();
 		GuiIngame gui = this.mc.ingameGUI;
@@ -138,7 +155,7 @@ public class AC_TickHandler implements ITickHandler
 		}
 	}
 
-	public void tickCounter()
+	public void tickDecrementCounter()
 	{
 		GuiIngame ingamegui = this.mc.ingameGUI;
 		if(! mc.thePlayer.capabilities.isCreativeMode)
@@ -189,10 +206,7 @@ public class AC_TickHandler implements ITickHandler
 			else if(mc.theWorld != null && mc.thePlayer.dimension == MainRegistry.dimension && mc.theWorld.isRaining() == true && this.tickCounter == 300)
 			{
 				this.value -= 2;
-				//				mc.thePlayer.getEntityData().setInteger("temp", mc.thePlayer.getEntityData().getInteger("temp") - 2);
 				this.tickCounter = 0;
-				//				System.out.println("nbt int: " + mc.thePlayer.getEntityData().getInteger("temp"));
-				//				System.out.println("Value: " + value);
 			}
 			else if(this.tickCounter == 1500)
 			{
@@ -239,12 +253,12 @@ public class AC_TickHandler implements ITickHandler
 		int y = (int) Math.floor(player.boundingBox.minY);
 		int z = (int) Math.floor(player.posZ);
 		int meta = player.worldObj.getBlockMetadata(x, y, z);
-		
-		if (boots != null && boots.getItem() == AC_Item.hikingBoots)
+
+		if(boots != null && boots.getItem() == AC_Item.hikingBoots)
 		{
 			return;
 		}
-		else if (player.worldObj.getBlockId(x, y, z) == Block.snow.blockID && meta > 0)
+		else if(player.worldObj.getBlockId(x, y, z) == Block.snow.blockID && meta > 0)
 		{
 			player.motionX *= 0.9D - meta * 0.1D;
 			player.motionZ *= 0.9D - meta * 0.1D;
@@ -276,5 +290,53 @@ public class AC_TickHandler implements ITickHandler
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			mc.currentScreen = null;
 		}
+	}
+
+	public void renderBlueYellowParticles(EntityPlayer player)
+	{
+		ItemStack hand = player.getCurrentItemOrArmor(0);
+		Random random = new Random();
+
+		int i = (int) Math.floor(player.posX);
+		int j = (int) Math.floor(player.boundingBox.minY);
+		int k = (int) Math.floor(player.posZ);
+
+		if(hand != null && hand.getItem() == AC_Item.notchedPickaxe)
+		{
+			for(int l = 0; l < 3; l++)
+			{
+				double d = (double) (float) i + ((double) random.nextFloat() - 0.5D) * 10D;
+				double d1 = (double) (float) j + ((double) random.nextFloat() - 0.5D) * 10D;
+				double d2 = (double) (float) k + ((double) random.nextFloat() - 0.5D) * 10D;
+				double d3 = 0.0D;
+				double d4 = 0.0D;
+				double d5 = 0.0D;
+				d3 = ((double) random.nextFloat() - 0.5D) * 0.5D;
+				d4 = ((double) random.nextFloat() - 0.5D) * 0.5D;
+				d5 = ((double) random.nextFloat() - 0.5D) * 0.5D;
+				AC_EntityYellowSparkle entityyellowsparkle = new AC_EntityYellowSparkle(player.worldObj, d, d1, d2, d3, d4, d5);
+				Minecraft.getMinecraft().effectRenderer.addEffect(entityyellowsparkle);
+				AC_EntityBlueSparkle entityBluesparkle = new AC_EntityBlueSparkle(player.worldObj, d, d1, d2, d3, d4, d5);
+				Minecraft.getMinecraft().effectRenderer.addEffect(entityBluesparkle);
+			}
+		}
+	}
+
+	public void stringTick()
+	{
+		if(pickaxeStringTick < 40)
+		{
+			pickaxeStringTick++;
+		}
+		else if(pickaxeStringTick >= 40)
+		{
+			pickaxeStringTick = 0;
+		}
+	}
+	
+	@Override
+	public String getLabel()
+	{
+		return "Client Tick Handler";
 	}
 }

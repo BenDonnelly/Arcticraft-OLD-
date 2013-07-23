@@ -29,12 +29,13 @@ public class AC_NotchedPickaxeRenderer implements IItemRenderer
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{
-		if(type != type.INVENTORY)
+		switch(type)
 		{
+		case EQUIPPED:
 			return true;
-		}
-		else
-		{
+		case EQUIPPED_FIRST_PERSON:
+			return true;
+		default:
 			return false;
 		}
 	}

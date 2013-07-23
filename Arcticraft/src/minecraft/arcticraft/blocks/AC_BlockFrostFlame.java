@@ -7,7 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
-import arcticraft.entities.AC_EntityBlueSparkle;
+import arcticraft.entities.AC_EntityGreenSparkle;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -39,7 +39,7 @@ public class AC_BlockFrostFlame extends BlockFire
 			d3 = ((double) random.nextFloat() - 0.5D) * 0.5D;
 			d4 = ((double) random.nextFloat() - 0.5D) * 0.5D;
 			d5 = ((double) random.nextFloat() - 0.5D) * 0.5D;
-			AC_EntityBlueSparkle entitybluesparkle = new AC_EntityBlueSparkle(world, d, d1, d2, d3, d4, d5);
+			AC_EntityGreenSparkle entitybluesparkle = new AC_EntityGreenSparkle(world, d, d1, d2, d3, d4, d5);
 			Minecraft.getMinecraft().effectRenderer.addEffect(entitybluesparkle);
 		}
 

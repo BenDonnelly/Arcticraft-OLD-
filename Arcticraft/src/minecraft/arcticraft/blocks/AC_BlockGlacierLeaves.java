@@ -16,7 +16,7 @@ import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
-import arcticraft.entities.AC_EntityBlueSparkle;
+import arcticraft.entities.AC_EntityGreenSparkle;
 import arcticraft.items.AC_Item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -148,7 +148,7 @@ public class AC_BlockGlacierLeaves extends AC_BlockLeavesBase implements ISheara
 			d3 = ((double) random.nextFloat() - 0.5D) * 0.5D;
 			d4 = ((double) random.nextFloat() - 0.5D) * 0.5D;
 			d5 = ((double) random.nextFloat() - 0.5D) * 0.5D;
-			AC_EntityBlueSparkle entitybluesparkle = new AC_EntityBlueSparkle(world, d, d1, d2, d3, d4, d5);
+			AC_EntityGreenSparkle entitybluesparkle = new AC_EntityGreenSparkle(world, d, d1, d2, d3, d4, d5);
 			Minecraft.getMinecraft().effectRenderer.addEffect(entitybluesparkle);
 		}
 
