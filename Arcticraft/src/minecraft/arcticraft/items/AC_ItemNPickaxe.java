@@ -30,10 +30,11 @@ public class AC_ItemNPickaxe extends ItemPickaxe
 	{
 		if((par3EntityPlayer.rayTrace(25, 1.0F) != null) && !par2World.isRemote && AC_TickHandler.canFireExplosion == true)
 		{
-			double blockHitX = par3EntityPlayer.rayTrace(25, 1.0F).blockX;
-			double blockHitY = par3EntityPlayer.rayTrace(25, 1.0F).blockY;
-			double blockHitZ = par3EntityPlayer.rayTrace(25, 1.0F).blockZ;
-			double blockHitSide = par3EntityPlayer.rayTrace(25, 1.0F).sideHit;
+			double blockHitX = par3EntityPlayer.rayTrace(25, 5.0F).blockX;
+			double blockHitY = par3EntityPlayer.rayTrace(25, 5.0F).blockY;
+			double blockHitZ = par3EntityPlayer.rayTrace(25, 5.0F).blockZ;
+			double blockHitSide = par3EntityPlayer.rayTrace(25, 5.0F).sideHit;
+	
 			float f = 4F;
 			par2World.createExplosion(null, blockHitX , blockHitY , blockHitZ, f, true);
 			par1ItemStack.damageItem(50, par3EntityPlayer);
