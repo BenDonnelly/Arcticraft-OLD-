@@ -103,6 +103,7 @@ public class AC_Item
 	public static Item bomb;
 	public static Item amouryDoorPlace;
 	public static Item amouryKey;
+	public static Item notchedPickaxe;
 
 	/* Ore Drops */
 	public static Item tekkiteGem;
@@ -149,6 +150,9 @@ public class AC_Item
 
 		EnumArmorMaterial hikingAmrour = EnumHelper.addArmorMaterial("Hiking Armoru", 33, new int[] {1 , 3 , 2 , 1}, 20);
 
+		EnumToolMaterial notchedPickaxeMaterial = EnumHelper.addToolMaterial("Notched Pickaxe", 3, 1000, 3.0F, 3.0F, 25);
+
+		
 		TekkitePickaxe = new AC_ItemPickaxe(6205, TekkiteTool).setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("Tekkite Pickaxe").func_111206_d("ac:tekkite_pickaxe");
 		TekkiteAxe = new AC_ItemAxe(6206, TekkiteTool).setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("Tekkite Axe").func_111206_d("ac:tekkite_axe");
 		TekkiteHoe = new AC_ItemHoe(6207, TekkiteTool).setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("Tekkite Hoe").func_111206_d("ac:tekkite_hoe");
@@ -240,6 +244,9 @@ public class AC_Item
 		amouryDoorPlace = new AC_ItemAmouryDoor(6283, Material.wood).setUnlocalizedName("amoury_door").setCreativeTab(MainRegistry.tabBlocks).func_111206_d("ac:amoury_door");
 		floranSeed = new AC_ItemSeed(6284, AC_Block.floranPlant).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("floran_seed").func_111206_d("ac:floran_seed");
 		sled = new AC_ItemSled(6285).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("sled").func_111206_d("ac:sled");
+		notchedPickaxe = new AC_ItemNPickaxe(6286, notchedPickaxeMaterial).setFull3D().setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("notched_pickaxe").func_111206_d("ac:notched_pickaxe_icon");
+
+		
 	}
 
 	public static void nameItems()
