@@ -16,7 +16,7 @@ public class AC_TabTools extends CreativeTabs
 	@SideOnly(Side.CLIENT)
 	public int getTabIconItemIndex()
 	{
-		return AC_Item.GlacianPickaxe.itemID;
+		return AC_Item.RigentemAxe.itemID;
 	}
 
 	public String getTranslatedTabLabel()

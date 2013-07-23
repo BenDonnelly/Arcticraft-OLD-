@@ -67,8 +67,8 @@ public class MainRegistry
 
 	/* Creative Tabs */
 	public static CreativeTabs tabTools = new AC_TabTools(CreativeTabs.getNextID(), "Tabtools");
-	public static CreativeTabs tabBlocks = new AC_TabBlocks(CreativeTabs.getNextID(), "TabBlocks");
 	public static CreativeTabs tabCombat = new AC_TabCombat(CreativeTabs.getNextID(), "TabCombat");
+	public static CreativeTabs tabBlocks = new AC_TabBlocks(CreativeTabs.getNextID(), "TabBlocks");
 	public static CreativeTabs tabFood = new AC_TabFood(CreativeTabs.getNextID(), "TabFood");
 	public static CreativeTabs tabMaterial = new AC_TabMaterial(CreativeTabs.getNextID(), "TabMaterial");
 	public static CreativeTabs tabMisc = new AC_TabMisc(CreativeTabs.getNextID(), "TabMisc");

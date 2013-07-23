@@ -16,7 +16,7 @@ public class AC_TabCombat extends CreativeTabs
 	@SideOnly(Side.CLIENT)
 	public int getTabIconItemIndex()
 	{
-		return AC_Item.IceShard.itemID;
+		return AC_Item.EscariaSword.itemID;
 
 	}
 
