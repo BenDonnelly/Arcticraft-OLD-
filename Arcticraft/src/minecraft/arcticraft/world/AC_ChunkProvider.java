@@ -38,6 +38,7 @@ import arcticraft.gen.AC_GenArcaneStone1;
 import arcticraft.gen.AC_GenArcaneStone2;
 import arcticraft.gen.AC_GenIceberg;
 import arcticraft.gen.AC_GenShip;
+import arcticraft.helpers.AC_TickHandler;
 
 public class AC_ChunkProvider implements IChunkProvider
 {
@@ -654,10 +655,16 @@ public class AC_ChunkProvider implements IChunkProvider
 				}
 
 				if(this.worldObj.canSnowAt(k1 + i, l3, l2 + j))
-					;
 				{
-					int meta = (int) Math.abs(rand.nextGaussian() * 4);
-					this.worldObj.setBlock(k1 + i, l3, l2 + j, Block.snow.blockID, meta, 3);
+					if (AC_TickHandler.snowLayersEnabled) 
+					{
+						int meta = (int) Math.abs(rand.nextGaussian() * 4);
+						this.worldObj.setBlock(k1 + i, l3, l2 + j, Block.snow.blockID, meta, 3);
+					}
+					else
+					{
+						this.worldObj.setBlock(k1 + i, l3, l2 + j, AC_Block.thickSnow.blockID);
+					}
 				}
 			}
 		}

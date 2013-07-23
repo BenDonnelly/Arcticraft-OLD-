@@ -141,10 +141,16 @@ public class MainRegistry
 		globalConfigFile.load();
 		globalConfigFile.save();
 		ConfigCategory gui = globalConfigFile.getCategory("gui");
+		ConfigCategory gen = globalConfigFile.getCategory("generation");
 		if(gui.get("temp-bar-x") != null)
 		{
 			AC_TickHandler.x = gui.get("temp-bar-x").getInt();
 			AC_TickHandler.y = gui.get("temp-bar-y").getInt();
+		}
+		
+		if(gen.get("snow-layers-enabled") != null)
+		{
+			AC_TickHandler.snowLayersEnabled = gen.get("snow-layers-enabled").getBoolean(true);
 		}
 
 		DimensionManager.registerProviderType(dimension, AC_WorldProvider.class, false);

@@ -7,6 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import arcticraft.blocks.AC_Block;
 import arcticraft.items.AC_Item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -58,7 +59,9 @@ public class AC_EntitySled extends Entity {
 	
 	@Override
 	public void onUpdate() {
-        super.onUpdate();
+		super.onUpdate();
+        
+        int blockID = this.worldObj.getBlockId((int) Math.floor(this.posX), (int) Math.floor(this.posY), (int) Math.floor(this.posZ));
         
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
@@ -68,10 +71,14 @@ public class AC_EntitySled extends Entity {
         	this.motionY -= 0.05F;
         }
         
-        if (this.worldObj.getBlockId((int) Math.floor(this.posX), (int) Math.floor(this.posY), (int) Math.floor(this.posZ)) == Block.snow.blockID) {
+        if (blockID == Block.snow.blockID || blockID == AC_Block.thickSnow.blockID) {
         	int x, y, z;
         	int meta = this.worldObj.getBlockMetadata((int) Math.floor(this.posX), (int) Math.floor(this.posY), (int) Math.floor(this.posZ));
         	int[] direction = { 0, 0 };
+        	
+        	if(blockID == AC_Block.thickSnow.blockID) {
+        		meta = 1;
+        	}
         	
         	for (int i = -1; i <= 1; i++) {
         		for (int j = -1; j <= 1; j++) {
@@ -79,7 +86,7 @@ public class AC_EntitySled extends Entity {
         			y = (int) Math.floor(this.posY);
         			z = (int) Math.floor(this.posZ + (double) j);
         			
-            		if ((this.worldObj.getBlockId(x, y, z) == Block.snow.blockID && meta > this.worldObj.getBlockMetadata(x, y, z)) || this.worldObj.getBlockId(x, y - 1, z) == Block.snow.blockID) {
+            		if (((this.worldObj.getBlockId(x, y, z) == Block.snow.blockID || this.worldObj.getBlockId(x, y, z) == AC_Block.thickSnow.blockID) && meta > this.worldObj.getBlockMetadata(x, y, z)) || (this.worldObj.getBlockId(x, y - 1, z) == Block.snow.blockID || this.worldObj.getBlockId(x, y - 1, z) == AC_Block.thickSnow.blockID)) {
             			meta = this.worldObj.getBlockMetadata(x, y, z);
             			direction[0] = i;
             			direction[1] = j;
@@ -89,6 +96,22 @@ public class AC_EntitySled extends Entity {
         	
         	this.motionX += (double) direction[0] * this.speedMultiplier;
         	this.motionZ += (double) direction[1] * this.speedMultiplier;
+        	
+        	double d4 = Math.cos((double)this.rotationYaw * Math.PI / 180.0D);
+            double d5 = Math.sin((double)this.rotationYaw * Math.PI / 180.0D);
+
+            if (this.onGround)
+            {
+            	for (int j = 0; j < Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ) * 100; j++)
+            	{
+            		double d6 = (double)(this.rand.nextFloat() * 2.0F - 1.0F);
+            		double d7 = (double)(this.rand.nextInt(2) * 2 - 1) * 0.4D;
+            		double d8 = this.posX - d4 * d6 * 0.4D + d5 * d7;
+            		double d9 = this.posZ - d5 * d6 * 0.4D - d4 * d7;
+
+            		this.worldObj.spawnParticle("snowshovel", d8, this.posY + 0.125D, d9, this.motionX, this.motionY, this.motionZ);
+            	}
+            }
         }
         
     	if (this.motionX != 0 || this.motionZ != 0) {
@@ -206,7 +229,7 @@ public class AC_EntitySled extends Entity {
 	
 	@Override
     public float getShadowSize() {
-        return 1.0F;
+        return 0.0F;
     }
 
 }

@@ -17,6 +17,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import arcticraft.blocks.AC_Block;
 import arcticraft.blocks.AC_BlockFrostLeaves;
 import arcticraft.blocks.AC_BlockGlacierLeaves;
 import arcticraft.entities.AC_EntityBlueSparkle;
@@ -41,6 +42,7 @@ public class AC_TickHandler implements ITickHandler
 	public static int cooldown = 1200;
 	public static boolean canFireExplosion;
 	public static int pickaxeStringTick = 0;
+	public static boolean snowLayersEnabled = true;
 	Random rand = new Random();
 
 	public AC_TickHandler()
@@ -253,15 +255,21 @@ public class AC_TickHandler implements ITickHandler
 		int y = (int) Math.floor(player.boundingBox.minY);
 		int z = (int) Math.floor(player.posZ);
 		int meta = player.worldObj.getBlockMetadata(x, y, z);
-
-		if(boots != null && boots.getItem() == AC_Item.hikingBoots)
+		int blockID = player.worldObj.getBlockId(x, y, z);
+		
+		if ((boots != null && boots.getItem() == AC_Item.hikingBoots) || !player.onGround)
 		{
 			return;
 		}
-		else if(player.worldObj.getBlockId(x, y, z) == Block.snow.blockID && meta > 0)
+		else if (blockID == Block.snow.blockID && meta > 0)
 		{
 			player.motionX *= 0.9D - meta * 0.1D;
 			player.motionZ *= 0.9D - meta * 0.1D;
+		}
+		else if (blockID == AC_Block.thickSnow.blockID)
+		{
+			player.motionX *= 0.8D;
+			player.motionZ *= 0.8D;
 		}
 	}
 
