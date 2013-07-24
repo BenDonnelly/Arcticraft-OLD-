@@ -25,7 +25,6 @@ public class AC_BlockAmouryDoor extends BlockDoor
 	public AC_BlockAmouryDoor(int par1, Material par2Material)
 	{
 		super(par1, par2Material);
-
 		this.field_94465_b = 0;
 
 		float f = 0.5F;

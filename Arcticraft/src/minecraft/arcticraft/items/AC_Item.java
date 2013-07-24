@@ -31,11 +31,6 @@ public class AC_Item
 	public static Item floranSeed;
 
 	/* Tools & Armour */
-	private static ItemAxe axe;
-	private static ItemPickaxe pickaxe;
-	private static ItemSpade spade;
-	private static ItemHoe hoe;
-	private static ItemSword sword;
 
 	public static Item TekkitePickaxe;
 	public static Item TekkiteAxe;
@@ -104,6 +99,8 @@ public class AC_Item
 	public static Item amouryDoorPlace;
 	public static Item amouryKey;
 	public static Item notchedPickaxe;
+	public static Item ignisBlade;
+	public static Item archerBow;
 
 	/* Ore Drops */
 	public static Item tekkiteGem;
@@ -151,6 +148,8 @@ public class AC_Item
 		EnumArmorMaterial hikingAmrour = EnumHelper.addArmorMaterial("Hiking Armoru", 33, new int[] {1 , 3 , 2 , 1}, 20);
 
 		EnumToolMaterial notchedPickaxeMaterial = EnumHelper.addToolMaterial("Notched Pickaxe", 3, 1000, 5.0F, 2.0F, 25);
+		
+		EnumToolMaterial ignisBladeMaterial = EnumHelper.addToolMaterial("Ignis Blade", 3, 750, 4.0F, 5.0F, 25);
 
 		
 		TekkitePickaxe = new AC_ItemPickaxe(6205, TekkiteTool).setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("Tekkite Pickaxe").func_111206_d("ac:tekkite_pickaxe");
@@ -245,12 +244,15 @@ public class AC_Item
 		floranSeed = new AC_ItemSeed(6284, AC_Block.floranPlant).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("floran_seed").func_111206_d("ac:floran_seed");
 		sled = new AC_ItemSled(6285).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("sled").func_111206_d("ac:sled");
 		notchedPickaxe = new AC_ItemNPickaxe(6286, notchedPickaxeMaterial).setFull3D().setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("notched_pickaxe").func_111206_d("ac:notched_pickaxe_icon");
-
+		ignisBlade = new AC_ItemIgnisBlade(6287, ignisBladeMaterial).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("ignis_blade").func_111206_d("ac:ignis_blade");
 		
+		archerBow = new AC_ItemArchersBow(6288).setFull3D().setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("archer_bow").func_111206_d("ac:archer_bow");
 	}
 
 	public static void nameItems()
 	{
+		LanguageRegistry.addName(archerBow, "Archer's Bow");
+		LanguageRegistry.addName(ignisBlade, "Ignis Blade");
 		LanguageRegistry.addName(pirateSword, "Pirate Sword");
 		LanguageRegistry.addName(pirateHat, "Pirate Hat");
 		LanguageRegistry.addName(frostDoorPlace, "Frost Door");

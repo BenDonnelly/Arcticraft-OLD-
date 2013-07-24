@@ -24,6 +24,7 @@ public class AC_EntityRegistry
 	static int redishPinkishColour = 0xEB0E58;
 	static int greenishColour = 0x99FF66;
 	static int yellowishColour = 0xFFFF33;
+	static int brownishColour = 0x63560A;
 
 	public static void registerEntityEggs()
 	{
@@ -102,6 +103,18 @@ public class AC_EntityRegistry
 		EntityRegistry.registerGlobalEntityID(AC_EntityDragon.class, "Dragon", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Dragon.name", "Dragon");
 		registerEntityEgg(AC_EntityDragon.class, 0x99FFFF, 0xDEDEDE);
+		
+		EntityRegistry.registerGlobalEntityID(AC_EntityKnight.class, "Knight", EntityRegistry.findGlobalUniqueEntityId());
+		LanguageRegistry.instance().addStringLocalization("entity.Knight.name", "Knight");
+		registerEntityEgg(AC_EntityKnight.class, brownishColour, 0xffffff);
+		
+		EntityRegistry.registerGlobalEntityID(AC_EntityMiner.class, "Miner", EntityRegistry.findGlobalUniqueEntityId());
+		LanguageRegistry.instance().addStringLocalization("entity.Miner.name", "Miner");
+		registerEntityEgg(AC_EntityMiner.class, brownishColour, 0xffffff);
+		
+		EntityRegistry.registerGlobalEntityID(AC_EntityArcher.class, "Archer", EntityRegistry.findGlobalUniqueEntityId());
+		LanguageRegistry.instance().addStringLocalization("entity.Archer.name", "Archer");
+		registerEntityEgg(AC_EntityArcher.class, brownishColour, 0xffffff);
 
 		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 1, MainRegistry.instance, 64, 10, true);
 		EntityRegistry.registerModEntity(AC_EntitySled.class, "sled", 2, MainRegistry.instance, 64, 10, true);

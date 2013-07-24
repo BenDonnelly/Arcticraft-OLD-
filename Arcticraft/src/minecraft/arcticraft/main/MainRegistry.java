@@ -177,7 +177,8 @@ public class MainRegistry
 		GameRegistry.registerWorldGenerator(new AC_WorldGenerator());
 
 		LanguageRegistry.instance().addStringLocalization("death.attack.Freezing", "%1$s froze");
-
+		LanguageRegistry.instance().addStringLocalization("death.attack.ice shard", "%1$s iceshard");
+		
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 		MinecraftForge.EVENT_BUS.register(new AC_ForgeEvents());
 		AC_ChestLootHelper.initializeChestLoot();
