@@ -6,11 +6,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_EntityMage;
+import arcticraft.lib.Strings;
 
 public class AC_RenderMage extends RenderLiving
 {
 
-	private static final ResourceLocation mage = new ResourceLocation("ac", "textures/mobs/ice_mage.png");
+	private static final ResourceLocation mage = new ResourceLocation(Strings.MOD_ID, "textures/mobs/ice_mage.png");
 
 	public AC_RenderMage(ModelBase modelbase, float f)
 	{

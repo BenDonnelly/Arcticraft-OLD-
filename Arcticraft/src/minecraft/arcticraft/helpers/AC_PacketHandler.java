@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import arcticraft.entities.AC_EskimoTrade;
+import arcticraft.lib.Strings;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 
@@ -18,11 +19,11 @@ public class AC_PacketHandler implements IPacketHandler
 	@Override
 	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player)
 	{
-		if(packet.channel.equals("AC_EskimoTrade"))
+		if(packet.channel.equals(Strings.CHANNEL_ESKIMO_TRADE))
 		{
 			this.handleEskimoTrade(packet, player);
 		}
-		else if(packet.channel.equals("AC_EskimoTalk"))
+		else if(packet.channel.equals(Strings.CHANNEL_ESKIMO_TALK))
 		{
 			this.handleEskimoTalk(packet, player);
 		}

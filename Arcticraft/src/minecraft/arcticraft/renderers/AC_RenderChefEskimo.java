@@ -6,13 +6,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_EntityChefEskimo;
+import arcticraft.lib.Strings;
 import arcticraft.models.AC_ModelChefEskimo;
 
 public class AC_RenderChefEskimo extends RenderLiving
 {
 
 	private AC_ModelChefEskimo modelChef;
-	private static final ResourceLocation chef = new ResourceLocation("ac", "textures/mobs/eskimo_chef.png");
+	private static final ResourceLocation chef = new ResourceLocation(Strings.MOD_ID, "textures/mobs/eskimo_chef.png");
 
 	public AC_RenderChefEskimo(ModelBase modelbase, float f)
 	{

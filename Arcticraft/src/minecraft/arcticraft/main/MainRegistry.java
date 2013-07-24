@@ -34,6 +34,7 @@ import arcticraft.helpers.AC_ForgeEvents;
 import arcticraft.helpers.AC_PacketHandler;
 import arcticraft.helpers.AC_TickHandler;
 import arcticraft.items.AC_Item;
+import arcticraft.lib.Strings;
 import arcticraft.recipes.AC_Recipes;
 import arcticraft.world.AC_WorldGenerator;
 import arcticraft.world.AC_WorldProvider;
@@ -52,16 +53,16 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "ac", name = "Arcticraft", version = "[1.6] V.1.0")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"AC_EskimoTrade" , "AC_EskimoTalk"}, packetHandler = AC_PacketHandler.class)
+@Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.MOD_VERSION)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {Strings.CHANNEL_ESKIMO_TRADE , Strings.CHANNEL_ESKIMO_TALK}, packetHandler = AC_PacketHandler.class)
 public class MainRegistry
 {
 
-	@Instance("ac")
+	@Instance(Strings.MOD_ID)
 	public static MainRegistry instance = new MainRegistry();
 	private AC_GuiHandler guiHandler = new AC_GuiHandler();
 
-	@SidedProxy(clientSide = "arcticraft.main.AC_ClientProxy", serverSide = "arcticraft.main.AC_CommonProxy")
+	@SidedProxy(clientSide = Strings.MOD_CLIENT_PROXY, serverSide = Strings.MOD_COMMON_PROXY)
 	public static AC_CommonProxy proxy;
 	public static int dimension = DimensionManager.getNextFreeDimId();
 
@@ -85,7 +86,7 @@ public class MainRegistry
 	public void serverStarting(FMLServerStartingEvent event)
 	{
 		storage.clear();
-		System.out.println("I am getting called!!!! :D");
+		System.out.println("Setting " + Strings.MOD_NAME + " server options");
 
 		File worldConfigFile = new File(new File(Minecraft.getMinecraft().mcDataDir, "ac_data"), "playertemps_" + MinecraftServer.getServer().getWorldName() + ".cfg");
 		if(! worldConfigFile.exists())
@@ -101,13 +102,24 @@ public class MainRegistry
 		}
 
 		temperatureFile = new Configuration(worldConfigFile);
-		temperatureFile.load();
-		temperatureFile.save();
-
-		ConfigCategory general = temperatureFile.getCategory("general");
-		Map<String, Property> entries = general.getValues();
-		storage.load(entries);
-		AC_TickHandler.value = storage.getTemperature("Player");
+		
+		try
+		{
+			temperatureFile.load();
+			
+			ConfigCategory general = temperatureFile.getCategory(Strings.CONFIG_CATEGORY_GENERAL);
+			Map<String, Property> entries = general.getValues();
+			storage.load(entries);
+			AC_TickHandler.value = storage.getTemperature("Player");
+		}
+		catch (Exception e)
+		{
+			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load its temperature configuration");
+		}
+		finally
+		{
+			temperatureFile.save();
+		}
 	}
 
 	@EventHandler
@@ -117,18 +129,18 @@ public class MainRegistry
 		
 		try
 		{
-			ConfigCategory gui = globalConfigFile.getCategory("gui");
-			ConfigCategory gen = globalConfigFile.getCategory("generation");
-			ConfigCategory general = temperatureFile.getCategory("general");
+			ConfigCategory gui = globalConfigFile.getCategory(Strings.CONFIG_CATEGORY_GUI);
+			ConfigCategory gen = globalConfigFile.getCategory(Strings.CONFIG_CATEGORY_GEN);
+			ConfigCategory general = temperatureFile.getCategory(Strings.CONFIG_CATEGORY_GENERAL);
 			
-			gui.put("temp-bar-x", new Property("temp-bar-x", Integer.toString(AC_TickHandler.x), Type.INTEGER));
-			gui.put("temp-bar-y", new Property("temp-bar-y", Integer.toString(AC_TickHandler.y), Type.INTEGER));
-			gen.put("snow-layers-enabled", new Property("snow-layers-enabled", Boolean.toString(AC_TickHandler.snowLayersEnabled), Type.BOOLEAN));
+			gui.put(Strings.CONFIG_TEMP_BAR_X, new Property(Strings.CONFIG_TEMP_BAR_X, Integer.toString(AC_TickHandler.x), Type.INTEGER));
+			gui.put(Strings.CONFIG_TEMP_BAR_Y, new Property(Strings.CONFIG_TEMP_BAR_Y, Integer.toString(AC_TickHandler.y), Type.INTEGER));
+			gen.put(Strings.CONFIG_SNOW_LAYERS_ENABLED, new Property(Strings.CONFIG_SNOW_LAYERS_ENABLED, Boolean.toString(AC_TickHandler.snowLayersEnabled), Type.BOOLEAN));
 			general.putAll(storage.save());
 		}
 		catch (Exception e)
 		{
-			FMLLog.log(Level.SEVERE, e, "Arcticraft can't save all of its configuration options");
+			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't save all of its configuration options");
 		}
 		finally
 		{
@@ -159,16 +171,13 @@ public class MainRegistry
 		{
 			globalConfigFile.load();
 
-			String gui = "gui";
-			String generation = "generation";
-
-			AC_TickHandler.x = globalConfigFile.get(gui, "temp-bar-x", 0).getInt(0);
-			AC_TickHandler.y = globalConfigFile.get(gui, "temp-bar-y", 0).getInt(0);
-			AC_TickHandler.snowLayersEnabled = globalConfigFile.get(generation, "snow-layers-enabled", true).getBoolean(true);
+			AC_TickHandler.x = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_X, 0).getInt(0);
+			AC_TickHandler.y = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_Y, 0).getInt(0);
+			AC_TickHandler.snowLayersEnabled = globalConfigFile.get(Strings.CONFIG_CATEGORY_GEN, Strings.CONFIG_SNOW_LAYERS_ENABLED, true).getBoolean(true);
 		}
 		catch (Exception e)
 		{
-			FMLLog.log(Level.SEVERE, e, "Arcticraft can't load its configuration");
+			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load its configuration");
 		}
 		finally
 		{
@@ -178,7 +187,7 @@ public class MainRegistry
 		DimensionManager.registerProviderType(dimension, AC_WorldProvider.class, false);
 		DimensionManager.registerDimension(dimension, dimension);
 
-		freezePotion = new AC_Potions(27, true, 0xffff).setIconIndex(2, 2).setPotionName("Freezing");
+		freezePotion = new AC_Potions(27, true, 0xffff).setIconIndex(2, 2).setPotionName(Strings.POTION_FREEZING_NAME);
 
 	}
 

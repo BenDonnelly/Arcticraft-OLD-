@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.entities.AC_EntityHusky;
+import arcticraft.lib.Strings;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -17,10 +18,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class AC_RenderHusky extends RenderLiving
 {
 
-	private static final ResourceLocation field_110917_a = new ResourceLocation("ac", "textures/mobs/husky.png");
-	private static final ResourceLocation field_110915_f = new ResourceLocation("ac", "textures/mobs/husky_tamed.png");
-	private static final ResourceLocation field_110916_g = new ResourceLocation("ac", "textures/mobs/husky_angry.png");
-	private static final ResourceLocation field_110918_h = new ResourceLocation("ac", "textures/mobs/husky_collar.png");
+	private static final ResourceLocation field_110917_a = new ResourceLocation(Strings.MOD_ID, "textures/mobs/husky.png");
+	private static final ResourceLocation field_110915_f = new ResourceLocation(Strings.MOD_ID, "textures/mobs/husky_tamed.png");
+	private static final ResourceLocation field_110916_g = new ResourceLocation(Strings.MOD_ID, "textures/mobs/husky_angry.png");
+	private static final ResourceLocation field_110918_h = new ResourceLocation(Strings.MOD_ID, "textures/mobs/husky_collar.png");
 
 	public AC_RenderHusky(ModelBase par1ModelBase, ModelBase par2ModelBase, float par3)
 	{

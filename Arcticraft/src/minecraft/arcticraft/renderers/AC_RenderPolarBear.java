@@ -9,11 +9,12 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.entities.AC_EntityPolarBear;
+import arcticraft.lib.Strings;
 
 public class AC_RenderPolarBear extends RenderLiving
 {
 
-	private static final ResourceLocation polarBear = new ResourceLocation("ac", "textures/mobs/polar_bear.png");
+	private static final ResourceLocation polarBear = new ResourceLocation(Strings.MOD_ID, "textures/mobs/polar_bear.png");
 
 	public AC_RenderPolarBear(ModelBase par1ModelBase, float par2, float par3)
 	{

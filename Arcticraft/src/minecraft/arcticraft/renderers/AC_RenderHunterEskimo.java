@@ -6,11 +6,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_EntityHunterEskimo;
+import arcticraft.lib.Strings;
 
 public class AC_RenderHunterEskimo extends RenderLiving
 {
 
-	private static final ResourceLocation hunter = new ResourceLocation("ac", "textures/mobs/eskimo_hunter.png");
+	private static final ResourceLocation hunter = new ResourceLocation(Strings.MOD_ID, "textures/mobs/eskimo_hunter.png");
 
 	public AC_RenderHunterEskimo(ModelBase modelbase, float f)
 	{

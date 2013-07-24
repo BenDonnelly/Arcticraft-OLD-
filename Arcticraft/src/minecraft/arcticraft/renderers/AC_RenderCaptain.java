@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_BossStatus;
 import arcticraft.entities.AC_EntityCaptain;
+import arcticraft.lib.Strings;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -14,7 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class AC_RenderCaptain extends RenderBiped
 {
 
-	private static final ResourceLocation captain = new ResourceLocation("ac", "textures/mobs/captain.png");
+	private static final ResourceLocation captain = new ResourceLocation(Strings.MOD_ID, "textures/mobs/captain.png");
 
 	public AC_RenderCaptain()
 	{

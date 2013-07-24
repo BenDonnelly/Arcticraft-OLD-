@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.entities.AC_EntityIceCreeper;
+import arcticraft.lib.Strings;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -18,8 +19,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class AC_RenderIceCreeper extends RenderLiving
 {
 
-	private static final ResourceLocation field_110831_a = new ResourceLocation("ac", "textures/entity/creeper/creeper_armor.png");
-	private static final ResourceLocation field_110830_f = new ResourceLocation("ac", "textures/mobs/ice_creeper.png");
+	private static final ResourceLocation field_110831_a = new ResourceLocation(Strings.MOD_ID, "textures/entity/creeper/creeper_armor.png");
+	private static final ResourceLocation field_110830_f = new ResourceLocation(Strings.MOD_ID, "textures/mobs/ice_creeper.png");
 
 	/** The creeper model. */
 	private ModelBase creeperModel = new ModelCreeper(2.0F);

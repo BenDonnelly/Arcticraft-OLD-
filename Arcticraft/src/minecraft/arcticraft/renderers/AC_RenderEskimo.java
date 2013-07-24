@@ -6,11 +6,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_EntityEskimo;
+import arcticraft.lib.Strings;
 
 public class AC_RenderEskimo extends RenderLiving
 {
 
-	private static final ResourceLocation eskimo = new ResourceLocation("ac", "textures/mobs/eskimo.png");
+	private static final ResourceLocation eskimo = new ResourceLocation(Strings.MOD_ID, "textures/mobs/eskimo.png");
 
 	public AC_RenderEskimo(ModelBase modelbase, float f)
 	{

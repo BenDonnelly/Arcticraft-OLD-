@@ -5,6 +5,7 @@ import java.util.EnumSet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import arcticraft.dispenser.AC_DispenserBehaviours;
+import arcticraft.lib.Strings;
 import arcticraft.main.MainRegistry;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
@@ -17,7 +18,7 @@ public class AC_TickHandlerServer implements ITickHandler
 
 	public AC_TickHandlerServer()
 	{
-		mc = mc.getMinecraft();
+		mc = Minecraft.getMinecraft();
 	}
 
 	@Override
@@ -77,7 +78,7 @@ public class AC_TickHandlerServer implements ITickHandler
 	public String getLabel()
 	{
 
-		return "Arcticraft";
+		return Strings.MOD_NAME;
 	}
 
 }

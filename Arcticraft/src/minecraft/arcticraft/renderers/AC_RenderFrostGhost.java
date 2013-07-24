@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_EntityFrostGhost;
+import arcticraft.lib.Strings;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -13,7 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class AC_RenderFrostGhost extends RenderLiving
 {
 
-	private static final ResourceLocation ghost = new ResourceLocation("ac", "textures/mobs/arctic_ghost.png");
+	private static final ResourceLocation ghost = new ResourceLocation(Strings.MOD_ID, "textures/mobs/arctic_ghost.png");
 
 	public AC_RenderFrostGhost(ModelBase par1ModelBase, float par2)
 	{

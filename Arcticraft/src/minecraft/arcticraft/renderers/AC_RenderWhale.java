@@ -6,11 +6,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_EntityWhale;
+import arcticraft.lib.Strings;
 
 public class AC_RenderWhale extends RenderLiving
 {
 
-	private static final ResourceLocation whale = new ResourceLocation("ac", "textures/mobs/whale.png");
+	private static final ResourceLocation whale = new ResourceLocation(Strings.MOD_ID, "textures/mobs/whale.png");
 
 	public AC_RenderWhale(ModelBase modelbase, float f)
 	{

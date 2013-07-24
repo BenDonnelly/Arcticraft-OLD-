@@ -25,7 +25,7 @@ public class AC_KeyBindHelper extends KeyHandler
 	public AC_KeyBindHelper()
 	{
 		super(arrayOfKeys, areRepeating);
-		mc = mc.getMinecraft();
+		mc = Minecraft.getMinecraft();
 	}
 
 	@Override
