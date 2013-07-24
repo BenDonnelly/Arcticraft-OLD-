@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import arcticraft.items.AC_Item;
+import arcticraft.items.AC_ItemNPickaxe;
 import arcticraft.items.AC_ItemPickaxe;
 
 public class AC_BlockOres extends Block
@@ -58,7 +59,7 @@ public class AC_BlockOres extends Block
 	{
 		ItemStack itemstack = par5EntityPlayer.getCurrentEquippedItem();
 
-		if(itemstack != null && itemstack.getItem() instanceof AC_ItemPickaxe)
+		if(itemstack != null && itemstack.getItem() instanceof AC_ItemPickaxe || itemstack.getItem() instanceof AC_ItemNPickaxe)
 		{
 			this.blockHardness = 3.0F;
 		}
