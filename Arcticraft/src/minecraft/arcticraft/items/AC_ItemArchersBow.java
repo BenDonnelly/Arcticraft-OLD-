@@ -4,6 +4,7 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
@@ -12,15 +13,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import arcticraft.entities.AC_EntityIceShard;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class AC_ItemArchersBow extends ItemBow
 {
-
-	public static final String[] bowPullIconNameArray = new String[] {"pulling_0" , "pulling_1" , "pulling_2"};
-	@SideOnly(Side.CLIENT)
-	private Icon[] iconArray;
 
 	public AC_ItemArchersBow(int par1)
 	{
@@ -29,9 +24,6 @@ public class AC_ItemArchersBow extends ItemBow
 		this.setMaxDamage(400);
 	}
 
-	/**
-	 * called when the player releases the use item button. Args: itemstack, world, entityplayer, itemInUseCount
-	 */
 	public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
 	{
 		int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
@@ -48,7 +40,7 @@ public class AC_ItemArchersBow extends ItemBow
 
 		if(flag || par3EntityPlayer.inventory.hasItem(AC_Item.IceShard.itemID))
 		{
-			float f = (float) j / 20.0F;
+			float f = (float) j / 10.0F;
 			f = (f * f + f * 2.0F) / 3.0F;
 
 			if((double) f < 0.1D)
@@ -106,9 +98,30 @@ public class AC_ItemArchersBow extends ItemBow
 		}
 	}
 
+	public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+	{
+		return par1ItemStack;
+	}
+
 	/**
-	 * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
-	 */
+	* How long it takes to use or consume an item
+	*/
+	public int getMaxItemUseDuration(ItemStack par1ItemStack)
+	{
+		return 160000;
+	}
+
+	/**
+	* returns the action that specifies what animation to play when the items is being used
+	*/
+	public EnumAction getItemUseAction(ItemStack par1ItemStack)
+	{
+		return EnumAction.bow;
+	}
+
+	/**
+	* Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+	*/
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
@@ -124,26 +137,40 @@ public class AC_ItemArchersBow extends ItemBow
 		}
 
 		return par1ItemStack;
+
 	}
 
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister par1IconRegister)
-	{
-		this.itemIcon = par1IconRegister.registerIcon(this.func_111208_A() + "_standby");
-		this.iconArray = new Icon[bowPullIconNameArray.length];
+	private Icon[] Texture = new Icon[4];
 
-		for(int i = 0; i < this.iconArray.length; ++i)
+	public void registerIcons(IconRegister iconRegister)
+
+	{
+
+		itemIcon = iconRegister.registerIcon("ac:" + this.getUnlocalizedName().substring(5) + "_0");
+		for(int N = 0; N < 4; N++)
 		{
-			this.iconArray[i] = par1IconRegister.registerIcon(this.func_111208_A() + "_" + bowPullIconNameArray[i]);
+			this.Texture[N] = iconRegister.registerIcon("ac:" + this.getUnlocalizedName().substring(5) + "_" + N);
+
 		}
 	}
 
-	@SideOnly(Side.CLIENT)
-	/**
-	 * used to cycle through icons based on their used duration, i.e. for the bow
-	 */
-	public Icon getItemIconForUseDuration(int par1)
+	public Icon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
 	{
-		return this.iconArray[par1];
+		if(player.getItemInUse() == null)
+			return this.itemIcon;
+		int Pulling = stack.getMaxItemUseDuration() - useRemaining;
+		if(Pulling >= 7)
+		{
+			return Texture[3];
+		}
+		else if(Pulling > 3)
+		{
+			return Texture[2];
+		}
+		else if(Pulling > 0)
+		{
+			return Texture[1];
+		}
+		return Texture[0];
 	}
 }
