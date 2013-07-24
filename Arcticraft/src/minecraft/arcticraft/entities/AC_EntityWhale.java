@@ -5,6 +5,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -17,7 +18,7 @@ public class AC_EntityWhale extends EntityWaterMob
     public AC_EntityWhale(World par1World)
     {
         super(par1World);
-        this.setSize(this.width, this.height);
+        this.setSize(20.0F, 5.0F);
     }
 
     /**
@@ -67,4 +68,6 @@ public class AC_EntityWhale extends EntityWaterMob
     {
         return this.posY > 45.0D && this.posY < 63.0D && super.getCanSpawnHere();
     }
+    
+    
 }
