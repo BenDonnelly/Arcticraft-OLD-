@@ -15,8 +15,6 @@ import net.minecraft.world.World;
 public class AC_BlockThickSnow extends Block
 {
 
-	public static boolean shouldSlowPlayer = true;
-
 	public AC_BlockThickSnow(int par1)
 	{
 		super(par1, Material.snow);
@@ -142,17 +140,6 @@ public class AC_BlockThickSnow extends Block
 	public void setBlockBoundsForBlockRender(int par1)
 	{
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.250F, 1.0F);
-	}
-
-	public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
-	{
-		
-		if (shouldSlowPlayer == true)
-		{
-			par5Entity.motionX *= 0.8D;
-			par5Entity.motionZ *= 0.8D;
-
-		}
 	}
 
 	
