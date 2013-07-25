@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_EntityBoar;
+import arcticraft.lib.Strings;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -14,7 +15,7 @@ public class AC_RenderBoar extends RenderLiving
 {
 
 	private static final ResourceLocation field_110888_a = new ResourceLocation("textures/entity/pig/pig_saddle.png");
-	private static final ResourceLocation field_110887_f = new ResourceLocation("ac", "textures/mobs/boar.png");
+	private static final ResourceLocation field_110887_f = new ResourceLocation(Strings.MOD_ID, "textures/mobs/boar.png");
 
 	public AC_RenderBoar(ModelBase par1ModelBase, ModelBase par2ModelBase, float par3)
 	{

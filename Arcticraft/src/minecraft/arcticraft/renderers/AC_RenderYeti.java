@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GL11;
 
 import arcticraft.entities.AC_BossStatus;
 import arcticraft.entities.AC_EntityYeti;
+import arcticraft.lib.Strings;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -17,7 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class AC_RenderYeti extends RenderLiving
 {
 
-	private static final ResourceLocation yeti = new ResourceLocation("ac", "textures/mobs/yeti.png");
+	private static final ResourceLocation yeti = new ResourceLocation(Strings.MOD_ID, "textures/mobs/yeti.png");
 
 	public AC_RenderYeti(ModelBase modelbase, float f)
 	{

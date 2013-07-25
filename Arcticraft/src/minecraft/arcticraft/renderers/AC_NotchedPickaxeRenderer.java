@@ -13,6 +13,7 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import org.lwjgl.opengl.GL11;
 
+import arcticraft.lib.Strings;
 import arcticraft.models.AC_ModelNPickaxe;
 import cpw.mods.fml.client.FMLClientHandler;
 
@@ -54,7 +55,7 @@ public class AC_NotchedPickaxeRenderer implements IItemRenderer
 
 			GL11.glPushMatrix();
 
-			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/items/notched_pickaxe.png"));
+			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/items/notched_pickaxe.png"));
 
 			GL11.glRotatef(- 32, 3F, 3F, 300F);
 			GL11.glRotatef(300, 1F, 1F, 300F);

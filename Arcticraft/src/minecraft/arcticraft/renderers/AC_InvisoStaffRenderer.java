@@ -7,6 +7,7 @@ import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
+import arcticraft.lib.Strings;
 import arcticraft.models.AC_ModelStaff;
 import cpw.mods.fml.client.FMLClientHandler;
 
@@ -48,7 +49,7 @@ public class AC_InvisoStaffRenderer implements IItemRenderer
 		{
 			GL11.glPushMatrix();
 
-			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/items/inviso_staff.png"));
+			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/items/inviso_staff.png"));
 			GL11.glTranslatef(0.8F, 0.2F, 0.01F);
 
 			staffModel.render((Entity) data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);

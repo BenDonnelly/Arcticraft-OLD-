@@ -6,11 +6,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_EntityTraderEskimo;
+import arcticraft.lib.Strings;
 
 public class AC_RenderTraderEskimo extends RenderLiving
 {
 
-	private static final ResourceLocation trader = new ResourceLocation("ac", "textures/mobs/eskimo_trader.png");
+	private static final ResourceLocation trader = new ResourceLocation(Strings.MOD_ID, "textures/mobs/eskimo_trader.png");
 
 	public AC_RenderTraderEskimo(ModelBase modelbase, float f)
 	{

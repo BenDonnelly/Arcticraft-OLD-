@@ -5,11 +5,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_EntityCheifEskimo;
+import arcticraft.lib.Strings;
 
 
 public class AC_RenderCheifEskimo extends RenderLiving
 {
-	private static final ResourceLocation chief = new ResourceLocation("ac", "textures/mobs/eskimo_chief.png");
+	private static final ResourceLocation chief = new ResourceLocation(Strings.MOD_ID, "textures/mobs/eskimo_chief.png");
 
     public AC_RenderCheifEskimo(ModelBase modelbase, float f)
     {

@@ -12,12 +12,10 @@ public class AC_GuiOptions extends GuiScreen
 {
 
 	Minecraft mc;
-	AC_TickHandler tickHandlerInstance;
 
 	public AC_GuiOptions()
 	{
-		mc = mc.getMinecraft();
-		tickHandlerInstance.getTickHandler();
+		mc = Minecraft.getMinecraft();
 	}
 
 	public void initGui()
@@ -26,8 +24,8 @@ public class AC_GuiOptions extends GuiScreen
 		this.buttonList.add(new AC_GuiOptionsButton(0, 0, this.height / 4 + 24 + - 16, "Back To Game"));
 		this.buttonList.add(new AC_GuiOptionsButton(1, 0, this.height / 4 + 144 + - 16, "Temperature Bar Coordinates"));
 		this.buttonList.add(new AC_GuiOptionsButton(2, 0, this.height / 4 + 96 + - 16, "Debugging button"));
-		this.buttonList.add(new AC_GuiOptionsButton(3, 0, this.height / 4 + 120 + - 16, tickHandlerInstance.renderOverlay ? "Render Freezing Overlay" : "Don't Render Freezing Overlay"));
-		this.buttonList.add(new AC_GuiOptionsButton(4, 0, this.height / 4 + 48 + - 16, "Example4"));
+		this.buttonList.add(new AC_GuiOptionsButton(3, 0, this.height / 4 + 120 + - 16, AC_TickHandler.renderOverlay ? "Render Freezing Overlay" : "Don't Render Freezing Overlay"));
+		this.buttonList.add(new AC_GuiOptionsButton(4, 0, this.height / 4 + 48 + - 16, AC_TickHandler.snowLayersEnabled ? "Generate multiple snow layers" : "Generate only 2 types of snow"));
 		this.buttonList.add(new AC_GuiOptionsButton(5, 0, this.height / 4 + 72 + - 16, "Example5"));
 	}
 
@@ -48,10 +46,17 @@ public class AC_GuiOptions extends GuiScreen
 		}
 		else if(button.id == 3)
 		{
-			tickHandlerInstance.renderOverlay = ! tickHandlerInstance.renderOverlay;
+			AC_TickHandler.renderOverlay = ! AC_TickHandler.renderOverlay;
 			updateScreen();
 			initGui();
-			System.out.println("Render tickHandler: " + tickHandlerInstance.renderOverlay);
+			System.out.println("Render tickHandler: " + AC_TickHandler.renderOverlay);
+		}
+		else if(button.id == 4)
+		{
+			AC_TickHandler.snowLayersEnabled = !AC_TickHandler.snowLayersEnabled;
+			updateScreen();
+			initGui();
+			System.out.println("Multiple snow layers: " + AC_TickHandler.renderOverlay);
 		}
 	}
 

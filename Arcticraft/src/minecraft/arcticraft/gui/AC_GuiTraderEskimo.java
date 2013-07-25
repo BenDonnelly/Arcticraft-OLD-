@@ -15,6 +15,7 @@ import org.lwjgl.opengl.GL11;
 
 import arcticraft.entities.AC_EntityTraderEskimo;
 import arcticraft.entities.AC_EskimoTrade;
+import arcticraft.lib.Strings;
 import cpw.mods.fml.client.FMLClientHandler;
 
 public class AC_GuiTraderEskimo extends GuiScreen
@@ -98,7 +99,7 @@ public class AC_GuiTraderEskimo extends GuiScreen
 	public void drawScreen(int par1, int par2, float par3)
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/gui/trading.png"));
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/gui/trading.png"));
 		int x = (this.width - this.traderWidth) / 2;
 		int y = (this.height - this.traderHeight) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, this.traderWidth, this.traderHeight);

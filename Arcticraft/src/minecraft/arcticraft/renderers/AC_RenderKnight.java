@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.entities.AC_EntityKnight;
+import arcticraft.lib.Strings;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -16,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class AC_RenderKnight extends RenderBiped
 {
 
-	private static final ResourceLocation knight = new ResourceLocation("ac", "textures/mobs/knight.png");
+	private static final ResourceLocation knight = new ResourceLocation(Strings.MOD_ID, "textures/mobs/knight.png");
 
 	public AC_RenderKnight()
 	{

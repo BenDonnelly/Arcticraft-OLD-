@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.entities.AC_EntityMiner;
+import arcticraft.lib.Strings;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -16,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class AC_RenderMiner extends RenderBiped
 {
 
-	private static final ResourceLocation miner = new ResourceLocation("ac", "textures/mobs/miner.png");
+	private static final ResourceLocation miner = new ResourceLocation(Strings.MOD_ID, "textures/mobs/miner.png");
 
 	public AC_RenderMiner()
 	{

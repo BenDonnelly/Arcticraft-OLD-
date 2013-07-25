@@ -24,6 +24,7 @@ import arcticraft.entities.AC_EntityBlueSparkle;
 import arcticraft.entities.AC_EntityYellowSparkle;
 import arcticraft.items.AC_Item;
 import arcticraft.items.AC_ItemLantern;
+import arcticraft.lib.Strings;
 import arcticraft.main.MainRegistry;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -151,7 +152,7 @@ public class AC_TickHandler implements ITickHandler
 		if(mc.currentScreen == null && mc.thePlayer.dimension != - 1 && mc.thePlayer.dimension != 0 || mc.currentScreen instanceof GuiIngameMenu)
 		{
 
-			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/gui/temperature_bar.png"));
+			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/gui/temperature_bar.png"));
 			gui.drawTexturedModalRect(x, y, 0, 6, 80, 6);
 			gui.drawTexturedModalRect(x, y, 0, 0, value * 80 / maxValue, 6);
 		}
@@ -284,7 +285,7 @@ public class AC_TickHandler implements ITickHandler
 			GL11.glBlendFunc(770, 771);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			GL11.glDisable(3008);
-			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/misc/freezing.png"));
+			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/misc/freezing.png"));
 			Tessellator tessellator = Tessellator.instance;
 			tessellator.startDrawingQuads();
 			tessellator.addVertexWithUV(0.0D, par2, - 90.0D, 0.0D, 1.0D);

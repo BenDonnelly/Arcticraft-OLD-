@@ -13,6 +13,8 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import arcticraft.lib.Strings;
+
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -32,10 +34,10 @@ public class AC_TileEntityFrostChestRender extends TileEntitySpecialRenderer
 
 	private static final ResourceLocation field_110635_a = new ResourceLocation("textures/entity/chest/trapped_double.png");
 	private static final ResourceLocation field_110634_c = new ResourceLocation("textures/entity/chest/christmas_double.png");
-	private static final ResourceLocation frostChestDouble = new ResourceLocation("ac", "textures/blocks/frost_chest_double.png");
+	private static final ResourceLocation frostChestDouble = new ResourceLocation(Strings.MOD_ID, "textures/blocks/frost_chest_double.png");
 	private static final ResourceLocation field_110633_e = new ResourceLocation("textures/entity/chest/trapped.png");
 	private static final ResourceLocation field_110630_f = new ResourceLocation("textures/entity/chest/christmas.png");
-	private static final ResourceLocation frostChest = new ResourceLocation("ac", "textures/blocks/frost_chest.png");
+	private static final ResourceLocation frostChest = new ResourceLocation(Strings.MOD_ID, "textures/blocks/frost_chest.png");
 
 	public AC_TileEntityFrostChestRender()
 	{

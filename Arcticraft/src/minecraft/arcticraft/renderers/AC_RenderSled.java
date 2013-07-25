@@ -7,11 +7,12 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.entities.AC_EntitySled;
+import arcticraft.lib.Strings;
 import arcticraft.models.AC_ModelSled;
 
 public class AC_RenderSled extends Render {
 
-	private static final ResourceLocation texture = new ResourceLocation("ac", "textures/mobs/sled.png");
+	private static final ResourceLocation texture = new ResourceLocation(Strings.MOD_ID, "textures/mobs/sled.png");
 	protected AC_ModelSled model;
 	
 	public AC_RenderSled() {

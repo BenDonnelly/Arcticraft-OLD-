@@ -21,6 +21,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import arcticraft.entities.AC_BossStatus;
 import arcticraft.items.AC_Item;
 import arcticraft.items.AC_ItemRecord;
+import arcticraft.lib.Strings;
 import arcticraft.main.MainRegistry;
 import cpw.mods.fml.client.FMLClientHandler;
 
@@ -86,7 +87,7 @@ public class AC_ForgeEvents
 
 	public void renderBossBars()
 	{
-		mc = mc.getMinecraft();
+		mc = Minecraft.getMinecraft();
 		GuiIngame gui = this.mc.ingameGUI;
 
 		if(AC_BossStatus.bossName != null && AC_BossStatus.statusBarLength > 0)
@@ -99,7 +100,7 @@ public class AC_ForgeEvents
 			int j = i / 2 - short1 / 2;
 			int k = (int) (AC_BossStatus.healthScale * (float) (short1 + 1));
 			byte b0 = 12;
-			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/gui/boss_bars.png"));
+			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/gui/boss_bars.png"));
 			gui.drawTexturedModalRect(j, b0, 0, 0, short1, 14);
 			if(k > 0)
 			{
@@ -123,21 +124,22 @@ public class AC_ForgeEvents
 
 	public void renderPickaxeCooldown()
 	{
-		mc = mc.getMinecraft();
+		mc = Minecraft.getMinecraft();
 		ItemStack hand = mc.thePlayer.getCurrentItemOrArmor(0);
-		GuiIngame gui = this.mc.ingameGUI;
-		FontRenderer fontrenderer = this.mc.fontRenderer;
-		ScaledResolution scaledresolution = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
-		int i = scaledresolution.getScaledWidth();
-		short short1 = 90;
-		int j = i / 2 - short1 / 2;
 
 		if(hand != null && hand.getItem() == AC_Item.notchedPickaxe)
 		{
+			GuiIngame gui = this.mc.ingameGUI;
+			FontRenderer fontrenderer = this.mc.fontRenderer;
+			ScaledResolution scaledresolution = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
+			int i = scaledresolution.getScaledWidth();
+			short short1 = 90;
+			int j = i / 2 - short1 / 2;
+			
 			if(mc.currentScreen == null || mc.currentScreen instanceof GuiIngameMenu)
 			{
 				renderPickaxeStrings();
-				FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("ac", "/textures/gui/cooldown_bar.png"));
+				FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/gui/cooldown_bar.png"));
 				gui.drawTexturedModalRect(j, 40, 0, 12, 82, 12);
 				gui.drawTexturedModalRect(j, 40, 0, 0, (int) Math.round(AC_TickHandler.cooldown / 82 * 5.7), 6);
 			}

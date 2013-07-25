@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.entities.AC_EntityPirate;
+import arcticraft.lib.Strings;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -16,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class AC_RenderPirate extends RenderBiped
 {
 
-	private static final ResourceLocation pirate = new ResourceLocation("ac", "textures/mobs/pirate.png");
+	private static final ResourceLocation pirate = new ResourceLocation(Strings.MOD_ID, "textures/mobs/pirate.png");
 
 	public AC_RenderPirate()
 	{

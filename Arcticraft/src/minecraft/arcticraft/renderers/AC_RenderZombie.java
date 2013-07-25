@@ -6,11 +6,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_EntityFrostZombie;
+import arcticraft.lib.Strings;
 
 public class AC_RenderZombie extends RenderBiped
 {
 
-	private static final ResourceLocation zombie = new ResourceLocation("ac", "textures/mobs/frozen_zombie.png");
+	private static final ResourceLocation zombie = new ResourceLocation(Strings.MOD_ID, "textures/mobs/frozen_zombie.png");
 
 	public AC_RenderZombie(ModelBiped par1ModelBiped, float par2, float par3)
 	{

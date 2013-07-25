@@ -16,7 +16,7 @@ public class AC_TabFood extends CreativeTabs
 	@SideOnly(Side.CLIENT)
 	public int getTabIconItemIndex()
 	{
-		return AC_Item.penguinMeatCooked.itemID;
+		return AC_Item.boarMeat.itemID;
 	}
 
 	public String getTranslatedTabLabel()

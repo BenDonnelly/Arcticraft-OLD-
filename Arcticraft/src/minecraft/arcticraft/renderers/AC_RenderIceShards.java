@@ -10,13 +10,14 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import arcticraft.entities.AC_EntityIceShard;
+import arcticraft.lib.Strings;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class AC_RenderIceShards extends Render
 {
-    private static final ResourceLocation iceshard = new ResourceLocation("ac", "textures/projectiles/ice_shard.png");
+    private static final ResourceLocation iceshard = new ResourceLocation(Strings.MOD_ID, "textures/projectiles/ice_shard.png");
 
     public void renderArrow(AC_EntityIceShard par1AC_EntityIceShard, double par2, double par4, double par6, float par8, float par9)
     {

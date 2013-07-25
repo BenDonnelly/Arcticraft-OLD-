@@ -8,6 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.entities.AC_EntityArcher;
+import arcticraft.lib.Strings;
 import arcticraft.models.AC_ModelArcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -16,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class AC_RenderArcher extends RenderBiped
 {
 
-	private static final ResourceLocation archer = new ResourceLocation("ac", "textures/mobs/archer.png");
+	private static final ResourceLocation archer = new ResourceLocation(Strings.MOD_ID, "textures/mobs/archer.png");
 
 	public AC_RenderArcher()
 	{
