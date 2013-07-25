@@ -61,10 +61,22 @@ public class AC_ForgeEvents
 	@ForgeSubscribe(priority = EventPriority.NORMAL)
 	public void renderGameOverlay(RenderGameOverlayEvent event)
 	{
+		mc = mc.getMinecraft();
+		FontRenderer fontrenderer = this.mc.fontRenderer;
+		ScaledResolution scaledresolution = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
+		int i = scaledresolution.getScaledWidth();
+		short short1 = 90;
+		int j = i / 2 - short1 / 2;
 
 		if(event.isCancelable() || event.type != ElementType.ALL)
 		{
 			return;
+		}
+
+		if(mc.currentScreen == null)
+		{
+			fontrenderer.drawStringWithShadow( "Arcticraft Dev Build", j, 10 + 15, 0xffffffff);
+
 		}
 
 		renderBossBars();
