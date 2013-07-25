@@ -56,7 +56,7 @@ public class AC_GuiOptions extends GuiScreen
 			AC_TickHandler.snowLayersEnabled = !AC_TickHandler.snowLayersEnabled;
 			updateScreen();
 			initGui();
-			System.out.println("Multiple snow layers: " + AC_TickHandler.renderOverlay);
+			System.out.println("Multiple snow layers: " + AC_TickHandler.snowLayersEnabled);
 		}
 	}
 
