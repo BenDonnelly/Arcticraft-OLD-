@@ -22,9 +22,4 @@ public class AC_ItemCaptainLog extends Item {
 		FMLClientHandler.instance().displayGuiScreen(player, new AC_GuiCaptainLog());
 		return itemstack;
 	}
-	
-	@Override
-	public boolean getShareTag() {
-        return true;
-    }
 }
