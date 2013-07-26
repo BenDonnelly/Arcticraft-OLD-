@@ -1,14 +1,24 @@
 package arcticraft.blocks;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockFence;
+import net.minecraft.block.BlockHalfSlab;
+import net.minecraft.block.EnumMobType;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraftforge.common.MinecraftForge;
+import arcticraft.items.AC_ItemWhiteberry;
+import arcticraft.main.MainRegistry;
+import arcticraft.tile_entities.AC_TileEntityArcticFurnace;
+import arcticraft.tile_entities.AC_TileEntityCampfire;
+import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
+import arcticraft.tile_entities.AC_TileEntityFreezer;
+import arcticraft.tile_entities.AC_TileEntityFrostChest;
+import arcticraft.tile_entities.AC_TileEntityLantern;
+import arcticraft.tile_entities.AC_TileEntityStatue;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import net.minecraft.block.*;
-import net.minecraft.block.material.*;
-import net.minecraft.item.*;
-import net.minecraftforge.common.MinecraftForge;
-import arcticraft.items.*;
-import arcticraft.main.*;
-import arcticraft.tile_entities.*;
 
 public class AC_Block
 {
@@ -39,10 +49,12 @@ public class AC_Block
 	public static Block frostSapling;
 	public static Block glacierLog;
 	public static Block glacierLeaves;
+	public static Block acWaterIce;
 
 	/* Dungeon Blocks */
 	public static Block mossyFrostCobble;
 	public static Block unbreakableIce;
+
 	public static Block amouryDoor;
 	public static Block frostFlame;
 
@@ -109,8 +121,9 @@ public class AC_Block
 		frostFence = new BlockFence(1520, "ac:frost_planks", Material.wood).setHardness(2.0F).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("frostfence").setStepSound(Block.soundWoodFootstep);
 		frostLadders = new AC_BlockFrostLadder(1521).setHardness(1.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("frostladders").func_111022_d("ac:frost_ladder").setStepSound(Block.soundGlassFootstep);
 		mossyFrostCobble = new Block(1522, Material.rock).setHardness(2.0F).setResistance(10.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("frost_mossy_cobble").func_111022_d("ac:frost_mossy_cobble").setStepSound(Block.soundStoneFootstep);
-		unbreakableIce = new AC_BlockUnbreakableIce(1523, 0).setBlockUnbreakable().setResistance(6000000.0F).setCreativeTab(MainRegistry.tabBlocks).setLightOpacity(3).setUnlocalizedName("ice").func_111022_d("ac:ice").setStepSound(Block.soundGlassFootstep);
-		snowPressurePlate = new AC_BlockSnowPressurePlate(1524, "AC:snow_pressure_plate", Material.rock, EnumMobType.players).setHardness(0.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("snow_pressure_plate").func_111022_d("ac:snow_pressure_plate").setStepSound(Block.soundSnowFootstep);
+		unbreakableIce = new AC_BlockUnbreakableIce(1523).setBlockUnbreakable().setResistance(6000000.0F).setCreativeTab(MainRegistry.tabBlocks).setLightOpacity(3).setUnlocalizedName("unbreakable_ice").func_111022_d("ac:ice").setStepSound(Block.soundGlassFootstep);
+		snowPressurePlate = new AC_BlockSnowPressurePlate(1524, "AC:snow_pressure_plate", Material.rock, EnumMobType.players).setHardness(0.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("snow_pressure_plate").func_111022_d("ac:snow_pressure_plate")
+				.setStepSound(Block.soundSnowFootstep);
 		snowTrapdoor = new AC_BlockSnowTrapdoor(1525, Material.snow).setHardness(0.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("snow_trapdoor").func_111022_d("ac:snow_trapdoor").setStepSound(Block.soundSnowFootstep);
 		tekkiteOre = new AC_BlockOres(1526).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("tektite_ore").func_111022_d("ac:tekkite_ore").setStepSound(Block.soundStoneFootstep);
 		escariaOre = new AC_BlockOres(1527).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("escaria_ore").func_111022_d("ac:escaria_ore").setStepSound(Block.soundStoneFootstep);
@@ -148,6 +161,8 @@ public class AC_Block
 		glacianBlock = new Block(1553, Material.rock).setHardness(3.5F).setResistance(3.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("glacian_block").func_111022_d("ac:glacian_block").setStepSound(Block.soundStoneFootstep);
 		escariaBlock = new Block(1554, Material.rock).setHardness(3.5F).setResistance(3.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("escaria_block").func_111022_d("ac:escaria_block").setStepSound(Block.soundStoneFootstep);
 		rigentemBlock = new Block(1555, Material.rock).setHardness(3.5F).setResistance(3.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("rigentem_block").func_111022_d("ac:rigentem_block").setStepSound(Block.soundStoneFootstep);
+
+		acWaterIce = new AC_BlockIce(245).setHardness(0.5F).setLightOpacity(3).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("ac_water_ice").func_111022_d("ac:ice");
 	}
 
 	public static void registerBlocks()
@@ -202,6 +217,7 @@ public class AC_Block
 		GameRegistry.registerBlock(freezerIdle, "Freeer_Idle");
 		GameRegistry.registerBlock(freezerBurning, "Freezer_Buring");
 		GameRegistry.registerBlock(frostChest, "AC_FrostChest");
+		GameRegistry.registerBlock(acWaterIce, "AC_Water_Ice");
 		GameRegistry.registerTileEntity(AC_TileEntityArcticFurnace.class, "tileEntityArcticFurnace");
 		GameRegistry.registerTileEntity(AC_TileEntityFreezer.class, "tileEntityFreezer");
 		GameRegistry.registerTileEntity(AC_TileEntityFrostChest.class, "tileEntityFrostChest");
@@ -213,6 +229,7 @@ public class AC_Block
 
 	public static void nameBlocks()
 	{
+		LanguageRegistry.addName(acWaterIce, "Ice");
 		LanguageRegistry.addName(frostDoor, "Frost Door");
 		LanguageRegistry.addName(frostChest, "Frost Chest");
 		LanguageRegistry.addName(frostGrass, "Frost Grass");

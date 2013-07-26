@@ -116,7 +116,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 			int offsetY = (int) Math.round(mc.thePlayer.posY);
 			int offsetZ = (int) Math.round(mc.thePlayer.posZ);
 
-			List<?> entitiesInRange = mc.theWorld.getEntitiesWithinAABB(AC_EntityYeti.class, AxisAlignedBB.getBoundingBox(offsetX - 32, offsetY - 32, offsetZ - 32, offsetX + 32, offsetY + 32, offsetZ + 32));
+			List<?> entitiesInRange = mc.theWorld.getEntitiesWithinAABB(AC_EntityYeti.class, AxisAlignedBB.getBoundingBox(offsetX - 64, offsetY - 64, offsetZ - 64, offsetX + 64, offsetY + 64, offsetZ + 64));
 
 			AC_EntityYeti yetiInstance = null;
 

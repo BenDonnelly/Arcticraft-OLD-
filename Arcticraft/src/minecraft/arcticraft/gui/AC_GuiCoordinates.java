@@ -19,7 +19,9 @@ public class AC_GuiCoordinates extends GuiScreen
 
 	private GuiTextField textfield;
 	private GuiTextField textfield2;
-
+	static ScaledResolution scaledresolution = getScaledResolution();
+	static int i = scaledresolution.getScaledWidth();
+	static short short1 = 90;
 
 	public AC_GuiCoordinates()
 	{}
@@ -52,7 +54,7 @@ public class AC_GuiCoordinates extends GuiScreen
 		if(button.id == 1)
 		{
 			AC_TickHandler.x = Integer.parseInt(textfield.getText());
-			AC_TickHandler.y = Integer.parseInt(textfield2.getText());
+			AC_TickHandler.y = Integer.parseInt(textfield2.getText())  ;
 			mc.thePlayer.addChatMessage("You've succesfully changed the coordinates to - X: " + AC_TickHandler.x + " and Y: " + AC_TickHandler.y);
 			mc.thePlayer.addChatMessage("Your temperature is: " + AC_TickHandler.value);
 

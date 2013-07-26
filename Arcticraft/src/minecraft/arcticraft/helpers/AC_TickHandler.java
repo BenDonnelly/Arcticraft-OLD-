@@ -36,20 +36,25 @@ public class AC_TickHandler implements ITickHandler
 {
 
 	private Minecraft mc;
+
 	int tickCounter;
 	int tempIncrementCounter;
-	public static boolean renderOverlay = true;
-	public static AC_TickHandler tickHandler;
+	public static int value = 50;
+	public static int maxValue = 100;
+	public static int x;
+	public static int y;
 	public static int cooldown = 1200;
-	public static boolean canFireExplosion;
 	public static int pickaxeStringTick = 0;
+	public static boolean renderOverlay = true;
+	public static boolean canFireExplosion;
 	public static boolean snowLayersEnabled = true;
+
 	Random rand = new Random();
+	public static AC_TickHandler tickHandler;
 
 	public AC_TickHandler()
 	{
 		this.mc = Minecraft.getMinecraft();
-		this.maxValue = 100;
 
 	}
 
@@ -94,7 +99,7 @@ public class AC_TickHandler implements ITickHandler
 				canIncrementTemp();
 				slowPlayer((EntityPlayer) tickData[0]);
 				renderBlueYellowParticles((EntityPlayer) tickData[0]);
-				startCooldown((EntityPlayer) tickData[0]);
+				startPickaxeCooldown((EntityPlayer) tickData[0]);
 				stringTick();
 
 			}
@@ -110,7 +115,6 @@ public class AC_TickHandler implements ITickHandler
 		if(type.equals(EnumSet.of(TickType.RENDER)))
 		{
 			renderFreezeEffect(scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight());
-			renderTemperatureBar();
 		}
 	}
 
@@ -121,40 +125,15 @@ public class AC_TickHandler implements ITickHandler
 
 	}
 
-	public void startCooldown(EntityPlayer player)
+	public void stringTick()
 	{
-		ItemStack hand = player.getCurrentItemOrArmor(0);
-		if(hand != null && hand.getItem() == AC_Item.notchedPickaxe)
+		if(pickaxeStringTick < 40)
 		{
-
-			if(cooldown != 0)
-			{
-				cooldown--;
-			}
-			else if(cooldown == 0)
-			{
-				canFireExplosion = true;
-			}
-
+			pickaxeStringTick++;
 		}
-	}
-
-	public static int value = 50;
-	public static int maxValue = 100;
-	public static int x;
-	public static int y;
-
-	public void renderTemperatureBar()
-	{
-		ScaledResolution scaledresolution = getScaledResolution();
-		GuiIngame gui = this.mc.ingameGUI;
-
-		if(mc.currentScreen == null && mc.thePlayer.dimension != - 1 && mc.thePlayer.dimension != 0 || mc.currentScreen instanceof GuiIngameMenu)
+		else if(pickaxeStringTick >= 40)
 		{
-
-			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/gui/temperature_bar.png"));
-			gui.drawTexturedModalRect(x, y, 0, 6, 80, 6);
-			gui.drawTexturedModalRect(x, y, 0, 0, value * 80 / maxValue, 6);
+			pickaxeStringTick = 0;
 		}
 	}
 
@@ -197,16 +176,16 @@ public class AC_TickHandler implements ITickHandler
 
 	public void canDecrementTemp()
 	{
-		if(! mc.thePlayer.capabilities.isCreativeMode)
+		if(! mc.thePlayer.capabilities.isCreativeMode && mc.theWorld != null)
 		{
 
-			if(mc.theWorld != null && mc.thePlayer.dimension == MainRegistry.dimension && mc.thePlayer.isInsideOfMaterial(Material.water) && this.tickCounter == 300)
+			if(mc.thePlayer.dimension == MainRegistry.dimension && mc.thePlayer.isInsideOfMaterial(Material.water) && this.tickCounter == 300)
 			{
 				this.value -= 2;
 				this.tickCounter = 0;
 
 			}
-			else if(mc.theWorld != null && mc.thePlayer.dimension == MainRegistry.dimension && mc.theWorld.isRaining() == true && this.tickCounter == 300)
+			else if(mc.thePlayer.dimension == MainRegistry.dimension && mc.theWorld.isRaining() == true && this.tickCounter == 300)
 			{
 				this.value -= 2;
 				this.tickCounter = 0;
@@ -221,26 +200,23 @@ public class AC_TickHandler implements ITickHandler
 
 	public void canIncrementTemp()
 	{
-		if(! mc.thePlayer.capabilities.isCreativeMode)
+		if(! mc.thePlayer.capabilities.isCreativeMode && mc.theWorld != null && mc.thePlayer != null)
 		{
 
-			if(mc.theWorld != null && mc.thePlayer != null)
-			{
-				int offsetX = (int) Math.round(mc.thePlayer.posX);
-				int offsetY = (int) Math.round(mc.thePlayer.posY);
-				int offsetZ = (int) Math.round(mc.thePlayer.posZ);
+			int offsetX = (int) Math.round(mc.thePlayer.posX);
+			int offsetY = (int) Math.round(mc.thePlayer.posY);
+			int offsetZ = (int) Math.round(mc.thePlayer.posZ);
 
-				for(int x = 0; x < 8; x++)
+			for(int x = 0; x < 8; x++)
+			{
+				for(int y = 0; y < 8; y++)
 				{
-					for(int y = 0; y < 8; y++)
+					for(int z = 0; z < 8; z++)
 					{
-						for(int z = 0; z < 8; z++)
+						if(this.value < 100 && this.tempIncrementCounter == 74 && mc.theWorld.getBlockLightValue(offsetX + x - 4, offsetY + y - 4, offsetZ + z - 4) >= 10)
 						{
-							if(this.value < 100 && this.tempIncrementCounter == 74 && mc.theWorld.getBlockLightValue(offsetX + x - 4, offsetY + y - 4, offsetZ + z - 4) >= 10)
-							{
-								this.value += 1;
-								this.tempIncrementCounter = 0;
-							}
+							this.value += 1;
+							this.tempIncrementCounter = 0;
 						}
 					}
 				}
@@ -257,20 +233,38 @@ public class AC_TickHandler implements ITickHandler
 		int z = (int) Math.floor(player.posZ);
 		int meta = player.worldObj.getBlockMetadata(x, y, z);
 		int blockID = player.worldObj.getBlockId(x, y, z);
-		
-		if ((boots != null && boots.getItem() == AC_Item.hikingBoots) || !player.onGround)
+
+		if((boots != null && boots.getItem() == AC_Item.hikingBoots) || ! player.onGround)
 		{
 			return;
 		}
-		else if (blockID == Block.snow.blockID && meta > 0)
+		else if(blockID == Block.snow.blockID && meta > 0)
 		{
 			player.motionX *= 0.9D - meta * 0.1D;
 			player.motionZ *= 0.9D - meta * 0.1D;
 		}
-		else if (blockID == AC_Block.thickSnow.blockID)
+		else if(blockID == AC_Block.thickSnow.blockID)
 		{
 			player.motionX *= 0.8D;
 			player.motionZ *= 0.8D;
+		}
+	}
+
+	public void startPickaxeCooldown(EntityPlayer player)
+	{
+		ItemStack hand = player.getCurrentItemOrArmor(0);
+		if(hand != null && hand.getItem() == AC_Item.notchedPickaxe)
+		{
+
+			if(cooldown != 0)
+			{
+				cooldown--;
+			}
+			else if(cooldown == 0)
+			{
+				canFireExplosion = true;
+			}
+
 		}
 	}
 
@@ -331,18 +325,6 @@ public class AC_TickHandler implements ITickHandler
 		}
 	}
 
-	public void stringTick()
-	{
-		if(pickaxeStringTick < 40)
-		{
-			pickaxeStringTick++;
-		}
-		else if(pickaxeStringTick >= 40)
-		{
-			pickaxeStringTick = 0;
-		}
-	}
-	
 	@Override
 	public String getLabel()
 	{

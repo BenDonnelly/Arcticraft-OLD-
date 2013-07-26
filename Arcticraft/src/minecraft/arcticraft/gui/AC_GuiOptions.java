@@ -49,7 +49,7 @@ public class AC_GuiOptions extends GuiScreen
 			AC_TickHandler.renderOverlay = ! AC_TickHandler.renderOverlay;
 			updateScreen();
 			initGui();
-			System.out.println("Render tickHandler: " + AC_TickHandler.renderOverlay);
+			System.out.println("Render Freezing Overlay tickHandler: " + AC_TickHandler.renderOverlay);
 		}
 		else if(button.id == 4)
 		{

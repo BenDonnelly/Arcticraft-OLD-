@@ -2,6 +2,7 @@ package arcticraft.biomes;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.SpawnListEntry;
+import arcticraft.blocks.AC_Block;
 import arcticraft.entities.AC_EntityPolarBear;
 
 public class AC_BiomeGlacier extends AC_BiomeGenBaseArcticraft
@@ -14,7 +15,7 @@ public class AC_BiomeGlacier extends AC_BiomeGenBaseArcticraft
 		this.minHeight = 0.1F;
 		this.maxHeight = 0.3F;
 		topBlock = (byte) Block.blockSnow.blockID;
-		fillerBlock = (byte) Block.ice.blockID;
+		fillerBlock = (byte) AC_Block.acWaterIce.blockID;
 		this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityPolarBear.class, 5, 4, 4));
 		setMinMaxHeight(0.2F, 2.1F);
 		setTemperatureRainfall(0.0F, 0.5F);

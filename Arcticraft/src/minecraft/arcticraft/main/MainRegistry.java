@@ -88,7 +88,7 @@ public class MainRegistry
 		storage.clear();
 		System.out.println("Setting " + Strings.MOD_NAME + " server options");
 
-		File worldConfigFile = new File(new File(Minecraft.getMinecraft().mcDataDir, "ac_data"), "playertemps_" + MinecraftServer.getServer().getWorldName() + ".cfg");
+		File worldConfigFile = new File(new File(Minecraft.getMinecraft().mcDataDir, "saves/"+MinecraftServer.getServer().getWorldName() ), "playertemps_.cfg");
 		if(! worldConfigFile.exists())
 		{
 			try

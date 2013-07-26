@@ -2,21 +2,23 @@ package arcticraft.blocks;
 
 import java.util.Random;
 
-import net.minecraft.block.BlockBreakable;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.IBlockAccess;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class AC_BlockUnbreakableIce extends BlockBreakable
+public class AC_BlockUnbreakableIce extends Block
 {
 
-	public AC_BlockUnbreakableIce(int par1, int par2)
+	public AC_BlockUnbreakableIce(int par1)
 	{
-		super(par1, "ice", Material.ice, false);
+		super(par1, Material.ice);
 		this.slipperiness = 0.98F;
 		this.setTickRandomly(true);
-		this.disableStats();
 	}
 
+	@SideOnly(Side.CLIENT)
 	/**
 	 * Returns which pass should this block be rendered on. 0 for solids and 1 for alpha
 	 */
@@ -25,6 +27,7 @@ public class AC_BlockUnbreakableIce extends BlockBreakable
 		return 1;
 	}
 
+	@SideOnly(Side.CLIENT)
 	/**
 	 * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
 	 * coordinates.  Args: blockAccess, x, y, z, side
@@ -35,21 +38,12 @@ public class AC_BlockUnbreakableIce extends BlockBreakable
 	}
 
 	/**
-	 * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the coordinates of the
-	 * block and l is the block's subtype/damage.
-	 */
-
-	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
 	public int quantityDropped(Random par1Random)
 	{
 		return 0;
 	}
-
-	/**
-	 * Ticks the block if it's been scheduled
-	 */
 
 	/**
 	 * Returns the mobility information of the block, 0 = free, 1 = can't push but can move over, 2 = total immobility
@@ -59,10 +53,4 @@ public class AC_BlockUnbreakableIce extends BlockBreakable
 	{
 		return 0;
 	}
-
-	/**
-	 * Returns an item stack containing a single instance of the current block type. 'i' is the block's subtype/damage
-	 * and is ignored for blocks which do not support subtypes. Blocks which cannot be harvested should return null.
-	 */
-
 }

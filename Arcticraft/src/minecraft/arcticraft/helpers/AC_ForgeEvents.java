@@ -23,6 +23,7 @@ import arcticraft.items.AC_Item;
 import arcticraft.items.AC_ItemRecord;
 import arcticraft.lib.Strings;
 import arcticraft.main.MainRegistry;
+import arcticraft.renderers.AC_RenderHUD;
 import cpw.mods.fml.client.FMLClientHandler;
 
 public class AC_ForgeEvents
@@ -74,94 +75,9 @@ public class AC_ForgeEvents
 			return;
 		}
 
-		if(mc.currentScreen == null)
-		{
-			fontrenderer.drawStringWithShadow( "Arcticraft Dev Build", j, 10 + 15, 0xffffffff);
-
-		}
-
-		renderBossBars();
-		renderPickaxeCooldown();
-
-	}
-
-	public void renderBossBars()
-	{
-		mc = Minecraft.getMinecraft();
-		GuiIngame gui = this.mc.ingameGUI;
-
-		if(AC_BossStatus.bossName != null && AC_BossStatus.statusBarLength > 0)
-		{
-			--AC_BossStatus.statusBarLength;
-			FontRenderer fontrenderer = this.mc.fontRenderer;
-			ScaledResolution scaledresolution = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
-			int i = scaledresolution.getScaledWidth();
-			short short1 = 182;
-			int j = i / 2 - short1 / 2;
-			int k = (int) (AC_BossStatus.healthScale * (float) (short1 + 1));
-			byte b0 = 12;
-			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/gui/boss_bars.png"));
-			gui.drawTexturedModalRect(j, b0, 0, 0, short1, 14);
-			if(k > 0)
-			{
-				gui.drawTexturedModalRect(j, b0, 0, 14, k, 14);
-			}
-
-			String s = AC_BossStatus.bossName;
-			fontrenderer.drawStringWithShadow(s, i / 2 - fontrenderer.getStringWidth(s) / 2, b0 - 10, 16777215);
-
-			if(AC_BossStatus.isMiniBoss == true)
-			{
-				fontrenderer.drawStringWithShadow(EnumChatFormatting.ITALIC + "Mini Boss", i / 2 - fontrenderer.getStringWidth(s) / 2, b0 + 15, 0xffffffff);
-			}
-			else
-			{
-				fontrenderer.drawStringWithShadow(EnumChatFormatting.ITALIC + "Final Boss", i / 2 - fontrenderer.getStringWidth(s) / 2, b0 + 15, 0xffffffff);
-			}
-		}
-
-	}
-
-	public void renderPickaxeCooldown()
-	{
-		mc = Minecraft.getMinecraft();
-		ItemStack hand = mc.thePlayer.getCurrentItemOrArmor(0);
-
-		if(hand != null && hand.getItem() == AC_Item.notchedPickaxe)
-		{
-			GuiIngame gui = this.mc.ingameGUI;
-			FontRenderer fontrenderer = this.mc.fontRenderer;
-			ScaledResolution scaledresolution = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
-			int i = scaledresolution.getScaledWidth();
-			short short1 = 90;
-			int j = i / 2 - short1 / 2;
-			
-			if(mc.currentScreen == null || mc.currentScreen instanceof GuiIngameMenu)
-			{
-				renderPickaxeStrings();
-				FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/gui/cooldown_bar.png"));
-				gui.drawTexturedModalRect(j, 40, 0, 12, 82, 12);
-				gui.drawTexturedModalRect(j, 40, 0, 0, (int) Math.round(AC_TickHandler.cooldown / 82 * 5.7), 6);
-			}
-		}
-
-	}
-
-	public void renderPickaxeStrings()
-	{
-		FontRenderer fontrenderer = this.mc.fontRenderer;
-		ScaledResolution scaledresolution = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
-		int i = scaledresolution.getScaledWidth();
-		short short1 = 90;
-		int j = i / 2 - short1 / 2;
-		if(AC_TickHandler.cooldown == 0 && AC_TickHandler.pickaxeStringTick >= 20 && AC_TickHandler.pickaxeStringTick <= 40)
-		{
-			fontrenderer.drawStringWithShadow(EnumChatFormatting.BOLD + "Ready To Fire", j, 10 + 15, 0xffffffff);
-		}
-		else if(AC_TickHandler.cooldown >= 1)
-		{
-			fontrenderer.drawStringWithShadow(EnumChatFormatting.ITALIC + "Cooling Down", j, 10 + 15, 0xffffffff);
-		}
+		AC_RenderHUD.renderBossBars();
+		AC_RenderHUD.renderPickaxeCooldown();
+		AC_RenderHUD.renderTemperatureBar();
 
 	}
 
