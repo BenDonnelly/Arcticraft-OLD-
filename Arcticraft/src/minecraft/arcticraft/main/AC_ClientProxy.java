@@ -68,7 +68,7 @@ public class AC_ClientProxy extends AC_CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityBoar.class, new AC_RenderBoar(new AC_ModelBoar(), new AC_ModelBoar(), 0.8F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityHusky.class, new AC_RenderHusky(new AC_ModelHusky(), new AC_ModelHusky(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityBomb.class, new AC_RenderBomb(AC_Item.bomb, 0));//gets the texture from the item for rendering 
-		RenderingRegistry.registerEntityRenderingHandler(AC_EntityCaptain.class, new AC_RenderCaptain());
+		RenderingRegistry.registerEntityRenderingHandler(AC_EntityCaptain.class, new AC_RenderCaptain(new AC_ModelPirateHook()));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityCheifEskimo.class, new AC_RenderCheifEskimo(new AC_ModelCheifEskimo(), 0.3F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityHunterEskimo.class, new AC_RenderHunterEskimo(new AC_ModelHunterEskimo(), 0.3F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityEskimo.class, new AC_RenderEskimo(new AC_ModelEskimo(), 0.3F));
@@ -82,7 +82,7 @@ public class AC_ClientProxy extends AC_CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityKnight.class, new AC_RenderKnight());
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityMiner.class, new AC_RenderMiner());
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityArcher.class, new AC_RenderArcher());
-
+		RenderingRegistry.registerEntityRenderingHandler(AC_EntityPirateHook.class, new AC_RenderPirateHook());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityStatue.class, new AC_TileEntityStatueRenderer());
 		MinecraftForgeClient.registerItemRenderer(AC_Block.statue.blockID, new AC_ItemStatueRenderer());

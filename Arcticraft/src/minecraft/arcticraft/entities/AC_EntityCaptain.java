@@ -6,7 +6,9 @@ import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -24,19 +26,21 @@ import net.minecraft.world.World;
 import arcticraft.blocks.AC_Block;
 import arcticraft.items.AC_Item;
 
-public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData
+public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, IRangedAttackMob
 {
 
-	Random rand = new Random();
-	public String[] bossName = {"Caladan" , "Arthen" , "Farem" , "Thoran" , "Icyrus" , "Meznar" , "Kefadan" , "Lonleh" , "Ladur" , "Brens" , "Petern" , "Cevan" , "Tob"};
-	public String chooseBossName = bossName[rand.nextInt(bossName.length)];
-
+	public static String[] bossNames = {"Caladan" , "Arthen" , "Farem" , "Thoran" , "Icyrus" , "Meznar" , "Kefadan" , "Lonleh" , "Ladur" , "Brens" , "Petern" , "Cevan" , "Tob"};
+	private final String bossName;
+	private boolean hookAttack;
+	public final int hookAnimationTime = 20;
+	
 	public AC_EntityCaptain(World par1World)
 	{
 		super(par1World);
 		this.setEntityHealth(this.func_110138_aP());
 		this.setSize(this.width, this.height + 0.4F);
 		this.tasks.addTask(0, new EntityAISwimming(this));
+		this.tasks.addTask(1, new AC_EntityAIHookAttack(this, 1.0D, 16.0F));
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
 		this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D));
 		this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
@@ -45,6 +49,7 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.experienceValue = 50;
+		this.bossName = bossNames[this.worldObj.rand.nextInt(bossNames.length)];
 	}
 
 	public boolean isAIEnabled()
@@ -66,13 +71,21 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData
 	public void onLivingUpdate()
 	{
 
-		if(! this.worldObj.isRemote)
+		if(!this.worldObj.isRemote)
 		{
 			this.dataWatcher.updateObject(16, Float.valueOf(this.func_110143_aJ()));
+			
+			if (!this.hookAttack && this.ticksExisted % 100 == 0) {
+				this.prepareHookAttack();
+			}
 		}
 
 		super.onLivingUpdate();
 
+	}
+	
+	private void prepareHookAttack() {
+		this.hookAttack = true;
 	}
 
 	protected void entityInit()
@@ -104,11 +117,7 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData
 		{
 			if(par1Entity instanceof EntityLivingBase)
 			{
-				int b0 = 0;
-
-				b0 = 6;
-				((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.poison.id, b0 * 20, 0));
-
+				((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.poison.id, 120, 0));
 			}
 
 			return true;
@@ -142,20 +151,25 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData
 
 	public String getEntityName()
 	{
-		return chooseBossName + ", the Captain";
+		return "Captain " + this.bossName;
 	}
 
 	public boolean isMiniBoss()
 	{
 		return true;
 	}
-
-	/**
-	 * Returns true if other Entities should be prevented from moving through
-	 * this Entity.
-	 */
+	
 	public boolean canBeCollidedWith()
 	{
 		return ! this.isDead;
+	}
+	
+	public boolean isAboutToThrowHook() {
+		return this.hookAttack;
+	}
+
+	@Override
+	public void attackEntityWithRangedAttack(EntityLivingBase entitylivingbase, float f) {
+		this.hookAttack = false;
 	}
 }

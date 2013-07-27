@@ -1,5 +1,7 @@
 package arcticraft.renderers;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
@@ -8,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_BossStatus;
 import arcticraft.entities.AC_EntityCaptain;
 import arcticraft.lib.Strings;
+import arcticraft.models.AC_ModelPirateHook;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -17,10 +20,13 @@ public class AC_RenderCaptain extends RenderBiped
 
 	private static final ResourceLocation captain = new ResourceLocation(Strings.MOD_ID, "textures/mobs/captain.png");
 
-	public AC_RenderCaptain()
+	public AC_RenderCaptain(AC_ModelPirateHook hook)
 	{
 		super(new ModelBiped(), 0.5F);
-
+		hook.box.offsetX = -1F / 16F;
+		hook.box.offsetY = 6F / 16F;
+		hook.box.offsetZ = -1F / 8F;
+		this.modelBipedMain.bipedLeftArm.addChild(hook.box);
 	}
 
 	public void func_82418_a(AC_EntityCaptain par1EntityFrostZombieBoss, double par2, double par4, double par6, float par8, float par9)
