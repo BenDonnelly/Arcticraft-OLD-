@@ -28,6 +28,8 @@ public class AC_EntityRegistry
 
 	public static void registerEntityEggs()
 	{
+		EntityRegistry.registerModEntity(AC_EntityNPickThing.class, "NPickThing", 3, MainRegistry.instance, 64, 10, true);
+		
 		EntityRegistry.registerGlobalEntityID(AC_EntityWhale.class, "Whale", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Whale.name", "Whale");
 		registerEntityEgg(AC_EntityWhale.class, blueishIcyColor, grayColor);

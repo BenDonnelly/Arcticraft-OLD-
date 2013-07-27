@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import org.lwjgl.opengl.GL11;
 
@@ -28,6 +29,8 @@ public class AC_InvisoStaffRenderer implements IItemRenderer
 		{
 		case EQUIPPED:
 			return true;
+		case EQUIPPED_FIRST_PERSON:
+			return true;
 		default:
 			return false;
 		}
@@ -43,21 +46,16 @@ public class AC_InvisoStaffRenderer implements IItemRenderer
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
 
-		switch(type)
-		{
-		case EQUIPPED:
+		if(type == type.EQUIPPED || type == type.EQUIPPED_FIRST_PERSON)
 		{
 			GL11.glPushMatrix();
 
 			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/items/inviso_staff.png"));
-			GL11.glTranslatef(0.8F, 0.2F, 0.01F);
+			GL11.glTranslatef(0.7F, 0.1F, 0.01F);
 
 			staffModel.render((Entity) data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 
 			GL11.glPopMatrix();
-		}
-		default:
-			break;
 		}
 
 	}

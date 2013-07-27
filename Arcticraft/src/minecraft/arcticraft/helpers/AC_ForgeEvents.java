@@ -16,6 +16,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.client.event.sound.PlayStreamingEvent;
 import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import arcticraft.entities.AC_BossStatus;
@@ -63,13 +64,6 @@ public class AC_ForgeEvents
 	@ForgeSubscribe(priority = EventPriority.NORMAL)
 	public void renderGameOverlay(RenderGameOverlayEvent event)
 	{
-		mc = mc.getMinecraft();
-		FontRenderer fontrenderer = this.mc.fontRenderer;
-		ScaledResolution scaledresolution = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
-		int i = scaledresolution.getScaledWidth();
-		short short1 = 90;
-		int j = i / 2 - short1 / 2;
-
 		if(event.isCancelable() || event.type != ElementType.ALL)
 		{
 			return;
@@ -77,8 +71,21 @@ public class AC_ForgeEvents
 
 		AC_RenderHUD.renderBossBars();
 		AC_RenderHUD.renderPickaxeCooldown();
-		AC_RenderHUD.renderTemperatureBar();
-
+	}
+	
+	@ForgeSubscribe
+	public void renderGameOverlay(RenderGameOverlayEvent.Post event) {
+		switch (event.type) {
+			case BOSSHEALTH:
+				break;
+			case CROSSHAIRS:
+				break;
+			case FOOD:
+				AC_RenderHUD.renderTemperatureBar(event.resolution);
+				break;
+			default:
+				break;
+		}
 	}
 
 	@ForgeSubscribe

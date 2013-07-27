@@ -18,11 +18,9 @@ import cpw.mods.fml.client.FMLClientHandler;
 public class AC_RenderHUD
 {
 
-	static Minecraft mc;
-
 	public static void renderBossBars()
 	{
-		mc = Minecraft.getMinecraft();
+		Minecraft mc = Minecraft.getMinecraft();
 		GuiIngame gui = mc.ingameGUI;
 
 		if(AC_BossStatus.bossName != null && AC_BossStatus.statusBarLength > 0)
@@ -61,7 +59,7 @@ public class AC_RenderHUD
 
 	public static void renderPickaxeCooldown()
 	{
-		mc = Minecraft.getMinecraft();
+		Minecraft mc = Minecraft.getMinecraft();
 		ItemStack hand = mc.thePlayer.getCurrentItemOrArmor(0);
 
 		if(hand != null && hand.getItem() == AC_Item.notchedPickaxe)
@@ -86,6 +84,8 @@ public class AC_RenderHUD
 
 	public static void renderPickaxeStrings()
 	{
+		Minecraft mc = Minecraft.getMinecraft();
+		
 		FontRenderer fontrenderer = mc.fontRenderer;
 		ScaledResolution scaledresolution = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
 		int i = scaledresolution.getScaledWidth();
@@ -102,15 +102,14 @@ public class AC_RenderHUD
 
 	}
 
-	public static void renderTemperatureBar()
-	{
-		ScaledResolution scaledresolution = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
-		GuiIngame gui = mc.ingameGUI;
-
-		if(mc.currentScreen == null && mc.thePlayer.dimension == MainRegistry.dimension)
+	public static void renderTemperatureBar(ScaledResolution scaledres)
+	{	
+		Minecraft mc = Minecraft.getMinecraft();
+		
+		if(mc.thePlayer.dimension == MainRegistry.dimension)
 		{
-
-			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/gui/temperature_bar.png"));
+			mc.func_110434_K().func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/gui/temperature_bar.png"));
+			GuiIngame gui = mc.ingameGUI;
 			gui.drawTexturedModalRect(AC_TickHandler.x, AC_TickHandler.y, 0, 6, 80, 6);
 			gui.drawTexturedModalRect(AC_TickHandler.x, AC_TickHandler.y, 0, 0, AC_TickHandler.value * 80 / AC_TickHandler.maxValue, 6);
 		}
