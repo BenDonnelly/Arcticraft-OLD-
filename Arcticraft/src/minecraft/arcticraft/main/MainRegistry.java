@@ -90,21 +90,22 @@ public class MainRegistry
 	{
 		storage.clear();
 		System.out.println("Setting " + Strings.MOD_NAME + " server options");
-		
-		//this is the location of file where ships are going to be stored
- 		// our problem is, that if you create world "New World" it can be saved in directory "New World-". And I need to get to the directory...
-		
+
 		File shipFile = new File(DimensionManager.getCurrentSaveRootDirectory(), "ships.cfg");
-		try{
-			if(!shipFile.exists()){
+		try
+		{
+			if(! shipFile.exists())
+			{
 				shipFile.createNewFile();
 			}
 			ships = new Configuration(shipFile);
 			ships.load();
 			Map<String, Property> entries = ships.getCategory("ships");
 			generatedShips.load(entries);
-		}catch(Exception e){
-			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME+" can't load ships data");
+		}
+		catch(Exception e)
+		{
+			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load ships data");
 		}
 		File worldConfigFile = new File(DimensionManager.getCurrentSaveRootDirectory(), "playertemps_.cfg");
 		if(! worldConfigFile.exists())
@@ -120,17 +121,17 @@ public class MainRegistry
 		}
 
 		temperatureFile = new Configuration(worldConfigFile);
-		
+
 		try
 		{
 			temperatureFile.load();
-			
+
 			ConfigCategory general = temperatureFile.getCategory(Strings.CONFIG_CATEGORY_GENERAL);
 			Map<String, Property> entries = general.getValues();
 			storage.load(entries);
 			AC_TickHandler.value = storage.getTemperature("Player");
 		}
-		catch (Exception e)
+		catch(Exception e)
 		{
 			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load its temperature configuration");
 		}
@@ -144,22 +145,22 @@ public class MainRegistry
 	public void serverStopping(FMLServerStoppingEvent event)
 	{
 		storage.setTemperature("Player", AC_TickHandler.value);
-		
+
 		try
 		{
 			ConfigCategory gui = globalConfigFile.getCategory(Strings.CONFIG_CATEGORY_GUI);
 			ConfigCategory gen = globalConfigFile.getCategory(Strings.CONFIG_CATEGORY_GEN);
 			ConfigCategory general = temperatureFile.getCategory(Strings.CONFIG_CATEGORY_GENERAL);
-			
+
 			gui.put(Strings.CONFIG_TEMP_BAR_X, new Property(Strings.CONFIG_TEMP_BAR_X, Integer.toString(AC_TickHandler.x), Type.INTEGER));
 			gui.put(Strings.CONFIG_TEMP_BAR_Y, new Property(Strings.CONFIG_TEMP_BAR_Y, Integer.toString(AC_TickHandler.y), Type.INTEGER));
 			gen.put(Strings.CONFIG_SNOW_LAYERS_ENABLED, new Property(Strings.CONFIG_SNOW_LAYERS_ENABLED, Boolean.toString(AC_TickHandler.snowLayersEnabled), Type.BOOLEAN));
 			general.putAll(storage.save());
-			
+
 			ConfigCategory shipsCategory = ships.getCategory("ships");
 			shipsCategory.putAll(generatedShips.save());
 		}
-		catch (Exception e)
+		catch(Exception e)
 		{
 			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't save all of its configuration options");
 		}
@@ -188,7 +189,7 @@ public class MainRegistry
 			}
 		}
 		globalConfigFile = new Configuration(cfgFile);
-		
+
 		try
 		{
 			globalConfigFile.load();
@@ -197,7 +198,7 @@ public class MainRegistry
 			AC_TickHandler.y = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_Y, 0).getInt(0);
 			AC_TickHandler.snowLayersEnabled = globalConfigFile.get(Strings.CONFIG_CATEGORY_GEN, Strings.CONFIG_SNOW_LAYERS_ENABLED, true).getBoolean(true);
 		}
-		catch (Exception e)
+		catch(Exception e)
 		{
 			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load its configuration");
 		}
@@ -231,7 +232,7 @@ public class MainRegistry
 
 		LanguageRegistry.instance().addStringLocalization("death.attack.Freezing", "%1$s froze");
 		LanguageRegistry.instance().addStringLocalization("death.attack.ice shard", "%1$s iceshard");
-		
+
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 		MinecraftForge.EVENT_BUS.register(new AC_ForgeEvents());
 		AC_ChestLootHelper.initializeChestLoot();
