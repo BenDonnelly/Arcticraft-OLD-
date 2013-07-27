@@ -6,6 +6,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import arcticraft.biomes.AC_BiomeOcean;
 import arcticraft.blocks.AC_Block;
 
 public class AC_GenArcaneStone2 extends WorldGenerator
@@ -21,7 +22,37 @@ public class AC_GenArcaneStone2 extends WorldGenerator
 		minableBlockId = par1;
 		numberOfBlocks = par2;
 	}
+	/*@Override
+	public boolean generate(World world, Random random, int x, int y, int z)
+	{
+		int placedBlocks = 0;
+		for(int xx = x;xx<x+16 && placedBlocks < numberOfBlocks;++xx){
+			for(int zz = z;zz<z+16 && placedBlocks < numberOfBlocks;zz++){
+				int chance = 25;
+				if(world.getBlockId(xx, y-2, zz) == AC_Block.acWaterStill.blockID){
+					chance = 13;
+				}
 
+				if(random.nextInt(1000) <= chance){
+					int countInGroup = 2+random.nextInt(2);
+					y = world.getHeightValue(xx, zz);
+					for(int c = 0;c<countInGroup;++c){
+						int xSpread = c / 2;
+						int zSpread = c % 2;
+						y = world.getHeightValue(xx+xSpread, zz+zSpread);
+						if(world.getBlockId(xx+xSpread, y-2, zz+zSpread) == AC_Block.acWaterStill.blockID){
+							for(;y>46 && world.getBlockId(xx+xSpread, y, zz+zSpread) == AC_Block.acWaterStill.blockID;--y){}
+							if(world.getBlockId(xx+xSpread,y-1,zz+zSpread) != AC_Block.acWaterStill.blockID)
+								world.setBlock(xx+xSpread, y, zz+zSpread, minableBlockId);
+						}else
+							world.setBlock(xx+xSpread, y, zz+zSpread, minableBlockId);
+						placedBlocks++;
+					}
+				}
+			}
+		}
+		return true;
+	}*/
 	public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
 	{
 		float f = par2Random.nextFloat() * (float) Math.PI;

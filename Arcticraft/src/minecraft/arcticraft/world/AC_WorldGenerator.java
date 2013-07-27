@@ -38,7 +38,7 @@ public class AC_WorldGenerator implements IWorldGenerator
 		if((biome instanceof AC_BiomeSnowPlains))
 		{
 			{
-				for(int k = 0; k < 5; k++)
+				for(int k = 0; k < 2; k++)
 				{
 					int RandPosX = BlockX + random.nextInt(16);
 					int RandPosY = random.nextInt(128);
@@ -56,10 +56,10 @@ public class AC_WorldGenerator implements IWorldGenerator
 		if((biome instanceof BiomeGenTaiga))
 		{
 			{
-				for(int k = 0; k < 13; k++)
+				for(int k = 0; k < 3; k++)
 				{
 					int RandPosX = x + rand.nextInt(16);
-					int RandPosY = rand.nextInt(128);
+					int RandPosY = world.getHeightValue(x, z);
 					int RandPosZ = z + rand.nextInt(16);
 					(new AC_GenMageTower()).generate(world, rand, RandPosX, RandPosY, RandPosZ);
 				}

@@ -26,6 +26,7 @@ import arcticraft.creative_tabs.AC_TabFood;
 import arcticraft.creative_tabs.AC_TabMaterial;
 import arcticraft.creative_tabs.AC_TabMisc;
 import arcticraft.creative_tabs.AC_TabTools;
+import arcticraft.data_store.GeneratedShipsStore;
 import arcticraft.data_store.TemperatureDataStorage;
 import arcticraft.entities.AC_EntityRegistry;
 import arcticraft.gui.AC_GuiHandler;
@@ -80,15 +81,32 @@ public class MainRegistry
 	/* Configuration Files */
 	private Configuration temperatureFile;
 	private TemperatureDataStorage storage = new TemperatureDataStorage();
+	private GeneratedShipsStore generatedShips = new GeneratedShipsStore();
 	private Configuration globalConfigFile;
+	private Configuration ships;
 
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent event)
 	{
 		storage.clear();
 		System.out.println("Setting " + Strings.MOD_NAME + " server options");
-
-		File worldConfigFile = new File(new File(Minecraft.getMinecraft().mcDataDir, "saves/"+MinecraftServer.getServer().getWorldName() ), "playertemps_.cfg");
+		
+		//this is the location of file where ships are going to be stored
+ 		// our problem is, that if you create world "New World" it can be saved in directory "New World-". And I need to get to the directory...
+		
+		File shipFile = new File(DimensionManager.getCurrentSaveRootDirectory(), "ships.cfg");
+		try{
+			if(!shipFile.exists()){
+				shipFile.createNewFile();
+			}
+			ships = new Configuration(shipFile);
+			ships.load();
+			Map<String, Property> entries = ships.getCategory("ships");
+			generatedShips.load(entries);
+		}catch(Exception e){
+			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME+" can't load ships data");
+		}
+		File worldConfigFile = new File(DimensionManager.getCurrentSaveRootDirectory(), "playertemps_.cfg");
 		if(! worldConfigFile.exists())
 		{
 			try
@@ -137,6 +155,9 @@ public class MainRegistry
 			gui.put(Strings.CONFIG_TEMP_BAR_Y, new Property(Strings.CONFIG_TEMP_BAR_Y, Integer.toString(AC_TickHandler.y), Type.INTEGER));
 			gen.put(Strings.CONFIG_SNOW_LAYERS_ENABLED, new Property(Strings.CONFIG_SNOW_LAYERS_ENABLED, Boolean.toString(AC_TickHandler.snowLayersEnabled), Type.BOOLEAN));
 			general.putAll(storage.save());
+			
+			ConfigCategory shipsCategory = ships.getCategory("ships");
+			shipsCategory.putAll(generatedShips.save());
 		}
 		catch (Exception e)
 		{
@@ -146,6 +167,7 @@ public class MainRegistry
 		{
 			globalConfigFile.save();
 			temperatureFile.save();
+			ships.save();
 		}
 	}
 

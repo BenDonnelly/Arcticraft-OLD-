@@ -5,12 +5,17 @@ package arcticraft.gen;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.FMLLog;
+
+import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.ChestGenHooks;
+import arcticraft.biomes.AC_BiomeOcean;
 import arcticraft.blocks.AC_Block;
+import arcticraft.data_store.GeneratedShipsStore;
 import arcticraft.entities.AC_EntityCaptain;
 import arcticraft.entities.AC_EntityPirate;
 import arcticraft.tile_entities.AC_TileEntityFrostChest;
@@ -18,17 +23,52 @@ import arcticraft.tile_entities.AC_TileEntityFrostChest;
 public class AC_GenShip extends WorldGenerator
 {
 
+	private static final int MIN_SHIP_DISTANCE = 600; // Minimal distance between two ships
+	private static final int SIZE_X = 16; // Ship Base
+	private static final int SIZE_Y = 32;
+	private static final int SIZE_Z = 64; 
+	private static final int PLATFORM_AREA = SIZE_X * SIZE_Z; //Ship Base
+	private static final int VOLUME = SIZE_X * SIZE_Y * SIZE_Z;  //Volume of the ship
+
 	public AC_GenShip()
 	{}
 
+	public boolean checkSpawn(World world, Random rand, int x, int y, int z)
+	{
+		if(rand.nextInt(1000) > 20 || GeneratedShipsStore.instance.isAnyShipInRadius(x, z, MIN_SHIP_DISTANCE)){
+			return false;
+		}
+		int validPlatformBlocks = 0;
+		int validVolumeBlocks = 0;
+		for(int xx = x; xx < x + SIZE_X; ++xx)
+		{
+			for(int zz = z; zz < z + SIZE_Z; ++zz)
+			{
+				if(world.getBlockId(xx, y, zz) == AC_Block.acWaterStill.blockID || world.getBlockId(xx, y, zz) == AC_Block.acWaterFlowing.blockID){
+					validPlatformBlocks++;
+				}
+				for(int yy = y; yy < y + SIZE_Y; ++yy)
+				{
+					if(world.getBlockId(xx,yy,zz) == 0 || (Block.blocksList[world.getBlockId(xx,yy,zz)] != null && Block.blocksList[world.getBlockId(xx, yy, zz)].isBlockReplaceable(world, xx, yy, zz))){
+						validVolumeBlocks++;
+					}
+				}
+			}
+		}
+		double validPlatformBlocksPercentage = validPlatformBlocks / PLATFORM_AREA * 100;
+		double validAreaBlocksPercentage = validVolumeBlocks / VOLUME * 100;
+//		FMLLog.info("PlatformBlocks: %f ; VolumeBlocks: %f", validPlatformBlocksPercentage,validAreaBlocksPercentage);
+		return (validPlatformBlocksPercentage == 100 && validAreaBlocksPercentage > 60);
+	}
+
 	public boolean generate(World world, Random rand, int x, int y, int z)
 	{
-
-		if(world.getBlockId(x, y, z) != AC_Block.acWaterStill.blockID || world.getBlockId(x, y + 1, z) != 0)
+		if(!checkSpawn(world, rand, x, y, z))
 		{
 			return false;
 		}
-
+		GeneratedShipsStore.instance.addShip(new GeneratedShipsStore.CoordinatesXZ(x, z));
+		FMLLog.info("Ship has been generated at x=%d, z=%d", x, z);
 		world.setBlock(x + 6, y + 0, z + 6, 17, 13, 1);
 		world.setBlock(x + 7, y + 0, z + 6, 17, 13, 1);
 		world.setBlock(x + 8, y + 0, z + 6, 17, 13, 1);
@@ -2013,13 +2053,13 @@ public class AC_GenShip extends WorldGenerator
 		world.setBlock(x + 7, y + 32, z + 19, 17, 13, 1);
 		world.setBlock(x + 8, y + 32, z + 19, 50, 1, 1);
 		world.setBlock(x + 7, y + 32, z + 20, 50, 3, 1);
-		
+
 		world.setBlock(x + 7, y + 11, z + 3, 54, 2, 1);
 		world.setBlock(x + 10, y + 7, z + 4, 54, 4, 1);
 		world.setBlock(x + 10, y + 7, z + 5, 54, 4, 1);
 		world.setBlock(x + 7, y + 9, z + 36, 54, 2, 1);
 		world.setBlock(x + 7, y + 11, z + 3, 54, 2, 1);
-		
+
 		TileEntityChest chest0 = (TileEntityChest) world.getBlockTileEntity(x + 7, y + 11, z + 3);
 		TileEntityChest chest1 = (TileEntityChest) world.getBlockTileEntity(x + 10, y + 7, z + 4);
 		TileEntityChest chest2 = (TileEntityChest) world.getBlockTileEntity(x + 10, y + 7, z + 5);

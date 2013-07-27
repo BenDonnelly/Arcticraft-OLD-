@@ -65,7 +65,16 @@ public class AC_GenEskimoVillage extends WorldGenerator
 
 	public AC_GenEskimoVillage()
 	{}
-
+	private void clearArea(World world, int x, int y, int z, int xSize, int ySize, int zSize)
+	{
+		for(int xx = x;xx<x+xSize;++xx){
+			for(int yy = y;yy<y+ySize;++yy){
+				for(int zz = z;zz<z+zSize;++zz){
+					world.setBlock(xx, yy, zz, 0);
+				}
+			}
+		}
+	}
 	public boolean generate(World world, Random rand, int i, int j, int k)
 	{
 		//check that each corner is one of the valid spawn blocks
@@ -73,7 +82,7 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		{
 			return false;
 		}
-
+		clearArea(world,i,j,k,70,5,70);
 		world.setBlock(i + 1, j + 0, k + 12, Block.blockSnow.blockID);
 		world.setBlock(i + 1, j + 0, k + 13, Block.blockSnow.blockID);
 		world.setBlock(i + 1, j + 0, k + 14, Block.blockSnow.blockID);
