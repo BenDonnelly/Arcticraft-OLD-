@@ -1,14 +1,9 @@
 package arcticraft.entities;
 
-import java.util.Random;
-
-import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -22,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import arcticraft.blocks.AC_Block;
 import arcticraft.items.AC_Item;
@@ -170,6 +166,14 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase entitylivingbase, float f) {
+		AC_EntityPirateHook hook = new AC_EntityPirateHook(this.worldObj, this);
+		double d0 = hook.posX - this.posX;
+        double d1 = hook.posY + (double)entitylivingbase.getEyeHeight() - 1.100000023841858D - hook.posY;
+        double d2 = hook.posZ - this.posZ;
+        float f1 = MathHelper.sqrt_double(d0 * d0 + d2 * d2) * 0.2F;
+        hook.setThrowableHeading(d0, d1 + (double)f1, d2, 1.6F, 12.0F);
+        this.playSound("random.bow", 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
+        this.worldObj.spawnEntityInWorld(hook);
 		this.hookAttack = false;
 	}
 }

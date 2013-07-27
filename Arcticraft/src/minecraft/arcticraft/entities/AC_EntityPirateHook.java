@@ -7,13 +7,19 @@ import net.minecraft.world.World;
 
 public class AC_EntityPirateHook extends EntityThrowable {
 
+	public AC_EntityPirateHook(World par1World) {
+		super(par1World);
+	}
+	
 	public AC_EntityPirateHook(World par1World, EntityLivingBase par2EntityLivingBase) {
 		super(par1World, par2EntityLivingBase);
 	}
 
 	@Override
 	protected void onImpact(MovingObjectPosition movingobjectposition) {
-		
+		if (!this.worldObj.isRemote) {
+			this.setDead();
+		}
 	}
 
 }

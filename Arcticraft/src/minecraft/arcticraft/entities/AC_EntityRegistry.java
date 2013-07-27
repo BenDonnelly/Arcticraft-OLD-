@@ -120,7 +120,7 @@ public class AC_EntityRegistry
 
 		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 1, MainRegistry.instance, 64, 10, true);
 		EntityRegistry.registerModEntity(AC_EntitySled.class, "Sled", 2, MainRegistry.instance, 64, 10, true);
-		EntityRegistry.registerModEntity(AC_EntityCaptain.class, "Pirate Captain", 3, MainRegistry.instance, 64, 10, true);
+		EntityRegistry.registerModEntity(AC_EntityPirateHook.class, "Pirate Hook", 3, MainRegistry.instance, 64, 10, true);
 	}
 
 	public static void registerEntityEgg(Class<? extends Entity> entity, int primaryColor, int secondaryColor)
