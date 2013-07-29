@@ -58,7 +58,6 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.experienceValue = 50;
-		this.isHookAirBorne = false;
 		this.hookCooldown = this.maxHookCooldown;
 		this.bossName = bossNames[this.worldObj.rand.nextInt(bossNames.length)];
 	}
@@ -133,7 +132,7 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 		// Follow Range - default 32.0D - min 0.0D - max 2048.0D
 		this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(32.0D);
 		// Movement Speed - default 0.699D - min 0.0D - max Double.MAX_VALUE
-		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.2D);
+		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.399D);
 		// Attack Damage - default 2.0D - min 0.0D - max Doubt.MAX_VALUE
 		this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(6.0D);
 	}
