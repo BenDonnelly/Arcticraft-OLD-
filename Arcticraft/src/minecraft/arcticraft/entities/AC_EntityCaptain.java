@@ -58,6 +58,7 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.experienceValue = 50;
+		this.isHookAirBorne = false;
 		this.hookCooldown = this.maxHookCooldown;
 		this.bossName = bossNames[this.worldObj.rand.nextInt(bossNames.length)];
 	}
