@@ -10,6 +10,7 @@ public class Strings {
 	
 	public static final String CHANNEL_ESKIMO_TRADE = "AC|EskimoTrade";
 	public static final String CHANNEL_ESKIMO_TALK = "AC|EskimoTalk";
+	public static final String CHANNEL_ROPE_POSITION = "AC|RopePosition";
 	
 	public static final String POTION_FREEZING_NAME = "Freezing";
 	

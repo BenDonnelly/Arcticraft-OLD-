@@ -9,7 +9,7 @@ public class AC_ModelPirateHook extends ModelBase {
 	public ModelRenderer box;
 	
 	public AC_ModelPirateHook() {
-		this.box = new ModelRenderer(this, 0, 0);
+		this.box = new ModelRenderer(this, 8, 0);
 		this.box.addBox(0F, 0F, 0F, 4, 4, 4);
 		this.box.setRotationPoint(0F, 0F, 0F);
 	}

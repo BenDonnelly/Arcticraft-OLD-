@@ -78,7 +78,7 @@ public class AC_GuiTraderEskimo extends GuiScreen
 				}
 
 				Packet250CustomPayload packet = new Packet250CustomPayload();
-				packet.channel = "AC_EskimoTrade";
+				packet.channel = Strings.CHANNEL_ESKIMO_TRADE;
 				packet.data = bos.toByteArray();
 				packet.length = bos.size();
 

@@ -1,5 +1,8 @@
 package arcticraft.entities;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -15,36 +18,46 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import arcticraft.blocks.AC_Block;
 import arcticraft.items.AC_Item;
+import arcticraft.lib.Strings;
 
 public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, IRangedAttackMob
 {
 
 	public static String[] bossNames = {"Caladan" , "Arthen" , "Farem" , "Thoran" , "Icyrus" , "Meznar" , "Kefadan" , "Lonleh" , "Ladur" , "Brens" , "Petern" , "Cevan" , "Tob"};
 	private final String bossName;
-	private boolean hookAttack;
-	public final int hookAnimationTime = 20;
+	public final int hookAnimationTime = 100;
+	public final int maxHookCooldown = 20;
+	private double hookLaunchX;
+	private double hookLaunchY;
+	private double hookLaunchZ;
+	private int hookCooldown;
 	
 	public AC_EntityCaptain(World par1World)
 	{
 		super(par1World);
 		this.setEntityHealth(this.func_110138_aP());
 		this.setSize(this.width, this.height + 0.4F);
+		this.setAIMoveSpeed(0.2F);
+		this.setHookCoords();
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new AC_EntityAIHookAttack(this, 1.0D, 16.0F));
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
 		this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D));
 		this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 16.0F));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.experienceValue = 50;
+		this.hookCooldown = this.maxHookCooldown;
 		this.bossName = bossNames[this.worldObj.rand.nextInt(bossNames.length)];
 	}
 
@@ -70,10 +83,13 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 		if(!this.worldObj.isRemote)
 		{
 			this.dataWatcher.updateObject(16, Float.valueOf(this.func_110143_aJ()));
-			
-			if (!this.hookAttack && this.ticksExisted % 100 == 0) {
-				this.prepareHookAttack();
-			}
+		}
+		
+		if (this.hookCooldown > 0) {
+			this.hookCooldown--;
+		}
+		else if (this.hookCooldown == 0) {
+			this.prepareHookAttack();
 		}
 
 		super.onLivingUpdate();
@@ -81,7 +97,20 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 	}
 	
 	private void prepareHookAttack() {
-		this.hookAttack = true;
+		this.hookCooldown = -1;
+		this.setHookCoords();
+	}
+	
+	private void setHookCoords() {
+		double rotation = (this.rotationYaw + 70.0F) / (180.0F / Math.PI);
+		this.hookLaunchX = Math.cos(rotation);
+		this.hookLaunchY = 1.4D;
+		this.hookLaunchZ = Math.sin(rotation);
+	}
+	
+	public double[] getHookCoords() {
+		double[] array = { this.hookLaunchX, this.hookLaunchY, this.hookLaunchZ };
+		return array;
 	}
 
 	protected void entityInit()
@@ -161,19 +190,46 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 	}
 	
 	public boolean isAboutToThrowHook() {
-		return this.hookAttack;
+		return this.hookCooldown == -1;
 	}
 
 	@Override
-	public void attackEntityWithRangedAttack(EntityLivingBase entitylivingbase, float f) {
+	public void attackEntityWithRangedAttack(EntityLivingBase target, float f) {
 		AC_EntityPirateHook hook = new AC_EntityPirateHook(this.worldObj, this);
-		double d0 = hook.posX - this.posX;
-        double d1 = hook.posY + (double)entitylivingbase.getEyeHeight() - 1.100000023841858D - hook.posY;
-        double d2 = hook.posZ - this.posZ;
-        float f1 = MathHelper.sqrt_double(d0 * d0 + d2 * d2) * 0.2F;
-        hook.setThrowableHeading(d0, d1 + (double)f1, d2, 1.6F, 12.0F);
+		hook.setLocationAndAngles(this.posX + this.hookLaunchX, this.posY + this.hookLaunchY, this.posZ + this.hookLaunchZ, this.rotationYaw, this.rotationPitch);
+		
+		double dx = target.posX - hook.posX;
+        double dy = target.posY + (double)target.getEyeHeight() - 1.1D - hook.posY;
+        double dz = target.posZ - hook.posZ;
+        float f1 = MathHelper.sqrt_double(dx * dx + dz * dz) * 0.3F;
+        hook.setThrowableHeading(dx, dy + (double)f1, dz, hook.func_70182_d(), 1.0F);
         this.playSound("random.bow", 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
+        
         this.worldObj.spawnEntityInWorld(hook);
-		this.hookAttack = false;
+		
+		int captainId = this.entityId;
+		int hookId = hook.entityId;
+		
+		ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+		DataOutputStream outputStream = new DataOutputStream(bos);
+
+		try
+		{
+			outputStream.writeInt(captainId);
+			outputStream.writeInt(hookId);
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+
+		Packet250CustomPayload packet = new Packet250CustomPayload();
+		packet.channel = Strings.CHANNEL_ROPE_POSITION;
+		packet.data = bos.toByteArray();
+		packet.length = bos.size();
+		
+		((WorldServer) this.worldObj).getEntityTracker().sendPacketToAllPlayersTrackingEntity(hook, packet);
+		
+        this.hookCooldown = this.maxHookCooldown;
 	}
 }

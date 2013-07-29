@@ -27,9 +27,7 @@ public class AC_EntityRegistry
 	static int brownishColour = 0x63560A;
 
 	public static void registerEntityEggs()
-	{
-		EntityRegistry.registerModEntity(AC_EntityNPickThing.class, "NPickThing", 3, MainRegistry.instance, 64, 10, true);
-		
+	{	
 		EntityRegistry.registerGlobalEntityID(AC_EntityWhale.class, "Whale", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Whale.name", "Whale");
 		registerEntityEgg(AC_EntityWhale.class, blueishIcyColor, grayColor);
@@ -120,7 +118,8 @@ public class AC_EntityRegistry
 
 		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 1, MainRegistry.instance, 64, 10, true);
 		EntityRegistry.registerModEntity(AC_EntitySled.class, "Sled", 2, MainRegistry.instance, 64, 10, true);
-		EntityRegistry.registerModEntity(AC_EntityPirateHook.class, "Pirate Hook", 3, MainRegistry.instance, 64, 10, true);
+		EntityRegistry.registerModEntity(AC_EntityNPickThing.class, "NPickThing", 3, MainRegistry.instance, 64, 10, true);
+		EntityRegistry.registerModEntity(AC_EntityPirateHook.class, "PirateHook", 4, MainRegistry.instance, 64, 10, true);
 	}
 
 	public static void registerEntityEgg(Class<? extends Entity> entity, int primaryColor, int secondaryColor)

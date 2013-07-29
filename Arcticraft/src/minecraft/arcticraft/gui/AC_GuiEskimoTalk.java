@@ -16,6 +16,7 @@ import net.minecraft.util.AxisAlignedBB;
 import arcticraft.entities.AC_EntityYeti;
 import arcticraft.helpers.AC_TickHandler;
 import arcticraft.items.AC_Item;
+import arcticraft.lib.Strings;
 
 public class AC_GuiEskimoTalk extends GuiScreen
 {
@@ -211,7 +212,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 		}
 
 		Packet250CustomPayload packet = new Packet250CustomPayload();
-		packet.channel = "AC_EskimoTalk";
+		packet.channel = Strings.CHANNEL_ESKIMO_TALK;
 		packet.data = bos.toByteArray();
 		packet.length = bos.size();
 

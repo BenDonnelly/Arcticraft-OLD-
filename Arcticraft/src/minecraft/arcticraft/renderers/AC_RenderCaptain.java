@@ -3,12 +3,15 @@ package arcticraft.renderers;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_BossStatus;
 import arcticraft.entities.AC_EntityCaptain;
+import arcticraft.entities.AC_EntityPirateHook;
 import arcticraft.lib.Strings;
 import arcticraft.models.AC_ModelPirateHook;
 import cpw.mods.fml.relauncher.Side;
@@ -29,11 +32,11 @@ public class AC_RenderCaptain extends RenderBiped
 		this.modelBipedMain.bipedLeftArm.addChild(hook.box);
 	}
 
-	public void func_82418_a(AC_EntityCaptain par1EntityFrostZombieBoss, double par2, double par4, double par6, float par8, float par9)
+	public void func_82418_a(AC_EntityCaptain captain, double par2, double par4, double par6, float par8, float par9)
 	{
-		AC_BossStatus.func_82824_a(par1EntityFrostZombieBoss, true);
+		AC_BossStatus.func_82824_a(captain, true);
 
-		super.doRenderLiving(par1EntityFrostZombieBoss, par2, par4, par6, par8, par9);
+		super.doRenderLiving(captain, par2, par4, par6, par8, par9);
 	}
 
 	protected int func_82417_a(AC_EntityCaptain par1EntityFrostZombieBoss, int par2, float par3)

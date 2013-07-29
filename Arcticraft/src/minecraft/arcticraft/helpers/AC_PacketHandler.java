@@ -4,10 +4,13 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
+import arcticraft.entities.AC_EntityCaptain;
+import arcticraft.entities.AC_EntityPirateHook;
 import arcticraft.entities.AC_EskimoTrade;
 import arcticraft.lib.Strings;
 import cpw.mods.fml.common.network.IPacketHandler;
@@ -27,6 +30,38 @@ public class AC_PacketHandler implements IPacketHandler
 		{
 			this.handleEskimoTalk(packet, player);
 		}
+		else if(packet.channel.equals(Strings.CHANNEL_ROPE_POSITION)) {
+			this.handleRopePosition(packet, player);
+		}
+	}
+
+	private void handleRopePosition(Packet250CustomPayload packet, Player plyr) {
+		DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
+		
+		int captainId;
+		int hookId;
+		
+		try {
+			captainId = inputStream.readInt();
+			hookId = inputStream.readInt();
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+			return;
+		}
+		
+		WorldClient world;
+		
+		if(plyr instanceof EntityPlayer)
+		{
+			world = (WorldClient) ((EntityPlayer) plyr).worldObj;
+		}
+		else
+		{
+			return;
+		}
+		
+		((AC_EntityPirateHook) world.getEntityByID(hookId)).captain = (AC_EntityCaptain) world.getEntityByID(captainId);
 	}
 
 	private void handleEskimoTalk(Packet250CustomPayload packet, Player plyr)

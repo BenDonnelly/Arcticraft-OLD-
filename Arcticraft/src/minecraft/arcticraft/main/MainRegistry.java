@@ -55,7 +55,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.MOD_VERSION)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {Strings.CHANNEL_ESKIMO_TRADE , Strings.CHANNEL_ESKIMO_TALK}, packetHandler = AC_PacketHandler.class)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {Strings.CHANNEL_ESKIMO_TRADE , Strings.CHANNEL_ESKIMO_TALK, Strings.CHANNEL_ROPE_POSITION}, packetHandler = AC_PacketHandler.class)
 public class MainRegistry
 {
 
