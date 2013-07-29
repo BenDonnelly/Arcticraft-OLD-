@@ -33,12 +33,13 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 
 	public static String[] bossNames = {"Caladan" , "Arthen" , "Farem" , "Thoran" , "Icyrus" , "Meznar" , "Kefadan" , "Lonleh" , "Ladur" , "Brens" , "Petern" , "Cevan" , "Tob"};
 	private final String bossName;
-	public final int hookAnimationTime = 100;
-	public final int maxHookCooldown = 20;
+	public final int hookAnimationTime = 20;
+	public final int maxHookCooldown = 120;
 	private double hookLaunchX;
 	private double hookLaunchY;
 	private double hookLaunchZ;
 	private int hookCooldown;
+	private boolean isHookAirBorne;
 	
 	public AC_EntityCaptain(World par1World)
 	{
@@ -49,11 +50,11 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 		this.setHookCoords();
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new AC_EntityAIHookAttack(this, 1.0D, 16.0F));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
-		this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D));
-		this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 16.0F));
-		this.tasks.addTask(7, new EntityAILookIdle(this));
+		this.tasks.addTask(2, new AC_EntityAICaptainAttack(this, EntityPlayer.class, 1.0D, false));
+		this.tasks.addTask(3, new EntityAIMoveTowardsRestriction(this, 1.0D));
+		this.tasks.addTask(4, new EntityAIWander(this, 1.0D));
+		this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityPlayer.class, 16.0F));
+		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.experienceValue = 50;
@@ -91,7 +92,7 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 		else if (this.hookCooldown == 0) {
 			this.prepareHookAttack();
 		}
-
+		
 		super.onLivingUpdate();
 
 	}
@@ -131,7 +132,7 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 		// Follow Range - default 32.0D - min 0.0D - max 2048.0D
 		this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(32.0D);
 		// Movement Speed - default 0.699D - min 0.0D - max Double.MAX_VALUE
-		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.399D);
+		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.2D);
 		// Attack Damage - default 2.0D - min 0.0D - max Doubt.MAX_VALUE
 		this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(6.0D);
 	}
@@ -192,6 +193,14 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 	public boolean isAboutToThrowHook() {
 		return this.hookCooldown == -1;
 	}
+	
+	public boolean isHookAirBorne() {
+		return this.isHookAirBorne;
+	}
+	
+	public void setHookAirBorne(boolean bool) {
+		this.isHookAirBorne = bool;
+	}
 
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float f) {
@@ -201,7 +210,7 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 		double dx = target.posX - hook.posX;
         double dy = target.posY + (double)target.getEyeHeight() - 1.1D - hook.posY;
         double dz = target.posZ - hook.posZ;
-        float f1 = MathHelper.sqrt_double(dx * dx + dz * dz) * 0.3F;
+        float f1 = MathHelper.sqrt_double(dx * dx + dz * dz) * 0.4F;
         hook.setThrowableHeading(dx, dy + (double)f1, dz, hook.func_70182_d(), 1.0F);
         this.playSound("random.bow", 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
         
@@ -231,5 +240,6 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 		((WorldServer) this.worldObj).getEntityTracker().sendPacketToAllPlayersTrackingEntity(hook, packet);
 		
         this.hookCooldown = this.maxHookCooldown;
+        this.isHookAirBorne = true;
 	}
 }
