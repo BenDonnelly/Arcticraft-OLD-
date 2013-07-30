@@ -76,7 +76,7 @@ public class AC_RenderHUD
 				renderPickaxeStrings();
 				FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/gui/cooldown_bar.png"));
 				gui.drawTexturedModalRect(j, 40, 0, 12, 82, 12);
-				gui.drawTexturedModalRect(j, 40, 0, 0, (int) Math.round(AC_TickHandler.cooldown / 82 * 5.7), 6);
+				gui.drawTexturedModalRect(j, 40, 0, 0, (int) Math.round(AC_TickHandler.cooldown / 82 * 5.7), 12);
 			}
 		}
 
