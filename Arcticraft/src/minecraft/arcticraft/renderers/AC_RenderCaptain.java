@@ -26,10 +26,7 @@ public class AC_RenderCaptain extends RenderBiped
 	public AC_RenderCaptain(AC_ModelPirateHook hook)
 	{
 		super(new ModelBiped(), 0.5F);
-		hook.box.offsetX = -1F / 16F;
-		hook.box.offsetY = 6F / 16F;
-		hook.box.offsetZ = -1F / 8F;
-		this.modelBipedMain.bipedLeftArm.addChild(hook.box);
+		this.modelBipedMain.bipedLeftArm.addChild(hook.base1);
 	}
 
 	public void func_82418_a(AC_EntityCaptain captain, double par2, double par4, double par6, float par8, float par9)

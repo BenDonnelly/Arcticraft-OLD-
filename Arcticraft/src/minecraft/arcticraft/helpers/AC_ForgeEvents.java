@@ -83,6 +83,9 @@ public class AC_ForgeEvents
 			case FOOD:
 				AC_RenderHUD.renderTemperatureBar(event.resolution);
 				break;
+			case HELMET:
+				AC_RenderHUD.renderFreezeOverlay(event.resolution.getScaledWidth(), event.resolution.getScaledHeight());
+				break;
 			default:
 				break;
 		}

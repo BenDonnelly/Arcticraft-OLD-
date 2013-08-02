@@ -1,10 +1,13 @@
 package arcticraft.renderers;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
@@ -114,6 +117,32 @@ public class AC_RenderHUD
 			gui.drawTexturedModalRect(AC_TickHandler.x, AC_TickHandler.y, 0, 0, AC_TickHandler.value * 80 / AC_TickHandler.maxValue, 6);
 		}
 
+	}
+	
+	public static void renderFreezeOverlay(int par1, int par2) {
+		
+		Minecraft mc = Minecraft.getMinecraft();
+		
+		if(mc.thePlayer.dimension == MainRegistry.dimension && AC_TickHandler.value <= 20 && AC_TickHandler.renderOverlay)
+		{
+			GL11.glDisable(GL11.GL_DEPTH_TEST);
+			GL11.glDepthMask(false);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+			GL11.glDisable(GL11.GL_ALPHA_TEST);
+			mc.renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "textures/misc/freezing.png"));
+			Tessellator tessellator = Tessellator.instance;
+			tessellator.startDrawingQuads();
+			tessellator.addVertexWithUV(0.0D, par2, - 90.0D, 0.0D, 1.0D);
+			tessellator.addVertexWithUV(par1, par2, - 90.0D, 1.0D, 1.0D);
+			tessellator.addVertexWithUV(par1, 0.0D, - 90.0D, 1.0D, 0.0D);
+			tessellator.addVertexWithUV(0.0D, 0.0D, - 90.0D, 0.0D, 0.0D);
+			tessellator.draw();
+			GL11.glDepthMask(true);
+			GL11.glEnable(GL11.GL_DEPTH_TEST);
+			GL11.glEnable(GL11.GL_ALPHA_TEST);
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		}
 	}
 
 }

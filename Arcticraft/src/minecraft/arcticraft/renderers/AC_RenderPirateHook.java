@@ -15,7 +15,7 @@ import arcticraft.models.AC_ModelPirateHook;
 
 public class AC_RenderPirateHook extends Render {
 
-	private static final ResourceLocation texture = new ResourceLocation(Strings.MOD_ID, "textures/mobs/captain.png");
+	private static final ResourceLocation texture = new ResourceLocation(Strings.MOD_ID, "textures/projectiles/hook.png");
 	public AC_ModelPirateHook hook;
 	
 	public AC_RenderPirateHook() {
