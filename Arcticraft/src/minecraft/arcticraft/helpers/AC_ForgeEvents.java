@@ -14,6 +14,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import arcticraft.entities.AC_EntityCaveman;
 import arcticraft.entities.AC_EntityFrostGhost;
 import arcticraft.entities.AC_EntityIceShard;
 import arcticraft.items.AC_Item;
@@ -40,8 +41,8 @@ public class AC_ForgeEvents
 	{
 		if(event.entityLiving instanceof EntityPlayer)
 		{
-			System.out.println("Resetting the players Temperature...");
 			AC_TickHandler.value = 50;
+			AC_EntityCaveman.isAngry = false;
 
 		}
 	}

@@ -164,7 +164,7 @@ public class AC_Block
 		escariaBlock = new Block(1554, Material.rock).setHardness(3.5F).setResistance(3.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("escaria_block").func_111022_d("ac:escaria_block").setStepSound(Block.soundStoneFootstep);
 		rigentemBlock = new Block(1555, Material.rock).setHardness(3.5F).setResistance(3.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("rigentem_block").func_111022_d("ac:rigentem_block").setStepSound(Block.soundStoneFootstep);
 		acWaterIce = new AC_BlockIce(245).setHardness(0.5F).setLightOpacity(3).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("ac_water_ice").func_111022_d("ac:ice");
-		caveman = new AC_BlockCaveman(1556, Material.glass).setHardness(50.0F).setResistance(2500.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("caveman").func_111022_d("ac:ice").setStepSound(Block.soundStoneFootstep);
+		caveman = new AC_BlockCaveman(1556, Material.glass).setHardness(30.0F).setResistance(1500.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("caveman").func_111022_d("ac:ice").setStepSound(Block.soundStoneFootstep);
 	}
 
 	public static void registerBlocks()

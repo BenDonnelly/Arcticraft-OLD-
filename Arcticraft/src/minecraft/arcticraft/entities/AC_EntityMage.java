@@ -19,9 +19,6 @@ public class AC_EntityMage extends EntityAnimal
 {
 
 	private Random rand = new Random();
-	private int counter = 0;
-	public boolean isSwinging = false;
-	public int swingProgressInt = 0;
 
 	public AC_EntityMage(World world)
 	{

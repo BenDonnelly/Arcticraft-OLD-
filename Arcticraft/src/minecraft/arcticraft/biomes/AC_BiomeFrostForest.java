@@ -27,7 +27,7 @@ public class AC_BiomeFrostForest extends AC_BiomeGenBase
 		this.spawnableCaveCreatureList.clear();
 		this.spawnableCreatureList.add(new SpawnListEntry(AC_EntityHusky.class, 5, 4, 4));
 		this.spawnableCreatureList.add(new SpawnListEntry(AC_EntityBoar.class, 5, 4, 4));
-		this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityFrostZombie.class, 10, 4, 4));
+	//	this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityFrostZombie.class, 10, 4, 4));
 		setTemperatureRainfall(0.0F, 0.5F);
 		setColor(16777215);
 	}

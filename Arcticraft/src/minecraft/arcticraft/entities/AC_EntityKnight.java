@@ -23,9 +23,7 @@ public class AC_EntityKnight extends AC_EntityCastleMobDefault
 		{
 			if(par1Entity instanceof EntityLivingBase)
 			{
-				int b0 = 0;
 
-				b0 = 6;
 				((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 1));
 
 			}
