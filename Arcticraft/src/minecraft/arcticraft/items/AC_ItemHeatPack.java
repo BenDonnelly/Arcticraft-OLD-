@@ -9,7 +9,6 @@ import arcticraft.helpers.AC_TickHandler;
 public class AC_ItemHeatPack extends Item
 {
 
-
 	public AC_ItemHeatPack(int par1)
 	{
 		super(par1);
@@ -18,20 +17,23 @@ public class AC_ItemHeatPack extends Item
 
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (par3EntityPlayer != null && AC_TickHandler.value != 100)
+		if(! par2World.isRemote && AC_TickHandler.value != 100)
 		{
-			if (AC_TickHandler.value > 86)
+
+			if(AC_TickHandler.value <= 85)
+			{
+				AC_TickHandler.value += 15;
+			}
+			else
 			{
 				AC_TickHandler.value = 100;
 			}
-
-			else if (AC_TickHandler.value <= 85)
+			if(! par3EntityPlayer.capabilities.isCreativeMode)
 			{
-				AC_TickHandler.value += 7;
+				par1ItemStack.stackSize--;
 			}
-			System.out.println(AC_TickHandler.value);
-			--par1ItemStack.stackSize;
 		}
+
 		return par1ItemStack;
 	}
 }

@@ -37,6 +37,7 @@ import arcticraft.biomes.AC_BiomeOcean;
 import arcticraft.blocks.AC_Block;
 import arcticraft.gen.AC_GenArcaneStone1;
 import arcticraft.gen.AC_GenArcaneStone2;
+import arcticraft.gen.AC_GenCaveman;
 import arcticraft.gen.AC_GenIceberg;
 import arcticraft.gen.AC_GenShip;
 import arcticraft.helpers.AC_TickHandler;
@@ -550,7 +551,7 @@ public class AC_ChunkProvider implements IChunkProvider
 		int var10;
 		if(biomegenbase instanceof AC_BiomeOcean)
 		{
-			for(int x = 0; x < 5; x++)
+			for(int x = 0; x < 2; x++)
 			{
 				int e = i + rand.nextInt(16);
 				int r = 62;

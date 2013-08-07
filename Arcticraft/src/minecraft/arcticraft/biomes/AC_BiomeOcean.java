@@ -2,7 +2,7 @@ package arcticraft.biomes;
 
 import arcticraft.blocks.AC_Block;
 
-public class AC_BiomeOcean extends AC_BiomeGenBaseArcticraft
+public class AC_BiomeOcean extends AC_BiomeGenBase
 {
 
 	protected AC_BiomeOcean(int par1)

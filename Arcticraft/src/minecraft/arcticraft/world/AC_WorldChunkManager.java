@@ -12,7 +12,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
-import arcticraft.biomes.AC_BiomeGenBaseArcticraft;
+import arcticraft.biomes.AC_BiomeGenBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -28,7 +28,7 @@ public class AC_WorldChunkManager extends WorldChunkManager
 	{
 		this.myBiomeCache = new BiomeCache(this);
 		this.myBiomesToSpawnIn = new ArrayList<BiomeGenBase>();
-		this.myBiomesToSpawnIn.add(AC_BiomeGenBaseArcticraft.frostForest);
+		this.myBiomesToSpawnIn.add(AC_BiomeGenBase.frostForest);
 	}
 
 	public AC_WorldChunkManager(long seed, WorldType worldtype)
@@ -61,7 +61,7 @@ public class AC_WorldChunkManager extends WorldChunkManager
 		BiomeGenBase biome = this.myBiomeCache.getBiomeGenAt(x, z);
 		if(biome == null)
 		{
-			return AC_BiomeGenBaseArcticraft.FrostMountains;
+			return AC_BiomeGenBase.FrostMountains;
 		}
 
 		return biome;
@@ -159,7 +159,7 @@ public class AC_WorldChunkManager extends WorldChunkManager
 			else
 			{
 				//Change this to a biome
-				par1ArrayOfBiomeGenBase[i] = AC_BiomeGenBaseArcticraft.FrostMountains;
+				par1ArrayOfBiomeGenBase[i] = AC_BiomeGenBase.FrostMountains;
 			}
 		}
 
@@ -209,7 +209,7 @@ public class AC_WorldChunkManager extends WorldChunkManager
 				else
 				{
 					//Change this to a biome
-					par1ArrayOfBiomeGenBase[i] = AC_BiomeGenBaseArcticraft.FrostMountains;
+					par1ArrayOfBiomeGenBase[i] = AC_BiomeGenBase.FrostMountains;
 				}
 			}
 

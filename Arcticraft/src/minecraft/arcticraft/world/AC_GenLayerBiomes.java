@@ -3,12 +3,12 @@ package arcticraft.world;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
-import arcticraft.biomes.AC_BiomeGenBaseArcticraft;
+import arcticraft.biomes.AC_BiomeGenBase;
 
 public class AC_GenLayerBiomes extends GenLayer
 {
 
-	protected BiomeGenBase[] allowedBiomes = {AC_BiomeGenBaseArcticraft.FrostMountains , AC_BiomeGenBaseArcticraft.frostForest , AC_BiomeGenBaseArcticraft.glacier , AC_BiomeGenBaseArcticraft.snowPlains , AC_BiomeGenBaseArcticraft.ocean};
+	protected BiomeGenBase[] allowedBiomes = {AC_BiomeGenBase.FrostMountains , AC_BiomeGenBase.frostForest , AC_BiomeGenBase.glacier , AC_BiomeGenBase.snowPlains , AC_BiomeGenBase.ocean};
 
 	public AC_GenLayerBiomes(long seed, GenLayer genlayer)
 	{

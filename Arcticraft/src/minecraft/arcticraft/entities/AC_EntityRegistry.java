@@ -64,7 +64,6 @@ public class AC_EntityRegistry
 		LanguageRegistry.instance().addStringLocalization("entity.PolarBear.name", "Polar Bear");
 		registerEntityEgg(AC_EntityPolarBear.class, whiteColor, whiteColor);
 
-		EntityRegistry.registerGlobalEntityID(AC_EntityIceShard.class, "IceShard", EntityRegistry.findGlobalUniqueEntityId());
 		EntityRegistry.registerModEntity(AC_EntityIceShard.class, "IceShard", 0, MainRegistry.instance, 128, 1, true);
 		LanguageRegistry.instance().addStringLocalization("entity.articcraft.IceShard.name", "Ice Shard");
 
@@ -115,7 +114,11 @@ public class AC_EntityRegistry
 		EntityRegistry.registerGlobalEntityID(AC_EntityArcher.class, "Archer", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Archer.name", "Archer");
 		registerEntityEgg(AC_EntityArcher.class, brownishColour, 0xffffff);
-
+		
+		EntityRegistry.registerGlobalEntityID(AC_EntityCaveman.class, "Caveman", EntityRegistry.findGlobalUniqueEntityId());
+		LanguageRegistry.instance().addStringLocalization("entity.Caveman.name",  "Caveman");
+		registerEntityEgg(AC_EntityCaveman.class, lightBlueColor, blueishIcyColor);
+		
 		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 1, MainRegistry.instance, 64, 10, true);
 		EntityRegistry.registerModEntity(AC_EntitySled.class, "Sled", 2, MainRegistry.instance, 64, 10, true);
 		EntityRegistry.registerModEntity(AC_EntityNPickThing.class, "NPickThing", 3, MainRegistry.instance, 64, 10, true);

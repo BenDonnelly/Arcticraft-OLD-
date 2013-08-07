@@ -13,6 +13,7 @@ import arcticraft.main.MainRegistry;
 import arcticraft.tile_entities.AC_TileEntityArcticFurnace;
 import arcticraft.tile_entities.AC_TileEntityCampfire;
 import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
+import arcticraft.tile_entities.AC_TileEntityCaveman;
 import arcticraft.tile_entities.AC_TileEntityFreezer;
 import arcticraft.tile_entities.AC_TileEntityFrostChest;
 import arcticraft.tile_entities.AC_TileEntityLantern;
@@ -95,6 +96,7 @@ public class AC_Block
 	public static Block statue;
 	public static Block captainStatue;
 	public static Block campfire;
+	public static Block caveman;
 
 	/* Miscellaneous Blocks */
 	public static Block Lantern;
@@ -161,12 +163,13 @@ public class AC_Block
 		glacianBlock = new Block(1553, Material.rock).setHardness(3.5F).setResistance(3.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("glacian_block").func_111022_d("ac:glacian_block").setStepSound(Block.soundStoneFootstep);
 		escariaBlock = new Block(1554, Material.rock).setHardness(3.5F).setResistance(3.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("escaria_block").func_111022_d("ac:escaria_block").setStepSound(Block.soundStoneFootstep);
 		rigentemBlock = new Block(1555, Material.rock).setHardness(3.5F).setResistance(3.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("rigentem_block").func_111022_d("ac:rigentem_block").setStepSound(Block.soundStoneFootstep);
-
 		acWaterIce = new AC_BlockIce(245).setHardness(0.5F).setLightOpacity(3).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("ac_water_ice").func_111022_d("ac:ice");
+		caveman = new AC_BlockCaveman(1556, Material.glass).setHardness(150.0F).setResistance(6000.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("caveman").func_111022_d("ac:ice").setStepSound(Block.soundStoneFootstep);
 	}
 
 	public static void registerBlocks()
 	{
+		GameRegistry.registerBlock(caveman, "Caveman");
 		GameRegistry.registerBlock(frostDoor, "Frost_Door");
 		GameRegistry.registerBlock(frostGrass, "Frost_Grass");
 		GameRegistry.registerBlock(frostDirt, "Frost_Dirt");
@@ -225,10 +228,12 @@ public class AC_Block
 		GameRegistry.registerTileEntity(AC_TileEntityStatue.class, "tileEntityStatue");
 		GameRegistry.registerTileEntity(AC_TileEntityCaptainStatue.class, "tileEntityCaptainStatue");
 		GameRegistry.registerTileEntity(AC_TileEntityCampfire.class, "tileEntityCampfire");
+		GameRegistry.registerTileEntity(AC_TileEntityCaveman.class, "tileEntityCaveman");
 	}
 
 	public static void nameBlocks()
 	{
+		LanguageRegistry.addName(caveman, "Frozen Caveman");
 		LanguageRegistry.addName(acWaterIce, "Ice");
 		LanguageRegistry.addName(frostDoor, "Frost Door");
 		LanguageRegistry.addName(frostChest, "Frost Chest");

@@ -101,7 +101,6 @@ public class AC_TickHandler implements ITickHandler
 				renderBlueYellowParticles((EntityPlayer) tickData[0]);
 				startPickaxeCooldown((EntityPlayer) tickData[0]);
 				stringTick();
-
 			}
 		}
 	}

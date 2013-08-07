@@ -3,10 +3,10 @@ package arcticraft.biomes;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 
-public class AC_BiomeDecoratorArcticraft extends BiomeDecorator
+public class AC_BiomeDecorator extends BiomeDecorator
 {
 
-	public AC_BiomeDecoratorArcticraft(BiomeGenBase par1BiomeGenBase)
+	public AC_BiomeDecorator(BiomeGenBase par1BiomeGenBase)
 	{
 		super(par1BiomeGenBase);
 	}
@@ -15,7 +15,7 @@ public class AC_BiomeDecoratorArcticraft extends BiomeDecorator
 	{
 		super.decorate();
 
-		if(this.biome == AC_BiomeGenBaseArcticraft.FrostMountains)
+		if(this.biome == AC_BiomeGenBase.FrostMountains)
 		{
 			this.treesPerChunk = 3;
 			this.deadBushPerChunk = - 999;

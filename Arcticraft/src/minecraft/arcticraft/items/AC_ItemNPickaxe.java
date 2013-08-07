@@ -31,7 +31,7 @@ public class AC_ItemNPickaxe extends ItemPickaxe
 
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if(!par2World.isRemote && AC_TickHandler.canFireExplosion == true)
+		if(! par2World.isRemote && AC_TickHandler.canFireExplosion == true)
 		{
 			par2World.spawnEntityInWorld(new AC_EntityNPickThing(par2World, par3EntityPlayer));
 
@@ -41,7 +41,7 @@ public class AC_ItemNPickaxe extends ItemPickaxe
 		}
 		return par1ItemStack;
 	}
-	
+
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
 	{
 		par3List.add("Summons explosions on right click");

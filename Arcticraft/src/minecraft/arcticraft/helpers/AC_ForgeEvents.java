@@ -3,29 +3,19 @@ package arcticraft.helpers;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundPoolEntry;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiIngame;
-import net.minecraft.client.gui.GuiIngameMenu;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.client.event.sound.PlayStreamingEvent;
 import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
-import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import arcticraft.entities.AC_BossStatus;
-import arcticraft.items.AC_Item;
+import net.minecraftforge.event.world.WorldEvent;
 import arcticraft.items.AC_ItemRecord;
-import arcticraft.lib.Strings;
 import arcticraft.main.MainRegistry;
 import arcticraft.renderers.AC_RenderHUD;
-import cpw.mods.fml.client.FMLClientHandler;
 
 public class AC_ForgeEvents
 {
@@ -42,6 +32,7 @@ public class AC_ForgeEvents
 		}
 	}
 
+	
 	@ForgeSubscribe
 	public void playerInteract(PlayerInteractEvent event)
 	{

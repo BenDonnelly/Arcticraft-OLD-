@@ -11,7 +11,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ConfigCategory;
 import net.minecraftforge.common.Configuration;
@@ -79,11 +78,11 @@ public class MainRegistry
 	public static Potion freezePotion;
 
 	/* Configuration Files */
-	private Configuration temperatureFile;
+	public Configuration temperatureFile;
 	private TemperatureDataStorage storage = new TemperatureDataStorage();
 	private GeneratedShipsStore generatedShips = new GeneratedShipsStore();
-	private Configuration globalConfigFile;
-	private Configuration ships;
+	public Configuration globalConfigFile;
+	public Configuration ships;
 
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent event)
@@ -225,17 +224,18 @@ public class MainRegistry
 		AC_Block.nameBlocks();
 		AC_Item.nameItems();
 		AC_EntityRegistry.registerEntityEggs();
+		AC_ChestLootHelper.initializeChestLoot();
 		proxy.reigsterRenderThings();
 		proxy.registerTickHandler();
 		proxy.registerKeyHandler();
-		GameRegistry.registerWorldGenerator(new AC_WorldGenerator());
+
 
 		LanguageRegistry.instance().addStringLocalization("death.attack.Freezing", "%1$s froze");
-		LanguageRegistry.instance().addStringLocalization("death.attack.ice shard", "%1$s iceshard");
+		LanguageRegistry.instance().addStringLocalization("death.attack.ice shard", "%1$s was pierced iceshard");
 
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 		MinecraftForge.EVENT_BUS.register(new AC_ForgeEvents());
-		AC_ChestLootHelper.initializeChestLoot();
+		GameRegistry.registerWorldGenerator(new AC_WorldGenerator());	
 	}
 
 	@EventHandler

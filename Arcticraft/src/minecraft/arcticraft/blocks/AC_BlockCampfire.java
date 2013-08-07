@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -18,7 +19,7 @@ public class AC_BlockCampfire extends BlockContainer
 	{
 		super(id, material);
 
-		//minX, minY, minZ, maxX, maxY, maxZ
+		//minX, minY, minZ, maxX, maxY, maxZ  
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
 
 	}

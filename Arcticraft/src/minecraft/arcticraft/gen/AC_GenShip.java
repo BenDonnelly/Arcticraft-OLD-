@@ -35,7 +35,7 @@ public class AC_GenShip extends WorldGenerator
 
 	public boolean checkSpawn(World world, Random rand, int x, int y, int z)
 	{
-		if(rand.nextInt(1000) > 20 || GeneratedShipsStore.instance.isAnyShipInRadius(x, z, MIN_SHIP_DISTANCE)){
+		if(rand.nextInt(1000) > 5 || GeneratedShipsStore.instance.isAnyShipInRadius(x, z, MIN_SHIP_DISTANCE)){
 			return false;
 		}
 		int validPlatformBlocks = 0;

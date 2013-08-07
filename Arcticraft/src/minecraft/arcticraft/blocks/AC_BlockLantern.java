@@ -12,6 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -59,11 +60,20 @@ public class AC_BlockLantern extends Block implements ITileEntityProvider
 		return null;
 	}
 
-	public int idDropped(int par1, Random par2Random, int par3)
+    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
+    {
+    	if (!par5EntityPlayer.isSneaking()) return false;
+    	if (par1World.isRemote) return false;
+    	AC_TileEntityLantern tile = (AC_TileEntityLantern)par1World.getBlockTileEntity(par2, par3, par4);
+    	System.out.println(tile.getDurability());
+    	return true;
+    }
+	
+	/*public int idDropped(int par1, Random par2Random, int par3)
 	{
 
 		return AC_Item.itemLantern.itemID; //couldnt you use this? 
-	}
+	}*/
 
 	@Override
 	public ArrayList<ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata, int fortune)
@@ -119,7 +129,7 @@ public class AC_BlockLantern extends Block implements ITileEntityProvider
 	 */
 	public int tickRate(World par1World)
 	{
-		return 30;
+		return 1;
 	}
 
 	/**
@@ -184,11 +194,9 @@ public class AC_BlockLantern extends Block implements ITileEntityProvider
 		return j1;
 	}
 
-	/**
-	 * Ticks the block if it's been scheduled
-	 */
 	public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
 	{
+		
 		super.updateTick(par1World, par2, par3, par4, par5Random);
 
 		if(par1World.getBlockMetadata(par2, par3, par4) == 0)

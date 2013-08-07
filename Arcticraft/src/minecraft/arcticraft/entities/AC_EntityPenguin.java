@@ -114,7 +114,7 @@ public class AC_EntityPenguin extends EntityAnimal
 		return this.func_90012_b(par1EntityAgeable);
 	}
 
-/*	public boolean getCanSpawnHere()
+	public boolean getCanSpawnHere()
 	{
 		System.out.println("Spawning Penguin");
 
@@ -137,5 +137,5 @@ public class AC_EntityPenguin extends EntityAnimal
 		}
 
 		return false;
-	}*/
+	}
 }
