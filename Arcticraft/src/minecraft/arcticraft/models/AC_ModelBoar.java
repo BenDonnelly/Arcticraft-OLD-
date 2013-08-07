@@ -239,11 +239,17 @@ public class AC_ModelBoar extends ModelBase
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity par6Entity)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, par6Entity);
-
-		this.leg1.rotateAngleX = MathHelper.cos(f1 * 0.6662F) * 1.4F * f2;
-		this.leg2.rotateAngleX = MathHelper.cos(f1 * 0.6662F + (float) Math.PI) * 1.4F * f2;
-		this.leg3.rotateAngleX = MathHelper.cos(f1 * 0.6662F + (float) Math.PI) * 1.4F * f2;
-		this.leg4.rotateAngleX = MathHelper.cos(f1 * 0.6662F) * 1.4F * f2;
+		this.head.rotateAngleX = f5 / (180F / (float) Math.PI);
+		this.head.rotateAngleY = f5 / (180F / (float) Math.PI);
+		this.leg1.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+		this.leg2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * f1;
+		this.leg1.rotateAngleY = 0.0F;
+		this.leg2.rotateAngleY = 0.0F;
+		//keep
+		this.leg3.rotateAngleX = MathHelper.cos(f * 0.6662F) * 0.4F * f1;
+		this.leg4.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * f1;
+		this.leg3.rotateAngleY = 0.0F;
+		this.leg4.rotateAngleY = 0.0F;
 	}
 
 }
