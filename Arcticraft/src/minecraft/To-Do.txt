@@ -1,7 +1,6 @@
 
 Put tasks below:
 
-chests in ships and other strucutres get changed to ac chests
 final boss model(King)
 objectives to get to said boss
 quest system

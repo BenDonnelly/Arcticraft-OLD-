@@ -287,7 +287,7 @@ public class AC_ChunkProvider implements IChunkProvider
 						{
 							if(f < 0.15F)
 							{
-								byte1 = (byte) Block.ice.blockID;
+								byte1 = (byte) AC_Block.acWaterIce.blockID;
 							}
 							else
 							{
@@ -657,7 +657,7 @@ public class AC_ChunkProvider implements IChunkProvider
 
 				if(this.worldObj.isBlockFreezable(k1 + i, l3 - 1, l2 + j))
 				{
-					this.worldObj.setBlock(k1 + i, l3 - 1, l2 + j, Block.ice.blockID);
+					this.worldObj.setBlock(k1 + i, l3 - 1, l2 + j, AC_Block.acWaterIce.blockID);
 				}
 
 				if(this.worldObj.canSnowAt(k1 + i, l3, l2 + j))

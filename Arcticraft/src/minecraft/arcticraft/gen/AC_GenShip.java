@@ -5,20 +5,17 @@ package arcticraft.gen;
 
 import java.util.Random;
 
-import cpw.mods.fml.common.FMLLog;
-
 import net.minecraft.block.Block;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.ChestGenHooks;
-import arcticraft.biomes.AC_BiomeOcean;
 import arcticraft.blocks.AC_Block;
 import arcticraft.data_store.GeneratedShipsStore;
 import arcticraft.entities.AC_EntityCaptain;
 import arcticraft.entities.AC_EntityPirate;
 import arcticraft.tile_entities.AC_TileEntityFrostChest;
+import cpw.mods.fml.common.FMLLog;
 
 public class AC_GenShip extends WorldGenerator
 {
@@ -2054,17 +2051,17 @@ public class AC_GenShip extends WorldGenerator
 		world.setBlock(x + 8, y + 32, z + 19, 50, 1, 1);
 		world.setBlock(x + 7, y + 32, z + 20, 50, 3, 1);
 
-		world.setBlock(x + 7, y + 11, z + 3, 54, 2, 1);
-		world.setBlock(x + 10, y + 7, z + 4, 54, 4, 1);
-		world.setBlock(x + 10, y + 7, z + 5, 54, 4, 1);
-		world.setBlock(x + 7, y + 9, z + 36, 54, 2, 1);
-		world.setBlock(x + 7, y + 11, z + 3, 54, 2, 1);
+		world.setBlock(x + 7, y + 11, z + 3, AC_Block.frostChest.blockID, 2, 1);
+		world.setBlock(x + 10, y + 7, z + 4, AC_Block.frostChest.blockID, 4, 1);
+		world.setBlock(x + 10, y + 7, z + 5, AC_Block.frostChest.blockID, 4, 1);
+		world.setBlock(x + 7, y + 9, z + 36, AC_Block.frostChest.blockID, 2, 1);
+		world.setBlock(x + 7, y + 11, z + 3, AC_Block.frostChest.blockID, 2, 1);
 
-		TileEntityChest chest0 = (TileEntityChest) world.getBlockTileEntity(x + 7, y + 11, z + 3);
-		TileEntityChest chest1 = (TileEntityChest) world.getBlockTileEntity(x + 10, y + 7, z + 4);
-		TileEntityChest chest2 = (TileEntityChest) world.getBlockTileEntity(x + 10, y + 7, z + 5);
-		TileEntityChest chest3 = (TileEntityChest) world.getBlockTileEntity(x + 7, y + 9, z + 36);
-		TileEntityChest chest4 = (TileEntityChest) world.getBlockTileEntity(x + 7, y + 11, z + 3);
+		AC_TileEntityFrostChest chest0 = (AC_TileEntityFrostChest) world.getBlockTileEntity(x + 7, y + 11, z + 3);
+		AC_TileEntityFrostChest chest1 = (AC_TileEntityFrostChest) world.getBlockTileEntity(x + 10, y + 7, z + 4);
+		AC_TileEntityFrostChest chest2 = (AC_TileEntityFrostChest) world.getBlockTileEntity(x + 10, y + 7, z + 5);
+		AC_TileEntityFrostChest chest3 = (AC_TileEntityFrostChest) world.getBlockTileEntity(x + 7, y + 9, z + 36);
+		AC_TileEntityFrostChest chest4 = (AC_TileEntityFrostChest) world.getBlockTileEntity(x + 7, y + 11, z + 3);
 
 		if(chest0 != null && chest1 != null && chest2 != null && chest3 != null && chest4 != null)
 		{
