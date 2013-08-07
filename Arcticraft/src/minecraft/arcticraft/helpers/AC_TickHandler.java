@@ -108,13 +108,7 @@ public class AC_TickHandler implements ITickHandler
 	@Override
 	public void tickEnd(EnumSet<TickType> type, Object... tickData)
 	{
-
-		mc.entityRenderer.setupOverlayRendering();
-		ScaledResolution scaledresolution = getScaledResolution();
-		if(type.equals(EnumSet.of(TickType.RENDER)))
-		{
-			renderFreezeEffect(scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight());
-		}
+		
 	}
 
 	@Override
@@ -264,33 +258,6 @@ public class AC_TickHandler implements ITickHandler
 				canFireExplosion = true;
 			}
 
-		}
-	}
-
-	public void renderFreezeEffect(int par1, int par2)
-	{
-
-		if(mc.thePlayer != null && mc.theWorld != null && mc.currentScreen == null && mc.thePlayer.dimension == MainRegistry.dimension && this.value <= 20 && this.renderOverlay == true)
-		{
-
-			GL11.glDisable(2929);
-			GL11.glDepthMask(false);
-			GL11.glBlendFunc(770, 771);
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			GL11.glDisable(3008);
-			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/misc/freezing.png"));
-			Tessellator tessellator = Tessellator.instance;
-			tessellator.startDrawingQuads();
-			tessellator.addVertexWithUV(0.0D, par2, - 90.0D, 0.0D, 1.0D);
-			tessellator.addVertexWithUV(par1, par2, - 90.0D, 1.0D, 1.0D);
-			tessellator.addVertexWithUV(par1, 0.0D, - 90.0D, 1.0D, 0.0D);
-			tessellator.addVertexWithUV(0.0D, 0.0D, - 90.0D, 0.0D, 0.0D);
-			tessellator.draw();
-			GL11.glDepthMask(true);
-			GL11.glEnable(2929);
-			GL11.glEnable(3008);
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			mc.currentScreen = null;
 		}
 	}
 
