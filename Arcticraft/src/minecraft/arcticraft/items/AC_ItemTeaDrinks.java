@@ -77,57 +77,60 @@ public class AC_ItemTeaDrinks extends ItemFood
 	{
 		super.onEaten(par1ItemStack, par2World, par3EntityPlayer);
 
-		if(par1ItemStack.getItemDamage() == 0)
+		if(! par2World.isRemote)
 		{
-			par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.regeneration.id, 1200, 2));
-			if(AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
+			if(par1ItemStack.getItemDamage() == 0)
 			{
-				AC_TickHandler.value -= 15;
-			}
-			else if(AC_TickHandler.value <= 14)
-			{
-				AC_TickHandler.value = 0;
+				par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.regeneration.id, 1200, 2));
+				if(AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
+				{
+					AC_TickHandler.value -= 15;
+				}
+				else if(AC_TickHandler.value <= 14)
+				{
+					AC_TickHandler.value = 0;
 
+				}
 			}
+
+			else if(par1ItemStack.getItemDamage() == 1)
+			{
+				if(AC_TickHandler.value <= 70)
+				{
+					AC_TickHandler.value += 30;
+				}
+				else if(AC_TickHandler.value >= 71)
+				{
+					AC_TickHandler.value = 100;
+				}
+			}
+
+			else if(par1ItemStack.getItemDamage() == 2)
+			{
+				par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.jump.id, 1200, 2));
+				if(AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
+				{
+					AC_TickHandler.value -= 15;
+				}
+				else if(AC_TickHandler.value <= 14)
+				{
+					AC_TickHandler.value = 0;
+
+				}
+			}
+			else if(par1ItemStack.getItemDamage() == 3)
+			{
+				if(AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
+				{
+					AC_TickHandler.value -= 15;
+				}
+				else if(AC_TickHandler.value <= 14)
+				{
+					AC_TickHandler.value = 0;
+				}
+			}
+
 		}
-
-		else if(par1ItemStack.getItemDamage() == 1)
-		{
-			if(AC_TickHandler.value <= 70)
-			{
-				AC_TickHandler.value += 30;
-			}
-			else if(AC_TickHandler.value >= 71)
-			{
-				AC_TickHandler.value = 100;
-			}
-		}
-
-		else if(par1ItemStack.getItemDamage() == 2)
-		{
-			par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.jump.id, 1200, 2));
-			if(AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
-			{
-				AC_TickHandler.value -= 15;
-			}
-			else if(AC_TickHandler.value <= 14)
-			{
-				AC_TickHandler.value = 0;
-
-			}
-		}
-		else if(par1ItemStack.getItemDamage() == 3)
-		{
-			if(AC_TickHandler.value <= 100 && AC_TickHandler.value >= 15)
-			{
-				AC_TickHandler.value -= 15;
-			}
-			else if(AC_TickHandler.value <= 14)
-			{
-				AC_TickHandler.value = 0;
-			}
-		}
-
 		return new ItemStack(AC_Item.emptyCup);
 	}
 

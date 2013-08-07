@@ -18,9 +18,9 @@ public class AC_RenderZombie extends RenderBiped
 		super(par1ModelBiped, par2);
 	}
 
-	public void func_177_a(AC_EntityFrostZombie entitypenguin, double d, double d1, double d2, float f, float f1)
+	public void func_177_a(AC_EntityFrostZombie zombie, double d, double d1, double d2, float f, float f1)
 	{
-		super.doRenderLiving(entitypenguin, d, d1, d2, f, f1);
+		super.doRenderLiving(zombie, d, d1, d2, f, f1);
 	}
 
 	public void doRenderLiving(EntityLiving entityliving, double d, double d1, double d2, float f, float f1)

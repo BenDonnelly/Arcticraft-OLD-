@@ -26,7 +26,7 @@ public class AC_GuiOptions extends GuiScreen
 		this.buttonList.add(new AC_GuiOptionsButton(2, 0, this.height / 4 + 96 + - 16, "Debugging button"));
 		this.buttonList.add(new AC_GuiOptionsButton(3, 0, this.height / 4 + 120 + - 16, AC_TickHandler.renderOverlay ? "Render Freezing Overlay" : "Don't Render Freezing Overlay"));
 		this.buttonList.add(new AC_GuiOptionsButton(4, 0, this.height / 4 + 48 + - 16, AC_TickHandler.snowLayersEnabled ? "Generate multiple snow layers" : "Generate only 2 types of snow"));
-		this.buttonList.add(new AC_GuiOptionsButton(5, 0, this.height / 4 + 72 + - 16, "Example5"));
+		this.buttonList.add(new AC_GuiOptionsButton(5, 0, this.height / 4 + 72 + - 16, "Get Temperature"));
 	}
 
 	public void actionPerformed(GuiButton button)
@@ -57,6 +57,10 @@ public class AC_GuiOptions extends GuiScreen
 			updateScreen();
 			initGui();
 			System.out.println("Multiple snow layers: " + AC_TickHandler.snowLayersEnabled);
+		}
+		else if(button.id == 5)
+		{
+			mc.thePlayer.addChatMessage("Your temperature is: " + AC_TickHandler.value);
 		}
 	}
 

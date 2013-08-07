@@ -4,6 +4,7 @@ import java.util.EnumSet;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.PotionEffect;
 import arcticraft.dispenser.AC_DispenserBehaviours;
 import arcticraft.lib.Strings;
 import arcticraft.main.MainRegistry;
@@ -60,12 +61,13 @@ public class AC_TickHandlerServer implements ITickHandler
 
 	public void freezingPotion(EntityPlayer entityPlayer)
 	{
-		//		entityPlayer.addPotionEffect(new PotionEffect(MainRegistry.freezePotion.id, 300, 0));
+	//	entityPlayer.addPotionEffect(new PotionEffect(MainRegistry.freezePotion.id, 300, 0));
 		tickCounter++;
+		
 
 		if(entityPlayer.isPotionActive(MainRegistry.freezePotion))
 		{
-			if(tickCounter == 40)
+			if(tickCounter == 40 && entityPlayer.func_110143_aJ() > 2F)
 			{
 				tickCounter = 0;
 				AC_TickHandler.value -= 1;

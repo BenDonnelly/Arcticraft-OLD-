@@ -33,7 +33,7 @@ public class AC_EntityRegistry
 		registerEntityEgg(AC_EntityWhale.class, blueishIcyColor, grayColor);
 
 		EntityRegistry.registerGlobalEntityID(AC_EntityFrostGhost.class, "FrostGhost", EntityRegistry.findGlobalUniqueEntityId());
-		LanguageRegistry.instance().addStringLocalization("entity.FrostGhost.name", "FrostGhost");
+		LanguageRegistry.instance().addStringLocalization("entity.FrostGhost.name", "Frost Ghost");
 		registerEntityEgg(AC_EntityFrostGhost.class, lightGrayColor, grayColor);
 
 		EntityRegistry.registerGlobalEntityID(AC_EntityMage.class, "Mage", EntityRegistry.findGlobalUniqueEntityId());
