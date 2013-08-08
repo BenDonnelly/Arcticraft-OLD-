@@ -117,7 +117,6 @@ public class AC_Item
 	/* Miscellaneous Items */
 	public static Item IceShard;
 	public static Item penguinFeather;
-	public static Item itemLantern;
 	public static Item arcaneDust;
 	public static Item heatPack;
 	public static Item frostSticks;
@@ -220,7 +219,6 @@ public class AC_Item
 		rigentemIngot = new Item(6259).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("rigentem").func_111206_d("ac:rigentem_ingot");
 		eriumGem = new Item(6260).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("erium_gem").func_111206_d("ac:erium_gem");
 		iceCream = new AC_ItemIceCream(6261, 10, 1.3F, true).setAlwaysEdible().setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("icecream");
-		itemLantern = new AC_ItemLantern(6262, AC_Block.Lantern).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("lantern").func_111206_d("ac:lantern");
 		arcaneDust = new Item(6263).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("arcaneDust").func_111206_d("ac:arcane_dust");
 		heatPack = new AC_ItemHeatPack(6264).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("heatpack").func_111206_d("ac:heatpack");
 		bomb = new AC_ItemBomb(6265).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("bomb").func_111206_d("ac:bomb");
@@ -271,7 +269,6 @@ public class AC_Item
 		LanguageRegistry.addName(glacianIngot, "Glacian Ingot");
 		LanguageRegistry.addName(frigus, "Frigus");
 		LanguageRegistry.addName(eriumGem, "Erium Gem");
-		LanguageRegistry.addName(itemLantern, "Lantern");
 		LanguageRegistry.addName(arcaneDust, "Arcane Dust");
 		LanguageRegistry.addName(heatPack, "Heatpack");
 		LanguageRegistry.addName(bomb, "Bomb");
