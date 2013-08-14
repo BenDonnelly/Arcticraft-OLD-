@@ -172,7 +172,7 @@ public class AC_Recipes
 
 		GameRegistry.addRecipe(new ItemStack(AC_Block.mysticalSnow, 8), new Object[] {"GDG" , "GSG" , "GDG" , Character.valueOf('G') , Item.ingotGold , Character.valueOf('S') , Block.blockSnow , Character.valueOf('D') , Item.diamond});
 
-		GameRegistry.addRecipe(new ItemStack(AC_Block.Lantern, 4), new Object[] {" S " , "SFS" , " S " , Character.valueOf('S') , AC_Item.frostSticks , Character.valueOf('F') , AC_Item.frigus});
+		GameRegistry.addRecipe(new ItemStack(AC_Block.lantern, 4), new Object[] {" S " , "SFS" , " S " , Character.valueOf('S') , AC_Item.frostSticks , Character.valueOf('F') , AC_Item.frigus});
 
 		GameRegistry.addRecipe(new ItemStack(AC_Block.freezerIdle), new Object[] {"XXX" , "XYX" , "XXX" , Character.valueOf('X') , AC_Item.glacianIngot , Character.valueOf('Y') , AC_Item.tekkiteGem});
 

@@ -67,7 +67,7 @@ public class AC_EntityTraderEskimo extends EntityMob
 		this.addTrade(9, AC_Item.heatPack, 3, 3);
 		this.addTrade(10, AC_Item.hikingBoots, 9);
 		this.addTrade(11, AC_Item.bomb, 4, 20);
-		this.addTrade(12, AC_Block.Lantern, 1, 3);
+		this.addTrade(12, AC_Item.lantern, 1, 3);
 		this.addTrade(13, AC_Item.iceCream, 1, 4, 20);
 		this.addTrade(14, AC_Item.iceCream, 1, 7, 20);
 		this.addTrade(15, AC_Item.iceCream, 1, 2, 20);

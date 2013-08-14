@@ -27,8 +27,8 @@ public class AC_RecipeLanternRefuel implements IRecipe
         
         for (int i = 0; i <= 8; i++)
         {
-            if (crafting.getStackInSlot(i) != null && crafting.getStackInSlot(i).itemID == AC_Block.Lantern.blockID && lanternSlot != -1) needsCancelation = true;
-            if (crafting.getStackInSlot(i) != null && crafting.getStackInSlot(i).itemID == AC_Block.Lantern.blockID && lanternSlot == -1) lanternSlot = i; 
+            if (crafting.getStackInSlot(i) != null && crafting.getStackInSlot(i).itemID == AC_Block.lantern.blockID && lanternSlot != -1) needsCancelation = true;
+            if (crafting.getStackInSlot(i) != null && crafting.getStackInSlot(i).itemID == AC_Block.lantern.blockID && lanternSlot == -1) lanternSlot = i; 
             
             if (crafting.getStackInSlot(i) != null && crafting.getStackInSlot(i).itemID == AC_Item.frigus.itemID) fuelSlots++;
             
@@ -43,7 +43,7 @@ public class AC_RecipeLanternRefuel implements IRecipe
         damageBuilder = damageBuilder - (4 * fuelSlots);
         if (damageBuilder < 0) damageBuilder = 0;
         
-        return new ItemStack(AC_Block.Lantern.blockID, 1, damageBuilder);
+        return new ItemStack(AC_Block.lantern.blockID, 1, damageBuilder);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class AC_RecipeLanternRefuel implements IRecipe
 
     public ItemStack getRecipeOutput()
     {
-        return new ItemStack(AC_Block.Lantern);
+        return new ItemStack(AC_Block.lantern);
     }
     
 }

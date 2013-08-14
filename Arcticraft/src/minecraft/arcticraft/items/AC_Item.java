@@ -126,6 +126,7 @@ public class AC_Item
 	public static Item invisoStaff;
 	public static Item sled;
 	public static Item captainLog;
+	public static Item lantern;
 
 	public static void initializeItems()
 	{
@@ -246,6 +247,7 @@ public class AC_Item
 		ignisBlade = new AC_ItemIgnisBlade(6287, ignisBladeMaterial).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("ignis_blade").func_111206_d("ac:ignis_blade");
 		archerBow = new AC_ItemArchersBow(6288).setFull3D().setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("archer_bow").func_111206_d("ac:archer_bow");
 		captainLog = new AC_ItemCaptainLog(6289).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("captain_log").func_111206_d("ac:captain_log");
+		lantern = new AC_ItemBlockLantern(1516).setUnlocalizedName("lantern").func_111206_d("ac:lantern");
 	}
 
 	public static void nameItems()
@@ -286,6 +288,7 @@ public class AC_Item
 		LanguageRegistry.addName(sled, "Sled");
 		LanguageRegistry.addName(notchedPickaxe, "Notched Pickaxe");
 		LanguageRegistry.addName(captainLog, "Captain's Log");
+		LanguageRegistry.addName(lantern, "Lantern");
 		
 		LanguageRegistry.addName(TekkitePickaxe, "Tekkite Pickaxe");
 		LanguageRegistry.addName(TekkiteAxe, "Tekkite Axe");

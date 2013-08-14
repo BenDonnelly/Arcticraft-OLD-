@@ -32,7 +32,6 @@ import arcticraft.gui.AC_GuiHandler;
 import arcticraft.helpers.AC_ChestLootHelper;
 import arcticraft.helpers.AC_ForgeEvents;
 import arcticraft.helpers.AC_PacketHandler;
-import arcticraft.helpers.AC_ScheduledTickHandler;
 import arcticraft.helpers.AC_TickHandler;
 import arcticraft.items.AC_Item;
 import arcticraft.lib.Strings;
@@ -53,8 +52,6 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.MOD_VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {Strings.CHANNEL_ESKIMO_TRADE , Strings.CHANNEL_ESKIMO_TALK, Strings.CHANNEL_ROPE_POSITION}, packetHandler = AC_PacketHandler.class)
@@ -178,9 +175,6 @@ public class MainRegistry
 	public void preInit(FMLPreInitializationEvent event)
 	{
 
-
-        TickRegistry.registerTickHandler(new AC_ScheduledTickHandler(), Side.SERVER);
-        
 		File cfgFile = event.getSuggestedConfigurationFile();
 		if(! cfgFile.exists())
 		{

@@ -99,7 +99,7 @@ public class AC_Block
 	public static Block caveman;
 
 	/* Miscellaneous Blocks */
-	public static Block Lantern;
+	public static Block lantern;
 
 	public static void initializeBlocks()
 	{
@@ -117,7 +117,7 @@ public class AC_Block
 		glacierLog = new AC_BlockGlacierLog(1512).setHardness(2.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("glacier_log").setStepSound(Block.soundWoodFootstep);
 		thickSnow = new AC_BlockThickSnow(1514).setHardness(0.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("thick_snow").func_111022_d("ac:thick_snow").setStepSound(Block.soundSnowFootstep);
 		arcaneStone = new AC_BlockArcaneStone(240).setHardness(1.5F).setResistance(2.3F).setCreativeTab(MainRegistry.tabBlocks).setLightValue(1.0F).setUnlocalizedName("arcane_stone").func_111022_d("ac:arcane_stone").setStepSound(Block.soundGlassFootstep);
-		Lantern = new AC_BlockLantern(1516).setUnlocalizedName("lantern").func_111022_d("ac:lantern").setStepSound(Block.soundWoodFootstep);
+		lantern = new AC_BlockLantern(1516).setUnlocalizedName("lantern").func_111022_d("ac:lantern").setStepSound(Block.soundWoodFootstep);
         frostPlanks = new Block(1517, Material.wood).setHardness(2.0F).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("frostplanks").func_111022_d("ac:frost_planks").setStepSound(Block.soundWoodFootstep);
 		frostStairs = new AC_BlockFrostStairs(1518, frostPlanks, 0).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("froststairs").setStepSound(Block.soundWoodFootstep);
 		frostFence = new BlockFence(1520, "ac:frost_planks", Material.wood).setHardness(2.0F).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("frostfence").setStepSound(Block.soundWoodFootstep);
@@ -185,8 +185,6 @@ public class AC_Block
 		GameRegistry.registerBlock(glacierLog, "Glacier_Log");
 		GameRegistry.registerBlock(thickSnow, "Thick_Snow");
 		GameRegistry.registerBlock(arcaneStone, "Arcane Stone");
-
-        Item.itemsList[1516] = new AC_ItemBlockLantern(1516);
 		
 		GameRegistry.registerBlock(frostPlanks, "Frost_Planks");
 		GameRegistry.registerBlock(frostFence, "Frost_fence");
@@ -252,7 +250,7 @@ public class AC_Block
 		LanguageRegistry.addName(glacierLog, "Glacier Log");
 		LanguageRegistry.addName(thickSnow, "Thick Snow");
 		LanguageRegistry.addName(arcaneStone, "Arcane Stone");
-		LanguageRegistry.addName(Lantern, "Lantern");
+		LanguageRegistry.addName(lantern, "Lantern");
 		LanguageRegistry.addName(unbreakableIce, "Unbreakable Ice");
 		LanguageRegistry.addName(mossyFrostCobble, "Mossy Frost Cobble");
 		LanguageRegistry.addName(snowTrapdoor, "Snow Trapdoor");
