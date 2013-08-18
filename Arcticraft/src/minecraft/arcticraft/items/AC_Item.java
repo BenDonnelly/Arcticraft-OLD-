@@ -248,13 +248,10 @@ public class AC_Item
 		ignisBlade = new AC_ItemIgnisBlade(6287, ignisBladeMaterial).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("ignis_blade").func_111206_d("ac:ignis_blade");
 		archerBow = new AC_ItemArchersBow(6288).setFull3D().setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("archer_bow").func_111206_d("ac:archer_bow");
 		captainLog = new AC_ItemCaptainLog(6289).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("captain_log").func_111206_d("ac:captain_log");
-<<<<<<< HEAD
 		
 		woodenClub = new AC_ItemSword(6290, EnumToolMaterial.WOOD).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("wooden_club").func_111206_d("ac:wooden_club");
 		iceClub = new AC_ItemIceClub(6291, EnumToolMaterial.IRON).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("ice_club").func_111206_d("ac:ice_club");
-=======
 		lantern = new AC_ItemBlockLantern(1516).setUnlocalizedName("lantern").func_111206_d("ac:lantern");
->>>>>>> 21b9f2788e81e9143229f39b8b7c51c5a0d8d152
 	}
 
 	public static void nameItems()

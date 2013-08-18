@@ -44,7 +44,6 @@ public class AC_ForgeEvents
 		if(event.entityLiving instanceof EntityPlayer)
 		{
 			AC_TickHandler.value = 50;
-			AC_EntityCaveman.isAngry = false;
 
 		}
 	}

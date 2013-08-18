@@ -40,7 +40,7 @@ public class AC_EntityCaveman extends EntityMob //implements EntityOwnable
 	Random rand = new Random();
 	private boolean collectedReward = false;
 	private int angerLevel = 0;
-	private static final ItemStack[] rewards = new ItemStack[] {new ItemStack(AC_Item.boarMeat, 4) , new ItemStack(AC_Item.sled) , new ItemStack(AC_Item.eriumGem, 10) , new ItemStack(AC_Item.itemLantern) , new ItemStack(AC_Item.heatPack)};
+	private static final ItemStack[] rewards = new ItemStack[] {new ItemStack(AC_Item.boarMeat, 4) , new ItemStack(AC_Item.sled) , new ItemStack(AC_Item.eriumGem, 10) , new ItemStack(AC_Item.lantern) , new ItemStack(AC_Item.heatPack)};
 
 	private String[][] messages = {
 
@@ -119,11 +119,9 @@ public class AC_EntityCaveman extends EntityMob //implements EntityOwnable
 		{
 			//player.openGui(MainRegistry.instance, 2, worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
 
-<<<<<<< HEAD
 			if(collectedReward == false && ! isAngry())
 			{
 				if(hand != null && hand.itemID != AC_Item.iceClub.itemID || hand == null)
-=======
 				if(number == 5)
 				{
 					worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(AC_Item.heatPack)));
@@ -145,7 +143,6 @@ public class AC_EntityCaveman extends EntityMob //implements EntityOwnable
 					worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(AC_Item.boarMeat, 4)));
 				}
 				else
->>>>>>> 21b9f2788e81e9143229f39b8b7c51c5a0d8d152
 				{
 					player.addChatMessage(messages[0][rand.nextInt(messages.length)]);
 
