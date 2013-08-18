@@ -90,8 +90,9 @@ public class AC_Item
 
 	public static Item pirateHat;
 	public static Item pirateSword;
-
 	public static Item hikingBoots;
+	public static Item woodenClub;
+	public static Item iceClub;
 
 	/* Dungeon Loot */
 	public static Item iceCream;
@@ -227,8 +228,8 @@ public class AC_Item
 		teaDrinks = new AC_ItemTeaDrinks(6267, 4, 1.3F, true).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("hot_chocolate").func_111206_d("ac:hot_chocolate");
 		pirateHat = new AC_ItemArmour(6268, PirateArmour, MainRegistry.instance.proxy.addArmor("Pirate"), 0).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("piratehaticon").func_111206_d("ac:pirate_hat_icon");
 		pirateSword = new AC_ItemCaptainSword(6269, EnumToolMaterial.EMERALD).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("pirateSword").func_111206_d("ac:captain_sword");
-		boarMeat = new ItemFood(6270, 4, true).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("boar_meat").func_111206_d("ac:cooked_boar_meat");
-		uncookedBoarMeat = new ItemFood(6271, 10, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("raw_boar_meat").func_111206_d("ac:raw_boar_meat");
+		boarMeat = new ItemFood(6270, 10, true).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("boar_meat").func_111206_d("ac:cooked_boar_meat");
+		uncookedBoarMeat = new ItemFood(6271, 4, true).setPotionEffect(Potion.hunger.id, 30, 0, 0.8F).setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("raw_boar_meat").func_111206_d("ac:raw_boar_meat");
 		hikingBoots = new AC_ItemArmour(6272, hikingAmrour, MainRegistry.instance.proxy.addArmor("Hiking"), 3).setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("Hiking Boots");
 		invisoStaff = new AC_ItemInvisoStaff(6273).setFull3D().setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("staff_icon").func_111206_d("ac:staff_icon");
 		recordFrozenFeelings = new AC_ItemRecord(6274, "Frozen Feelings").setUnlocalizedName("record_FF");
@@ -247,11 +248,19 @@ public class AC_Item
 		ignisBlade = new AC_ItemIgnisBlade(6287, ignisBladeMaterial).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("ignis_blade").func_111206_d("ac:ignis_blade");
 		archerBow = new AC_ItemArchersBow(6288).setFull3D().setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("archer_bow").func_111206_d("ac:archer_bow");
 		captainLog = new AC_ItemCaptainLog(6289).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("captain_log").func_111206_d("ac:captain_log");
+<<<<<<< HEAD
+		
+		woodenClub = new AC_ItemSword(6290, EnumToolMaterial.WOOD).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("wooden_club").func_111206_d("ac:wooden_club");
+		iceClub = new AC_ItemIceClub(6291, EnumToolMaterial.IRON).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("ice_club").func_111206_d("ac:ice_club");
+=======
 		lantern = new AC_ItemBlockLantern(1516).setUnlocalizedName("lantern").func_111206_d("ac:lantern");
+>>>>>>> 21b9f2788e81e9143229f39b8b7c51c5a0d8d152
 	}
 
 	public static void nameItems()
 	{
+		LanguageRegistry.addName(woodenClub, "Wooden Club");
+		LanguageRegistry.addName(iceClub, "Ice Club");
 		LanguageRegistry.addName(archerBow, "Archer's Bow");
 		LanguageRegistry.addName(ignisBlade, "Ignis Blade");
 		LanguageRegistry.addName(pirateSword, "Pirate Sword");
