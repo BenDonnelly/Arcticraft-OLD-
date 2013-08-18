@@ -10,6 +10,7 @@ import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import arcticraft.entities.AC_EntityCaveman;
@@ -21,6 +22,7 @@ public class AC_BlockCaveman extends BlockContainer
 	public AC_BlockCaveman(int id, Material material)
 	{
 		super(id, material);
+		this.setTickRandomly(true);
 		//                  minX  minY     minZ  maxX  maxY  maxZ
 		this.setBlockBounds(- 0.25F, 0.0F, - 0.25F, 1.25F, 2.0F, 1.25F);
 
@@ -60,6 +62,25 @@ public class AC_BlockCaveman extends BlockContainer
 		}
 
 		super.onBlockDestroyedByPlayer(par1World, par2, par3, par4, par5);
+	}
+
+	@Override
+	public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
+	{
+		int number = par5Random.nextInt(3 + 1);
+		System.out.println("No light");
+		if(par1World.getSavedLightValue(EnumSkyBlock.Block, par2, par3, par4) > 11 - Block.lightOpacity[this.blockID])
+		{
+			System.out.println("Number: " + number);
+			
+			if(! par1World.isRemote && number == 1)
+			{
+				par1World.setBlockToAir(par2, par3, par4);
+				AC_EntityCaveman caveman = new AC_EntityCaveman(par1World);
+				caveman.setLocationAndAngles((double) par2 + 0.5D, (double) par3, (double) par4 + 0.5D, 0.0F, 0.0F);
+				par1World.spawnEntityInWorld(caveman);
+			}
+		}
 	}
 
 	@Override

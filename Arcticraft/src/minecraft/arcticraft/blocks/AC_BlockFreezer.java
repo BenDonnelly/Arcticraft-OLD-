@@ -171,7 +171,7 @@ public class AC_BlockFreezer extends BlockContainer
 			return false;
 		}
 
-		player.openGui(MainRegistry.instance, 0, world, x, y, z);
+		player.openGui(MainRegistry.instance, 1, world, x, y, z);
 
 		return true;
 	}

@@ -58,8 +58,8 @@ import arcticraft.renderers.AC_CampfireRenderer;
 import arcticraft.renderers.AC_CaptainStatueRenderer;
 import arcticraft.renderers.AC_CavemanRenderer;
 import arcticraft.renderers.AC_FrostChestRender;
+import arcticraft.renderers.AC_IceClubRenderer;
 import arcticraft.renderers.AC_InvisoStaffRenderer;
-import arcticraft.renderers.AC_ItemStatueRenderer;
 import arcticraft.renderers.AC_NotchedPickaxeRenderer;
 import arcticraft.renderers.AC_RenderArcher;
 import arcticraft.renderers.AC_RenderBoar;
@@ -88,6 +88,7 @@ import arcticraft.renderers.AC_RenderTraderEskimo;
 import arcticraft.renderers.AC_RenderWhale;
 import arcticraft.renderers.AC_RenderYeti;
 import arcticraft.renderers.AC_RenderZombie;
+import arcticraft.renderers.AC_StatueRenderer;
 import arcticraft.tile_entities.AC_TileEntityCampfire;
 import arcticraft.tile_entities.AC_TileEntityCampfireRenderer;
 import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
@@ -126,7 +127,7 @@ public class AC_ClientProxy extends AC_CommonProxy
 	{
 
 		MinecraftForge.EVENT_BUS.register(new AC_EventSoundLoad());
-
+		
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityNPickThing.class, new AC_RenderNPickThing());
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityWhale.class, new AC_RenderWhale(new AC_ModelWhale(), 20.0F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityMage.class, new AC_RenderMage(new AC_ModelMage(), 0.3F));
@@ -159,7 +160,7 @@ public class AC_ClientProxy extends AC_CommonProxy
 		
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityStatue.class, new AC_TileEntityStatueRenderer());
-		MinecraftForgeClient.registerItemRenderer(AC_Block.statue.blockID, new AC_ItemStatueRenderer());
+		MinecraftForgeClient.registerItemRenderer(AC_Block.statue.blockID, new AC_StatueRenderer());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCaptainStatue.class, new AC_TileEntityCaptainStatueRenderer());
 		MinecraftForgeClient.registerItemRenderer(AC_Block.captainStatue.blockID, new AC_CaptainStatueRenderer());
@@ -177,6 +178,8 @@ public class AC_ClientProxy extends AC_CommonProxy
 
 		MinecraftForgeClient.registerItemRenderer(AC_Item.notchedPickaxe.itemID, (IItemRenderer) new AC_NotchedPickaxeRenderer());
 
+		MinecraftForgeClient.registerItemRenderer(AC_Item.iceClub.itemID, (IItemRenderer) new AC_IceClubRenderer());
+		
 	}
 
 	public int addArmor(String armor)

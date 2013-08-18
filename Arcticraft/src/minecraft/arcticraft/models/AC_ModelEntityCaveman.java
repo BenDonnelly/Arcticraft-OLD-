@@ -40,7 +40,7 @@ public class AC_ModelEntityCaveman extends ModelBase
 	ModelRenderer Eye2;
 	ModelRenderer head;
 	ModelRenderer body;
-	ModelRenderer rightarm;
+	public static ModelRenderer rightarm;
 	ModelRenderer leftarm;
 	ModelRenderer rightleg;
 	ModelRenderer leftleg;

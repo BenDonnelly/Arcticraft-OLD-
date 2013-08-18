@@ -1,5 +1,7 @@
 package arcticraft.entities;
 
+import java.util.Random;
+
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.util.AxisAlignedBB;
@@ -8,7 +10,6 @@ import net.minecraft.world.World;
 
 public class AC_EntityFrostGhost extends EntityFlying implements IMob
 {
-
 	public int courseChangeCooldown = 0;
 	public double waypointX;
 	public double waypointY;
@@ -83,6 +84,18 @@ public class AC_EntityFrostGhost extends EntityFlying implements IMob
 	public int getMaxHealth()
 	{
 		return 40;
+	}
+	
+	public boolean getCanSpawnHere()
+	{
+		if(this.rand.nextInt(1000) < 20)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 }

@@ -23,7 +23,6 @@ import arcticraft.blocks.AC_BlockGlacierLeaves;
 import arcticraft.entities.AC_EntityBlueSparkle;
 import arcticraft.entities.AC_EntityYellowSparkle;
 import arcticraft.items.AC_Item;
-import arcticraft.items.AC_ItemLantern;
 import arcticraft.lib.Strings;
 import arcticraft.main.MainRegistry;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -90,7 +89,6 @@ public class AC_TickHandler implements ITickHandler
 
 			if(type.equals(EnumSet.of(TickType.PLAYER)))
 			{
-				AC_ItemLantern.fuelCounter(mc.thePlayer, mc.thePlayer.getCurrentItemOrArmor(0));
 				AC_BlockFrostLeaves.setGraphicsLevel(! Minecraft.getMinecraft().gameSettings.fancyGraphics);
 				AC_BlockGlacierLeaves.setGraphicsLevel(! Minecraft.getMinecraft().gameSettings.fancyGraphics);
 				tickDecrementCounter();

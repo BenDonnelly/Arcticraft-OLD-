@@ -6,8 +6,8 @@ import net.minecraft.client.gui.GuiScreen;
 
 import org.lwjgl.opengl.GL11;
 
-import arcticraft.entities.AC_EntityCaveman;
 import arcticraft.helpers.AC_TickHandler;
+import arcticraft.main.MainRegistry;
 
 public class AC_GuiOptions extends GuiScreen
 {
@@ -43,7 +43,6 @@ public class AC_GuiOptions extends GuiScreen
 		}
 		else if(button.id == 2)
 		{
-			System.out.println("Angery: " + AC_EntityCaveman.isAngry);
 		}
 		else if(button.id == 3)
 		{

@@ -1,3 +1,1 @@
-Lantern needs to remember its durability when placed
-Lantern stacksize dosent decrease when at max damage
 yeti

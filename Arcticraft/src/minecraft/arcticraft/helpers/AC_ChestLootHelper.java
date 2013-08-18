@@ -41,7 +41,7 @@ public class AC_ChestLootHelper
 	{
 		ChestGenHooks chestcontents = ChestGenHooks.getInfo("acpirateship");
 		
-		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.itemLantern, 1, 0), 1, 1, 10));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.lantern, 1, 0), 1, 1, 10));
 		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.bomb, 1, 0), 1, 3, 10));
 		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.pirateHat, 1, 0), 1, 1, 9));
 		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.eriumGem, 1, 0), 1, 8, 10));
@@ -54,7 +54,7 @@ public class AC_ChestLootHelper
 	{
 		ChestGenHooks chestcontents = ChestGenHooks.getInfo("aciceberg");
 		
-		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.itemLantern, 1, 0), 1, 1, 10));
+		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.lantern, 1, 0), 1, 1, 10));
 		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.iceCream, 1, 0), 1, 1, 4));
 		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.iceCream, 1, 1), 1, 1, 4));
 		chestcontents.addItem(new WeightedRandomChestContent(new ItemStack(AC_Item.iceCream, 1, 2), 1, 1, 4));

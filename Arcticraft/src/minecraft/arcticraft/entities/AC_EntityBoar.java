@@ -90,6 +90,12 @@ public class AC_EntityBoar extends EntityAnimal
 	{
 		this.playSound("mob.pig.step", 0.15F, 1.0F);
 	}
+	
+	@Override
+	protected float getSoundVolume()
+	{
+		return 0.7F;
+	}
 
 	/**
 	 * Returns the item ID for the item the mob drops on death.

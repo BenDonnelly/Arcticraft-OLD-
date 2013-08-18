@@ -39,6 +39,12 @@ public class AC_EventSoundLoad
 			event.manager.addSound("ac:mobs/boar_living.wav");
 			event.manager.addSound("ac:mobs/boar_death.wav");
 		
+			/*Caveman*/
+			event.manager.addSound("ac:mobs/caveman_footstep.wav");
+			event.manager.addSound("ac:mobs/caveman_living.wav");
+			event.manager.addSound("ac:mobs/caveman_hurt.wav");
+			event.manager.addSound("ac:mobs/caveman_death.wav");
+			
 			/*Records*/
 			for(String name : AC_ItemRecord.recordNames)
 			{

@@ -23,7 +23,7 @@ public class AC_BiomeFrostMountains extends AC_BiomeGenBase
 		this.spawnableWaterCreatureList.clear();
 		this.spawnableCaveCreatureList.clear();
 		this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityPolarBear.class, 5, 4, 4));
-		this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityFrostGhost.class, 1, 1, 4));
+		this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityFrostGhost.class, 1, 1, 1));
 		//	this.spawnableMonsterList.add(new SpawnListEntry(AC_EntityDragon.class, 1, 1, 1));
 		setMinMaxHeight(0.2F, 2.3F);
 		setTemperatureRainfall(0.0F, 1.0F);

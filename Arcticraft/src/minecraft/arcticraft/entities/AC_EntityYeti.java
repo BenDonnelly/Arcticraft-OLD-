@@ -21,7 +21,7 @@ public class AC_EntityYeti extends EntityMob implements AC_IBossDisplayData
 
 	Random rand = new Random();
 	public String[] bossName = {"Glacken" , "Ceton" , "Esctor" , "Sesitur" , "Glacius" , "Benscus" , "Scentor" , "Nashausc" , "Fedsenur"};
-	public String chooseBossName = bossName[rand.nextInt(bossName.length)];
+	public final String chooseBossName = bossName[rand.nextInt(bossName.length)];
 
 	public AC_EntityYeti(World par1World)
 	{
