@@ -11,12 +11,14 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.client.event.sound.PlayStreamingEvent;
 import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import arcticraft.entities.AC_EntityCaveman;
 import arcticraft.entities.AC_EntityFrostGhost;
 import arcticraft.entities.AC_EntityIceShard;
+import arcticraft.entities.AC_EntityPropertyTemperature;
 import arcticraft.items.AC_Item;
 import arcticraft.items.AC_ItemRecord;
 import arcticraft.main.MainRegistry;
@@ -107,6 +109,13 @@ public class AC_ForgeEvents
 			{
 				event.result = new SoundPoolEntry(name + ".wav", MainRegistry.class.getResource("/assets/ac/records/" + name + ".wav"));
 			}
+		}
+	}
+	
+	@ForgeSubscribe
+	public void onPlayerConstructing(EntityEvent.EntityConstructing event) {
+		if (event.entity instanceof EntityPlayer) {
+			event.entity.registerExtendedProperties("Temperature", new AC_EntityPropertyTemperature());
 		}
 	}
 

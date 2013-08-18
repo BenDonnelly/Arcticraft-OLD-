@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import arcticraft.blocks.AC_Block;
 import arcticraft.items.AC_Item;
 
 public class AC_EntityCaveman extends EntityMob
@@ -74,7 +75,7 @@ public class AC_EntityCaveman extends EntityMob
 				}
 				else if(number == 4)
 				{
-					worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(AC_Item.itemLantern)));
+					//worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(AC_Block.Lantern)));
 				}
 				else if(number == 3)
 				{

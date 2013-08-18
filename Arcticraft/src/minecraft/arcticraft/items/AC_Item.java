@@ -117,7 +117,6 @@ public class AC_Item
 	/* Miscellaneous Items */
 	public static Item IceShard;
 	public static Item penguinFeather;
-	public static Item itemLantern;
 	public static Item arcaneDust;
 	public static Item heatPack;
 	public static Item frostSticks;
@@ -127,6 +126,7 @@ public class AC_Item
 	public static Item invisoStaff;
 	public static Item sled;
 	public static Item captainLog;
+	public static Item lantern;
 
 	public static void initializeItems()
 	{
@@ -220,7 +220,6 @@ public class AC_Item
 		rigentemIngot = new Item(6259).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("rigentem").func_111206_d("ac:rigentem_ingot");
 		eriumGem = new Item(6260).setCreativeTab(MainRegistry.tabMaterial).setUnlocalizedName("erium_gem").func_111206_d("ac:erium_gem");
 		iceCream = new AC_ItemIceCream(6261, 10, 1.3F, true).setAlwaysEdible().setCreativeTab(MainRegistry.tabFood).setUnlocalizedName("icecream");
-		itemLantern = new AC_ItemLantern(6262, AC_Block.Lantern).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("lantern").func_111206_d("ac:lantern");
 		arcaneDust = new Item(6263).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("arcaneDust").func_111206_d("ac:arcane_dust");
 		heatPack = new AC_ItemHeatPack(6264).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("heatpack").func_111206_d("ac:heatpack");
 		bomb = new AC_ItemBomb(6265).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("bomb").func_111206_d("ac:bomb");
@@ -248,6 +247,7 @@ public class AC_Item
 		ignisBlade = new AC_ItemIgnisBlade(6287, ignisBladeMaterial).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("ignis_blade").func_111206_d("ac:ignis_blade");
 		archerBow = new AC_ItemArchersBow(6288).setFull3D().setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("archer_bow").func_111206_d("ac:archer_bow");
 		captainLog = new AC_ItemCaptainLog(6289).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("captain_log").func_111206_d("ac:captain_log");
+		lantern = new AC_ItemBlockLantern(1516).setUnlocalizedName("lantern").func_111206_d("ac:lantern");
 	}
 
 	public static void nameItems()
@@ -271,7 +271,6 @@ public class AC_Item
 		LanguageRegistry.addName(glacianIngot, "Glacian Ingot");
 		LanguageRegistry.addName(frigus, "Frigus");
 		LanguageRegistry.addName(eriumGem, "Erium Gem");
-		LanguageRegistry.addName(itemLantern, "Lantern");
 		LanguageRegistry.addName(arcaneDust, "Arcane Dust");
 		LanguageRegistry.addName(heatPack, "Heatpack");
 		LanguageRegistry.addName(bomb, "Bomb");
@@ -289,6 +288,7 @@ public class AC_Item
 		LanguageRegistry.addName(sled, "Sled");
 		LanguageRegistry.addName(notchedPickaxe, "Notched Pickaxe");
 		LanguageRegistry.addName(captainLog, "Captain's Log");
+		LanguageRegistry.addName(lantern, "Lantern");
 		
 		LanguageRegistry.addName(TekkitePickaxe, "Tekkite Pickaxe");
 		LanguageRegistry.addName(TekkiteAxe, "Tekkite Axe");
