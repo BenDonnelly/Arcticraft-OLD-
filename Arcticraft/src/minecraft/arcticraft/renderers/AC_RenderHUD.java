@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.ScaledResolution;
@@ -115,6 +116,7 @@ public class AC_RenderHUD
 			GuiIngame gui = mc.ingameGUI;
 			gui.drawTexturedModalRect(AC_TickHandler.x, AC_TickHandler.y, 0, 6, 80, 6);
 			gui.drawTexturedModalRect(AC_TickHandler.x, AC_TickHandler.y, 0, 0, AC_TickHandler.value * 80 / AC_TickHandler.maxValue, 6);
+			mc.func_110434_K().func_110577_a(Gui.field_110324_m);
 		}
 
 	}
