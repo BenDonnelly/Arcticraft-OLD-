@@ -1,8 +1,48 @@
-
 Put tasks below:
 
-final boss model(King)
-objectives to get to said boss
-quest system
-quest table with gui that looks good as shit
-tweak the placed lantern ticking
+Entities:
+King, Yeti, (Maybe whale) Mammoth, Caveman needs datawatching stuff to sync client/server (Or another option if you have one) 
+Finish Pirate hook(loldog)
+Fix rotation on the statues and chest, Tom
+
+World Gen:
+Castle, Ship (Ben)
+Icile(Maybe Ben, depends if I can to spawn good)
+
+
+SMP Fixing:
+Proxys, Temperature System, general stuff(Domi)
+
+Blocks:
+Cannon(Probably Ben)
+Quest Stand(We have model, whoevever is doing Quest System, do it)
+
+Items:
+Mammoth Pouch(Ben)
+Once Caveman is fixed, add more clubs(Ben)
+
+Sounds:
+Captain
+Yeti 
+Frost Ghost
+King 
+Knight
+Miner
+Archer
+
+Fixes:
+Ice shard, movement is buggy, some people saying its the way its registered, others client/server movement. 
+
+Misc:
+Quest System(Loldog or Domi would do it best imo)
+I tried scaled res on the temp bar in GuiCoordinates, didnt work for some reason; someone else try. 
+Treasure Chest Animation(This, Im not really bothered about really, vanilla Minecraft didnt get one for ages)
+Add trades to the normal eskimos and refine the general trader trades
+New Statue Models(Ben)
+
+Textures:
+New Boar Texture(Ill get hoop to do it)
+----
+If anyone else has any stuff to put on the to-do list, just add it :)
+
+~Ben 
