@@ -18,10 +18,18 @@ public class AC_CaptainStatueRenderer implements IItemRenderer
 		plainStatueModel = new AC_ModelPlainStatue();
 	}
 
+	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{
-
-		return true;
+		switch(type)
+		{
+		case EQUIPPED:
+			return true;
+		case EQUIPPED_FIRST_PERSON:
+			return true;
+		default:
+			return false;
+		}
 	}
 
 	@Override

@@ -89,6 +89,7 @@ import arcticraft.renderers.AC_RenderWhale;
 import arcticraft.renderers.AC_RenderYeti;
 import arcticraft.renderers.AC_RenderZombie;
 import arcticraft.renderers.AC_StatueRenderer;
+import arcticraft.renderers.AC_TresureChestRenderer;
 import arcticraft.tile_entities.AC_TileEntityCampfire;
 import arcticraft.tile_entities.AC_TileEntityCampfireRenderer;
 import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
@@ -99,6 +100,8 @@ import arcticraft.tile_entities.AC_TileEntityFrostChest;
 import arcticraft.tile_entities.AC_TileEntityFrostChestRender;
 import arcticraft.tile_entities.AC_TileEntityStatue;
 import arcticraft.tile_entities.AC_TileEntityStatueRenderer;
+import arcticraft.tile_entities.AC_TileEntityTresureChest;
+import arcticraft.tile_entities.AC_TileEntityTresureChestRenderer;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -174,6 +177,9 @@ public class AC_ClientProxy extends AC_CommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCaveman.class, new AC_TileEntityCavemanRenderer());
 		MinecraftForgeClient.registerItemRenderer(AC_Block.caveman.blockID, new AC_CavemanRenderer());
 
+		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityTresureChest.class, new AC_TileEntityTresureChestRenderer());
+		MinecraftForgeClient.registerItemRenderer(AC_Block.tresureChest.blockID, new AC_TresureChestRenderer());
+		
 		MinecraftForgeClient.registerItemRenderer(AC_Item.invisoStaff.itemID, (IItemRenderer) new AC_InvisoStaffRenderer());
 
 		MinecraftForgeClient.registerItemRenderer(AC_Item.notchedPickaxe.itemID, (IItemRenderer) new AC_NotchedPickaxeRenderer());

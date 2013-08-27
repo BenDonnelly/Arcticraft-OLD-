@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.ChestGenHooks;
 import arcticraft.blocks.AC_Block;
-import arcticraft.tile_entities.AC_TileEntityFrostChest;
+import arcticraft.tile_entities.AC_TileEntityTresureChest;
 
 public class AC_GenIceberg extends WorldGenerator
 {
@@ -2119,7 +2119,7 @@ public class AC_GenIceberg extends WorldGenerator
 		world.setBlock(i + 13, j + 12, k + 14, AC_Block.acWaterIce.blockID);
 		world.setBlock(i + 13, j + 12, k + 15, AC_Block.acWaterIce.blockID);
 		world.setBlock(i + 13, j + 12, k + 16, AC_Block.acWaterIce.blockID);
-		world.setBlock(i + 13, j + 12, k + 17, AC_Block.frostChest.blockID);
+		world.setBlock(i + 13, j + 12, k + 17, AC_Block.tresureChest.blockID);
 		world.setBlock(i + 13, j + 12, k + 18, AC_Block.acWaterIce.blockID);
 		world.setBlock(i + 13, j + 12, k + 19, AC_Block.acWaterIce.blockID);
 		world.setBlock(i + 13, j + 12, k + 20, AC_Block.acWaterIce.blockID);
@@ -5654,7 +5654,7 @@ public class AC_GenIceberg extends WorldGenerator
 		if(world.getBlockTileEntity(i + 13, j + 12, k + 17) != null)
 		{
 			ChestGenHooks info = ChestGenHooks.getInfo("aciceberg");
-			WeightedRandomChestContent.generateChestContents(rand, info.getItems(rand), (AC_TileEntityFrostChest) world.getBlockTileEntity(i + 13, j + 12, k + 17), info.getCount(rand));
+			WeightedRandomChestContent.generateChestContents(rand, info.getItems(rand), (AC_TileEntityTresureChest) world.getBlockTileEntity(i + 13, j + 12, k + 17), info.getCount(rand));
 		}
 
 		return true;

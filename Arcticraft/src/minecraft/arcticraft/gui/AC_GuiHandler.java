@@ -6,10 +6,12 @@ import net.minecraft.world.World;
 import arcticraft.containers.AC_ContainerArcticFreezer;
 import arcticraft.containers.AC_ContainerArcticFurnace;
 import arcticraft.containers.AC_ContainerCaveman;
+import arcticraft.containers.AC_ContainerTresureChest;
 import arcticraft.entities.AC_EntityCaveman;
 import arcticraft.tile_entities.AC_TileEntityArcticFurnace;
 import arcticraft.tile_entities.AC_TileEntityCavemanGUI;
 import arcticraft.tile_entities.AC_TileEntityFreezer;
+import arcticraft.tile_entities.AC_TileEntityTresureChest;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class AC_GuiHandler implements IGuiHandler
@@ -30,7 +32,8 @@ public class AC_GuiHandler implements IGuiHandler
 		case 2:
 
 			return new AC_ContainerCaveman(player.inventory, (AC_TileEntityCavemanGUI) tile_entity);
-
+		case 3: 
+			return new AC_ContainerTresureChest(player.inventory, (AC_TileEntityTresureChest) tile_entity);
 		}
 		return null;
 	}
@@ -53,7 +56,8 @@ public class AC_GuiHandler implements IGuiHandler
 		case 2:
 
 			return new AC_GuiCaveman(player.inventory, (AC_TileEntityCavemanGUI) tile_entity, new AC_EntityCaveman(world));
-
+		case 3: 
+			return new AC_GuiTresureChest(player.inventory, (AC_TileEntityTresureChest) tile_entity);
 		}
 		return null;
 	}

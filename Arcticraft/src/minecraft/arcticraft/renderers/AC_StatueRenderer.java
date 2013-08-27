@@ -3,6 +3,7 @@ package arcticraft.renderers;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import arcticraft.models.AC_ModelPlainStatue;
 import arcticraft.tile_entities.AC_TileEntityStatue;
 
@@ -16,10 +17,18 @@ public class AC_StatueRenderer implements IItemRenderer
 		plainStatueModel = new AC_ModelPlainStatue();
 	}
 
+	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{
-
-		return true;
+		switch(type)
+		{
+		case EQUIPPED:
+			return true;
+		case EQUIPPED_FIRST_PERSON:
+			return true;
+		default:
+			return false;
+		}
 	}
 
 	@Override

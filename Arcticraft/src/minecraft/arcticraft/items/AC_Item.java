@@ -243,12 +243,11 @@ public class AC_Item
 		frostDoorPlace = new AC_ItemFrostDoor(6282, Material.wood).setUnlocalizedName("icedoor").setCreativeTab(MainRegistry.tabBlocks).func_111206_d("ac:frost_door_icon");
 		amouryDoorPlace = new AC_ItemAmouryDoor(6283, Material.wood).setUnlocalizedName("amoury_door").setCreativeTab(MainRegistry.tabBlocks).func_111206_d("ac:amoury_door");
 		floranSeed = new AC_ItemSeed(6284, AC_Block.floranPlant).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("floran_seed").func_111206_d("ac:floran_seed");
-		sled = new AC_ItemSled(6285).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("sled").func_111206_d("ac:sled");
+		sled = new AC_ItemSled(6285).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("sled").func_111206_d("ac:sled_icon");
 		notchedPickaxe = new AC_ItemNPickaxe(6286, notchedPickaxeMaterial).setFull3D().setCreativeTab(MainRegistry.tabTools).setUnlocalizedName("notched_pickaxe").func_111206_d("ac:notched_pickaxe_icon");
 		ignisBlade = new AC_ItemIgnisBlade(6287, ignisBladeMaterial).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("ignis_blade").func_111206_d("ac:ignis_blade");
 		archerBow = new AC_ItemArchersBow(6288).setFull3D().setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("archer_bow").func_111206_d("ac:archer_bow");
 		captainLog = new AC_ItemCaptainLog(6289).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("captain_log").func_111206_d("ac:captain_log");
-		
 		woodenClub = new AC_ItemSword(6290, EnumToolMaterial.WOOD).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("wooden_club").func_111206_d("ac:wooden_club");
 		iceClub = new AC_ItemIceClub(6291, EnumToolMaterial.IRON).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("ice_club").func_111206_d("ac:ice_club");
 		lantern = new AC_ItemBlockLantern(1516).setUnlocalizedName("lantern").func_111206_d("ac:lantern");

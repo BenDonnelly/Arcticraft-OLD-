@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet41EntityEffect;
@@ -283,7 +284,7 @@ public class AC_Teleporter
 						if(id == CHEST_ID)
 						{
 							TileEntityChest chest = (TileEntityChest) world.getBlockTileEntity(x, y, z);
-
+							chest.setInventorySlotContents(1, new ItemStack(Item.boat, 1));
 							chest.setInventorySlotContents(0, new ItemStack(AC_Item.GlacierFruit, 1));
 						}
 					}

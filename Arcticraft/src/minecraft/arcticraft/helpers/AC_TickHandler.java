@@ -10,22 +10,15 @@ import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
 import arcticraft.blocks.AC_Block;
 import arcticraft.blocks.AC_BlockFrostLeaves;
 import arcticraft.blocks.AC_BlockGlacierLeaves;
 import arcticraft.entities.AC_EntityBlueSparkle;
 import arcticraft.entities.AC_EntityYellowSparkle;
 import arcticraft.items.AC_Item;
-import arcticraft.lib.Strings;
 import arcticraft.main.MainRegistry;
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
@@ -47,7 +40,9 @@ public class AC_TickHandler implements ITickHandler
 	public static boolean renderOverlay = true;
 	public static boolean canFireExplosion;
 	public static boolean snowLayersEnabled = true;
-
+	private static ScaledResolution scaledresolution = getScaledResolution();
+	private static int i = scaledresolution.getScaledWidth();
+	private static int k = scaledresolution.getScaledHeight();
 	Random rand = new Random();
 	public static AC_TickHandler tickHandler;
 
@@ -57,15 +52,14 @@ public class AC_TickHandler implements ITickHandler
 
 	}
 
-	//Util Methods
-	public static Minecraft getMinecraft()
-	{
-		return Minecraft.getMinecraft();
-	}
-
 	public static AC_TickHandler getTickHandler()
 	{
 		return tickHandler;
+	}
+
+	public static Minecraft getMinecraft()
+	{
+		return Minecraft.getMinecraft();
 	}
 
 	public static ScaledResolution getScaledResolution()
@@ -84,29 +78,25 @@ public class AC_TickHandler implements ITickHandler
 	public void tickStart(EnumSet<TickType> type, Object... tickData)
 	{
 
-		if(mc.thePlayer != null)
+		if(type.equals(EnumSet.of(TickType.PLAYER)))
 		{
-
-			if(type.equals(EnumSet.of(TickType.PLAYER)))
-			{
-				AC_BlockFrostLeaves.setGraphicsLevel(! Minecraft.getMinecraft().gameSettings.fancyGraphics);
-				AC_BlockGlacierLeaves.setGraphicsLevel(! Minecraft.getMinecraft().gameSettings.fancyGraphics);
-				tickDecrementCounter();
-				tempIncrementCounter();
-				canDecrementTemp();
-				canIncrementTemp();
-				slowPlayer((EntityPlayer) tickData[0]);
-				renderBlueYellowParticles((EntityPlayer) tickData[0]);
-				startPickaxeCooldown((EntityPlayer) tickData[0]);
-				stringTick();
-			}
+			AC_BlockFrostLeaves.setGraphicsLevel(! Minecraft.getMinecraft().gameSettings.fancyGraphics);
+			AC_BlockGlacierLeaves.setGraphicsLevel(! Minecraft.getMinecraft().gameSettings.fancyGraphics);
+			tickDecrementCounter((EntityPlayer) tickData[0]);
+			tempIncrementCounter((EntityPlayer) tickData[0]);
+			canDecrementTemp((EntityPlayer) tickData[0]);
+			canIncrementTemp((EntityPlayer) tickData[0]);
+			slowPlayer((EntityPlayer) tickData[0]);
+			renderBlueYellowParticles((EntityPlayer) tickData[0]);
+			startPickaxeCooldown((EntityPlayer) tickData[0]);
+			stringTick();
 		}
 	}
 
 	@Override
 	public void tickEnd(EnumSet<TickType> type, Object... tickData)
 	{
-		
+
 	}
 
 	@Override
@@ -128,55 +118,55 @@ public class AC_TickHandler implements ITickHandler
 		}
 	}
 
-	public void tickDecrementCounter()
+	public void tickDecrementCounter(EntityPlayer player)
 	{
 		GuiIngame ingamegui = this.mc.ingameGUI;
-		if(! mc.thePlayer.capabilities.isCreativeMode)
+		if(!player.capabilities.isCreativeMode)
 		{
-			if(mc.currentScreen == null && mc.thePlayer.dimension == MainRegistry.dimension && ! (mc.currentScreen instanceof GuiIngameMenu) && ! (mc.currentScreen instanceof GuiMainMenu))
+			if(mc.currentScreen == null && player.dimension == MainRegistry.dimension && ! (mc.currentScreen instanceof GuiIngameMenu) && ! (mc.currentScreen instanceof GuiMainMenu))
 			{
 				//System.out.println(tickCounter);
 				//System.out.println(value);
 				tickCounter++;
 			}
 
-			if(tickCounter == 1501 && mc.thePlayer.dimension == MainRegistry.dimension)
+			if(tickCounter == 1501 && player.dimension == MainRegistry.dimension)
 			{
 				tickCounter = 0;
 			}
 		}
 	}
 
-	public void tempIncrementCounter()
+	public void tempIncrementCounter(EntityPlayer player)
 	{
 		GuiIngame ingamegui = this.mc.ingameGUI;
-		if(! mc.thePlayer.capabilities.isCreativeMode)
+		if(! player.capabilities.isCreativeMode)
 		{
-			if(mc.currentScreen == null && mc.thePlayer.dimension == MainRegistry.dimension && ! (mc.currentScreen instanceof GuiIngameMenu) && ! (mc.currentScreen instanceof GuiMainMenu))
+			if(mc.currentScreen == null && player.dimension == MainRegistry.dimension && ! (mc.currentScreen instanceof GuiIngameMenu) && ! (mc.currentScreen instanceof GuiMainMenu))
 			{
 				//System.out.println(tempIncrementCounter);
 				tempIncrementCounter++;
 			}
 
-			if(tempIncrementCounter == 75 && mc.thePlayer.dimension == MainRegistry.dimension)
+			if(tempIncrementCounter == 75 && player.dimension == MainRegistry.dimension)
 			{
 				tempIncrementCounter = 0;
 			}
 		}
 	}
 
-	public void canDecrementTemp()
+	public void canDecrementTemp(EntityPlayer player)
 	{
-		if(! mc.thePlayer.capabilities.isCreativeMode && mc.theWorld != null)
+		if(! player.capabilities.isCreativeMode && mc.theWorld != null)
 		{
 
-			if(mc.thePlayer.dimension == MainRegistry.dimension && mc.thePlayer.isInsideOfMaterial(Material.water) && this.tickCounter == 300)
+			if(player.dimension == MainRegistry.dimension && player.isInsideOfMaterial(Material.water) && this.tickCounter == 300)
 			{
 				this.value -= 2;
 				this.tickCounter = 0;
 
 			}
-			else if(mc.thePlayer.dimension == MainRegistry.dimension && mc.theWorld.isRaining() == true && this.tickCounter == 300)
+			else if(player.dimension == MainRegistry.dimension && mc.theWorld.isRaining() == true && this.tickCounter == 300)
 			{
 				this.value -= 2;
 				this.tickCounter = 0;
@@ -189,14 +179,14 @@ public class AC_TickHandler implements ITickHandler
 
 	}
 
-	public void canIncrementTemp()
+	public void canIncrementTemp(EntityPlayer player)
 	{
-		if(! mc.thePlayer.capabilities.isCreativeMode && mc.theWorld != null && mc.thePlayer != null)
+		if(! player.capabilities.isCreativeMode && mc.theWorld != null && player != null)
 		{
 
-			int offsetX = (int) Math.round(mc.thePlayer.posX);
-			int offsetY = (int) Math.round(mc.thePlayer.posY);
-			int offsetZ = (int) Math.round(mc.thePlayer.posZ);
+			int offsetX = (int) Math.round(player.posX);
+			int offsetY = (int) Math.round(player.posY);
+			int offsetZ = (int) Math.round(player.posZ);
 
 			for(int x = 0; x < 8; x++)
 			{

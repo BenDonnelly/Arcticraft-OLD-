@@ -8,7 +8,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraftforge.common.MinecraftForge;
-import arcticraft.items.AC_ItemBlockLantern;
 import arcticraft.items.AC_ItemWhiteberry;
 import arcticraft.main.MainRegistry;
 import arcticraft.tile_entities.AC_TileEntityArcticFurnace;
@@ -19,6 +18,7 @@ import arcticraft.tile_entities.AC_TileEntityCavemanGUI;
 import arcticraft.tile_entities.AC_TileEntityFreezer;
 import arcticraft.tile_entities.AC_TileEntityFrostChest;
 import arcticraft.tile_entities.AC_TileEntityStatue;
+import arcticraft.tile_entities.AC_TileEntityTresureChest;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -100,6 +100,7 @@ public class AC_Block
 	public static Block captainStatue;
 	public static Block campfire;
 	public static Block caveman;
+	public static Block tresureChest;
 
 	/* Miscellaneous Blocks */
 	public static Block lantern;
@@ -168,13 +169,16 @@ public class AC_Block
 		rigentemBlock = new Block(1555, Material.rock).setHardness(3.5F).setResistance(3.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("rigentem_block").func_111022_d("ac:rigentem_block").setStepSound(Block.soundStoneFootstep);
 		acWaterIce = new AC_BlockIce(245).setHardness(0.5F).setLightOpacity(3).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("ac_water_ice").func_111022_d("ac:ice");
 		caveman = new AC_BlockCaveman(1556, Material.glass).setHardness(30.0F).setResistance(1500.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("caveman").func_111022_d("ac:ice").setStepSound(Block.soundStoneFootstep);
+		tresureChest = new AC_BlockTresureChest(1557, Material.wood).setHardness(2.0F).setResistance(3.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("tresure_chest").func_111022_d("planks").setStepSound(Block.soundWoodFootstep);
 		
-		debugBlock = new AC_BlockDebug(1557).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("block_debug");
+		
+		debugBlock = new AC_BlockDebug(3001).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("block_debug");
 	
 	}
 
 	public static void registerBlocks()
 	{
+		GameRegistry.registerBlock(tresureChest, "Tresure_Chest");
 		GameRegistry.registerBlock(debugBlock, "Debug_Block");
 		GameRegistry.registerBlock(caveman, "Caveman");
 		GameRegistry.registerBlock(frostDoor, "Frost_Door");
@@ -228,6 +232,7 @@ public class AC_Block
 		GameRegistry.registerBlock(freezerBurning, "Freezer_Buring");
 		GameRegistry.registerBlock(frostChest, "AC_FrostChest");
 		GameRegistry.registerBlock(acWaterIce, "AC_Water_Ice");
+		GameRegistry.registerTileEntity(AC_TileEntityTresureChest.class, "tileEntityTresureChest");
 		GameRegistry.registerTileEntity(AC_TileEntityArcticFurnace.class, "tileEntityArcticFurnace");
 		GameRegistry.registerTileEntity(AC_TileEntityFreezer.class, "tileEntityFreezer");
 		GameRegistry.registerTileEntity(AC_TileEntityFrostChest.class, "tileEntityFrostChest");
@@ -240,6 +245,7 @@ public class AC_Block
 
 	public static void nameBlocks()
 	{
+		LanguageRegistry.addName(tresureChest, "Tresure Chest");
 		LanguageRegistry.addName(debugBlock, "Debug Block");
 		LanguageRegistry.addName(caveman, "Frozen Caveman");
 		LanguageRegistry.addName(acWaterIce, "Ice");
