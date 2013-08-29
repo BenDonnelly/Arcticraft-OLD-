@@ -304,33 +304,63 @@ public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerch
 	{
 		return new ItemStack(ID, getRandomCountForBuyingItem(ID, par1Random), 0);
 	}
-
+	
+	/** Adds a trade for this eskimo to carry out.
+	 * @param item The item to add for trading
+	 * @param minAmount The minimum amount of erium gems each individual item costs
+	 * @param maxAmount The maximum amount of erium gems each individual item costs
+	 * @param rarity the rarity of the trade, between 0 and 1 **/
 	protected static void addStuffToBuy(Item item, int minAmount, int maxAmount, float rarity)
 	{
 		addStuffToBuy(item.itemID, minAmount, maxAmount, rarity);
 	}
 
+	/** Adds a trade for this eskimo to carry out.
+	 * @param item The block to add for trading
+	 * @param minAmount The minimum amount of erium gems each individual block costs
+	 * @param maxAmount The maximum amount of erium gems each individual block costs
+	 * @param rarity the rarity of the trade, between 0 and 1 **/
 	protected static void addStuffToBuy(Block block, int minAmount, int maxAmount, float rarity)
 	{
 		addStuffToBuy(block.blockID, minAmount, maxAmount, rarity);
 	}
 
+	/** Adds a trade for this eskimo to carry out.
+	 * @param item The item to add for trading
+	 * @param minAmount The minimum amount of erium gems each individual item costs
+	 * @param maxAmount The maximum amount of erium gems each individual item costs
+	 * @param rarity the rarity of the trade, between 0 and 1 **/
 	protected static void addStuffToBuy(int ID, int minAmount, int maxAmount, float rarity)
 	{
 		buyingList.put(Integer.valueOf(ID), new Tuple(Integer.valueOf(minAmount), Integer.valueOf(maxAmount)));
 		rarityBuyingList.put(Integer.valueOf(ID), Float.valueOf(rarity));
 	}
 
+	/** Adds a selling trade for this eskimo to carry out.
+	 * @param item The item to add for trading
+	 * @param minAmount The minimum amount of erium gems each individual item costs
+	 * @param maxAmount The maximum amount of erium gems each individual item costs
+	 * @param rarity the rarity of the trade, between 0 and 1 **/
 	protected static void addStuffToSell(Item item, int minAmount, int maxAmount, float rarity)
 	{
 		addStuffToSell(item.itemID, minAmount, maxAmount, rarity);
 	}
 
+	/** Adds a selling trade for this eskimo to carry out.
+	 * @param item The block to add for trading
+	 * @param minAmount The minimum amount of erium gems each individual block costs
+	 * @param maxAmount The maximum amount of erium gems each individual block costs
+	 * @param rarity the rarity of the trade, between 0 and 1 **/
 	protected static void addStuffToSell(Block block, int minAmount, int maxAmount, float rarity)
 	{
 		addStuffToSell(block.blockID, minAmount, maxAmount, rarity);
 	}
 
+	/** Adds a selling trade for this eskimo to carry out.
+	 * @param item The item to add for trading
+	 * @param minAmount The minimum amount of erium gems each individual item costs
+	 * @param maxAmount The maximum amount of erium gems each individual item costs
+	 * @param rarity the rarity of the trade, between 0 and 1 **/
 	protected static void addStuffToSell(int ID, int minAmount, int maxAmount, float rarity)
 	{
 		stockList.put(Integer.valueOf(ID), new Tuple(Integer.valueOf(minAmount), Integer.valueOf(maxAmount)));
