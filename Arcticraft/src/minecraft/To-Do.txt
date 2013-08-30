@@ -38,10 +38,10 @@ Quest System(Loldog or Domi would do it best imo)
 I tried scaled res on the temp bar in GuiCoordinates, didnt work for some reason; someone else try. 
 Treasure Chest Animation(This, Im not really bothered about really, vanilla Minecraft didnt get one for ages)
 Add trades to the normal eskimos and refine the general trader trades
-New Statue Models(Ben)
+
 
 Textures:
-New Boar Texture(Ill get hoop to do it)
+Currently, none. I think.
 ----
 If anyone else has any stuff to put on the to-do list, just add it :)
 

@@ -116,11 +116,14 @@ public class AC_EntityRegistry
 		LanguageRegistry.instance().addStringLocalization("entity.Caveman.name",  "Caveman");
 		registerEntityEgg(AC_EntityCaveman.class, lightBlueColor, blueishIcyColor);
 		
+
+		
 		EntityRegistry.registerModEntity(AC_EntityBomb.class, "Bomb", 1, MainRegistry.instance, 64, 10, true);
 		EntityRegistry.registerModEntity(AC_EntitySled.class, "Sled", 2, MainRegistry.instance, 64, 10, true);
 		EntityRegistry.registerModEntity(AC_EntityNPickThing.class, "NPickThing", 3, MainRegistry.instance, 64, 10, true);
 		EntityRegistry.registerModEntity(AC_EntityPirateHook.class, "PirateHook", 4, MainRegistry.instance, 64, 10, true);
 		EntityRegistry.registerModEntity(AC_EntityIceShard.class, "IceShard", 5, MainRegistry.instance, 128, 1, true);
+
 	}
 
 	public static void registerEntityEgg(Class<? extends Entity> entity, int primaryColor, int secondaryColor)

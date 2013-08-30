@@ -1,4 +1,4 @@
-package arcticraft.tile_entities;
+package arcticraft.tile_entity_renderer;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -8,6 +8,7 @@ import org.lwjgl.opengl.GL11;
 
 import arcticraft.lib.Strings;
 import arcticraft.models.AC_ModelCampfire;
+import arcticraft.tile_entities.AC_TileEntityCampfire;
 import cpw.mods.fml.client.FMLClientHandler;
 
 public class AC_TileEntityCampfireRenderer extends TileEntitySpecialRenderer

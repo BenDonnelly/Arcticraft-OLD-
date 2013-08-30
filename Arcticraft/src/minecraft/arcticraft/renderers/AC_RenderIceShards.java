@@ -38,7 +38,7 @@ public class AC_RenderIceShards extends Render
         float f9 = (float)(10 + b0 * 10) / 32.0F;
         float f10 = 0.05625F;
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-        float f11 = (float)par1AC_EntityIceShard.iceshardShake - par9;
+        float f11 = (float)par1AC_EntityIceShard.arrowShake - par9;
 
         if (f11 > 0.0F)
         {

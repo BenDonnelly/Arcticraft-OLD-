@@ -27,6 +27,7 @@ import arcticraft.creative_tabs.AC_TabMisc;
 import arcticraft.creative_tabs.AC_TabTools;
 import arcticraft.data_store.GeneratedShipsStore;
 import arcticraft.data_store.TemperatureDataStorage;
+import arcticraft.entities.AC_EntityIceShard;
 import arcticraft.entities.AC_EntityRegistry;
 import arcticraft.gui.AC_GuiHandler;
 import arcticraft.helpers.AC_ChestLootHelper;
@@ -50,6 +51,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -216,6 +218,7 @@ public class MainRegistry
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
+		
 		//		MainMenuAPI.registerMenu("Arcticraft", AC_MenuBase.class);
 		AC_Block.initializeBlocks();
 		AC_Item.initializeItems();

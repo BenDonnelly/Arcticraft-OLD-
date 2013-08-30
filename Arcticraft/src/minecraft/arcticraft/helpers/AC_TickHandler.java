@@ -31,6 +31,7 @@ public class AC_TickHandler implements ITickHandler
 
 	int tickCounter;
 	int tempIncrementCounter;
+
 	public static int value = 50;
 	public static int maxValue = 100;
 	public static int x;
@@ -121,7 +122,7 @@ public class AC_TickHandler implements ITickHandler
 	public void tickDecrementCounter(EntityPlayer player)
 	{
 		GuiIngame ingamegui = this.mc.ingameGUI;
-		if(!player.capabilities.isCreativeMode)
+		if(! player.capabilities.isCreativeMode)
 		{
 			if(mc.currentScreen == null && player.dimension == MainRegistry.dimension && ! (mc.currentScreen instanceof GuiIngameMenu) && ! (mc.currentScreen instanceof GuiMainMenu))
 			{

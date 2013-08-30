@@ -5,17 +5,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
-import arcticraft.models.AC_ModelPlainStatue;
+import arcticraft.models.AC_ModelStatue;
 import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
 
 public class AC_CaptainStatueRenderer implements IItemRenderer
 {
 
-	private AC_ModelPlainStatue plainStatueModel;
+	private AC_ModelStatue plainStatueModel;
 
 	public AC_CaptainStatueRenderer()
 	{
-		plainStatueModel = new AC_ModelPlainStatue();
+		plainStatueModel = new AC_ModelStatue();
 	}
 
 	@Override

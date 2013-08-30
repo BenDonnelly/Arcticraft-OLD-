@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,28 +13,52 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import arcticraft.entities.AC_EntityBomb;
+import arcticraft.items.AC_Item;
 import arcticraft.main.MainRegistry;
 import arcticraft.tile_entities.AC_TileEntityCavemanGUI;
 
 public class AC_BlockDebug extends BlockContainer
 {
 
+	public boolean isLoaded;
+
 	protected AC_BlockDebug(int id)
 	{
 		super(id, Material.wood);
+		this.setTickRandomly(true);
+
 	}
 
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float what, float these, float are)
 	{
-		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-		if(tileEntity == null || player.isSneaking())
+
+		ItemStack hand = player.getCurrentItemOrArmor(0);
+
+		if(! world.isRemote)
 		{
-			return false;
+			if(hand != null && hand.getItem() == AC_Item.bomb)
+			{
+				isLoaded = true;
+				hand.stackSize--;
+			}
 		}
-		//code to open gui explained later
-		player.openGui(MainRegistry.instance, 2, world, x, y, z);
 		return true;
+	}
+
+	@Override
+	public void updateTick(World world, int x, int y, int z, Random par5Random)
+	{
+		System.out.println("CAll");
+
+		if(isLoaded)
+		{
+			AC_EntityBomb bomb = new AC_EntityBomb(world, x, y, z);
+			bomb.setVelocity(0.3, 0.1, 0);
+			world.spawnEntityInWorld(bomb);
+			System.out.println("Spawing Explosion");
+		}
 	}
 
 	@Override

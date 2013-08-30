@@ -55,6 +55,7 @@ import arcticraft.models.AC_ModelTraderEskimo;
 import arcticraft.models.AC_ModelWhale;
 import arcticraft.models.AC_ModelYeti;
 import arcticraft.renderers.AC_CampfireRenderer;
+import arcticraft.renderers.AC_CannonRenderer;
 import arcticraft.renderers.AC_CaptainStatueRenderer;
 import arcticraft.renderers.AC_CavemanRenderer;
 import arcticraft.renderers.AC_FrostChestRender;
@@ -88,20 +89,19 @@ import arcticraft.renderers.AC_RenderTraderEskimo;
 import arcticraft.renderers.AC_RenderWhale;
 import arcticraft.renderers.AC_RenderYeti;
 import arcticraft.renderers.AC_RenderZombie;
-import arcticraft.renderers.AC_StatueRenderer;
 import arcticraft.renderers.AC_TresureChestRenderer;
 import arcticraft.tile_entities.AC_TileEntityCampfire;
-import arcticraft.tile_entities.AC_TileEntityCampfireRenderer;
+import arcticraft.tile_entities.AC_TileEntityCannon;
 import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
-import arcticraft.tile_entities.AC_TileEntityCaptainStatueRenderer;
 import arcticraft.tile_entities.AC_TileEntityCaveman;
-import arcticraft.tile_entities.AC_TileEntityCavemanRenderer;
 import arcticraft.tile_entities.AC_TileEntityFrostChest;
-import arcticraft.tile_entities.AC_TileEntityFrostChestRender;
-import arcticraft.tile_entities.AC_TileEntityStatue;
-import arcticraft.tile_entities.AC_TileEntityStatueRenderer;
 import arcticraft.tile_entities.AC_TileEntityTresureChest;
-import arcticraft.tile_entities.AC_TileEntityTresureChestRenderer;
+import arcticraft.tile_entity_renderer.AC_TileEntityCampfireRenderer;
+import arcticraft.tile_entity_renderer.AC_TileEntityCannonRenderer;
+import arcticraft.tile_entity_renderer.AC_TileEntityCaptainStatueRenderer;
+import arcticraft.tile_entity_renderer.AC_TileEntityCavemanRenderer;
+import arcticraft.tile_entity_renderer.AC_TileEntityFrostChestRender;
+import arcticraft.tile_entity_renderer.AC_TileEntityTresureChestRenderer;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -162,8 +162,6 @@ public class AC_ClientProxy extends AC_CommonProxy
 
 		
 		
-		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityStatue.class, new AC_TileEntityStatueRenderer());
-		MinecraftForgeClient.registerItemRenderer(AC_Block.statue.blockID, new AC_StatueRenderer());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCaptainStatue.class, new AC_TileEntityCaptainStatueRenderer());
 		MinecraftForgeClient.registerItemRenderer(AC_Block.captainStatue.blockID, new AC_CaptainStatueRenderer());
@@ -179,6 +177,9 @@ public class AC_ClientProxy extends AC_CommonProxy
 
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityTresureChest.class, new AC_TileEntityTresureChestRenderer());
 		MinecraftForgeClient.registerItemRenderer(AC_Block.tresureChest.blockID, new AC_TresureChestRenderer());
+		
+		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCannon.class, new AC_TileEntityCannonRenderer());
+		MinecraftForgeClient.registerItemRenderer(AC_Block.cannon.blockID, new AC_CannonRenderer());
 		
 		MinecraftForgeClient.registerItemRenderer(AC_Item.invisoStaff.itemID, (IItemRenderer) new AC_InvisoStaffRenderer());
 
