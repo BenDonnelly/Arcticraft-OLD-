@@ -45,14 +45,14 @@ public class AC_EntityBomb extends EntityThrowable
 		}
 		for(int var3 = 0; var3 < 8; ++var3)
 		{
-			//this.worldObj.spawnParticle("none", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+			this.worldObj.spawnParticle("none", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 		}
 		if(! this.worldObj.isRemote)
 		{
 			this.setDead();
 			if(! this.worldObj.isRemote)
 			{
-			///	this.worldObj.createExplosion((Entity) null, this.posX, this.posY, this.posZ, 2.5F, true);
+			this.worldObj.createExplosion((Entity) null, this.posX, this.posY, this.posZ, 2.5F, true);
 			}
 		}
 	}

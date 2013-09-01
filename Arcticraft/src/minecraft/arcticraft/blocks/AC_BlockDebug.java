@@ -22,12 +22,12 @@ public class AC_BlockDebug extends BlockContainer
 {
 
 	public boolean isLoaded;
+	public int fuse;
 
 	protected AC_BlockDebug(int id)
 	{
 		super(id, Material.wood);
 		this.setTickRandomly(true);
-
 	}
 
 	@Override
@@ -38,10 +38,18 @@ public class AC_BlockDebug extends BlockContainer
 
 		if(! world.isRemote)
 		{
-			if(hand != null && hand.getItem() == AC_Item.bomb)
+			if(! isLoaded)
 			{
-				isLoaded = true;
-				hand.stackSize--;
+				if(hand != null && hand.getItem() == AC_Item.bomb)
+				{
+					world.scheduleBlockUpdate(x, y, z, this.blockID, 0);
+					isLoaded = true;
+					world.playSoundAtEntity(player, "random.fuse", 1.5F, 1.5F);
+				}
+				if(! player.capabilities.isCreativeMode)
+				{
+					hand.stackSize--;
+				}
 			}
 		}
 		return true;
@@ -50,14 +58,21 @@ public class AC_BlockDebug extends BlockContainer
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random par5Random)
 	{
-		System.out.println("CAll");
 
 		if(isLoaded)
 		{
-			AC_EntityBomb bomb = new AC_EntityBomb(world, x, y, z);
-			bomb.setVelocity(0.3, 0.1, 0);
-			world.spawnEntityInWorld(bomb);
-			System.out.println("Spawing Explosion");
+			fuse++;
+			world.scheduleBlockUpdate(x, y, z, this.blockID, 0);
+			if(fuse == 100)
+			{
+				AC_EntityBomb bomb = new AC_EntityBomb(world, x, y, z);
+				bomb.setPosition(x + 2, y + 2, z + 2);
+				bomb.setVelocity(0, 2.0, 0.7);
+				world.spawnEntityInWorld(bomb);
+				isLoaded = false;
+				fuse = 0;
+				System.out.println("Spawing Explosion");
+			}
 		}
 	}
 

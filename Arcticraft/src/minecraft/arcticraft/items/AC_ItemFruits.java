@@ -2,6 +2,7 @@ package arcticraft.items;
 
 import java.util.Random;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemFood;
@@ -27,18 +28,22 @@ public class AC_ItemFruits extends ItemFood
 	public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer player)
 	{
 		attemptToTeleport(itemStack, world, player);
+	//	world.playSoundAtEntity(player, "ac:misc.portal", 1.5F, 1.5F);
+		Minecraft.getMinecraft().sndManager.playSoundFX("ac:misc.portal", 1.0F, 1.0F);
 
 		itemStack.stackSize--;
 		return itemStack;
 	}
 
 	@Override
-	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
+	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
 	{
-		if(par2EntityPlayer.capabilities.isCreativeMode)
-			attemptToTeleport(par1ItemStack, par3World, par2EntityPlayer);
-
-		return super.onItemUse(par1ItemStack, par2EntityPlayer, par3World, par4, par5, par6, par7, par8, par9, par10);
+		if(player.capabilities.isCreativeMode)
+		{
+			Minecraft.getMinecraft().sndManager.playSoundFX("ac:misc.portal", 1.0F, 1.0F);
+			attemptToTeleport(par1ItemStack, world, player);
+		}
+		return super.onItemUse(par1ItemStack, player, world, par4, par5, par6, par7, par8, par9, par10);
 	}
 
 	private void attemptToTeleport(ItemStack itemStack, World world, EntityPlayer player)

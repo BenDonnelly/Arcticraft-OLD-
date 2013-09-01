@@ -15,8 +15,6 @@ public class AC_EventSoundLoad
 		try
 		{
 		
-			/*Portal*/
-			event.manager.addSound("ac:other/portal.wav");
 
 			/*Penguin*/
 			event.manager.addSound("ac:mobs/penguin_hurt.wav");
@@ -44,6 +42,15 @@ public class AC_EventSoundLoad
 			event.manager.addSound("ac:mobs/caveman_living.wav");
 			event.manager.addSound("ac:mobs/caveman_hurt.wav");
 			event.manager.addSound("ac:mobs/caveman_death.wav");
+			
+			/*Misc*/
+			event.manager.addSound("ac:misc/fuse.wav");
+			event.manager.addSound("ac:misc/portal.wav");
+			
+			/*In game music*/
+			event.manager.addMusic("ac:Frozen Feelings.wav");
+			event.manager.addMusic("ac:Welcome To The Cold.wav");
+
 			
 			/*Records*/
 			for(String name : AC_ItemRecord.recordNames)

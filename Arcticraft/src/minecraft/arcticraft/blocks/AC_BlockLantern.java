@@ -40,7 +40,7 @@ public class AC_BlockLantern extends Block
     
     public int getLightValue(IBlockAccess world, int x, int y, int z)
     {
-        Debug.out(world.getBlockMetadata(x, y, z));
+       // Debug.out(world.getBlockMetadata(x, y, z));
         
         if (world.getBlockMetadata(x, y, z) == 15) return 0;
         if (world.getBlockMetadata(x, y, z) == 14) return 4;

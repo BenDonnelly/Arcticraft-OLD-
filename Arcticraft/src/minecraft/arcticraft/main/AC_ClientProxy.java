@@ -56,6 +56,7 @@ import arcticraft.models.AC_ModelWhale;
 import arcticraft.models.AC_ModelYeti;
 import arcticraft.renderers.AC_CampfireRenderer;
 import arcticraft.renderers.AC_CannonRenderer;
+import arcticraft.renderers.AC_CannonballRenderer;
 import arcticraft.renderers.AC_CaptainStatueRenderer;
 import arcticraft.renderers.AC_CavemanRenderer;
 import arcticraft.renderers.AC_FrostChestRender;
@@ -186,6 +187,12 @@ public class AC_ClientProxy extends AC_CommonProxy
 		MinecraftForgeClient.registerItemRenderer(AC_Item.notchedPickaxe.itemID, (IItemRenderer) new AC_NotchedPickaxeRenderer());
 
 		MinecraftForgeClient.registerItemRenderer(AC_Item.iceClub.itemID, (IItemRenderer) new AC_IceClubRenderer());
+		
+		MinecraftForgeClient.registerItemRenderer(AC_Item.iceClub.itemID, (IItemRenderer) new AC_IceClubRenderer());
+		
+		MinecraftForgeClient.registerItemRenderer(AC_Item.cannonball.itemID, (IItemRenderer) new AC_CannonballRenderer());
+
+
 		
 	}
 

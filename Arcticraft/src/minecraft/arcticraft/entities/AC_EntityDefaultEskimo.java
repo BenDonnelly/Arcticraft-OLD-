@@ -286,6 +286,25 @@ public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerch
 		}
 	}
 
+	@Override
+	public String getLivingSound()
+	{
+		return this.isTrading() ? "mob.villager.haggle" : "mob.villager.idle";
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return "mob.villager.hit";
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return "mob.villager.death";
+	}
+
+	
 	private static int getRandomCountForSellingItem(int par0, Random par1Random)
 	{
 		Tuple tuple = (Tuple) stockList.get(Integer.valueOf(par0));

@@ -25,6 +25,7 @@ public class AC_BlockCannon extends BlockContainer
 {
 
 	public boolean isLoaded;
+	public int fuse;
 
 	public AC_BlockCannon(int id, Material material)
 	{
@@ -42,10 +43,18 @@ public class AC_BlockCannon extends BlockContainer
 
 		if(! world.isRemote)
 		{
-			if(hand != null && hand.getItem() == AC_Item.bomb)
+			if(! isLoaded)
 			{
-				isLoaded = true;
-				hand.stackSize--;
+				if(hand != null && hand.getItem() == AC_Item.bomb)
+				{
+					world.scheduleBlockUpdate(x, y, z, this.blockID, 0);
+					isLoaded = true;
+					world.playSoundAtEntity(player, "ac:misc.fuse", 1.5F, 1.5F);
+				}
+				if(! player.capabilities.isCreativeMode)
+				{
+					hand.stackSize--;
+				}
 			}
 		}
 		return true;
@@ -54,14 +63,39 @@ public class AC_BlockCannon extends BlockContainer
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random par5Random)
 	{
-		System.out.println("CAll");
-
+		int meta = world.getBlockMetadata(x, y, z);
 		if(isLoaded)
 		{
-			AC_EntityBomb bomb = new AC_EntityBomb(world, (double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F));
-	//		bomb.setVelocity(par1, par3, par5)
-			world.spawnEntityInWorld(bomb);
-			System.out.println("Spawing Explosion");
+			fuse++;
+			world.scheduleBlockUpdate(x, y, z, this.blockID, 0);
+			if(fuse == 100)
+			{
+				AC_EntityBomb bomb = new AC_EntityBomb(world, x, y, z);
+				if(meta == 4)
+				{
+					bomb.setPosition(x, y + 2, z + 2);
+					bomb.setVelocity(0, 2.0, 0.7);
+				}
+				if(meta == 3)
+				{
+					bomb.setPosition(x + 1.5, y + 2, z - 1);
+					bomb.setVelocity(0.625, 2.0, 0.025);
+				}
+				if(meta == 2)
+				{
+					bomb.setPosition(x , y + 2, z - 1);
+					bomb.setVelocity(0, 2.0, -0.7);
+					
+				}
+				if(meta == 1)
+				{
+					bomb.setPosition(x - 1.5, y + 2, z + 1);
+					bomb.setVelocity(-0.625, 2.0, -0.025);
+				}
+				world.spawnEntityInWorld(bomb);
+				isLoaded = false;
+				fuse = 0;
+			}
 		}
 	}
 
@@ -121,22 +155,22 @@ public class AC_BlockCannon extends BlockContainer
 
 		if(l == 0)
 		{
-			par1World.setBlockMetadataWithNotify(par2, par3, par4, 2 | i1 << 2, 2);
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, 1, 2);
 		}
 
 		if(l == 1)
 		{
-			par1World.setBlockMetadataWithNotify(par2, par3, par4, 3 | i1 << 2, 2);
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
 		}
 
 		if(l == 2)
 		{
-			par1World.setBlockMetadataWithNotify(par2, par3, par4, 0 | i1 << 2, 2);
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
 		}
 
 		if(l == 3)
 		{
-			par1World.setBlockMetadataWithNotify(par2, par3, par4, 1 | i1 << 2, 2);
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
 		}
 	}
 

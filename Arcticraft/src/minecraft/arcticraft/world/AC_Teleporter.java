@@ -196,7 +196,6 @@ public class AC_Teleporter
 			}
 
 			world.loadedEntityList.remove(entity);
-			//			world.releaseEntitySkin(entity);
 		}
 
 		entity.isDead = false;
@@ -205,9 +204,6 @@ public class AC_Teleporter
 	private static void generateStructureIfRequired(Entity entity)
 	{
 		int x = MathHelper.floor_double(entity.posX), y = MathHelper.floor_double(entity.posY), z = MathHelper.floor_double(entity.posZ);
-
-		//if (entity.worldObj.getBlockId(x, y + 2, z) == TENT_ID || entity.worldObj.getBlockId(x + 2, y, z) == FENCE_ID || entity.worldObj.getBlockId(x + 2, y - 1, z) == FENCE_ID || entity.worldObj.getBlockId(x + 2, y + 1, z) == FENCE_ID || entity.worldObj.getBlockId(x - 2, y - 1, z) == CHEST_ID)
-		//      return;
 
 		if(entity.worldObj.getBlockId(x, y - 2, z) == Block.bedrock.blockID)
 			return;

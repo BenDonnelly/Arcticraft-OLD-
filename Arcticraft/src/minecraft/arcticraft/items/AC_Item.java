@@ -4,12 +4,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemHoe;
-import net.minecraft.item.ItemPickaxe;
-import net.minecraft.item.ItemSpade;
-import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.common.EnumHelper;
 import arcticraft.blocks.AC_Block;
@@ -128,6 +123,7 @@ public class AC_Item
 	public static Item sled;
 	public static Item captainLog;
 	public static Item lantern;
+	public static Item cannonball;
 
 	public static void initializeItems()
 	{
@@ -251,10 +247,12 @@ public class AC_Item
 		woodenClub = new AC_ItemSword(6290, EnumToolMaterial.WOOD).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("wooden_club").func_111206_d("ac:wooden_club");
 		iceClub = new AC_ItemIceClub(6291, EnumToolMaterial.IRON).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("ice_club").func_111206_d("ac:ice_club");
 		lantern = new AC_ItemBlockLantern(1516).setUnlocalizedName("lantern").func_111206_d("ac:lantern");
+		cannonball = new Item(1517).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("cannonball");
 	}
 
 	public static void nameItems()
 	{
+		LanguageRegistry.addName(cannonball, "Cannonball");
 		LanguageRegistry.addName(woodenClub, "Wooden Club");
 		LanguageRegistry.addName(iceClub, "Ice Club");
 		LanguageRegistry.addName(archerBow, "Archer's Bow");

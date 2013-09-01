@@ -1,5 +1,7 @@
 package arcticraft.renderers;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
@@ -21,14 +23,14 @@ public class AC_RenderFrostGhost extends RenderLiving
 		super(par1ModelBase, par2);
 	}
 
-	public void renderCow(AC_EntityFrostGhost par1EntityCow, double par2, double par4, double par6, float par8, float par9)
+	public void renderGhost(AC_EntityFrostGhost ghost, double par2, double par4, double par6, float par8, float par9)
 	{
-		super.doRenderLiving(par1EntityCow, par2, par4, par6, par8, par9);
+		super.doRenderLiving(ghost, par2, par4, par6, par8, par9);
 	}
 
 	public void doRenderLiving(EntityLiving par1EntityLiving, double par2, double par4, double par6, float par8, float par9)
 	{
-		this.renderCow((AC_EntityFrostGhost) par1EntityLiving, par2, par4, par6, par8, par9);
+		this.renderGhost((AC_EntityFrostGhost) par1EntityLiving, par2, par4, par6, par8, par9);
 	}
 
 	/**
@@ -39,7 +41,10 @@ public class AC_RenderFrostGhost extends RenderLiving
 	 */
 	public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9)
 	{
-		this.renderCow((AC_EntityFrostGhost) par1Entity, par2, par4, par6, par8, par9);
+		GL11.glEnable(GL11.GL_NORMALIZE);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		this.renderGhost((AC_EntityFrostGhost) par1Entity, par2, par4, par6, par8, par9);
 	}
 
 	@Override

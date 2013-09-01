@@ -17,6 +17,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.RotationHelper;
 import arcticraft.main.MainRegistry;
 import arcticraft.tile_entities.AC_TileEntityArcticFurnace;
 import cpw.mods.fml.relauncher.Side;
@@ -44,6 +46,8 @@ public class AC_BlockACFurnace extends BlockContainer
 	private Icon furnaceIconTop;
 	@SideOnly(Side.CLIENT)
 	private Icon furnaceIconFront;
+	private Icon sideIcon;
+	private Icon furnaceIconFrontOn;
 
 	public AC_BlockACFurnace(int par1, boolean par2)
 	{
@@ -84,7 +88,7 @@ public class AC_BlockACFurnace extends BlockContainer
 
 	public Icon getIcon(int par1, int par2)
 	{
-		return par1 == 1 ? this.furnaceIconTop : (par1 == 0 ? this.furnaceIconTop : (par1 != par2 ? this.blockIcon : this.furnaceIconFront));
+		return par1 == 1 ? this.furnaceIconTop : (par1 == 0 ? this.furnaceIconTop : (par1 != par2 ? this.sideIcon : this.isActive ? this.furnaceIconFrontOn : this.furnaceIconFront));
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -94,9 +98,10 @@ public class AC_BlockACFurnace extends BlockContainer
 	 */
 	public void registerIcons(IconRegister par1IconRegister)
 	{
-		this.blockIcon = par1IconRegister.registerIcon("ac:ac_furnace_side");
-		this.furnaceIconFront = par1IconRegister.registerIcon(this.isActive ? "ac:ac_furnace_front_on" : "ac:ac_furnace_front_off");
+		this.sideIcon = par1IconRegister.registerIcon("ac:ac_furnace_side");
+		this.furnaceIconFront = par1IconRegister.registerIcon("ac:ac_furnace_front_off");
 		this.furnaceIconTop = par1IconRegister.registerIcon("ac:ac_furnace_top");
+		this.furnaceIconFrontOn = par1IconRegister.registerIcon("ac:ac_furnace_front_on" );
 	}
 
 	/**
@@ -105,52 +110,6 @@ public class AC_BlockACFurnace extends BlockContainer
 	public int idDropped(int par1, Random par2Random, int par3)
 	{
 		return AC_Block.arcticFurnaceIdle.blockID;
-	}
-
-	/**
-	 * Called whenever the block is added into the world. Args: world, x, y, z
-	 */
-	public void onBlockAdded(World par1World, int par2, int par3, int par4)
-	{
-		super.onBlockAdded(par1World, par2, par3, par4);
-		this.setDefaultDirection(par1World, par2, par3, par4);
-	}
-
-	/**
-	 * set a blocks direction
-	 */
-	private void setDefaultDirection(World par1World, int par2, int par3, int par4)
-	{
-		if(! par1World.isRemote)
-		{
-			int l = par1World.getBlockId(par2, par3, par4 - 1);
-			int i1 = par1World.getBlockId(par2, par3, par4 + 1);
-			int j1 = par1World.getBlockId(par2 - 1, par3, par4);
-			int k1 = par1World.getBlockId(par2 + 1, par3, par4);
-			byte b0 = 3;
-
-			if(Block.opaqueCubeLookup[l] && ! Block.opaqueCubeLookup[i1])
-			{
-				b0 = 3;
-			}
-
-			if(Block.opaqueCubeLookup[i1] && ! Block.opaqueCubeLookup[l])
-			{
-				b0 = 2;
-			}
-
-			if(Block.opaqueCubeLookup[j1] && ! Block.opaqueCubeLookup[k1])
-			{
-				b0 = 5;
-			}
-
-			if(Block.opaqueCubeLookup[k1] && ! Block.opaqueCubeLookup[j1])
-			{
-				b0 = 4;
-			}
-
-			par1World.setBlockMetadataWithNotify(par2, par3, par4, b0, 2);
-		}
 	}
 
 	/**
