@@ -24,8 +24,6 @@ import arcticraft.tile_entities.AC_TileEntityCannon;
 public class AC_BlockCannon extends BlockContainer
 {
 
-	public boolean isLoaded;
-	public int fuse;
 
 	public AC_BlockCannon(int id, Material material)
 	{
@@ -38,17 +36,16 @@ public class AC_BlockCannon extends BlockContainer
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float what, float these, float are)
 	{
-
+		AC_TileEntityCannon cannon = (AC_TileEntityCannon) world.getBlockTileEntity(x, y, z);
 		ItemStack hand = player.getCurrentItemOrArmor(0);
 
 		if(! world.isRemote)
 		{
-			if(! isLoaded)
+			if(! cannon.isLoaded)
 			{
-				if(hand != null && hand.getItem() == AC_Item.bomb)
+				if(hand != null && hand.getItem() == AC_Item.cannonball)
 				{
-					world.scheduleBlockUpdate(x, y, z, this.blockID, 0);
-					isLoaded = true;
+					cannon.isLoaded = true;
 					world.playSoundAtEntity(player, "ac:misc.fuse", 1.5F, 1.5F);
 				}
 				if(! player.capabilities.isCreativeMode)
@@ -60,44 +57,6 @@ public class AC_BlockCannon extends BlockContainer
 		return true;
 	}
 
-	@Override
-	public void updateTick(World world, int x, int y, int z, Random par5Random)
-	{
-		int meta = world.getBlockMetadata(x, y, z);
-		if(isLoaded)
-		{
-			fuse++;
-			world.scheduleBlockUpdate(x, y, z, this.blockID, 0);
-			if(fuse == 100)
-			{
-				AC_EntityBomb bomb = new AC_EntityBomb(world, x, y, z);
-				if(meta == 4)
-				{
-					bomb.setPosition(x, y + 2, z + 2);
-					bomb.setVelocity(0, 2.0, 0.7);
-				}
-				if(meta == 3)
-				{
-					bomb.setPosition(x + 1.5, y + 2, z - 1);
-					bomb.setVelocity(0.625, 2.0, 0.025);
-				}
-				if(meta == 2)
-				{
-					bomb.setPosition(x , y + 2, z - 1);
-					bomb.setVelocity(0, 2.0, -0.7);
-					
-				}
-				if(meta == 1)
-				{
-					bomb.setPosition(x - 1.5, y + 2, z + 1);
-					bomb.setVelocity(-0.625, 2.0, -0.025);
-				}
-				world.spawnEntityInWorld(bomb);
-				isLoaded = false;
-				fuse = 0;
-			}
-		}
-	}
 
 	@Override
 	public int idDropped(int par1, Random par2Random, int par3)

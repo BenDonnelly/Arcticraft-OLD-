@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import arcticraft.entities.AC_EntityBomb;
+import arcticraft.entities.AC_EntityCannonball;
 
 public class AC_ItemBomb extends Item
 {
@@ -24,7 +24,7 @@ public class AC_ItemBomb extends Item
 		var2.playSoundAtEntity(var3, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 		if(! var2.isRemote)
 		{
-			var2.spawnEntityInWorld(new AC_EntityBomb(var2, var3));
+			var2.spawnEntityInWorld(new AC_EntityCannonball(var2, var3));
 		}
 		return var1;
 	}

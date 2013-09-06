@@ -10,6 +10,7 @@ import arcticraft.blocks.AC_Block;
 import arcticraft.entities.AC_EntityArcher;
 import arcticraft.entities.AC_EntityBoar;
 import arcticraft.entities.AC_EntityBomb;
+import arcticraft.entities.AC_EntityCannonball;
 import arcticraft.entities.AC_EntityCaptain;
 import arcticraft.entities.AC_EntityCaveman;
 import arcticraft.entities.AC_EntityChefEskimo;
@@ -66,6 +67,7 @@ import arcticraft.renderers.AC_NotchedPickaxeRenderer;
 import arcticraft.renderers.AC_RenderArcher;
 import arcticraft.renderers.AC_RenderBoar;
 import arcticraft.renderers.AC_RenderBomb;
+import arcticraft.renderers.AC_RenderCannonball;
 import arcticraft.renderers.AC_RenderCaptain;
 import arcticraft.renderers.AC_RenderCaveman;
 import arcticraft.renderers.AC_RenderChefEskimo;
@@ -97,12 +99,12 @@ import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
 import arcticraft.tile_entities.AC_TileEntityCaveman;
 import arcticraft.tile_entities.AC_TileEntityFrostChest;
 import arcticraft.tile_entities.AC_TileEntityTresureChest;
-import arcticraft.tile_entity_renderer.AC_TileEntityCampfireRenderer;
-import arcticraft.tile_entity_renderer.AC_TileEntityCannonRenderer;
-import arcticraft.tile_entity_renderer.AC_TileEntityCaptainStatueRenderer;
-import arcticraft.tile_entity_renderer.AC_TileEntityCavemanRenderer;
-import arcticraft.tile_entity_renderer.AC_TileEntityFrostChestRender;
-import arcticraft.tile_entity_renderer.AC_TileEntityTresureChestRenderer;
+import arcticraft.tile_entities.renderers.AC_TileEntityCampfireRenderer;
+import arcticraft.tile_entities.renderers.AC_TileEntityCannonRenderer;
+import arcticraft.tile_entities.renderers.AC_TileEntityCaptainStatueRenderer;
+import arcticraft.tile_entities.renderers.AC_TileEntityCavemanRenderer;
+import arcticraft.tile_entities.renderers.AC_TileEntityFrostChestRender;
+import arcticraft.tile_entities.renderers.AC_TileEntityTresureChestRenderer;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -131,7 +133,7 @@ public class AC_ClientProxy extends AC_CommonProxy
 	{
 
 		MinecraftForge.EVENT_BUS.register(new AC_EventSoundLoad());
-		
+
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityNPickThing.class, new AC_RenderNPickThing());
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityWhale.class, new AC_RenderWhale(new AC_ModelWhale(), 20.0F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityMage.class, new AC_RenderMage(new AC_ModelMage(), 0.3F));
@@ -143,7 +145,7 @@ public class AC_ClientProxy extends AC_CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityPolarBear.class, new AC_RenderPolarBear(new AC_ModelPolarBear(), 1.4F, 1.4F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityBoar.class, new AC_RenderBoar(new AC_ModelBoar(), new AC_ModelBoar(), 0.8F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityHusky.class, new AC_RenderHusky(new AC_ModelHusky(), new AC_ModelHusky(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(AC_EntityBomb.class, new AC_RenderBomb(AC_Item.bomb, 0));//gets the texture from the item for rendering 
+		RenderingRegistry.registerEntityRenderingHandler(AC_EntityBomb.class, new AC_RenderBomb(AC_Item.bomb, 0));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityCaptain.class, new AC_RenderCaptain(new AC_ModelPirateHook()));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityCheifEskimo.class, new AC_RenderCheifEskimo(new AC_ModelCheifEskimo(), 0.3F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityHunterEskimo.class, new AC_RenderHunterEskimo(new AC_ModelHunterEskimo(), 0.3F));
@@ -160,9 +162,8 @@ public class AC_ClientProxy extends AC_CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityArcher.class, new AC_RenderArcher());
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityPirateHook.class, new AC_RenderPirateHook());
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityCaveman.class, new AC_RenderCaveman(new AC_ModelEntityCaveman(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(AC_EntityCannonball.class, new AC_RenderCannonball(AC_Item.cannonball, AC_Item.cannonball.itemID));
 
-		
-		
 
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCaptainStatue.class, new AC_TileEntityCaptainStatueRenderer());
 		MinecraftForgeClient.registerItemRenderer(AC_Block.captainStatue.blockID, new AC_CaptainStatueRenderer());
@@ -172,26 +173,23 @@ public class AC_ClientProxy extends AC_CommonProxy
 
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCampfire.class, new AC_TileEntityCampfireRenderer());
 		MinecraftForgeClient.registerItemRenderer(AC_Block.campfire.blockID, new AC_CampfireRenderer());
-		
+
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCaveman.class, new AC_TileEntityCavemanRenderer());
 		MinecraftForgeClient.registerItemRenderer(AC_Block.caveman.blockID, new AC_CavemanRenderer());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityTresureChest.class, new AC_TileEntityTresureChestRenderer());
 		MinecraftForgeClient.registerItemRenderer(AC_Block.tresureChest.blockID, new AC_TresureChestRenderer());
-		
+
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCannon.class, new AC_TileEntityCannonRenderer());
 		MinecraftForgeClient.registerItemRenderer(AC_Block.cannon.blockID, new AC_CannonRenderer());
-		
+
 		MinecraftForgeClient.registerItemRenderer(AC_Item.invisoStaff.itemID, (IItemRenderer) new AC_InvisoStaffRenderer());
 
 		MinecraftForgeClient.registerItemRenderer(AC_Item.notchedPickaxe.itemID, (IItemRenderer) new AC_NotchedPickaxeRenderer());
 
 		MinecraftForgeClient.registerItemRenderer(AC_Item.iceClub.itemID, (IItemRenderer) new AC_IceClubRenderer());
-		
-		MinecraftForgeClient.registerItemRenderer(AC_Item.iceClub.itemID, (IItemRenderer) new AC_IceClubRenderer());
-		
-		MinecraftForgeClient.registerItemRenderer(AC_Item.cannonball.itemID, (IItemRenderer) new AC_CannonballRenderer());
 
+		MinecraftForgeClient.registerItemRenderer(AC_Item.cannonball.itemID, (IItemRenderer) new AC_CannonballRenderer());
 
 		
 	}

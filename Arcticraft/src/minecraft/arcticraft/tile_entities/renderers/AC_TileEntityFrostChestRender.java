@@ -1,4 +1,4 @@
-package arcticraft.tile_entity_renderer;
+package arcticraft.tile_entities.renderers;
 
 import java.util.Calendar;
 

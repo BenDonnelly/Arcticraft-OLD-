@@ -46,6 +46,7 @@ public class AC_EventSoundLoad
 			/*Misc*/
 			event.manager.addSound("ac:misc/fuse.wav");
 			event.manager.addSound("ac:misc/portal.wav");
+			event.manager.addSound("ac:misc/cannon.wav");
 			
 			/*In game music*/
 			event.manager.addMusic("ac:Frozen Feelings.wav");

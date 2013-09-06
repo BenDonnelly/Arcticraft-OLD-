@@ -122,7 +122,8 @@ public class AC_EntityRegistry
 		EntityRegistry.registerModEntity(AC_EntitySled.class, "Sled", 2, MainRegistry.instance, 64, 10, true);
 		EntityRegistry.registerModEntity(AC_EntityNPickThing.class, "NPickThing", 3, MainRegistry.instance, 64, 10, true);
 		EntityRegistry.registerModEntity(AC_EntityPirateHook.class, "PirateHook", 4, MainRegistry.instance, 64, 10, true);
-		EntityRegistry.registerModEntity(AC_EntityIceShard.class, "IceShard", 5, MainRegistry.instance, 128, 1, true);
+		EntityRegistry.registerModEntity(AC_EntityIceShard.class, "IceShard", 5, MainRegistry.instance, 128, 10, true);
+		EntityRegistry.registerModEntity(AC_EntityCannonball.class, "Cannonball", 6, MainRegistry.instance, 128, 10, true);
 
 	}
 

@@ -124,7 +124,8 @@ public class AC_Item
 	public static Item captainLog;
 	public static Item lantern;
 	public static Item cannonball;
-
+	
+	
 	public static void initializeItems()
 	{
 		/**Params go as follows : name, durability, reductionAmounts, enchantability**/
@@ -247,7 +248,7 @@ public class AC_Item
 		woodenClub = new AC_ItemSword(6290, EnumToolMaterial.WOOD).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("wooden_club").func_111206_d("ac:wooden_club");
 		iceClub = new AC_ItemIceClub(6291, EnumToolMaterial.IRON).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("ice_club").func_111206_d("ac:ice_club");
 		lantern = new AC_ItemBlockLantern(1516).setUnlocalizedName("lantern").func_111206_d("ac:lantern");
-		cannonball = new Item(1517).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("cannonball");
+		cannonball = new Item(1517).setFull3D().setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("cannonball").func_111206_d("ac:cannonball_icon");
 	}
 
 	public static void nameItems()

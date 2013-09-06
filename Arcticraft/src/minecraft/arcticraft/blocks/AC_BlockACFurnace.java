@@ -86,6 +86,7 @@ public class AC_BlockACFurnace extends BlockContainer
 		}
 	}
 
+
 	public Icon getIcon(int par1, int par2)
 	{
 		return par1 == 1 ? this.furnaceIconTop : (par1 == 0 ? this.furnaceIconTop : (par1 != par2 ? this.sideIcon : this.isActive ? this.furnaceIconFrontOn : this.furnaceIconFront));
@@ -101,7 +102,7 @@ public class AC_BlockACFurnace extends BlockContainer
 		this.sideIcon = par1IconRegister.registerIcon("ac:ac_furnace_side");
 		this.furnaceIconFront = par1IconRegister.registerIcon("ac:ac_furnace_front_off");
 		this.furnaceIconTop = par1IconRegister.registerIcon("ac:ac_furnace_top");
-		this.furnaceIconFrontOn = par1IconRegister.registerIcon("ac:ac_furnace_front_on" );
+		this.furnaceIconFrontOn = par1IconRegister.registerIcon("ac:ac_furnace_front_on");
 	}
 
 	/**

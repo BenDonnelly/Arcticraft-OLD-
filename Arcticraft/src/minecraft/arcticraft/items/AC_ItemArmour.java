@@ -59,7 +59,7 @@ public class AC_ItemArmour extends ItemArmor
 
 		if(stack.itemID == AC_Item.pirateHat.itemID)
 		{
-			return "ac:textures/armour/piratehat.png";
+			return "ac:textures/armour/pirate_hat.png";
 		}
 
 		if(stack.itemID == AC_Item.hikingBoots.itemID)
