@@ -1,19 +1,19 @@
-package arcticraft.renderers;
+package arcticraft.renderers.items;
 
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
-import arcticraft.models.AC_ModelStatue;
+import arcticraft.models.blocks.AC_ModelStatue;
 import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
 
-public class AC_CaptainStatueRenderer implements IItemRenderer
+public class AC_CaptainStatueRender implements IItemRenderer
 {
 
 	private AC_ModelStatue plainStatueModel;
 
-	public AC_CaptainStatueRenderer()
+	public AC_CaptainStatueRender()
 	{
 		plainStatueModel = new AC_ModelStatue();
 	}

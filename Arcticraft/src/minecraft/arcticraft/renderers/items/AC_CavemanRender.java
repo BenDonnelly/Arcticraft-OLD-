@@ -1,20 +1,19 @@
-package arcticraft.renderers;
+package arcticraft.renderers.items;
 
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
-import arcticraft.models.AC_ModelTresureChest;
-import arcticraft.tile_entities.AC_TileEntityCampfire;
-import arcticraft.tile_entities.AC_TileEntityTresureChest;
+import arcticraft.models.blocks.AC_ModelBlockCaveman;
+import arcticraft.tile_entities.AC_TileEntityCaveman;
 
-public class AC_TresureChestRenderer implements IItemRenderer
+public class AC_CavemanRender implements IItemRenderer
 {
 
-	private AC_ModelTresureChest chestModel;
+	private AC_ModelBlockCaveman caveman;
 
-	public AC_TresureChestRenderer()
+	public AC_CavemanRender()
 	{
-		chestModel = new AC_ModelTresureChest();
+		caveman = new AC_ModelBlockCaveman();
 	}
 
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
@@ -32,7 +31,7 @@ public class AC_TresureChestRenderer implements IItemRenderer
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
-		TileEntityRenderer.instance.renderTileEntityAt(new AC_TileEntityTresureChest(), 0.0D, 0.0D, 0.0D, 0.0F);
+		TileEntityRenderer.instance.renderTileEntityAt(new AC_TileEntityCaveman(), 0.0D, 0.0D, 0.0D, 0.0F);
 
 	}
 }

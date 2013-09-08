@@ -9,7 +9,7 @@
 
 
 
-package arcticraft.models;
+package arcticraft.models.items;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

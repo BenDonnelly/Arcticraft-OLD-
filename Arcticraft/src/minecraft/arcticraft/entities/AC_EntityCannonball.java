@@ -52,7 +52,7 @@ public class AC_EntityCannonball extends EntityThrowable
 			this.setDead();
 			if(! this.worldObj.isRemote)
 			{
-			this.worldObj.createExplosion((Entity) null, this.posX, this.posY, this.posZ, 2.5F, true);
+			this.worldObj.createExplosion((Entity) null, this.posX, this.posY, this.posZ, 10.0F, true);
 			}
 		}
 	}

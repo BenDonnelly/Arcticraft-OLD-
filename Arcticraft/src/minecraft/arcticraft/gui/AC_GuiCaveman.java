@@ -49,6 +49,7 @@ public class AC_GuiCaveman extends GuiContainer
 		int l = this.guiTop;
 		this.drawTexturedModalRect(k, l, 0, 0, 256, 256);
 		GuiInventory.func_110423_a(k + 51, l + 75, 30, (float) (k + 51) - this.xSize_lo, (float) (l + 75 - 50) - this.ySize_lo, cavemaninstance);
+
 	}
 
 	@Override

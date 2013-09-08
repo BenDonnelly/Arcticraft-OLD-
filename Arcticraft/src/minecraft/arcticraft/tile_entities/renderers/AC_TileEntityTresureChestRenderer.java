@@ -8,8 +8,8 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import arcticraft.lib.Strings;
-import arcticraft.models.AC_ModelStatue;
-import arcticraft.models.AC_ModelTresureChest;
+import arcticraft.models.blocks.AC_ModelStatue;
+import arcticraft.models.blocks.AC_ModelTresureChest;
 import arcticraft.tile_entities.AC_TileEntityTresureChest;
 import cpw.mods.fml.client.FMLClientHandler;
 

@@ -1,4 +1,4 @@
-package arcticraft.renderers;
+package arcticraft.renderers.items;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
@@ -9,21 +9,22 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.lib.Strings;
-import arcticraft.models.AC_ModelCannonball;
+import arcticraft.models.items.AC_ModelNPickaxe;
 import cpw.mods.fml.client.FMLClientHandler;
 
-public class AC_CannonballRenderer implements IItemRenderer
+public class AC_NotchedPickaxeRender implements IItemRenderer
 {
 
-	protected AC_ModelCannonball cannonball;
+	protected AC_ModelNPickaxe pickModel;
 
-	public AC_CannonballRenderer()
+	public AC_NotchedPickaxeRender()
 	{
-		cannonball = new AC_ModelCannonball();
+		pickModel = new AC_ModelNPickaxe();
 	}
 
 	@Override
@@ -54,22 +55,24 @@ public class AC_CannonballRenderer implements IItemRenderer
 
 			GL11.glPushMatrix();
 
-			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/items/cannonball.png"));
+			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/items/notched_pickaxe.png"));
 
 			GL11.glRotatef(- 32, 3F, 3F, 300F);
 			GL11.glRotatef(300, 1F, 1F, 300F);
-			
+
 			boolean isFirstPerson = false;
 
 			if(data[1] != null && data[1] instanceof EntityPlayer)
 			{
 				if(! ((EntityPlayer) data[1] == Minecraft.getMinecraft().renderViewEntity && Minecraft.getMinecraft().gameSettings.thirdPersonView == 0 && ! ((Minecraft.getMinecraft().currentScreen instanceof GuiInventory || Minecraft.getMinecraft().currentScreen instanceof GuiContainerCreative) && RenderManager.instance.playerViewY == 180.0F)))
 				{
-					GL11.glTranslatef(- 0.65F, - 0.500F, - 0.0F);
+					GL11.glTranslatef(- 0.35F, - 0.500F, - 0.0F);
 				}
 				else
 				{
 					isFirstPerson = true;
+					GL11.glRotatef(- 32, 3F, 3F, 300F);
+					GL11.glRotatef(300, 1F, 1F, 500F);
 					GL11.glTranslatef(- 0.454F, - 0.800F, - 0.3F);
 				}
 			}
@@ -78,8 +81,9 @@ public class AC_CannonballRenderer implements IItemRenderer
 				GL11.glTranslatef(- 0.35F, - 0.500F, - 0.0F);
 			}
 
+			GL11.glScalef(0.9F, 0.9F, 0.43F);
 
-			cannonball.render((Entity) data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+			pickModel.render((Entity) data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 
 			GL11.glPopMatrix();
 

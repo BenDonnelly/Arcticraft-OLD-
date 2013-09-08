@@ -1,21 +1,21 @@
 package arcticraft.renderers;
 
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.renderer.entity.RenderBiped;
+import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import arcticraft.entities.AC_EntityFrostZombie;
 import arcticraft.lib.Strings;
+import arcticraft.models.AC_ModelFrostZombie;
 
-public class AC_RenderZombie extends RenderBiped
+public class AC_RenderZombie extends RenderLiving
 {
 
 	private static final ResourceLocation zombie = new ResourceLocation(Strings.MOD_ID, "textures/mobs/frozen_zombie.png");
 
-	public AC_RenderZombie(ModelBiped par1ModelBiped, float par2, float par3)
+	public AC_RenderZombie(AC_ModelFrostZombie par1ModelBiped, float par2, float par3)
 	{
-		super(par1ModelBiped, par2);
+		super(par1ModelBiped, par3);
 	}
 
 	public void func_177_a(AC_EntityFrostZombie zombie, double d, double d1, double d2, float f, float f1)

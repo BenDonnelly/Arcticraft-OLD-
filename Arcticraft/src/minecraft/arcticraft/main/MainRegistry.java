@@ -37,8 +37,10 @@ import arcticraft.helpers.AC_TickHandler;
 import arcticraft.items.AC_Item;
 import arcticraft.lib.Strings;
 import arcticraft.recipes.AC_Recipes;
+import arcticraft.renderers.items.AC_FurnaceRender;
 import arcticraft.world.AC_WorldGenerator;
 import arcticraft.world.AC_WorldProvider;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -231,6 +233,7 @@ public class MainRegistry
 		proxy.reigsterRenderThings();
 		proxy.registerTickHandler();
 		proxy.registerKeyHandler();
+		RenderingRegistry.registerBlockHandler(10, AC_FurnaceRender.INSTANCE);
 
 
 		LanguageRegistry.instance().addStringLocalization("death.attack.Freezing", "%1$s froze");

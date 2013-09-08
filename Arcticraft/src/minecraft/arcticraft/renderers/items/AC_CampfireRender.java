@@ -1,17 +1,17 @@
-package arcticraft.renderers;
+package arcticraft.renderers.items;
 
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
-import arcticraft.models.AC_ModelCampfire;
+import arcticraft.models.blocks.AC_ModelCampfire;
 import arcticraft.tile_entities.AC_TileEntityCampfire;
 
-public class AC_CampfireRenderer implements IItemRenderer
+public class AC_CampfireRender implements IItemRenderer
 {
 
 	private AC_ModelCampfire campfireModel;
 
-	public AC_CampfireRenderer()
+	public AC_CampfireRender()
 	{
 		campfireModel = new AC_ModelCampfire();
 	}

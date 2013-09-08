@@ -1,7 +1,6 @@
 package arcticraft.main;
 
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -46,6 +45,7 @@ import arcticraft.models.AC_ModelCheifEskimo;
 import arcticraft.models.AC_ModelEntityCaveman;
 import arcticraft.models.AC_ModelEskimo;
 import arcticraft.models.AC_ModelFrostGhost;
+import arcticraft.models.AC_ModelFrostZombie;
 import arcticraft.models.AC_ModelHunterEskimo;
 import arcticraft.models.AC_ModelHusky;
 import arcticraft.models.AC_ModelMage;
@@ -55,15 +55,6 @@ import arcticraft.models.AC_ModelPolarBear;
 import arcticraft.models.AC_ModelTraderEskimo;
 import arcticraft.models.AC_ModelWhale;
 import arcticraft.models.AC_ModelYeti;
-import arcticraft.renderers.AC_CampfireRenderer;
-import arcticraft.renderers.AC_CannonRenderer;
-import arcticraft.renderers.AC_CannonballRenderer;
-import arcticraft.renderers.AC_CaptainStatueRenderer;
-import arcticraft.renderers.AC_CavemanRenderer;
-import arcticraft.renderers.AC_FrostChestRender;
-import arcticraft.renderers.AC_IceClubRenderer;
-import arcticraft.renderers.AC_InvisoStaffRenderer;
-import arcticraft.renderers.AC_NotchedPickaxeRenderer;
 import arcticraft.renderers.AC_RenderArcher;
 import arcticraft.renderers.AC_RenderBoar;
 import arcticraft.renderers.AC_RenderBomb;
@@ -92,7 +83,16 @@ import arcticraft.renderers.AC_RenderTraderEskimo;
 import arcticraft.renderers.AC_RenderWhale;
 import arcticraft.renderers.AC_RenderYeti;
 import arcticraft.renderers.AC_RenderZombie;
-import arcticraft.renderers.AC_TresureChestRenderer;
+import arcticraft.renderers.items.AC_CampfireRender;
+import arcticraft.renderers.items.AC_CannonRender;
+import arcticraft.renderers.items.AC_CannonballRender;
+import arcticraft.renderers.items.AC_CaptainStatueRender;
+import arcticraft.renderers.items.AC_CavemanRender;
+import arcticraft.renderers.items.AC_FrostChestRender;
+import arcticraft.renderers.items.AC_IceClubRender;
+import arcticraft.renderers.items.AC_InvisoStaffRender;
+import arcticraft.renderers.items.AC_NotchedPickaxeRender;
+import arcticraft.renderers.items.AC_TresureChestRender;
 import arcticraft.tile_entities.AC_TileEntityCampfire;
 import arcticraft.tile_entities.AC_TileEntityCannon;
 import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
@@ -154,7 +154,7 @@ public class AC_ClientProxy extends AC_CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityChefEskimo.class, new AC_RenderChefEskimo(new AC_ModelChefEskimo(), 0.3F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityYeti.class, new AC_RenderYeti(new AC_ModelYeti(), 1.0F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityDragon.class, new AC_RenderDragon());
-		RenderingRegistry.registerEntityRenderingHandler(AC_EntityFrostZombie.class, new AC_RenderZombie(new ModelZombie(), 0.5F, 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(AC_EntityFrostZombie.class, new AC_RenderZombie(new AC_ModelFrostZombie(), 0.5F, 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityPirate.class, new AC_RenderPirate());
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntitySled.class, new AC_RenderSled());
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityKnight.class, new AC_RenderKnight());
@@ -166,31 +166,31 @@ public class AC_ClientProxy extends AC_CommonProxy
 
 
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCaptainStatue.class, new AC_TileEntityCaptainStatueRenderer());
-		MinecraftForgeClient.registerItemRenderer(AC_Block.captainStatue.blockID, new AC_CaptainStatueRenderer());
+		MinecraftForgeClient.registerItemRenderer(AC_Block.captainStatue.blockID, new AC_CaptainStatueRender());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityFrostChest.class, new AC_TileEntityFrostChestRender());
 		MinecraftForgeClient.registerItemRenderer(AC_Block.frostChest.blockID, new AC_FrostChestRender());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCampfire.class, new AC_TileEntityCampfireRenderer());
-		MinecraftForgeClient.registerItemRenderer(AC_Block.campfire.blockID, new AC_CampfireRenderer());
+		MinecraftForgeClient.registerItemRenderer(AC_Block.campfire.blockID, new AC_CampfireRender());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCaveman.class, new AC_TileEntityCavemanRenderer());
-		MinecraftForgeClient.registerItemRenderer(AC_Block.caveman.blockID, new AC_CavemanRenderer());
+		MinecraftForgeClient.registerItemRenderer(AC_Block.caveman.blockID, new AC_CavemanRender());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityTresureChest.class, new AC_TileEntityTresureChestRenderer());
-		MinecraftForgeClient.registerItemRenderer(AC_Block.tresureChest.blockID, new AC_TresureChestRenderer());
+		MinecraftForgeClient.registerItemRenderer(AC_Block.tresureChest.blockID, new AC_TresureChestRender());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCannon.class, new AC_TileEntityCannonRenderer());
-		MinecraftForgeClient.registerItemRenderer(AC_Block.cannon.blockID, new AC_CannonRenderer());
+		MinecraftForgeClient.registerItemRenderer(AC_Block.cannon.blockID, new AC_CannonRender());
 
-		MinecraftForgeClient.registerItemRenderer(AC_Item.invisoStaff.itemID, (IItemRenderer) new AC_InvisoStaffRenderer());
+		MinecraftForgeClient.registerItemRenderer(AC_Item.invisoStaff.itemID, (IItemRenderer) new AC_InvisoStaffRender());
 
-		MinecraftForgeClient.registerItemRenderer(AC_Item.notchedPickaxe.itemID, (IItemRenderer) new AC_NotchedPickaxeRenderer());
+		MinecraftForgeClient.registerItemRenderer(AC_Item.notchedPickaxe.itemID, (IItemRenderer) new AC_NotchedPickaxeRender());
 
-		MinecraftForgeClient.registerItemRenderer(AC_Item.iceClub.itemID, (IItemRenderer) new AC_IceClubRenderer());
+		MinecraftForgeClient.registerItemRenderer(AC_Item.iceClub.itemID, (IItemRenderer) new AC_IceClubRender());
 
-		MinecraftForgeClient.registerItemRenderer(AC_Item.cannonball.itemID, (IItemRenderer) new AC_CannonballRenderer());
-
+		MinecraftForgeClient.registerItemRenderer(AC_Item.cannonball.itemID, (IItemRenderer) new AC_CannonballRender());
+	
 		
 	}
 

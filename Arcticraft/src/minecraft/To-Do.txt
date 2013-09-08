@@ -9,12 +9,10 @@ World Gen:
 Castle, Ship (Ben)
 Icile(Maybe Ben, depends if I can to spawn good)
 
-
 SMP Fixing:
 Proxys, Temperature System, general stuff(Domi)
 
 Blocks:
-Cannon(Probably Ben)
 Quest Stand(We have model, whoevever is doing Quest System, do it)
 
 Items:
@@ -31,7 +29,7 @@ Miner
 Archer
 
 Fixes:
-Ice shard, movement is buggy, some people saying its the way its registered, others client/server movement. 
+Furnaces icons
 
 Misc:
 Quest System(Loldog or Domi would do it best imo)

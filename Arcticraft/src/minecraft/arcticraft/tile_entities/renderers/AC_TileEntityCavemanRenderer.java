@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.lib.Strings;
-import arcticraft.models.AC_ModelBlockCaveman;
+import arcticraft.models.blocks.AC_ModelBlockCaveman;
 import arcticraft.tile_entities.AC_TileEntityCaveman;
 import cpw.mods.fml.client.FMLClientHandler;
 

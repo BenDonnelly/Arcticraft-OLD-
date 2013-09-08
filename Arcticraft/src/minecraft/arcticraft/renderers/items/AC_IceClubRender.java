@@ -1,32 +1,32 @@
-package arcticraft.renderers;
+package arcticraft.renderers.items;
 
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
-import arcticraft.lib.Strings;
-import arcticraft.models.AC_ModelCannon;
-import arcticraft.tile_entities.AC_TileEntityCannon;
 
-public class AC_CannonRenderer implements IItemRenderer
+import org.lwjgl.opengl.GL11;
+
+import arcticraft.lib.Strings;
+import arcticraft.models.items.AC_ModelClub;
+import cpw.mods.fml.client.FMLClientHandler;
+
+public class AC_IceClubRender implements IItemRenderer
 {
 
-	private AC_ModelCannon cannonModel;
+	protected AC_ModelClub clubModel;
 
-	public AC_CannonRenderer()
+	public AC_IceClubRender()
 	{
-		cannonModel = new AC_ModelCannon();
+		clubModel = new AC_ModelClub();
 	}
 
+	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{
 		switch(type)
@@ -43,7 +43,7 @@ public class AC_CannonRenderer implements IItemRenderer
 	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
 	{
-		return true;
+		return false;
 	}
 
 	@Override
@@ -54,8 +54,11 @@ public class AC_CannonRenderer implements IItemRenderer
 
 			GL11.glPushMatrix();
 
-			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/blocks/cannon.png"));
+			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/items/club.png"));
 
+			GL11.glEnable(GL11.GL_NORMALIZE);
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			GL11.glRotatef(- 32, 3F, 3F, 300F);
 			GL11.glRotatef(300, 1F, 1F, 300F);
 
@@ -65,11 +68,14 @@ public class AC_CannonRenderer implements IItemRenderer
 			{
 				if(! ((EntityPlayer) data[1] == Minecraft.getMinecraft().renderViewEntity && Minecraft.getMinecraft().gameSettings.thirdPersonView == 0 && ! ((Minecraft.getMinecraft().currentScreen instanceof GuiInventory || Minecraft.getMinecraft().currentScreen instanceof GuiContainerCreative) && RenderManager.instance.playerViewY == 180.0F)))
 				{
-					GL11.glTranslatef(- 0.35F, - 0.500F, - 0.0F);
+					GL11.glTranslatef(- 0.35F,  0.100F, - 0.0F);
 				}
 				else
 				{
 					isFirstPerson = true;
+					GL11.glEnable(GL11.GL_NORMALIZE);
+					GL11.glEnable(GL11.GL_BLEND);
+					GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 					GL11.glRotatef(- 32, 3F, 3F, 300F);
 					GL11.glRotatef(300, 1F, 1F, 500F);
 					GL11.glTranslatef(- 0.454F, - 0.800F, - 0.3F);
@@ -80,9 +86,9 @@ public class AC_CannonRenderer implements IItemRenderer
 				GL11.glTranslatef(- 0.35F, - 0.500F, - 0.0F);
 			}
 
-			GL11.glScalef(0.9F, 0.9F, 0.43F);
+			GL11.glScalef(0.5F, 0.5F, 0.43F);
 
-			cannonModel.render((Entity) data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+			clubModel.render((Entity) data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 
 			GL11.glPopMatrix();
 

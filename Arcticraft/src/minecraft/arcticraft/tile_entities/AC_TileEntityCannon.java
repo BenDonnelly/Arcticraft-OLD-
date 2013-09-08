@@ -7,6 +7,8 @@ import arcticraft.entities.AC_EntityCannonball;
 
 public class AC_TileEntityCannon extends TileEntity
 {
+
+	NBTTagCompound comp = new NBTTagCompound();
 	//private int this.blockMetadata = this.blockMetadata;
 	public boolean isLoaded;
 	private int fuse;
@@ -19,14 +21,13 @@ public class AC_TileEntityCannon extends TileEntity
 	@Override
 	public void updateEntity()
 	{
-		System.out.println(this.blockMetadata);
 		if(isLoaded)
 		{
 			fuse++;
 			if(fuse == 100)
 			{
 				AC_EntityCannonball cannonball = new AC_EntityCannonball(worldObj, this.xCoord, this.yCoord, this.zCoord);
-				if(this.blockMetadata == 4)
+				if(this.getBlockMetadata() == 4)
 				{
 					cannonball.setPosition(this.xCoord, this.yCoord + 2, this.zCoord + 2);
 					cannonball.setVelocity(0, 2.0, 0.7);
@@ -34,8 +35,9 @@ public class AC_TileEntityCannon extends TileEntity
 					worldObj.spawnEntityInWorld(cannonball);
 					isLoaded = false;
 					fuse = 0;
+					worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 4, 2);
 				}
-				else if(this.blockMetadata == 3)
+				else if(this.getBlockMetadata()== 3)
 				{
 					cannonball.setPosition(this.xCoord + 1.5, this.yCoord + 2, this.zCoord - 1);
 					cannonball.setVelocity(0.625, 2.0, 0.025);
@@ -43,8 +45,9 @@ public class AC_TileEntityCannon extends TileEntity
 					worldObj.spawnEntityInWorld(cannonball);
 					isLoaded = false;
 					fuse = 0;
+					worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 3, 2);
 				}
-				else if(this.blockMetadata == 2)
+				else if(this.getBlockMetadata() == 2)
 				{
 					cannonball.setPosition(this.xCoord, this.yCoord + 2, this.zCoord - 1);
 					cannonball.setVelocity(0, 2.0, - 0.7);
@@ -52,8 +55,9 @@ public class AC_TileEntityCannon extends TileEntity
 					worldObj.spawnEntityInWorld(cannonball);
 					isLoaded = false;
 					fuse = 0;
+					worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 2, 2);
 				}
-				else if(this.blockMetadata == 1)
+				else if(this.getBlockMetadata() == 1)
 				{
 					cannonball.setPosition(this.xCoord - 1.5, this.yCoord + 2, this.zCoord + 1);
 					cannonball.setVelocity(- 0.625, 2.0, - 0.025);
@@ -61,21 +65,24 @@ public class AC_TileEntityCannon extends TileEntity
 					worldObj.spawnEntityInWorld(cannonball);
 					isLoaded = false;
 					fuse = 0;
+					worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 2);
 				}
 			}
 		}
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		compound.getBoolean("loaded");
 		compound.getInteger("fuse");
+		//blockMetadata = compound.getInteger("meta");
 	}
-	
+
 	public void writeToNBT(NBTTagCompound compound)
 	{
 		compound.setBoolean("loaded", isLoaded);
 		compound.setInteger("fuse", fuse);
+		//	compound.setInteger("meta", blockMetadata);
 	}
 }

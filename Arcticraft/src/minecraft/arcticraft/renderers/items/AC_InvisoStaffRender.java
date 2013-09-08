@@ -1,4 +1,4 @@
-package arcticraft.renderers;
+package arcticraft.renderers.items;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -9,15 +9,15 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.lib.Strings;
-import arcticraft.models.AC_ModelStaff;
+import arcticraft.models.items.AC_ModelStaff;
 import cpw.mods.fml.client.FMLClientHandler;
 
-public class AC_InvisoStaffRenderer implements IItemRenderer
+public class AC_InvisoStaffRender implements IItemRenderer
 {
 
 	protected AC_ModelStaff staffModel;
 
-	public AC_InvisoStaffRenderer()
+	public AC_InvisoStaffRender()
 	{
 		staffModel = new AC_ModelStaff();
 	}

@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import arcticraft.lib.Strings;
-import arcticraft.models.AC_ModelCampfire;
+import arcticraft.models.blocks.AC_ModelCampfire;
 import arcticraft.tile_entities.AC_TileEntityCampfire;
 import cpw.mods.fml.client.FMLClientHandler;
 
