@@ -23,6 +23,7 @@ public class AC_BlockFrostFlame extends BlockFire
 		this.disableStats();
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public void randomDisplayTick(World world, int i, int j, int k, Random random)
 	{

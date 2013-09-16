@@ -1,11 +1,21 @@
 package arcticraft.main;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+import java.util.logging.Level;
+
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.ConfigCategory;
+import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.Property;
 import arcticraft.blocks.AC_Block;
+import arcticraft.data_store.TemperatureDataStorage;
 import arcticraft.entities.AC_EntityArcher;
 import arcticraft.entities.AC_EntityBoar;
 import arcticraft.entities.AC_EntityBomb;
@@ -39,6 +49,7 @@ import arcticraft.helpers.AC_KeyBindHelper;
 import arcticraft.helpers.AC_TickHandler;
 import arcticraft.helpers.AC_TickHandlerServer;
 import arcticraft.items.AC_Item;
+import arcticraft.lib.Strings;
 import arcticraft.models.AC_ModelBoar;
 import arcticraft.models.AC_ModelChefEskimo;
 import arcticraft.models.AC_ModelCheifEskimo;
@@ -107,29 +118,25 @@ import arcticraft.tile_entities.renderers.AC_TileEntityTresureChestRenderer;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-public class AC_ClientProxy extends AC_CommonProxy
-{
+public class AC_ClientProxy extends AC_CommonProxy {
 
 	@Override
-	public void registerKeyHandler()
-	{
+	public void registerKeyHandler() {
 		KeyBindingRegistry.registerKeyBinding(new AC_KeyBindHelper());
 	}
 
 	@Override
-	public void registerTickHandler()
-	{
+	public void registerTickHandler() {
 		TickRegistry.registerTickHandler(new AC_TickHandler(), Side.CLIENT);
 		TickRegistry.registerTickHandler(new AC_TickHandlerServer(), Side.SERVER);
-
 	}
 
 	@Override
-	public void reigsterRenderThings()
-	{
+	public void reigsterRenderThings() {
 
 		MinecraftForge.EVENT_BUS.register(new AC_EventSoundLoad());
 
@@ -163,7 +170,6 @@ public class AC_ClientProxy extends AC_CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityCaveman.class, new AC_RenderCaveman(new AC_ModelEntityCaveman(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(AC_EntityCannonball.class, new AC_RenderCannonball(AC_Item.cannonball, AC_Item.cannonball.itemID));
 
-
 		ClientRegistry.bindTileEntitySpecialRenderer(AC_TileEntityCaptainStatue.class, new AC_TileEntityCaptainStatueRenderer());
 		MinecraftForgeClient.registerItemRenderer(AC_Block.captainStatue.blockID, new AC_CaptainStatueRender());
 
@@ -186,12 +192,10 @@ public class AC_ClientProxy extends AC_CommonProxy
 
 		MinecraftForgeClient.registerItemRenderer(AC_Item.notchedPickaxe.itemID, (IItemRenderer) new AC_NotchedPickaxeRender());
 
-
 		MinecraftForgeClient.registerItemRenderer(AC_Item.cannonball.itemID, (IItemRenderer) new AC_CannonballRender());
 	}
 
-	public int addArmor(String armor)
-	{
+	public int addArmor(String armor) {
 		return RenderingRegistry.addNewArmourRendererPrefix(armor);
 	}
 

@@ -17,6 +17,7 @@ public class AC_ItemCaptainLog extends Item {
 		this.setMaxStackSize(1);
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
 		FMLClientHandler.instance().displayGuiScreen(player, new AC_GuiCaptainLog());

@@ -13,6 +13,8 @@ import net.minecraft.world.World;
 import arcticraft.main.AC_Achievements;
 import arcticraft.main.MainRegistry;
 import arcticraft.world.AC_Teleporter;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class AC_ItemFruits extends ItemFood
 {
@@ -25,6 +27,7 @@ public class AC_ItemFruits extends ItemFood
 
 	public Random rand = new Random();
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer player)
 	{
@@ -44,7 +47,7 @@ public class AC_ItemFruits extends ItemFood
 			{
 				player.addStat(AC_Achievements.AC_ENTER, 1);
 			}
-			Minecraft.getMinecraft().sndManager.playSoundFX("ac:misc.portal", 1.0F, 1.0F);
+			//Minecraft.getMinecraft().sndManager.playSoundFX("ac:misc.portal", 1.0F, 1.0F);
 			attemptToTeleport(par1ItemStack, world, player);
 		}
 		return super.onItemUse(par1ItemStack, player, world, par4, par5, par6, par7, par8, par9, par10);

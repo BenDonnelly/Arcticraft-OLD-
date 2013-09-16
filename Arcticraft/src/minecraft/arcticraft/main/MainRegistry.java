@@ -11,7 +11,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
-import net.minecraft.stats.Achievement;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ConfigCategory;
 import net.minecraftforge.common.Configuration;
@@ -31,6 +30,7 @@ import arcticraft.data_store.TemperatureDataStorage;
 import arcticraft.entities.AC_EntityRegistry;
 import arcticraft.gui.AC_GuiHandler;
 import arcticraft.helpers.AC_ChestLootHelper;
+import arcticraft.helpers.AC_ClientForgeEvents;
 import arcticraft.helpers.AC_ForgeEvents;
 import arcticraft.helpers.AC_PacketHandler;
 import arcticraft.helpers.AC_TickHandler;
@@ -38,10 +38,8 @@ import arcticraft.items.AC_Item;
 import arcticraft.items.AC_Potions;
 import arcticraft.lib.Strings;
 import arcticraft.recipes.AC_Recipes;
-import arcticraft.renderers.items.AC_FurnaceRender;
 import arcticraft.world.AC_WorldGenerator;
 import arcticraft.world.AC_WorldProvider;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -56,11 +54,12 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.MOD_VERSION)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {Strings.CHANNEL_ESKIMO_TRADE , Strings.CHANNEL_ESKIMO_TALK, Strings.CHANNEL_ROPE_POSITION}, packetHandler = AC_PacketHandler.class)
-public class MainRegistry
-{
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = { Strings.CHANNEL_ESKIMO_TRADE, Strings.CHANNEL_ESKIMO_TALK, Strings.CHANNEL_ROPE_POSITION }, packetHandler = AC_PacketHandler.class)
+public class MainRegistry {
 
 	@Instance(Strings.MOD_ID)
 	public static MainRegistry instance = new MainRegistry();
@@ -70,7 +69,6 @@ public class MainRegistry
 	public static AC_CommonProxy proxy;
 	public static int dimension = DimensionManager.getNextFreeDimId();
 
-	
 	/* Creative Tabs */
 	public static CreativeTabs tabTools = new AC_TabTools(CreativeTabs.getNextID(), "Tabtools");
 	public static CreativeTabs tabCombat = new AC_TabCombat(CreativeTabs.getNextID(), "TabCombat");
@@ -90,68 +88,52 @@ public class MainRegistry
 	public Configuration ships;
 
 	@EventHandler
-	public void serverStarting(FMLServerStartingEvent event)
-	{
+	public void serverStarting(FMLServerStartingEvent event) {
 		storage.clear();
 		System.out.println("Setting " + Strings.MOD_NAME + " server options");
 
 		File shipFile = new File(DimensionManager.getCurrentSaveRootDirectory(), "ships.cfg");
-		try
-		{
-			if(! shipFile.exists())
-			{
+		try {
+			if (!shipFile.exists()) {
 				shipFile.createNewFile();
 			}
 			ships = new Configuration(shipFile);
 			ships.load();
 			Map<String, Property> entries = ships.getCategory("ships");
 			generatedShips.load(entries);
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load ships data");
 		}
 		File worldConfigFile = new File(DimensionManager.getCurrentSaveRootDirectory(), "playertemps_.cfg");
-		if(! worldConfigFile.exists())
-		{
-			try
-			{
+		if (!worldConfigFile.exists()) {
+			try {
 				worldConfigFile.createNewFile();
-			}
-			catch(IOException e)
-			{
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 
 		temperatureFile = new Configuration(worldConfigFile);
 
-		try
-		{
+		try {
 			temperatureFile.load();
 
 			ConfigCategory general = temperatureFile.getCategory(Strings.CONFIG_CATEGORY_GENERAL);
 			Map<String, Property> entries = general.getValues();
 			storage.load(entries);
 			AC_TickHandler.value = storage.getTemperature("Player");
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load its temperature configuration");
-		}
-		finally
-		{
+		} finally {
 			temperatureFile.save();
 		}
 	}
 
 	@EventHandler
-	public void serverStopping(FMLServerStoppingEvent event)
-	{
+	public void serverStopping(FMLServerStoppingEvent event) {
 		storage.setTemperature("Player", AC_TickHandler.value);
 
-		try
-		{
+		try {
 			ConfigCategory gui = globalConfigFile.getCategory(Strings.CONFIG_CATEGORY_GUI);
 			ConfigCategory gen = globalConfigFile.getCategory(Strings.CONFIG_CATEGORY_GEN);
 			ConfigCategory general = temperatureFile.getCategory(Strings.CONFIG_CATEGORY_GENERAL);
@@ -163,13 +145,9 @@ public class MainRegistry
 
 			ConfigCategory shipsCategory = ships.getCategory("ships");
 			shipsCategory.putAll(generatedShips.save());
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't save all of its configuration options");
-		}
-		finally
-		{
+		} finally {
 			globalConfigFile.save();
 			temperatureFile.save();
 			ships.save();
@@ -177,37 +155,26 @@ public class MainRegistry
 	}
 
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event)
-	{
-
+	public void preInit(FMLPreInitializationEvent event) {
 		File cfgFile = event.getSuggestedConfigurationFile();
-		if(! cfgFile.exists())
-		{
-			try
-			{
+		if (!cfgFile.exists()) {
+			try {
 				cfgFile.createNewFile();
-			}
-			catch(IOException e)
-			{
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 		globalConfigFile = new Configuration(cfgFile);
 
-		try
-		{
+		try {
 			globalConfigFile.load();
-
 			AC_TickHandler.x = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_X, 0).getInt(0);
 			AC_TickHandler.y = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_Y, 0).getInt(0);
 			AC_TickHandler.snowLayersEnabled = globalConfigFile.get(Strings.CONFIG_CATEGORY_GEN, Strings.CONFIG_SNOW_LAYERS_ENABLED, true).getBoolean(true);
-		}
-		catch(Exception e)
-		{
+		
+		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load its configuration");
-		}
-		finally
-		{
+		} finally {
 			globalConfigFile.save();
 		}
 
@@ -219,10 +186,9 @@ public class MainRegistry
 	}
 
 	@EventHandler
-	public void init(FMLInitializationEvent event)
-	{
-		
-		//		MainMenuAPI.registerMenu("Arcticraft", AC_MenuBase.class);
+	public void init(FMLInitializationEvent event) {
+
+		// MainMenuAPI.registerMenu("Arcticraft", AC_MenuBase.class);
 		AC_Block.initializeBlocks();
 		AC_Item.initializeItems();
 		AC_Recipes.initializeRecipes();
@@ -241,23 +207,21 @@ public class MainRegistry
 
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 		MinecraftForge.EVENT_BUS.register(new AC_ForgeEvents());
-		GameRegistry.registerWorldGenerator(new AC_WorldGenerator());	
+		MinecraftForge.EVENT_BUS.register(new AC_ClientForgeEvents());
+		GameRegistry.registerWorldGenerator(new AC_WorldGenerator());
 	}
 
 	@EventHandler
-	public void postInit(FMLPostInitializationEvent event)
-	{}
+	public void postInit(FMLPostInitializationEvent event) {
+	}
 
-	public static void talkStuff(String s, World par1World)
-	{
+	public static void talkStuff(String s, World par1World) {
 		Iterator<EntityPlayer> players = par1World.playerEntities.iterator();
 
-		while(players.hasNext())
-		{
+		while (players.hasNext()) {
 			EntityPlayer player = players.next();
 
-			if(player instanceof EntityPlayerMP)
-			{
+			if (player instanceof EntityPlayerMP) {
 				Minecraft.getMinecraft().thePlayer.addChatMessage(s);
 			}
 		}
