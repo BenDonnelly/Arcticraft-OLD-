@@ -17,6 +17,8 @@ import arcticraft.blocks.AC_BlockFrostLeaves;
 import arcticraft.blocks.AC_BlockGlacierLeaves;
 import arcticraft.entities.AC_EntityBlueSparkle;
 import arcticraft.entities.AC_EntityYellowSparkle;
+import arcticraft.gui.AC_GuiMainMenu;
+import arcticraft.gui.AC_GuiOptions;
 import arcticraft.items.AC_Item;
 import arcticraft.main.MainRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -91,6 +93,11 @@ public class AC_TickHandler implements ITickHandler
 			renderBlueYellowParticles((EntityPlayer) tickData[0]);
 			startPickaxeCooldown((EntityPlayer) tickData[0]);
 			stringTick();
+		}
+
+		if(mc.currentScreen instanceof GuiMainMenu)
+		{
+			mc.displayGuiScreen(new AC_GuiMainMenu());
 		}
 	}
 

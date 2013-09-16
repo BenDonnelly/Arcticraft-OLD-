@@ -52,7 +52,7 @@ public class AC_TickHandlerServer implements ITickHandler
 
 			if(AC_TickHandler.value == 0)
 			{
-				entityPlayer.attackEntityFrom(AC_DamageSource.freezing, 5);
+				entityPlayer.attackEntityFrom(AC_DamageSource.freezing, 3);
 
 			}
 

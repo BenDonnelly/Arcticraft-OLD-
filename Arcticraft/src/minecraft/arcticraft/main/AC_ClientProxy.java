@@ -89,7 +89,6 @@ import arcticraft.renderers.items.AC_CannonballRender;
 import arcticraft.renderers.items.AC_CaptainStatueRender;
 import arcticraft.renderers.items.AC_CavemanRender;
 import arcticraft.renderers.items.AC_FrostChestRender;
-import arcticraft.renderers.items.AC_IceClubRender;
 import arcticraft.renderers.items.AC_InvisoStaffRender;
 import arcticraft.renderers.items.AC_NotchedPickaxeRender;
 import arcticraft.renderers.items.AC_TresureChestRender;
@@ -187,11 +186,8 @@ public class AC_ClientProxy extends AC_CommonProxy
 
 		MinecraftForgeClient.registerItemRenderer(AC_Item.notchedPickaxe.itemID, (IItemRenderer) new AC_NotchedPickaxeRender());
 
-		MinecraftForgeClient.registerItemRenderer(AC_Item.iceClub.itemID, (IItemRenderer) new AC_IceClubRender());
 
 		MinecraftForgeClient.registerItemRenderer(AC_Item.cannonball.itemID, (IItemRenderer) new AC_CannonballRender());
-	
-		
 	}
 
 	public int addArmor(String armor)

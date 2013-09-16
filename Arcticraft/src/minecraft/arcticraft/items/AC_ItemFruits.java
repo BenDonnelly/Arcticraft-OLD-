@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import arcticraft.main.AC_Achievements;
 import arcticraft.main.MainRegistry;
 import arcticraft.world.AC_Teleporter;
 
@@ -28,9 +29,8 @@ public class AC_ItemFruits extends ItemFood
 	public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer player)
 	{
 		attemptToTeleport(itemStack, world, player);
-	//	world.playSoundAtEntity(player, "ac:misc.portal", 1.5F, 1.5F);
 		Minecraft.getMinecraft().sndManager.playSoundFX("ac:misc.portal", 1.0F, 1.0F);
-
+		player.addStat(AC_Achievements.AC_ENTER, 1);
 		itemStack.stackSize--;
 		return itemStack;
 	}
@@ -40,6 +40,10 @@ public class AC_ItemFruits extends ItemFood
 	{
 		if(player.capabilities.isCreativeMode)
 		{
+			if(player.dimension != MainRegistry.dimension)
+			{
+				player.addStat(AC_Achievements.AC_ENTER, 1);
+			}
 			Minecraft.getMinecraft().sndManager.playSoundFX("ac:misc.portal", 1.0F, 1.0F);
 			attemptToTeleport(par1ItemStack, world, player);
 		}

@@ -173,10 +173,10 @@ public class AC_RenderCaveman extends RenderLiving
 	public void doRender(Entity entity, double d, double d1, double d2, float f, float f1)
 	{
 		func_177_a((AC_EntityCaveman) entity, d, d1, d2, f, f1);
-		renderCavemanHealth((AC_EntityCaveman) entity);
+		//renderCavemanHealth((AC_EntityCaveman) entity);
 	}
 
-	public void renderCavemanHealth(AC_EntityCaveman entity)
+	/*public void renderCavemanHealth(AC_EntityCaveman entity)
 	{
 	if(entity.isCompanion())
 	{
@@ -220,7 +220,7 @@ public class AC_RenderCaveman extends RenderLiving
 		GL11.glPopMatrix();
 		GL11.glEnable(GL11.GL_LIGHTING);
 	}
-	}
+	}*/
 	@Override
 	protected ResourceLocation func_110775_a(Entity entity)
 	{

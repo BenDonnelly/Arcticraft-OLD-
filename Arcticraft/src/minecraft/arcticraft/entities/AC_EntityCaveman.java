@@ -1,19 +1,8 @@
 package arcticraft.entities;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
 import java.util.Random;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.client.particle.EntityHeartFX;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EntityOwnable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -27,17 +16,14 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet250CustomPayload;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import arcticraft.blocks.AC_Block;
 import arcticraft.items.AC_Item;
-import arcticraft.lib.Strings;
-import arcticraft.main.MainRegistry;
 
-public class AC_EntityCaveman extends EntityMob //implements EntityOwnable
+public class AC_EntityCaveman extends EntityMob
 {
-	Random rand = new Random();
+
+	private Random rand = new Random();
 	private boolean collectedReward = false;
 	private int angerLevel = 0;
 	private static final ItemStack[] rewards = new ItemStack[] {new ItemStack(AC_Item.boarMeat, 4) , new ItemStack(AC_Item.sled) , new ItemStack(AC_Item.eriumGem, 10) , new ItemStack(AC_Item.lantern) , new ItemStack(AC_Item.heatPack)};
@@ -71,12 +57,6 @@ public class AC_EntityCaveman extends EntityMob //implements EntityOwnable
 	{
 		return true;
 	}
-	
-	/*@Override
-	protected void entityInit()
-	{
-		this.dataWatcher.addObject(17, "");
-	}*/
 
 	@Override
 	protected void func_110147_ax()
@@ -87,24 +67,7 @@ public class AC_EntityCaveman extends EntityMob //implements EntityOwnable
 		// Movement Speed 
 		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.23000000417232513D);
 		//Attack damage
-		this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(2.0D);
-	}
-
-	@Override
-	public void setAttackTarget(EntityLivingBase par1EntityLivingBase)
-	{
-		if(! this.isCompanion())
-		{
-			if(par1EntityLivingBase != null)
-			{
-				setCurrentItemOrArmor(0, new ItemStack(AC_Item.woodenClub));
-			}
-			else
-			{
-				setCurrentItemOrArmor(0, null);
-			}
-			super.setAttackTarget(par1EntityLivingBase);
-		}
+		this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(5.0D);
 
 	}
 
@@ -117,81 +80,41 @@ public class AC_EntityCaveman extends EntityMob //implements EntityOwnable
 
 		if(! worldObj.isRemote)
 		{
-			//player.openGui(MainRegistry.instance, 2, worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
 
-			if(collectedReward == false && ! isAngry())
+			if(collectedReward == false )
 			{
-				if(hand != null && hand.itemID != AC_Item.iceClub.itemID || hand == null)
-				if(number == 5)
+
+				player.addChatMessage(messages[0][rand.nextInt(messages.length)]);
+
+				if(number < rewards.length)
 				{
-					worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(AC_Item.heatPack)));
-				}
-				else if(number == 4)
-				{
-					//worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(AC_Block.Lantern)));
-				}
-				else if(number == 3)
-				{
-					worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(AC_Item.eriumGem, 10)));
-				}
-				else if(number == 2)
-				{
-					worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(AC_Item.sled)));
-				}
-				else if(number == 1)
-				{
-					worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(AC_Item.boarMeat, 4)));
+					worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, rewards[number]));
 				}
 				else
 				{
-					player.addChatMessage(messages[0][rand.nextInt(messages.length)]);
-
-					if(number < rewards.length)
-					{
-						worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, rewards[number]));
-					}
-					else
-					{
-						worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(AC_Item.GlacierFruit, 3)));
-					}
-
-					collectedReward = true;
-					return true;
+					worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(AC_Item.GlacierFruit, 3)));
 				}
+
+				collectedReward = true;
+				return true;
 			}
 		}
+
 		if(collectedReward)
 		{
-			if(hand != null && hand.itemID != AC_Item.iceClub.itemID || hand == null)
+			if(angerLevel >= 0 && angerLevel < 5)
 			{
-
-				if(angerLevel >= 0 && angerLevel < 5)
+				player.addChatMessage(messages[2][angerLevel]);
+				if(angerLevel < 6)
 				{
-
-					player.addChatMessage(messages[2][angerLevel]);
-					if(angerLevel < 6)
-						++angerLevel;
+					++angerLevel;
 					this.cavemanTameEffect(false);
-
-				}
-				else if(!this.isCompanion())
-				{
-					player.addChatMessage("Right, thats it! You're in for it now!");
-					setAttackTarget(player);
 				}
 			}
-			if(angerLevel <= 3)
+			else
 			{
-				if(hand != null && hand.getItem() == AC_Item.iceClub)
-				{
-					player.addChatMessage(messages[1][rand.nextInt(messages.length)]);
-					//this.setOwner(player.username);
-					this.cavemanTameEffect(true); //not rendering either
-					if(! player.capabilities.isCreativeMode)
-					{
-						hand.stackSize--;
-					}
-				}
+				player.addChatMessage("Right, thats it! You're in for it now!");
+				setAttackTarget(player);
 			}
 		}
 		return super.interact(player);
@@ -207,7 +130,6 @@ public class AC_EntityCaveman extends EntityMob //implements EntityOwnable
 		super.writeEntityToNBT(par1NBTTagCompound);
 		par1NBTTagCompound.setBoolean("Reward", this.collectedReward);
 		par1NBTTagCompound.setInteger("angerLevel", this.angerLevel);
-	//	par1NBTTagCompound.setString("Owner", this.getOwnerName());
 
 	}
 
@@ -220,91 +142,46 @@ public class AC_EntityCaveman extends EntityMob //implements EntityOwnable
 		super.readEntityFromNBT(par1NBTTagCompound);
 		this.collectedReward = par1NBTTagCompound.getBoolean("Reward");
 		this.angerLevel = par1NBTTagCompound.getInteger("angerLevel");
-	//	this.setOwner(par1NBTTagCompound.getString("Owner"));
-	}
-
-	@Override
-	public void onDeath(DamageSource damageSource)
-	{
-		int maxChance = 200;
-		if(isAngry())
-		{
-			maxChance = 100;
-		}
-		if(getCurrentItemOrArmor(0) != null && getCurrentItemOrArmor(0).getItem() == AC_Item.iceClub)
-		{
-			dropItem(AC_Item.iceClub.itemID, 1);
-		}
-		if(worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
-		{
-			Entity e = damageSource.getEntity();
-			int lootingModifier = 0;
-			if(e instanceof EntityLivingBase)
-				lootingModifier = EnchantmentHelper.getLootingModifier((EntityLivingBase) e);
-			if(recentlyHit > 0)
-			{
-				int randomNumber = rand.nextInt(maxChance) - lootingModifier;
-				if(randomNumber < 75)
-				{
-					dropRareDrops();
-				}
-			}
-		}
-
-	}
-
-	private void dropRareDrops()
-	{
-		if(! isAngry())
-		{
-			dropItem(AC_Block.acWaterIce.blockID, 1);
-		}
-
 	}
 
 	private void cavemanTameEffect(boolean par1)
 	{
 		String type = par1 ? "heart" : "smoke";
-		
+
 		for(int i = 0; i < 7; ++i)
 		{
 			double d0 = this.rand.nextGaussian() * 0.02D;
 			double d1 = this.rand.nextGaussian() * 0.02D;
 			double d2 = this.rand.nextGaussian() * 0.02D;
-			Minecraft.getMinecraft().theWorld.spawnParticle(type, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, d0, d1, d2);
+			Minecraft.getMinecraft().theWorld.spawnParticle(type, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F)
+					- (double) this.width, d0, d1, d2);
 		}
 	}
 
-	public void setAngry(boolean value)
+	protected void dropFewItems(boolean par1, int par2)
 	{
-		if(value)
+		int var3 = this.rand.nextInt(2) + this.rand.nextInt(1 + par2);
+		int var4;
+
+		for(var4 = 0; var4 < var3; ++var4)
 		{
-			setCurrentItemOrArmor(0, new ItemStack(AC_Item.iceClub));
-			angerLevel = 5;
+			this.dropItem(AC_Block.acWaterIce.blockID, 3);
 		}
-		else
+
+		var3 = this.rand.nextInt(3) + this.rand.nextInt(1 + par2);
+
+		for(var4 = 0; var4 < var3; ++var4)
 		{
-			angerLevel = 0;
+			this.dropItem(AC_Item.woodenClub.itemID, 1);
 		}
-
 	}
 
-	public boolean isAngry()
+	
+	public ItemStack getHeldItem()
 	{
-		return angerLevel == 5;
+		return new ItemStack(AC_Item.woodenClub);
 	}
-
-	public boolean isCompanion()
-	{
-		return true;
-	}
-
-	public boolean renderHPBar()
-	{
-		//	System.out.println("Comp: " + isCompanion);
-		return isCompanion() ? true : false;
-	}
-
+	
 	protected int getDropItemId()
 	{
 		return 0;
@@ -345,27 +222,4 @@ public class AC_EntityCaveman extends EntityMob //implements EntityOwnable
 	{
 		this.playSound("ac:mobs.caveman_footstep", 0.15F, 0.6F);
 	}
-/*
-	@Override
-	public String getOwnerName()
-	{
-		return this.dataWatcher.getWatchableObjectString(17);
-	}
-
-	@Override
-	public Entity getOwner()
-	{
-		return this.worldObj.getPlayerEntityByName(this.getOwnerName());
-	}
-	
-	public void setOwner(String par1Str)
-    {
-        this.dataWatcher.updateObject(17, par1Str);
-    }
-	
-	public void setFree()
-	{
-		this.setOwner("");
-	}*/
-
 }

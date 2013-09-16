@@ -11,6 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
+import net.minecraft.stats.Achievement;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ConfigCategory;
 import net.minecraftforge.common.Configuration;
@@ -27,7 +28,6 @@ import arcticraft.creative_tabs.AC_TabMisc;
 import arcticraft.creative_tabs.AC_TabTools;
 import arcticraft.data_store.GeneratedShipsStore;
 import arcticraft.data_store.TemperatureDataStorage;
-import arcticraft.entities.AC_EntityIceShard;
 import arcticraft.entities.AC_EntityRegistry;
 import arcticraft.gui.AC_GuiHandler;
 import arcticraft.helpers.AC_ChestLootHelper;
@@ -35,6 +35,7 @@ import arcticraft.helpers.AC_ForgeEvents;
 import arcticraft.helpers.AC_PacketHandler;
 import arcticraft.helpers.AC_TickHandler;
 import arcticraft.items.AC_Item;
+import arcticraft.items.AC_Potions;
 import arcticraft.lib.Strings;
 import arcticraft.recipes.AC_Recipes;
 import arcticraft.renderers.items.AC_FurnaceRender;
@@ -53,7 +54,6 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -70,6 +70,7 @@ public class MainRegistry
 	public static AC_CommonProxy proxy;
 	public static int dimension = DimensionManager.getNextFreeDimId();
 
+	
 	/* Creative Tabs */
 	public static CreativeTabs tabTools = new AC_TabTools(CreativeTabs.getNextID(), "Tabtools");
 	public static CreativeTabs tabCombat = new AC_TabCombat(CreativeTabs.getNextID(), "TabCombat");
@@ -230,11 +231,10 @@ public class MainRegistry
 		AC_Item.nameItems();
 		AC_EntityRegistry.registerEntityEggs();
 		AC_ChestLootHelper.initializeChestLoot();
+		AC_Achievements.initAchievements();
 		proxy.reigsterRenderThings();
 		proxy.registerTickHandler();
 		proxy.registerKeyHandler();
-		RenderingRegistry.registerBlockHandler(10, AC_FurnaceRender.INSTANCE);
-
 
 		LanguageRegistry.instance().addStringLocalization("death.attack.Freezing", "%1$s froze");
 		LanguageRegistry.instance().addStringLocalization("death.attack.ice shard", "%1$s was pierced iceshard");

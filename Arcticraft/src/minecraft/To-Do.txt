@@ -1,12 +1,11 @@
 Put tasks below:
 
 Entities:
-King, Yeti, (Maybe whale) Mammoth, Caveman needs datawatching stuff to sync client/server (Or another option if you have one) 
+King, Yeti, (Maybe whale) Mammoth
 Finish Pirate hook(loldog)
-Fix rotation on the statues and chest, Tom
 
 World Gen:
-Castle, Ship (Ben)
+Castle (Ben)
 Icile(Maybe Ben, depends if I can to spawn good)
 
 SMP Fixing:
@@ -17,7 +16,7 @@ Quest Stand(We have model, whoevever is doing Quest System, do it)
 
 Items:
 Mammoth Pouch(Ben)
-Once Caveman is fixed, add more clubs(Ben)
+
 
 Sounds:
 Captain

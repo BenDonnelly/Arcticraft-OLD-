@@ -2,8 +2,11 @@ package arcticraft.blocks;
 
 import java.util.Random;
 
+import arcticraft.main.AC_Achievements;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
@@ -23,6 +26,7 @@ public class AC_BlockFrostLog extends Block
 	/**
 	 * The type of render function that is called for this block
 	 */
+	@Override
 	public int getRenderType()
 	{
 		return 31;
@@ -31,6 +35,7 @@ public class AC_BlockFrostLog extends Block
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random par1Random)
 	{
 		return 1;
@@ -39,6 +44,7 @@ public class AC_BlockFrostLog extends Block
 	/**
 	 * Returns the ID of the items to drop on destruction.
 	 */
+	@Override
 	public int idDropped(int par1, Random par2Random, int par3)
 	{
 		return this.blockID;
@@ -47,6 +53,7 @@ public class AC_BlockFrostLog extends Block
 	/**
 	 * ejects contained items into the world, and notifies neighbours of an update, as appropriate
 	 */
+	@Override
 	public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
 	{
 		byte var7 = 4;
@@ -72,11 +79,13 @@ public class AC_BlockFrostLog extends Block
 		}
 	}
 
+	@Override
 	public Icon getIcon(int par1, int par2)
 	{
 		return par1 == 1 ? frostLogTopBottom : (par1 == 0 ? frostLogTopBottom : frostLogSide);
 	}
 
+	@Override
 	public void registerIcons(IconRegister par1IconRegister)
 	{
 		frostLogSide = par1IconRegister.registerIcon("ac:frost_log_side");

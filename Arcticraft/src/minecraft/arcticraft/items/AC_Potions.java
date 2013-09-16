@@ -1,4 +1,4 @@
-package arcticraft.main;
+package arcticraft.items;
 
 import arcticraft.lib.Strings;
 import net.minecraft.potion.Potion;

@@ -28,9 +28,6 @@ public class AC_EntityRegistry
 
 	public static void registerEntityEggs()
 	{	
-		EntityRegistry.registerGlobalEntityID(AC_EntityWhale.class, "Whale", EntityRegistry.findGlobalUniqueEntityId());
-		LanguageRegistry.instance().addStringLocalization("entity.Whale.name", "Whale");
-		registerEntityEgg(AC_EntityWhale.class, blueishIcyColor, grayColor);
 
 		EntityRegistry.registerGlobalEntityID(AC_EntityFrostGhost.class, "FrostGhost", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.FrostGhost.name", "Frost Ghost");
@@ -50,7 +47,7 @@ public class AC_EntityRegistry
 
 		EntityRegistry.registerGlobalEntityID(AC_EntityPirate.class, "Pirate", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Pirate.name", "Pirate");
-		registerEntityEgg(AC_EntityPirate.class, redishPinkishColour, blackColor);
+		registerEntityEgg(AC_EntityPirate.class, blackColor, redishPinkishColour);
 
 		EntityRegistry.registerGlobalEntityID(AC_EntityCaptain.class, "Captain", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Captain.name", "Pirate Captain");
@@ -66,7 +63,7 @@ public class AC_EntityRegistry
 
 		EntityRegistry.registerGlobalEntityID(AC_EntityBoar.class, "Boar", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Boar.name", "Boar");
-		registerEntityEgg(AC_EntityBoar.class, lightGrayColor, lightGrayColor);
+		registerEntityEgg(AC_EntityBoar.class, grayColor, lightGrayColor);
 
 		EntityRegistry.registerGlobalEntityID(AC_EntityHusky.class, "Husky", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Husky.name", "Husky");
@@ -95,10 +92,6 @@ public class AC_EntityRegistry
 		EntityRegistry.registerGlobalEntityID(AC_EntityYeti.class, "Yeti", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Yeti.name", "Yeti");
 		registerEntityEgg(AC_EntityYeti.class, 0x99FFFF, 0xDEDEDE);
-
-		EntityRegistry.registerGlobalEntityID(AC_EntityDragon.class, "Dragon", EntityRegistry.findGlobalUniqueEntityId());
-		LanguageRegistry.instance().addStringLocalization("entity.Dragon.name", "Dragon");
-		registerEntityEgg(AC_EntityDragon.class, 0x99FFFF, 0xDEDEDE);
 		
 		EntityRegistry.registerGlobalEntityID(AC_EntityKnight.class, "Knight", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Knight.name", "Knight");
@@ -106,11 +99,11 @@ public class AC_EntityRegistry
 		
 		EntityRegistry.registerGlobalEntityID(AC_EntityMiner.class, "Miner", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Miner.name", "Miner");
-		registerEntityEgg(AC_EntityMiner.class, brownishColour, 0xffffff);
+		registerEntityEgg(AC_EntityMiner.class, brownishColour, grayColor);
 		
 		EntityRegistry.registerGlobalEntityID(AC_EntityArcher.class, "Archer", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Archer.name", "Archer");
-		registerEntityEgg(AC_EntityArcher.class, brownishColour, 0xffffff);
+		registerEntityEgg(AC_EntityArcher.class, 0xffffff, blueishIcyColor);
 		
 		EntityRegistry.registerGlobalEntityID(AC_EntityCaveman.class, "Caveman", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Caveman.name",  "Caveman");

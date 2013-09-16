@@ -87,7 +87,6 @@ public class AC_Item
 	public static Item pirateSword;
 	public static Item hikingBoots;
 	public static Item woodenClub;
-	public static Item iceClub;
 
 	/* Dungeon Loot */
 	public static Item iceCream;
@@ -246,7 +245,6 @@ public class AC_Item
 		archerBow = new AC_ItemArchersBow(6288).setFull3D().setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("archer_bow").func_111206_d("ac:archer_bow");
 		captainLog = new AC_ItemCaptainLog(6289).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("captain_log").func_111206_d("ac:captain_log");
 		woodenClub = new AC_ItemSword(6290, EnumToolMaterial.WOOD).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("wooden_club").func_111206_d("ac:wooden_club");
-		iceClub = new AC_ItemIceClub(6291, EnumToolMaterial.IRON).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("ice_club").func_111206_d("ac:ice_club");
 		lantern = new AC_ItemBlockLantern(1516).setUnlocalizedName("lantern").func_111206_d("ac:lantern");
 		cannonball = new Item(1517).setFull3D().setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("cannonball").func_111206_d("ac:cannonball_icon");
 	}
@@ -255,7 +253,6 @@ public class AC_Item
 	{
 		LanguageRegistry.addName(cannonball, "Cannonball");
 		LanguageRegistry.addName(woodenClub, "Wooden Club");
-		LanguageRegistry.addName(iceClub, "Ice Club");
 		LanguageRegistry.addName(archerBow, "Archer's Bow");
 		LanguageRegistry.addName(ignisBlade, "Ignis Blade");
 		LanguageRegistry.addName(pirateSword, "Pirate Sword");

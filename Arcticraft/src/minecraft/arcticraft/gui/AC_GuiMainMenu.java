@@ -1,10 +1,9 @@
-package arcticraft.main;
+package arcticraft.gui;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,7 +22,6 @@ import net.minecraft.client.gui.GuiScreenOnlineServers;
 import net.minecraft.client.gui.GuiSelectWorld;
 import net.minecraft.client.gui.GuiYesNo;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.main.Main;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.util.EnumChatFormatting;
@@ -34,11 +32,10 @@ import net.minecraft.world.demo.DemoWorldServer;
 import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.WorldInfo;
 
+import org.apache.commons.io.Charsets;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.Project;
 
-import arcticraft.gui.AC_GuiLinks;
-import arcticraft.gui.AC_GuiMMButtons;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -51,7 +48,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 // import net.minecraft.client.gui.ThreadTitleScreen;
 
 @SideOnly(Side.CLIENT)
-public class AC_MenuBase extends GuiScreen
+public class AC_GuiMainMenu extends GuiScreen
 {
 
 	//** The RNG used by the Main Menu Screen. *//*
@@ -72,6 +69,7 @@ public class AC_MenuBase extends GuiScreen
 	//**
 	// Texture allocated for the current viewport of the main menu's panorama
 	// background.
+	private static final ResourceLocation field_110353_x = new ResourceLocation("texts/splashes.txt");
 
 	private DynamicTexture viewportTexture;
 	private boolean field_96141_q = true;
@@ -81,9 +79,9 @@ public class AC_MenuBase extends GuiScreen
 	private String field_104024_v;
 
 	//** An array of all the paths to the panorama pictures. *//*
-	private static final ResourceLocation[] titlePanoramaPaths = new ResourceLocation[] {new ResourceLocation("/mods/AC/textures/title/panorama0.png") , new ResourceLocation("/mods/AC/textures/title/panorama1.png") , new ResourceLocation("/mods/AC/textures/title/panorama2.png") ,
-			new ResourceLocation("/mods/AC/textures/title/panorama3.png") , new ResourceLocation("/mods/AC/textures/title/panorama4.png") , new ResourceLocation("/mods/AC/textures/title/panorama5.png")};
-	private static final ResourceLocation logo = new ResourceLocation("textures/gui/title/minecraft.png");
+	private static final ResourceLocation[] titlePanoramaPaths = new ResourceLocation[] {new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama0.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID +  ":/textures/title/panorama1.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama2.png") ,
+			new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama3.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama4.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID +  ":/textures/title/panorama5.png")};
+	private static final ResourceLocation logo = new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/LogoMainMenu.png");
 	public static final String field_96138_a = "Please click " + EnumChatFormatting.UNDERLINE + "here" + EnumChatFormatting.RESET + " for more information.";
 	private int field_92024_r;
 	private int field_92023_s;
@@ -95,14 +93,14 @@ public class AC_MenuBase extends GuiScreen
 
 	private AC_GuiMMButtons fmlModButton = null;
 
-	public AC_MenuBase()
+	public AC_GuiMainMenu()
 	{
 		BufferedReader bufferedreader = null;
 
 		try
 		{
 			ArrayList arraylist = new ArrayList();
-			bufferedreader = new BufferedReader(new InputStreamReader(AC_MenuBase.class.getResourceAsStream("/title/splashes.txt"), Charset.forName("UTF-8")));
+            bufferedreader = new BufferedReader(new InputStreamReader(Minecraft.getMinecraft().func_110442_L().func_110536_a(field_110353_x).func_110527_b(), Charsets.UTF_8));
 			String s;
 
 			while((s = bufferedreader.readLine()) != null)
@@ -610,12 +608,12 @@ public class AC_MenuBase extends GuiScreen
 		}
 	}
 
-	static Minecraft func_98058_a(AC_MenuBase par0GuiMainMenu)
+	static Minecraft func_98058_a(AC_GuiMainMenu par0GuiMainMenu)
 	{
 		return par0GuiMainMenu.mc;
 	}
 
-	static void func_98061_a(AC_MenuBase par0GuiMainMenu, StringTranslate par1StringTranslate, int par2, int par3)
+	static void func_98061_a(AC_GuiMainMenu par0GuiMainMenu, StringTranslate par1StringTranslate, int par2, int par3)
 	{
 		par0GuiMainMenu.func_98060_b(par1StringTranslate, par2, par3);
 	}

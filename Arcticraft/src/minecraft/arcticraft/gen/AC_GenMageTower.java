@@ -13,6 +13,7 @@ import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.DungeonHooks;
 import arcticraft.blocks.AC_Block;
 import arcticraft.entities.AC_EntityMage;
+import arcticraft.lib.Debug;
 import arcticraft.tile_entities.AC_TileEntityFrostChest;
 import cpw.mods.fml.common.FMLLog;
 
@@ -93,7 +94,7 @@ public class AC_GenMageTower extends WorldGenerator
 			return false;
 		}
 
-		FMLLog.info("Mage Tower has been generated at x=%d, z=%d", i, k);
+		Debug.notifyOfGenertion("Mage Tower", Integer.toString(i), Integer.toString(k));
 		clearArea(world, i, j + 3, k);
 		buildPlatform(world, i, j, k);
 

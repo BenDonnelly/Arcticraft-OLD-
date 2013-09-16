@@ -5,6 +5,7 @@ import java.util.Random;
 import cpw.mods.fml.common.FMLLog;
 
 import arcticraft.blocks.AC_Block;
+import arcticraft.lib.Debug;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -31,7 +32,7 @@ public class AC_GenCaveman extends WorldGenerator
 
 					if(AC_Block.caveman.canBlockStay(world, i1, j1 + i2, k1))
 					{
-						FMLLog.info("Caveman has been generated at x=%d, z=%d", x, z);
+						Debug.notifyOfGenertion("Caveman", Integer.toString(x), Integer.toString(z));
 						world.setBlock(i1, j1 + i2, k1, AC_Block.caveman.blockID, 0, 2);
 					}
 

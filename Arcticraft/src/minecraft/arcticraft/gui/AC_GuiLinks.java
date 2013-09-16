@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,8 +22,10 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.ISaveFormat;
 
+import org.apache.commons.io.Charsets;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.Project;
+
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -63,10 +64,11 @@ public class AC_GuiLinks extends GuiScreen
 	private static boolean field_96140_r = false;
 	private static boolean field_96139_s = false;
 	private String field_92025_p;
+    private static final ResourceLocation field_110353_x = new ResourceLocation("texts/splashes.txt");
 
 	/** An array of all the paths to the panorama pictures. */
-	private static final ResourceLocation[] titlePanoramaPaths = new ResourceLocation[] {new ResourceLocation("/mods/AC/textures/title/panorama0.png") , new ResourceLocation("/mods/AC/textures/title/panorama1.png") , new ResourceLocation("/mods/AC/textures/title/panorama2.png") ,
-			new ResourceLocation("/mods/AC/textures/title/panorama3.png") , new ResourceLocation("/mods/AC/textures/title/panorama4.png") , new ResourceLocation("/mods/AC/textures/title/panorama5.png")};
+    private static final ResourceLocation[] titlePanoramaPaths = new ResourceLocation[] {new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama0.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID +  ":/textures/title/panorama1.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama2.png") ,
+		new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama3.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama4.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID +  ":/textures/title/panorama5.png")};
 	private static final ResourceLocation logo = new ResourceLocation("textures/gui/title/minecraft.png");
 	public static final String field_96138_a = "Please click " + EnumChatFormatting.UNDERLINE + "here" + EnumChatFormatting.RESET + " for more information.";
 	private int field_92024_r;
@@ -87,7 +89,7 @@ public class AC_GuiLinks extends GuiScreen
 		try
 		{
 			ArrayList arraylist = new ArrayList();
-			bufferedreader = new BufferedReader(new InputStreamReader(AC_GuiLinks.class.getResourceAsStream("/title/splashes.txt"), Charset.forName("UTF-8")));
+            bufferedreader = new BufferedReader(new InputStreamReader(Minecraft.getMinecraft().func_110442_L().func_110536_a(field_110353_x).func_110527_b(), Charsets.UTF_8));
 			String s;
 
 			while((s = bufferedreader.readLine()) != null)
@@ -249,7 +251,7 @@ public class AC_GuiLinks extends GuiScreen
 		}
 		if(par1GuiButton.id == 10)
 		{
-			//			this.mc.displayGuiScreen(new AC_MenuBase());
+				this.mc.displayGuiScreen(new AC_GuiMainMenu());
 		}
 		if(par1GuiButton.id == 11)
 		{

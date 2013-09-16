@@ -23,9 +23,9 @@ public class AC_GuiCoordinates extends GuiScreen
 	private GuiTextField textfield2;
 	private int switchGui;
 	private int texture = 0;
-	static ScaledResolution scaledresolution = getScaledResolution();
-	static int i = scaledresolution.getScaledWidth();
-	static int k = scaledresolution.getScaledHeight();
+	ScaledResolution scaledresolution = getScaledResolution();
+	private int i = scaledresolution.getScaledWidth();
+	private int k = scaledresolution.getScaledHeight();
 
 	public AC_GuiCoordinates()
 	{}

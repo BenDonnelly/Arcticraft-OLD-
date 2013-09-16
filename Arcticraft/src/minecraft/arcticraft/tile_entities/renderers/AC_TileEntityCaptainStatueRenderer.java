@@ -29,7 +29,7 @@ public class AC_TileEntityCaptainStatueRenderer extends TileEntitySpecialRendere
 		}
 		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/blocks/captain_statue.png"));
 		GL11.glPushMatrix();
-		GL11.glTranslatef((float) d + 0.5F, (float) d1 + 1.5F, (float) d2 + 0.5F);
+		GL11.glTranslatef((float) d + 0.5F, (float) d1 + 1.7F, (float) d2 + 0.5F);
 		GL11.glScalef(1.0F, - 1F, - 1F);
 		GL11.glRotatef(rotation * 90, 0.0F, 1.0F, 0.0F);
 		model.renderAll();

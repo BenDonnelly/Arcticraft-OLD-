@@ -80,7 +80,8 @@ public class AC_GuiCaptainLog extends GuiScreen {
         	}
         }
         else {
-        	String title1 = "\u00a7lJournal of \u00a7kCaptain";
+        //	String title1 = "\u00a7lJournal of \u00a7kCaptain";
+        	String title1 = "The Captain's Journal";
         	String title2 = "\u00a7oAn arctic expedition";
         	this.fontRenderer.drawString(title1, x + (this.bookImageWidth - this.fontRenderer.getStringWidth(title1)) / 2, i + 10, 0x111111);
         	this.fontRenderer.drawString(title2, x + (this.bookImageWidth - this.fontRenderer.getStringWidth(title2)) / 2, i + 20, 0x111111);
