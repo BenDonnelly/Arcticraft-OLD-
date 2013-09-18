@@ -94,7 +94,11 @@ public class AC_TickHandler implements ITickHandler
 			startPickaxeCooldown((EntityPlayer) tickData[0]);
 			stringTick();
 		}
+		loadCustomMenu();
+	}
 
+	public void loadCustomMenu()
+	{
 		if(mc.currentScreen instanceof GuiMainMenu)
 		{
 			mc.displayGuiScreen(new AC_GuiMainMenu());

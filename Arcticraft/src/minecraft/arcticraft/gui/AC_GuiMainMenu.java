@@ -1,5 +1,6 @@
 package arcticraft.gui;
 
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,24 +19,18 @@ import net.minecraft.client.gui.GuiLanguage;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiOptions;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiScreenOnlineServers;
 import net.minecraft.client.gui.GuiSelectWorld;
-import net.minecraft.client.gui.GuiYesNo;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringTranslate;
-import net.minecraft.world.demo.DemoWorldServer;
 import net.minecraft.world.storage.ISaveFormat;
-import net.minecraft.world.storage.WorldInfo;
 
 import org.apache.commons.io.Charsets;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.Project;
-
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -64,9 +59,9 @@ public class AC_GuiMainMenu extends GuiScreen
 	//** Timer used to rotate the panorama, increases every tick. *//*
 	private int panoramaTimer = 0;
 
-	private float scalingLol = 0.975F;
+	//Decides whether to show the links or not
+	private boolean showLinks;
 
-	//**
 	// Texture allocated for the current viewport of the main menu's panorama
 	// background.
 	private static final ResourceLocation field_110353_x = new ResourceLocation("texts/splashes.txt");
@@ -79,8 +74,9 @@ public class AC_GuiMainMenu extends GuiScreen
 	private String field_104024_v;
 
 	//** An array of all the paths to the panorama pictures. *//*
-	private static final ResourceLocation[] titlePanoramaPaths = new ResourceLocation[] {new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama0.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID +  ":/textures/title/panorama1.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama2.png") ,
-			new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama3.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama4.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID +  ":/textures/title/panorama5.png")};
+	private static final ResourceLocation[] titlePanoramaPaths = new ResourceLocation[] {new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama0.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama1.png") ,
+			new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama2.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama3.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama4.png") ,
+			new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama5.png")};
 	private static final ResourceLocation logo = new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/LogoMainMenu.png");
 	public static final String field_96138_a = "Please click " + EnumChatFormatting.UNDERLINE + "here" + EnumChatFormatting.RESET + " for more information.";
 	private int field_92024_r;
@@ -100,7 +96,7 @@ public class AC_GuiMainMenu extends GuiScreen
 		try
 		{
 			ArrayList arraylist = new ArrayList();
-            bufferedreader = new BufferedReader(new InputStreamReader(Minecraft.getMinecraft().func_110442_L().func_110536_a(field_110353_x).func_110527_b(), Charsets.UTF_8));
+			bufferedreader = new BufferedReader(new InputStreamReader(Minecraft.getMinecraft().func_110442_L().func_110536_a(field_110353_x).func_110527_b(), Charsets.UTF_8));
 			String s;
 
 			while((s = bufferedreader.readLine()) != null)
@@ -142,7 +138,7 @@ public class AC_GuiMainMenu extends GuiScreen
 	}
 
 	//  Called from the main game loop to update the screen.
-
+	@Override
 	public void updateScreen()
 	{
 		super.updateScreen();
@@ -159,19 +155,12 @@ public class AC_GuiMainMenu extends GuiScreen
 		return false;
 	}
 
-	// Fired when a key is typed. This is the equivalent of
-	// KeyListener.keyTyped(KeyEvent e).
-
-	protected void keyTyped(char par1, int par2)
-	{}
-
 	//**
 	//Adds the buttons (and other controls) to the screen in question.
-
+	@Override
 	public void initGui()
 	{
 		super.initGui();
-
 		this.viewportTexture = new DynamicTexture(256, 256);
 		this.field_110351_G = this.mc.func_110434_K().func_110578_a("background", this.viewportTexture);
 		Calendar calendar = Calendar.getInstance();
@@ -198,18 +187,25 @@ public class AC_GuiMainMenu extends GuiScreen
 			this.splashText = "OOoooOOOoooo! Spooky!";
 		}
 
+		buttonList = new ArrayList();
 		int i = this.height / 4 + 68;
-
-		this.addSingleplayerMultiplayerButtons(i, 24);
-
-		fmlModButton = new AC_GuiMMButtons(6, 30, i + 48 - 45, "Mods");
-		this.buttonList.add(fmlModButton);
-
-		this.buttonList.add(new AC_GuiMMButtons(7, 30, i + 27, ("Arcticraft Links")));
-		this.buttonList.add(new AC_GuiMMButtons(0, 30, i + 27 + 35, 200, 20, "Options"));
-		this.buttonList.add(new AC_GuiMMButtons(4, 30, i + 27 + 60, 200, 20, "Quit"));
-
-		this.buttonList.add(new GuiButtonLanguage(5, width - 48, 4));
+		if(! this.showLinks)
+		{
+			this.addSingleplayerMultiplayerButtons(i, 24);
+			fmlModButton = new AC_GuiMMButtons(2, 30, i + 48 - 65, "Mods");
+			this.buttonList.add(fmlModButton);
+			this.buttonList.add(new AC_GuiMMButtons(3, 30, i + 7, ("Arcticraft Links")));
+			this.buttonList.add(new AC_GuiMMButtons(4, 30, i + 45, 200, 20, "Options"));
+			this.buttonList.add(new AC_GuiMMButtons(5, 30, i + 70, 200, 20, "Quit"));
+		}
+		else
+		{
+			this.buttonList.add(new AC_GuiMMButtons(6, 30, i - 45 + 20 * 1, "AC's YouTube"));
+			this.buttonList.add(new AC_GuiMMButtons(7, 30, i - 45 + 45 * 1, "AC's Topic"));
+			this.buttonList.add(new AC_GuiMMButtons(8, 30, i - 45 + 70 * 1, "AC's Website"));
+			this.buttonList.add(new AC_GuiMMButtons(9, 30, i - 45 + 95 * 1, "Main Menu"));
+		}
+		this.buttonList.add(new GuiButtonLanguage(15, width - 28, 4));
 		this.field_92025_p = "";
 		String s = System.getProperty("os_architecture");
 		String s1 = System.getProperty("java_version");
@@ -265,76 +261,95 @@ public class AC_GuiMainMenu extends GuiScreen
 	//	  have bought the game.
 	private void addSingleplayerMultiplayerButtons(int par1, int par2)
 	{
-		this.buttonList.add(new AC_GuiMMButtons(1, 30, par1 - 45, "Singleplayer"));
-		this.buttonList.add(new AC_GuiMMButtons(2, 30, par1 - 45 + par2 * 1, "Multiplayer"));
+		this.buttonList.add(new AC_GuiMMButtons(0, 30, par1 - 65, "Singleplayer"));
+		this.buttonList.add(new AC_GuiMMButtons(1, 30, par1 - 65 + par2 * 1, "Multiplayer"));
 	}
 
 	//**
 	// Fired when a control is clicked. This is the equivalent of
 	//ActionListener.actionPerformed(ActionEvent e).
-
+	@Override
 	protected void actionPerformed(GuiButton par1GuiButton)
 	{
 		if(par1GuiButton.id == 0)
+		{
+			this.mc.displayGuiScreen(new GuiSelectWorld(this));
+		}
+
+		if(par1GuiButton.id == 1)
+		{
+			this.mc.displayGuiScreen(new GuiMultiplayer(this));
+		}
+
+		if(par1GuiButton.id == 2)
+		{
+			this.mc.displayGuiScreen(new GuiModList(this));
+		}
+
+		if(par1GuiButton.id == 3)
+		{
+			this.showLinks = true;
+			initGui();
+		}
+
+		if(par1GuiButton.id == 4)
 		{
 			this.mc.displayGuiScreen(new GuiOptions(this, this.mc.gameSettings));
 		}
 
 		if(par1GuiButton.id == 5)
 		{
-			this.mc.displayGuiScreen(new GuiLanguage(this, this.mc.gameSettings, this.mc.func_135016_M()));
-		}
-
-		if(par1GuiButton.id == 1)
-		{
-			this.mc.displayGuiScreen(new GuiSelectWorld(this));
-		}
-
-		if(par1GuiButton.id == 2)
-		{
-			this.mc.displayGuiScreen(new GuiMultiplayer(this));
-		}
-
-		if(par1GuiButton.id == 3)
-		{
-			this.mc.displayGuiScreen(new GuiScreenOnlineServers(this));
-		}
-
-		if(par1GuiButton.id == 4)
-		{
 			this.mc.shutdown();
 		}
 
 		if(par1GuiButton.id == 6)
 		{
-			this.mc.displayGuiScreen(new GuiModList(this));
-		}
-
-		if(par1GuiButton.id == 7)
-		{
-
-			this.mc.displayGuiScreen(new AC_GuiLinks());
-
-		}
-
-		if(par1GuiButton.id == 11)
-		{
-			this.mc.launchIntegratedServer("Demo_World", "Demo_World", DemoWorldServer.demoWorldSettings);
-		}
-
-		if(par1GuiButton.id == 12)
-		{
-			ISaveFormat isaveformat = this.mc.getSaveLoader();
-			WorldInfo worldinfo = isaveformat.getWorldInfo("Demo_World");
-
-			if(worldinfo != null)
+			try
 			{
-				GuiYesNo guiyesno = GuiSelectWorld.getDeleteWorldScreen(this, worldinfo.getWorldName(), 12);
-				this.mc.displayGuiScreen(guiyesno);
+				Desktop.getDesktop().browse(URI.create("http://youtube.com/user/ArcticraftDEV"));
+			}
+			catch(Exception e)
+			{
+				System.err.println("Failed to load arcticraftdev youtubes");
 			}
 		}
+		if(par1GuiButton.id == 7)
+		{
+			try
+			{
+				Desktop.getDesktop().browse(URI.create("http://minecraftforum.net/topic/1292251-arcticraft-an-icy-new-dimension-reboot/"));
+			}
+			catch(Exception e)
+			{
+				System.err.println("Failed to load arcticraft topic");
+			}
+
+		}
+		if(par1GuiButton.id == 9)
+		{
+			this.mc.displayGuiScreen(new AC_GuiMainMenu());
+		}
+		if(par1GuiButton.id == 8)
+		{
+			try
+			{
+				Desktop.getDesktop().browse(URI.create("http://arcticraft.net"));
+			}
+			catch(Exception e)
+			{
+				System.err.println("Failed to load arcticraft topic");
+			}
+
+		}
+
+		if(par1GuiButton.id == 15)
+		{
+			this.mc.displayGuiScreen(new GuiLanguage(this, this.mc.gameSettings, this.mc.func_135016_M()));
+		}
+
 	}
 
+	@Override
 	public void confirmClicked(boolean par1, int par2)
 	{
 		if(par1 && par2 == 12)
@@ -479,7 +494,6 @@ public class AC_GuiMainMenu extends GuiScreen
 	}
 
 	//Renders the skybox in the main menu
-
 	private void renderSkybox(int par1, int par2, float par3)
 	{
 		GL11.glViewport(0, 0, 256, 256);
@@ -516,12 +530,6 @@ public class AC_GuiMainMenu extends GuiScreen
 	{
 		GL11.glPushMatrix();
 
-		scalingLol += scalingLol * 0.001F;
-
-		if(scalingLol > 1)
-			scalingLol = 1.3F;
-
-		GL11.glScalef(scalingLol, scalingLol, scalingLol);
 		this.drawTexturedModalRect(25, b0 - 10, 0, 0, 155, 44);
 		this.drawTexturedModalRect(180, b0 - 10, 0, 45, 155, 44);
 
@@ -529,6 +537,7 @@ public class AC_GuiMainMenu extends GuiScreen
 	}
 
 	// Draws the screen and all the components in it.
+	@Override
 	public void drawScreen(int par1, int par2, float par3)
 	{
 		this.renderSkybox(par1, par2, par3);
@@ -559,16 +568,11 @@ public class AC_GuiMainMenu extends GuiScreen
 		GL11.glTranslatef((float) 200, 35F, 0.0F);
 		GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
 		float f1 = 1.4F - MathHelper.abs(MathHelper.sin((float) (Minecraft.getSystemTime() % 1000L) / 1000.0F * (float) Math.PI * 2.0F) * 0.1F); //makes it bounce
-		f1 = f1 * 100.0F / (float) (this.fontRenderer.getStringWidth(this.splashText) + 40); //size of the font
+		f1 = f1 * 100.0F / (float) (this.fontRenderer.getStringWidth(this.splashText) + 40);
 		GL11.glScalef(f1, f1, f1);
-		this.drawCenteredString(this.fontRenderer, this.splashText, 50, - 5, 0x3BA2BC);//diagonal position
+		this.drawCenteredString(this.fontRenderer, this.splashText, 10, 25, 0x3BA2BC);
 		GL11.glPopMatrix();
-		String s = "Minecraft 1.5.1";
-
-		if(this.mc.isDemo())
-		{
-			s = s + " Demo";
-		}
+		String s = "Minecraft 1.6.2";
 
 		List<String> brandings = Lists.reverse(FMLCommonHandler.instance().getBrandings());
 		for(int i = 0; i < brandings.size(); i++)
@@ -581,9 +585,9 @@ public class AC_GuiMainMenu extends GuiScreen
 		}
 
 		String s1 = "Copyright Mojang AB. Do not distribute!";
-		String s2 = "Arcticraft 1.0";
+		String s2 = "Arcticraft Pre-Alpha";
 		this.drawString(this.fontRenderer, s1, 2, this.height - 10, 16777215);
-		this.drawString(this.fontRenderer, s2, 2, this.height - 20, 0x3BA2BC);
+		this.drawString(this.fontRenderer, s2, width - 2 - fontRenderer.getStringWidth(s2), this.height - (6 * (this.fontRenderer.FONT_HEIGHT + 1)), 0x3BA2BC);
 
 		if(this.field_92025_p != null && this.field_92025_p.length() > 0)
 		{
@@ -596,6 +600,7 @@ public class AC_GuiMainMenu extends GuiScreen
 	}
 
 	// Called when the mouse is clicked.
+	@Override
 	protected void mouseClicked(int par1, int par2, int par3)
 	{
 		super.mouseClicked(par1, par2, par3);
@@ -608,69 +613,4 @@ public class AC_GuiMainMenu extends GuiScreen
 		}
 	}
 
-	static Minecraft func_98058_a(AC_GuiMainMenu par0GuiMainMenu)
-	{
-		return par0GuiMainMenu.mc;
-	}
-
-	static void func_98061_a(AC_GuiMainMenu par0GuiMainMenu, StringTranslate par1StringTranslate, int par2, int par3)
-	{
-		par0GuiMainMenu.func_98060_b(par1StringTranslate, par2, par3);
-	}
-
-	static boolean func_98059_a(boolean par0)
-	{
-		field_96139_s = par0;
-		return par0;
-	}
-
-	public int getListButtonX()
-	{
-		return width - 110;
-	}
-
-	public int getListButtonY()
-	{
-		Minecraft mc = Minecraft.getMinecraft();
-		ScaledResolution scaledresolution = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
-		int width = scaledresolution.getScaledWidth();
-		int height = scaledresolution.getScaledHeight();
-
-		return 4;
-	}
-
-	public int getJukeboxButtonX()
-	{
-		return width - 24;
-	}
-
-	public int getJukeboxButtonY()
-	{
-		return 4;
-	}
-
-	public String getName()
-	{
-		return "Arcticraft!";
-	}
-
-	public String getVersion()
-	{
-		return "Version 1.0!";
-	}
-
-	public String getMusicFileName()
-	{
-		return "AC Menu Music";
-	}
-
-	public boolean useJukebox()
-	{
-		return true;
-	}
-
-	public String getIconPath()
-	{
-		return "/mods/AC/textures/title/MenuIcon.png";
-	}
 }

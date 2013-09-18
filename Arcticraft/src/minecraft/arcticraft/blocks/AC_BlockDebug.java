@@ -2,10 +2,8 @@ package arcticraft.blocks;
 
 import java.util.Random;
 
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -15,10 +13,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import arcticraft.entities.AC_EntityBomb;
 import arcticraft.items.AC_Item;
-import arcticraft.main.MainRegistry;
-import arcticraft.tile_entities.AC_TileEntityCavemanGUI;
 
-public class AC_BlockDebug extends BlockContainer
+public class AC_BlockDebug extends Block
 {
 
 	public boolean isLoaded;
@@ -121,10 +117,5 @@ public class AC_BlockDebug extends BlockContainer
 		}
 	}
 
-	@Override
-	public TileEntity createNewTileEntity(World world)
-	{
-		return new AC_TileEntityCavemanGUI();
-	}
 
 }

@@ -15,7 +15,6 @@ import arcticraft.tile_entities.AC_TileEntityCampfire;
 import arcticraft.tile_entities.AC_TileEntityCannon;
 import arcticraft.tile_entities.AC_TileEntityCaptainStatue;
 import arcticraft.tile_entities.AC_TileEntityCaveman;
-import arcticraft.tile_entities.AC_TileEntityCavemanGUI;
 import arcticraft.tile_entities.AC_TileEntityFreezer;
 import arcticraft.tile_entities.AC_TileEntityFrostChest;
 import arcticraft.tile_entities.AC_TileEntityTresureChest;
@@ -237,7 +236,6 @@ public class AC_Block
 		GameRegistry.registerTileEntity(AC_TileEntityCaptainStatue.class, "tileEntityCaptainStatue");
 		GameRegistry.registerTileEntity(AC_TileEntityCampfire.class, "tileEntityCampfire");
 		GameRegistry.registerTileEntity(AC_TileEntityCaveman.class, "tileEntityCaveman");
-		GameRegistry.registerTileEntity(AC_TileEntityCavemanGUI.class, "caveman_gui");
 		GameRegistry.registerTileEntity(AC_TileEntityCannon.class, "tileEntityCannon");
 	}
 
