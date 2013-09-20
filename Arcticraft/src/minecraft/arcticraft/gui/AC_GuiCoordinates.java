@@ -23,23 +23,6 @@ public class AC_GuiCoordinates extends GuiScreen
 	private GuiTextField textfield2;
 	private int switchGui;
 	private int texture = 0;
-	ScaledResolution scaledresolution = getScaledResolution();
-	private int i = scaledresolution.getScaledWidth();
-	private int k = scaledresolution.getScaledHeight();
-
-	public AC_GuiCoordinates()
-	{}
-
-	public static Minecraft getMinecraft()
-	{
-		return Minecraft.getMinecraft();
-	}
-
-	public static ScaledResolution getScaledResolution()
-	{
-		Minecraft mc = getMinecraft();
-		return new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
-	}
 
 	public void initGui()
 	{
@@ -108,8 +91,8 @@ public class AC_GuiCoordinates extends GuiScreen
 		}
 		else if(button.id == 5)
 		{
-			AC_TickHandler.x = i / 2 + 35;
-			AC_TickHandler.y = k / 2 + 95;
+			AC_TickHandler.x = this.width / 2 + 35;
+			AC_TickHandler.y = this.height / 2 + 95;
 		}
 		else if(button.id == 6)
 		{
@@ -119,29 +102,29 @@ public class AC_GuiCoordinates extends GuiScreen
 			ItemStack helm = mc.thePlayer.getCurrentItemOrArmor(1);
 			if(helm == null && legs == null && chest == null && boots == null)
 			{
-				AC_TickHandler.x = i / 2 - 65;
-				AC_TickHandler.y = k / 2 + 95;
+				AC_TickHandler.x = this.width / 2 - 65;
+				AC_TickHandler.y = this.height / 2 + 95;
 			}
 			else
 			{
-				AC_TickHandler.x = i / 2 - 65;
-				AC_TickHandler.y = k / 2 + 87;
+				AC_TickHandler.x = this.width / 2 - 65;
+				AC_TickHandler.y = this.height / 2 + 87;
 			}
 		}
 		else if(button.id == 7)
 		{
-			AC_TickHandler.x = i / 2 + 170;
-			AC_TickHandler.y = k / 2 + 115;
+			AC_TickHandler.x = this.width / 2 + 170;
+			AC_TickHandler.y = this.height / 2 + 115;
 		}
 		else if(button.id == 8)
 		{
 			AC_TickHandler.x = 5;
-			AC_TickHandler.y = k / 2 + 120;
+			AC_TickHandler.y = this.height / 2 + 120;
 		}
 		else if(button.id == 9)
 		{
-			AC_TickHandler.x = i / 2 + 170;
-			AC_TickHandler.y = k / 2 + - 115;
+			AC_TickHandler.x = this.width / 2 + 170;
+			AC_TickHandler.y = this.height / 2 + - 115;
 		}
 		else if(button.id == 10)
 		{
@@ -183,13 +166,12 @@ public class AC_GuiCoordinates extends GuiScreen
 
 	public void drawScreen(int i, int j, float f)
 	{
-		ScaledResolution scaledresolution = getScaledResolution();
 
 		drawDefaultBackground();
 		if(texture == 0)
 		{
-			this.drawCenteredString(mc.fontRenderer, "X: " + i + ", Y: " + j, scaledresolution.getScaledWidth() / 2, 0, 0xffffff);
-			this.drawCenteredString(mc.fontRenderer, "X: " + i + ", Y: " + j, scaledresolution.getScaledWidth() / 2, 0, 0xffffff);
+			this.drawCenteredString(mc.fontRenderer, "X: " + i + ", Y: " + j, this.width / 2, 0, 0xffffff);
+			this.drawCenteredString(mc.fontRenderer, "X: " + i + ", Y: " + j, this.width / 2, 0, 0xffffff);
 		}
 		int k = width / 2 - 100;
 		int l = height / 2 - 40;

@@ -94,7 +94,7 @@ public class AC_TickHandler implements ITickHandler
 			startPickaxeCooldown((EntityPlayer) tickData[0]);
 			stringTick();
 		}
-		loadCustomMenu();
+		//loadCustomMenu();
 	}
 
 	public void loadCustomMenu()

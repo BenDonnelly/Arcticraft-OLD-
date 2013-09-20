@@ -13,6 +13,7 @@ import arcticraft.entities.AC_BossStatus;
 import arcticraft.entities.AC_EntityCaptain;
 import arcticraft.entities.AC_EntityPirateHook;
 import arcticraft.lib.Strings;
+import arcticraft.models.AC_ModelCaptain;
 import arcticraft.models.AC_ModelPirateHook;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -23,10 +24,9 @@ public class AC_RenderCaptain extends RenderBiped
 
 	private static final ResourceLocation captain = new ResourceLocation(Strings.MOD_ID, "textures/mobs/captain.png");
 
-	public AC_RenderCaptain(AC_ModelPirateHook hook)
+	public AC_RenderCaptain()
 	{
-		super(new ModelBiped(), 0.5F);
-		this.modelBipedMain.bipedLeftArm.addChild(hook.base1);
+		super(new AC_ModelCaptain(), 0.5F);
 	}
 
 	public void func_82418_a(AC_EntityCaptain captain, double par2, double par4, double par6, float par8, float par9)

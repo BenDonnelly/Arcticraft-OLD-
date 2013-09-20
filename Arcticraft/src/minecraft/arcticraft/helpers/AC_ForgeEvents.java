@@ -71,7 +71,7 @@ public class AC_ForgeEvents {
 
 	@ForgeSubscribe
 	public void onPlayerConstructing(EntityEvent.EntityConstructing event) {
-		if (event.entity instanceof EntityPlayer) {
+		if (event.entity instanceof EntityPlayer && event.entity.getExtendedProperties("Temperature") == null) {
 			event.entity.registerExtendedProperties("Temperature", new AC_EntityPropertyTemperature());
 		}
 	}

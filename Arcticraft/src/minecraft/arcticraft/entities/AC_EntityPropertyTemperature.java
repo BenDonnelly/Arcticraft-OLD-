@@ -24,6 +24,7 @@ public class AC_EntityPropertyTemperature implements IExtendedEntityProperties {
 
 	@Override
 	public void init(Entity entity, World world) {
+		//TODO Datawatcher is unnecessary. Use local variable instead, remove AC_TemperatureHelper
 		entity.getDataWatcher().addObject(tempID, Integer.valueOf(50));
 		
 		this.player = (EntityPlayer) entity;

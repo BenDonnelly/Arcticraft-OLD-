@@ -148,8 +148,8 @@ public class AC_ModelPirateHook extends ModelBase {
 		this.setRotation(this.hook8, 0F, 0F, -0.7853982F);
 		this.hook9 = new ModelRenderer(this, 0, 57);
 		this.hook9.addBox(11.4F, -32F, -1F, 2, 2, 2);
-		this.hook9.setRotationPoint(0F, 24F, 0F);
 		this.setRotation(this.hook9, 0F, 0F, -0.6283185F);
+		this.base1.addChild(this.hook9);
 		this.hook10 = new ModelRenderer(this, 0, 57);
 		this.hook10.addBox(6.8F, -35.4F, -1F, 2, 2, 2);
 		this.hook10.setRotationPoint(0F, 24F, 0F);
@@ -290,7 +290,9 @@ public class AC_ModelPirateHook extends ModelBase {
 		this.hook6.render(f5);
 		this.hook7.render(f5);
 		this.hook8.render(f5);
+		*/
 		this.hook9.render(f5);
+		/*
 		this.hook10.render(f5);
 		this.hook11.render(f5);
 		this.hook12.render(f5);
