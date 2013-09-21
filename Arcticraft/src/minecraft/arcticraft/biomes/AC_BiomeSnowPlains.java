@@ -18,13 +18,7 @@ public class AC_BiomeSnowPlains extends AC_BiomeGenBase
 	{
 		super(par1);
 		this.theBiomeDecorator = new AC_BiomeDecorator(this);
-		topBlock = (byte) Block.snow.blockID;
-		fillerBlock = (byte) Block.blockSnow.blockID;
 		this.theBiomeDecorator.treesPerChunk = - 999;
-		this.spawnableCreatureList.clear();
-		this.spawnableMonsterList.clear();
-		this.spawnableWaterCreatureList.clear();
-		this.spawnableCaveCreatureList.clear();
 		this.spawnableCreatureList.add(new SpawnListEntry(AC_EntityBoar.class, 5, 4, 4));
 		setMinMaxHeight(0.1F, 0.1F);
 		setTemperatureRainfall(0.0F, 0.5F);

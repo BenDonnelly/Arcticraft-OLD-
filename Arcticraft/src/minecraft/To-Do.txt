@@ -29,12 +29,12 @@ Cannon
 Fixes:
 Furnaces icons
 Temp bar coords
-Water not generating on snow on shore: http://puu.sh/4wP0s.png
-Cannon firing angle
+Cannonball render (rotation point is offset atm)
 Tile entity collision
 Tile entity sizes
 Captain hook rotation (<3 trig)
 Spellcheck
+Treasure chest (and maybe more) shift click fix
 
 Misc:
 Quest System(Loldog or Domi would do it best imo)
@@ -45,6 +45,7 @@ IDs need configuration options
 Better sled movement + leash with huskies
 API
 Split into child mods (after 1.0, Sam likes money)
+Flat snow plains?
 
 Textures:
 Currently, none. I think.

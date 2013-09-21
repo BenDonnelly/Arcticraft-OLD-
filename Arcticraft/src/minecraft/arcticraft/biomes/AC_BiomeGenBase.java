@@ -25,7 +25,7 @@ public class AC_BiomeGenBase extends BiomeGenBase
 	{
 		super(i);
 		this.topBlock = (byte) AC_Block.frostGrass.blockID;
-		this.topBlock = (byte) AC_Block.frostDirt.blockID;
+		this.fillerBlock = (byte) AC_Block.frostDirt.blockID;
 		this.spawnableCreatureList.clear();
 		this.spawnableMonsterList.clear();
 		this.spawnableWaterCreatureList.clear();
