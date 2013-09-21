@@ -15,7 +15,7 @@ import arcticraft.models.AC_ModelPirateHook;
 
 public class AC_RenderPirateHook extends Render {
 
-	private static final ResourceLocation texture = new ResourceLocation(Strings.MOD_ID, "textures/projectiles/hook.png");
+	public static final ResourceLocation texture = new ResourceLocation(Strings.MOD_ID, "textures/projectiles/hook.png");
 	public AC_ModelPirateHook hook;
 	
 	public AC_RenderPirateHook() {
@@ -32,7 +32,14 @@ public class AC_RenderPirateHook extends Render {
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float)x, (float)y, (float)z);
 		
-		GL11.glScalef(-1.0F, -1.0F, 1.0F);
+		GL11.glScalef(-0.35F, -0.35F, 0.35F);
+		GL11.glTranslatef(0.0F, -1.5F, 0.0F);
+		double dx = this.func_110828_a(entity.lastTickPosX, entity.posX, partialTicks) - this.func_110828_a(entity.captain.lastTickPosX, entity.captain.posX, partialTicks);
+		double dy = this.func_110828_a(entity.lastTickPosY, entity.posY, partialTicks) - this.func_110828_a(entity.captain.lastTickPosY, entity.captain.posY, partialTicks) + entity.captain.ySize;
+		double dz = this.func_110828_a(entity.lastTickPosZ, entity.posZ, partialTicks) - this.func_110828_a(entity.captain.lastTickPosZ, entity.captain.posZ, partialTicks);
+		
+		System.out.println(dy);
+		
 		this.func_110777_b(entity);
 		this.hook.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 		GL11.glPopMatrix();

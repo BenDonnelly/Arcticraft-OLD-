@@ -123,7 +123,7 @@ public class AC_Item
 	public static Item captainLog;
 	public static Item lantern;
 	public static Item cannonball;
-	
+	public static Item pirateHook;
 	
 	public static void initializeItems()
 	{
@@ -247,6 +247,7 @@ public class AC_Item
 		woodenClub = new AC_ItemSword(6290, EnumToolMaterial.WOOD).setCreativeTab(MainRegistry.tabCombat).setUnlocalizedName("wooden_club").func_111206_d("ac:wooden_club");
 		lantern = new AC_ItemBlockLantern(1516).setUnlocalizedName("lantern").func_111206_d("ac:lantern");
 		cannonball = new Item(1517).setFull3D().setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("cannonball").func_111206_d("ac:cannonball_icon");
+		pirateHook = new Item(1518).setFull3D().setUnlocalizedName("pirateHook");
 	}
 
 	public static void nameItems()

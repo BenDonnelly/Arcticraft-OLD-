@@ -35,9 +35,6 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 	private final String bossName;
 	public final int hookAnimationTime = 20;
 	public final int maxHookCooldown = 120;
-	private double hookLaunchX;
-	private double hookLaunchY;
-	private double hookLaunchZ;
 	private int hookCooldown;
 	private boolean isHookAirBorne;
 	
@@ -47,7 +44,6 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 		this.setEntityHealth(this.func_110138_aP());
 		this.setSize(this.width, this.height + 0.4F);
 		this.setAIMoveSpeed(0.2F);
-		this.setHookCoords();
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new AC_EntityAIHookAttack(this, 1.0D, 16.0F));
 		this.tasks.addTask(2, new AC_EntityAICaptainAttack(this, EntityPlayer.class, 1.0D, false));
@@ -99,19 +95,6 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 	
 	private void prepareHookAttack() {
 		this.hookCooldown = -1;
-		this.setHookCoords();
-	}
-	
-	private void setHookCoords() {
-		double rotation = (this.rotationYaw + 70.0F) / (180.0F / Math.PI);
-		this.hookLaunchX = Math.cos(rotation);
-		this.hookLaunchY = 1.4D;
-		this.hookLaunchZ = Math.sin(rotation);
-	}
-	
-	public double[] getHookCoords() {
-		double[] array = { this.hookLaunchX, this.hookLaunchY, this.hookLaunchZ };
-		return array;
 	}
 
 	protected void entityInit()
@@ -157,6 +140,11 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 	public ItemStack getHeldItem()
 	{
 		return new ItemStack(AC_Item.pirateSword, 1);
+	}
+	
+	public ItemStack getHookItem()
+	{
+		return new ItemStack(AC_Item.pirateHook, 1);
 	}
 
 	/**
@@ -205,7 +193,11 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float f) {
 		AC_EntityPirateHook hook = new AC_EntityPirateHook(this.worldObj, this);
-		hook.setLocationAndAngles(this.posX + this.hookLaunchX, this.posY + this.hookLaunchY, this.posZ + this.hookLaunchZ, this.rotationYaw, this.rotationPitch);
+		double rotation = (this.rotationYaw + 70.0F) / (180.0F / Math.PI);
+		double hookLaunchX = Math.cos(rotation);
+		double hookLaunchY = 1.4D;
+		double hookLaunchZ = Math.sin(rotation);
+		hook.setLocationAndAngles(this.posX + hookLaunchX, this.posY + hookLaunchY, this.posZ + hookLaunchZ, this.rotationYaw, this.rotationPitch);
 		
 		double dx = target.posX - hook.posX;
         double dy = target.posY + (double)target.getEyeHeight() - 1.1D - hook.posY;

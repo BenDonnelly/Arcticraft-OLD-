@@ -1,21 +1,11 @@
 package arcticraft.main;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Map;
-import java.util.logging.Level;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.common.ConfigCategory;
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.Property;
 import arcticraft.blocks.AC_Block;
-import arcticraft.data_store.TemperatureDataStorage;
 import arcticraft.entities.AC_EntityArcher;
 import arcticraft.entities.AC_EntityBoar;
 import arcticraft.entities.AC_EntityBomb;
@@ -49,7 +39,6 @@ import arcticraft.helpers.AC_KeyBindHelper;
 import arcticraft.helpers.AC_TickHandler;
 import arcticraft.helpers.AC_TickHandlerServer;
 import arcticraft.items.AC_Item;
-import arcticraft.lib.Strings;
 import arcticraft.models.AC_ModelBoar;
 import arcticraft.models.AC_ModelChefEskimo;
 import arcticraft.models.AC_ModelCheifEskimo;
@@ -61,7 +50,6 @@ import arcticraft.models.AC_ModelHunterEskimo;
 import arcticraft.models.AC_ModelHusky;
 import arcticraft.models.AC_ModelMage;
 import arcticraft.models.AC_ModelPenguin;
-import arcticraft.models.AC_ModelPirateHook;
 import arcticraft.models.AC_ModelPolarBear;
 import arcticraft.models.AC_ModelTraderEskimo;
 import arcticraft.models.AC_ModelWhale;
@@ -102,6 +90,7 @@ import arcticraft.renderers.items.AC_CavemanRender;
 import arcticraft.renderers.items.AC_FrostChestRender;
 import arcticraft.renderers.items.AC_InvisoStaffRender;
 import arcticraft.renderers.items.AC_NotchedPickaxeRender;
+import arcticraft.renderers.items.AC_PirateHookRender;
 import arcticraft.renderers.items.AC_TresureChestRender;
 import arcticraft.tile_entities.AC_TileEntityCampfire;
 import arcticraft.tile_entities.AC_TileEntityCannon;
@@ -118,7 +107,6 @@ import arcticraft.tile_entities.renderers.AC_TileEntityTresureChestRenderer;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
@@ -193,6 +181,8 @@ public class AC_ClientProxy extends AC_CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(AC_Item.notchedPickaxe.itemID, (IItemRenderer) new AC_NotchedPickaxeRender());
 
 		MinecraftForgeClient.registerItemRenderer(AC_Item.cannonball.itemID, (IItemRenderer) new AC_CannonballRender());
+		
+		MinecraftForgeClient.registerItemRenderer(AC_Item.pirateHook.itemID, (IItemRenderer) new AC_PirateHookRender());
 	}
 
 	public int addArmor(String armor) {

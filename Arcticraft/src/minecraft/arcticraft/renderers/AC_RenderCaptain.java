@@ -1,20 +1,19 @@
 package arcticraft.renderers;
 
-import org.lwjgl.opengl.GL11;
-
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
 import arcticraft.entities.AC_BossStatus;
 import arcticraft.entities.AC_EntityCaptain;
-import arcticraft.entities.AC_EntityPirateHook;
 import arcticraft.lib.Strings;
 import arcticraft.models.AC_ModelCaptain;
-import arcticraft.models.AC_ModelPirateHook;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -62,7 +61,81 @@ public class AC_RenderCaptain extends RenderBiped
 	public void doRenderLiving(EntityLiving par1EntityLiving, double par2, double par4, double par6, float par8, float par9)
 	{
 		this.func_82418_a((AC_EntityCaptain) par1EntityLiving, par2, par4, par6, par8, par9);
+		this.setLeftItem(par1EntityLiving, ((AC_EntityCaptain) par1EntityLiving).getHookItem());
+		this.field_82423_g.heldItemLeft = this.field_82425_h.heldItemLeft = this.modelBipedMain.heldItemLeft = 0;
 	}
+	
+	protected void setLeftItem(EntityLiving par1EntityLiving, ItemStack par2ItemStack) {
+		this.field_82423_g.heldItemLeft = this.field_82425_h.heldItemLeft = this.modelBipedMain.heldItemLeft = par2ItemStack != null ? 1 : 0;
+	}
+	
+	@Override
+	protected void renderEquippedItems(EntityLivingBase par1EntityLivingBase, float par2)
+    {
+        super.renderEquippedItems(par1EntityLivingBase, par2);
+        this.renderHook((AC_EntityCaptain)par1EntityLivingBase, par2);
+    }
+	
+	protected void renderHook(AC_EntityCaptain captain, float par2)
+    {
+        float f1 = 1.0F;
+        GL11.glColor3f(f1, f1, f1);
+        ItemStack itemstack = captain.getHookItem();
+        float f2;
+
+        if (itemstack != null)
+        {
+            GL11.glPushMatrix();
+
+            if (this.mainModel.isChild)
+            {
+                f2 = 0.5F;
+                GL11.glTranslatef(0.0F, 0.625F, 0.0F);
+                GL11.glRotatef(-20.0F, -1.0F, 0.0F, 0.0F);
+                GL11.glScalef(f2, f2, f2);
+            }
+
+            this.modelBipedMain.bipedLeftArm.postRender(0.0625F);
+            GL11.glTranslatef(-0.0625F, 0.4375F, 0.0625F);
+
+            if (Item.itemsList[itemstack.itemID].isFull3D())
+            {
+                f2 = 0.625F;
+
+                if (Item.itemsList[itemstack.itemID].shouldRotateAroundWhenRendering())
+                {
+                    GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
+                    GL11.glTranslatef(0.0F, -0.125F, 0.0F);
+                }
+
+                this.func_82422_c();
+                GL11.glScalef(f2, -f2, f2);
+                GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
+                GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
+            }
+            else
+            {
+                f2 = 0.375F;
+                GL11.glTranslatef(0.25F, 0.1875F, -0.1875F);
+                GL11.glScalef(f2, f2, f2);
+                GL11.glRotatef(60.0F, 0.0F, 0.0F, 1.0F);
+                GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
+                GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
+            }
+
+            this.renderManager.itemRenderer.renderItem(captain, itemstack, 0);
+
+            if (itemstack.getItem().requiresMultipleRenderPasses())
+            {
+                for (int x = 1; x < itemstack.getItem().getRenderPasses(itemstack.getItemDamage()); x++)
+                {
+                    this.renderManager.itemRenderer.renderItem(captain, itemstack, x);
+                }
+            }
+
+            GL11.glPopMatrix();
+        }
+    }
 
 	/**
 	 * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
