@@ -31,9 +31,6 @@ public class AC_RecipeLanternRefuel implements IRecipe
             if (crafting.getStackInSlot(i) != null && crafting.getStackInSlot(i).itemID == AC_Block.lantern.blockID && lanternSlot == -1) lanternSlot = i; 
             
             if (crafting.getStackInSlot(i) != null && crafting.getStackInSlot(i).itemID == AC_Item.frigus.itemID) fuelSlots++;
-            
-            Debug.out(needsCancelation);
-            Debug.out(lanternSlot);
         }
         
         if (needsCancelation) return null;

@@ -13,11 +13,6 @@ public class AC_TileEntityCannon extends TileEntity
 	public boolean isLoaded;
 	private int fuse;
 
-	public AC_TileEntityCannon()
-	{
-
-	}
-
 	@Override
 	public void updateEntity()
 	{
@@ -74,15 +69,15 @@ public class AC_TileEntityCannon extends TileEntity
 	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
-		compound.getBoolean("loaded");
-		compound.getInteger("fuse");
-		//blockMetadata = compound.getInteger("meta");
+		super.readFromNBT(compound);
+		this.isLoaded = compound.getBoolean("Loaded");
+		this.fuse = compound.getInteger("Fuse");
 	}
 
 	public void writeToNBT(NBTTagCompound compound)
 	{
-		compound.setBoolean("loaded", isLoaded);
-		compound.setInteger("fuse", fuse);
-		//	compound.setInteger("meta", blockMetadata);
+		super.writeToNBT(compound);
+		compound.setBoolean("Loaded", isLoaded);
+		compound.setInteger("Fuse", fuse);
 	}
 }

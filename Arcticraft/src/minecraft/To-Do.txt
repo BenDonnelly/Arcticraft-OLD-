@@ -2,7 +2,6 @@ Put tasks below:
 
 Entities:
 King, Yeti, (Maybe whale) Mammoth
-Finish Pirate hook(loldog)
 
 World Gen:
 Castle (Ben)
@@ -17,7 +16,6 @@ Quest Stand(We have model, whoevever is doing Quest System, do it)
 Items:
 Mammoth Pouch(Ben)
 
-
 Sounds:
 Captain
 Yeti 
@@ -26,16 +24,27 @@ King
 Knight
 Miner
 Archer
+Cannon
 
 Fixes:
 Furnaces icons
+Temp bar coords
+Water not generating on snow on shore: http://puu.sh/4wP0s.png
+Cannon firing angle
+Tile entity collision
+Tile entity sizes
+Captain hook rotation (<3 trig)
+Spellcheck
 
 Misc:
 Quest System(Loldog or Domi would do it best imo)
-I tried scaled res on the temp bar in GuiCoordinates, didnt work for some reason; someone else try. 
 Treasure Chest Animation(This, Im not really bothered about really, vanilla Minecraft didnt get one for ages)
 Add trades to the normal eskimos and refine the general trader trades
-
+Make a mcmod.info
+IDs need configuration options
+Better sled movement + leash with huskies
+API
+Split into child mods (after 1.0, Sam likes money)
 
 Textures:
 Currently, none. I think.

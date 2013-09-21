@@ -168,7 +168,7 @@ public class AC_Block
 		acWaterIce = new AC_BlockIce(245).setHardness(0.5F).setLightOpacity(3).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("ac_water_ice").func_111022_d("ac:ice");
 		caveman = new AC_BlockCaveman(1556, Material.glass).setHardness(30.0F).setResistance(1500.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("caveman").func_111022_d("ac:ice").setStepSound(Block.soundStoneFootstep);
 		tresureChest = new AC_BlockTresureChest(1557, Material.wood).setHardness(2.0F).setResistance(3.5F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("tresure_chest").func_111022_d("planks_oak").setStepSound(Block.soundWoodFootstep);
-		debugBlock = new AC_BlockDebug(3001).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("block_debug");
+		debugBlock = new AC_BlockDebug(3001).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("block_debug").func_111022_d("ac:debug");
 		cannon = new AC_BlockCannon(1558, Material.iron).setHardness(5.0F).setResistance(5.0F).setCreativeTab(MainRegistry.tabBlocks).setUnlocalizedName("cannon").func_111022_d("ac:cannon_icon").setStepSound(Block.soundStoneFootstep);
 		
 	}
