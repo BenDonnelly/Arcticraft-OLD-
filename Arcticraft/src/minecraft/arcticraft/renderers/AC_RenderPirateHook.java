@@ -4,6 +4,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -33,12 +34,22 @@ public class AC_RenderPirateHook extends Render {
 		GL11.glTranslatef((float)x, (float)y, (float)z);
 		
 		GL11.glScalef(-0.35F, -0.35F, 0.35F);
-		GL11.glTranslatef(0.0F, -1.5F, 0.0F);
-		double dx = this.func_110828_a(entity.lastTickPosX, entity.posX, partialTicks) - this.func_110828_a(entity.captain.lastTickPosX, entity.captain.posX, partialTicks);
-		double dy = this.func_110828_a(entity.lastTickPosY, entity.posY, partialTicks) - this.func_110828_a(entity.captain.lastTickPosY, entity.captain.posY, partialTicks) + entity.captain.ySize;
-		double dz = this.func_110828_a(entity.lastTickPosZ, entity.posZ, partialTicks) - this.func_110828_a(entity.captain.lastTickPosZ, entity.captain.posZ, partialTicks);
 		
-		System.out.println(dy);
+		double dx = this.func_110828_a(entity.captain.lastTickPosX, entity.captain.posX, partialTicks) - this.func_110828_a(entity.lastTickPosX, entity.posX, partialTicks);
+		double dy = this.func_110828_a(entity.captain.lastTickPosY, entity.captain.posY, partialTicks) - this.func_110828_a(entity.lastTickPosY, entity.posY, partialTicks) + entity.captain.ySize;
+		double dz = this.func_110828_a(entity.captain.lastTickPosZ, entity.captain.posZ, partialTicks) - this.func_110828_a(entity.lastTickPosZ, entity.posZ, partialTicks);
+		
+		double d0 = entity.captain.posX - entity.posX;
+		double d1 = entity.captain.posZ - entity.posZ;
+		double d2 = entity.captain.posY + (double)entity.captain.getEyeHeight() - entity.posY;
+
+		double d3 = (double)MathHelper.sqrt_double(dx * dx + dz * dz);
+		float f2 = (float)(Math.atan2(dz, dx) * 180.0D / Math.PI);
+		float f3 = (float)(Math.atan2(dy, d3) * 180.0D / Math.PI) + 90.0F;
+		
+		GL11.glRotatef(f2, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(f3, 0.0F, 0.0F, 1.0F);
+		GL11.glTranslatef(0.0F, -1.5F, 0.0F);
 		
 		this.func_110777_b(entity);
 		this.hook.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
