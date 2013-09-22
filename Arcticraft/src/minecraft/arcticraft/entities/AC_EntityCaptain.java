@@ -3,6 +3,7 @@ package arcticraft.entities;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -190,6 +191,10 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 	public void setHookAirBorne(boolean bool) {
 		this.isHookAirBorne = bool;
 	}
+	
+	public void resetHookCooldown() {
+		this.hookCooldown = this.maxHookCooldown;
+	}
 
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float f) {
@@ -205,7 +210,8 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
         double dz = target.posZ - hook.posZ;
         float f1 = MathHelper.sqrt_double(dx * dx + dz * dz) * 0.4F;
         hook.setThrowableHeading(dx, dy + (double)f1, dz, hook.func_70182_d(), 1.0F);
-        this.playSound("random.bow", 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
+        this.playSound("ac:mobs.captain_poof", 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
+        Minecraft.getMinecraft().sndManager.playEntitySound("ac:mobs.captain_rope", this, 0.7F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F), false);
         
         this.worldObj.spawnEntityInWorld(hook);
 		
@@ -232,7 +238,7 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 		
 		((WorldServer) this.worldObj).getEntityTracker().sendPacketToAllPlayersTrackingEntity(hook, packet);
 		
-        this.hookCooldown = this.maxHookCooldown;
+        this.resetHookCooldown();
         this.isHookAirBorne = true;
 	}
 }

@@ -73,7 +73,9 @@ public class AC_RenderCaptain extends RenderBiped
 	protected void renderEquippedItems(EntityLivingBase par1EntityLivingBase, float par2)
     {
         super.renderEquippedItems(par1EntityLivingBase, par2);
-        this.renderHook((AC_EntityCaptain)par1EntityLivingBase, par2);
+        if (!((AC_EntityCaptain) par1EntityLivingBase).isHookAirBorne()) {
+        	this.renderHook((AC_EntityCaptain)par1EntityLivingBase, par2);
+        }
     }
 	
 	protected void renderHook(AC_EntityCaptain captain, float par2)

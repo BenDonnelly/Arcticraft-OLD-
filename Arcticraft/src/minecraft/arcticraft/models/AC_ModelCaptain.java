@@ -1,8 +1,11 @@
 package arcticraft.models;
 
+import arcticraft.entities.AC_EntityCaptain;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.MathHelper;
 
 public class AC_ModelCaptain extends ModelBiped
 {
@@ -843,6 +846,30 @@ public class AC_ModelCaptain extends ModelBiped
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		this.bipedLeftArm.rotationPointX -= 1F;
 		this.bipedRightArm.rotationPointX += 1F;
+		
+		AC_EntityCaptain captain = (AC_EntityCaptain) entity;
+		if (captain.isAboutToThrowHook() || captain.isHookAirBorne()) {
+			this.bipedLeftArm.rotateAngleX = this.updateRotation(this.bipedLeftArm.rotateAngleX, this.bipedHead.rotateAngleX - 90.0F, 2.0F);
+			this.bipedLeftArm.rotateAngleY = this.bipedHead.rotateAngleY;
+			this.bipedLeftArm.rotateAngleZ = this.bipedHead.rotateAngleZ;
+		}
 	}
+	
+	private float updateRotation(float par1, float par2, float par3)
+    {
+        float f3 = MathHelper.wrapAngleTo180_float(par2 - par1);
+
+        if (f3 > par3)
+        {
+            f3 = par3;
+        }
+
+        if (f3 < -par3)
+        {
+            f3 = -par3;
+        }
+
+        return par1 + f3;
+    }
 
 }

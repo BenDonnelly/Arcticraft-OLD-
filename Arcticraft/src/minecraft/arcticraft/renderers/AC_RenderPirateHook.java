@@ -35,13 +35,9 @@ public class AC_RenderPirateHook extends Render {
 		
 		GL11.glScalef(-0.35F, -0.35F, 0.35F);
 		
-		double dx = this.func_110828_a(entity.captain.lastTickPosX, entity.captain.posX, partialTicks) - this.func_110828_a(entity.lastTickPosX, entity.posX, partialTicks);
-		double dy = this.func_110828_a(entity.captain.lastTickPosY, entity.captain.posY, partialTicks) - this.func_110828_a(entity.lastTickPosY, entity.posY, partialTicks) + entity.captain.ySize;
-		double dz = this.func_110828_a(entity.captain.lastTickPosZ, entity.captain.posZ, partialTicks) - this.func_110828_a(entity.lastTickPosZ, entity.posZ, partialTicks);
-		
-		double d0 = entity.captain.posX - entity.posX;
-		double d1 = entity.captain.posZ - entity.posZ;
-		double d2 = entity.captain.posY + (double)entity.captain.getEyeHeight() - entity.posY;
+		double dx = this.func_110828_a(entity.getThrower().lastTickPosX, entity.getThrower().posX, partialTicks) - this.func_110828_a(entity.lastTickPosX, entity.posX, partialTicks);
+		double dy = this.func_110828_a(entity.getThrower().lastTickPosY, entity.getThrower().posY, partialTicks) - this.func_110828_a(entity.lastTickPosY, entity.posY, partialTicks) + entity.getThrower().ySize;
+		double dz = this.func_110828_a(entity.getThrower().lastTickPosZ, entity.getThrower().posZ, partialTicks) - this.func_110828_a(entity.lastTickPosZ, entity.posZ, partialTicks);
 
 		double d3 = (double)MathHelper.sqrt_double(dx * dx + dz * dz);
 		float f2 = (float)(Math.atan2(dz, dx) * 180.0D / Math.PI);
@@ -55,11 +51,11 @@ public class AC_RenderPirateHook extends Render {
 		this.hook.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 		GL11.glPopMatrix();
 		
-		x = this.func_110828_a(entity.captain.lastTickPosX, entity.captain.posX, partialTicks);
-		y = this.func_110828_a(entity.captain.lastTickPosY, entity.captain.posY, partialTicks);
-		z = this.func_110828_a(entity.captain.lastTickPosZ, entity.captain.posZ, partialTicks);
-		yaw = (float) this.func_110828_a(entity.captain.prevRotationYaw, entity.captain.rotationYaw, partialTicks);
-		this.renderRope(entity.captain, entity, x - RenderManager.renderPosX, y - RenderManager.renderPosY, z - RenderManager.renderPosZ, yaw, partialTicks);
+		x = this.func_110828_a(entity.getThrower().lastTickPosX, entity.getThrower().posX, partialTicks);
+		y = this.func_110828_a(entity.getThrower().lastTickPosY, entity.getThrower().posY, partialTicks);
+		z = this.func_110828_a(entity.getThrower().lastTickPosZ, entity.getThrower().posZ, partialTicks);
+		yaw = (float) this.func_110828_a(entity.getThrower().prevRotationYaw, entity.getThrower().rotationYaw, partialTicks);
+		this.renderRope(entity.getThrower(), entity, x - RenderManager.renderPosX, y - RenderManager.renderPosY, z - RenderManager.renderPosZ, yaw, partialTicks);
 	}
 	
 	private double func_110828_a(double par1, double par3, double par5)

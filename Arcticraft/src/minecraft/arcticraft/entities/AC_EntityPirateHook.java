@@ -6,6 +6,7 @@ import java.io.DataOutputStream;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -23,7 +24,7 @@ import arcticraft.lib.Strings;
 public class AC_EntityPirateHook extends EntityThrowable {
 	
 	@SideOnly(Side.CLIENT)
-	public AC_EntityCaptain captain;
+	private AC_EntityCaptain captain;
 	
 	public AC_EntityPirateHook(World par1World) {
 		super(par1World);
@@ -36,11 +37,15 @@ public class AC_EntityPirateHook extends EntityThrowable {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
+		
+		if (this.ticksExisted > 100) {
+			this.setDead();
+		}
 	}
 	
 	@Override
 	protected void onImpact(MovingObjectPosition mov) {
-		if (mov.entityHit != null && mov.entityHit instanceof EntityLivingBase) {
+		if (mov.entityHit != null && mov.entityHit instanceof EntityLivingBase && this.getThrower() != null) {
 			EntityLivingBase entityHit = (EntityLivingBase) mov.entityHit;
 			double d0 = this.getThrower().posX - this.posX;
             double d1 = this.getThrower().posY - this.posY;
@@ -56,9 +61,9 @@ public class AC_EntityPirateHook extends EntityThrowable {
             entityHit.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 20, 10));
         }
 		
-		if (!this.worldObj.isRemote) {
-			this.setDead();
-		}
+		Minecraft.getMinecraft().sndManager.stopEntitySound(this.getThrower());
+		this.playSound("ac:mobs.captain_ting", 0.5F, 1.0F / (this.worldObj.rand.nextFloat() * 0.4F + 0.8F));
+		this.setDead();
 	}
 	
 	@Override
@@ -82,8 +87,13 @@ public class AC_EntityPirateHook extends EntityThrowable {
 	
 	@Override
 	public AC_EntityCaptain getThrower() {
-        return (AC_EntityCaptain) super.getThrower();
+        return this.worldObj.isRemote ? this.captain : (AC_EntityCaptain) super.getThrower();
     }
+	
+	@SideOnly(Side.CLIENT)
+	public void setThrower(AC_EntityCaptain captain) {
+		this.captain = captain;
+	}
 	
 	@Override
 	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
