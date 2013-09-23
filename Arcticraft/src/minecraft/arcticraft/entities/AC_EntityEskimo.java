@@ -1,5 +1,7 @@
 package arcticraft.entities;
 
+import arcticraft.blocks.AC_Block;
+import arcticraft.items.AC_Item;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,11 +18,11 @@ public class AC_EntityEskimo extends AC_EntityDefaultEskimo
 
 	static
 	{
-		addStuffToBuy(Block.stone, 5, 46, 0.5F);
-		addStuffToBuy(Block.dirt, 10, 20, 0.3F);
-		addStuffToBuy(Item.stick, 12, 54, 0.6F);
-		addStuffToSell(Block.blockGold, 2, 6, 0.8F);
-		addStuffToSell(Item.emerald, 1, 1, 0.99F);
+		addStuffToBuy(AC_Item.arcaneDust, 5, 46, 0.5F);
+		addStuffToBuy(AC_Block.crystalGlass, 10, 20, 0.3F);
+		addStuffToBuy(AC_Block.campfire, 6, 20, 0.6F);
+		addStuffToSell(AC_Item.bomb, 2, 6, 0.6F);
+		addStuffToSell(AC_Item.bucketEmpty, 1, 1, 0.59F);
 	}
 
 	@Override

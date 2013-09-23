@@ -59,7 +59,7 @@ public class AC_GenIceberg extends WorldGenerator
 
 	public boolean generate(World world, Random rand, int i, int j, int k)
 	{
-		if(rand.nextInt(1000) > 5)
+		if(rand.nextInt(1000) > 15)
 			return false;
 		//check that each corner is one of the valid spawn blocks
 		if(! LocationIsValidSpawn(world, i, j, k) || ! LocationIsValidSpawn(world, i + 26, j, k) || ! LocationIsValidSpawn(world, i + 26, j, k + 23) || ! LocationIsValidSpawn(world, i, j, k + 23))

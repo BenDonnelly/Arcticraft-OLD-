@@ -9,6 +9,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import arcticraft.biomes.AC_BiomeSnowPlains;
 import arcticraft.gen.AC_GenEskimoVillage;
 import arcticraft.gen.AC_GenMageTower;
+import arcticraft.main.MainRegistry;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class AC_WorldGenerator implements IWorldGenerator
@@ -34,7 +35,6 @@ public class AC_WorldGenerator implements IWorldGenerator
 	private void generateArctic(World world, Random random, int BlockX, int BlockZ)
 	{
 		BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(BlockX, BlockZ);
-
 		if((biome instanceof AC_BiomeSnowPlains))
 		{
 			{

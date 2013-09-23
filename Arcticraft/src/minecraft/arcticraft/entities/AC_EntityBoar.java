@@ -127,25 +127,10 @@ public class AC_EntityBoar extends EntityAnimal
 
 	}
 
-	/**
-	 * This function is used when two same-species animals in 'love mode' breed to generate the new baby animal.
-	 */
-	public AC_EntityBoar spawnBabyAnimal(EntityAgeable par1EntityAgeable)
+	@Override
+	public EntityAgeable createChild(EntityAgeable entityageable)
 	{
-		return new AC_EntityBoar(this.worldObj);
+		return null;
 	}
 
-	/**
-	 * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
-	 * the animal type)
-	 */
-	public boolean isBreedingItem(ItemStack par1ItemStack)
-	{
-		return par1ItemStack != null && par1ItemStack.itemID == Item.carrot.itemID;
-	}
-
-	public EntityAgeable createChild(EntityAgeable par1EntityAgeable)
-	{
-		return this.spawnBabyAnimal(par1EntityAgeable);
-	}
 }

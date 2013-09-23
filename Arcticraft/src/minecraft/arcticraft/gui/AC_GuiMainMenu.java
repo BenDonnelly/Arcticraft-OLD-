@@ -599,7 +599,6 @@ public class AC_GuiMainMenu extends GuiScreen
 		super.drawScreen(par1, par2, par3);
 	}
 
-	// Called when the mouse is clicked.
 	@Override
 	protected void mouseClicked(int par1, int par2, int par3)
 	{

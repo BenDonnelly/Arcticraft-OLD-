@@ -23,7 +23,7 @@ public class AC_GenEskimoVillage extends WorldGenerator
 
 	protected int[] GetValidSpawnBlocks()
 	{
-		return new int[] {Block.snow.blockID , Block.blockSnow.blockID , AC_Block.thickSnow.blockID};
+		return new int[] {Block.snow.blockID , Block.blockSnow.blockID , AC_Block.thickSnow.blockID, AC_Block.frostGrass.blockID};
 	}
 
 	public boolean LocationIsValidSpawn(World world, int i, int j, int k)
@@ -64,8 +64,6 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		return false;
 	}
 
-	public AC_GenEskimoVillage()
-	{}
 
 	private void clearArea(World world, int x, int y, int z, int xSize, int ySize, int zSize)
 	{
@@ -83,12 +81,9 @@ public class AC_GenEskimoVillage extends WorldGenerator
 
 	public boolean generate(World world, Random rand, int i, int j, int k)
 	{
+	
 		//check that each corner is one of the valid spawn blocks
 		if(! LocationIsValidSpawn(world, i, j, k) || ! LocationIsValidSpawn(world, i + 69, j, k) || ! LocationIsValidSpawn(world, i + 69, j, k + 28) || ! LocationIsValidSpawn(world, i, j, k + 28))
-		{
-			return false;
-		}
-		if(rand.nextInt(1000) > 10)
 		{
 			return false;
 		}

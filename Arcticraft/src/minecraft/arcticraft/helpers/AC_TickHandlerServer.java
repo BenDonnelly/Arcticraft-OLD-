@@ -4,8 +4,10 @@ import java.util.EnumSet;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import arcticraft.dispenser.AC_DispenserBehaviours;
+import arcticraft.lib.Debug;
 import arcticraft.lib.Strings;
 import arcticraft.main.MainRegistry;
 import cpw.mods.fml.common.ITickHandler;
@@ -30,6 +32,7 @@ public class AC_TickHandlerServer implements ITickHandler
 			killPlayer((EntityPlayer) tickData[0]);
 			freezingPotion((EntityPlayer) tickData[0]);
 			AC_DispenserBehaviours.registerDispenserBehaviours();
+			lowTemperatureEffects((EntityPlayer) tickData[0]);
 		}
 	}
 
@@ -43,6 +46,19 @@ public class AC_TickHandlerServer implements ITickHandler
 	public EnumSet<TickType> ticks()
 	{
 		return EnumSet.of(TickType.PLAYER, TickType.SERVER);
+	}
+
+	public void lowTemperatureEffects(EntityPlayer player)
+	{
+		if(AC_TickHandler.value <= 10)
+		{
+			player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 2));
+		}
+		if(AC_TickHandler.value <= 5)
+		{
+			player.addPotionEffect(new PotionEffect(Potion.confusion.id, 250, 50));
+			player.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
+		}
 	}
 
 	public void killPlayer(EntityPlayer entityPlayer)
@@ -61,9 +77,8 @@ public class AC_TickHandlerServer implements ITickHandler
 
 	public void freezingPotion(EntityPlayer entityPlayer)
 	{
-	//	entityPlayer.addPotionEffect(new PotionEffect(MainRegistry.freezePotion.id, 300, 0));
+		//	entityPlayer.addPotionEffect(new PotionEffect(MainRegistry.freezePotion.id, 300, 0));
 		tickCounter++;
-		
 
 		if(entityPlayer.isPotionActive(MainRegistry.freezePotion))
 		{

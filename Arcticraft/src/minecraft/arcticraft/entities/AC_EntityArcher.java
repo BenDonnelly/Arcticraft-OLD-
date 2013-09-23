@@ -17,6 +17,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import arcticraft.items.AC_Item;
@@ -92,7 +93,17 @@ public class AC_EntityArcher extends EntityMob implements IRangedAttackMob
 	{
 		return null;
 	}
-
+	
+	protected int getDropItemId()
+	{
+		return AC_Item.IceShard.itemID;
+	}
+	
+	protected void dropRareDrop(int par1)
+	{
+		this.entityDropItem(new ItemStack(AC_Item.archerBow, 1), 0.0F);
+	}
+	
 	/**
 	 * Makes entity wear random armor based on difficulty
 	 */

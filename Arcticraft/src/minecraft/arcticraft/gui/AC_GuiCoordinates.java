@@ -34,7 +34,7 @@ public class AC_GuiCoordinates extends GuiScreen
 			buttonList.add(new GuiButton(2, width / 2 - 49, height / 2 - 50, 70, 20, "Back"));
 			buttonList.add(new GuiButton(1, width / 2 - 49, height / 2 + 40, 70, 20, "Enter"));
 			buttonList.add(new GuiButton(3, width / 2 - 160, height / 2 - 10, 70, 20, "Default"));
-			buttonList.add(new GuiButton(4, width / 2 + 66, height / 2 - 10, 70, 20, "Presets"));
+			//buttonList.add(new GuiButton(4, width / 2 + 66, height / 2 - 10, 70, 20, "Presets"));
 			textfield = new GuiTextField(fontRenderer, width / 2 - 87, height / 2 - 10, 60, 20);
 			textfield2 = new GuiTextField(fontRenderer, width / 2 + 3, height / 2 - 10, 60, 20);
 			textfield.setText(Integer.toString(AC_TickHandler.x));

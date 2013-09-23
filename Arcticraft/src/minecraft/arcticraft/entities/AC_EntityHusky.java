@@ -1,5 +1,6 @@
 package arcticraft.entities;
 
+import arcticraft.items.AC_Item;
 import net.minecraft.block.BlockColored;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -435,7 +436,7 @@ public class AC_EntityHusky extends EntityTameable
 				this.setAttackTarget((EntityLivingBase) null);
 			}
 		}
-		else if(itemstack != null && itemstack.itemID == Item.bone.itemID && ! this.isAngry())
+		else if(itemstack != null && itemstack.itemID == AC_Item.penguinMeat.itemID && ! this.isAngry())
 		{
 			if(! par1EntityPlayer.capabilities.isCreativeMode)
 			{

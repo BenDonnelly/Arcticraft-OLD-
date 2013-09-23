@@ -24,7 +24,7 @@ public class AC_BlockOres extends Block
 	/**
 	 * Returns the ID of the items to drop on destruction.
 	 */
-	public int idDropped(int par1, Random par2Random, int par3)
+	public int idDropped(int par1, Random rand, int par3)
 	{
 		if(this == AC_Block.tekkiteOre)
 		{
@@ -49,6 +49,10 @@ public class AC_BlockOres extends Block
 		if(this == AC_Block.rigentemOre)
 		{
 			return AC_Block.rigentemOre.blockID;
+		}
+		if(this == AC_Block.eriumOre)
+		{
+			return AC_Item.eriumGem.itemID;
 		}
 
 		else

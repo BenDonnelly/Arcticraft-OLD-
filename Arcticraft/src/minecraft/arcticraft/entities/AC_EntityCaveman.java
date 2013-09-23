@@ -63,7 +63,7 @@ public class AC_EntityCaveman extends EntityMob
 	{
 		super.func_110147_ax();
 		// Max Health 
-		this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(15.0D);
+		this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(20.0D);
 		// Movement Speed 
 		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.23000000417232513D);
 		//Attack damage

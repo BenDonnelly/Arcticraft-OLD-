@@ -3,6 +3,7 @@ package arcticraft.entities;
 import java.util.Random;
 
 import net.minecraft.entity.EntityFlying;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
@@ -20,7 +21,7 @@ public class AC_EntityFrostGhost extends EntityFlying implements IMob
 		super(par1World);
 		this.setSize(1.0F, 2.0F);
 	}
-
+	@Override
 	protected void updateEntityActionState()
 	{
 
@@ -81,11 +82,15 @@ public class AC_EntityFrostGhost extends EntityFlying implements IMob
 		return true;
 	}
 
-	public int getMaxHealth()
+
+	@Override
+	protected void func_110147_ax()
 	{
-		return 40;
+		super.func_110147_ax();
+		// Max Health - default 20.0D - min 0.0D - max Double.MAX_VALUE
+		this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(40.0D);
 	}
-	
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		if(this.rand.nextInt(1000) < 20)
