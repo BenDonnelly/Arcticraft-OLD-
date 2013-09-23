@@ -1,5 +1,6 @@
 package arcticraft.entities;
 
+import arcticraft.items.AC_Item;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -142,12 +143,24 @@ public class AC_EntityIceCreeper extends EntityCreeper implements IRangedAttackM
 		return "mob.creeper.death";
 	}
 
-	/**
-	 * Returns the item ID for the item the mob drops on death.
-	 */
-	protected int getDropItemId()
+	protected void dropFewItems(boolean par1, int par2)
 	{
-		return Item.gunpowder.itemID;
+		int j;
+		int k;
+
+		j = this.rand.nextInt(3 + par2);
+
+		for(k = 0; k < j; ++k)
+		{
+			this.dropItem(Item.gunpowder.itemID, 1);
+		}
+
+		j = this.rand.nextInt(3 + par2);
+
+		for(k = 0; k < j; ++k)
+		{
+			this.dropItem(AC_Item.IceShard.itemID, 1);
+		}
 	}
 
 	public void attackEntityWithRangedAttack(EntityLivingBase par1EntityLivingBase, float par2)

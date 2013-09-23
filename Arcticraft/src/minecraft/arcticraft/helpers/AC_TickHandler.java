@@ -94,7 +94,7 @@ public class AC_TickHandler implements ITickHandler
 			startPickaxeCooldown((EntityPlayer) tickData[0]);
 			stringTick();
 		}
-		//loadCustomMenu();
+		loadCustomMenu();
 	}
 
 	public void loadCustomMenu()
@@ -142,8 +142,8 @@ public class AC_TickHandler implements ITickHandler
 				tickCounter++;
 			}
 
-			if(tickCounter == 1501 && player.dimension == MainRegistry.dimension)
-			{
+			if(tickCounter == 451 && player.dimension == MainRegistry.dimension)//450 = 45 secs. 300 ticks = 30 secs, 150 ticks = 15 secs 
+			{	
 				tickCounter = 0;
 			}
 		}
@@ -160,7 +160,7 @@ public class AC_TickHandler implements ITickHandler
 				tempIncrementCounter++;
 			}
 
-			if(tempIncrementCounter == 75 && player.dimension == MainRegistry.dimension)
+			if(tempIncrementCounter == 61 && player.dimension == MainRegistry.dimension) // 4 seconds
 			{
 				tempIncrementCounter = 0;
 			}
@@ -172,18 +172,18 @@ public class AC_TickHandler implements ITickHandler
 		if(! player.capabilities.isCreativeMode && mc.theWorld != null)
 		{
 
-			if(player.dimension == MainRegistry.dimension && player.isInsideOfMaterial(Material.water) && this.tickCounter == 300)
+			if(player.dimension == MainRegistry.dimension && player.isInsideOfMaterial(Material.water) && this.tickCounter == 100) // 5 seconds
 			{
 				this.value -= 2;
 				this.tickCounter = 0;
 
 			}
-			else if(player.dimension == MainRegistry.dimension && mc.theWorld.isRaining() == true && this.tickCounter == 300)
+			else if(player.dimension == MainRegistry.dimension && mc.theWorld.isRaining() == true && this.tickCounter == 160) // 8 seconds
 			{
 				this.value -= 2;
 				this.tickCounter = 0;
 			}
-			else if(this.tickCounter == 1500)
+			else if(this.tickCounter == 450)
 			{
 				this.value -= 1;
 			}
@@ -200,13 +200,13 @@ public class AC_TickHandler implements ITickHandler
 			int offsetY = (int) Math.round(player.posY);
 			int offsetZ = (int) Math.round(player.posZ);
 
-			for(int x = 0; x < 8; x++)
+			for(int x = 0; x < 6; x++)
 			{
-				for(int y = 0; y < 8; y++)
+				for(int y = 0; y < 6; y++)
 				{
-					for(int z = 0; z < 8; z++)
+					for(int z = 0; z < 6; z++)
 					{
-						if(this.value < 100 && this.tempIncrementCounter == 74 && mc.theWorld.getBlockLightValue(offsetX + x - 4, offsetY + y - 4, offsetZ + z - 4) >= 10)
+						if(this.value < 100 && this.tempIncrementCounter == 60 && mc.theWorld.getBlockLightValue(offsetX + x - 6, offsetY + y - 6, offsetZ + z - 6) >= 10)
 						{
 							this.value += 1;
 							this.tempIncrementCounter = 0;
@@ -240,7 +240,7 @@ public class AC_TickHandler implements ITickHandler
 		{
 			player.motionX *= 0.8D;
 			player.motionZ *= 0.8D;
-		}
+		}		
 	}
 
 	public void startPickaxeCooldown(EntityPlayer player)

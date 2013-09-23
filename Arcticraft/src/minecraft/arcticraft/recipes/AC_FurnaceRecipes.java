@@ -28,10 +28,6 @@ public class AC_FurnaceRecipes
 		return smeltingBase;
 	}
 
-	private AC_FurnaceRecipes()
-	{
-		this.addSmelting(Block.oreIron.blockID, new ItemStack(Item.ingotIron), 0.7F);
-	}
 
 	/**
 	 * Adds a smelting recipe.

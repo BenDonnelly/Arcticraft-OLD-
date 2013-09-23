@@ -194,6 +194,7 @@ public class MainRegistry {
 		AC_Recipes.initializeRecipes();
 		AC_Block.registerBlocks();
 		AC_Block.nameBlocks();
+		AC_Block.harvestLevels();
 		AC_Item.nameItems();
 		AC_EntityRegistry.registerEntityEggs();
 		AC_ChestLootHelper.initializeChestLoot();

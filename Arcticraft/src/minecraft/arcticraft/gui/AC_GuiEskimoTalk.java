@@ -154,7 +154,6 @@ public class AC_GuiEskimoTalk extends GuiScreen
 					{
 						mc.thePlayer.addChatMessage("Thank you for the killing the Yeti. It has brought peace to my people. Heres is a reward for your efforts.");
 						sendRewardToPlayer(this.mc.thePlayer, new ItemStack(AC_Item.eriumGem, 128));
-						//TODO sacred item
 						hasCollectedReward = true;
 						mc.thePlayer.closeScreen();
 						break;
@@ -163,15 +162,14 @@ public class AC_GuiEskimoTalk extends GuiScreen
 					{
 						mc.thePlayer.addChatMessage("The village is very grateful, here is your Erium");
 						sendRewardToPlayer(this.mc.thePlayer, new ItemStack(AC_Item.eriumGem, 128));
-						//TODO sacred item
 						hasCollectedReward = true;
 						mc.thePlayer.closeScreen();
 						break;
 					}
 					else if(reward == 1)
 					{
-						mc.thePlayer.addChatMessage("It took me a while to convince my people, but I manage to get it. Here it is X - the most sacred item we have to offer ");
-						//TODO sacred item
+						mc.thePlayer.addChatMessage("It took me a while to convince my people, but I managed to get it. Here it is, the rare Jadeite gem - the most sacred item we have to offer ");
+						sendRewardToPlayer(this.mc.thePlayer, new ItemStack(AC_Item.jadeite, 1));
 						hasCollectedReward = true;
 						mc.thePlayer.closeScreen();
 						break;

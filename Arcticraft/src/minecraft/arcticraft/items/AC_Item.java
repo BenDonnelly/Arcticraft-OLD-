@@ -124,26 +124,27 @@ public class AC_Item
 	public static Item lantern;
 	public static Item cannonball;
 	public static Item pirateHook;
+	public static Item jadeite;
 	
 	public static void initializeItems()
 	{
 		/**Params go as follows : name, durability, reductionAmounts, enchantability**/
 
-		EnumToolMaterial TekkiteTool = EnumHelper.addToolMaterial("Tekkite Tool", 3, 1634, 8.3F, 4.0F, 22);
-		EnumArmorMaterial TekkiteArmor = EnumHelper.addArmorMaterial("Tekkite Armor", 36, new int[]{3, 7, 6, 3}, 12);
+		EnumToolMaterial TekkiteTool = EnumHelper.addToolMaterial("Tekkite Tool", 3, 1634, 8.3F, 4.0F, 22); //Best tools
+		EnumArmorMaterial TekkiteArmor = EnumHelper.addArmorMaterial("Tekkite Armor", 36, new int[]{3, 7, 6, 3}, 12); // second best armour
 
-		EnumToolMaterial EscariaTool = EnumHelper.addToolMaterial("Escaria Tool", 0, 120, 12.0F, 0.5F, 23);
-		EnumArmorMaterial EscariaArmor = EnumHelper.addArmorMaterial("Escaria Armor", 9, new int[]{2, 5, 3, 1}, 25);
+		EnumToolMaterial EscariaTool = EnumHelper.addToolMaterial("Escaria Tool", 0, 140, 12.0F, 0.5F, 23); //worse tools, fast tho 
+		EnumArmorMaterial EscariaArmor = EnumHelper.addArmorMaterial("Escaria Armor", 9, new int[]{2, 5, 3, 1}, 25); //worse armour
 
-		EnumToolMaterial RigentemTool = EnumHelper.addToolMaterial("Rigentem Tool", 2, 500, 7.0F, 3.0F, 15);
-		EnumArmorMaterial RigentemArmor = EnumHelper.addArmorMaterial("Rigentem Armor", 17, new int[]{2, 6, 5, 2}, 11);
+		EnumToolMaterial RigentemTool = EnumHelper.addToolMaterial("Rigentem Tool", 2, 500, 7.0F, 3.0F, 15); //third best tools
+		EnumArmorMaterial RigentemArmor = EnumHelper.addArmorMaterial("Rigentem Armor", 17, new int[]{2, 6, 5, 2}, 11); //thrid best armour
 
-		EnumToolMaterial GlacianTool = EnumHelper.addToolMaterial("Glacian Tool", 3, 1400, 9.0F, 5.0F, 13);
-		EnumArmorMaterial GlacianArmor = EnumHelper.addArmorMaterial("Glacian Armor", 40, new int[]{3, 8, 6, 3}, 15);
+		EnumToolMaterial GlacianTool = EnumHelper.addToolMaterial("Glacian Tool", 3, 1400, 9.0F, 5.0F, 13);//second best tools
+		EnumArmorMaterial GlacianArmor = EnumHelper.addArmorMaterial("Glacian Armor", 40, new int[]{3, 8, 6, 3}, 15); //best armour
 
 		EnumArmorMaterial PirateArmour = EnumHelper.addArmorMaterial("Pirate Armor", 33, new int[] {1 , 3 , 2 , 1}, 15);
 
-		EnumArmorMaterial hikingAmrour = EnumHelper.addArmorMaterial("Hiking Armoru", 33, new int[] {1 , 3 , 2 , 1}, 20);
+		EnumArmorMaterial hikingAmrour = EnumHelper.addArmorMaterial("Hiking Armor", 15, new int[] {1 , 3 , 2 , 1}, 20);
 
 		EnumToolMaterial notchedPickaxeMaterial = EnumHelper.addToolMaterial("Notched Pickaxe", 3, 1000, 5.0F, 2.0F, 25);
 		
@@ -248,10 +249,12 @@ public class AC_Item
 		lantern = new AC_ItemBlockLantern(1516).setUnlocalizedName("lantern").func_111206_d("ac:lantern");
 		cannonball = new Item(1517).setFull3D().setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("cannonball").func_111206_d("ac:cannonball_icon");
 		pirateHook = new Item(1518).setFull3D().setUnlocalizedName("pirateHook").func_111206_d("ac:pirateHook");
+		jadeite = new Item(1519).setCreativeTab(MainRegistry.tabMisc).setUnlocalizedName("jadeite").func_111206_d("ac:jadeite");
 	}
 
 	public static void nameItems()
 	{
+		LanguageRegistry.addName(jadeite, "Jadeite");
 		LanguageRegistry.addName(cannonball, "Cannonball");
 		LanguageRegistry.addName(woodenClub, "Wooden Club");
 		LanguageRegistry.addName(archerBow, "Archer's Bow");

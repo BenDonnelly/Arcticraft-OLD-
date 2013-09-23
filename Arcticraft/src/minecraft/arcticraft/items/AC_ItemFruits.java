@@ -32,7 +32,7 @@ public class AC_ItemFruits extends ItemFood
 	public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer player)
 	{
 		attemptToTeleport(itemStack, world, player);
-		Minecraft.getMinecraft().sndManager.playSoundFX("ac:misc.portal", 1.0F, 1.0F);
+		Minecraft.getMinecraft().sndManager.playSoundFX("ac:misc.portal", 4.0F, 4.0F);
 		player.addStat(AC_Achievements.AC_ENTER, 1);
 		itemStack.stackSize--;
 		return itemStack;
@@ -47,7 +47,7 @@ public class AC_ItemFruits extends ItemFood
 			{
 				player.addStat(AC_Achievements.AC_ENTER, 1);
 			}
-			//Minecraft.getMinecraft().sndManager.playSoundFX("ac:misc.portal", 1.0F, 1.0F);
+			Minecraft.getMinecraft().sndManager.playSoundFX("ac:misc.portal", 4.0F, 4.0F);
 			attemptToTeleport(par1ItemStack, world, player);
 		}
 		return super.onItemUse(par1ItemStack, player, world, par4, par5, par6, par7, par8, par9, par10);

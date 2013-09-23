@@ -1,5 +1,6 @@
 package arcticraft.entities;
 
+import arcticraft.items.AC_Item;
 import net.minecraft.block.Block;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -25,11 +26,17 @@ public class AC_EntityHunterEskimo extends AC_EntityDefaultEskimo
 
 	static
 	{
-		addStuffToBuy(Block.stone, 5, 46, 0.5F);
-		addStuffToBuy(Block.dirt, 10, 20, 0.3F);
+		addStuffToBuy(AC_Item.woodenClub, 1, 1, 0.5F);
+		addStuffToBuy(AC_Item.frostSticks, 1, 5, 0.5F);
 		addStuffToBuy(Item.stick, 12, 54, 0.6F);
-		addStuffToSell(Block.blockGold, 2, 6, 0.8F);
-		addStuffToSell(Item.emerald, 1, 1, 0.99F);
+		addStuffToSell(AC_Item.FrostWoodSword, 1, 1, 0.8F);
+		addStuffToSell(AC_Item.hikingBoots, 1, 5, 0.69F);
+	}
+
+	@Override
+	protected int getDropItemId()
+	{
+		return Item.stick.itemID;
 	}
 
 	@Override

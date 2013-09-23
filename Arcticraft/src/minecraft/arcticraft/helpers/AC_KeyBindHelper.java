@@ -17,7 +17,7 @@ public class AC_KeyBindHelper extends KeyHandler
 	Minecraft mc;
 	//public static KeyBinding keyName = new KeyBinding("DisplayName", Keyboard.KEY_M);
 
-	public static KeyBinding acOptions = new KeyBinding("AC Options", Keyboard.KEY_J);
+	public static KeyBinding acOptions = new KeyBinding("AC Options", Keyboard.KEY_H);
 
 	public static KeyBinding[] arrayOfKeys = new KeyBinding[] {acOptions /* keyName */};
 	public static boolean[] areRepeating = new boolean[] {false};
