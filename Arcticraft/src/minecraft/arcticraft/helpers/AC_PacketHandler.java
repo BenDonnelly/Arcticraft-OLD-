@@ -61,7 +61,21 @@ public class AC_PacketHandler implements IPacketHandler
 			return;
 		}
 		
-		((AC_EntityPirateHook) world.getEntityByID(hookId)).captain = (AC_EntityCaptain) world.getEntityByID(captainId);
+		AC_EntityPirateHook hook = (AC_EntityPirateHook) world.getEntityByID(hookId);
+		AC_EntityCaptain captain = (AC_EntityCaptain) world.getEntityByID(captainId);
+		
+		hook.setThrower(captain);
+		captain.resetHookCooldown();
+		captain.setHookAirBorne(true);
+		
+		double rotation = (captain.rotationYaw + 70.0F) / (180.0F / Math.PI);
+		double hookLaunchX = Math.cos(rotation);
+		double hookLaunchY = 1.4D;
+		double hookLaunchZ = Math.sin(rotation);
+		
+		for (int i = 0; i < 10; i++) {
+        	captain.worldObj.spawnParticle("smoke", captain.posX + hookLaunchX, captain.posY + hookLaunchY, captain.posZ + hookLaunchZ, (captain.getRNG().nextDouble() - 0.5D) / 5D, (captain.getRNG().nextDouble() - 0.5D) / 5D, (captain.getRNG().nextDouble() - 0.5D) / 5D);
+        }
 	}
 
 	private void handleEskimoTalk(Packet250CustomPayload packet, Player plyr)

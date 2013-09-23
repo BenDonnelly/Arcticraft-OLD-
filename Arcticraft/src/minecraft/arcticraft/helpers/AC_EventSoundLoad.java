@@ -26,6 +26,11 @@ public class AC_EventSoundLoad
 			event.manager.addSound("ac:mobs/pirate_death.wav");
 			event.manager.addSound("ac:mobs/pirate_idle.wav");
 
+			/*Captain*/
+			event.manager.addSound("ac:mobs/captain_poof.wav");
+			event.manager.addSound("ac:mobs/captain_ting.wav");
+			event.manager.addSound("ac:mobs/captain_rope.wav");
+			
 			/*Polar Bear*/
 			event.manager.addSound("ac:mobs/bear_idle.wav");
 			event.manager.addSound("ac:mobs/bear_angry.wav");
