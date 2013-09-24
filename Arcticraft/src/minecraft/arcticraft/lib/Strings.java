@@ -4,7 +4,7 @@ public class Strings {
 
 	public static final String MOD_ID = "ac";
 	public static final String MOD_NAME = "Arcticraft";
-	public static final String MOD_VERSION = "[1.6] V.1.0";
+	public static final String MOD_VERSION = "Pre-Alpha";
 	public static final String MOD_CLIENT_PROXY = "arcticraft.main.AC_ClientProxy";
 	public static final String MOD_COMMON_PROXY = "arcticraft.main.AC_CommonProxy";
 	
