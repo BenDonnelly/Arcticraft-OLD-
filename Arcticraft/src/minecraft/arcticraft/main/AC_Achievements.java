@@ -16,8 +16,8 @@ public class AC_Achievements
 	public static void initAchievements()
 	{
 		
-		AC_ENTER = new Achievement(4750, "ENTER_AC", 0, 0, AC_Block.campfire, null).registerAchievement();
-		BACK_TO_BASICS = new Achievement(4751, "BACK_TO_BASICS", 2, 0, AC_Block.frostLog, AC_ENTER).registerAchievement();
+		AC_ENTER = new Achievement(2034, "ENTER_AC", 0, 0, AC_Block.campfire, null).registerAchievement();
+		BACK_TO_BASICS = new Achievement(2035, "BACK_TO_BASICS", 2, 0, AC_Block.frostLog, AC_ENTER).registerAchievement();
 
 		addAchievementName("ENTER_AC", "BRRRRR.. It's cold!");
 		addAchievementName("BACK_TO_BASICS", "Back To Basics");

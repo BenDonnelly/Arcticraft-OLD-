@@ -55,7 +55,7 @@ public class AC_NotchedPickaxeRender implements IItemRenderer
 
 			GL11.glPushMatrix();
 
-			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/items/notched_pickaxe.png"));
+			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "textures/items/notched_pickaxe.png"));
 
 			GL11.glRotatef(- 32, 3F, 3F, 300F);
 			GL11.glRotatef(300, 1F, 1F, 300F);

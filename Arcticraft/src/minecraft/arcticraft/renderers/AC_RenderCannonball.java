@@ -57,7 +57,7 @@ public class AC_RenderCannonball extends Render
 	{
 		this.func_110777_b(cannonball);
 		GL11.glPushMatrix();
-		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/items/cannonball.png"));
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "textures/items/cannonball.png"));
 		GL11.glTranslatef((float) par2, (float) par4, (float) par6);
 		GL11.glRotatef(cannonball.prevRotationYaw + (cannonball.rotationYaw - cannonball.prevRotationYaw) * par9 - 90.0F, 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(cannonball.prevRotationPitch + (cannonball.rotationPitch - cannonball.prevRotationPitch) * par9, 0.0F, 0.0F, 1.0F);

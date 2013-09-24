@@ -74,10 +74,10 @@ public class AC_GuiMainMenu extends GuiScreen
 	private String field_104024_v;
 
 	//** An array of all the paths to the panorama pictures. *//*
-	private static final ResourceLocation[] titlePanoramaPaths = new ResourceLocation[] {new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama0.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama1.png") ,
-			new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama2.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama3.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama4.png") ,
-			new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/panorama5.png")};
-	private static final ResourceLocation logo = new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":/textures/title/LogoMainMenu.png");
+	private static final ResourceLocation[] titlePanoramaPaths = new ResourceLocation[] {new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":textures/title/panorama0.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":textures/title/panorama1.png") ,
+			new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":textures/title/panorama2.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":textures/title/panorama3.png") , new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":textures/title/panorama4.png") ,
+			new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":textures/title/panorama5.png")};
+	private static final ResourceLocation logo = new ResourceLocation(arcticraft.lib.Strings.MOD_ID + ":textures/title/LogoMainMenu.png");
 	public static final String field_96138_a = "Please click " + EnumChatFormatting.UNDERLINE + "here" + EnumChatFormatting.RESET + " for more information.";
 	private int field_92024_r;
 	private int field_92023_s;

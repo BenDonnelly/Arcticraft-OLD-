@@ -70,7 +70,7 @@ public class AC_GuiMMButtons extends GuiButton
 		}
 
 		FontRenderer fontrenderer = minecraft.fontRenderer;
-		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/gui/main_menu_buttons.png"));
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "textures/gui/main_menu_buttons.png"));
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		boolean flag = i >= xPosition && j >= yPosition && i < xPosition + width && j < yPosition + height;
 		int k = getHoverState(flag);

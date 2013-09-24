@@ -180,13 +180,13 @@ public class AC_GuiCoordinates extends GuiScreen
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		if(texture == 0)
 		{
-			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/gui/ac_default.png"));
+			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "textures/gui/ac_default.png"));
 			drawTexturedModalRect(k, l, 0, 0, 176, 166);
 		}
 		else if(texture == 1)
 		{
 
-			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "/textures/gui/bgtemp.png"));
+			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "textures/gui/bgtemp.png"));
 			drawTexturedModalRect(x, y, 0, 0, 256, 256);
 
 		}
