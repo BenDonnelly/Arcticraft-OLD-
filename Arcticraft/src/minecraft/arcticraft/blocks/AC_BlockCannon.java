@@ -48,7 +48,7 @@ public class AC_BlockCannon extends BlockContainer
 					cannon.isLoaded = true;
 					world.playSoundAtEntity(player, "ac:misc.fuse", 1.5F, 1.5F);
 				}
-				if(! player.capabilities.isCreativeMode)
+				if(! player.capabilities.isCreativeMode && hand != null && hand.getItem() == AC_Item.cannonball)
 				{
 					hand.stackSize--;
 				}

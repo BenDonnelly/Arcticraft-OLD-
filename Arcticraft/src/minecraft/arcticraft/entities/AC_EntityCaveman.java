@@ -33,7 +33,7 @@ public class AC_EntityCaveman extends EntityMob
 			{"WOOO, Im out! Here take this!" , "Finally i'm out, it's been " + rand.nextInt(20000 - 1000 + 1) + " centuries. I suppose you can take this as a reward" , "Thank you for getting me out of there, take this as a token of my gratitude" ,
 					"I can't believe it! Im actually out! I suppose you expect something now, well, this is all I have"} ,
 
-			{"You're just going to give me it? just like that? From this day fourth, you are the one I answer too" , "This is what I've been searching for my entire life! I can never give something back which is equally amazing as this is, but if you need anything just ask!" ,
+			{"You're just going to give me it? just like that? From this day fourth, you are the one I answer to" , "This is what I've been searching for my entire life! I can never give something back which is equally amazing as this is, but if you need anything just ask!" ,
 					"It's glorious! Its all that I imagined and more. I can't re-pay you back fully, but I'll do anything you want"} ,
 
 			{"I don't have anything else to give you, sorry" , "I said I don't have anything else" , "Go away!" , "I HAVE NOTHING ELSE" , "I'll give you one last chance to leave me alone!"}

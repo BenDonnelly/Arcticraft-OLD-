@@ -182,13 +182,6 @@ public class MainRegistry {
 		DimensionManager.registerDimension(dimension, dimension);
 
 		freezePotion = new AC_Potions(27, true, 0xffff).setIconIndex(2, 2).setPotionName(Strings.POTION_FREEZING_NAME);
-
-	}
-
-	@EventHandler
-	public void init(FMLInitializationEvent event) {
-
-		// MainMenuAPI.registerMenu("Arcticraft", AC_MenuBase.class);
 		AC_Block.initializeBlocks();
 		AC_Item.initializeItems();
 		AC_Recipes.initializeRecipes();
@@ -199,12 +192,22 @@ public class MainRegistry {
 		AC_EntityRegistry.registerEntityEggs();
 		AC_ChestLootHelper.initializeChestLoot();
 		AC_Achievements.initAchievements();
+		
+	}
+
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+
+		// MainMenuAPI.registerMenu("Arcticraft", AC_MenuBase.class);
+	
+	
+		
 		proxy.reigsterRenderThings();
 		proxy.registerTickHandler();
 		proxy.registerKeyHandler();
 
 		LanguageRegistry.instance().addStringLocalization("death.attack.Freezing", "%1$s froze");
-		LanguageRegistry.instance().addStringLocalization("death.attack.ice shard", "%1$s was pierced iceshard");
+		LanguageRegistry.instance().addStringLocalization("death.attack.ice shard", "%1$s was pierced by a iceshard");
 
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 		MinecraftForge.EVENT_BUS.register(new AC_ForgeEvents());
