@@ -13,6 +13,7 @@ import arcticraft.entities.AC_EntityCaptain;
 import arcticraft.entities.AC_EntityPirateHook;
 import arcticraft.entities.AC_EskimoTrade;
 import arcticraft.lib.Strings;
+import arcticraft.network.TemperatureHandlerClient;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 
@@ -26,6 +27,7 @@ public class AC_PacketHandler implements IPacketHandler
 		{
 			this.handleEskimoTrade(packet, player);
 		}
+		else if(packet.channel.equals("UPDATETEMP")) handleTempUpdate(packet);
 		else if(packet.channel.equals(Strings.CHANNEL_ESKIMO_TALK))
 		{
 			this.handleEskimoTalk(packet, player);
@@ -33,6 +35,15 @@ public class AC_PacketHandler implements IPacketHandler
 		else if(packet.channel.equals(Strings.CHANNEL_ROPE_POSITION)) {
 			this.handleRopePosition(packet, player);
 		}
+	}
+
+	private void handleTempUpdate(Packet250CustomPayload packet) 
+	{
+		try
+		{
+			TemperatureHandlerClient.updateTemp(new DataInputStream(new ByteArrayInputStream(packet.data)).readInt());
+		}
+		catch(Exception e) { }
 	}
 
 	private void handleRopePosition(Packet250CustomPayload packet, Player plyr) {

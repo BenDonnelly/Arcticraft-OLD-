@@ -37,6 +37,7 @@ import arcticraft.helpers.AC_TickHandler;
 import arcticraft.items.AC_Item;
 import arcticraft.items.AC_Potions;
 import arcticraft.lib.Strings;
+import arcticraft.network.TemperatureHandlerServer;
 import arcticraft.recipes.AC_Recipes;
 import arcticraft.world.AC_WorldGenerator;
 import arcticraft.world.AC_WorldProvider;
@@ -88,7 +89,12 @@ public class MainRegistry {
 	public Configuration ships;
 
 	@EventHandler
-	public void serverStarting(FMLServerStartingEvent event) {
+	public void serverStarting(FMLServerStartingEvent event) 
+	{
+		TemperatureHandlerServer.clear();
+		TemperatureHandlerServer.loadFromFile(new Configuration(new File(DimensionManager.getCurrentSaveRootDirectory(), "playertemps.dat")));
+		
+		
 		storage.clear();
 		System.out.println("Setting " + Strings.MOD_NAME + " server options");
 
@@ -104,6 +110,8 @@ public class MainRegistry {
 		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load ships data");
 		}
+		
+		//Deprecated stuff below
 		File worldConfigFile = new File(DimensionManager.getCurrentSaveRootDirectory(), "playertemps_.cfg");
 		if (!worldConfigFile.exists()) {
 			try {
@@ -127,6 +135,7 @@ public class MainRegistry {
 		} finally {
 			temperatureFile.save();
 		}
+		//
 	}
 
 	@EventHandler
