@@ -1,51 +1,48 @@
 Put tasks below:
 
+*After 1.0
+**Maybe 1.0
+
 Entities:
-King, Yeti, (Maybe whale) Mammoth
+King, Yeti,  **Mammoth
 
 World Gen:
 Castle (Ben)
-Icile(Maybe Ben, depends if I can to spawn good)
+**Icile(Maybe Ben, depends if I can to spawn good)
 
 SMP Fixing:
 Proxys, Temperature System, general stuff(Domi)
 
 Blocks:
-Quest Stand(We have model, whoevever is doing Quest System, do it)
+*Quest Stand(We have model, whoevever is doing Quest System, do it)
 
 Items:
-Mammoth Pouch(Ben)
+**Mammoth Pouch(Ben)
 
 Sounds:
-Captain
 Yeti 
 Frost Ghost
 King 
 Knight
 Miner
 Archer
-Cannon
 
 Fixes:
 Furnaces icons
 Temp bar coords
-Cannonball render (rotation point is offset atm)
 Tile entity collision
 Tile entity sizes
-Captain hook rotation (<3 trig)
 Spellcheck
 Treasure chest (and maybe more) shift click fix
 
 Misc:
-Quest System(Loldog or Domi would do it best imo)
-Treasure Chest Animation(This, Im not really bothered about really, vanilla Minecraft didnt get one for ages)
-Add trades to the normal eskimos and refine the general trader trades
-Make a mcmod.info
-IDs need configuration options
-Better sled movement + leash with huskies
-API
-Split into child mods (after 1.0, Sam likes money)
-Flat snow plains?
+*Quest System(Loldog or Domi would do it best imo)
+*Treasure Chest Animation(This, Im not really bothered about really, vanilla Minecraft didnt get one for ages)
+**IDs need configuration options
+*Better sled movement + leash with huskies
+*API
+*Split into child mods (after 1.0, Sam likes money)
+*Flat snow plains?
 
 Textures:
 Currently, none. I think.
