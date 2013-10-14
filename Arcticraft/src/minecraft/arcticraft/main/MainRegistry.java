@@ -27,6 +27,7 @@ import arcticraft.creative_tabs.AC_TabMisc;
 import arcticraft.creative_tabs.AC_TabTools;
 import arcticraft.data_store.GeneratedShipsStore;
 import arcticraft.data_store.TemperatureDataStorage;
+import arcticraft.dispenser.AC_DispenserBehaviours;
 import arcticraft.entities.AC_EntityRegistry;
 import arcticraft.gui.AC_GuiHandler;
 import arcticraft.helpers.AC_ChestLootHelper;
@@ -35,7 +36,6 @@ import arcticraft.helpers.AC_ForgeEvents;
 import arcticraft.helpers.AC_PacketHandler;
 import arcticraft.helpers.AC_TickHandler;
 import arcticraft.items.AC_Item;
-import arcticraft.items.AC_Potions;
 import arcticraft.lib.Strings;
 import arcticraft.network.TemperatureHandlerServer;
 import arcticraft.recipes.AC_Recipes;
@@ -55,8 +55,6 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.MOD_VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = { Strings.CHANNEL_ESKIMO_TRADE, Strings.CHANNEL_ESKIMO_TALK, Strings.CHANNEL_ROPE_POSITION }, packetHandler = AC_PacketHandler.class)
@@ -190,7 +188,7 @@ public class MainRegistry {
 		DimensionManager.registerProviderType(dimension, AC_WorldProvider.class, false);
 		DimensionManager.registerDimension(dimension, dimension);
 
-		freezePotion = new AC_Potions(27, true, 0xffff).setIconIndex(2, 2).setPotionName(Strings.POTION_FREEZING_NAME);
+		freezePotion = new AC_Potion(27, true, 0xffff).setIconIndex(2, 2).setPotionName(Strings.POTION_FREEZING_NAME);
 		AC_Block.initializeBlocks();
 		AC_Item.initializeItems();
 		AC_Recipes.initializeRecipes();
@@ -201,7 +199,7 @@ public class MainRegistry {
 		AC_EntityRegistry.registerEntityEggs();
 		AC_ChestLootHelper.initializeChestLoot();
 		AC_Achievements.initAchievements();
-		
+		AC_DispenserBehaviours.registerDispenserBehaviours();
 	}
 
 	@EventHandler

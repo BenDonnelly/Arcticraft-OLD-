@@ -36,8 +36,8 @@ import arcticraft.entities.AC_EntityWhale;
 import arcticraft.entities.AC_EntityYeti;
 import arcticraft.helpers.AC_EventSoundLoad;
 import arcticraft.helpers.AC_KeyBindHelper;
+import arcticraft.helpers.AC_TemperatureHandler;
 import arcticraft.helpers.AC_TickHandler;
-import arcticraft.helpers.AC_TickHandlerServer;
 import arcticraft.items.AC_Item;
 import arcticraft.models.AC_ModelBoar;
 import arcticraft.models.AC_ModelChefEskimo;
@@ -120,7 +120,7 @@ public class AC_ClientProxy extends AC_CommonProxy {
 	@Override
 	public void registerTickHandler() {
 		TickRegistry.registerTickHandler(new AC_TickHandler(), Side.CLIENT);
-		TickRegistry.registerTickHandler(new AC_TickHandlerServer(), Side.SERVER);
+		TickRegistry.registerTickHandler(new AC_TemperatureHandler(), Side.SERVER);
 	}
 
 	@Override
