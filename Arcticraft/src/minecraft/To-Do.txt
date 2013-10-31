@@ -8,7 +8,7 @@ King, Yeti,  **Mammoth
 
 World Gen:
 Castle (Ben)
-**Icile(Maybe Ben, depends if I can to spawn good)
+*Icile(Maybe Ben, depends if I can to spawn good)
 
 SMP Fixing:
 Proxys, Temperature System, general stuff(Domi)

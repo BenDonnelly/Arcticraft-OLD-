@@ -10,10 +10,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class AC_EntityHunterEskimo extends AC_EntityDefaultEskimo
+public class AC_EntityEskimoHunter extends AC_EntityEskimoDefault
 {
 
-	public AC_EntityHunterEskimo(World par1World)
+	public AC_EntityEskimoHunter(World par1World)
 	{
 		super(par1World);
 		this.targetTasks.addTask(9, new EntityAIHurtByTarget(this, false));

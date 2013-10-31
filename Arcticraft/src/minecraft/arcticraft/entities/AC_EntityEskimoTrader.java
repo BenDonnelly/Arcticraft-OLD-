@@ -3,6 +3,7 @@ package arcticraft.entities;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
@@ -19,12 +20,12 @@ import arcticraft.gui.AC_GuiTraderEskimo;
 import arcticraft.items.AC_Item;
 import cpw.mods.fml.client.FMLClientHandler;
 
-public class AC_EntityTraderEskimo extends EntityMob
+public class AC_EntityEskimoTrader extends EntityMob
 {
 
 	private AC_EskimoTrade[] trades = new AC_EskimoTrade[35];
 
-	public AC_EntityTraderEskimo(World par1World)
+	public AC_EntityEskimoTrader(World par1World)
 	{
 		super(par1World);
 		this.setSize(1.5F, 1.4F);
@@ -35,6 +36,19 @@ public class AC_EntityTraderEskimo extends EntityMob
 		this.addTrades();
 	}
 
+	protected void func_110147_ax()
+	{
+		super.func_110147_ax();
+		// Max Health - default 20.0D - min 0.0D - max Double.MAX_VALUE
+		this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(40.0D);
+		// Follow Range - default 32.0D - min 0.0D - max 2048.0D
+		this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(32.0D);
+		// Movement Speed - default 0.699D - min 0.0D - max Double.MAX_VALUE
+		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.23000000417232513D);
+		// Attack Damage - default 2.0D - min 0.0D - max Doubt.MAX_VALUE
+		this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(3.0D);
+	}
+	
 	@Override
 	public boolean interact(EntityPlayer player)
 	{
@@ -83,7 +97,7 @@ public class AC_EntityTraderEskimo extends EntityMob
 		this.addTrade(25, AC_Item.TekkiteHelmet, 6);
 		this.addTrade(26, Block.jukebox, 5);
 		this.addTrade(27, Item.bow, 5);
-		this.addTrade(28, Item.bed, 1);
+		this.addTrade(28, AC_Item.jadeite, 256);
 		this.addTrade(29, AC_Item.frigus, 8, 5);
 		this.addTrade(30, AC_Block.arcticFurnaceIdle, 1);
 		this.addTrade(31, Item.enderPearl, 3);

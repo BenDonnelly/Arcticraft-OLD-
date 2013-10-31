@@ -11,10 +11,10 @@ import net.minecraft.world.World;
 import arcticraft.gui.AC_GuiEskimoTalk;
 import cpw.mods.fml.client.FMLClientHandler;
 
-public class AC_EntityCheifEskimo extends EntityAnimal
+public class AC_EntityEskimoChief extends EntityAnimal
 {
 
-	public AC_EntityCheifEskimo(World par1World)
+	public AC_EntityEskimoChief(World par1World)
 	{
 		super(par1World);
 		this.setSize(1.5F, 1.4F);
@@ -38,10 +38,20 @@ public class AC_EntityCheifEskimo extends EntityAnimal
 		return EnumCreatureAttribute.UNDEFINED;
 	}
 
-	public boolean interact(EntityPlayer par1EntityPlayer)
+	public boolean interact(EntityPlayer plyer)
 	{
-		FMLClientHandler.instance().displayGuiScreen(par1EntityPlayer, new AC_GuiEskimoTalk());
-		System.out.println("Opening the eskimo talking sequence...");
+		if(!AC_GuiEskimoTalk.hasCollectedReward)
+		{
+			FMLClientHandler.instance().displayGuiScreen(plyer, new AC_GuiEskimoTalk());
+		}
+		else
+		{
+			if(!this.worldObj.isRemote)
+			{
+				plyer.addChatMessage("You are our hero!");
+
+			}
+		}
 		return true;
 	}
 

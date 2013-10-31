@@ -26,7 +26,8 @@ public class AC_GuiEskimoTalk extends GuiScreen
 	public String thing = randomItem[rand.nextInt(randomItem.length)];
 	private int chatProgress;
 	private int reward;
-	private boolean hasCollectedReward = false;
+	public static boolean hasCollectedReward;
+	private GuiButton buttonEight;
 
 	public AC_GuiEskimoTalk()
 	{}
@@ -55,7 +56,7 @@ public class AC_GuiEskimoTalk extends GuiScreen
 			break;
 
 		case 3:
-			this.buttonList.add(new GuiButton(8, 2, this.height / 4 + 96 + - 16, 220, 20, "I've killed the Yeti"));
+			this.buttonList.add(buttonEight = new GuiButton(8, 2, this.height / 4 + 96 + - 16, 220, 20, "I've killed the Yeti"));
 			break;
 
 		}
@@ -112,83 +113,94 @@ public class AC_GuiEskimoTalk extends GuiScreen
 
 		case 8:
 		{
-			out("case 8");
-			int offsetX = (int) Math.round(mc.thePlayer.posX);
-			int offsetY = (int) Math.round(mc.thePlayer.posY);
-			int offsetZ = (int) Math.round(mc.thePlayer.posZ);
 
-			List<?> entitiesInRange = mc.theWorld.getEntitiesWithinAABB(AC_EntityYeti.class, AxisAlignedBB.getBoundingBox(offsetX - 64, offsetY - 64, offsetZ - 64, offsetX + 64, offsetY + 64, offsetZ + 64));
-
-			AC_EntityYeti yetiInstance = null;
-
-			for(int i = 0; i < entitiesInRange.size(); ++i)
+			if(! hasCollectedReward)
 			{
-				Entity check = (Entity) entitiesInRange.get(i);
-				if(check instanceof AC_EntityYeti)
+				int offsetX = (int) Math.round(mc.thePlayer.posX);
+				int offsetY = (int) Math.round(mc.thePlayer.posY);
+				int offsetZ = (int) Math.round(mc.thePlayer.posZ);
+
+				List<?> entitiesInRange = mc.theWorld.getEntitiesWithinAABB(AC_EntityYeti.class, AxisAlignedBB.getBoundingBox(offsetX - 64, offsetY - 64, offsetZ - 64, offsetX + 64, offsetY + 64, offsetZ + 64));
+
+				AC_EntityYeti yetiInstance = null;
+
+				for(int i = 0; i < entitiesInRange.size(); ++i)
 				{
-					try
+					Entity check = (Entity) entitiesInRange.get(i);
+					if(check instanceof AC_EntityYeti)
 					{
-						yetiInstance = (AC_EntityYeti) check;
-					}
-					catch(Exception e)
-					{
-						out("[AC]Error occured while casting an Entity into an EntityYeti:");
-						out("");
-						out(e.getMessage());
+						try
+						{
+							yetiInstance = (AC_EntityYeti) check;
+						}
+						catch(Exception e)
+						{
+							out("[AC]Error occured while casting an Entity into an EntityYeti:");
+							out("");
+							out(e.getMessage());
+						}
 					}
 				}
-			}
 
-			if(yetiInstance != null)
-			{
-				mc.thePlayer.addChatMessage("The beast has not been slaid yet, kill it if you want your reward");
-				out("The Yeti is not dead...");
-				break;
-			}
-			else
-			{
-				if(hasCollectedReward == false && mc.thePlayer.inventory.getFirstEmptyStack() != - 1)
+				if(yetiInstance != null)
 				{
-
-					if(reward == 2)
-					{
-						mc.thePlayer.addChatMessage("Thank you for the killing the Yeti. It has brought peace to my people. Heres is a reward for your efforts.");
-						sendRewardToPlayer(this.mc.thePlayer, new ItemStack(AC_Item.eriumGem, 128));
-						hasCollectedReward = true;
-						mc.thePlayer.closeScreen();
-						break;
-					}
-					else if(reward == 0)
-					{
-						mc.thePlayer.addChatMessage("The village is very grateful, here is your Erium");
-						sendRewardToPlayer(this.mc.thePlayer, new ItemStack(AC_Item.eriumGem, 128));
-						hasCollectedReward = true;
-						mc.thePlayer.closeScreen();
-						break;
-					}
-					else if(reward == 1)
-					{
-						mc.thePlayer.addChatMessage("It took me a while to convince my people, but I managed to get it. Here it is, the rare Jadeite gem - the most sacred item we have to offer ");
-						sendRewardToPlayer(this.mc.thePlayer, new ItemStack(AC_Item.jadeite, 1));
-						hasCollectedReward = true;
-						mc.thePlayer.closeScreen();
-						break;
-					}
-					if(hasCollectedReward == true)
-					{
-						button.enabled = false;
-						break;
-					}
+					mc.thePlayer.addChatMessage("The beast has not been slaid yet, kill it if you want your reward");
+					out("The Yeti is not dead...");
+					break;
 				}
 				else
 				{
-					this.mc.thePlayer.addChatMessage("Something went wrong, is your inventory full?");
+					if(! hasCollectedReward && mc.thePlayer.inventory.getFirstEmptyStack() != - 1)
+					{
+
+						if(reward == 2)
+						{
+							mc.thePlayer.addChatMessage("Thank you for the killing the Yeti. It has brought peace to my people. Heres is a reward for your efforts.");
+							sendRewardToPlayer(this.mc.thePlayer, new ItemStack(AC_Item.eriumGem, 128));
+							disableButton();
+							break;
+						}
+						else if(reward == 0)
+						{
+							mc.thePlayer.addChatMessage("The village is very grateful, here is your Erium");
+							sendRewardToPlayer(this.mc.thePlayer, new ItemStack(AC_Item.eriumGem, 128));
+							disableButton();
+							break;
+						}
+						else if(reward == 1)
+						{
+							mc.thePlayer.addChatMessage("It took me a while to convince my people, but I managed to get it. Here it is, the rare Jadeite gem - the most sacred item we have to offer ");
+							sendRewardToPlayer(this.mc.thePlayer, new ItemStack(AC_Item.jadeite, 1));
+							disableButton();
+							break;
+						}
+						System.out.println(hasCollectedReward);
+					}
+					else
+					{
+						this.mc.thePlayer.addChatMessage("Something went wrong, is your inventory full?");
+					}
 				}
 			}
+
 		}
 		}
 	}
 
+	private void disableButton()
+	{
+		hasCollectedReward = true;
+		if(hasCollectedReward)
+		{
+			out("call");
+			mc.thePlayer.closeScreen();
+			buttonEight.enabled = false;
+			initGui();
+			System.out.println(buttonEight.enabled);
+		
+		}
+	}
+	
 	private static void sendRewardToPlayer(EntityClientPlayerMP player, ItemStack stack)
 	{
 		int itemID = stack.itemID;

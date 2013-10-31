@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import arcticraft.entities.AC_EntityTraderEskimo;
+import arcticraft.entities.AC_EntityEskimoTrader;
 import arcticraft.entities.AC_EskimoTrade;
 import arcticraft.lib.Strings;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -22,11 +22,11 @@ public class AC_GuiTraderEskimo extends GuiScreen
 {
 
 	public InventoryPlayer inventory;
-	private AC_EntityTraderEskimo eskimo;
+	private AC_EntityEskimoTrader eskimo;
 	private int traderWidth = 256;
 	private int traderHeight = 256;
 
-	public AC_GuiTraderEskimo(InventoryPlayer inv, AC_EntityTraderEskimo entity)
+	public AC_GuiTraderEskimo(InventoryPlayer inv, AC_EntityEskimoTrader entity)
 	{
 		this.inventory = inv;
 		this.eskimo = entity;

@@ -69,25 +69,25 @@ public class AC_EntityRegistry
 		LanguageRegistry.instance().addStringLocalization("entity.Husky.name", "Husky");
 		registerEntityEgg(AC_EntityHusky.class, lightGrayColor, grayColor);
 
-		EntityRegistry.registerGlobalEntityID(AC_EntityCheifEskimo.class, "EskimoCheif", EntityRegistry.findGlobalUniqueEntityId());
+		EntityRegistry.registerGlobalEntityID(AC_EntityEskimoChief.class, "EskimoCheif", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.EskimoCheif.name", "Eskimo Chief");
-		registerEntityEgg(AC_EntityCheifEskimo.class, purpleBlueishColor, grayColor);
+		registerEntityEgg(AC_EntityEskimoChief.class, purpleBlueishColor, grayColor);
 
-		EntityRegistry.registerGlobalEntityID(AC_EntityHunterEskimo.class, "EskimoHunter", EntityRegistry.findGlobalUniqueEntityId());
+		EntityRegistry.registerGlobalEntityID(AC_EntityEskimoHunter.class, "EskimoHunter", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.EskimoHunter.name", "Eskimo Hunter");
-		registerEntityEgg(AC_EntityHunterEskimo.class, redishPinkishColour, grayColor);
+		registerEntityEgg(AC_EntityEskimoHunter.class, redishPinkishColour, grayColor);
 
 		EntityRegistry.registerGlobalEntityID(AC_EntityEskimo.class, "Eskimo", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Eskimo.name", "Eskimo");
 		registerEntityEgg(AC_EntityEskimo.class, blueishIcyColor, grayColor);
 
-		EntityRegistry.registerGlobalEntityID(AC_EntityTraderEskimo.class, "EskimoTrader", EntityRegistry.findGlobalUniqueEntityId());
+		EntityRegistry.registerGlobalEntityID(AC_EntityEskimoTrader.class, "EskimoTrader", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.EskimoTrader.name", "Eskimo Trader");
-		registerEntityEgg(AC_EntityTraderEskimo.class, greenishColour, grayColor);
+		registerEntityEgg(AC_EntityEskimoTrader.class, greenishColour, grayColor);
 
-		EntityRegistry.registerGlobalEntityID(AC_EntityChefEskimo.class, "EskimoChef", EntityRegistry.findGlobalUniqueEntityId());
+		EntityRegistry.registerGlobalEntityID(AC_EntityEskimoChef.class, "EskimoChef", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.EskimoChef.name", "Eskimo Chef");
-		registerEntityEgg(AC_EntityChefEskimo.class, yellowishColour, grayColor);
+		registerEntityEgg(AC_EntityEskimoChef.class, yellowishColour, grayColor);
 
 		EntityRegistry.registerGlobalEntityID(AC_EntityYeti.class, "Yeti", EntityRegistry.findGlobalUniqueEntityId());
 		LanguageRegistry.instance().addStringLocalization("entity.Yeti.name", "Yeti");

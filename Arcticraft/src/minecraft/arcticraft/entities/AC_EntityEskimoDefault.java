@@ -29,7 +29,7 @@ import arcticraft.items.AC_Item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerchant
+public abstract class AC_EntityEskimoDefault extends EntityMob implements IMerchant
 {
 
 	private EntityPlayer buyingPlayer;
@@ -45,7 +45,7 @@ public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerch
 	public static final Map buyingList = new HashMap();
 	public static final Map rarityBuyingList = new HashMap();
 
-	public AC_EntityDefaultEskimo(World par1World)
+	public AC_EntityEskimoDefault(World par1World)
 	{
 		super(par1World);
 		this.setSize(1.5F, 1.4F);
@@ -75,7 +75,7 @@ public abstract class AC_EntityDefaultEskimo extends EntityMob implements IMerch
 		// Follow Range - default 32.0D - min 0.0D - max 2048.0D
 		this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(32.0D);
 		// Movement Speed - default 0.699D - min 0.0D - max Double.MAX_VALUE
-		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.399D);
+		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.23000000417232513D);
 		// Attack Damage - default 2.0D - min 0.0D - max Doubt.MAX_VALUE
 		this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(3.0D);
 	}

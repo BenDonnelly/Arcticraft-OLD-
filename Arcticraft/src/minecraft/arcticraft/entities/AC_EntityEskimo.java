@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class AC_EntityEskimo extends AC_EntityDefaultEskimo
+public class AC_EntityEskimo extends AC_EntityEskimoDefault
 {
 
 	public AC_EntityEskimo(World par1World)

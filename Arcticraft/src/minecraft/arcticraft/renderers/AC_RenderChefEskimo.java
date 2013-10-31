@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
-import arcticraft.entities.AC_EntityChefEskimo;
+import arcticraft.entities.AC_EntityEskimoChef;
 import arcticraft.lib.Strings;
 import arcticraft.models.AC_ModelChefEskimo;
 
@@ -21,19 +21,19 @@ public class AC_RenderChefEskimo extends RenderLiving
 		this.modelChef = (AC_ModelChefEskimo) this.mainModel;
 	}
 
-	public void func_177_a(AC_EntityChefEskimo entityeskimo, double d, double d1, double d2, float f, float f1)
+	public void func_177_a(AC_EntityEskimoChef entityeskimo, double d, double d1, double d2, float f, float f1)
 	{
 		super.doRenderLiving(entityeskimo, d, d1, d2, f, f1);
 	}
 
 	public void doRenderLiving(EntityLiving entityliving, double d, double d1, double d2, float f, float f1)
 	{
-		func_177_a((AC_EntityChefEskimo) entityliving, d, d1, d2, f, f1);
+		func_177_a((AC_EntityEskimoChef) entityliving, d, d1, d2, f, f1);
 	}
 
 	public void doRender(Entity entity, double d, double d1, double d2, float f, float f1)
 	{
-		func_177_a((AC_EntityChefEskimo) entity, d, d1, d2, f, f1);
+		func_177_a((AC_EntityEskimoChef) entity, d, d1, d2, f, f1);
 	}
 
 	@Override

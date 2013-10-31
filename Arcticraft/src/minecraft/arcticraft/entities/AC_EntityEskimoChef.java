@@ -7,10 +7,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class AC_EntityChefEskimo extends AC_EntityDefaultEskimo
+public class AC_EntityEskimoChef extends AC_EntityEskimoDefault
 {
 
-	public AC_EntityChefEskimo(World par1World)
+	public AC_EntityEskimoChef(World par1World)
 	{
 		super(par1World);
 		this.setSize(1.5F, 1.4F);

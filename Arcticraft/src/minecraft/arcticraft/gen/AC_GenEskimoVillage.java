@@ -10,11 +10,11 @@ import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import arcticraft.blocks.AC_Block;
-import arcticraft.entities.AC_EntityChefEskimo;
-import arcticraft.entities.AC_EntityCheifEskimo;
+import arcticraft.entities.AC_EntityEskimoChef;
+import arcticraft.entities.AC_EntityEskimoChief;
 import arcticraft.entities.AC_EntityEskimo;
-import arcticraft.entities.AC_EntityHunterEskimo;
-import arcticraft.entities.AC_EntityTraderEskimo;
+import arcticraft.entities.AC_EntityEskimoHunter;
+import arcticraft.entities.AC_EntityEskimoTrader;
 import arcticraft.entities.AC_EntityYeti;
 import arcticraft.lib.Debug;
 
@@ -4811,23 +4811,23 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		world.setBlock(i + 45, j + 0, k + 22, AC_Block.campfire.blockID);
 		world.setBlock(i + 61, j + 0, k + 14, AC_Block.campfire.blockID);
 
-		AC_EntityCheifEskimo chief = new AC_EntityCheifEskimo(world);
+		AC_EntityEskimoChief chief = new AC_EntityEskimoChief(world);
 		chief.setPosition(i + 65, j + 1, k + 14);
 		world.spawnEntityInWorld(chief);
 
-		AC_EntityHunterEskimo hunter = new AC_EntityHunterEskimo(world);
+		AC_EntityEskimoHunter hunter = new AC_EntityEskimoHunter(world);
 		hunter.setPosition(i + 35, j + 1, k + 3);
 		world.spawnEntityInWorld(hunter);
 
-		AC_EntityHunterEskimo hunter2 = new AC_EntityHunterEskimo(world);
+		AC_EntityEskimoHunter hunter2 = new AC_EntityEskimoHunter(world);
 		hunter2.setPosition(i + 35, j + 1, k + 3);
 		world.spawnEntityInWorld(hunter2);
 
-		AC_EntityChefEskimo chef = new AC_EntityChefEskimo(world);
+		AC_EntityEskimoChef chef = new AC_EntityEskimoChef(world);
 		chef.setPosition(i + 35, j + 1, k + 25);
 		world.spawnEntityInWorld(chef);
 
-		AC_EntityChefEskimo chef2 = new AC_EntityChefEskimo(world);
+		AC_EntityEskimoChef chef2 = new AC_EntityEskimoChef(world);
 		chef2.setPosition(i + 35, j + 1, k + 25);
 		world.spawnEntityInWorld(chef2);
 
@@ -4839,7 +4839,7 @@ public class AC_GenEskimoVillage extends WorldGenerator
 		eskimo2.setPosition(i + 46, j + 1, k + 3);
 		world.spawnEntityInWorld(eskimo2);
 
-		AC_EntityTraderEskimo traderEskimo = new AC_EntityTraderEskimo(world);
+		AC_EntityEskimoTrader traderEskimo = new AC_EntityEskimoTrader(world);
 		traderEskimo.setPosition(i + 46, j + 1, k + 25);
 		world.spawnEntityInWorld(traderEskimo);
 
