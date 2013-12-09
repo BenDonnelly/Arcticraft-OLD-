@@ -143,7 +143,7 @@ public class AC_Teleporter
 			NBTTagCompound nbt = new NBTTagCompound();
 			entity.isDead = false;
 			entity.riddenByEntity = null;
-			entity.addEntityID(nbt);
+			entity.getUniqueID();
 			entity.isDead = true;
 
 			entity = EntityList.createEntityFromNBT(nbt, world);

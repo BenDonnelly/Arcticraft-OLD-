@@ -76,13 +76,13 @@ public class AC_RenderDragon extends RenderLiving
 			GL11.glDepthFunc(GL11.GL_LEQUAL);
 			GL11.glEnable(GL11.GL_ALPHA_TEST);
 			GL11.glAlphaFunc(GL11.GL_GREATER, f6);
-			this.func_110776_a(field_110842_f);
+			this.bindTexture(field_110842_f);
 			this.mainModel.render(par1AC_EntityDragon, par2, par3, par4, par5, par6, par7);
 			GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
 			GL11.glDepthFunc(GL11.GL_EQUAL);
 		}
 
-		this.func_110777_b(par1AC_EntityDragon);
+		this.bindEntityTexture(par1AC_EntityDragon);
 		this.mainModel.render(par1AC_EntityDragon, par2, par3, par4, par5, par6, par7);
 
 		if(par1AC_EntityDragon.hurtTime > 0)
@@ -178,7 +178,7 @@ public class AC_RenderDragon extends RenderLiving
 		}
 		else
 		{
-			this.func_110776_a(field_110845_h);
+			this.bindTexture(field_110845_h);
 			float f1 = 1.0F;
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glDisable(GL11.GL_ALPHA_TEST);
@@ -224,7 +224,7 @@ public class AC_RenderDragon extends RenderLiving
 	}
 
 	@Override
-	protected ResourceLocation func_110775_a(Entity entity)
+	protected ResourceLocation getEntityTexture(Entity entity)
 	{
 		return field_110844_k;
 	}

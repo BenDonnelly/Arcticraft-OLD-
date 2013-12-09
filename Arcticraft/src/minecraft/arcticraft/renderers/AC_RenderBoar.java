@@ -24,13 +24,13 @@ public class AC_RenderBoar extends RenderLiving
 	}
 
 
-	protected ResourceLocation func_110886_a(AC_EntityBoar par1AC_EntityBoar)
+	protected ResourceLocation getEntityTexture(AC_EntityBoar par1AC_EntityBoar)
 	{
 		return field_110887_f;
 	}
 
-	protected ResourceLocation func_110775_a(Entity par1Entity)
+	protected ResourceLocation getEntityTexture(Entity par1Entity)
 	{
-		return this.func_110886_a((AC_EntityBoar) par1Entity);
+		return this.getEntityTexture((AC_EntityBoar) par1Entity);
 	}
 }

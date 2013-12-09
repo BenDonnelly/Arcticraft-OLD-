@@ -92,15 +92,15 @@ public class AC_TileEntityFrostChestRender extends TileEntitySpecialRenderer
 
 				if(par1TileEntityChest.func_98041_l() == 1)
 				{
-					this.func_110628_a(field_110633_e);
+					this.bindTexture(field_110633_e);
 				}
 				else if(this.isChristmas)
 				{
-					this.func_110628_a(field_110630_f);
+					this.bindTexture(field_110630_f);
 				}
 				else
 				{
-					this.func_110628_a(frostChest);
+					this.bindTexture(frostChest);
 				}
 			}
 			else
@@ -109,15 +109,15 @@ public class AC_TileEntityFrostChestRender extends TileEntitySpecialRenderer
 
 				if(par1TileEntityChest.func_98041_l() == 1)
 				{
-					this.func_110628_a(field_110635_a);
+					this.bindTexture(field_110635_a);
 				}
 				else if(this.isChristmas)
 				{
-					this.func_110628_a(field_110634_c);
+					this.bindTexture(field_110634_c);
 				}
 				else
 				{
-					this.func_110628_a(frostChestDouble);
+					this.bindTexture(frostChestDouble);
 				}
 			}
 

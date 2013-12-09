@@ -26,7 +26,7 @@ public class AC_RenderPolarBear extends RenderLiving
 		GL11.glScalef(1.7F, 1.7F, 1.7F);
 	}
 
-	protected ResourceLocation func_110892_a(AC_EntityPolarBear par1AC_EntityPolarBear)
+	protected ResourceLocation getEntityTexture(AC_EntityPolarBear par1AC_EntityPolarBear)
 	{
 		return polarBear;
 	}
@@ -40,8 +40,8 @@ public class AC_RenderPolarBear extends RenderLiving
 		this.scalePolarBear((AC_EntityPolarBear) par1EntityLivingBase, par2);
 	}
 
-	protected ResourceLocation func_110775_a(Entity par1Entity)
+	protected ResourceLocation getEntityTexture(Entity par1Entity)
 	{
-		return this.func_110892_a((AC_EntityPolarBear) par1Entity);
+		return this.getEntityTexture((AC_EntityPolarBear) par1Entity);
 	}
 }

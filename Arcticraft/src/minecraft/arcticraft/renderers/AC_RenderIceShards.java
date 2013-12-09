@@ -21,7 +21,7 @@ public class AC_RenderIceShards extends Render
 
     public void renderArrow(AC_EntityIceShard par1AC_EntityIceShard, double par2, double par4, double par6, float par8, float par9)
     {
-        this.func_110777_b(par1AC_EntityIceShard);
+        this.bindEntityTexture(par1AC_EntityIceShard);
         GL11.glPushMatrix();
         GL11.glTranslatef((float)par2, (float)par4, (float)par6);
         GL11.glRotatef(par1AC_EntityIceShard.prevRotationYaw + (par1AC_EntityIceShard.rotationYaw - par1AC_EntityIceShard.prevRotationYaw) * par9 - 90.0F, 0.0F, 1.0F, 0.0F);
@@ -80,14 +80,14 @@ public class AC_RenderIceShards extends Render
         GL11.glPopMatrix();
     }
 
-    protected ResourceLocation func_110779_a(AC_EntityIceShard par1AC_EntityIceShard)
+    protected ResourceLocation getEntityTexture(AC_EntityIceShard par1AC_EntityIceShard)
     {
         return iceshard;
     }
 
-    protected ResourceLocation func_110775_a(Entity par1Entity)
+    protected ResourceLocation getEntityTexture(Entity par1Entity)
     {
-        return this.func_110779_a((AC_EntityIceShard)par1Entity);
+        return this.getEntityTexture((AC_EntityIceShard)par1Entity);
     }
 
     /**

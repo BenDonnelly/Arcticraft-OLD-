@@ -36,7 +36,7 @@ public class AC_RenderPenguin extends RenderLiving
 	}
 
 	@Override
-	protected ResourceLocation func_110775_a(Entity entity)
+	protected ResourceLocation getEntityTexture(Entity entity)
 	{
 		return penguin;
 	}

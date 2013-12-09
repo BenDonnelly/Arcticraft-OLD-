@@ -62,7 +62,7 @@ public class AC_GuiCaptainLog extends GuiScreen {
 	@Override
 	public void drawScreen(int par1, int par2, float par3) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.func_110434_K().func_110577_a(texture);
+		this.mc.getTextureManager().bindTexture(texture);
 		int x = (this.width - this.bookImageWidth) / 2;
 		int y = (this.height - this.bookImageHeight) /2;
 		this.drawTexturedModalRect(x, y, 0, 0, this.bookImageWidth, this.bookImageHeight);

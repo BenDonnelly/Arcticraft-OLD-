@@ -41,13 +41,13 @@ public class AC_RenderHusky extends RenderLiving
 		if(par2 == 0 && par1AC_EntityHusky.getWolfShaking())
 		{
 			f1 = par1AC_EntityHusky.getBrightness(par3) * par1AC_EntityHusky.getShadingWhileShaking(par3);
-			this.func_110776_a(field_110917_a);
+			this.bindTexture(field_110917_a);
 			GL11.glColor3f(f1, f1, f1);
 			return 1;
 		}
 		else if(par2 == 1 && par1AC_EntityHusky.isTamed())
 		{
-			this.func_110776_a(field_110918_h);
+			this.bindTexture(field_110918_h);
 			f1 = 1.0F;
 			int j = par1AC_EntityHusky.getCollarColor();
 			GL11.glColor3f(f1 * EntitySheep.fleeceColorTable[j][0], f1 * EntitySheep.fleeceColorTable[j][1], f1 * EntitySheep.fleeceColorTable[j][2]);
@@ -59,7 +59,7 @@ public class AC_RenderHusky extends RenderLiving
 		}
 	}
 
-	protected ResourceLocation func_110914_a(AC_EntityHusky par1AC_EntityHusky)
+	protected ResourceLocation getEntityTexture(AC_EntityHusky par1AC_EntityHusky)
 	{
 		return par1AC_EntityHusky.isTamed() ? field_110915_f : (par1AC_EntityHusky.isAngry() ? field_110916_g : field_110917_a);
 	}
@@ -80,8 +80,8 @@ public class AC_RenderHusky extends RenderLiving
 		return this.getTailRotation((AC_EntityHusky) par1EntityLivingBase, par2);
 	}
 
-	protected ResourceLocation func_110775_a(Entity par1Entity)
+	protected ResourceLocation getEntityTexture(Entity par1Entity)
 	{
-		return this.func_110914_a((AC_EntityHusky) par1Entity);
+		return this.getEntityTexture((AC_EntityHusky) par1Entity);
 	}
 }

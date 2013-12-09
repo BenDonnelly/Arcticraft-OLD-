@@ -41,7 +41,7 @@ public class AC_RenderHUD
 			int l = i / 2 - short2 / 2;
 			int k = (int) (AC_BossStatus.healthScale * (float) (short1 + 1));
 			byte b0 = 12;
-			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "textures/gui/boss_bars.png"));
+			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Strings.MOD_ID, "textures/gui/boss_bars.png"));
 			gui.drawTexturedModalRect(j, b0, 0, 0, short1, 14);
 			if(k > 0)
 			{
@@ -80,7 +80,7 @@ public class AC_RenderHUD
 			if(mc.currentScreen == null || mc.currentScreen instanceof GuiIngameMenu)
 			{
 				renderPickaxeStrings();
-				FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "textures/gui/cooldown_bar.png"));
+				FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Strings.MOD_ID, "textures/gui/cooldown_bar.png"));
 				gui.drawTexturedModalRect(j, 40, 0, 12, 82, 12);
 				gui.drawTexturedModalRect(j, 40, 0, 0, (int) Math.round(AC_TickHandler.cooldown / 82 * 5.7), 12);
 			}
@@ -114,11 +114,12 @@ public class AC_RenderHUD
 
 		if(mc.thePlayer.dimension == MainRegistry.dimension)
 		{
-			mc.func_110434_K().func_110577_a(new ResourceLocation(Strings.MOD_ID, "textures/gui/temperature_bar.png"));
+			mc.getTextureManager().bindTexture(new ResourceLocation(Strings.MOD_ID, "textures/gui/temperature_bar.png"));
 			GuiIngame gui = mc.ingameGUI;
 			gui.drawTexturedModalRect(AC_TickHandler.x, AC_TickHandler.y, 0, 6, 80, 6);
 			gui.drawTexturedModalRect(AC_TickHandler.x, AC_TickHandler.y, 0, 0, mc.thePlayer.getDataWatcher().getWatchableObjectInt(AC_TemperatureHelper.tempID) * 80 / AC_TemperatureHelper.maxTemp, 6);
-			mc.func_110434_K().func_110577_a(Gui.field_110324_m);
+			//TODO check gui.icons
+			mc.getTextureManager().bindTexture(Gui.icons);
 		}
 
 	}
@@ -140,7 +141,7 @@ public class AC_RenderHUD
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 				// System.out.println("Alpha: " + alpha);
 				GL11.glDisable(GL11.GL_ALPHA_TEST);
-				mc.renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "textures/misc/freezing.png"));
+				mc.renderEngine.bindTexture(new ResourceLocation(Strings.MOD_ID, "textures/misc/freezing.png"));
 				Tessellator tessellator = Tessellator.instance;
 				tessellator.startDrawingQuads();
 				tessellator.addVertexWithUV(0.0D, par2, - 90.0D, 0.0D, 1.0D);

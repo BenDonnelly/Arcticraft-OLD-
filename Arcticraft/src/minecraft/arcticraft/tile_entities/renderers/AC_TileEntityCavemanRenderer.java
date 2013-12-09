@@ -27,7 +27,7 @@ public class AC_TileEntityCavemanRenderer extends TileEntitySpecialRenderer
 		{
 			rotation = par1TileEntity.getBlockMetadata();
 		}
-		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "textures/blocks/caveman.png"));
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Strings.MOD_ID, "textures/blocks/caveman.png"));
 		GL11.glPushMatrix();
 		GL11.glEnable(GL11.GL_NORMALIZE);
 		GL11.glEnable(GL11.GL_BLEND);

@@ -47,7 +47,7 @@ public class AC_RenderPirateHook extends Render {
 		GL11.glRotatef(f3, 0.0F, 0.0F, 1.0F);
 		GL11.glTranslatef(0.0F, -1.5F, 0.0F);
 		
-		this.func_110777_b(entity);
+		this.bindEntityTexture(entity);
 		this.hook.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 		GL11.glPopMatrix();
 		
@@ -130,7 +130,7 @@ public class AC_RenderPirateHook extends Render {
 	}
 
 	@Override
-	protected ResourceLocation func_110775_a(Entity entity) {
+	protected ResourceLocation getEntityTexture(Entity entity) {
 		return texture;
 	}
 }

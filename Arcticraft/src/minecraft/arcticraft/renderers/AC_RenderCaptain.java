@@ -151,7 +151,7 @@ public class AC_RenderCaptain extends RenderBiped
 	}
 
 	@Override
-	protected ResourceLocation func_110775_a(Entity entity)
+	protected ResourceLocation getEntityTexture(Entity entity)
 	{
 		return captain;
 	}

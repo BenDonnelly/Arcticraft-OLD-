@@ -23,7 +23,7 @@ public class AC_GuiCaptainLogButtonNextPage extends GuiButton {
         {
             boolean flag = par2 >= this.xPosition && par3 >= this.yPosition && par2 < this.xPosition + this.width && par3 < this.yPosition + this.height;
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            par1Minecraft.func_110434_K().func_110577_a(AC_GuiCaptainLog.getTexture());
+            par1Minecraft.getTextureManager().bindTexture(AC_GuiCaptainLog.getTexture());
             int k = 0;
             int l = 192;
 

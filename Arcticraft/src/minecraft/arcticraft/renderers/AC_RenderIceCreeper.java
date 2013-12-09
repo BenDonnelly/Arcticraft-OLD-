@@ -106,7 +106,7 @@ public class AC_RenderIceCreeper extends RenderLiving
 			if(par2 == 1)
 			{
 				float f1 = (float) par1AC_EntityIceCreeper.ticksExisted + par3;
-				this.func_110776_a(field_110831_a);
+				this.bindTexture(field_110831_a);
 				GL11.glMatrixMode(GL11.GL_TEXTURE);
 				GL11.glLoadIdentity();
 				float f2 = f1 * 0.01F;
@@ -140,7 +140,7 @@ public class AC_RenderIceCreeper extends RenderLiving
 		return - 1;
 	}
 
-	protected ResourceLocation func_110829_a(AC_EntityIceCreeper par1AC_EntityIceCreeper)
+	protected ResourceLocation getEntityTexture(AC_EntityIceCreeper par1AC_EntityIceCreeper)
 	{
 		return field_110830_f;
 	}
@@ -175,8 +175,8 @@ public class AC_RenderIceCreeper extends RenderLiving
 		return this.func_77061_b((AC_EntityIceCreeper) par1EntityLivingBase, par2, par3);
 	}
 
-	protected ResourceLocation func_110775_a(Entity par1Entity)
+	protected ResourceLocation getEntityTexture(Entity par1Entity)
 	{
-		return this.func_110829_a((AC_EntityIceCreeper) par1Entity);
+		return this.getEntityTexture((AC_EntityIceCreeper) par1Entity);
 	}
 }

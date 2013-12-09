@@ -31,14 +31,14 @@ public class AC_RenderSled extends Render {
 		GL11.glRotatef(270.0F - yaw, 0.0F, 1.0F, 0.0F);
 		
 		float f4 = 0.75F;
-		this.func_110777_b(entity);
+		this.bindEntityTexture(entity);
 		GL11.glScalef(-1.0F, -1.0F, 1.0F);
 		this.model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 		GL11.glPopMatrix();
 	}
 
 	@Override
-	protected ResourceLocation func_110775_a(Entity entity) {
+	protected ResourceLocation getEntityTexture(Entity entity) {
 		return texture;
 	}
 

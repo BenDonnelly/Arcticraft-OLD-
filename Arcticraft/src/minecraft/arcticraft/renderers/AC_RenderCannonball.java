@@ -55,9 +55,9 @@ public class AC_RenderCannonball extends Render
 
 	public void renderEntityModel(AC_EntityCannonball cannonball, double par2, double par4, double par6, float par8, float par9)
 	{
-		this.func_110777_b(cannonball);
+		this.bindEntityTexture(cannonball);
 		GL11.glPushMatrix();
-		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "textures/items/cannonball.png"));
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Strings.MOD_ID, "textures/items/cannonball.png"));
 		GL11.glTranslatef((float) par2, (float) par4, (float) par6);
 		GL11.glRotatef(cannonball.prevRotationYaw + (cannonball.rotationYaw - cannonball.prevRotationYaw) * par9 - 90.0F, 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(cannonball.prevRotationPitch + (cannonball.rotationPitch - cannonball.prevRotationPitch) * par9, 0.0F, 0.0F, 1.0F);
@@ -74,9 +74,9 @@ public class AC_RenderCannonball extends Render
 		GL11.glPopMatrix();
 	}
 
-	protected ResourceLocation func_110775_a(Entity par1Entity)
+	protected ResourceLocation getEntityTexture(Entity par1Entity)
 	{
-		return TextureMap.field_110576_c;
+		return TextureMap.locationBlocksTexture;
 	}
 
 	private void func_77026_a(Tessellator par1Tessellator, Icon par2Icon)

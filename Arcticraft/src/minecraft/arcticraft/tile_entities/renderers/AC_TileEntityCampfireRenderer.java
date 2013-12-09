@@ -27,7 +27,7 @@ public class AC_TileEntityCampfireRenderer extends TileEntitySpecialRenderer
 		{
 			rotation = tile.getBlockMetadata();
 		}
-		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "textures/blocks/campfire.png"));
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Strings.MOD_ID, "textures/blocks/campfire.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) d + 0.5F, (float) d1 + 1.5F, (float) d2 + 0.5F);
 		GL11.glScalef(1.0F, - 1F, - 1F);

@@ -18,7 +18,7 @@ public class AC_Potion extends Potion {
 	
 	@Override
 	public int getStatusIconIndex() {
-		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "textures/gui/inventory.png"));
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Strings.MOD_ID, "textures/gui/inventory.png"));
 		return super.getStatusIconIndex();
 	}
 	

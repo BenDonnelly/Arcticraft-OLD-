@@ -50,7 +50,7 @@ public class AC_InvisoStaffRender implements IItemRenderer
 		{
 			GL11.glPushMatrix();
 
-			FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(Strings.MOD_ID, "textures/items/inviso_staff.png"));
+			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Strings.MOD_ID, "textures/items/inviso_staff.png"));
 			GL11.glTranslatef(0.7F, 0.1F, 0.01F);
 
 			staffModel.render((Entity) data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);

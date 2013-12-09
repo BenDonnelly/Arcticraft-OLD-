@@ -39,7 +39,7 @@ public class AC_PirateHookRender implements IItemRenderer {
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
 		GL11.glPushMatrix();
-		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(AC_RenderPirateHook.texture);
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(AC_RenderPirateHook.texture);
 		GL11.glScalef(-0.35F, -0.35F, -0.35F);
 		GL11.glRotatef(300F, 0.0F, 0.0F, 1.0F);
 		GL11.glRotatef(270F, -0.1F, 1.0F, 0.0F);
