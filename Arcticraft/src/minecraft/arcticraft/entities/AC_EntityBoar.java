@@ -41,11 +41,11 @@ public class AC_EntityBoar extends EntityAnimal
 		return true;
 	}
 
-	protected void func_110147_ax()
+	protected void applyEntityAttributes()
 	{
-		super.func_110147_ax();
-		this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(15.0D);
-		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.25D);
+		super.applyEntityAttributes();
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(15.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.25D);
 	}
 
 	protected void updateAITasks()

@@ -96,7 +96,7 @@ public class AC_GuiMainMenu extends GuiScreen
 		try
 		{
 			ArrayList arraylist = new ArrayList();
-			bufferedreader = new BufferedReader(new InputStreamReader(Minecraft.getMinecraft().func_110442_L().func_110536_a(field_110353_x).func_110527_b(), Charsets.UTF_8));
+			bufferedreader = new BufferedReader(new InputStreamReader(Minecraft.getMinecraft().getResourceManager().getResource(field_110353_x).getInputStream(), Charsets.UTF_8));
 			String s;
 
 			while((s = bufferedreader.readLine()) != null)
@@ -162,7 +162,7 @@ public class AC_GuiMainMenu extends GuiScreen
 	{
 		super.initGui();
 		this.viewportTexture = new DynamicTexture(256, 256);
-		this.field_110351_G = this.mc.func_110434_K().func_110578_a("background", this.viewportTexture);
+		this.field_110351_G = this.mc.getTextureManager().getDynamicTextureLocation("background", this.viewportTexture);
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date());
 
@@ -344,7 +344,7 @@ public class AC_GuiMainMenu extends GuiScreen
 
 		if(par1GuiButton.id == 15)
 		{
-			this.mc.displayGuiScreen(new GuiLanguage(this, this.mc.gameSettings, this.mc.func_135016_M()));
+			this.mc.displayGuiScreen(new GuiLanguage(this, this.mc.gameSettings, this.mc.getLanguageManager()));
 		}
 
 	}
@@ -437,7 +437,7 @@ public class AC_GuiMainMenu extends GuiScreen
 					GL11.glRotatef(- 90.0F, 1.0F, 0.0F, 0.0F);
 				}
 
-				this.mc.func_110434_K().func_110577_a(titlePanoramaPaths[l]);
+				this.mc.getTextureManager().bindTexture(titlePanoramaPaths[l]);
 				tessellator.startDrawingQuads();
 				tessellator.setColorRGBA_I(16777215, 255 / (k + 1));
 				float f4 = 0.0F;
@@ -468,7 +468,7 @@ public class AC_GuiMainMenu extends GuiScreen
 	// Rotate and blurs the skybox view in the main menu
 	private void rotateAndBlurSkybox(float par1)
 	{
-		this.mc.func_110434_K().func_110577_a(this.field_110351_G);
+		this.mc.getTextureManager().bindTexture(this.field_110351_G);
 		GL11.glCopyTexSubImage2D(GL11.GL_TEXTURE_2D, 0, 0, 0, 0, 0, 256, 256);
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
@@ -547,7 +547,7 @@ public class AC_GuiMainMenu extends GuiScreen
 		byte b0 = 30;
 		this.drawGradientRect(0, 0, this.width, this.height, - 2130706433, 16777215);
 		this.drawGradientRect(0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
-		this.mc.func_110434_K().func_110577_a(logo);
+		this.mc.getTextureManager().bindTexture(logo);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
 		if((double) this.updateCounter < 1.0E-4D)

@@ -157,7 +157,7 @@ public class AC_EntitySled extends Entity {
     }
 	
 	@Override
-	public boolean func_130002_c(EntityPlayer par1EntityPlayer) {
+	public boolean interactFirst(EntityPlayer par1EntityPlayer) {
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && this.riddenByEntity != par1EntityPlayer) {
             return true;
         }

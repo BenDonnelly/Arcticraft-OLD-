@@ -26,7 +26,7 @@ public class AC_Potion extends Potion {
 	public void performEffect(EntityLivingBase par1EntityLivingBase, int par2) {
 		if (this.id == MainRegistry.freezePotion.id) {
 			if (par2 == 0) {
-				if (par1EntityLivingBase.func_110143_aJ() > 2.0F)
+				if (par1EntityLivingBase.getHealth() > 2.0F)
 	            {
 	                par1EntityLivingBase.attackEntityFrom(AC_DamageSource.freezing, 3F);
 	                

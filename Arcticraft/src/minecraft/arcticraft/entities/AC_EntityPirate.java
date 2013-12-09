@@ -41,12 +41,12 @@ public class AC_EntityPirate extends EntityMob
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 16, true));
 	}
 
-	protected void func_110147_ax()
+	protected void applyEntityAttributes()
 	{
-		super.func_110147_ax();
-		this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(25.0D);
-		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.23000000417232513D);
-		this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(4.0D);
+		super.applyEntityAttributes();
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(25.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(0.23000000417232513D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(4.0D);
 	}
 
 	public boolean canDespawn()

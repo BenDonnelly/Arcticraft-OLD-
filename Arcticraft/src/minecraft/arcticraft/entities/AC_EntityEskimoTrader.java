@@ -36,17 +36,17 @@ public class AC_EntityEskimoTrader extends EntityMob
 		this.addTrades();
 	}
 
-	protected void func_110147_ax()
+	protected void applyEntityAttributes()
 	{
-		super.func_110147_ax();
+		super.applyEntityAttributes();
 		// Max Health - default 20.0D - min 0.0D - max Double.MAX_VALUE
-		this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(40.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(40.0D);
 		// Follow Range - default 32.0D - min 0.0D - max 2048.0D
-		this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(32.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setAttribute(32.0D);
 		// Movement Speed - default 0.699D - min 0.0D - max Double.MAX_VALUE
-		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.23000000417232513D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.23000000417232513D);
 		// Attack Damage - default 2.0D - min 0.0D - max Doubt.MAX_VALUE
-		this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(3.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(3.0D);
 	}
 	
 	@Override
@@ -141,10 +141,10 @@ public class AC_EntityEskimoTrader extends EntityMob
 		return false;
 	}
 
-	public int getMaxHealth()
-	{
-		return 40;
-	}
+//	public int getMaxHealth()
+//	{
+//		return 40;
+//	}
 
 	public EntityAgeable createChild(EntityAgeable entityageable)
 	{

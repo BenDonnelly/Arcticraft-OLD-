@@ -59,15 +59,15 @@ public class AC_EntityCaveman extends EntityMob
 	}
 
 	@Override
-	protected void func_110147_ax()
+	protected void applyEntityAttributes()
 	{
-		super.func_110147_ax();
+		super.applyEntityAttributes();
 		// Max Health 
-		this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(20.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(20.0D);
 		// Movement Speed 
-		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.23000000417232513D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.23000000417232513D);
 		//Attack damage
-		this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(5.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(5.0D);
 
 	}
 

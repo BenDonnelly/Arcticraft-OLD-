@@ -75,18 +75,18 @@ public class AC_EntityHusky extends EntityTameable
 		this.setTamed(false);
 	}
 
-	protected void func_110147_ax()
+	protected void applyEntityAttributes()
 	{
-		super.func_110147_ax();
-		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.30000001192092896D);
+		super.applyEntityAttributes();
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(0.30000001192092896D);
 
 		if(this.isTamed())
 		{
-			this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(20.0D);
+			this.getEntityAttribute(SharedMonsterAttributes.followRange).setAttribute(20.0D);
 		}
 		else
 		{
-			this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(8.0D);
+			this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(8.0D);
 		}
 	}
 
@@ -369,11 +369,11 @@ public class AC_EntityHusky extends EntityTameable
 
 		if(par1)
 		{
-			this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(20.0D);
+			this.getEntityAttribute(SharedMonsterAttributes.followRange).setAttribute(20.0D);
 		}
 		else
 		{
-			this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(8.0D);
+			this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(8.0D);
 		}
 	}
 
@@ -392,7 +392,7 @@ public class AC_EntityHusky extends EntityTameable
 				{
 					ItemFood itemfood = (ItemFood) Item.itemsList[itemstack.itemID];
 
-					if(itemfood.isWolfsFavoriteMeat() && this.dataWatcher.func_111145_d(18) < 20.0F)
+					if(itemfood.isWolfsFavoriteMeat() && this.dataWatcher.getWatchableObjectFloat(18) < 20.0F)
 					{
 						if(! par1EntityPlayer.capabilities.isCreativeMode)
 						{
@@ -456,7 +456,7 @@ public class AC_EntityHusky extends EntityTameable
 					this.setPathToEntity((PathEntity) null);
 					this.setAttackTarget((EntityLivingBase) null);
 					this.aiSit.setSitting(true);
-					this.setEntityHealth(20.0F);
+					this.setHealth(20.0F);
 					this.setOwner(par1EntityPlayer.getCommandSenderName());
 					this.playTameEffect(true);
 					this.worldObj.setEntityState(this, (byte) 7);
@@ -492,7 +492,7 @@ public class AC_EntityHusky extends EntityTameable
 	@SideOnly(Side.CLIENT)
 	public float getTailRotation()
 	{
-		return this.isAngry() ? 1.5393804F : (this.isTamed() ? (0.55F - (20.0F - this.dataWatcher.func_111145_d(18)) * 0.02F) * (float) Math.PI : ((float) Math.PI / 5F));
+		return this.isAngry() ? 1.5393804F : (this.isTamed() ? (0.55F - (20.0F - this.dataWatcher.getWatchableObjectFloat(18)) * 0.02F) * (float) Math.PI : ((float) Math.PI / 5F));
 	}
 
 	/**

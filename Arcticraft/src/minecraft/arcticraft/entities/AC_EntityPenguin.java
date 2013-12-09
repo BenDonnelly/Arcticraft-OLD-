@@ -42,13 +42,13 @@ public class AC_EntityPenguin extends EntityAnimal
 		return true;
 	}
 
-	protected void func_110147_ax()
+	protected void applyEntityAttributes()
 	{
-		super.func_110147_ax();
+		super.applyEntityAttributes();
 		// Max Health - default 20.0D - min 0.0D - max Double.MAX_VALUE
-		this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(10d);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(10d);
 		// Movement Speed - default 0.699D - min 0.0D - max Double.MAX_VALUE
-		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.699D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.699D);
 	}
 
 	/**

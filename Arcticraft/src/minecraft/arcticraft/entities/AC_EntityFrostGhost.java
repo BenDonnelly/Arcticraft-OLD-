@@ -84,11 +84,11 @@ public class AC_EntityFrostGhost extends EntityFlying implements IMob
 
 
 	@Override
-	protected void func_110147_ax()
+	protected void applyEntityAttributes()
 	{
-		super.func_110147_ax();
+		super.applyEntityAttributes();
 		// Max Health - default 20.0D - min 0.0D - max Double.MAX_VALUE
-		this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(40.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(40.0D);
 	}
 	@Override
 	public boolean getCanSpawnHere()

@@ -44,15 +44,15 @@ public class AC_EntityArcher extends EntityMob implements IRangedAttackMob
 	}
 
 	@Override
-	protected void func_110147_ax()
+	protected void applyEntityAttributes()
 	{
-		super.func_110147_ax();
+		super.applyEntityAttributes();
 		// Max Health 
-		this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(40.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(40.0D);
 		// Follow Range 
-		this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(40.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setAttribute(40.0D);
 		// Movement Speed 
-		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.30D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.30D);
 
 	}
 
@@ -113,9 +113,9 @@ public class AC_EntityArcher extends EntityMob implements IRangedAttackMob
 		this.setCurrentItemOrArmor(0, new ItemStack(AC_Item.archerBow));
 	}
 
-	public EntityLivingData func_110161_a(EntityLivingData par1EntityLivingData)
+	public EntityLivingData onSpawnWithEgg(EntityLivingData par1EntityLivingData)
 	{
-		par1EntityLivingData = super.func_110161_a(par1EntityLivingData);
+		par1EntityLivingData = super.onSpawnWithEgg(par1EntityLivingData);
 
 		this.tasks.addTask(4, this.aiArrowAttack);
 		this.addRandomArmor();

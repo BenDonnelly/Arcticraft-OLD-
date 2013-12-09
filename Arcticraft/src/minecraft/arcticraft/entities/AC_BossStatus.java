@@ -15,7 +15,7 @@ public final class AC_BossStatus
 
 	public static void func_82824_a(AC_IBossDisplayData par0IBossDisplayData, boolean par1)
 	{
-		healthScale = par0IBossDisplayData.func_110143_aJ() / par0IBossDisplayData.func_110138_aP();
+		healthScale = par0IBossDisplayData.getMaxHealth() / par0IBossDisplayData.getHealth();
 		statusBarLength = 100;
 		bossName = par0IBossDisplayData.getEntityName();
 		isMiniBoss = par0IBossDisplayData.isMiniBoss();

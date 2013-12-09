@@ -40,7 +40,7 @@ public class AC_EntityMiner extends AC_EntityCastleMobDefault
 	{
 		if(this.field_110191_bu != this.entityToAttack && ! this.worldObj.isRemote)
 		{
-			AttributeInstance attributeinstance = this.func_110148_a(SharedMonsterAttributes.field_111263_d);
+			AttributeInstance attributeinstance = this.getEntityAttribute(SharedMonsterAttributes.field_111263_d);
 			attributeinstance.func_111124_b(field_110190_br);
 
 			if(this.entityToAttack != null)

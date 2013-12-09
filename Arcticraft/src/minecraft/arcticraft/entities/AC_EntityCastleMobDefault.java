@@ -28,17 +28,17 @@ public class AC_EntityCastleMobDefault extends EntityMob
 	}
 
 	@Override
-	protected void func_110147_ax()
+	protected void applyEntityAttributes()
 	{
-		super.func_110147_ax();
+		super.applyEntityAttributes();
 		// Max Health 
-		this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(40.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(40.0D);
 		// Follow Range 
-		this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(40.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setAttribute(40.0D);
 		// Movement Speed 
-		   this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.30D);	
+		   this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.30D);	
 		// Attack Damage
-		this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(8.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(8.0D);
 	}
 
 	public boolean canDespawn()
