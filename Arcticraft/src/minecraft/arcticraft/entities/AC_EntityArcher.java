@@ -121,7 +121,7 @@ public class AC_EntityArcher extends EntityMob implements IRangedAttackMob
 		this.addRandomArmor();
 		this.enchantEquipment();
 
-		this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * this.worldObj.func_110746_b(this.posX, this.posY, this.posZ));
+		this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * this.worldObj.getLocationTensionFactor(this.posX, this.posY, this.posZ));
 
 		if(this.getCurrentItemOrArmor(4) == null)
 		{

@@ -134,7 +134,7 @@ public class AC_EntityDragon extends EntityLiving implements IMob, IEntityMultiP
 		this.prevAnimTime = this.animTime;
 		float f2;
 
-		if (this.func_110143_aJ() <= 0.0F) {
+		if (this.getHealth() <= 0.0F) {
 			f = (this.rand.nextFloat() - 0.5F) * 8.0F;
 			f1 = (this.rand.nextFloat() - 0.5F) * 4.0F;
 			f2 = (this.rand.nextFloat() - 0.5F) * 8.0F;

@@ -26,7 +26,7 @@ public class AC_EntityYeti extends EntityMob implements AC_IBossDisplayData
 	public AC_EntityYeti(World par1World)
 	{
 		super(par1World);
-		this.setEntityHealth(this.func_110138_aP());
+		this.setHealth(this.getMaxHealth());
 		this.setSize(width + 0.8F, height + 1.2F);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
@@ -48,7 +48,7 @@ public class AC_EntityYeti extends EntityMob implements AC_IBossDisplayData
 	public void func_82206_m()
 	{
 		this.func_82215_s(220);
-		this.setEntityHealth(this.func_110138_aP() / 3.0F);
+		this.setHealth(this.getMaxHealth() / 3.0F);
 	}
 
 	public void func_82215_s(int par1)
@@ -61,7 +61,7 @@ public class AC_EntityYeti extends EntityMob implements AC_IBossDisplayData
 
 		if(! this.worldObj.isRemote)
 		{
-			this.dataWatcher.updateObject(16, Float.valueOf(this.func_110143_aJ()));
+			this.dataWatcher.updateObject(16, Float.valueOf(this.getHealth()));
 		}
 
 		super.onLivingUpdate();
@@ -80,15 +80,11 @@ public class AC_EntityYeti extends EntityMob implements AC_IBossDisplayData
 
 	protected void func_110147_ax()
 	{
-		super.func_110147_ax();
-		// Max Health - default 20.0D - min 0.0D - max Double.MAX_VALUE
-		this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(350.0D);
-		// Follow Range - default 32.0D - min 0.0D - max 2048.0D
-		this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(32.0D);
-		// Movement Speed - default 0.699D - min 0.0D - max Double.MAX_VALUE
-		this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.399D);
-		// Attack Damage - default 2.0D - min 0.0D - max Doubt.MAX_VALUE
-		this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(8.0D);
+		super.applyEntityAttributes();
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(350.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setAttribute(32.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.399D);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(8.0D);
 	}
 
 	/**

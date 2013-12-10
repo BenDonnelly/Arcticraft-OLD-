@@ -42,9 +42,10 @@ public class AC_EntityFrostZombie extends EntityMob
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(40.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setAttribute(0.23000000417232513D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(4.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setAttribute(40.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.23000000417232513D);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(4.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(20.0D);
 	}
 
 	public boolean attackEntityAsMob(Entity par1Entity)

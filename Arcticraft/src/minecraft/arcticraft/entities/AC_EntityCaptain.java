@@ -42,7 +42,7 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 	public AC_EntityCaptain(World par1World)
 	{
 		super(par1World);
-		this.setEntityHealth(this.func_110138_aP());
+		this.setHealth(this.getMaxHealth());
 		this.setSize(this.width, this.height + 0.4F);
 		this.setAIMoveSpeed(0.2F);
 		this.tasks.addTask(0, new EntityAISwimming(this));
@@ -67,7 +67,7 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 	public void func_82206_m()
 	{
 		this.func_82215_s(220);
-		this.setEntityHealth(this.func_110138_aP() / 3.0F);
+		this.setHealth(this.getMaxHealth() / 3.0F);
 	}
 
 	public void func_82215_s(int par1)
@@ -80,7 +80,7 @@ public class AC_EntityCaptain extends EntityMob implements AC_IBossDisplayData, 
 
 		if(!this.worldObj.isRemote)
 		{
-			this.dataWatcher.updateObject(16, Float.valueOf(this.func_110143_aJ()));
+			this.dataWatcher.updateObject(16, Float.valueOf(this.getHealth()));
 		}
 		
 		if (this.hookCooldown > 0) {

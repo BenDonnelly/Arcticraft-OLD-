@@ -19,7 +19,7 @@ public class AC_EntityPolarBear extends EntityMob
 {
 
 	private static final UUID field_110189_bq = UUID.fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
-	private static final AttributeModifier field_110190_br = (new AttributeModifier(field_110189_bq, "Attacking speed boost", 0.45D, 0)).func_111168_a(false);
+	private static final AttributeModifier field_110190_br = (new AttributeModifier(field_110189_bq, "Attacking speed boost", 0.45D, 0)).setSaved(false);
 
 	/** Above zero if this PolarBear is Angry. */
 	private int angerLevel = 0;
@@ -63,12 +63,12 @@ public class AC_EntityPolarBear extends EntityMob
 	{
 		if(this.field_110191_bu != this.entityToAttack && ! this.worldObj.isRemote)
 		{
-			AttributeInstance attributeinstance = this.func_110148_a(SharedMonsterAttributes.field_111263_d);
-			attributeinstance.func_111124_b(field_110190_br);
+			AttributeInstance attributeinstance = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
+			attributeinstance.removeModifier(field_110190_br);
 
 			if(this.entityToAttack != null)
 			{
-				attributeinstance.func_111121_a(field_110190_br);
+				attributeinstance.applyModifier(field_110190_br);
 			}
 		}
 

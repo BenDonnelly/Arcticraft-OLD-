@@ -120,13 +120,13 @@ public class AC_EntityHusky extends EntityTameable
 	 */
 	protected void updateAITick()
 	{
-		this.dataWatcher.updateObject(18, Float.valueOf(this.func_110143_aJ()));
+		this.dataWatcher.updateObject(18, Float.valueOf(this.getHealth()));
 	}
 
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(18, new Float(this.func_110143_aJ()));
+		this.dataWatcher.addObject(18, new Float(this.getHealth()));
 		this.dataWatcher.addObject(19, new Byte((byte) 0));
 		this.dataWatcher.addObject(20, new Byte((byte) BlockColored.getBlockFromDye(1)));
 	}
@@ -166,10 +166,10 @@ public class AC_EntityHusky extends EntityTameable
 	/**
 	 * Returns the sound this mob makes while it's alive.
 	 */
-	protected String getLivingSound()
-	{
-		return this.isAngry() ? "mob.wolf.growl" : (this.rand.nextInt(3) == 0 ? (this.isTamed() && this.dataWatcher.func_111145_d(18) < 10.0F ? "mob.wolf.whine" : "mob.wolf.panting") : "mob.wolf.bark");
-	}
+    protected String getLivingSound()
+    {
+        return this.isAngry() ? "mob.wolf.growl" : (this.rand.nextInt(3) == 0 ? (this.isTamed() && this.dataWatcher.getWatchableObjectFloat(18) < 10.0F ? "mob.wolf.whine" : "mob.wolf.panting") : "mob.wolf.bark");
+    }
 
 	/**
 	 * Returns the sound this mob makes when it is hurt.
@@ -633,8 +633,7 @@ public class AC_EntityHusky extends EntityTameable
 				}
 			}
 
-			return par1EntityLivingBase instanceof EntityPlayer && par2EntityLivingBase instanceof EntityPlayer && ! ((EntityPlayer) par2EntityLivingBase).func_96122_a((EntityPlayer) par1EntityLivingBase) ? false : ! (par1EntityLivingBase instanceof EntityHorse)
-					|| ! ((EntityHorse) par1EntityLivingBase).func_110248_bS();
+			  return par1EntityLivingBase instanceof EntityPlayer && par2EntityLivingBase instanceof EntityPlayer && !((EntityPlayer)par2EntityLivingBase).canAttackPlayer((EntityPlayer)par1EntityLivingBase) ? false : !(par1EntityLivingBase instanceof EntityHorse) || !((EntityHorse)par1EntityLivingBase).isTame();
 		}
 		else
 		{
