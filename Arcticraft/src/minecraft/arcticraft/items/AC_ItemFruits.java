@@ -27,7 +27,6 @@ public class AC_ItemFruits extends ItemFood
 
 	public Random rand = new Random();
 
-	@SideOnly(Side.CLIENT)
 	@Override
 	public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer player)
 	{

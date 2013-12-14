@@ -41,10 +41,12 @@ import arcticraft.network.TemperatureHandlerServer;
 import arcticraft.recipes.AC_Recipes;
 import arcticraft.world.AC_WorldGenerator;
 import arcticraft.world.AC_WorldProvider;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -55,6 +57,8 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.MOD_VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = { Strings.CHANNEL_ESKIMO_TRADE, Strings.CHANNEL_ESKIMO_TALK, Strings.CHANNEL_ROPE_POSITION }, packetHandler = AC_PacketHandler.class)
@@ -127,7 +131,8 @@ public class MainRegistry {
 			ConfigCategory general = temperatureFile.getCategory(Strings.CONFIG_CATEGORY_GENERAL);
 			Map<String, Property> entries = general.getValues();
 			storage.load(entries);
-			AC_TickHandler.value = storage.getTemperature("Player");
+			//TODO NOTE: player isnt online to be checked here
+//			AC_TickHandler.value = storage.getTemperature("Player");
 		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load its temperature configuration");
 		} finally {
@@ -160,6 +165,25 @@ public class MainRegistry {
 			ships.save();
 		}
 	}
+	
+	
+	//TODO 
+	@SideOnly(Side.CLIENT)
+	@PostInit
+	public void loadTempBar(FMLPostInitializationEvent event)
+	{
+		try {
+			globalConfigFile.load();
+			AC_TickHandler.x = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_X, 0).getInt(0);
+			AC_TickHandler.y = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_Y, 0).getInt(0);
+			AC_TickHandler.snowLayersEnabled = globalConfigFile.get(Strings.CONFIG_CATEGORY_GEN, Strings.CONFIG_SNOW_LAYERS_ENABLED, true).getBoolean(true);
+		
+		} catch (Exception e) {
+			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load its configuration");
+		} finally {
+			globalConfigFile.save();
+		}
+	}
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -172,18 +196,18 @@ public class MainRegistry {
 			}
 		}
 		globalConfigFile = new Configuration(cfgFile);
-
-		try {
-			globalConfigFile.load();
-			AC_TickHandler.x = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_X, 0).getInt(0);
-			AC_TickHandler.y = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_Y, 0).getInt(0);
-			AC_TickHandler.snowLayersEnabled = globalConfigFile.get(Strings.CONFIG_CATEGORY_GEN, Strings.CONFIG_SNOW_LAYERS_ENABLED, true).getBoolean(true);
-		
-		} catch (Exception e) {
-			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load its configuration");
-		} finally {
-			globalConfigFile.save();
-		}
+		//TODO this may need to be loaded client side only, needs testing
+//		try {
+//			globalConfigFile.load();
+//			AC_TickHandler.x = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_X, 0).getInt(0);
+//			AC_TickHandler.y = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_Y, 0).getInt(0);
+//			AC_TickHandler.snowLayersEnabled = globalConfigFile.get(Strings.CONFIG_CATEGORY_GEN, Strings.CONFIG_SNOW_LAYERS_ENABLED, true).getBoolean(true);
+//		
+//		} catch (Exception e) {
+//			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load its configuration");
+//		} finally {
+//			globalConfigFile.save();
+//		}
 
 		DimensionManager.registerProviderType(dimension, AC_WorldProvider.class, false);
 		DimensionManager.registerDimension(dimension, dimension);
