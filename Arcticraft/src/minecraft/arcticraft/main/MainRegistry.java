@@ -26,7 +26,7 @@ import arcticraft.creative_tabs.AC_TabMaterial;
 import arcticraft.creative_tabs.AC_TabMisc;
 import arcticraft.creative_tabs.AC_TabTools;
 import arcticraft.data_store.GeneratedShipsStore;
-import arcticraft.data_store.TemperatureDataStorage;
+//import arcticraft.data_store.TemperatureDataStorage;
 import arcticraft.dispenser.AC_DispenserBehaviours;
 import arcticraft.entities.AC_EntityRegistry;
 import arcticraft.gui.AC_GuiHandler;
@@ -84,20 +84,21 @@ public class MainRegistry {
 	public static Potion freezePotion;
 
 	/* Configuration Files */
-	public Configuration temperatureFile;
-	private TemperatureDataStorage storage = new TemperatureDataStorage();
+//	public Configuration temperatureFile;
+//	private TemperatureDataStorage storage = new TemperatureDataStorage();
 	private GeneratedShipsStore generatedShips = new GeneratedShipsStore();
 	public Configuration globalConfigFile;
 	public Configuration ships;
+	public Configuration tempConfig;
 
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent event) 
 	{
-		TemperatureHandlerServer.clear();
-		TemperatureHandlerServer.loadFromFile(new Configuration(new File(DimensionManager.getCurrentSaveRootDirectory(), "playertemps.dat")));
+//		TemperatureHandlerServer.clear();
+//		TemperatureHandlerServer.loadFromFile(new Configuration(new File(DimensionManager.getCurrentSaveRootDirectory(), "playertemps.dat")));
 		
 		
-		storage.clear();
+//		storage.clear();
 		System.out.println("Setting " + Strings.MOD_NAME + " server options");
 
 		File shipFile = new File(DimensionManager.getCurrentSaveRootDirectory(), "ships.cfg");
@@ -123,37 +124,37 @@ public class MainRegistry {
 			}
 		}
 
-		temperatureFile = new Configuration(worldConfigFile);
+//		temperatureFile = new Configuration(worldConfigFile);
 
-		try {
-			temperatureFile.load();
-
-			ConfigCategory general = temperatureFile.getCategory(Strings.CONFIG_CATEGORY_GENERAL);
-			Map<String, Property> entries = general.getValues();
-			storage.load(entries);
-			//TODO NOTE: player isnt online to be checked here
-//			AC_TickHandler.value = storage.getTemperature("Player");
-		} catch (Exception e) {
-			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load its temperature configuration");
-		} finally {
-			temperatureFile.save();
-		}
+//		try {
+//			temperatureFile.load();
+//
+//			ConfigCategory general = temperatureFile.getCategory(Strings.CONFIG_CATEGORY_GENERAL);
+//			Map<String, Property> entries = general.getValues();
+//			storage.load(entries);
+//			//TODO NOTE: player isnt online to be checked here
+////			AC_TickHandler.value = storage.getTemperature("Player");
+//		} catch (Exception e) {
+//			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load its temperature configuration");
+//		} finally {
+//			temperatureFile.save();
+//		}
 		//
 	}
 
 	@EventHandler
 	public void serverStopping(FMLServerStoppingEvent event) {
-		storage.setTemperature("Player", AC_TickHandler.value);
+//		storage.setTemperature("Player", AC_TickHandler.value);
 
 		try {
 			ConfigCategory gui = globalConfigFile.getCategory(Strings.CONFIG_CATEGORY_GUI);
 			ConfigCategory gen = globalConfigFile.getCategory(Strings.CONFIG_CATEGORY_GEN);
-			ConfigCategory general = temperatureFile.getCategory(Strings.CONFIG_CATEGORY_GENERAL);
+//			ConfigCategory general = temperatureFile.getCategory(Strings.CONFIG_CATEGORY_GENERAL);
 
 			gui.put(Strings.CONFIG_TEMP_BAR_X, new Property(Strings.CONFIG_TEMP_BAR_X, Integer.toString(AC_TickHandler.x), Type.INTEGER));
 			gui.put(Strings.CONFIG_TEMP_BAR_Y, new Property(Strings.CONFIG_TEMP_BAR_Y, Integer.toString(AC_TickHandler.y), Type.INTEGER));
 			gen.put(Strings.CONFIG_SNOW_LAYERS_ENABLED, new Property(Strings.CONFIG_SNOW_LAYERS_ENABLED, Boolean.toString(AC_TickHandler.snowLayersEnabled), Type.BOOLEAN));
-			general.putAll(storage.save());
+//			general.putAll(storage.save());
 
 			ConfigCategory shipsCategory = ships.getCategory("ships");
 			shipsCategory.putAll(generatedShips.save());
@@ -161,7 +162,7 @@ public class MainRegistry {
 			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't save all of its configuration options");
 		} finally {
 			globalConfigFile.save();
-			temperatureFile.save();
+//			temperatureFile.save();
 			ships.save();
 		}
 	}
@@ -172,17 +173,17 @@ public class MainRegistry {
 	@PostInit
 	public void loadTempBar(FMLPostInitializationEvent event)
 	{
-		try {
-			globalConfigFile.load();
-			AC_TickHandler.x = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_X, 0).getInt(0);
-			AC_TickHandler.y = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_Y, 0).getInt(0);
-			AC_TickHandler.snowLayersEnabled = globalConfigFile.get(Strings.CONFIG_CATEGORY_GEN, Strings.CONFIG_SNOW_LAYERS_ENABLED, true).getBoolean(true);
-		
-		} catch (Exception e) {
-			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load its configuration");
-		} finally {
-			globalConfigFile.save();
-		}
+//		try {
+//			globalConfigFile.load();
+//			AC_TickHandler.x = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_X, 0).getInt(0);
+//			AC_TickHandler.y = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_Y, 0).getInt(0);
+//			AC_TickHandler.snowLayersEnabled = globalConfigFile.get(Strings.CONFIG_CATEGORY_GEN, Strings.CONFIG_SNOW_LAYERS_ENABLED, true).getBoolean(true);
+//		
+//		} catch (Exception e) {
+//			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load its configuration");
+//		} finally {
+//			globalConfigFile.save();
+//		}
 	}
 
 	@EventHandler
@@ -197,17 +198,17 @@ public class MainRegistry {
 		}
 		globalConfigFile = new Configuration(cfgFile);
 		//TODO this may need to be loaded client side only, needs testing
-//		try {
-//			globalConfigFile.load();
+		try {
+			globalConfigFile.load();
 //			AC_TickHandler.x = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_X, 0).getInt(0);
 //			AC_TickHandler.y = globalConfigFile.get(Strings.CONFIG_CATEGORY_GUI, Strings.CONFIG_TEMP_BAR_Y, 0).getInt(0);
 //			AC_TickHandler.snowLayersEnabled = globalConfigFile.get(Strings.CONFIG_CATEGORY_GEN, Strings.CONFIG_SNOW_LAYERS_ENABLED, true).getBoolean(true);
-//		
-//		} catch (Exception e) {
-//			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load its configuration");
-//		} finally {
-//			globalConfigFile.save();
-//		}
+		
+		} catch (Exception e) {
+			FMLLog.log(Level.SEVERE, e, Strings.MOD_NAME + " can't load its configuration");
+		} finally {
+			globalConfigFile.save();
+		}
 
 		DimensionManager.registerProviderType(dimension, AC_WorldProvider.class, false);
 		DimensionManager.registerDimension(dimension, dimension);

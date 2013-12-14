@@ -19,14 +19,13 @@ public class AC_EntityPropertyTemperature implements IExtendedEntityProperties
 	{
 		compound.setInteger("ACTemperature", this.player.getDataWatcher().getWatchableObjectInt(AC_TemperatureHelper.tempID));
 		compound.setBoolean("CollectedReward", AC_GuiEskimoTalk.hasCollectedReward);
-		
 	}
 
 	@Override
 	public void loadNBTData(NBTTagCompound compound)
 	{
 		this.player.getDataWatcher().updateObject(AC_TemperatureHelper.tempID, Integer.valueOf(compound.getInteger("ACTemperature")));
-		AC_GuiEskimoTalk.hasCollectedReward = compound.getBoolean("CollectedReward");
+//		AC_GuiEskimoTalk.hasCollectedReward = compound.getBoolean("CollectedReward");
 	}
 
 	@Override

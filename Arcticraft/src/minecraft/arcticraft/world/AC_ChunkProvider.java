@@ -662,15 +662,15 @@ public class AC_ChunkProvider implements IChunkProvider
 
 				if(this.worldObj.canSnowAt(k1 + i, l3, l2 + j))
 				{
-					if(AC_TickHandler.snowLayersEnabled)
-					{
-						int meta = (int) Math.abs(rand.nextGaussian() * 4);
-						this.worldObj.setBlock(k1 + i, l3, l2 + j, Block.snow.blockID, meta, 3);
-					}
-					else
-					{
-						this.worldObj.setBlock(k1 + i, l3, l2 + j, this.pickSnow(rand));
-					}
+//					if(AC_TickHandler.snowLayersEnabled)
+//					{
+//						int meta = (int) Math.abs(rand.nextGaussian() * 4);
+//						this.worldObj.setBlock(k1 + i, l3, l2 + j, Block.snow.blockID, meta, 3);
+//					}
+//					else
+//					{
+//						this.worldObj.setBlock(k1 + i, l3, l2 + j, this.pickSnow(rand));
+//					}
 				}
 			}
 		}

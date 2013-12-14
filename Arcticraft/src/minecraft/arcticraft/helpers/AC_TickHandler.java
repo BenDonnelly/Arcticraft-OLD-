@@ -18,14 +18,17 @@ import arcticraft.blocks.AC_BlockGlacierLeaves;
 import arcticraft.entities.AC_EntityBlueSparkle;
 import arcticraft.entities.AC_EntityYellowSparkle;
 import arcticraft.gui.AC_GuiMainMenu;
-import arcticraft.gui.AC_GuiOptions;
 import arcticraft.items.AC_Item;
 import arcticraft.main.MainRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
+
+//TODO changed this to side client
+@SideOnly(Side.CLIENT)
 public class AC_TickHandler implements ITickHandler
 {
 
