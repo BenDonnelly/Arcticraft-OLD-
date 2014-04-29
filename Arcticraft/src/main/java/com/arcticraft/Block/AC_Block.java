@@ -45,6 +45,7 @@ public class AC_Block {
 	public static Block frostSapling;
 	public static Block glacierLog;
 	public static Block glacierLeaves;
+	public static Block glacierSapling;
 	public static Block acWaterIce;
 
 	/* Dungeon Blocks */
@@ -116,13 +117,17 @@ public class AC_Block {
 		frostLog = new FrostLog(Material.wood).setHardness(1.5F).setBlockName("FrostLog").setCreativeTab(AC_CreativeTabs.tabBlock).setBlockTextureName(Strings.MODID + ":frost_log");
 		frostLeaves = new FrostLeaves(Material.leaves).setHardness(0.5F).setBlockName("FrostLeaves").setCreativeTab(AC_CreativeTabs.tabBlock);
 		frostSapling = new FrostSapling().setBlockName("FrostSapling").setBlockTextureName(Strings.MODID + ":frost_sapling").setCreativeTab(AC_CreativeTabs.tabBlock);
-	
+		glacierLog = new GlacierLog(Material.wood).setHardness(1.5F).setBlockName("GlacierLog").setCreativeTab(AC_CreativeTabs.tabBlock).setBlockTextureName(Strings.MODID + ":glacier_log");
+		glacierLeaves = new GlacierLeaves(Material.leaves).setHardness(0.5F).setBlockName("GlacierLeaves").setCreativeTab(AC_CreativeTabs.tabBlock);
+		glacierSapling = new GlacierSapling().setBlockName("GlacierSapling").setBlockTextureName(Strings.MODID + ":glacier_sapling").setCreativeTab(AC_CreativeTabs.tabBlock);
+		
 		mossyFrostCobble = new MossyFrostCobble(Material.rock).setHardness(2.0F).setBlockName("MossyFrost").setBlockTextureName(Strings.MODID + ":frost_mossy_cobble").setCreativeTab(AC_CreativeTabs.tabBlock);
 		amouryDoor =  new AC_Door(Material.iron).setHardness(3.0F).setBlockName("ArmouryDoor").setBlockTextureName(Strings.MODID + ":amoury_door");
 	
 		frostFlame = new FrostFire().setBlockName("FrostFire").setCreativeTab(AC_CreativeTabs.tabBlock).setBlockTextureName(Strings.MODID + ":frost_flame");
 	
 		floranPlant = new AC_Crop().setBlockTextureName(Strings.MODID + ":floran").setBlockName("floran");
+		whiteberryBush = new BerryBush().setBlockTextureName(Strings.MODID + ":berry").setBlockName("whiteberry");
 		tilledFrostField = new FrostTillField().setHardness(2.0F).setBlockName("FrostTilled").setBlockTextureName(Strings.MODID + ":frostfarmland").setCreativeTab(AC_CreativeTabs.tabBlock);
 		
 		mysticalSnow = new MysticalSnow(Material.snow).setBlockName("MysticalSnow").setCreativeTab(AC_CreativeTabs.tabBlock).setBlockTextureName(Strings.MODID + ":mystical_snow");
@@ -146,12 +151,21 @@ public class AC_Block {
 		arcticFurnaceBurning = new AC_Furnace(true).setBlockName("ArcticFurnaceLit");
 	
 		freezerIdle  =new AC_Freezer(false).setBlockName("FreezerIdle").setCreativeTab(AC_CreativeTabs.tabBlock);
-		freezerBurning = new AC_Freezer(true).setBlockName("FreezerBurning").setCreativeTab(AC_CreativeTabs.tabBlock);
+		freezerBurning = new AC_Freezer(true).setBlockName("FreezerBurning");
 	
-		captainStatue = new CaptainStatue(Material.rock).setBlockName("CaptainStatue").setCreativeTab(AC_CreativeTabs.tabBlock);
+		captainStatue = new CaptainStatue(Material.rock).setBlockName("CaptainStatue").setCreativeTab(AC_CreativeTabs.tabBlock).setBlockName(Strings.MODID + ":captain_statue");
+		
+		campfire = new Campfire(Material.rock).setBlockName("Campfire").setCreativeTab(AC_CreativeTabs.tabBlock).setBlockTextureName(Strings.MODID + ":campfire");
+		tresureChest = new TreasureChest(Material.wood).setBlockName("TreasureChest").setCreativeTab(AC_CreativeTabs.tabBlock).setBlockTextureName(Strings.MODID + ":tresure_chest");
+		cannon = new Cannon(Material.iron).setBlockName("Cannon").setCreativeTab(AC_CreativeTabs.tabBlock);
+	
+		acWaterIce = new AC_Ice().setBlockName("ACIce").setCreativeTab(AC_CreativeTabs.tabBlock).setBlockTextureName(Strings.MODID + ":ice");
+		
+		debugBlock = new DebugBlock().setCreativeTab(AC_CreativeTabs.tabBlock).setBlockName("Dubug");
 	}
 	
 	public static void registerBlocks(){
+		GameRegistry.registerBlock(debugBlock, debugBlock.getUnlocalizedName());
 		GameRegistry.registerBlock(frostGrass, "AC_FrostGrass");
 		GameRegistry.registerBlock(frostDirt, "AC_FrostDirt");
 		GameRegistry.registerBlock(frostStone, "AC_FrostStone");
@@ -193,6 +207,11 @@ public class AC_Block {
 		GameRegistry.registerBlock(freezerIdle, freezerIdle.getUnlocalizedName());
 		GameRegistry.registerBlock(freezerBurning, freezerBurning.getUnlocalizedName());
 		GameRegistry.registerBlock(captainStatue, captainStatue.getUnlocalizedName());
+		GameRegistry.registerBlock(campfire, campfire.getUnlocalizedName());
+		GameRegistry.registerBlock(tresureChest, tresureChest.getUnlocalizedName());
+		GameRegistry.registerBlock(cannon, cannon.getUnlocalizedName());
+		GameRegistry.registerBlock(whiteberryBush, whiteberryBush.getUnlocalizedName());
+		GameRegistry.registerBlock(acWaterIce, acWaterIce.getUnlocalizedName());
 	}
 	
 }

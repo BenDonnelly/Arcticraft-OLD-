@@ -88,7 +88,7 @@ public class FrostTillField extends BlockFarmland {
 				return;
 			}
 
-			p_149746_1_.setBlock(p_149746_2_, p_149746_3_, p_149746_4_, Blocks.dirt);
+			p_149746_1_.setBlock(p_149746_2_, p_149746_3_, p_149746_4_, AC_Block.frostDirt);
 		}
 	}
 

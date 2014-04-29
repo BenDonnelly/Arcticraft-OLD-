@@ -5,17 +5,18 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 
+import com.arcticraft.model.AC_ModelStatue;
 import com.arcticraft.tile_entity.TileEntityCaptain;
 
 public class ItemCaptainStatueRenderer implements IItemRenderer
 {
 
-	private ModelChest chestModel;
+	private AC_ModelStatue chestModel;
 
 	public ItemCaptainStatueRenderer()
 	{
 
-		chestModel = new ModelChest();
+		chestModel = new AC_ModelStatue();
 	}
 
 	@Override

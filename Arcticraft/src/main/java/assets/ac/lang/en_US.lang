@@ -32,6 +32,10 @@ tile.GlacianOre.name=Glacian Ore
 tile.FrigusOre.name=Frigus Ore
 tile.EriumOre.name=Erium Ore
 tile.ArcticFurnaceIdle.name=Arctic Furnace
+tile.Freezer.name=Freezer
+tile.CaptainStatue.name=Captain Statue
+tile.Campfire.name=Campfire
+tile.TreasureChest.name=Treasure Chest
 
 item.ArcaneDust.name=Arcane Dust
 item.FrostDoor.name=Frost Door
@@ -39,6 +43,73 @@ item.AmouryDoor.name=Amoury Door
 item.FloranSeed.name=Floran Seed
 item.FloranBerry.name=Floran Berry
 
+item.TekkitePickaxe.name=Tekkite Pickaxe
+item.TekkiteAxe.name=Tekkite Axe
+item.TekkiteSpade.name=Tekkite Spade
+item.TekkiteHoe.name=Tekkite Hoe
+item.TekkiteSword.name=Tekkite Sword
+
+item.EscariaPickaxe.name=Escaria Pickaxe
+item.EscariaAxe.name=Escaria Axe
+item.EscariaSpade.name=Escaria Spade
+item.EscariaHoe.name=Escaria Hoe
+item.EscariaSword.name=Tekkite Sword
+
+item.RigentemPickaxe.name=Rigentem Pickaxe
+item.RigentemAxe.name=Rigentem Axe
+item.RigentemSpade.name=Rigentem Spade
+item.RigentemHoe.name=Rigentem Hoe
+item.RigentemSword.name=Rigentem Sword
+
+item.GlacianPickaxe.name=Glacian Pickaxe
+item.GlacianAxe.name=Glacian Axe
+item.GlacianSpade.name=Glacian Spade
+item.GlacianHoe.name=Glacian Hoe
+item.GlacianSword.name=Glacian Sword
+
+item.ArcticStonePickaxe.name=Arctic Stone Pickaxe
+item.ArcticStoneAxe.name=Arctic Stone Axe
+item.ArcticStoneSpade.name=Arctic Stone Spade
+item.ArcticStoneHoe.name=Arctic Stone Hoe
+item.ArcticStoneSword.name=Arctic Stone Sword
+
+item.FrostWoodPickaxe.name=Frost Wood Pickaxe
+item.FrostWoodAxe.name=Frost Wood Axe
+item.FrostWoodSpade.name=Frost Wood Spade
+item.FrostWoodHoe.name=Frost Wood Hoe
+item.FrostWoodSword.name=Frost Wood Sword
+
+item.TekkiteHelmet.name=Tekkite Helmet
+item.TekkitePlate.name=Tekkite Plate
+item.TekkiteLegs.name=Tekkite Legs
+item.TekkiteBoots.name=Tekkite Boots
+
+item.GlacianHelmet.name=Glacian Helmet
+item.GlacianPlate.name=Glacian Plate
+item.GlacianLegs.name=Glacian Legs
+item.GlacianBoots.name=Glacian Boots
+
+item.RigentemHelmet.name=Rigentem Helmet
+item.RigentemPlate.name=Rigentem Plate
+item.RigentemLegs.name=Rigentem Legs
+item.RigentemBoots.name=Rigentem Boots
+
+item.EscariaHelmet.name=Escaria Helmet
+item.EscariaPlate.name=Escaria Plate
+item.EscariaLegs.name=Escaria Legs
+item.EscariaBoots.name=Escaria Boots
+
+item.PirateHat.name=Pirate Hat
+item.PirateSword.name=Pirate Sword
+item.WoodenClub.name=Wooden Club
+
+item.Bomb.name=Bomb
+
+entity.EntityCannonball.name=Cannonball
+entity.EntityBomb.name=Bomb
+
 itemGroup.ArcticraftBlocks=Arcticraft Block
 itemGroup.ArcticraftItems=Arcticraft Items
 itemGroup.ArcticraftFood=Arcticraft Food
+itemGroup.ArcticraftTool=Arcticraft Tools
+itemGroup.ArcticraftCombat=Arcticraft Combat

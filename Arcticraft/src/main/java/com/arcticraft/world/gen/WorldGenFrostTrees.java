@@ -1,6 +1,9 @@
-package com.arcticraft.Block;
+package com.arcticraft.world.gen;
 
 import java.util.Random;
+
+import com.arcticraft.Block.AC_Block;
+import com.arcticraft.Block.FrostSapling;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.Direction;

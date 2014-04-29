@@ -2,6 +2,8 @@ package com.arcticraft.Block;
 
 import java.util.Random;
 
+import com.arcticraft.world.gen.WorldGenFrostTrees;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;

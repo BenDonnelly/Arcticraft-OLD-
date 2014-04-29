@@ -1,6 +1,6 @@
 package com.arcticraft.Block;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 
 import com.arcticraft.tile_entity.TileEntityCaptain;
 
-public class CaptainStatue extends Block {
+public class CaptainStatue extends BlockContainer {
 
 	protected CaptainStatue(Material p_i45394_1_) {
 		super(p_i45394_1_);
