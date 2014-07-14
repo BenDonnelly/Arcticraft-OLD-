@@ -1,0 +1,115 @@
+tile.FrostGrass.name=Césped hielo
+tile.FrostDirt.name=Tierra hielo
+tile.FrostStone.name=Piedra hielo
+tile.FrostCobble.name=Roca hielo
+tile.ArcaneStone.name=Piedra arcana
+tile.FrostPlanks.name=Madera de hielo
+tile.FrostStairs.name=Escaleras de madera de hielo
+tile.FrostSlab.name=Losa de madera de hielo
+tile.FrostDoubleSlab.name=Losa de madera de hielo
+tile.FrostLadder.name=Escalera congelada de mano
+tile.FrostFence.name=Valla congelada
+tile.FrostDoor.name=Puerta congelada
+tile.FrostChest.name=Cofre de hielo
+tile.FrostLog.name=Tronco de hielo
+tile.FrostLeaves.name=Hojas de hielo
+tile.FrostSapling.name=Brote de hielo
+tile.MossyFrost.name=Piedra hielo de musgosa
+tile.FrostFlame.name=Congelación fuego
+tile.FloranPlant.name=Arbusto de floran
+tile.FrostTilled.name=Tierra hielo de cultivo
+tile.MysticalSnow.name=Nieve mística
+tile.TekkiteBlock.name=Bloque de tekkite
+tile.EscariaBlock.name=Bloque de escaria
+tile.GlacianBlock.name=Bloque de glyceris
+tile.RigentemBlock.name=Bloque de rigentem
+tile.SnowTrapDoor.name=Trampilla de nieve
+tile.SnowPressurePlate.name=Placa de presión de nieve
+tile.TekkiteOre.name=Mena de tekkite
+tile.RigentemOre.name=Mena de rigentem
+tile.EscariaOre.name=Mena de escaria
+tile.GlacianOre.name=Mena de glyceris
+tile.FrigusOre.name=Mena de frigus
+tile.EriumOre.name=Mena de erium
+tile.ArcticFurnaceIdle.name=Horno del ártico
+tile.Freezer.name=Congelador
+tile.CaptainStatue.name=Estatua de capitán
+tile.Campfire.name=Hoguera
+tile.TreasureChest.name=Cofre del tesoro
+
+item.ArcaneDust.name=Polvo arcana
+item.FrostDoor.name=Puerta congelada
+item.AmouryDoor.name=Puerta de la armería
+item.FloranSeed.name=Semillas de floran
+item.FloranBerry.name=Baya de floran
+
+item.TekkitePickaxe.name=Pico de tekkite
+item.TekkiteAxe.name=Hacha de tekkite
+item.TekkiteSpade.name=Pada de tekkite
+item.TekkiteHoe.name=Azada de tekkite
+item.TekkiteSword.name=Espada de tekkite
+
+item.EscariaPickaxe.name=Pico de escaria
+item.EscariaAxe.name=Hacha de escaria
+item.EscariaSpade.name=Pada de escaria
+item.EscariaHoe.name=Azada de escaria
+item.EscariaSword.name=Espada de escaria
+
+item.RigentemPickaxe.name=Pico de rigentem
+item.RigentemAxe.name=Hacha de rigentem
+item.RigentemSpade.name=Pada de rigentem
+item.RigentemHoe.name=Azada de rigentem
+item.RigentemSword.name=Espada de rigentem
+
+item.GlacianPickaxe.name=Pico de glyceris
+item.GlacianAxe.name=Hacha de glyceris
+item.GlacianSpade.name=Pada de glyceris
+item.GlacianHoe.name=Azada de glyceris
+item.GlacianSword.name=Espada de glyceris
+
+item.ArcticStonePickaxe.name=Pico de piedra hielo
+item.ArcticStoneAxe.name=Hacha de piedra hielo
+item.ArcticStoneSpade.name=Pada de piedra hielo
+item.ArcticStoneHoe.name=Azada de piedra hielo
+item.ArcticStoneSword.name=Espada de piedra hielo
+
+item.FrostWoodPickaxe.name=Pico de madera de hielo
+item.FrostWoodAxe.name=Hacha de madera de hielo
+item.FrostWoodSpade.name=Pada de madera de hielo
+item.FrostWoodHoe.name=Azada de madera de hielo
+item.FrostWoodSword.name=Espada de madera de hielo
+
+item.TekkiteHelmet.name=Casco de tekkite
+item.TekkitePlate.name=Peto de tekkite
+item.TekkiteLegs.name=Grebas de tekkite
+item.TekkiteBoots.name=Botas de tekkite
+
+item.GlacianHelmet.name=Casco de glyceris
+item.GlacianPlate.name=Peto de glyceris
+item.GlacianLegs.name=Grebas de glyceris
+item.GlacianBoots.name=Botas de glyceris
+
+item.RigentemHelmet.name=Casco de rigentem
+item.RigentemPlate.name=Peto de rigentem
+item.RigentemLegs.name=Grebas de rigentem
+item.RigentemBoots.name=Botas de rigentem
+
+item.EscariaHelmet.name=Casco de escaria
+item.EscariaPlate.name=Peto de escaria
+item.EscariaLegs.name=Grebas de escaria
+item.EscariaBoots.name=Botas de escaria
+
+item.PirateHat.name=Sombrero de pirata
+item.PirateSword.name=Chafarote
+item.WoodenClub.name=Palo de madera
+
+item.Bomb.name=Bomba
+
+entity.EntityCannonball.name=Bala de cañón
+entity.EntityBomb.name=Bomba
+
+itemGroup.ArcticraftBlocks=Bloques de Arcticraft
+itemGroup.ArcticraftItems=Artículos de Arcticraft
+itemGroup.ArcticraftFood=Alimentación de Arcticraft
+itemGroup.ArcticraftTool=Herramientas de Arcticraft
+itemGroup.ArcticraftCombat=Combate de Arcticraft

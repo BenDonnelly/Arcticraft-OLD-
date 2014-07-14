@@ -39,43 +39,43 @@ tile.TreasureChest.name=Treasure Chest
 
 item.ArcaneDust.name=Arcane Dust
 item.FrostDoor.name=Frozen Door
-item.AmouryDoor.name=Armory Door
+item.AmouryDoor.name=Armoury Door
 item.FloranSeed.name=Floran Seed
 item.FloranBerry.name=Floran Berry
 
 item.TekkitePickaxe.name=Tekkite Pickaxe
 item.TekkiteAxe.name=Tekkite Axe
-item.TekkiteSpade.name=Tekkite Shovel
+item.TekkiteSpade.name=Tekkite Spade
 item.TekkiteHoe.name=Tekkite Hoe
 item.TekkiteSword.name=Tekkite Sword
 
 item.EscariaPickaxe.name=Escaria Pickaxe
 item.EscariaAxe.name=Escaria Axe
-item.EscariaSpade.name=Escaria Shovel
+item.EscariaSpade.name=Escaria Spade
 item.EscariaHoe.name=Escaria Hoe
 item.EscariaSword.name=Tekkite Sword
 
 item.RigentemPickaxe.name=Rigentem Pickaxe
 item.RigentemAxe.name=Rigentem Axe
-item.RigentemSpade.name=Rigentem Shovel
+item.RigentemSpade.name=Rigentem Spade
 item.RigentemHoe.name=Rigentem Hoe
 item.RigentemSword.name=Rigentem Sword
 
 item.GlacianPickaxe.name=Glycerian Pickaxe
 item.GlacianAxe.name=Glycerian Axe
-item.GlacianSpade.name=Glycerian Shovel
+item.GlacianSpade.name=Glycerian Spade
 item.GlacianHoe.name=Glycerian Hoe
 item.GlacianSword.name=Glycerian Sword
 
 item.ArcticStonePickaxe.name=Arctic Stone Pickaxe
 item.ArcticStoneAxe.name=Arctic Stone Axe
-item.ArcticStoneSpade.name=Arctic Stone Shovel
+item.ArcticStoneSpade.name=Arctic Stone Spade
 item.ArcticStoneHoe.name=Arctic Stone Hoe
 item.ArcticStoneSword.name=Arctic Stone Sword
 
 item.FrostWoodPickaxe.name=Frost Wood Pickaxe
 item.FrostWoodAxe.name=Frost Wood Axe
-item.FrostWoodSpade.name=Frost Wood Shovel
+item.FrostWoodSpade.name=Frost Wood Spade
 item.FrostWoodHoe.name=Frost Wood Hoe
 item.FrostWoodSword.name=Frost Wood Sword
 
