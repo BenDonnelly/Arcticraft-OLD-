@@ -1,18 +1,17 @@
 package com.arcticraft.main;
 
-import static io.netty.buffer.Unpooled.buffer;
-import io.netty.buffer.ByteBuf;
-
 import java.util.Iterator;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.play.client.C17PacketCustomPayload;
 import net.minecraft.world.World;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.terraingen.BiomeEvent;
 
 import com.arcticraft.Block.AC_Block;
 import com.arcticraft.creativetabs.AC_CreativeTabs;
@@ -20,6 +19,7 @@ import com.arcticraft.entity.AC_Entity;
 import com.arcticraft.item.AC_Item;
 import com.arcticraft.lib.Strings;
 import com.arcticraft.world.WorldProviderArctic;
+import com.arcticraft.world.biome.AC_BiomeGenBase;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -28,10 +28,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
 
 @Mod(modid = Strings.MODID, name = Strings.name, version = Strings.version)
 public class MainRegistry {
@@ -55,10 +51,12 @@ public class MainRegistry {
 		AC_Block.mainRegistry();
 		AC_Item.mainRegistry();
 		AC_Entity.mainRegistry();
-
+		
+		 
 		DimensionManager.registerProviderType(dimensionId, WorldProviderArctic.class, false);
 		DimensionManager.registerDimension(dimensionId, dimensionId);
-
+		
+		
 		proxy.registerNetworkThings();
 		proxy.registerTileEntities();
 	}

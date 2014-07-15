@@ -40,11 +40,11 @@ public class AC_BiomeGenBase extends BiomeGenBase
 
 	static
 	{
-		FrostMountains = (AC_BiomeGenBase) (new BiomeFrostMountains(70)).setBiomeName("Arctic Mountains");
-		frostForest = (AC_BiomeGenBase) (new BiomeFrostForest(71)).setBiomeName("Frost Forest");
-		glacier = (AC_BiomeGenBase) (new BiomeGlacier(72)).setBiomeName("Glacier");
-		snowPlains = (AC_BiomeGenBase) (new BiomeSnowPlains(73)).setBiomeName("Snow Plains");
-		ocean = (AC_BiomeGenBase) (new BiomeOcean(74)).setBiomeName("Arctic Ocean");
+		FrostMountains = (AC_BiomeGenBase) (new BiomeFrostMountains(41)).setBiomeName("Arctic Mountains");
+		frostForest = (AC_BiomeGenBase) (new BiomeFrostForest(42)).setBiomeName("Frost Forest");
+		glacier = (AC_BiomeGenBase) (new BiomeGlacier(43)).setBiomeName("Glacier");
+		snowPlains = (AC_BiomeGenBase) (new BiomeSnowPlains(44)).setBiomeName("Snow Plains");
+		ocean = (AC_BiomeGenBase) (new BiomeOcean(45)).setBiomeName("Arctic Ocean");
 	}
 
 }

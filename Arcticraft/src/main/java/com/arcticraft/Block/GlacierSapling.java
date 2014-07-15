@@ -2,10 +2,6 @@ package com.arcticraft.Block;
 
 import java.util.Random;
 
-
-
-import com.arcticraft.world.gen.WorldGenGlacierTrees;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
@@ -14,6 +10,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import com.arcticraft.world.gen.WorldGenGlacierTrees;
 
 public class GlacierSapling extends BlockBush implements IGrowable
 {
@@ -25,6 +23,15 @@ public class GlacierSapling extends BlockBush implements IGrowable
         float f = 0.4F;
         this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
         this.setCreativeTab(CreativeTabs.tabDecorations);
+    }
+    
+    /**
+     * is the block grass, dirt or farmland
+     */
+    @Override
+    protected boolean canPlaceBlockOn(Block p_149854_1_)
+    {
+        return p_149854_1_ == AC_Block.frostGrass;
     }
 
     /**

@@ -114,8 +114,8 @@ public class FrostGrass extends Block implements IGrowable
     {
         this.blockIcon = p_149651_1_.registerIcon(this.getTextureName() + "_side");
         this.field_149991_b = p_149651_1_.registerIcon(this.getTextureName() + "_top");
-        this.field_149993_M = p_149651_1_.registerIcon(this.getTextureName() + "_side_snowed");
-        this.field_149994_N = p_149651_1_.registerIcon(this.getTextureName() + "_snow_overlay");
+        this.field_149993_M = p_149651_1_.registerIcon("ac:frost_snow_overlay");
+        this.field_149994_N = p_149651_1_.registerIcon("ac:frost_snow_overlay");
     }
     
 

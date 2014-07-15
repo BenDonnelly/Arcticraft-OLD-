@@ -77,7 +77,6 @@ public class WorldProviderArctic extends WorldProvider
 	{
 		int var2 = par1Random.nextInt(5);
 		return var2 == 0 ? "Entering" : (var2 == 1 ? "Re-Materializing in" : (var2 == 2 ? "Forming in" : (var2 == 3 ? "Sending To" : "Teleporting to")));
-
 	}
 
 	public String getDimensionName()

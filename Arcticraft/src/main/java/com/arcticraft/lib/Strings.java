@@ -7,5 +7,6 @@ public class Strings {
 	public static final String version = "0.01 ALPHA";
 	
 	public static final String CHANNEL_ROPE_POSITION = "AC|RopePosition";
+	public static final String CHANNEL_ESKIMO_TRADE = "AC|EskimoTrade";
 	
 }

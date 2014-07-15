@@ -6,3 +6,4 @@ dimension fruits
 hiking boots
 ice cream
 mage talking
+eskimo cheif gui

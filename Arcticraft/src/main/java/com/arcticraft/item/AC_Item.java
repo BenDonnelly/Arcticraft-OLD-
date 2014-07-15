@@ -138,6 +138,9 @@ public class AC_Item {
 	public static Item whiteberry;
 	
 	public static void initialiseItems() {
+		MystFruit = new AC_Fruit().setUnlocalizedName("MystFruit");
+		GlacierFruit = new AC_Fruit().setUnlocalizedName("GlacierFruit");
+		
 		arcaneDust = new Item().setUnlocalizedName("ArcaneDust").setTextureName(Strings.MODID + ":arcaneDust").setCreativeTab(AC_CreativeTabs.tabItem);
 		frostDoor = new AC_ItemDoor(Material.wood).setCreativeTab(AC_CreativeTabs.tabBlock).setUnlocalizedName("FrostDoor").setTextureName(Strings.MODID + ":frost_door_icon");
 		amouryDoor = new AC_ItemDoor(Material.wood).setCreativeTab(AC_CreativeTabs.tabBlock).setUnlocalizedName("AmouryDoor").setTextureName(Strings.MODID + ":amoury_door");
@@ -289,5 +292,7 @@ public class AC_Item {
 		GameRegistry.registerItem(ignisBlade, ignisBlade.getUnlocalizedName());
 		GameRegistry.registerItem(archerBow, archerBow.getUnlocalizedName());
 		GameRegistry.registerItem(IceShard, IceShard.getUnlocalizedName());
+		//GameRegistry.registerItem(GlacierFruit, GlacierFruit.getUnlocalizedName());
+		//GameRegistry.registerItem(MystFruit, MystFruit.getUnlocalizedName());
 	}
 }
